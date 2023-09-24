@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ChevronRight } from "lucide-react"
+import { Code2Icon, DownloadIcon } from "lucide-react"
 
 import { siteConfig } from "@/config/site"
 import { badgeVariants } from "@/components/ui/badge"
@@ -8,8 +8,18 @@ import { Button, buttonVariants } from "@/components/ui/button"
 export default function IndexPage() {
   return (
     <section className="container flex flex-col justify-center items-center h-screen pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
+    <style>
+        {`
+          body {
+            overflow-y: hidden;
+            overflow-x: hidden;
+          }
+        `}
+      </style>
       <Link className={badgeVariants({ variant: "outline" })} href={"./bot"}>
-        🎉 Applio Bot is available now!
+        <span style={{ textShadow: "2px 2px 4px rgba(255, 255, 255, 0.2)" }}>
+          🎉 Applio Bot is available now!
+        </span>
       </Link>
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
         Create, experiment, enjoy with{" "}
@@ -21,12 +31,22 @@ export default function IndexPage() {
         Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to
         provide an intuitive interface, especially for newcomers.
       </p>
-      <Link href="/download">
-        <Button className="mb-28 mt-4">
-          <ChevronRight className="h-4 w-4 mr-2" />
-          Download
-        </Button>
-      </Link>
+
+      <div className="flex mb-44">
+        <Link href="/download">
+          <Button className="mr-4">
+            <DownloadIcon className="h-4 w-4 mr-2" />
+            Download
+          </Button>
+        </Link>
+
+        <Link href="https://github.com/IAHispano/Applio-RVC-Fork">
+          <Button>
+            <Code2Icon className="h-4 w-4 mr-2" />
+            Source Code
+          </Button>
+        </Link>
+      </div>
     </section>
   )
 }

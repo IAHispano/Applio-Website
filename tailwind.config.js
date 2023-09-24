@@ -72,8 +72,9 @@ module.exports = {
       },
     },
     backgroundImage: {
-      'gradient-radial': 'linear-gradient(to right, #27CF15 40%, #159FCF 100%);'
-    }
+      "gradient-radial":
+        "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
+    },
   },
   plugins: [require("tailwindcss-animate")],
 }

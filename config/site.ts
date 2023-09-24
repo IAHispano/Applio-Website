@@ -11,7 +11,11 @@ export const siteConfig = {
     },
     {
       title: "Docs",
-      href: "/docs",
+      href: "https://docs.applio.org",
+    },
+    {
+      title: "Models",
+      href: "/models",
     },
     {
       title: "Applio Bot",
@@ -19,8 +23,8 @@ export const siteConfig = {
     },
   ],
   links: {
-    twitter: "https://twitter.com/iahispano",
-    github: "https://github.com/iahispano",
+    discord: "https://discord.gg/IAHispano",
+    github: "https://github.com/IAHispano",
     docs: "https://docs.applio.org",
   },
 }

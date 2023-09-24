@@ -3,8 +3,8 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.discordapp.com", "imgs.search.brave.com"], 
+    domains: ["cdn.discordapp.com", "imgs.search.brave.com"],
   },
-};
+}
 
-export default nextConfig;
+export default nextConfig

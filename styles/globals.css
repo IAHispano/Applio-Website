@@ -37,7 +37,7 @@
   }
 
   .dark {
-    --background: 224 71% 4%;
+    --background: 240 10% 3.9%;
     --foreground: 213 31% 91%;
 
     --muted: 223 47% 11%;
@@ -79,3 +79,5 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+::-webkit-scrollbar {display:none;}

@@ -1,18 +1,16 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { createClientComponentClient, createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import ModelCard from "@/components/model-card";
 import Link from "next/link";
 import { Database } from "../types/database";
 import { cookies } from "next/headers";
+import { createClient } from "@supabase/supabase-js";
 
- export default async function HomePage() {
-  const supabase = createServerComponentClient<Database>({ cookies });
-  const {
-    data: { session },
-  } = await supabase.auth.getSession();
+export default async function Home() {
+  const supabase = createClientComponentClient();
   const { data: posts } = await supabase
-    .from("models")
-    .select("*");
-    
+    .from('models')
+    .select('*')
+    .order('created_at', { ascending: true })
 
   return (
     <section >

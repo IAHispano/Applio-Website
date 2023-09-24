@@ -15,7 +15,7 @@ export default function ErrorPage() {
     <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
     
     <h1 className="text-9xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">Applio <span className="bg-gradient-radial text-transparent bg-clip-text">Bot</span></h1>
-    <p className="mt-4 text-muted-foreground mb-24 text-xs md:text-xl mt-14">
+    <p className="mt-4 text-muted-foreground mb-24 text-xs md:text-xl ">
     Enjoy our 8.000+ models with a simple Discord bot.
     </p>
     <Accordion type="single" collapsible className="w-full">

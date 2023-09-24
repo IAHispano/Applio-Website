@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Database } from "../types/database";
 import { cookies } from "next/headers";
 
- async function HomePage() {
+ export default async function HomePage() {
   const supabase = createServerComponentClient<Database>({ cookies });
   const {
     data: { session },

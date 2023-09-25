@@ -24,7 +24,7 @@ export default function IndexPage() {
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
         Create, experiment, enjoy with{" "}
         <span className="bg-gradient-radial text-transparent bg-clip-text">
-          Applio
+          Applio.
         </span>{" "}
       </h1>
       <p className="text-sm text-muted-foreground sm:text-lg text-center mb-4 max-w-xl mx-auto mt-2 ">

@@ -5,7 +5,7 @@ import { useEffect } from "react"
 export default function IndexPage() {
   useEffect(() => {
     window.location.href =
-      "https://github.com/IAHispano/Applio-RVC-Fork/releases/download/v2.0.0/install_Applio.bat"
+      "https://github.com/IAHispano/Applio-RVC-Fork/releases"
   }, [])
 
   return (

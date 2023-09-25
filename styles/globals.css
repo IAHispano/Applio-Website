@@ -79,6 +79,14 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+.image-zoom {
+  transition: transform 0.3s ease;
+}
+
+
+.image-zoom:hover {
+  transform: scale(1.2);
+}
 
 ::-webkit-scrollbar {
   display: none;

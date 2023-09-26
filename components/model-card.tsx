@@ -37,7 +37,7 @@ export default function ModelCard({
         {isAudioOrError ? (
           <p className="text-white font-inter text-xl p-4 mt-8">
                       <Image
-            src="https://i.imgur.com/TPbKmUz.png"
+            src="https://i.imgur.com/QLOUYSr.png"
             alt="Error"
             layout="fill"
             objectFit="cover"

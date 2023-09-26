@@ -18,28 +18,57 @@ export default function ModelCard({
     return text;
   };
   const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
   const handleImageLoad = () => {
-      setLoading(false);
+    setLoading(false);
   };
+  const handleImageError = () => {
+    setImageError(true);
+    setLoading(false);
+  };
+
+  const isAudioOrError = imageUrl.toLowerCase().endsWith(".mp3") || imageError; 
+
 
   return (
     <div className="max-w-sm bg-black border rounded-lg overflow-hidden shadow-lg">
       <div className="relative h-60">
-        <Image
-          src={imageUrl}
-          alt="Picture of the model"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center center"
-          style={{
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-          }}
-          loading="lazy"
-          className="image-zoom"
-          quality={1}
-          onLoadingComplete={handleImageLoad}
-        />
+        {isAudioOrError ? (
+          <p className="text-white font-inter text-xl p-4 mt-8">
+                      <Image
+            src="https://i.imgur.com/TPbKmUz.png"
+            alt="Error"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            style={{
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+            }}
+            loading="lazy"
+            className="image-zoom"
+            quality={1}
+            onLoadingComplete={handleImageLoad}
+          />
+          </p>
+        ) : (
+          <Image
+            src={imageUrl}
+            alt="Picture of the model"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            style={{
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+            }}
+            loading="lazy"
+            className="image-zoom"
+            quality={1}
+            onLoadingComplete={handleImageLoad}
+            onError={handleImageError} 
+          />
+        )}
+
         {loading ? (
           <div className="flex justify-center items-center h-full w-full absolute top-0 left-0 bg-opacity-80 bg-black">
             <div role="status" className="loader">

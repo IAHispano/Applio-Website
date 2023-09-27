@@ -71,13 +71,13 @@ export default function BotPage() {
           </DialogDescription>
           <DialogFooter>
             <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
-              <Link href="https://discord.com/oauth2/authorize?client_id=1144714449563955302&permissions=8&scope=bot" target="blank">Invite Applio</Link>
+              <Link href="https://discord.com/oauth2/authorize?client_id=1144714449563955302&permissions=2147871809&scope=bot" target="blank">Applio</Link>
             </Button>
             <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
-              <Link href="https://discord.com/oauth2/authorize?client_id=1144714449563955302&permissions=8&scope=bot" target="blank">Invite Applio Beta</Link>
+              <Link href="https://discord.com/api/oauth2/authorize?client_id=1150834440973594784&permissions=277028849729&scope=bot" target="blank">Applio Beta</Link>
             </Button>
             <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
-              <Link href="https://discord.com/oauth2/authorize?client_id=1144714449563955302&permissions=8&scope=bot" target="blank">Invite Applio Canary</Link>
+              <Link href="https://discord.com/api/oauth2/authorize?client_id=1151157990477533326&permissions=277026719809&scope=bot" target="blank">Applio Canary</Link>
             </Button>
           </DialogFooter>
         </DialogHeader>

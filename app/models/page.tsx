@@ -76,7 +76,7 @@ export default async function Home() {
             <DialogTitle>Ready 🎉</DialogTitle>
             <DialogDescription>
             Now you have the link to your model copied to the clipboard. 
-            Isn't it incredibly simple?
+            Isn&apos;t it incredibly simple?
             </DialogDescription>
           </DialogHeader>
         </DialogContent>

@@ -35,22 +35,22 @@ export default function ModelCard({
     <div className="max-w-sm bg-black border rounded-lg overflow-hidden shadow-lg">
       <div className="relative h-60">
         {isAudioOrError ? (
-          <p className="text-white font-inter text-xl p-4 mt-8">
-                      <Image
-            src="https://i.imgur.com/QLOUYSr.png"
-            alt="Error"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center center"
-            style={{
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-            }}
-            loading="lazy"
-            className="image-zoom"
-            quality={1}
-            onLoadingComplete={handleImageLoad}
-          />
-          </p>
+          <Image
+          src="https://i.imgur.com/QLOUYSr.png"
+          alt="Image Error"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center center"
+          style={{
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+          }}
+          loading="lazy"
+          className="image-zoom"
+          quality={1}
+          onLoadingComplete={handleImageLoad}
+          onError={handleImageError} 
+        />
+
         ) : (
           <Image
             src={imageUrl}

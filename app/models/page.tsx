@@ -18,7 +18,7 @@ export default async function Home() {
     
     <section>
       <div className="fixed rounded-2xl w-11/12 sm:w-[581px] h-40 sm:h-[80px] p-0.5 z-10 bottom-10 left-0 right-0 mx-auto">
-        <div className="rounded-[14px] w-full h-full bg-background border border-white-50 md:border-0  flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
+        <div className="rounded-[14px] w-full h-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
         <p className="text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3">Enjoy +8000 voice models available in our database!
         </p>
         <a className="text-black text-[13px] bg-white hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>

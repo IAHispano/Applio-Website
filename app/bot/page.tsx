@@ -56,7 +56,7 @@ export default function BotPage() {
           Invite Applio
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[700px]"> 
+      <DialogContent className="sm:max-w-[700px] max-w-[300px]"> 
         <DialogHeader>
           <DialogTitle className="font-bold text-2xl">Search models easily 🍏</DialogTitle>
           <DialogDescription>
@@ -64,13 +64,13 @@ export default function BotPage() {
             <div className="bg-gray-900 hover:bg-gray-800 text-green-300 flex justify-center rounded p-2 mt-4 mb-2 font-bold text-xl css-0">/search [Model Name]</div>
           </DialogDescription>
           <DialogFooter>
-            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
+            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl mb-4" size="sm" type="submit">
               <Link href="https://discord.com/oauth2/authorize?client_id=1144714449563955302&permissions=2147871809&scope=bot" target="blank">Applio</Link>
             </Button>
-            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
+            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl mb-4" size="sm" type="submit">
               <Link href="https://discord.com/api/oauth2/authorize?client_id=1150834440973594784&permissions=277028849729&scope=bot" target="blank">Applio Beta</Link>
             </Button>
-            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl" size="sm" type="submit">
+            <Button asChild className="bg-green-400 hover:bg-green-300 border-0 text-1xl mb-4" size="sm" type="submit">
               <Link href="https://discord.com/api/oauth2/authorize?client_id=1151157990477533326&permissions=277026719809&scope=bot" target="blank">Applio Canary</Link>
             </Button>
           </DialogFooter>

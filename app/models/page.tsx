@@ -1,10 +1,19 @@
 
-import Link from "next/link"
+"use client"
 import {
   createClientComponentClient
 } from "@supabase/auth-helpers-nextjs"
 import ModelCard from "@/components/model-card"
 import { ArrowRight } from "lucide-react"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default async function Home() {
   const supabase = createClientComponentClient()
@@ -13,6 +22,14 @@ export default async function Home() {
     .select("*")
     .order("created_at", { ascending: true })
   
+    function copyToClipboard(link: string) {
+      const textarea = document.createElement("textarea");
+      textarea.value = link;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand("copy");
+      document.body.removeChild(textarea);
+    }
 
   return (
     
@@ -44,15 +61,26 @@ export default async function Home() {
           const modelSlug = link
 
           return (
-            <Link key={modelSlug} href={`${link}`} id={link}>
-              <div className="w-full">
-                <ModelCard
-                  name={name}
-                  imageUrl={imageUrl}
-                  created_at={created_at}
-                />
-              </div>
-            </Link>
+      <Dialog key={modelSlug}>
+      <DialogTrigger onClick={() => copyToClipboard(link)}>
+         <div className="w-full button-cursor">
+           <ModelCard
+          name={name}
+          imageUrl={imageUrl}
+          created_at={created_at}
+          />
+         </div>
+       </DialogTrigger>
+        <DialogContent className="sm:max-w-[500px] sm:max-h-[200px] max-w-[300px]">
+          <DialogHeader>
+            <DialogTitle>Ready 🎉</DialogTitle>
+            <DialogDescription>
+            Now you have the link to your model copied to the clipboard. 
+            Isn't it incredibly simple?
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
           )
         })}
       </section>

@@ -5,15 +5,6 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
-  '@mantine/core':
-    specifier: ^7.1.0
-    version: 7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
-  '@mantine/dropzone':
-    specifier: ^7.1.0
-    version: 7.1.0(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(react-dom@18.2.0)(react@18.2.0)
-  '@mantine/hooks':
-    specifier: ^7.1.0
-    version: 7.1.0(react@18.2.0)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react-dom@18.2.7)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
@@ -448,49 +439,6 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.1
       '@jridgewell/sourcemap-codec': 1.4.15
-
-  /@mantine/core@7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-DNexnix5Lz7na8bfXCNVDsCsorxMzF1we3mtU33B0mLyiLkH47BhpgKNxvf5OjEK5SUJ0Bi7r5m91Tm7pmAB7w==}
-    peerDependencies:
-      '@mantine/hooks': 7.1.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@floating-ui/react': 0.24.8(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.1.0(react@18.2.0)
-      clsx: 2.0.0
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-number-format: 5.3.1(react-dom@18.2.0)(react@18.2.0)
-      react-remove-scroll: 2.5.6(@types/react@18.2.22)(react@18.2.0)
-      react-textarea-autosize: 8.5.2(@types/react@18.2.22)(react@18.2.0)
-      type-fest: 3.13.1
-    transitivePeerDependencies:
-      - '@types/react'
-    dev: false
-
-  /@mantine/dropzone@7.1.0(@mantine/core@7.1.0)(@mantine/hooks@7.1.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-8//0f7mPC2IGjHtzHYv9ac29BgBQ7qmYyrtoVo/3F2pXXBwRzMi20MNa4V79qctMAPGlwUcWnYZ2L0iCwfOzhQ==}
-    peerDependencies:
-      '@mantine/core': 7.1.0
-      '@mantine/hooks': 7.1.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      '@mantine/core': 7.1.0(@mantine/hooks@7.1.0)(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0)
-      '@mantine/hooks': 7.1.0(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      react-dropzone: 14.2.3(react@18.2.0)
-    dev: false
-
-  /@mantine/hooks@7.1.0(react@18.2.0):
-    resolution: {integrity: sha512-XW8qYNoS81bIWmdI7yZV8BmBkTtr0//3fyBJ2dcKRSKWY5HVNPkLDXPQk9/E4bpQIRmufDGQ6pLmUfY+0VjO3g==}
-    peerDependencies:
-      react: ^18.2.0
-    dependencies:
-      react: 18.2.0
-    dev: false
 
   /@next/env@13.5.2:
     resolution: {integrity: sha512-dUseBIQVax+XtdJPzhwww4GetTjlkRSsXeQnisIJWBaHsnxYcN2RGzsPHi58D6qnkATjnhuAtQTJmR1hKYQQPg==}

@@ -4,7 +4,6 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import ModelCard from "@/components/model-card";
 import { ArrowRight } from "lucide-react";
-import { useDisclosure } from '@mantine/hooks';
 import { useState, useEffect } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
 

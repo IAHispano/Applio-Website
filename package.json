@@ -1,8 +1,5 @@
 {
   "dependencies": {
-    "@mantine/core": "^7.1.0",
-    "@mantine/dropzone": "^7.1.0",
-    "@mantine/hooks": "^7.1.0",
     "@radix-ui/react-accordion": "^1.1.2",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-navigation-menu": "^1.1.3",

@@ -35,7 +35,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <link rel="icon" href="/favicon.ico" />
           <meta name="description" content="Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to provide an intuitive interface, especially for newcomers." />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-          <link rel="manifest" href="./manifest.json" />
           <meta property="og:image" content="<generated>" />
           <meta property="og:image:type" content="<generated>" />
           <meta property="og:image:width" content="<generated>" />

@@ -33,7 +33,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <meta name="description" content="Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to provide an intuitive interface, especially for newcomers." />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link rel="manifest" href="/manifest.json" />
@@ -45,6 +44,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <meta name="twitter:image:type" content="<generated>" />
           <meta name="twitter:image:width" content="<generated>" />
           <meta name="twitter:image:height" content="<generated>" />
+          <meta name="mobile-web-app-capable" content="yes"/>
+          <meta name="apple-mobile-web-app-capable" content="yes"/>
+          <meta name="application-name" content="Applio"/>
+          <meta name="apple-mobile-web-app-title" content="Applio"/>
+          <meta name="theme-color" content="#090909"/>
+          <meta name="msapplication-navbutton-color" content="#090909"/>
+          <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+          <meta name="msapplication-starturl" content="https://applio.org"/>
+          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         </head>
         <body
           className={cn(

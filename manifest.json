@@ -1,0 +1,10 @@
+{
+    "description": "Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to provide an intuitive interface, especially for newcomers.",
+    "display": "browser",
+    "lang": "en",
+    "name": "Applio",
+    "scope": "https://applio.org",
+    "short_name": "Applio",
+    "start_url": "https://applio.org",
+    "theme_color": "#090909"
+}

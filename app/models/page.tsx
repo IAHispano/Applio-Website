@@ -18,7 +18,6 @@ import { PostgrestError } from "@supabase/supabase-js";
 
 export default function Home() {
   const [search, setSearch] = useState('');
-  console.log(search);
 
   const [data, setData] = useState<any[] | null>(null);
   const [error, setError] = useState<PostgrestError | null>(null);

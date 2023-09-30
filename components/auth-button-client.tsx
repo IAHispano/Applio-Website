@@ -12,7 +12,7 @@ export function AuthButton ({ session }: { session: Session | null }) {
     await supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        redirectTo: 'http://localhost:3000/auth/callback'
+        redirectTo: 'http://applio.org/auth/callback'
       }
     })
   }

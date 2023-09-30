@@ -5,6 +5,7 @@ import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { SiteHeader } from "@/components/site-header"
 import { ThemeProvider } from "@/components/theme-provider"
+import {Providers} from "./providers";
 
 export const metadata: Metadata = {
   title: {
@@ -52,7 +53,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
           <meta name="msapplication-starturl" content="https://applio.org"/>
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-          <meta http-equiv="Content-Security-Policy" content="" />
         </head>
         <body
           className={cn(
@@ -60,12 +60,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
+        <Providers>
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <div className="flex-1">{children}</div>
             </div>
           </ThemeProvider>
+        </Providers>
         </body>
       </html>
     </>

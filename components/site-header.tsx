@@ -12,22 +12,28 @@ import { Database } from "@/app/types/database"
 import { cookies } from "next/headers"
 import HeaderMobile from "./site-header-mobile"
 
+
 export async function SiteHeader() {
-    const supabase = createServerComponentClient<Database>({ cookies });
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    const userId = session?.user?.id;
-    let avatarUrl = "";
-    let userFullName = "";
-    let userRole = "";
-  
-    if (userId) {
-      const { data: userData, error } = await supabase
-        .from("profiles")
-        .select("avatar_url, full_name, role")
-        .eq("id", userId)
-        .single();
+  const  supabase = createServerComponentClient<Database>({ cookies })
+  const { data: { session } } = await supabase.auth.getSession()
+  const userId = session?.user?.id;
+  let avatar_url = "";
+  let user_name = "";
+  let user_role = "";
+
+  if (userId) {
+    const { data: userData, error } = await supabase
+      .from("users")
+      .select("avatar_url, user_name, user_role")
+      .eq("id", userId)
+      .single();
+
+      if (!error) {
+        avatar_url = userData?.avatar_url || "";
+        user_name = userData?.user_name || "";
+        user_role = userData?.user_role || "";
+        console.log(error);
+      }
     }
   return (
     <section>
@@ -73,10 +79,10 @@ export async function SiteHeader() {
         <div className="hidden md:flex">
           {userId && (
             <NavbarAvatar
-              avatar_url={avatarUrl}
+              avatar_url={avatar_url}
               id={userId}
-              userFullName={userFullName}
-              userRole={userRole}
+              userFullName={user_name}
+              userRole={user_role}
             />
           )}
           <AuthButtonServer />

@@ -14,27 +14,13 @@ import HeaderMobile from "./site-header-mobile"
 
 
 export async function SiteHeader() {
-  const  supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = createServerComponentClient<Database>({ cookies })
   const { data: { session } } = await supabase.auth.getSession()
-  const userId = session?.user?.id;
-  let avatar_url = "";
-  let user_name = "";
-  let user_role = "";
 
-  if (userId) {
-    const { data: userData, error } = await supabase
-      .from("users")
-      .select("avatar_url, user_name, user_role")
-      .eq("id", userId)
-      .single();
+  const { data: posts } = await supabase
+    .from('profiles')
+    .select('*')
 
-      if (!error) {
-        avatar_url = userData?.avatar_url || "";
-        user_name = userData?.user_name || "";
-        user_role = userData?.user_role || "";
-        console.log(error);
-      }
-    }
   return (
     <section>
     <div className="block md:hidden">
@@ -77,14 +63,6 @@ export async function SiteHeader() {
             </Link>
             <ThemeToggle />
         <div className="hidden md:flex">
-          {userId && (
-            <NavbarAvatar
-              avatar_url={avatar_url}
-              id={userId}
-              userFullName={user_name}
-              userRole={user_role}
-            />
-          )}
           <AuthButtonServer />
         </div>
           </nav>

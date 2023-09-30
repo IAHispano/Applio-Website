@@ -3,6 +3,7 @@
 import { type Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
+import NavbarAvatar from './navbar-avatar'
 
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
@@ -12,7 +13,7 @@ export function AuthButton ({ session }: { session: Session | null }) {
     await supabase.auth.signInWithOAuth({
       provider: 'discord',
       options: {
-        redirectTo: 'http://applio.org/auth/callback'
+        redirectTo: 'http://localhost:3000/auth/callback'
       }
     })
   }
@@ -23,12 +24,22 @@ export function AuthButton ({ session }: { session: Session | null }) {
   }
 
   return (
-    <header className="mr-4">
-    {session === null && (
-      <Button color="primary" variant="shadow" className='ml-4' onClick={handleSignIn}>
-        Login
-      </Button>
-    )}
+    <header>
+      {
+        session === null
+          ? (
+            <Button color="primary" variant="shadow" className='ml-4' onClick={handleSignIn}>
+            Login
+          </Button>
+            )
+          :
+          <NavbarAvatar
+          avatar_url={session?.user?.user_metadata?.avatar_url}
+          id={session?.user?.user_metadata?.id}
+          userFullName={session?.user?.user_metadata?.user_name}
+          userRole={session?.user?.user_metadata?.user_role}
+        />
+      }
     </header>
   )
 }

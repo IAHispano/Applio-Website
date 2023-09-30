@@ -11,3 +11,4 @@ export async function AuthButtonServer() {
 
   return <AuthButton session={session} />;
 }
+ 

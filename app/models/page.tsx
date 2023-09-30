@@ -55,11 +55,11 @@ export default function Home() {
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center h-screen md:ml-0 ml-6">
+      <div className="flex items-center justify-center h-screen">
       <Progress
         isIndeterminate
         aria-label="Loading..."
-        className="max-w-md"
+        className="max-w-xs md:max-w-md "
         color="success"
         size="sm"
       />
@@ -73,9 +73,9 @@ export default function Home() {
     <section>
       <div className="fixed rounded-2xl w-11/12 sm:w-[581px] h-40 sm:h-[80px] p-0.5 z-10 bottom-10 left-0 right-0 mx-auto">
         <div className="rounded-[14px] w-full h-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
-        <p className="text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3">Enjoy +8000 voice models available in our database!
+        <p className="dark:text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3 text-black">Enjoy +8000 voice models available in our database!
         </p>
-        <a className="text-black text-[13px] bg-white hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
+        <a className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
         </div>
         </div>
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
@@ -89,7 +89,7 @@ export default function Home() {
       <form className="mx-auto flex items-center justify-center">
         <Input
           classNames={{
-            base: "max-w-full sm:max-w-[20rem] h-10",
+            base: "max-w-[18rem] sm:max-w-[20rem] h-10",
             mainWrapper: "h-full",
             input: "text-small",
             inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",

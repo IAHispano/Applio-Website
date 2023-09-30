@@ -14,6 +14,7 @@ import {
 import { Bug, LogOut, Shield, Upload, UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Icons } from "./icons";
+import { IconBrandDiscord } from '@tabler/icons-react';
 
 export default function NavbarAvatar({
   id,
@@ -62,9 +63,9 @@ export default function NavbarAvatar({
       <DropdownItem key="upload" onClick={handleProfileClick3} isDisabled startContent={<Upload  className={iconClasses} />}>
       Upload model
     </DropdownItem>,
-    <DropdownItem key="discord" onClick={handleProfileClick1} startContent={<Icons.discord className="h-5 w-5 fill-current" />}>
-      Discord
-    </DropdownItem>,
+    <DropdownItem key="discord" onClick={handleProfileClick1} startContent={<IconBrandDiscord className={iconClasses} />}>
+    Discord
+  </DropdownItem>,
     <DropdownItem key="bug" onClick={handleProfileClick2} startContent={<Bug className={iconClasses} />}>
     Report a bug
   </DropdownItem>,

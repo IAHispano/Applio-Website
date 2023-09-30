@@ -35,7 +35,7 @@ export default function HeaderMobile() {
                     ? "foreground"
                     : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}

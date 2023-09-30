@@ -8,6 +8,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 import {Providers} from "./providers";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = 'force-no-store'
 
 export const metadata: Metadata = {
   title: {

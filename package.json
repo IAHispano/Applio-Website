@@ -7,6 +7,8 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@supabase/auth-helpers-nextjs": "^0.8.1",
     "@supabase/supabase-js": "^2.36.0",
+    "@tabler/icons-react": "^2.38.0",
+    "bootstrap-icons": "^1.11.1",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
     "framer-motion": "^10.16.4",

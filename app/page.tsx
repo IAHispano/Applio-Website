@@ -4,8 +4,18 @@ import { Code2Icon, DownloadIcon } from "lucide-react"
 import { siteConfig } from "@/config/site"
 import { badgeVariants } from "@/components/ui/badge"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
+import { cookies } from "next/headers";
+import { Database } from "./types/database";
 
-export default function IndexPage() {
+export default async function IndexPage() {
+  const supabase = createServerComponentClient<Database>({ cookies });
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  const { data: posts } = await supabase
+    .from("models")
+    .select("*, user:users(*)");
   return (
     <section className="container flex flex-col justify-center items-center h-screen pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
     <style>

@@ -53,6 +53,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
           <meta name="msapplication-starturl" content="https://applio.org"/>
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+          <meta name="keywords" content="AI, IA, IA Hispano, Applio, Applio-RVC-Fork, RVC, SVC, Open Source" />
         </head>
         <body
           className={cn(

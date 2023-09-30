@@ -22,6 +22,24 @@ export const siteConfig = {
       href: "/bot",
     },
   ],
+  navMenuItems: [
+    {
+      label: "Home",
+      href: "/",
+    },
+    {
+      label: "Docs",
+      href: "https://docs.applio.org",
+    },
+    {
+      label: "Models",
+      href: "/models",
+    },
+    {
+      label: "Applio Bot",
+      href: "/bot",
+    },
+  ],
   links: {
     discord: "https://discord.gg/IAHispano",
     github: "https://github.com/IAHispano",

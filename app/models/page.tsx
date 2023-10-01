@@ -84,8 +84,11 @@ export default function Home() {
         <p className="mt-4 text-muted-foreground  text-xs md:text-xl">
           Enjoy +8000 voice models available in our database!
         </p>
+        <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
+        Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
+        </h1>
       </div>
-      <form className="mx-auto flex items-center justify-center">
+      {/* <form className="mx-auto flex items-center justify-center">
         <Input
           classNames={{
             base: "max-w-[18rem] sm:max-w-[20rem] h-10",
@@ -127,6 +130,7 @@ export default function Home() {
         })}
       </section>
       {/* Alert */}
+      {/*
       {showAlert && (
         <div
           className={`fixed rounded-2xl w-11/12 sm:w-[420px] h-40 sm:h-[60px] p-0.5 z-10 bottom-10 right-0 mx-auto text-center mr-4 ${alertClass} mb-16 md:mb-0`}
@@ -179,7 +183,7 @@ export default function Home() {
           </div>
         </div>
         </div>
-        )}
+        )} */}
     </section>
   )
 }

@@ -75,6 +75,8 @@ module.exports = {
     backgroundImage: {
       "gradient-radial":
         "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
+      "gradient-radial-red":
+        "linear-gradient(to right, #FF2929 0%, #963232 100%);",
     },
   },
   darkMode: "class",

@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, CardFooter, CardHeader, Image, Divider, Chip } from "@nextui-org/react";
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link } from "@nextui-org/react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import Image from "next/image";
+import { IconDotsVertical } from "@tabler/icons-react";
 
 
 export default function TestCard({
@@ -8,13 +17,15 @@ export default function TestCard({
   name,
   created_at,
   id,
-  userFullName
+  userFullName,
+  link
 }: {
   imageUrl: string;
   name: string;
   created_at: string;
   id: string;
   userFullName?: string;
+  link: string;
 }) {
   function formatDate(dateString: string | number | Date) {
     const options: Intl.DateTimeFormatOptions = { 
@@ -24,14 +35,28 @@ export default function TestCard({
     };
     return new Date(dateString).toLocaleDateString('en-US', options); 
   }
+  const [loading, setLoading] = useState(true);
+  const [imageError, setImageError] = useState(false);
 
+  const handleImageLoad = () => {
+    setLoading(false);
+  };
+  const handleImageError = () => {
+    setImageError(true);
+    setLoading(false);
+  };
+
+  const isAudioOrError = imageUrl && imageUrl.toLowerCase().endsWith(".mp3") || imageError;
   const formattedDate = formatDate(created_at);
   const cardStyle = {
     height: '150px',
     overflow: 'hidden', 
   };
   return (
-    <Card style={cardStyle} className="mx-auto flex items-center justify-center">
+    <div>
+<Dialog>
+  <DialogTrigger style={{ width: '100%' }}> 
+  <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
       <CardBody>
         <p className="text-xl">
           {name}
@@ -46,5 +71,73 @@ export default function TestCard({
 </Chip>
       </CardFooter>
     </Card>
+  </DialogTrigger>
+  <DialogContent className="max-w-9xl w-6/12 h-3/6" style={{ width: '70%', height: '70%' }}>
+    <DialogHeader>
+      <DialogTitle className="text-xl md:text-6xl mt-4">{name}</DialogTitle>
+      <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {id}</DialogTitle>
+      <DialogDescription>
+      <Button
+        color="primary"
+        variant="shadow"
+        as={Link}
+        href={link}
+        showAnchorIcon
+        isExternal
+        className="md:my-8 md:mr-8 place-content-center sm:place-content-center"
+        style={{
+          position: "absolute",
+          bottom: "10px", 
+          right: "10px", 
+        }}
+      >
+        Download
+      </Button>
+      </DialogDescription>
+      <DialogDescription className="">
+      <div className="flex items-center justify-center md:mt-10">
+      <div className="relative md:h-80 w-6/12 h-60 ">
+        {isAudioOrError ? (
+          <Image
+          src="https://i.imgur.com/QLOUYSr.png"
+          alt="Image Error"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center center"
+          style={{
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+            borderRadius: "8px",
+          }}
+          loading="eager"
+          onLoadingComplete={handleImageLoad}
+          onError={handleImageError} 
+          unoptimized
+        />
+
+        ) : (
+          <Image
+            src={imageUrl}
+            alt="Picture of the model"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            style={{
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+              borderRadius: "8px",
+            }}
+            loading="eager"
+            onLoadingComplete={handleImageLoad}
+            onError={handleImageError} 
+            unoptimized
+          />
+        )}
+          </div>
+          </div>
+      </DialogDescription>
+    </DialogHeader>
+  </DialogContent>
+</Dialog>
+</div>
+  
   );
 }

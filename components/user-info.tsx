@@ -20,7 +20,6 @@ import {
   Spinner,
   User,
 } from "@nextui-org/react";
-import ModelCard from "./model-card";
 import TestCard from "./test-card";
 
 const supabase = createClientComponentClient<Database>();
@@ -116,17 +115,16 @@ function Userinfo({ userFullName }: ModelInfoProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-5 py-8 md:py-10 mx-14">
       {data.map((model) => (
-        // <Link key={model.id} href={`/${model.id}`}>
-        <div className="w-full button-cursor"  onClick={() => copyToClipboard(model.link)} key={model.id}>
+        <div className="w-full button-cursor"  key={model.id}>
            <TestCard
           name={model.name}
           imageUrl={model.image_url}
           created_at={model.created_at}
           id={model.id}
           userFullName={userFullName}
+          link={model.link}
           />
          </div>
-        // </Link>
       ))}
       {/* Alert */}
       {showAlert && (

@@ -2,14 +2,15 @@
 import {
   createClientComponentClient
 } from "@supabase/auth-helpers-nextjs";
-import ModelCard from "@/components/model-card";
 import { ArrowRight, SearchIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
-import { Button, Input, Pagination } from "@nextui-org/react";
+import { Button, Input, Link, Pagination } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TestCard from "@/components/test-card";
+
+
 
 export default function Home() {
   const [showAlert, setShowAlert] = useState(false); 
@@ -130,16 +131,18 @@ useEffect(() => {
           const modelSlug = link
 
           return (
-        <div className="w-full button-cursor" key={modelSlug + index} onClick={() => copyToClipboard(link)}>
-           <TestCard
+        <div className="w-full button-cursor" key={modelSlug + index}>  
+      <TestCard
           name={name}
           imageUrl={imageUrl}
           created_at={created_at}
           id={id}
+          link={link}
           />
-         </div>
+       </div>     
           )
         })}
+
       </section>
       </InfiniteScroll>
       {error && <p>Error: {error.message}</p>}

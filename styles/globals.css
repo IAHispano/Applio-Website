@@ -121,3 +121,10 @@
     opacity: 0;
   }
 }
+@media (max-width: 767px) {
+  .mobile-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

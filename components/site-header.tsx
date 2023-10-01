@@ -58,7 +58,7 @@ export async function SiteHeader() {
                 })}
               >
                 <Icons.discord className="h-5 w-5 fill-current" />
-                <span className="sr-only">Discord</span>
+                <span className="sr-only">Support</span>
               </div>
             </Link>
             <ThemeToggle />

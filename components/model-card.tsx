@@ -43,11 +43,12 @@ export default function ModelCard({
           style={{
             boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
           }}
-          loading="lazy"
+          loading="eager"
           className="image-zoom"
           quality={1}
           onLoadingComplete={handleImageLoad}
           onError={handleImageError} 
+          unoptimized
         />
 
         ) : (
@@ -60,11 +61,12 @@ export default function ModelCard({
             style={{
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
             }}
-            loading="lazy"
+            loading="eager"
             className="image-zoom"
-            quality={1}
+            quality={0.1}
             onLoadingComplete={handleImageLoad}
             onError={handleImageError} 
+            unoptimized
           />
         )}
 

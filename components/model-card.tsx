@@ -30,7 +30,6 @@ export default function ModelCard({
 
   const isAudioOrError = imageUrl && imageUrl.toLowerCase().endsWith(".mp3") || imageError;
 
-
   return (
     <div className="max-w-sm bg-black border rounded-lg overflow-hidden shadow-lg">
       <div className="relative h-60">

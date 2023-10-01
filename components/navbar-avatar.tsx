@@ -57,8 +57,8 @@ export default function NavbarAvatar({
 
   const iconClasses = "text-sm text-default-500 pointer-events-none flex-shrink-0";
   const dropdownItems = [
-    <DropdownItem key="profile" onClick={handleProfileClick} isDisabled startContent={<UserCircle className={iconClasses} />}>
-                <p className="font-semibold">Profile</p>
+    <DropdownItem key="profile" onClick={handleProfileClick} startContent={<UserCircle className={iconClasses} />}>
+                <p className="font-semibold">{userFullName}</p>
   </DropdownItem>,
       <DropdownItem key="upload" onClick={handleProfileClick3} isDisabled startContent={<Upload  className={iconClasses} />}>
       Upload model
@@ -93,8 +93,9 @@ export default function NavbarAvatar({
         }}>
           <Avatar
             src={avatar_url}
+            isBordered 
+            color="success"
           /> 
-        {userFullName}
       </div>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions">

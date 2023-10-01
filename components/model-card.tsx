@@ -28,7 +28,7 @@ export default function ModelCard({
     setLoading(false);
   };
 
-  const isAudioOrError = imageUrl.toLowerCase().endsWith(".mp3") || imageError; 
+  const isAudioOrError = imageUrl && imageUrl.toLowerCase().endsWith(".mp3") || imageError;
 
 
   return (

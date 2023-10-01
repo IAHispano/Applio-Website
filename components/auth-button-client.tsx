@@ -37,8 +37,8 @@ export function AuthButton ({ session }: { session: Session | null }) {
           <NavbarAvatar
           avatar_url={session?.user?.user_metadata?.avatar_url}
           id={session?.user?.user_metadata?.id}
-          userFullName={session?.user?.user_metadata?.user_name}
-          userRole={session?.user?.user_metadata?.user_role}
+          userFullName={session?.user?.user_metadata?.full_name}
+          userRole={session?.user?.user_metadata?.role}
         />
       }
     </header>

@@ -24,7 +24,6 @@ export default function Home() {
       const { data: fetchedData, error } = await supabase
         .from("models")
         .select("*")
-        .order("created_at", { ascending: true });
 
       if (error) {
         setError(error);

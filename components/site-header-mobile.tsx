@@ -17,9 +17,9 @@ export default function HeaderMobile() {
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden pr-3 flex justify-center mr-8"> 
+      <NavbarContent className="sm:hidden pr-3 flex justify-center mr-16"> 
     <NavbarBrand>
-        <p className="font-bold bg-gradient-radial text-transparent bg-clip-text">Applio</p>
+        <p className="text-2xl font-bold bg-gradient-radial text-transparent bg-clip-text">Applio</p>
     </NavbarBrand>
     </NavbarContent>
 

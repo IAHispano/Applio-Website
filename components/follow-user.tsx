@@ -75,7 +75,7 @@ function Follow({ userFullName }: ModelInfoProps) {
   return (
     <div>
       <div className="flex justify-center items-center mx-auto my-8">
-      <h1 className={`text-center text-xl font-bold leading-tight tracking-tighter md:text-8xl my-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{userFullName}</h1>
+      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{userFullName}</h1>
         {user && user.role === "admin" && (
           <Tooltip content="This user is part of the Applio team">
             <Image
@@ -83,7 +83,7 @@ function Follow({ userFullName }: ModelInfoProps) {
               height={60}
               src="https://i.imgur.com/jDmINMQ.png"
               alt="Admin"
-              className="mx-4 mt-3"
+              className="mt-3 hidden md:block"
             />
           </Tooltip>
         )}

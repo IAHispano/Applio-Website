@@ -9,6 +9,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { Button, Input, Pagination } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
+import TestCard from "@/components/test-card";
 
 export default function Home() {
   const [showAlert, setShowAlert] = useState(false); 
@@ -16,12 +17,12 @@ export default function Home() {
   const [search, setSearch] = useState('');
 
   const [data, setData] = useState<any[] | null>(null);
+  const [Userdata, setUserData] = useState<any[] | null>(null);
   const [error, setError] = useState<PostgrestError | null>(null);
   const [posts, setPosts] = useState<any[] | null>(null); 
   const supabase = createClientComponentClient();
 
   async function fetchData() {
-      console.log("Fetching more data...");
       const { data: fetchedData, error } = await supabase
         .from("models")
         .select("*")
@@ -34,7 +35,7 @@ export default function Home() {
       }
     }
     
-useEffect(() => {
+useEffect(() => { 
     fetchData();
   }, []); 
 
@@ -112,7 +113,7 @@ useEffect(() => {
         loader={<p></p>}
         endMessage={<p>No more data to load.</p>}
       >
-      <section className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-5 py-8 md:py-10 mx-14">
+      <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
         {posts?.filter((item) => {
           const itemName = item && item.name ? item.name.toLowerCase() : '';
           const searchLower = search.toLowerCase();
@@ -123,16 +124,18 @@ useEffect(() => {
             image_url: imageUrl,
             created_at,
             link,
+            id
           } = post
 
           const modelSlug = link
 
           return (
         <div className="w-full button-cursor" key={modelSlug + index} onClick={() => copyToClipboard(link)}>
-           <ModelCard
+           <TestCard
           name={name}
           imageUrl={imageUrl}
           created_at={created_at}
+          id={id}
           />
          </div>
           )

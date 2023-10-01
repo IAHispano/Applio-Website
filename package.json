@@ -13,6 +13,7 @@
     "bootstrap-icons": "^1.11.1",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
+    "date-fns": "^2.30.0",
     "framer-motion": "^10.16.4",
     "next": "^13.5.3",
     "next-themes": "^0.2.1",

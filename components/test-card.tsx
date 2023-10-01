@@ -39,7 +39,7 @@ export default function TestCard({
       </CardBody>
       
       <CardFooter style={{ fontSize: 'smaller' }} className="mx-auto flex items-center justify-center">
-<Chip className="mx-1 text-neutral-200" radius="sm" variant="dot" size="sm">
+<Chip className="mx-1 text-black dark:text-neutral-200" radius="sm" variant="dot" color="success" size="sm">
   {userFullName}
   {userFullName ? " on " : ''}
   {formattedDate}

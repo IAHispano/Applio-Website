@@ -52,6 +52,7 @@ export default function TestCard({
     height: '150px',
     overflow: 'hidden', 
   };
+  console.log(link);
   return (
     <div>
 <Dialog>
@@ -81,7 +82,7 @@ export default function TestCard({
         color="primary"
         variant="shadow"
         as={Link}
-        href={Link}
+        href={link}
         showAnchorIcon
         isExternal
         className="md:my-8 md:mr-8 place-content-center sm:place-content-center"

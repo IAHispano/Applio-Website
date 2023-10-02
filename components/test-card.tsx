@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link, Checkbox } from "@nextui-org/react";
 import {
   Dialog,
   DialogContent,
@@ -9,7 +9,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import Image from "next/image";
-import { IconDotsVertical } from "@tabler/icons-react";
 
 
 export default function TestCard({
@@ -77,26 +76,24 @@ export default function TestCard({
       <DialogTitle className="text-xl md:text-6xl mt-4">{name}</DialogTitle>
       <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {id}</DialogTitle>
       <DialogDescription>
-      <Button
-        color="primary"
-        variant="shadow"
-        as={Link}
-        href={link}
-        showAnchorIcon
-        isExternal
-        className="md:my-8 md:mr-8 place-content-center sm:place-content-center"
-        style={{
-          position: "absolute",
-          bottom: "10px", 
-          right: "10px", 
-        }}
-      >
-        Download
-      </Button>
-      </DialogDescription>
+      <Link href={link}>
+        <Button
+          color="primary"
+          variant="shadow"
+          className="md:my-8 md:mr-8 place-content-center sm:place-content-center"
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            right: "10px",
+          }}
+        >
+          Download
+        </Button>
+        </Link>
+    </DialogDescription>
       <DialogDescription className="">
       <div className="flex items-center justify-center md:mt-10">
-      <div className="relative md:h-80 w-6/12 h-60 ">
+      <div className="relative md:h-80 md:w-6/12 h-60 w-full ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"

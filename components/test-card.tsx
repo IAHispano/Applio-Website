@@ -51,7 +51,6 @@ export default function TestCard({
     height: '150px',
     overflow: 'hidden', 
   };
-  console.log(link);
   return (
     <div>
 <Dialog>

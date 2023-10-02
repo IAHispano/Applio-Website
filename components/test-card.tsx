@@ -76,16 +76,15 @@ export default function TestCard({
       <DialogTitle className="text-xl md:text-6xl mt-4">{name}</DialogTitle>
       <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {id}</DialogTitle>
       <DialogDescription>
-      <Link href={link}>
-        <Button
-          color="primary"
-          variant="shadow"
-          className="md:my-8 md:mr-8 place-content-center sm:place-content-center"
+      <Link href={link} className="md:my-8 md:mr-8 place-content-center sm:place-content-center" isExternal
           style={{
             position: "absolute",
             bottom: "10px",
             right: "10px",
-          }}
+          }}>
+        <Button
+          color="primary"
+          variant="shadow"
         >
           Download
         </Button>

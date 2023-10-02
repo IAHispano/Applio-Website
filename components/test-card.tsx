@@ -75,7 +75,7 @@ export default function TestCard({
   <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
       <CardBody>
         <p className="text-xl">
-          {name}
+        {name !== 'null' ? name : 'Unknown name'}
         </p>
       </CardBody>
       
@@ -83,30 +83,38 @@ export default function TestCard({
 <Chip className="mx-1 text-black dark:text-neutral-200" radius="sm" variant="dot" color="success" size="sm">
   {userFullName}
   {userFullName ? " on " : ''}
-  {formattedDate}
+  {formattedDate !== 'NaN/NaN/NaN' ? formattedDate : 'unknown date'}
 </Chip>
       </CardFooter>
     </Card>
   </DialogTrigger>
-  <DialogContent className="max-w-9xl w-6/12 h-3/6  rounded-3xl undefined bg-background/[.9] " style={{ width: '70%', height: '70%' }}>
+  <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4">
-    {name !== null ? name : null}
+    <DialogTitle className="text-xl md:text-6xl mt-4 mb-4">
+  {name !== 'null' ? name : 'Unknown name'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">
-      {author_id !== null ? `Created by ${author_id}` : null}
+    <DialogTitle className="text-sm md:text-2xl text-neutral-300 bg-neutral-800/30 rounded-lg md:rounded-xl backdrop-blur-lg w-fit p-3">
+      {author_id !== 'null' ? `Created by ${author_id}` : 'Unknown owner'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
-      {type !== null ? type : null}
+
+    <div className="grid md:grid-cols-1 gap-2 md:max-w-fit"> 
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+    <DialogTitle className="text-sm md:text-xl text-neutral-300">
+      {type !== 'null' ? type : 'Unknown type.'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
-      {epochs !== null ? `${epochs} Epochs` : null}
+  </div>
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+    {epochs !== 'null' ? `${epochs} Epochs` : 'Unknown epochs.'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
-      {algorithm !== null ? algorithm : null}
+  </div>
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+    {algorithm !== 'null' ? algorithm : 'Unknown algorithm.'}
     </DialogTitle>
-      <DialogDescription>
-      <Link href={link} className="md:my-8 md:mr-8 place-content-center sm:place-content-center" isExternal target="_blank" 
+  </div>
+  <div className="bg-neutral-800/30 hidden md:block">
+  <Link href={link} className="place-content-center sm:place-content-center my-2 z-50 " isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -114,16 +122,22 @@ export default function TestCard({
           }}>
         <Button
           color="primary"
-          variant="shadow"
+          radius="md"
           size="lg"
         >
           Download
         </Button>
         </Link>
+  </div>
+</div>
+
+
+
+      <DialogDescription>
     </DialogDescription>
       <DialogDescription className="">
       <div className="flex items-center justify-center mx-auto">
-      <div className="relative md:h-80 md:w-6/12 h-60 w-full ">
+      <div className="relative md:h-80 md:w-6/12 h-44 w-[220px] rounded-xl bg-background md:mt-44 md:mb-36 md:z-50 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"
@@ -160,6 +174,17 @@ export default function TestCard({
         )}
           </div>
           </div>
+          <div className="block md:hidden mt-6 mx-auto">
+  <Link href={link} className="place-content-center" isExternal target="_blank">
+        <Button
+          color="primary"
+          radius="md"
+          variant="shadow"
+        >
+          Download
+        </Button>
+        </Link>
+  </div>
       </DialogDescription>
     </DialogHeader>
   </DialogContent>

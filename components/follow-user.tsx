@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 
 const supabase = createClientComponentClient<Database>();
 
+
 interface ModelInfoProps {
   userFullName: string;
 }
@@ -42,6 +43,12 @@ function Follow({ userFullName }: ModelInfoProps) {
 
       if (userError) {
         setError(userError);
+        return;
+      }
+
+      if (userData.length === 0) {
+        // User does not exist in the "profiles" table
+        setError({ details: "", hint: "", code: "", message: "This user does not exist" });
         return;
       }
 
@@ -65,7 +72,11 @@ function Follow({ userFullName }: ModelInfoProps) {
   }, [userFullName]);
 
   if (error) {
-    return <div className="flex items-center justify-center"></div>;
+    return <div className="flex items-center justify-center">
+      <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
+        This user does <span className="bg-gradient-radial-red text-transparent bg-clip-text">not exist</span>.
+        </h1>
+    </div>;
   }
 
   if (!data) {
@@ -75,7 +86,7 @@ function Follow({ userFullName }: ModelInfoProps) {
   return (
     <div>
       <div className="flex justify-center items-center mx-auto my-8">
-      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{user.full_name}</h1>
+      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{user && user.full_name}</h1>
         {user && user.role === "admin" && (
           <Tooltip content="This user is part of the Applio team">
             <Image
@@ -91,7 +102,9 @@ function Follow({ userFullName }: ModelInfoProps) {
       <div className="flex justify-center items-center mx-auto my-2">
       <Card>
       <CardBody>
+      {user && user.bio != "null" && (
       <p>{user?.bio}</p>
+      )}
       </CardBody>
     </Card>
       </div>

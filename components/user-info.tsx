@@ -50,7 +50,7 @@ function Userinfo({ userFullName }: ModelInfoProps) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("full_name, id, role")
-        .eq("full_name", userFullName);
+        .eq("id", userFullName);
 
       if (userError) {
         setError(userError);
@@ -64,7 +64,7 @@ function Userinfo({ userFullName }: ModelInfoProps) {
       const { data: modelsData, error: modelsError } = await supabase
         .from("models")
         .select("*")
-        .eq("id", userData[0]?.id);
+        .eq("author_id", userData[0]?.id);
 
         if (modelsError) {
           console.error("Error al consultar modelos:", modelsError);
@@ -121,8 +121,13 @@ function Userinfo({ userFullName }: ModelInfoProps) {
           imageUrl={model.image_url}
           created_at={model.created_at}
           id={model.id}
-          userFullName={userFullName}
+          userFullName={user.full_name}
           link={model.link}
+          type={model.type}
+          version={model.version}
+          epochs={model.epochs}
+          author_id={model.author_id}
+          algorithm={model.algorithm}
           />
          </div>
       ))}

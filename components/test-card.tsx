@@ -17,7 +17,12 @@ export default function TestCard({
   created_at,
   id,
   userFullName,
-  link
+  link,
+  epochs,
+  version,
+  type,
+  algorithm,
+  author_id
 }: {
   imageUrl: string;
   name: string;
@@ -25,15 +30,27 @@ export default function TestCard({
   id: string;
   userFullName?: string;
   link: string;
+  epochs: string;
+  version: string;
+  type: string;
+  algorithm: string;
+  author_id: string;
 }) {
-  function formatDate(dateString: string | number | Date) {
-    const options: Intl.DateTimeFormatOptions = { 
-      year: 'numeric', 
-      month: '2-digit', 
-      day: '2-digit',   
-    };
-    return new Date(dateString).toLocaleDateString('en-US', options); 
-  }
+  function formatDate(timestamp: string | number | Date) {
+    // Convierte el timestamp a una instancia de Date
+    const date = new Date(Number(timestamp));
+
+    // Obtiene el año, mes y día de la fecha
+    const year = date.getFullYear();
+    // Agrega 1 al mes porque los meses en JavaScript se indexan desde 0
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+
+    // Formatea la fecha como "mes/día/año"
+    const formattedDate = `${month}/${day}/${year}`;
+
+    return formattedDate;
+}
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
 
@@ -74,7 +91,7 @@ export default function TestCard({
   <DialogContent className="max-w-9xl w-6/12 h-3/6" style={{ width: '70%', height: '70%' }}>
     <DialogHeader>
       <DialogTitle className="text-xl md:text-6xl mt-4">{name}</DialogTitle>
-      <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {id}</DialogTitle>
+      <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {author_id}</DialogTitle>
       <DialogDescription>
       <Link href={link} className="md:my-8 md:mr-8 place-content-center sm:place-content-center" isExternal
           style={{
@@ -85,13 +102,14 @@ export default function TestCard({
         <Button
           color="primary"
           variant="shadow"
+          size="lg"
         >
           Download
         </Button>
         </Link>
     </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center md:mt-10">
+      <div className="flex items-center justify-center md:mt-10 mx-auto">
       <div className="relative md:h-80 md:w-6/12 h-60 w-full ">
         {isAudioOrError ? (
           <Image

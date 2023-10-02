@@ -31,7 +31,7 @@ export default function NavbarAvatar({
   const router = useRouter();
 
   const handleProfileClick = () => {
-    window.location.href = `/users/${userFullName}`;
+    window.location.href = `/users/${id}`;
   };
 
   const handleProfileClick1 = () => {

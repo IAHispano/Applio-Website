@@ -27,6 +27,7 @@ export default function Home() {
       const { data: fetchedData, error } = await supabase
         .from("models")
         .select("*")
+        .order('created_at', { ascending: true })
 
       if (error) {
         setError(error);
@@ -125,7 +126,12 @@ useEffect(() => {
             image_url: imageUrl,
             created_at,
             link,
-            id
+            id,
+            epochs,
+            version,
+            type,
+            algorithm,
+            author_id
           } = post
 
           const modelSlug = link
@@ -138,6 +144,11 @@ useEffect(() => {
           created_at={created_at}
           id={id}
           link={link}
+          epochs={epochs}
+          version={version}
+          type={type}
+          algorithm={algorithm}
+          author_id={author_id}
           />
        </div>     
           )

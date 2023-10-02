@@ -38,7 +38,7 @@ function Follow({ userFullName }: ModelInfoProps) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("*")
-        .eq("full_name", userFullName);
+        .eq("id", userFullName);
 
       if (userError) {
         setError(userError);
@@ -75,7 +75,7 @@ function Follow({ userFullName }: ModelInfoProps) {
   return (
     <div>
       <div className="flex justify-center items-center mx-auto my-8">
-      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{userFullName}</h1>
+      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{user.full_name}</h1>
         {user && user.role === "admin" && (
           <Tooltip content="This user is part of the Applio team">
             <Image

@@ -15,23 +15,23 @@ import { Bug, LogOut, Shield, Upload, UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Icons } from "./icons";
 import { IconBrandDiscord } from '@tabler/icons-react';
+import { useEffect, useState } from "react";
+import { PostgrestError } from "@supabase/supabase-js";
 
 export default function NavbarAvatar({
-  id,
   userFullName,
-  avatar_url,
-  userRole,
 }: {
-  id: string;
-  avatar_url: string;
   userFullName: string;
-  userRole: string;
 }) {
+  const [showAlert, setShowAlert] = useState(false); 
+  const [data, setData] = useState<any[] | null>(null);
+  const [user, setUser] = useState<any | null>(null);
+  const [error, setError] = useState<PostgrestError | null>(null);
   const supabase = createClientComponentClient();
   const router = useRouter();
 
   const handleProfileClick = () => {
-    window.location.href = `/users/${id}`;
+    window.location.href = `/users/${user?.id}`;
   };
 
   const handleProfileClick1 = () => {
@@ -54,6 +54,24 @@ export default function NavbarAvatar({
     await supabase.auth.signOut();
     router.refresh();
   };
+  useEffect(() => {
+    async function fetchData() {
+      // Fetch user data based on full name
+      const { data: userData, error: userError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("full_name", userFullName);
+  
+      if (userError) {
+        setError(userError);
+        return;
+      }
+  
+      setUser(userData[0]);
+    }
+  
+    fetchData();
+  }, [userFullName]);
 
   const iconClasses = "text-sm text-default-500 pointer-events-none flex-shrink-0";
   const dropdownItems = [
@@ -74,7 +92,7 @@ export default function NavbarAvatar({
     </DropdownItem>,
   ];
 
-  if (userRole === "admin") {
+  if (user && user.role === "admin") {
     dropdownItems.push(
       <DropdownItem key="admin" onClick={handleAdminDashboardClick} startContent={<Shield className={iconClasses}/>}>
         Admin Dashboard
@@ -92,7 +110,7 @@ export default function NavbarAvatar({
         cursor: 'pointer'
         }}>
           <Avatar
-            src={avatar_url}
+            src={user?.avatar_url}
             isBordered 
             color="success"
           /> 

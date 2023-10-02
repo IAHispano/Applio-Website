@@ -88,12 +88,25 @@ export default function TestCard({
       </CardFooter>
     </Card>
   </DialogTrigger>
-  <DialogContent className="max-w-9xl w-6/12 h-3/6" style={{ width: '70%', height: '70%' }}>
+  <DialogContent className="max-w-9xl w-6/12 h-3/6  rounded-3xl undefined bg-background/[.9] " style={{ width: '70%', height: '70%' }}>
     <DialogHeader>
-      <DialogTitle className="text-xl md:text-6xl mt-4">{name}</DialogTitle>
-      <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">Created by {author_id}</DialogTitle>
+    <DialogTitle className="text-xl md:text-6xl mt-4">
+    {name !== null ? name : null}
+    </DialogTitle>
+    <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-1">
+      {author_id !== null ? `Created by ${author_id}` : null}
+    </DialogTitle>
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
+      {type !== null ? type : null}
+    </DialogTitle>
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
+      {epochs !== null ? `${epochs} Epochs` : null}
+    </DialogTitle>
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 ml-1">
+      {algorithm !== null ? algorithm : null}
+    </DialogTitle>
       <DialogDescription>
-      <Link href={link} className="md:my-8 md:mr-8 place-content-center sm:place-content-center" isExternal
+      <Link href={link} className="md:my-8 md:mr-8 place-content-center sm:place-content-center" isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -109,7 +122,7 @@ export default function TestCard({
         </Link>
     </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center md:mt-10 mx-auto">
+      <div className="flex items-center justify-center mx-auto">
       <div className="relative md:h-80 md:w-6/12 h-60 w-full ">
         {isAudioOrError ? (
           <Image

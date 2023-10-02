@@ -35,7 +35,7 @@ function AccountSettings({ userFullName }: ModelInfoProps) {
 
   return (
     <section>
-      <Code>Edit components/account/settings.tsx</Code>
+      <Code>Coming soon</Code>
     </section>
   );
 }

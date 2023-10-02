@@ -81,7 +81,7 @@ export default function TestCard({
         color="primary"
         variant="shadow"
         as={Link}
-        href={link}
+        href={Link}
         showAnchorIcon
         isExternal
         className="md:my-8 md:mr-8 place-content-center sm:place-content-center"

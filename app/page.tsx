@@ -12,14 +12,6 @@ export default async function IndexPage() {
 
   return (
     <section className="container flex flex-col justify-center items-center h-screen pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
-    <style>
-        {`
-          body {
-            overflow-y: hidden;
-            overflow-x: hidden;
-          }
-        `}
-      </style>
       <Link className={badgeVariants({ variant: "outline" })} href={"./bot"}>
         <span style={{ textShadow: "2px 2px 4px rgba(255, 255, 255, 0.2)" }}>
           🎉 Applio Bot is available now!

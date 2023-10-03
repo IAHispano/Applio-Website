@@ -2,9 +2,11 @@
 import {
   Avatar,
   Chip,
+  Divider,
   Dropdown,
   DropdownItem,
   DropdownMenu,
+  DropdownSection,
   DropdownTrigger,
 } from "@nextui-org/react";
 import {
@@ -47,7 +49,7 @@ export default function NavbarAvatar({
   };
 
   const handleAdminDashboardClick = () => {
-    window.location.href = `/admin`;
+    window.location.href = `/admin/${user?.id}`;
   };
   
   const handleSignOut = async () => {
@@ -94,9 +96,11 @@ export default function NavbarAvatar({
 
   if (user && user.role === "admin") {
     dropdownItems.push(
-      <DropdownItem key="admin" onClick={handleAdminDashboardClick} startContent={<Shield className={iconClasses}/>}>
+        <DropdownSection title="Admin zone">
+        <DropdownItem key="admin" onClick={handleAdminDashboardClick} startContent={<Shield className={iconClasses} />}>
         Admin Dashboard
-      </DropdownItem>
+        </DropdownItem>
+        </DropdownSection>
     );
   }
 

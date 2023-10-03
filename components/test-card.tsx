@@ -9,6 +9,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import Image from "next/image";
+import { PostgrestError } from "@supabase/supabase-js";
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Database } from "@/app/types/database";
 
 
 export default function TestCard({
@@ -36,6 +39,29 @@ export default function TestCard({
   algorithm: string;
   author_id: string;
 }) {
+  
+    const supabase = createClientComponentClient<Database>(); 
+    const [data, setData] = useState<any[] | null>(null);
+    const [user, setUser] = useState<any | null>(null);
+    const [error, setError] = useState<PostgrestError | null>(null);
+    useEffect(() => {
+      async function fetchData() {
+        // Fetch user data based on full name
+        const { data: userData, error: userError } = await supabase
+          .from("profiles")
+          .select("*")
+          .eq("id", author_id);
+    
+        if (userError) {
+          setError(userError);
+          return;
+        }
+        setUser(userData[0] || { full_name: "unknown user" });
+      }
+    
+      fetchData();
+    }, [userFullName]);
+
   function formatDate(timestamp: string | number | Date) {
     // Convierte el timestamp a una instancia de Date
     const date = new Date(Number(timestamp));
@@ -90,40 +116,41 @@ export default function TestCard({
   </DialogTrigger>
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4 mb-4">
+    <DialogTitle className="text-xl md:text-6xl mt-4 mb-2">
   {name !== 'null' ? name : 'Unknown name'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-2xl text-neutral-300 bg-neutral-800/30 rounded-lg md:rounded-xl backdrop-blur-lg w-fit p-3">
-      {author_id !== 'null' ? `Created by ${author_id}` : 'Unknown owner'}
+    <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-0.5">
+      Created by {user?.full_name}.
     </DialogTitle>
 
     <div className="grid md:grid-cols-1 gap-2 md:max-w-fit"> 
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-    <DialogTitle className="text-sm md:text-xl text-neutral-300">
+  <div className="bg-neutral-800 w-auto h-fit rounded-lg md:rounded-xl backdrop-blur-lg mt-28 p-4">
+    <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
       {type !== 'null' ? type : 'Unknown type.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+  <div className="bg-neutral-800 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-4">
+  <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
     {epochs !== 'null' ? `${epochs} Epochs` : 'Unknown epochs.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+  <div className="bg-neutral-800 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-4">
+  <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
     {algorithm !== 'null' ? algorithm : 'Unknown algorithm.'}
     </DialogTitle>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center my-2 z-50 " isExternal target="_blank" 
+  <Link href={link} className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
-            right: "10px",
+            right: "80px",
           }}>
         <Button
           color="primary"
           radius="md"
           size="lg"
+          variant="shadow"
         >
           Download
         </Button>
@@ -131,13 +158,9 @@ export default function TestCard({
   </div>
 </div>
 
-
-
-      <DialogDescription>
-    </DialogDescription>
       <DialogDescription className="">
       <div className="flex items-center justify-center mx-auto">
-      <div className="relative md:h-80 md:w-6/12 h-44 w-[220px] rounded-xl bg-background md:mt-44 md:mb-36 md:z-50 md:flex overflow-hidden md:fixed ">
+      <div className="relative md:h-4/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-48 ml-72 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"

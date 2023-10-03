@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link, Checkbox } from "@nextui-org/react";
+import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link, Checkbox, Tooltip } from "@nextui-org/react";
 import {
   Dialog,
   DialogContent,
@@ -12,6 +12,7 @@ import Image from "next/image";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
+import { Apple } from "lucide-react";
 
 
 export default function TestCard({
@@ -155,6 +156,27 @@ export default function TestCard({
           Download
         </Button>
         </Link>
+  </div>
+  <div className="bg-neutral-800/30 hidden md:block">
+  <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!" isDisabled>
+  <Link href={`http://localhost:8000/${link}`} className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" isDisabled 
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            right: "220px",
+          }}>
+        <Button
+          color="success"
+          radius="md"
+          size="lg"
+          variant="shadow"
+          isIconOnly
+          isDisabled
+          startContent={<img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10"></img>}
+        >
+        </Button>
+        </Link>
+      </Tooltip>
   </div>
 </div>
 

@@ -179,7 +179,6 @@ export default function TestCard({
           isDisabled={isLoading}
           isLoading={isLoading}
           onClick={async () => {
-            // Iniciar la carga
               toast('Be patient, this process can take time.', {
               duration: 4000,
               position: 'bottom-left',
@@ -189,9 +188,7 @@ export default function TestCard({
                 backgroundColor: '#262626'
               }
             });
-            setTimeout(() => {
             setIsLoading(true);
-           }, 4000);
 
             try {
               const response = await fetch('http://localhost:8000/download/' + link);
@@ -209,16 +206,12 @@ export default function TestCard({
                   backgroundColor: '#262626'
                 }
               });
-              setTimeout(() => {
                 setIsLoading(false);
-              }, 4000);
   
             } catch (error) {
               console.error('Error en la solicitud:', error);
   
-              setTimeout(() => {
               setIsLoading(false);
-            }, 4000);
             }
           }}
         >

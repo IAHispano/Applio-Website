@@ -12,7 +12,7 @@ import Image from "next/image";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
-import { Apple } from "lucide-react";
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export default function TestCard({
@@ -40,11 +40,12 @@ export default function TestCard({
   algorithm: string;
   author_id: string;
 }) {
-  
+    
     const supabase = createClientComponentClient<Database>(); 
     const [data, setData] = useState<any[] | null>(null);
     const [user, setUser] = useState<any | null>(null);
     const [error, setError] = useState<PostgrestError | null>(null);
+    const [showAlert, setShowAlert] = useState(false); 
     useEffect(() => {
       async function fetchData() {
         // Fetch user data based on full name
@@ -80,6 +81,7 @@ export default function TestCard({
 }
   const [loading, setLoading] = useState(true);
   const [imageError, setImageError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleImageLoad = () => {
     setLoading(false);
@@ -89,6 +91,7 @@ export default function TestCard({
     setLoading(false);
   };
 
+  const alertClass = showAlert ? "fade-in" : "fade-out";
   const isAudioOrError = imageUrl && imageUrl.toLowerCase().endsWith(".mp3") || imageError;
   const formattedDate = formatDate(created_at);
   const cardStyle = {
@@ -158,31 +161,78 @@ export default function TestCard({
         </Link>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!" isDisabled>
-  <Link href={`http://localhost:8000/${link}`} className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" isDisabled 
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "220px",
-          }}>
+  <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!">
+    {link.endsWith('.zip') && ( 
+      <Link className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" 
+        style={{
+          position: "absolute",
+          bottom: "10px",
+          right: "220px",
+        }}>
         <Button
           color="success"
           radius="md"
           size="lg"
           variant="shadow"
           isIconOnly
-          isDisabled
-          startContent={<img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10"></img>}
+          startContent={isLoading ? null : <img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10"></img>}
+          isDisabled={isLoading}
+          isLoading={isLoading}
+          onClick={async () => {
+            // Iniciar la carga
+              toast('Be patient, this process can take time.', {
+              duration: 4000,
+              position: 'bottom-left',
+
+              style: {
+                color: 'white',
+                backgroundColor: '#262626'
+              }
+            });
+            setTimeout(() => {
+            setIsLoading(true);
+           }, 4000);
+
+            try {
+              const response = await fetch('http://localhost:8000/download/' + link);
+
+              if (!response.ok) {
+                throw new Error('La solicitud no pudo completarse correctamente');
+              }
+
+              toast.success('${name} has been downloaded!', {
+                duration: 4000,
+                position: 'bottom-left',
+  
+                style: {
+                  color: 'white',
+                  backgroundColor: '#262626'
+                }
+              });
+              setTimeout(() => {
+                setIsLoading(false);
+              }, 4000);
+  
+            } catch (error) {
+              console.error('Error en la solicitud:', error);
+  
+              setTimeout(() => {
+              setIsLoading(false);
+            }, 4000);
+            }
+          }}
         >
+        <Toaster />
         </Button>
-        </Link>
-      </Tooltip>
-  </div>
+      </Link>
+    )}
+  </Tooltip>
+</div>
 </div>
 
       <DialogDescription className="">
       <div className="flex items-center justify-center mx-auto">
-      <div className="relative md:h-4/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-48 ml-72 md:flex overflow-hidden md:fixed ">
+      <div className="relative md:h-4/6 md:max-h-min md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-48 ml-72 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"

@@ -108,13 +108,6 @@ useEffect(() => {
           onChange={(e) => setSearch(e.target.value)}
         />
 </form>
-      <InfiniteScroll
-        dataLength={posts ? posts.length : 0}
-        next={fetchData}
-        hasMore={true} 
-        loader={<p></p>}
-        endMessage={<p>No more data to load.</p>}
-      >
       <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
         {posts?.filter((item) => {
           const itemName = item && item.name ? item.name.toLowerCase() : '';
@@ -155,8 +148,6 @@ useEffect(() => {
         })}
 
       </section>
-      </InfiniteScroll>
-      {error && <p>Error: {error.message}</p>}
       {/* Alert */}
     
       {showAlert && (

@@ -14,6 +14,10 @@ export const siteConfig = {
       href: "https://docs.applio.org",
     },
     {
+      title: "Blog",
+      href: "/blog",
+    },
+    {
       title: "Models",
       href: "/models",
     },
@@ -32,8 +36,8 @@ export const siteConfig = {
       href: "https://docs.applio.org",
     },
     {
-      label: "Models",
-      href: "/models",
+      label: "Blog",
+      href: "/blog",
     },
     {
       label: "Applio Bot",

@@ -13,7 +13,7 @@ export default async function User({ params }: { params: { id: string } }) {
   const { data: { session } } = await supabase.auth.getSession();
   
   let content = []; 
-  let admin = null; // Declarar admin aquí para que esté disponible fuera del bloque else
+  let admin = null; 
 
   if (session === null) {
     redirect('/what-are-you-doing');
@@ -30,7 +30,7 @@ export default async function User({ params }: { params: { id: string } }) {
         const { data } = await supabase
           .from('profiles')
           .select('*')
-          .eq('id', id)
+          .eq('auth_id', session?.user.id)
           .single();
   
         admin = data;

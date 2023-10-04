@@ -82,7 +82,8 @@ useEffect(() => {
         <a className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
         </div>
         </div>
-      <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl hidden md:block">
+      <div className="hidden md:block">
+      <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">
         <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
           Models
         </h1>
@@ -92,6 +93,7 @@ useEffect(() => {
         {/* <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
         Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
         </h1> */}
+      </div>
       </div>
       <div className="hidden md:block">
       <form className="mx-auto flex items-center justify-center">

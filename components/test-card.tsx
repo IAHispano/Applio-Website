@@ -259,8 +259,6 @@ export default function TestCard({
       style={{
         boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
         borderRadius: "8px",
-        // Aquí puedes ajustar el tamaño de la imagen en pantallas grandes
-        // md:h-[300px] md:w-[450px] sería un ejemplo de ajuste para pantallas medianas
       }}
       loading="eager"
       onLoadingComplete={handleImageLoad}

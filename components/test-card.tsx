@@ -100,6 +100,12 @@ export default function TestCard({
   };
   return (
     <div>
+    <section className="block md:hidden">
+                <h1 className="bg-gradient-radial-red text-transparent bg-clip-text mx-auto flex items-center justify-center text-4xl font-bold leading-tight tracking-tighter mt-24">
+                Please login in PC.
+                </h1>
+    </section>
+    <div className="hidden md:block">
 <Dialog>
   <DialogTrigger style={{ width: '100%' }}> 
   <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
@@ -188,7 +194,9 @@ export default function TestCard({
                 backgroundColor: '#262626'
               }
             });
+            setTimeout(() => {
             setIsLoading(true);
+            }, 4000);
 
             try {
               const response = await fetch('http://localhost:8000/download/' + link);
@@ -206,7 +214,9 @@ export default function TestCard({
                   backgroundColor: '#262626'
                 }
               });
+              setTimeout(() => {
                 setIsLoading(false);
+              }, 4000);
   
             } catch (error) {
               console.error('Error en la solicitud:', error);
@@ -225,7 +235,7 @@ export default function TestCard({
 
       <DialogDescription className="">
       <div className="flex items-center justify-center mx-auto">
-      <div className="relative md:h-4/6 md:max-h-min md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-48 ml-72 md:flex overflow-hidden md:fixed ">
+      <div className="relative md:h-3/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-60 ml-72 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"
@@ -278,6 +288,6 @@ export default function TestCard({
   </DialogContent>
 </Dialog>
 </div>
-  
+</div>
   );
 }

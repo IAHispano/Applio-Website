@@ -82,7 +82,6 @@ useEffect(() => {
         <a className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
         </div>
         </div>
-      <div className="hidden md:block">
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">
         <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
           Models
@@ -94,8 +93,6 @@ useEffect(() => {
         Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
         </h1> */}
       </div>
-      </div>
-      <div className="hidden md:block">
       <form className="mx-auto flex items-center justify-center">
         <Input
           classNames={{
@@ -111,13 +108,7 @@ useEffect(() => {
           onChange={(e) => setSearch(e.target.value)}
         />
 </form>
-</div>
       <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
-      <div className="block md:hidden">
-<h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mx-24 h-screen">
-This page is only available <span className="bg-gradient-radial-red text-transparent bg-clip-text">for pc</span>.
-        </h1> 
-</div>
         {posts?.filter((item) => {
           const itemName = item && item.name ? item.name.toLowerCase() : '';
           const searchLower = search.toLowerCase();

@@ -100,7 +100,6 @@ export default function TestCard({
   };
   return (
     <div>
-    <div className="hidden md:block">
 <Dialog>
   <DialogTrigger style={{ width: '100%' }}> 
   <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
@@ -121,41 +120,40 @@ export default function TestCard({
   </DialogTrigger>
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4 mb-2">
+    <DialogTitle className="text-xl md:text-6xl mt-4 mb-4">
   {name !== 'null' ? name : 'Unknown name'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-2xl text-neutral-500 ml-0.5">
-      Created by {user?.full_name}.
+    <DialogTitle className="text-sm md:text-2xl text-neutral-300 bg-neutral-800/30 rounded-lg md:rounded-xl backdrop-blur-lg w-full md:w-fit p-3">
+      {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
     </DialogTitle>
 
     <div className="grid md:grid-cols-1 gap-2 md:max-w-fit"> 
-  <div className="bg-neutral-800 w-auto h-fit rounded-lg md:rounded-xl backdrop-blur-lg mt-28 p-4">
-    <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+    <DialogTitle className="text-sm md:text-xl text-neutral-300">
       {type !== 'null' ? type : 'Unknown type.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-4">
-  <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
     {epochs !== 'null' ? `${epochs} Epochs` : 'Unknown epochs.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-4">
-  <DialogTitle className="text-sm md:text-xl text-white dark:text-neutral-300">
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
     {algorithm !== 'null' ? algorithm : 'Unknown algorithm.'}
     </DialogTitle>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" 
+  <Link href={link} className="place-content-center sm:place-content-center my-2 z-50 " isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
-            right: "80px",
+            right: "20px",
           }}>
         <Button
           color="primary"
           radius="md"
           size="lg"
-          variant="shadow"
         >
           Download
         </Button>
@@ -164,11 +162,11 @@ export default function TestCard({
   <div className="bg-neutral-800/30 hidden md:block">
   <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!">
     {link.endsWith('.zip') && ( 
-      <Link className="place-content-center sm:place-content-center my-5 z-50" isExternal target="_blank" 
+      <Link className="place-content-center sm:place-content-center my-2 z-50" isExternal target="_blank" 
         style={{
           position: "absolute",
           bottom: "10px",
-          right: "220px",
+          right: "150px",
         }}>
         <Button
           color="success"
@@ -228,45 +226,48 @@ export default function TestCard({
 </div>
 </div>
 
+
+
+      <DialogDescription>
+    </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center mx-auto">
-      <div className="relative md:h-3/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-60 ml-72 md:flex overflow-hidden md:fixed ">
-  {isAudioOrError ? (
-    <Image
-      src="https://i.imgur.com/QLOUYSr.png"
-      alt="Image Error"
-      layout="fill"
-      objectFit="cover"
-      objectPosition="center center"
-      style={{
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-        borderRadius: "8px",
-        // Aquí puedes ajustar el tamaño de la imagen en pantallas grandes
-        // md:h-[300px] md:w-[450px] sería un ejemplo de ajuste para pantallas medianas
-      }}
-      loading="eager"
-      onLoadingComplete={handleImageLoad}
-      onError={handleImageError}
-      unoptimized
-    />
-  ) : (
-    <Image
-      src={imageUrl}
-      alt="Picture of the model"
-      layout="fill"
-      objectFit="cover"
-      objectPosition="center center"
-      style={{
-        boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-        borderRadius: "8px",
-      }}
-      loading="eager"
-      onLoadingComplete={handleImageLoad}
-      onError={handleImageError}
-      unoptimized
-    />
-  )}
-</div>
+      <div className="flex items-center justify-center md:ml-32">
+      <div className="relative md:h-4/6 md:w-6/12 h-44 w-[220px] rounded-xl bg-background  md:z-50 md:flex overflow-hidden md:fixed ">
+        {isAudioOrError ? (
+          <Image
+          src="https://i.imgur.com/QLOUYSr.png"
+          alt="Image Error"
+          layout="fill"
+          objectFit="cover"
+          objectPosition="center center"
+          style={{
+            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+            borderRadius: "8px",
+          }}
+          loading="eager"
+          onLoadingComplete={handleImageLoad}
+          onError={handleImageError} 
+          unoptimized
+        />
+
+        ) : (
+          <Image
+            src={imageUrl}
+            alt="Picture of the model"
+            layout="fill"
+            objectFit="cover"
+            objectPosition="center center"
+            style={{
+              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+              borderRadius: "8px",
+            }}
+            loading="eager"
+            onLoadingComplete={handleImageLoad}
+            onError={handleImageError} 
+            unoptimized
+          />
+        )}
+          </div>
           </div>
           <div className="block md:hidden mt-6 mx-auto">
   <Link href={link} className="place-content-center" isExternal target="_blank">
@@ -284,6 +285,6 @@ export default function TestCard({
   </DialogContent>
 </Dialog>
 </div>
-</div>
+  
   );
 }

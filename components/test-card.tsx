@@ -100,11 +100,6 @@ export default function TestCard({
   };
   return (
     <div>
-    <section className="block md:hidden">
-                <h1 className="bg-gradient-radial-red text-transparent bg-clip-text mx-auto flex items-center justify-center text-4xl font-bold leading-tight tracking-tighter mt-24">
-                Please login in PC.
-                </h1>
-    </section>
     <div className="hidden md:block">
 <Dialog>
   <DialogTrigger style={{ width: '100%' }}> 
@@ -236,41 +231,44 @@ export default function TestCard({
       <DialogDescription className="">
       <div className="flex items-center justify-center mx-auto">
       <div className="relative md:h-3/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background md:mb-60 ml-72 md:flex overflow-hidden md:fixed ">
-        {isAudioOrError ? (
-          <Image
-          src="https://i.imgur.com/QLOUYSr.png"
-          alt="Image Error"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center center"
-          style={{
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-            borderRadius: "8px",
-          }}
-          loading="eager"
-          onLoadingComplete={handleImageLoad}
-          onError={handleImageError} 
-          unoptimized
-        />
-
-        ) : (
-          <Image
-            src={imageUrl}
-            alt="Picture of the model"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center center"
-            style={{
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-              borderRadius: "8px",
-            }}
-            loading="eager"
-            onLoadingComplete={handleImageLoad}
-            onError={handleImageError} 
-            unoptimized
-          />
-        )}
-          </div>
+  {isAudioOrError ? (
+    <Image
+      src="https://i.imgur.com/QLOUYSr.png"
+      alt="Image Error"
+      layout="fill"
+      objectFit="cover"
+      objectPosition="center center"
+      style={{
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+        borderRadius: "8px",
+        // Aquí puedes ajustar el tamaño de la imagen en pantallas grandes
+        // md:h-[300px] md:w-[450px] sería un ejemplo de ajuste para pantallas medianas
+      }}
+      loading="eager"
+      onLoadingComplete={handleImageLoad}
+      onError={handleImageError}
+      unoptimized
+    />
+  ) : (
+    <Image
+      src={imageUrl}
+      alt="Picture of the model"
+      layout="fill"
+      objectFit="cover"
+      objectPosition="center center"
+      style={{
+        boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
+        borderRadius: "8px",
+        // Aquí puedes ajustar el tamaño de la imagen en pantallas grandes
+        // md:h-[300px] md:w-[450px] sería un ejemplo de ajuste para pantallas medianas
+      }}
+      loading="eager"
+      onLoadingComplete={handleImageLoad}
+      onError={handleImageError}
+      unoptimized
+    />
+  )}
+</div>
           </div>
           <div className="block md:hidden mt-6 mx-auto">
   <Link href={link} className="place-content-center" isExternal target="_blank">

@@ -47,6 +47,10 @@ export const siteConfig = {
       label: "Applio Bot",
       href: "/bot",
     },
+    {
+      label: "Login",
+      href: "/login",
+    },
   ],
   links: {
     discord: "https://discord.gg/IAHispano",

@@ -17,12 +17,16 @@ export default function HeaderMobile() {
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
 
-      <NavbarContent className="sm:hidden pr-3 flex justify-center mr-16"> 
+      <NavbarContent className="sm:hidden pr-3 flex justify-center"> 
     <NavbarBrand>
         <p className="text-2xl font-bold bg-gradient-radial text-transparent bg-clip-text">Applio</p>
     </NavbarBrand>
     </NavbarContent>
-
+    <NavbarItem>
+    <Button color="success" variant="ghost" as={Link} href="/login">
+            Login
+          </Button>
+    </NavbarItem>
 
       <NavbarMenu>
       {siteConfig.navMenuItems.map((item, index) => (
@@ -32,7 +36,7 @@ export default function HeaderMobile() {
                   index === 2
                     ? "primary"
                     : index === siteConfig.navMenuItems.length - 1
-                    ? "foreground"
+                    ? "success"
                     : "foreground"
                 }
                 href={item.href}

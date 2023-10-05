@@ -105,7 +105,7 @@ export default function TestCard({
   <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
       <CardBody>
         <p className="text-xl">
-        {name !== 'null' ? name : 'Unknown name'}
+        {name !== '' ? name : 'Unknown name'}
         </p>
       </CardBody>
       
@@ -121,7 +121,7 @@ export default function TestCard({
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
     <DialogTitle className="text-xl md:text-6xl mt-4 mb-4">
-  {name !== 'null' ? name : 'Unknown name'}
+  {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
     <DialogTitle className="text-sm md:text-2xl text-neutral-300 bg-neutral-800/30 rounded-lg md:rounded-xl backdrop-blur-lg w-full md:w-fit p-3">
       {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
@@ -130,17 +130,17 @@ export default function TestCard({
     <div className="grid md:grid-cols-1 gap-2 md:max-w-fit"> 
   <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
     <DialogTitle className="text-sm md:text-xl text-neutral-300">
-      {type !== 'null' ? type : 'Unknown type.'}
+      {type !== '' ? type : 'Unknown type.'}
     </DialogTitle>
   </div>
   <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
   <DialogTitle className="text-sm md:text-xl text-neutral-300">
-    {epochs !== 'null' ? `${epochs} Epochs` : 'Unknown epochs.'}
+    {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
     </DialogTitle>
   </div>
   <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
   <DialogTitle className="text-sm md:text-xl text-neutral-300">
-    {algorithm !== 'null' ? algorithm : 'Unknown algorithm.'}
+    {algorithm !== '' ? algorithm : 'Unknown algorithm.'}
     </DialogTitle>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">

@@ -1,5 +1,5 @@
-import Follow from "@/components/follow-user";
-import Userinfo from "@/components/user-info";
+import Follow from "@/components/account/follow-user";
+import Userinfo from "@/components/account/user-info";
 
 export default function User({ params }: { params: { id: string } }) {
   const { id } = params;

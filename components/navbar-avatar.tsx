@@ -80,7 +80,7 @@ export default function NavbarAvatar({
     <DropdownItem key="profile" onClick={handleProfileClick} startContent={<UserCircle className={iconClasses} />}>
                 <p className="font-semibold">{userFullName}</p>
   </DropdownItem>,
-      <DropdownItem key="upload" onClick={handleProfileClick3} isDisabled startContent={<Upload  className={iconClasses} />}>
+      <DropdownItem key="upload" onClick={handleProfileClick3} startContent={<Upload  className={iconClasses} />}>
       Upload model
     </DropdownItem>,
     <DropdownItem key="discord" onClick={handleProfileClick1} startContent={<IconBrandDiscord className={iconClasses} />}>

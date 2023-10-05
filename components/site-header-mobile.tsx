@@ -22,11 +22,6 @@ export default function HeaderMobile() {
         <p className="text-2xl font-bold bg-gradient-radial text-transparent bg-clip-text">Applio</p>
     </NavbarBrand>
     </NavbarContent>
-    <NavbarItem>
-    <Button color="success" variant="ghost" as={Link} href="/login">
-            Login
-          </Button>
-    </NavbarItem>
 
       <NavbarMenu>
       {siteConfig.navMenuItems.map((item, index) => (

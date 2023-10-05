@@ -99,7 +99,7 @@ function Follow({ userFullName }: ModelInfoProps) {
           </Tooltip>
         )}
       </div>
-      <div className="flex justify-center items-center mx-auto my-2">
+      <div className="flex justify-center items-center mx-10 my-2">
       <Card>
       <CardBody>
       {user && user.bio != "null" && (

@@ -38,11 +38,11 @@ export default function BlogPost({ id }: { id: string}) {
             return new Date(dateStr).toLocaleDateString(undefined, options);
           };
           function convertMarkdownToHTML(text: string) {
-            const textWithLineBreaks = text.replace(/\n/g, '<br>');
+            const modifiedText = text.replace(/\*\*(.*?)\*\*/g, '<h2 className="text-3xl text-white">$1</h2>');
           
-            const textWithHeadings = textWithLineBreaks.replace(/\*\*/g, '<h2 className="text-lg md:text-xl tracking-tight"> ');
+            const textWithLineBreaks = modifiedText.replace(/\n/g, '<br>');
           
-            return textWithHeadings;
+            return textWithLineBreaks;
           }
     
       return (
@@ -62,7 +62,7 @@ export default function BlogPost({ id }: { id: string}) {
               <div className="px-5 w-full flex justify-center items-center">
                 <div className="pt-5 pb-10 z-10 flex justify-center items-center gap-5 flex-col w-full max-w-4xl">
                     <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:translate-y-12 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
-                        <img src={item.image_url}></img>
+                        <img src={item.image_url} className="object-fill h-full w-full"></img>
                     </div>
                     <h1 className="text-3xl md:text-5xl font-bold tracking-tight">
                         {item.title}

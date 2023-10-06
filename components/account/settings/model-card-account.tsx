@@ -53,7 +53,7 @@ export default function AccountModelCard({
     </div>
     </DropdownTrigger>
     <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="edit" >Edit {name}</DropdownItem>
+        <DropdownItem key="edit" isDisabled>Edit {name}</DropdownItem>
         <DropdownItem key="delete" className="text-danger" color="danger" onClick={onOpen}>
           Delete {name}
         </DropdownItem>

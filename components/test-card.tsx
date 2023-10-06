@@ -13,7 +13,8 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
 import toast, { Toaster } from 'react-hot-toast';
-import { Copy, Star } from "lucide-react";
+import { Bot, Box, Copy, Star } from "lucide-react";
+import { useClipboard } from "@mantine/hooks";
 
 
 export default function TestCard({
@@ -98,32 +99,7 @@ export default function TestCard({
     height: '150px',
     overflow: 'hidden', 
   };
-  function copyToClipboard(link: string) {
-    navigator.clipboard.writeText(link)
-      .then(() => {
-        // Éxito al copiar al portapapeles
-        toast.success(`${name} has been copied to the clipboard!`, {
-          duration: 2000, // Puedes ajustar la duración del mensaje de éxito
-          position: 'bottom-left',
-          style: {
-            color: 'white',
-            backgroundColor: '#262626'
-          }
-        });
-      })
-      .catch((error) => {
-        // Si hay un error al copiar al portapapeles
-        console.error('Error al copiar al portapapeles:', error);
-        toast.error('Error al copiar al portapapeles', {
-          duration: 2000, // Puedes ajustar la duración del mensaje de error
-          position: 'bottom-left',
-          style: {
-            color: 'white',
-            backgroundColor: 'red' // Cambia el color de fondo para indicar un error
-          }
-        });
-      });
-  }
+  const clipboard = useClipboard({ timeout: 500 });
   
   return (
     <div>
@@ -177,17 +153,16 @@ export default function TestCard({
             right: "155px",
           }}
           >
-        <Button
-          color="default"
-          radius="md"
-          size="lg"
-          variant="faded"
-          isIconOnly
-          onClick={() => copyToClipboard(link)}
-          isDisabled
-        >
-          <Copy />
-        </Button>
+<Button
+  radius="md"
+  size="lg"
+  variant="faded"
+  isIconOnly
+  color={clipboard.copied ? 'success' : 'default'}
+  onClick={() => clipboard.copy(link)}
+>
+  <Copy />
+</Button>
         </div>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
@@ -297,23 +272,26 @@ export default function TestCard({
           </div>
           </div>
           <div className="mx-auto md:absolute grid md:grid-cols-3 gap-4 md:max-w-fit" style={{ bottom: "10px", left: "20px" }}>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 mt-8 md:mt-0">
-    <DialogTitle className="text-sm md:text-xl text-neutral-300">
+  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 mt-8 md:mt-0 flex items-center">
+    <Box className="mx-2 text-white" />
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
       {type !== '' ? type : 'Unknown type.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-    
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
-  {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
+  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 flex items-center">
+    <Star className="mx-2 text-white" />
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
+      {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
     </DialogTitle>
   </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
-    {algorithm !== '' ? algorithm : 'Unknown algorithm.'}
+  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 flex items-center">
+    <Bot className="mx-2 text-white" />
+    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
+      {algorithm !== '' ? algorithm : 'Unknown algorithm'}
     </DialogTitle>
   </div>
-  </div>
+</div>
+
           <div className="block md:hidden mt-6 mx-auto">
   <Link href={link} className="place-content-center" isExternal target="_blank">
         <Button

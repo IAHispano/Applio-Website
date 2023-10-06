@@ -19,7 +19,8 @@ export const addPost = async (formData: FormData) => {
   } = await supabase.auth.getUser();
 
   if (user === null) return;
-
+  
+  const currentTime = new Date().toISOString();
   const { data: userProfile } = await supabase
   .from("profiles")
   .select("id")
@@ -28,7 +29,10 @@ export const addPost = async (formData: FormData) => {
 
   const { error } = await supabase
   .from('profiles')
-  .update({ bio: bio })
+  .update({ 
+    bio: bio,
+    updated_at: currentTime
+  })
   .eq('auth_id', user.id)
     
 

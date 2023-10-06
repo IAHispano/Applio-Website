@@ -13,6 +13,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
 import toast, { Toaster } from 'react-hot-toast';
+import { Copy, Star } from "lucide-react";
 
 
 export default function TestCard({
@@ -97,6 +98,33 @@ export default function TestCard({
     height: '150px',
     overflow: 'hidden', 
   };
+  function copyToClipboard(link: string) {
+    navigator.clipboard.writeText(link)
+      .then(() => {
+        // Éxito al copiar al portapapeles
+        toast.success(`${name} has been copied to the clipboard!`, {
+          duration: 2000, // Puedes ajustar la duración del mensaje de éxito
+          position: 'bottom-left',
+          style: {
+            color: 'white',
+            backgroundColor: '#262626'
+          }
+        });
+      })
+      .catch((error) => {
+        // Si hay un error al copiar al portapapeles
+        console.error('Error al copiar al portapapeles:', error);
+        toast.error('Error al copiar al portapapeles', {
+          duration: 2000, // Puedes ajustar la duración del mensaje de error
+          position: 'bottom-left',
+          style: {
+            color: 'white',
+            backgroundColor: 'red' // Cambia el color de fondo para indicar un error
+          }
+        });
+      });
+  }
+  
   return (
     <div>
 <Dialog>
@@ -119,31 +147,14 @@ export default function TestCard({
   </DialogTrigger>
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4 mb-4">
+    <DialogTitle className="text-xl md:text-6xl mt-4">
   {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
-    <DialogTitle className="text-sm md:text-2xl text-neutral-300 bg-neutral-800/30 rounded-lg md:rounded-xl backdrop-blur-lg w-full md:w-fit p-3">
+    <DialogTitle className="font-semibold text-sm md:text-xl text-neutral-500 z-10 md:mb-4 md:ml-0.5">
       {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
     </DialogTitle>
-
-    <div className="grid md:grid-cols-1 gap-2 md:max-w-fit"> 
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-    <DialogTitle className="text-sm md:text-xl text-neutral-300">
-      {type !== '' ? type : 'Unknown type.'}
-    </DialogTitle>
-  </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
-    {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
-    </DialogTitle>
-  </div>
-  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
-  <DialogTitle className="text-sm md:text-xl text-neutral-300">
-    {algorithm !== '' ? algorithm : 'Unknown algorithm.'}
-    </DialogTitle>
-  </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center my-2 z-50 " isExternal target="_blank" 
+  <Link href={link} className="place-content-center sm:place-content-center z-50 " isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -159,13 +170,34 @@ export default function TestCard({
         </Link>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
+  <div className="place-content-center sm:place-content-center z-50" 
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            right: "155px",
+          }}
+          >
+        <Button
+          color="default"
+          radius="md"
+          size="lg"
+          variant="faded"
+          isIconOnly
+          onClick={() => copyToClipboard(link)}
+          isDisabled
+        >
+          <Copy />
+        </Button>
+        </div>
+  </div>
+  <div className="bg-neutral-800/30 hidden md:block">
   <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!">
     {link.endsWith('.zip') && ( 
-      <Link className="place-content-center sm:place-content-center my-2 z-50" isExternal target="_blank" 
+      <Link className="place-content-center sm:place-content-center z-50" isExternal target="_blank" 
         style={{
           position: "absolute",
           bottom: "10px",
-          right: "150px",
+          right: "215px",
         }}>
         <Button
           color="success"
@@ -223,15 +255,11 @@ export default function TestCard({
     )}
   </Tooltip>
 </div>
-</div>
-
-
-
       <DialogDescription>
     </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center md:ml-32">
-      <div className="relative md:h-4/6 md:w-6/12 h-44 w-[220px] rounded-xl bg-background  md:z-50 md:flex overflow-hidden md:fixed ">
+      <div className="flex items-center justify-center my-auto md:ml-10 md:mt-56">
+      <div className="relative md:h-4/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background  md:z-50 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"
@@ -268,6 +296,24 @@ export default function TestCard({
         )}
           </div>
           </div>
+          <div className="mx-auto md:absolute grid md:grid-cols-3 gap-4 md:max-w-fit" style={{ bottom: "10px", left: "20px" }}>
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 mt-8 md:mt-0">
+    <DialogTitle className="text-sm md:text-xl text-neutral-300">
+      {type !== '' ? type : 'Unknown type.'}
+    </DialogTitle>
+  </div>
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+    
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+  {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
+    </DialogTitle>
+  </div>
+  <div className="bg-neutral-800/30 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3">
+  <DialogTitle className="text-sm md:text-xl text-neutral-300">
+    {algorithm !== '' ? algorithm : 'Unknown algorithm.'}
+    </DialogTitle>
+  </div>
+  </div>
           <div className="block md:hidden mt-6 mx-auto">
   <Link href={link} className="place-content-center" isExternal target="_blank">
         <Button

@@ -20,9 +20,8 @@ export function DeleteAccountButton() {
       color="danger"
       className="flex items-center gap-2 active:opacity-50 font-medium py-2 px-4 gtransition"
       onClick={handleDeleteAccountClick} 
-      isDisabled
     >
-      {pending ? "Please wait..." : "Disabled"}
+      {pending ? "Please wait..." : "Delete Account"}
     </Button>
   );
 }

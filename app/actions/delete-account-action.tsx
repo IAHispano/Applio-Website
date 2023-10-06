@@ -6,7 +6,14 @@ import { createClient } from "@supabase/supabase-js";
 
 export const addPost = async (formData: FormData) => {
   const supabase = createServerActionClient({ cookies });
-  const supabase_admin = createClient('URL', 'SECRET KEY')
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_KEY) {
+    console.error("SUPABASE_URL SUPABASE_SERVICE_KEY error.");
+    return;
+  }
+  const supabase_admin = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_SERVICE_KEY
+  );
 
 
   const {
@@ -26,7 +33,7 @@ export const addPost = async (formData: FormData) => {
   .delete()
   .eq('auth_id', user.id)
 
-  const { data, error } = await supabase.auth.admin.deleteUser(user.id);
+  const { data, error } = await supabase_admin.auth.admin.deleteUser(user.id);
 
   await supabase.auth.signOut();
   redirect("/");

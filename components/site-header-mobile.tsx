@@ -18,9 +18,6 @@ export default function HeaderMobile() {
       </NavbarContent>
 
       <NavbarContent className="sm:hidden pr-3 flex justify-center"> 
-    <NavbarBrand>
-        <p className="text-2xl font-bold bg-gradient-radial text-transparent bg-clip-text mr-28">Applio</p>
-    </NavbarBrand>
     </NavbarContent>
 
       <NavbarMenu>

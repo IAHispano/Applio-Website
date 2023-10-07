@@ -68,7 +68,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
-              <div className="flex-1 bg-background">{children}</div>
+              <div className="flex-1 bg-background">
+              <div className="h-full md:py-16">{children}</div>
+            </div>
             </div>
           </ThemeProvider>
           </MantineProvider>

@@ -5,7 +5,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
 import { Button, Divider, Link } from "@nextui-org/react";
-
+import 'styles/animation.css'
 
 export default function BlogPost({ id }: { id: string}) {
         const supabase = createClientComponentClient<Database>(); 
@@ -26,7 +26,6 @@ export default function BlogPost({ id }: { id: string}) {
           }
         
           fetchData();
-          console.log(data)
         }, );
     
         const formatDate = (dateStr: string | number | Date) => {
@@ -49,7 +48,7 @@ export default function BlogPost({ id }: { id: string}) {
         <div >
         {data &&
           data?.map((item, index) => (
-        <div className="mb-10"><div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
+        <div ><div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
                   <div className="h-96 top-0 absolute w-full scale-125 rounded-2xl blur-3xl pointer-events-none">
                       <img className="z-10 saturate-150 absolute top-0 left-0 w-full h-full object-cover object-center undefined undefined ltransition" src={item.image_url}>
                       </img>

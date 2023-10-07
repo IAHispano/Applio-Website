@@ -3,7 +3,7 @@ import Image from "next/image";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
-
+import 'styles/animation.css'
 
 export default function BlogCard() {
     
@@ -38,7 +38,7 @@ export default function BlogCard() {
       };
 
   return (
-    <div className="w-full max-w-6xl p-5 pt-0 flex flex-col gap-5">
+    <div className="w-full max-w-6xl p-5 pt-0 flex flex-col gap-5 text-white">
     {data &&
       data?.map((item, index) => (
         <a key={item.id} href={`/blog/${item.id}`} className="w-full bg-black border-2 border-white/30 rounded-3xl flex gap-5 h-32 md:hover:h-40 first:h-44 md:[&_img]:hover:opacity-70 md:[&_img]:active:opacity-30 md:first:hover:h-52 md:hover:scale-[101%] md:active:scale-95 gtransition relative overflow-hidden">

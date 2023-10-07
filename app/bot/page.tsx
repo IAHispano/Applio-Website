@@ -23,7 +23,7 @@ import { Bot, Search, Apple } from "lucide-react"
 
 export default function BotPage() {
   return (
-    <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
+    <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl my-10">
     <h1 className="text-9xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 ">
       Applio
     </h1>

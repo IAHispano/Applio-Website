@@ -13,8 +13,9 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
 import toast, { Toaster } from 'react-hot-toast';
-import { Bot, Box, Copy, Star } from "lucide-react";
+import { Bot, Box, Copy, Heart, Star, ThumbsUp } from "lucide-react";
 import { useClipboard } from "@mantine/hooks";
+import { addPost } from "@/app/actions/like-model-action";
 
 
 export default function TestCard({
@@ -101,6 +102,13 @@ export default function TestCard({
   };
   const clipboard = useClipboard({ timeout: 500 });
   
+  const handleDeletePost = async () => {
+    const formData = new FormData();
+    formData.append("id", id);
+
+    await addPost(formData);
+  };
+  
   return (
     <div>
 <Dialog>
@@ -150,7 +158,7 @@ export default function TestCard({
           style={{
             position: "absolute",
             bottom: "10px",
-            right: "155px",
+            right: "215px",
           }}
           >
 <Button
@@ -166,13 +174,33 @@ export default function TestCard({
         </div>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
+  <div className="place-content-center sm:place-content-center z-50"
+          style={{
+            position: "absolute",
+            bottom: "10px",
+            right: "155px",
+          }}
+          >
+<Button
+  radius="md"
+  size="lg"
+  variant="faded"
+  isIconOnly
+  color="default"
+  onClick={handleDeletePost}
+>
+  <ThumbsUp  className="text-sky-500"/>
+</Button>
+        </div>
+  </div>
+  <div className="bg-neutral-800/30 hidden md:block">
   <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!">
     {link.endsWith('.zip') && ( 
       <Link className="place-content-center sm:place-content-center z-50" isExternal target="_blank" 
         style={{
           position: "absolute",
           bottom: "10px",
-          right: "215px",
+          right: "275px",
         }}>
         <Button
           color="success"

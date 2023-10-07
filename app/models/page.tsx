@@ -83,12 +83,9 @@ useEffect(() => {
         </div>
         </div>
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">
-        <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
+        <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 ">
           Models
         </h1>
-        <p className="mt-4 text-muted-foreground  text-xs md:text-xl">
-          Enjoy +8000 voice models available in our database!
-        </p>
         {/* <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
         Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
         </h1> */}
@@ -124,7 +121,8 @@ useEffect(() => {
             version,
             type,
             algorithm,
-            author_id
+            author_id,
+            likes
           } = post
 
           const modelSlug = link
@@ -142,6 +140,7 @@ useEffect(() => {
           type={type}
           algorithm={algorithm}
           author_id={author_id}
+          likes={likes}
           />
        </div>     
           )

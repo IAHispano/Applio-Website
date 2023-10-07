@@ -29,7 +29,8 @@ export default function TestCard({
   version,
   type,
   algorithm,
-  author_id
+  author_id,
+  likes
 }: {
   imageUrl: string;
   name: string;
@@ -42,6 +43,7 @@ export default function TestCard({
   type: string;
   algorithm: string;
   author_id: string;
+  likes: string;
 }) {
     
     const supabase = createClientComponentClient<Database>(); 
@@ -136,6 +138,9 @@ export default function TestCard({
     </DialogTitle>
     <DialogTitle className="font-semibold text-sm md:text-xl text-neutral-500 z-10 md:mb-4 md:ml-0.5">
       {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
+    </DialogTitle>
+    <DialogTitle className="font-semibold text-sm md:text-lg text-neutral-500 z-10 md:ml-1">
+      {likes !== 'null' ? `${likes} likes ` : 'Unknown likes'}
     </DialogTitle>
   <div className="bg-neutral-800/30 hidden md:block">
   <Link href={link} className="place-content-center sm:place-content-center z-50 " isExternal target="_blank" 
@@ -261,7 +266,7 @@ export default function TestCard({
       <DialogDescription>
     </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center my-auto md:ml-10 md:mt-56">
+      <div className="flex items-center justify-center my-auto md:ml-10 md:mt-48">
       <div className="relative md:h-4/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background  md:z-50 md:flex overflow-hidden md:fixed ">
         {isAudioOrError ? (
           <Image

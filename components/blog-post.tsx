@@ -45,7 +45,7 @@ export default function BlogPost({ id }: { id: string}) {
           }
     
       return (
-        <div >
+        <div className="text-black dark:text-white">
         {data &&
           data?.map((item, index) => (
         <div ><div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
@@ -55,7 +55,7 @@ export default function BlogPost({ id }: { id: string}) {
                   </div>
               </div>
               <main className="w-full pt-16 flex flex-col top-0 justify-start items-center text-center min-h-screen overflow-x-hidden relative">
-              <Button variant="flat" as={Link} href="/blog">
+              <Button color="danger" variant="flat" className="text-white" as={Link} href="/blog">
                 Return
               </Button>
               <div className="px-5 w-full flex justify-center items-center">
@@ -70,12 +70,12 @@ export default function BlogPost({ id }: { id: string}) {
                         <div className="flex flex-col text-left gap-1 flex-grow">
                             <div className="flex items-center flex-wrap gap-3 justify-start">
                                 <p className="text-lg md:text-xl tracking-tight">
-                                Written by <span className="text-white">{item.by}</span>
+                                Written by <span className="text-black/80 dark:text-white">{item.by}</span>
                                 </p>
                             </div>
-                            <p className="text-xs md:text-sm tracking-tight text-neutral-300 text-left">{formatDate(item.created_at)}</p>
+                            <p className="text-xs md:text-sm tracking-tight text-balck/80 dark:text-neutral-300 text-left">{formatDate(item.created_at)}</p>
                         </div>
-                        <Button variant="flat" as={Link} href="https://twitter.com/intent/tweet?text=Check out the new post on Applio blog! www.applio.org/blog/" target="_blank">
+                        <Button color="success" as={Link} href="https://twitter.com/intent/tweet?text=Check out the new post on Applio blog! www.applio.org/blog/" target="_blank">
                             Share
                         </Button>
                     </div>

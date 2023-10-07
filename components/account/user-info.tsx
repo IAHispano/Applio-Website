@@ -128,6 +128,7 @@ function Userinfo({ userFullName }: ModelInfoProps) {
           epochs={model.epochs}
           author_id={model.author_id}
           algorithm={model.algorithm}
+          likes={model.likes}
           />
          </div>
       ))}

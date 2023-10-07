@@ -7,6 +7,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { Database } from "./types/database";
+import 'styles/remove-scrollbar.css'
 
 export default async function IndexPage() {
 

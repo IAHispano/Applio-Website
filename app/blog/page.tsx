@@ -26,7 +26,6 @@ import 'styles/animation.css'
 export default function BotPage() {
   return (
     <main className="w-full pt-16 flex flex-col top-0 justify-start items-center text-center min-h-screen">
-        <h1 className="text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl mb-4 p-4 bg-gradient-radial text-transparent bg-clip-text">Applio Blog</h1>
         <section className="w-full max-w-6xl p-5 pt-0 flex flex-col gap-5">
             <BlogCard />  
         </section>

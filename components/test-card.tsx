@@ -51,6 +51,7 @@ export default function TestCard({
     const [user, setUser] = useState<any | null>(null);
     const [error, setError] = useState<PostgrestError | null>(null);
     const [showAlert, setShowAlert] = useState(false); 
+    const [buttonClicked, setClicked] = useState(false);
     useEffect(() => {
       async function fetchData() {
         // Fetch user data based on full name
@@ -105,12 +106,26 @@ export default function TestCard({
   const clipboard = useClipboard({ timeout: 500 });
   
   const handleDeletePost = async () => {
+    if (userLiked) {
+      return; 
+    }
+  
+    const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
+    likedItems.push(id);
+    localStorage.setItem("likedItems", JSON.stringify(likedItems));
     const formData = new FormData();
     formData.append("id", id);
-
-    await addPost(formData);
-  };
   
+    await addPost(formData);
+    setUserLiked(true); 
+    // location.reload();
+  };
+  const [userLiked, setUserLiked] = useState(false);
+
+  useEffect(() => {
+    const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
+    setUserLiked(likedItems.includes(id));
+  }, [id]);
   return (
     <div>
 <Dialog>
@@ -190,8 +205,9 @@ export default function TestCard({
   radius="md"
   size="lg"
   variant="faded"
+  isDisabled={userLiked}
   isIconOnly
-  color="default"
+  color={userLiked ? 'success' : 'default'}
   onClick={handleDeletePost}
 >
   <ThumbsUp  className="text-sky-500"/>

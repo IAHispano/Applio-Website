@@ -118,7 +118,7 @@ export default function TestCard({
   
     await addPost(formData);
     setUserLiked(true); 
-    // location.reload();
+    location.reload();
   };
   const [userLiked, setUserLiked] = useState(false);
 

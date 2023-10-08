@@ -1,6 +1,7 @@
 "use server";
 import { cookies } from "next/headers";
 import { createServerActionClient } from "@supabase/auth-helpers-nextjs";
+import { revalidatePath } from "next/cache";
 
 export const addPost = async (formData: FormData) => {
   const id = formData.get("id");
@@ -44,4 +45,5 @@ await supabase
   .update({ likes: newLikes, liked_by: newLikedBy })
   .eq("id", id);
 
+  revalidatePath('/')
 }

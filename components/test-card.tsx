@@ -113,19 +113,16 @@ export default function TestCard({
     const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
     likedItems.push(id);
     localStorage.setItem("likedItems", JSON.stringify(likedItems));
+
     const formData = new FormData();
     formData.append("id", id);
   
     await addPost(formData);
-    setUserLiked(true); 
-    location.reload();
+    
+    setUserLiked(true);
   };
   const [userLiked, setUserLiked] = useState(false);
 
-  useEffect(() => {
-    const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
-    setUserLiked(likedItems.includes(id));
-  }, [id]);
   return (
     <div>
 <Dialog>
@@ -148,33 +145,33 @@ export default function TestCard({
   </DialogTrigger>
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4">
+    <DialogTitle className="text-xl md:text-6xl mt-4 z-30 bg-black/80 h-fit w-fit p-4 rounded">
   {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
-    <DialogTitle className="font-semibold text-sm md:text-xl text-neutral-500 z-10 md:mb-4 md:ml-0.5">
+    <DialogTitle className="font-semibold text-sm md:text-xl text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
       {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
     </DialogTitle>
-    <DialogTitle className="font-semibold text-sm md:text-lg text-neutral-500 z-10 md:ml-1">
+    <DialogTitle className="font-semibold text-sm md:text-lg text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
       {likes !== 'null' ? `${likes} likes ` : 'Unknown likes'}
     </DialogTitle>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center z-50 " isExternal target="_blank" 
+  <Link href={link} className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl" isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
             right: "20px",
           }}>
         <Button
-          color="primary"
           radius="md"
           size="lg"
+          variant="ghost"
         >
           Download
         </Button>
         </Link>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50" 
+  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -184,7 +181,7 @@ export default function TestCard({
 <Button
   radius="md"
   size="lg"
-  variant="faded"
+  variant="ghost"
   isIconOnly
   color={clipboard.copied ? 'success' : 'default'}
   onClick={() => clipboard.copy(link)}
@@ -194,7 +191,7 @@ export default function TestCard({
         </div>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50"
+  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl"
           style={{
             position: "absolute",
             bottom: "10px",
@@ -204,13 +201,13 @@ export default function TestCard({
 <Button
   radius="md"
   size="lg"
-  variant="faded"
+  variant="ghost"
   isDisabled={userLiked}
   isIconOnly
   color={userLiked ? 'success' : 'default'}
   onClick={handleDeletePost}
 >
-  <ThumbsUp  className="text-sky-500"/>
+  <ThumbsUp />
 </Button>
         </div>
   </div>
@@ -282,8 +279,8 @@ export default function TestCard({
       <DialogDescription>
     </DialogDescription>
       <DialogDescription className="">
-      <div className="flex items-center justify-center my-auto md:ml-10 md:mt-48">
-      <div className="relative md:h-4/6 md:w-8/12 h-44 w-[220px] rounded-xl bg-background  md:z-50 md:flex overflow-hidden md:fixed ">
+      <div className="flex items-center justify-center my-auto">
+      <div className="">
         {isAudioOrError ? (
           <Image
           src="https://i.imgur.com/QLOUYSr.png"
@@ -320,29 +317,37 @@ export default function TestCard({
         )}
           </div>
           </div>
-          <div className="mx-auto md:absolute grid md:grid-cols-3 gap-4 md:max-w-fit" style={{ bottom: "10px", left: "20px" }}>
-  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 mt-8 md:mt-0 flex items-center">
+          <div>
+  <div className="w-full flex justify-start items-center gap-3 flex-wrap">
+  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
     <Box className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
+    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
       {type !== '' ? type : 'Unknown type.'}
     </DialogTitle>
   </div>
-  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 flex items-center">
-    <Star className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
-      {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs.'}
-    </DialogTitle>
-  </div>
-  <div className="bg-[#26262a]/80 w-auto h-auto rounded-lg md:rounded-xl backdrop-blur-lg p-3 flex items-center">
+
+  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
     <Bot className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300 mr-2">
+    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
       {algorithm !== '' ? algorithm : 'Unknown algorithm'}
     </DialogTitle>
   </div>
+  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
+    <Bot className="mx-2 text-white" />
+    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
+      {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs'}
+    </DialogTitle>
+  </div>
+</div>
 </div>
 
-          <div className="block md:hidden mt-6 mx-auto">
-  <Link href={link} className="place-content-center" isExternal target="_blank">
+
+
+
+
+
+          <div className="block md:hidden fixed bottom-0 left-0 right-0 text-center bg-black/80 h-24 rounded-lg overflow-hidden">
+  <Link href={link} className="place-content-center mt-8" isExternal target="_blank">
         <Button
           color="primary"
           radius="md"

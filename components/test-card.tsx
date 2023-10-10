@@ -105,7 +105,16 @@ export default function TestCard({
   };
   const clipboard = useClipboard({ timeout: 500 });
   
+  function redirect(destination: string) {
+    window.location.href = destination;
+  }
+
   const handleDeletePost = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session === null) {
+      redirect('/login');
+    } else {
+
     if (userLiked) {
       return; 
     }
@@ -120,6 +129,7 @@ export default function TestCard({
     await addPost(formData);
     
     setUserLiked(true);
+  }
   };
   const [userLiked, setUserLiked] = useState(false);
 

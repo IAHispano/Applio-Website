@@ -23,7 +23,7 @@ export const addPost = async (formData: FormData) => {
   const currentTime = new Date().toISOString();
   const { data: userProfile } = await supabase
   .from("profiles")
-  .select("id")
+  .select("*")
   .eq("auth_id", user.id)
   .single();
 
@@ -36,5 +36,5 @@ export const addPost = async (formData: FormData) => {
   .eq('auth_id', user.id)
     
 
-  redirect(`/users/${userProfile?.id}`);
+  redirect(`/users/${userProfile?.full_name}`);
 };

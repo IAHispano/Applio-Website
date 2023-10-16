@@ -25,5 +25,5 @@ export const addPost = async (formData: FormData) => {
     .delete()
     .eq('id', id);
 
-    redirect(`/settings/${author_id}`);
+    redirect(`/models`);
 };

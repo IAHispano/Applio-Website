@@ -64,7 +64,7 @@ export default function TestCard({
           setError(userError);
           return;
         }
-        setUser(userData[0] || { full_name: "unknown user" });
+        setUser(userData[0] || { full_name: "Unknown user" });
       }
     
       fetchData();
@@ -159,7 +159,13 @@ export default function TestCard({
   {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
     <DialogTitle className="font-semibold text-sm md:text-xl text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
-      {user?.full_name !== 'null' ? `Created by ${user?.full_name}` : 'Unknown owner'}
+    {user?.full_name !== 'Unknown user' && user?.full_name !== 'null' ? (
+      <a className="button-cursor" href={`/users/${user?.full_name}`}>
+       Created by {user?.full_name}
+      </a>
+    ) : (
+      'Unknown owner'
+    )} 
     </DialogTitle>
     <DialogTitle className="font-semibold text-sm md:text-lg text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
       {likes !== 'null' ? `${likes} likes ` : 'Unknown likes'}

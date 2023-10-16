@@ -1,11 +1,11 @@
 import { Database } from "@/app/types/database";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button } from "@nextui-org/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { PostgrestError } from "@supabase/supabase-js";
 import { SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 
-export default function UsersTable({ id }: { id: string }) {
+export default function BlogsTable({ id }: { id: string }) {
     const supabase = createClientComponentClient<Database>();
 
     const [users, setUsers] = useState<any[] | null>(null);
@@ -16,8 +16,8 @@ export default function UsersTable({ id }: { id: string }) {
         async function fetchData() {
             try {
                 const { data: userData, error: userError } = await supabase
-                    .from("profiles")
-                    .select("full_name, id, role");
+                    .from("blog")
+                    .select("title, id, by");
 
                 if (userError) {
                     setError(userError);
@@ -38,7 +38,7 @@ export default function UsersTable({ id }: { id: string }) {
                 <div className="md:mx-24 h-fit">
                     <form style={{ marginBottom: '16px' }}>
                         <Input
-                            placeholder="Type to search a user..."
+                            placeholder="Type to search a post..."
                             size="sm"
                             startContent={<SearchIcon size={18} />}
                             type="search"
@@ -47,8 +47,8 @@ export default function UsersTable({ id }: { id: string }) {
                     <Table aria-label="Users table">
                         <TableHeader>
                             <TableColumn>ID</TableColumn>
-                            <TableColumn>NAME</TableColumn>
-                            <TableColumn>ROLE</TableColumn>
+                            <TableColumn>TITLE</TableColumn>
+                            <TableColumn>BY</TableColumn>
                         </TableHeader>
                         <TableBody emptyContent={"Loading data..."}>
                             {(users || [])
@@ -59,9 +59,9 @@ export default function UsersTable({ id }: { id: string }) {
                                 })
                                 .map((user: any) => (
                                     <TableRow key={user.id}>
-                                        <TableCell className="select-all">{user.id}</TableCell>
-                                        <TableCell ><a href={`/users/${user?.full_name}`}>{user.full_name}</a></TableCell>
-                                        <TableCell>{user.role}</TableCell>
+                                        <TableCell>{user.id}</TableCell>
+                                        <TableCell>{user.title}</TableCell>
+                                        <TableCell>{user.by}</TableCell>
                                     </TableRow>
                                 ))}
                         </TableBody>

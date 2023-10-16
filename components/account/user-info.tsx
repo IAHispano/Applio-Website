@@ -50,7 +50,7 @@ function Userinfo({ userFullName }: ModelInfoProps) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("full_name, id, role")
-        .eq("id", userFullName);
+        .eq("full_name", userFullName);
 
       if (userError) {
         setError(userError);

@@ -39,7 +39,7 @@ function Follow({ userFullName }: ModelInfoProps) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("*")
-        .eq("id", userFullName);
+        .eq("full_name", userFullName);
 
       if (userError) {
         setError(userError);

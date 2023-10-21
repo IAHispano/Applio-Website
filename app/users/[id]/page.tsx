@@ -1,5 +1,5 @@
 import Follow from "@/components/account/follow-user";
-import Userinfo from "@/components/account/user-info";
+import Usermodels from "@/components/account/user-models";
 
 export default function User({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -7,7 +7,7 @@ export default function User({ params }: { params: { id: string } }) {
   return (
     <div>
       <Follow userFullName={id} />
-      <Userinfo userFullName={id} />
+      <Usermodels userFullName={id} />
     </div>
   );
 }

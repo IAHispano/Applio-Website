@@ -28,7 +28,7 @@ interface ModelInfoProps {
   userFullName: string;
 }
 
-function Userinfo({ userFullName }: ModelInfoProps) {
+function Usermodels({ userFullName }: ModelInfoProps) {
   const [showAlert, setShowAlert] = useState(false); 
   const [data, setData] = useState<any[] | null>(null);
   const [user, setUser] = useState<any | null>(null);
@@ -64,6 +64,7 @@ function Userinfo({ userFullName }: ModelInfoProps) {
       const { data: modelsData, error: modelsError } = await supabase
         .from("models")
         .select("*")
+        .order('likes', { ascending: false })
         .eq("author_id", userData[0]?.id);
 
         if (modelsError) {
@@ -113,6 +114,13 @@ function Userinfo({ userFullName }: ModelInfoProps) {
   const alertClass = showAlert ? "fade-in" : "fade-out";
 
   return (
+    <main>
+    {user && (
+        <div className="md:py-8 pt-4 mx-14">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Models created by <span className="underline decoration-[4px] italic underline-offset-4 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">{user.full_name}</span> :</h1>
+          <p className="text-xs md:text-sm tracking-tight text-neutral-300 text-left pt-1">(From most popular to least popular)</p>
+        </div>
+      )}
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-5 py-8 md:py-10 mx-14">
       {data.map((model) => (
         <div className="w-full button-cursor"  key={model.id}>
@@ -187,7 +195,8 @@ function Userinfo({ userFullName }: ModelInfoProps) {
         </div>
         )}
     </div>
+    </main>
   );
 }
 
-export default Userinfo;
+export default Usermodels;

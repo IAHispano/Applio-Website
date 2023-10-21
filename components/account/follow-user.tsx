@@ -20,6 +20,7 @@ import {
 import { createClient, PostgrestError } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 import { useEffect, useState } from "react";
+import '@/styles/text-animation.css'
 
 const supabase = createClientComponentClient<Database>();
 
@@ -85,28 +86,33 @@ function Follow({ userFullName }: ModelInfoProps) {
 
   return (
     <div>
-      <div className="flex justify-center items-center mx-auto my-8">
-      <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4 p-4 ${user && user.role === "admin" ? 'bg-gradient-radial text-transparent bg-clip-text' : ''}`}>{user && user.full_name}</h1>
-        {user && user.role === "admin" && (
-          <Tooltip content="This user is part of the Applio team">
-            <Image
-              width={60}
-              height={60}
-              src="https://i.imgur.com/jDmINMQ.png"
-              alt="Admin"
-              className="mt-3 hidden md:block"
-            />
-          </Tooltip>
-        )}
-      </div>
-      <div className="flex justify-center items-center mx-10 my-2">
-      <Card>
+<div className="flex justify-center items-center mx-auto my-8">
+  <div className="rounded-2xl md:mt-10 px-4 backdrop-blur-xl flex items-center"> 
+    <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl truncate font-bold text-disable-antialiasing leading-tight tracking-tighter md:text-8xl pr-4 ${user && user.role === "admin" ? 'animate-charcter pb-2' : ''}`}>{user && user.full_name}</h1>
+    {user && user.role === "admin" && (
+      <Tooltip content="This user is part of the Applio team" showArrow placement="right">
+        <Image
+          width={60}
+          height={60}
+          src="https://i.imgur.com/jDmINMQ.png"
+          alt="Admin"
+          className="mt-2 hidden md:block md:hover:scale-110 gtransition"
+        />
+      </Tooltip>
+    )}
+  </div>
+</div>
+      <div className="flex justify-center items-center max-w-full mx-6 my-2">
+      <Card className="max-w-[1200px]">
       <CardBody>
       {user && user.bio != "null" && (
       <p>{user?.bio}</p>
       )}
       </CardBody>
     </Card>
+      </div>
+      <div className="mt-10">
+      <Divider />
       </div>
     </div>
   );

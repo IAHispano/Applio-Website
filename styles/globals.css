@@ -131,3 +131,7 @@
 .gtransition{
   transition: all 0.3s ease;
 }
+.gtransition-low{
+  transition: all 0.2s ease;
+}
+

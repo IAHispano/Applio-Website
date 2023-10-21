@@ -1,7 +1,7 @@
 import { Database } from "@/app/types/database";
 import Tabs from "@/components/admin/tabs";
-import ModelsTable from "@/components/models-table";
-import UsersTable from "@/components/users-table";
+import ModelsTable from "@/components/admin/tables/models-table";
+import UsersTable from "@/components/admin/tables/users-table";
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { PostgrestError } from "@supabase/supabase-js";
 import { cookies } from 'next/headers';

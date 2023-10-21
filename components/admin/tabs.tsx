@@ -1,10 +1,10 @@
 "use client"
 import React from 'react';
 import { Tabs, Tab, Button } from "@nextui-org/react";
-import UsersTable from "../users-table";
-import ModelsTable from "../models-table";
+import UsersTable from "./tables/users-table";
+import ModelsTable from "./tables/models-table";
 import { Bot, User, Text } from 'lucide-react';
-import BlogsTable from '../blogs-table';
+import BlogsTable from './tables/blogs-table';
 
 interface tabsprops {
   id: string;

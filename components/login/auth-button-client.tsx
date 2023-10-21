@@ -3,7 +3,7 @@
 import { type Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 import { Button } from '@nextui-org/button'
-import NavbarAvatar from './navbar-avatar'
+import NavbarAvatar from '../navbar/navbar-avatar'
 
 export function AuthButton ({ session }: { session: Session | null }) {
   const supabase = createClientComponentClient()
@@ -29,7 +29,7 @@ export function AuthButton ({ session }: { session: Session | null }) {
       {
         session === null
           ? (
-            <Button color="primary" variant="shadow" className='ml-4' onClick={handleSignIn}>
+            <Button color="primary" className='ml-4' onClick={handleSignIn}>
             Login
           </Button>
             )

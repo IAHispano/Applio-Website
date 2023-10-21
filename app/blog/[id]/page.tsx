@@ -1,4 +1,4 @@
-import BlogPost from "@/components/blog-post";
+import BlogPost from "@/components/blog/blog-post";
 
 
 export default async function User({ params }: { params: { id: string } }) {

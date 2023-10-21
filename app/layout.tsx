@@ -3,8 +3,8 @@ import { Metadata } from "next"
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
-import { SiteHeader } from "@/components/site-header"
-import { ThemeProvider } from "@/components/theme-provider"
+import { SiteHeader } from "@/components/navbar/site-header"
+import { ThemeProvider } from "@/components/navbar/theme-provider"
 import {Providers} from "./providers";
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 

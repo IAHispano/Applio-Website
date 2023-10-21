@@ -2,10 +2,10 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
-import { Icons } from "@/components/icons"
-import { MainNav } from "@/components/main-nav"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { AuthButtonServer } from "./auth-button-server"
+import { Icons } from "@/components/icons/icons"
+import { MainNav } from "@/components/navbar/main-nav"
+import { ThemeToggle } from "@/components/navbar/theme-toggle"
+import { AuthButtonServer } from "../login/auth-button-server"
 import NavbarAvatar from "./navbar-avatar"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Database } from "@/app/types/database"
@@ -26,7 +26,7 @@ export async function SiteHeader() {
     <div className="block md:hidden">
     <HeaderMobile />
     </div>
-    <header className="w-full fixed top-0 border-b border-gray-200/30 bg-neutral-800/0 backdrop-blur-xl justify-center px-3 items-center z-50 overflow-hidden hidden md:block">
+    <header className="w-full fixed top-0 border-b border-slate-800/80 bg-neutral-800/0 backdrop-blur-xl justify-center px-3 items-center z-50 overflow-hidden hidden md:block">
       <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0 ">
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">

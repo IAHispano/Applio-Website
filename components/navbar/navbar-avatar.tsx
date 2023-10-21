@@ -15,7 +15,7 @@ import {
 } from "@supabase/auth-helpers-nextjs";
 import { Bug, LogOut, Settings, Shield, Upload, UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { Icons } from "./icons";
+import { Icons } from "../icons/icons";
 import { IconBrandDiscord } from '@tabler/icons-react';
 import { useEffect, useState } from "react";
 import { PostgrestError } from "@supabase/supabase-js";

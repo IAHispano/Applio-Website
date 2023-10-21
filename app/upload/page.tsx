@@ -1,7 +1,7 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { ComposeModel } from "@/components/compose-model";
+import { ComposeModel } from "@/components/compose/compose-model";
 import { Database } from "../types/database";
 
 export default async function Home() {

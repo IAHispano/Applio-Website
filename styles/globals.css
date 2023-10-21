@@ -128,3 +128,6 @@
     align-items: center;
   }
 }
+.gtransition{
+  transition: all 0.3s ease;
+}

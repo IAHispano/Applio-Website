@@ -20,7 +20,7 @@ import {
   Spinner,
   User,
 } from "@nextui-org/react";
-import TestCard from "../test-card";
+import TestCard from "../navbar/models/test-card";
 
 const supabase = createClientComponentClient<Database>();
 

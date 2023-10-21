@@ -13,9 +13,9 @@ export default async function IndexPage() {
 
   return (
     <section className="container flex flex-col justify-center items-center h-screen pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
-      <Link className={badgeVariants({ variant: "outline" })} href={"./models"}>
+      <Link className={badgeVariants({ variant: "outline" })} href={"./blog/9"}>
         <span style={{ textShadow: "2px 2px 4px rgba(255, 255, 255, 0.2)" }}>
-          🎉 The Applio website is now integrated into Applio!
+          🎉 Applio has been verified by Discord!
         </span>
       </Link>
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">

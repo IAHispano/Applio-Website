@@ -42,8 +42,8 @@ export default function BotPage() {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-    <div className="m-8">
-    <Button size="lg" variant="ghost" onClick={handleonclick}>
+    <div className="m-12">
+    <Button size="lg" variant="shadow" color="primary" onClick={handleonclick}>
           Invite Applio
         </Button>
     </div>

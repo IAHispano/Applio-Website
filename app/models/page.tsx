@@ -8,7 +8,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { Button, Input, Link, Pagination } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import TestCard from "@/components/navbar/models/test-card";
+import TestCard from "@/components/models/test-card";
 
 
 

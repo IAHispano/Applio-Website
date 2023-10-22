@@ -20,7 +20,7 @@ import {
   Spinner,
   User,
 } from "@nextui-org/react";
-import TestCard from "../navbar/models/test-card";
+import TestCard from "../models/test-card";
 
 const supabase = createClientComponentClient<Database>();
 
@@ -118,7 +118,7 @@ function Usermodels({ userFullName }: ModelInfoProps) {
     {user && (
         <div className="md:py-8 pt-4 mx-14">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Models created by <span className="underline decoration-[4px] italic underline-offset-4 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">{user.full_name}</span> :</h1>
-          <p className="text-xs md:text-sm tracking-tight text-neutral-300 text-left pt-1">(From most popular to least popular)</p>
+          <p className="text-xs md:text-sm tracking-tight dark:text-neutral-300 text-left pt-1">(From most popular to least popular)</p>
         </div>
       )}
     <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-5 py-8 md:py-10 mx-14">

@@ -36,5 +36,5 @@ export const addPost = async (formData: FormData) => {
   .eq('auth_id', user.id)
     
 
-  redirect(`/users/${userProfile?.full_name}`);
+  redirect(`/user/${userProfile?.full_name}`);
 };

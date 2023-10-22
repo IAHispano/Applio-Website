@@ -60,7 +60,7 @@ export default function UsersTable({ id }: { id: string }) {
                                 .map((user: any) => (
                                     <TableRow key={user.id}>
                                         <TableCell className="select-all">{user.id}</TableCell>
-                                        <TableCell ><a href={`/users/${user?.full_name}`}>{user.full_name}</a></TableCell>
+                                        <TableCell ><a href={`/user/${user?.full_name}`}>{user.full_name}</a></TableCell>
                                         <TableCell>{user.role}</TableCell>
                                     </TableRow>
                                 ))}

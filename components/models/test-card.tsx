@@ -155,12 +155,12 @@ export default function TestCard({
   </DialogTrigger>
   <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
     <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4 z-30 bg-black/80 h-fit w-fit p-4 rounded">
+    <DialogTitle className="text-xl md:text-6xl mt-4 z-30 text-white bg-black/80 h-fit w-fit p-4 rounded">
   {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
     <DialogTitle className="font-semibold text-sm md:text-xl text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
     {user?.full_name !== 'Unknown user' && user?.full_name !== 'null' ? (
-      <a className="button-cursor" href={`/users/${user?.full_name}`}>
+      <a className="button-cursor" href={`/user/${user?.full_name}`}>
        Created by {user?.full_name}
       </a>
     ) : (
@@ -171,7 +171,7 @@ export default function TestCard({
       {likes !== 'null' ? `${likes} likes ` : 'Unknown likes'}
     </DialogTitle>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl" isExternal target="_blank" 
+  <Link href={link} className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1" isExternal target="_blank" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -180,14 +180,14 @@ export default function TestCard({
         <Button
           radius="md"
           size="lg"
-          variant="ghost"
+          variant="bordered"
         >
-          Download
+          <p className="text-white z-30">Download</p>
         </Button>
         </Link>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl" 
+  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1" 
           style={{
             position: "absolute",
             bottom: "10px",
@@ -197,17 +197,17 @@ export default function TestCard({
 <Button
   radius="md"
   size="lg"
-  variant="ghost"
+  variant="bordered"
   isIconOnly
   color={clipboard.copied ? 'success' : 'default'}
   onClick={() => clipboard.copy(link)}
 >
-  <Copy />
+  <Copy className="text-white"/>
 </Button>
         </div>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl"
+  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1"
           style={{
             position: "absolute",
             bottom: "10px",
@@ -217,13 +217,13 @@ export default function TestCard({
 <Button
   radius="md"
   size="lg"
-  variant="ghost"
+  variant="bordered"
   isDisabled={userLiked}
   isIconOnly
   color={userLiked ? 'success' : 'default'}
   onClick={handleDeletePost}
 >
-  <ThumbsUp />
+  <ThumbsUp className="text-white"/>
 </Button>
         </div>
   </div>
@@ -242,7 +242,7 @@ export default function TestCard({
           size="lg"
           variant="shadow"
           isIconOnly
-          startContent={isLoading ? null : <img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10"></img>}
+          startContent={isLoading ? null : <img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10 md:hover:scale-150 gtransition"></img>}
           isDisabled={isLoading}
           isLoading={isLoading}
           onClick={async () => {
@@ -362,10 +362,10 @@ export default function TestCard({
 
 
 
-          <div className="block md:hidden fixed bottom-0 left-0 right-0 text-center bg-black/80 h-24 rounded-lg overflow-hidden">
+          <div className="block md:hidden fixed bottom-0 left-0 right-0 text-center bg-black/80 h-24 overflow-hidden">
   <Link href={link} className="place-content-center mt-8" isExternal target="_blank">
         <Button
-          color="primary"
+          color="secondary"
           radius="md"
           variant="shadow"
         >

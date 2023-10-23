@@ -11,6 +11,8 @@ import {
   Divider,
   Image,
   Tooltip,
+  User,
+  Link,
 } from "@nextui-org/react";
 import { Database } from "@/app/types/database";
 import {
@@ -59,7 +61,7 @@ function Follow({ userFullName }: ModelInfoProps) {
       const { data: modelsData, error: modelsError } = await supabase
         .from("models")
         .select("*")
-        .eq("id", userData[0]?.id);
+        .eq("author_id", userData[0]?.id);
 
       if (modelsError) {
         setError(modelsError);
@@ -86,9 +88,9 @@ function Follow({ userFullName }: ModelInfoProps) {
 
   return (
     <div>
-<div className="flex justify-center items-center mx-auto my-8">
+<div className="flex justify-center items-center mx-auto md:my-8">
   <div className="rounded-2xl md:mt-10 px-4 backdrop-blur-xl flex items-center"> 
-    <h1 style={{ overflow: 'visible' }} className={`text-center text-6xl truncate font-bold text-disable-antialiasing leading-tight tracking-tighter md:text-8xl pr-4 ${user && user.role === "admin" ? 'animate-charcter pb-2' : ''}`}>{user && user.full_name}</h1>
+    <h1 style={{ overflow: 'visible' }} className={`text-center text-7xl truncate font-bold text-disable-antialiasing leading-tight tracking-tighter md:text-8xl px-2 md:pr-4 ${user && user.role === "admin" ? 'animate-charcter pb-2' : ''}`}>{user && user.full_name}</h1>
     {user && user.role === "admin" && (
       <Tooltip content="This user is part of the Applio team" showArrow placement="right">
         <Image
@@ -111,6 +113,26 @@ function Follow({ userFullName }: ModelInfoProps) {
       </CardBody>
     </Card>
       </div>
+      <div className="flex justify-center items-center mx-auto my-4 max-w-[1120px] overflow-hidden">
+      <section className="w-full max-md:w-72 flex gap-4 gtransition">
+      <article className="w-1/2 p-5 gap-4 dark:shadow-2xl flex flex-col rounded-2xl undefined dark:bg-[#18181b] dark:border-0 border-2 dark:text-white justify-start items-start relative">
+        <section className="w-full flex flex-col gap-4 rounded-lg overflow-y-auto">
+          <div className="h-full flex flex-col items-start justify-start text-left">
+            <p className="text-sm uppercase md:tracking-widest w-full font-bold">Account</p>
+            <h2 className="font-medium tracking-tight text-2xl max-md:text-xl w-full flex items-center gap-1.5">{user.full_name} is a {user.role}</h2>
+          </div>
+        </section>
+      </article>
+      <article className="w-1/2 p-5 gap-4 dark:shadow-2xl flex flex-col rounded-2xl undefined dark:bg-[#18181b] dark:border-0 border-2 dark:text-white justify-start items-start relative">
+        <section className="w-full flex flex-col gap-4 rounded-lg overflow-y-auto">
+          <div className="h-full flex flex-col items-start justify-start text-left">
+            <p className="text-sm uppercase md:tracking-widest w-full font-bold">Models uploaded:</p>
+            <h2 className="font-medium tracking-tight text-2xl max-md:text-xl w-full">{data.length}</h2>
+          </div>
+        </section>
+      </article>
+    </section>
+    </div>
       <div className="mt-10">
       <Divider />
       </div>

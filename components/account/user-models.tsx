@@ -1,28 +1,14 @@
 "use client";
-import { Database } from "@/app/types/database";
 import {
-  createClientComponentClient,
-  createServerComponentClient,
+  createClientComponentClient
 } from "@supabase/auth-helpers-nextjs";
-import { createClient, PostgrestError } from "@supabase/supabase-js";
-import { cookies } from "next/headers";
-import { useEffect, useState } from "react";
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
-  Divider,
-  Image,
-  Link,
-  Spacer,
-  Spinner,
-  User,
-} from "@nextui-org/react";
-import TestCard from "../models/test-card";
-
-const supabase = createClientComponentClient<Database>();
+import { ArrowRight, SearchIcon } from "lucide-react";
+import { useState, useEffect } from "react";
+import { PostgrestError } from "@supabase/supabase-js";
+import { Button, Input, Link, Pagination, Spinner } from "@nextui-org/react";
+import {Progress} from "@nextui-org/react";
+import InfiniteScroll from 'react-infinite-scroll-component';
+import TestCard from "@/components/models/test-card";
 
 interface ModelInfoProps {
   userFullName: string;
@@ -30,73 +16,53 @@ interface ModelInfoProps {
 
 function Usermodels({ userFullName }: ModelInfoProps) {
   const [showAlert, setShowAlert] = useState(false); 
+
+  const [search, setSearch] = useState('');
+
   const [data, setData] = useState<any[] | null>(null);
-  const [user, setUser] = useState<any | null>(null);
+  const [Userdata, setUserData] = useState<any[] | null>(null);
   const [error, setError] = useState<PostgrestError | null>(null);
+  const [posts, setPosts] = useState<any[] | null>(null); 
+  const supabase = createClientComponentClient();
+  const [end, setEnd] = useState(49);
+  const [user, setUser] = useState<any | null>(null);
 
-  const handleDownloadClick = () => {
-    if (data) {
-      const modelUrl = data[0]?.model_url;
-
-      if (modelUrl) {
-        window.open(modelUrl, "_blank");
-      }
-    }
-  };
-
-  useEffect(() => {
-    async function fetchData() {
-      // Fetch user data based on full name
+  async function fetchData() {
       const { data: userData, error: userError } = await supabase
-        .from("profiles")
-        .select("full_name, id, role")
-        .eq("full_name", userFullName);
+      .from("profiles")
+      .select("full_name, id, role")
+      .eq("full_name", userFullName);
 
-      if (userError) {
-        setError(userError);
-        return;
-      }
-
-
-      setUser(userData[0]);
-
-      // Fetch models associated with the user's ID
-      const { data: modelsData, error: modelsError } = await supabase
+        if (userError) {
+          setError(userError);
+          return;
+        }
+  
+  
+        setUser(userData[0]);
+      const { data: fetchedData, error } = await supabase
         .from("models")
         .select("*")
         .order('likes', { ascending: false })
-        .eq("author_id", userData[0]?.id);
+        .range(0, end)
+        .eq('author_id', userData[0].id)
 
-        if (modelsError) {
-          console.error("Error al consultar modelos:", modelsError);
-          setError(modelsError);
-          return;
-        }
-
-      setData(modelsData);
-
+      if (error) {
+        setError(error);
+      } else {
+        setData(fetchedData);
+        setPosts(fetchedData); 
+      }
     }
-
+    
+useEffect(() => { 
     fetchData();
-  }, [userFullName]);
-
-  if (error) {
-    return (
-      <div className="flex items-center justify-center">
-        <h1>
-          The user does not exist or has not uploaded any model
-        </h1>
-      </div>
-    );
+  }, [end]);
+  
+  function loadmore() {
+    setEnd(end + 49); 
   }
 
-  if (!data) {
-    return (
-      <div className="flex items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
   function copyToClipboard(link: string) {
     const textarea = document.createElement("textarea");
     textarea.value = link;
@@ -113,34 +79,83 @@ function Usermodels({ userFullName }: ModelInfoProps) {
   }
   const alertClass = showAlert ? "fade-in" : "fade-out";
 
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+      <Progress
+        isIndeterminate
+        aria-label="Loading..."
+        className="max-w-xs md:max-w-md "
+        color="success"
+        size="sm"
+      />
+      </div>
+    );
+  }
+
   return (
-    <main>
-    {user && (
-        <div className="md:py-8 pt-4 mx-14">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Models created by <span className="underline decoration-[4px] italic underline-offset-4 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">{user.full_name}</span> :</h1>
-          <p className="text-xs md:text-sm tracking-tight dark:text-neutral-300 text-left pt-1">(From most popular to least popular)</p>
+    
+    
+    <section className="my-10">
+      <InfiniteScroll
+      dataLength={data.length}
+      hasMore={true}
+      next={loadmore}
+      loader={
+      <div className="flex items-center justify-center">
+      <Spinner />
+      </div>
+    }
+      endMessage={
+        <div className="flex items-center justify-center">
+          <b>You have reached the end.</b>
         </div>
-      )}
-    <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-5 gap-5 py-8 md:py-10 mx-14">
-      {data.map((model) => (
-        <div className="w-full button-cursor"  key={model.id}>
-           <TestCard
-          name={model.name}
-          imageUrl={model.image_url}
-          created_at={model.created_at}
-          id={model.id}
-          userFullName={user.full_name}
-          link={model.link}
-          type={model.type}
-          version={model.version}
-          epochs={model.epochs}
-          author_id={model.author_id}
-          algorithm={model.algorithm}
-          likes={model.likes}
+      }
+      >
+      <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
+        {posts?.filter((item) => {
+          const itemName = item && item.name ? item.name.toLowerCase() : '';
+          const searchLower = search.toLowerCase();
+          return searchLower === '' ? true : itemName.includes(searchLower);
+        }).map((post: any, index: number) => {
+          const {
+            name,
+            image_url: imageUrl,
+            created_at,
+            link,
+            id,
+            epochs,
+            version,
+            type,
+            algorithm,
+            author_id,
+            likes
+          } = post
+
+          const modelSlug = link
+
+          return (
+        <div className="w-full button-cursor" key={modelSlug + index}>  
+      <TestCard
+          name={name}
+          imageUrl={imageUrl}
+          created_at={created_at}
+          id={id}
+          link={link}
+          epochs={epochs}
+          version={version}
+          type={type}
+          algorithm={algorithm}
+          author_id={author_id}
+          likes={likes}
           />
-         </div>
-      ))}
+       </div>     
+          )
+        })}
+
+      </section>
       {/* Alert */}
+    
       {showAlert && (
         <div
           className={`fixed rounded-2xl w-11/12 sm:w-[420px] h-40 sm:h-[60px] p-0.5 z-10 bottom-10 right-0 mx-auto text-center mr-4 ${alertClass} mb-16 md:mb-0`}
@@ -193,10 +208,9 @@ function Usermodels({ userFullName }: ModelInfoProps) {
           </div>
         </div>
         </div>
-        )}
-    </div>
-    </main>
-  );
+        )} 
+      </InfiniteScroll>
+    </section>
+  )
 }
-
 export default Usermodels;

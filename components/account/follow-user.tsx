@@ -105,8 +105,8 @@ function Follow({ userFullName }: ModelInfoProps) {
   </div>
 </div>
       <div className="flex justify-center items-center max-w-full mx-6 my-2">
-      <Card className="max-w-[1200px]">
-      <CardBody>
+      <Card className="max-w-[1120px] w-full">
+      <CardBody className="flex justify-center items-center break-words">
       {user && user.bio != "null" && (
       <p>{user?.bio}</p>
       )}

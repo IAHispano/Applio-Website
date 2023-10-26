@@ -134,7 +134,7 @@ export default function TestCard({
   const [userLiked, setUserLiked] = useState(false);
 
   return (
-    <div>
+    <div >
 <Dialog>
   <DialogTrigger style={{ width: '100%' }}> 
   <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
@@ -145,11 +145,9 @@ export default function TestCard({
       </CardBody>
       
       <CardFooter style={{ fontSize: 'smaller' }} className="mx-auto flex items-center justify-center">
-<Chip className="mx-1 text-black dark:text-neutral-200" radius="sm" variant="dot" color="success" size="sm">
-  {userFullName}
-  {userFullName ? " on " : ''}
-  {formattedDate !== 'NaN/NaN/NaN' ? formattedDate : 'unknown date'}
-</Chip>
+      <Chip className="mx-1 text-black dark:text-neutral-200" radius="sm" variant="dot" color="success" size="sm">
+      {type || "Unknown"}
+      </Chip>
       </CardFooter>
     </Card>
   </DialogTrigger>
@@ -159,7 +157,7 @@ export default function TestCard({
   {name !== '' ? name : 'Unknown name'}
     </DialogTitle>
     <DialogTitle className="font-semibold text-sm md:text-xl text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
-    {user?.full_name !== 'Unknown user' && user?.full_name !== 'null' ? (
+    {user?.full_name !== 'Unknown user' && user?.full_name !== 'null' && user?.full_name !== '' ? (
       <a className="button-cursor" href={`/user/${user?.full_name}`}>
        Created by {user?.full_name}
       </a>

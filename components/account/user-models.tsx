@@ -100,6 +100,12 @@ useEffect(() => {
         </div>
       }
       >
+      {user && (
+        <div className="md:py-2 mx-14">
+          <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Models created by <span className="underline decoration-[4px] italic underline-offset-4 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">{user.full_name}</span> :</h1>
+          <p className="text-xs md:text-sm tracking-tight dark:text-neutral-300 text-left pt-1">(From most popular to least popular)</p>
+        </div>
+      )}
       <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
         {posts?.filter((item) => {
           const itemName = item && item.name ? item.name.toLowerCase() : '';

@@ -36,6 +36,9 @@ export default function BlogsTable({ id }: { id: string }) {
         <section className="hidden md:block">
             <div className="">
                 <div className="md:mx-24 h-fit">
+                <div className="flex justify-between items-center py-2">
+                <span className="text-default-400 text-small">There are currently <span className="text-white">{users?.length} posts</span>.</span>
+                </div>
                     <form style={{ marginBottom: '16px' }}>
                         <Input
                             placeholder="Type to search a post..."

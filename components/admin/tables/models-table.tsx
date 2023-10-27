@@ -1,9 +1,10 @@
 import { Database } from "@/app/types/database";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Spinner } from "@nextui-org/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { PostgrestError } from "@supabase/supabase-js";
 import { SearchIcon } from "lucide-react";
 import { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function ModelsTable({ id }: { id: string }) {
     const supabase = createClientComponentClient<Database>();
@@ -11,13 +12,15 @@ export default function ModelsTable({ id }: { id: string }) {
     const [users, setUsers] = useState<any[] | null>(null);
     const [error, setError] = useState<PostgrestError | null>(null);
     const [search, setSearch] = useState('');
+    const [end, setEnd] = useState(20000);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const { data: userData, error: userError } = await supabase
                     .from("models")
-                    .select("*");
+                    .select("*")
+                    .range(0, end)
 
                 if (userError) {
                     setError(userError);
@@ -31,11 +34,17 @@ export default function ModelsTable({ id }: { id: string }) {
 
         fetchData();
     }, []);
-
+    function loadmore() {
+        setEnd(end + 49); 
+      }
+    const usersLength: number = users?.length ?? 0
     return (
         <section className="hidden md:block">
             <div className="">
                 <div className="md:mx-24 h-fit">
+                    <div className="flex justify-between items-center py-2">
+                    <span className="text-default-400 text-small">There are currently {users?.length} models. (Limited by Supabase, in <span className="text-white">total there are 15535 models</span>.)</span>
+                    </div>
                     <form style={{ marginBottom: '16px' }}>
                         <Input
                             placeholder="Type to search a model..."

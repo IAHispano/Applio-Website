@@ -14,7 +14,7 @@ function TabsComponent({ id }: tabsprops) {
   return (
         <div>
             <div className="flex w-full flex-col">
-      <Tabs aria-label="Options" className='mx-auto justify-center' size='lg' color='success' defaultSelectedKey="blog">
+      <Tabs aria-label="Options" className='mx-auto justify-center' size='lg' color='success' defaultSelectedKey="users">
         <Tab key="users" title={
         <div className="flex items-center space-x-2">
               <User />

@@ -13,6 +13,7 @@ import {
   Tooltip,
   User,
   Link,
+  Progress,
 } from "@nextui-org/react";
 import { Database } from "@/app/types/database";
 import {
@@ -83,7 +84,15 @@ function Follow({ userFullName }: ModelInfoProps) {
   }
 
   if (!data) {
-    return <div className="flex items-center justify-center m-8"></div>;
+    return       <div className="flex items-center justify-center h-screen">
+    <Progress
+      isIndeterminate
+      aria-label="Loading..."
+      className="max-w-xs md:max-w-md "
+      color="success"
+      size="sm"
+    />
+    </div>;
   }
 
   return (

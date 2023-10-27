@@ -40,6 +40,7 @@ function Usermodels({ userFullName }: ModelInfoProps) {
   
   
         setUser(userData[0]);
+      if (userData && userData.length > 0) {
       const { data: fetchedData, error } = await supabase
         .from("models")
         .select("*")
@@ -54,6 +55,7 @@ function Usermodels({ userFullName }: ModelInfoProps) {
         setPosts(fetchedData); 
       }
     }
+  }
     
 useEffect(() => { 
     fetchData();
@@ -79,26 +81,12 @@ useEffect(() => {
   }
   const alertClass = showAlert ? "fade-in" : "fade-out";
 
-  if (!data) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-      <Progress
-        isIndeterminate
-        aria-label="Loading..."
-        className="max-w-xs md:max-w-md "
-        color="success"
-        size="sm"
-      />
-      </div>
-    );
-  }
-
   return (
     
     
     <section className="my-10">
       <InfiniteScroll
-      dataLength={data.length}
+      dataLength={data?.length || 0}
       hasMore={true}
       next={loadmore}
       loader={

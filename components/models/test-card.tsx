@@ -12,10 +12,12 @@ import Image from "next/image";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
-import toast, { Toaster } from 'react-hot-toast';
-import { Bot, Box, Copy, Heart, Star, ThumbsUp } from "lucide-react";
+import { useToast } from "@/components/ui/use-toast"
+import { Bot, Box, Copy, Heart, Share, Star, ThumbsUp } from "lucide-react";
 import { useClipboard } from "@mantine/hooks";
 import { addPost } from "@/app/actions/like-model-action";
+import { Toaster } from "../ui/toaster";
+
 
 
 export default function TestCard({
@@ -52,6 +54,8 @@ export default function TestCard({
     const [error, setError] = useState<PostgrestError | null>(null);
     const [showAlert, setShowAlert] = useState(false); 
     const [buttonClicked, setClicked] = useState(false);
+    const { toast } = useToast()
+
     useEffect(() => {
       async function fetchData() {
         // Fetch user data based on full name
@@ -197,10 +201,18 @@ export default function TestCard({
   size="lg"
   variant="bordered"
   isIconOnly
-  color={clipboard.copied ? 'success' : 'default'}
-  onClick={() => clipboard.copy(link)}
->
-  <Copy className="text-white"/>
+  color="default"
+  className="z-50"
+  onClick={() => {
+    clipboard.copy(`https://applio.org/models/download/${id}`);
+    toast({
+      title: "Link copied to clipboard",
+      description: `Now you can share the ${name} model with your friends!`,
+    })
+
+  }}
+  >
+  <Share className="text-white"/>
 </Button>
         </div>
   </div>
@@ -244,15 +256,9 @@ export default function TestCard({
           isDisabled={isLoading}
           isLoading={isLoading}
           onClick={async () => {
-              toast('Be patient, this process can take time.', {
-              duration: 4000,
-              position: 'bottom-left',
-
-              style: {
-                color: 'white',
-                backgroundColor: '#262626'
-              }
-            });
+            toast({
+              title: "Be patient, this process can take time.",
+            })
             setTimeout(() => {
             setIsLoading(true);
             }, 4000);
@@ -264,15 +270,9 @@ export default function TestCard({
                 throw new Error('La solicitud no pudo completarse correctamente');
               }
 
-              toast.success('${name} has been downloaded!', {
-                duration: 4000,
-                position: 'bottom-left',
-  
-                style: {
-                  color: 'white',
-                  backgroundColor: '#262626'
-                }
-              });
+              toast({
+                title: '${name} has been downloaded!',
+              })
               setTimeout(() => {
                 setIsLoading(false);
               }, 4000);
@@ -284,7 +284,6 @@ export default function TestCard({
             }
           }}
         >
-        <Toaster />
         </Button>
       </Link>
     )}

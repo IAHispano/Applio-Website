@@ -4,6 +4,8 @@ import { Divider, Spinner } from "@nextui-org/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { PostgrestError } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
+import { Helmet } from 'react-helmet';
+
 
 export default function DownloadModel({ params }: { params: { id: string } }) {
   const { id } = params;
@@ -93,9 +95,15 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
 
   return (
     <main className="container flex flex-col justify-center items-center pb-8 pt-6 gap-5 md:py-10 mx-auto text-center max-w-7xl">
-      <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
-        <img src={data.image_url} className="object-fill h-64 w-full"></img>
-      </div>
+    <Helmet>
+      <title>{data.name} at Applio</title>
+      <meta property="og:image" content={data.image_url} />
+    </Helmet>
+      {data.image_url && (
+        <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
+          <img src={data.image_url} className="object-fill h-64 w-full" alt="Descripción de la imagen" />
+        </div>
+      )}
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
         {data.name}
       </h1>

@@ -7,6 +7,7 @@ import { SiteHeader } from "@/components/navbar/site-header"
 import { ThemeProvider } from "@/components/navbar/theme-provider"
 import {Providers} from "./providers";
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
+import { Toaster } from "@/components/ui/toaster"
 
 export const dynamic = "force-dynamic";
 export const fetchCache = 'force-no-store'
@@ -71,6 +72,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </ThemeProvider>
           </MantineProvider>
         </Providers>
+        <Toaster />
         </body>
       </html>
     </>

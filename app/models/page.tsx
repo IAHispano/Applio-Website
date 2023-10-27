@@ -9,7 +9,7 @@ import { Button, Input, Link, Pagination, Spinner } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TestCard from "@/components/models/test-card";
-
+import Head from "next/head";
 
 
 export default function Home() {
@@ -78,9 +78,10 @@ useEffect(() => {
   }
 
   return (
-    
-    
     <section className="my-10">
+  <Head>
+    <meta name="description" content="Here you can download applio, we will automatically redirect you to github." />
+  </Head> 
       <InfiniteScroll
       dataLength={data.length}
       hasMore={true}

@@ -16,7 +16,7 @@ export default function BotPage() {
   };
   return (
     <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl my-10">
-    <h1 className="text-9xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 ">
+    <h1 className="text-9xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 bg-gradient-radial bg-clip-text text-transparent p-1">
       Applio
     </h1>
     <p className="mt-4 text-muted-foreground mb-24 text-xs md:text-xl ">

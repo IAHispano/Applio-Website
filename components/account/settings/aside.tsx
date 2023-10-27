@@ -1,8 +1,9 @@
 "use client"
 import React, { useState } from "react";
-import { Bot, User2 } from "lucide-react";
+import { Bot, CalendarSearch, User2 } from "lucide-react";
 import Information from "@/components/account/settings/information";
 import { ModelsAccount } from "@/components/account/settings/models";
+import Events from "./events";
 
 interface AsideSelectionProps {
   avatar_url: string;
@@ -50,6 +51,19 @@ export function AsideSelection({
             <span>Models</span>
             </a>
           </div>
+          <div className="flex flex-col gap-3 overflow-y-auto rounded-2xl">
+            <a
+            className={`flex gap-3 items-center justify-start p-3 hover:bg-neutral-600 active:opacity-50 rounded-2xl ${
+                section === "events" ? "bg-neutral-600" : "bg-neutral-700/50"
+            } gtransition`}
+            onClick={() => setSection("events")}
+            >
+            <span className="text-xl">
+              <CalendarSearch />
+            </span>
+            <span>Events</span>
+            </a>
+          </div>
         </aside>
         <div className="flex-grow bg-neutral-900 h-3/4 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">
           {section === "account" && (
@@ -61,6 +75,11 @@ export function AsideSelection({
             />
           )}
           {section === "models" && <ModelsAccount  userFullName={full_name!}/>}
+          {section === "events" && <Events                
+          full_name={full_name}
+          avatar_url={avatar_url}
+          role={role}
+          bio={bio}/>}
         </div>
       </div>
     </div>

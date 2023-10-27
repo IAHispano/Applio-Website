@@ -99,6 +99,7 @@ export interface Database {
           id?: string
           role?: string
           updated_at?: string | null
+          halloween?: string
         }
         Relationships: [
           {

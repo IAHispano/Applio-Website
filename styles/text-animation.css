@@ -2,12 +2,21 @@
 {
   background: linear-gradient(
       to right,
-
-      #27CF15 24%,
-      #0487b7 29%,
-      #0dd621 67%,
-      #0487b7 100%
+      /* HALLOWEEN */
+      #B22C03 24%,
+      #FF8A00 29%,
+      #974200 67%,
+      #1B0701 100%
   );
+  /* NORMAL */
+  /* background: linear-gradient(
+    to right,
+
+    #27CF15 24%,
+    #0487b7 29%,
+    #0dd621 67%,
+    #0487b7 100%
+); */
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

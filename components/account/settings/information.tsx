@@ -1,11 +1,14 @@
 "use client";
 
-import { Avatar, Button, Chip, Divider, Input } from "@nextui-org/react";
+import { Avatar, Button, Chip, Divider, Input, Switch } from "@nextui-org/react";
 import { Trash2, User2 } from "lucide-react";
 import { DeleteAccountButton } from "./button-delete-account";
 import { ChangeBioButton } from "./change-bio-button";
-import { useRef } from "react";
 import { addPost } from "@/app/actions/change-bio";
+import React from "react";
+import { IconBat, IconFlare } from "@tabler/icons-react";
+import { useRef, useEffect } from "react";
+import Cookies from 'js-cookie';
 
 interface ModelInfoProps {
   avatar_url: string;
@@ -16,6 +19,26 @@ interface ModelInfoProps {
 
 function Information({ avatar_url, full_name, role, bio }: ModelInfoProps) {
   const formRef = useRef<HTMLFormElement>(null);
+  const [isSelected, setIsSelected] = React.useState(false);
+
+  useEffect(() => {
+    const halloweenCookie = Cookies.get('halloween');
+
+    if (halloweenCookie === 'true') {
+      setIsSelected(true);
+    } else {
+      setIsSelected(false);
+    }
+  }, []);
+
+  const handleSwitchChange = (value: boolean) => {
+    setIsSelected(value);
+    if (value) {
+      Cookies.set('halloween', 'true');
+    } else {
+      Cookies.remove('halloween');
+    }
+  };
 
   return (
     <div>
@@ -39,6 +62,8 @@ function Information({ avatar_url, full_name, role, bio }: ModelInfoProps) {
         </Chip>
       </div>
       </div>
+      {/* <Switch isSelected={isSelected} onValueChange={handleSwitchChange} color="warning" startContent={<IconBat />} endContent={<IconFlare />} size="lg">
+      </Switch>   */}
     </section>
     <form
         ref={formRef}

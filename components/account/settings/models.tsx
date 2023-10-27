@@ -93,7 +93,9 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
   if (!data) {
     return (
       <div className="flex items-center justify-center">
-        <Spinner color="success"/>
+      <Spinner 
+      // HALLOWEEN
+      color="warning"/>
       </div>
     );
   }

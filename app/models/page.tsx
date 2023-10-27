@@ -70,7 +70,9 @@ useEffect(() => {
         isIndeterminate
         aria-label="Loading..."
         className="max-w-xs md:max-w-md "
-        color="success"
+        // HALLOWEEN
+        color="warning"
+        // color="success"
         size="sm"
       />
       </div>
@@ -88,7 +90,9 @@ useEffect(() => {
       next={loadmore}
       loader={
       <div className="flex items-center justify-center">
-      <Spinner />
+      <Spinner 
+      // HALLOWEEN
+      color="warning"/>
       </div>
     }
       endMessage={
@@ -101,7 +105,7 @@ useEffect(() => {
         <div className="rounded-[14px] w-full h-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
         <p className="dark:text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3 text-black">Enjoy +20000 voice models available in our database!
         </p>
-        <a className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot" target="_blank" rel="noreferrer">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
+        <a className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center " href="https://applio.org/bot">Get Applio Bot <div className="ml-2"><ArrowRight size={20} strokeWidth={1.5} /></div></a>
         </div>
         </div>
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">

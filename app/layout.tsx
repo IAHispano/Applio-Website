@@ -13,11 +13,6 @@ export const dynamic = "force-dynamic";
 export const fetchCache = 'force-no-store'
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -37,6 +32,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.ico" />
+          {metadata.description ? (
+            <meta name="description" content={metadata.description} />
+          ) : (
+            <meta name="description" content="Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to provide an intuitive interface, especially for newcomers." />
+          )}
           <meta name="mobile-web-app-capable" content="yes"/>
           <meta name="apple-mobile-web-app-capable" content="yes"/>
           <meta name="application-name" content="Applio"/>

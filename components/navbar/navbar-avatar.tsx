@@ -13,7 +13,7 @@ import {
   type Session,
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import { Bug, LogOut, Settings, Shield, Upload, UserCircle } from "lucide-react";
+import { Bell, Bug, LogOut, Settings, Shield, Upload, UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Icons } from "../icons/icons";
 import { IconBrandDiscord } from '@tabler/icons-react';
@@ -52,6 +52,10 @@ export default function NavbarAvatar({
     window.location.href = `/settings/${user?.id}`;
   };
 
+  const handleAlerts = () => {
+    window.location.href = `/alerts/${user?.id}`;
+  };
+
   const handleAdminDashboardClick = () => {
     window.location.href = `/admin/${user?.id}`;
   };
@@ -84,6 +88,9 @@ export default function NavbarAvatar({
     <DropdownItem key="profile" onClick={handleProfileClick} startContent={<UserCircle className={iconClasses} />}>
                 <p className="font-semibold">{userFullName}</p>
   </DropdownItem>,
+      <DropdownItem key="settings" onClick={handleAlerts} startContent={<Bell  className={iconClasses} />}>
+      Notifications
+    </DropdownItem>,
     <DropdownItem key="settings" onClick={handleSettings} startContent={<Settings  className={iconClasses} />}>
         Settings
       </DropdownItem>,

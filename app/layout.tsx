@@ -8,7 +8,6 @@ import { ThemeProvider } from "@/components/navbar/theme-provider"
 import {Providers} from "./providers";
 import { MantineProvider, ColorSchemeScript } from '@mantine/core';
 import { Toaster } from "@/components/ui/toaster"
-
 export const dynamic = "force-dynamic";
 export const fetchCache = 'force-no-store'
 
@@ -66,7 +65,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex min-h-screen flex-col">
               <SiteHeader />
               <div className="flex-1 bg-background">
-              <div className="h-full md:py-16">{children}</div>
+              <div className="h-full md:py-16">{children}
+              </div>
             </div>
             </div>
           </ThemeProvider>

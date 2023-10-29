@@ -101,11 +101,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     <meta property="og:description" content={`Download ${data.name} model from Applio.`} />
     <meta property="og:image" content={data.image_url} />
     <meta property="og:url" content={`https://applio.org/models/download/${id}`} />
-    <meta property="twitter:card" content={data.image_url} />
-    <meta property="twitter:url" content={`https://applio.org/models/download/${id}`} />
-    <meta property="twitter:title" content={`${data.name} at Applio.`} />
-    <meta property="twitter:description" content={`Download ${data.name} model from Applio.`} />
-    <meta property="twitter:image" content={data.image_url} />
+    <meta property="og:type" content="website" />
     </Head>
       {data.image_url && (
         <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">

@@ -73,10 +73,8 @@ module.exports = {
       },
     },
     backgroundImage: {
-      // HALLOWEEN
       "gradient-radial":
-        "linear-gradient(to right, #FF8A00 40%, #B22C03 100%);",
-      // NORMAL
+        "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
       // "gradient-radial":
       // "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
       "gradient-radial-red":

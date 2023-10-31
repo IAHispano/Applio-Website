@@ -94,8 +94,7 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
     return (
       <div className="flex items-center justify-center">
       <Spinner 
-      // HALLOWEEN
-      color="warning"/>
+      color="success"/>
       </div>
     );
   }

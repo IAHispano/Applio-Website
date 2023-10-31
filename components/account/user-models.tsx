@@ -92,8 +92,7 @@ useEffect(() => {
       loader={
       <div className="flex items-center justify-center">
       <Spinner 
-      // HALLOWEEN
-      color="warning"/>
+      color="success"/>
       </div>
     }
       endMessage={
@@ -105,8 +104,7 @@ useEffect(() => {
       {user && (
         <div className="md:py-2 mx-14">
           <h1 className="text-3xl md:text-5xl font-bold tracking-tight">Models created by <span className="underline decoration-[4px] italic underline-offset-4  select-all md:hover:tracking-wide gtransition-low
-          {/* Halloween (normal green-500) */}
-          decoration-[#974200] ">
+          decoration-green-500 ">
             {user.full_name}
           </span> :</h1>
           <p className="text-xs md:text-sm tracking-tight dark:text-neutral-300 text-left pt-1">(From most popular to least popular)</p>

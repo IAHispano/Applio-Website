@@ -70,8 +70,7 @@ useEffect(() => {
         isIndeterminate
         aria-label="Loading..."
         className="max-w-xs md:max-w-md "
-        // HALLOWEEN
-        color="warning"
+        color="success"
         // color="success"
         size="sm"
       />
@@ -91,8 +90,7 @@ useEffect(() => {
       loader={
       <div className="flex items-center justify-center">
       <Spinner 
-      // HALLOWEEN
-      color="warning"/>
+      color="success"/>
       </div>
     }
       endMessage={

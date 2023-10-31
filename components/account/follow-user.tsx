@@ -89,8 +89,7 @@ function Follow({ userFullName }: ModelInfoProps) {
       isIndeterminate
       aria-label="Loading..."
       className="max-w-xs md:max-w-md "
-      // HALLOWEEN
-      color="warning"
+      color="success"
       // color="success"
       size="sm"
     />
@@ -107,8 +106,7 @@ function Follow({ userFullName }: ModelInfoProps) {
         <Image
           width={60}
           height={60}
-          // HALLOWEEN  
-          src="https://images-ext-2.discordapp.net/external/a0_2PZvUnvIdwGnNLiQ0eX82zfzJzPghEaplu1aw-Xw/%3Fsize%3D4096/https/cdn.discordapp.com/avatars/1151157990477533326/56ec580ddbd3bf15010719d188761592.webp?width=671&height=671"       
+          src="https://i.imgur.com/jDmINMQ.png"       
           // NORMAL src="https://i.imgur.com/jDmINMQ.png"
           alt="Admin"
           className="mt-2 hidden md:block md:hover:scale-110 gtransition"
@@ -221,8 +219,6 @@ function Follow({ userFullName }: ModelInfoProps) {
     </div>
       <div className="mt-10">
       <Divider 
-      // HALLOWEEN
-      className="bg-[#974200]"
       />
       </div>
     </div>

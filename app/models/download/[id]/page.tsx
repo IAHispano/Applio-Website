@@ -74,8 +74,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     return (
       <div className="container flex flex-col justify-center items-center h-screen pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">
       <Spinner 
-      // HALLOWEEN
-      color="warning"/>
+      color="success"/>
       </div>
     );
   }

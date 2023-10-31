@@ -130,7 +130,7 @@ export default function NavbarAvatar({
           <Avatar
             src={user?.avatar_url}
             isBordered 
-            color="warning"
+            color="success"
           /> 
       </div>
         </DropdownTrigger>

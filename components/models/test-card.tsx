@@ -258,6 +258,7 @@ export default function TestCard({
           onClick={async () => {
             toast({
               title: "Be patient, this process can take time.",
+              description: "You can check the CMD to see how the download is going."
             })
             setTimeout(() => {
             setIsLoading(true);
@@ -265,14 +266,13 @@ export default function TestCard({
 
             try {
               const response = await fetch('http://localhost:8000/download/' + link);
+              toast({
+                title: '${name} has been downloaded!',
+              })
 
               if (!response.ok) {
                 throw new Error('La solicitud no pudo completarse correctamente');
               }
-
-              toast({
-                title: '${name} has been downloaded!',
-              })
               setTimeout(() => {
                 setIsLoading(false);
               }, 4000);

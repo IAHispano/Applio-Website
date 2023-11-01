@@ -18,26 +18,30 @@ export default function Home() {
   const [search, setSearch] = useState('');
 
   const [data, setData] = useState<any[] | null>(null);
-  const [Userdata, setUserData] = useState<any[] | null>(null);
+  const [filterValue, setFilterValue] = useState("");
   const [error, setError] = useState<PostgrestError | null>(null);
   const [posts, setPosts] = useState<any[] | null>(null); 
   const supabase = createClientComponentClient();
   const [end, setEnd] = useState(30);
 
   async function fetchData() {
-      const { data: fetchedData, error } = await supabase
-        .from("models")
-        .select("*")
-        .order('likes', { ascending: false })
-        .range(0, end)
-
-      if (error) {
-        setError(error);
-      } else {
-        setData(fetchedData);
-        setPosts(fetchedData); 
-      }
+    let query = supabase.from("models").select("*").order('created_at', { ascending: false });
+  
+    if (search) {
+      query = query.ilike('name', `%${search}%`); 
     }
+  
+    query = query.range(0, end);
+  
+    const { data: fetchedData, error } = await query;
+  
+    if (error) {
+      setError(error);
+    } else {
+      setData(fetchedData);
+      setPosts(fetchedData);
+    }
+  }
     
 useEffect(() => { 
     fetchData();
@@ -107,34 +111,38 @@ useEffect(() => {
         </div>
         </div>
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">
-        <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 ">
+        <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
           Models
         </h1>
         {/* <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
         Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
         </h1> */}
       </div>
-      <form className="mx-auto flex items-center justify-center">
-        <Input
-          classNames={{
-            base: "max-w-[18rem] sm:max-w-[20rem] h-10",
-            mainWrapper: "h-full",
-            input: "text-small",
-            inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-          }}
-          placeholder="Type to search a model..."
-          size="sm"
-          startContent={<SearchIcon size={18} />}
-          type="search"
-          onChange={(e) => setSearch(e.target.value)}
-        />
+      <form
+      className="mx-auto flex items-center justify-center"
+      onSubmit={(e) => {
+        e.preventDefault(); 
+        fetchData();
+      }}
+    >
+      <Input
+        classNames={{
+          base: "max-w-[18rem] sm:max-w-[20rem] h-10",
+          mainWrapper: "h-full",
+          input: "text-small",
+          inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+        }}
+        placeholder="Press ENTER to search a model"
+        size="sm"
+        startContent={<SearchIcon size={18} />}
+        type="search"
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
 </form>
+
       <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
-        {posts?.filter((item) => {
-          const itemName = item && item.name ? item.name.toLowerCase() : '';
-          const searchLower = search.toLowerCase();
-          return searchLower === '' ? true : itemName.includes(searchLower);
-        }).map((post: any, index: number) => {
+      {posts?.map((post: any, index: number) => {
           const {
             name,
             image_url: imageUrl,

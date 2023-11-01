@@ -24,7 +24,7 @@ function Usermodels({ userFullName }: ModelInfoProps) {
   const [error, setError] = useState<PostgrestError | null>(null);
   const [posts, setPosts] = useState<any[] | null>(null); 
   const supabase = createClientComponentClient();
-  const [end, setEnd] = useState(49);
+  const [end, setEnd] = useState(30);
   const [user, setUser] = useState<any | null>(null);
 
   async function fetchData() {
@@ -62,7 +62,7 @@ useEffect(() => {
   }, [end]);
   
   function loadmore() {
-    setEnd(end + 49); 
+    setEnd(end + 10); 
   }
 
   function copyToClipboard(link: string) {

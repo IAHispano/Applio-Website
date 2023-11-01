@@ -22,7 +22,7 @@ export default function Home() {
   const [error, setError] = useState<PostgrestError | null>(null);
   const [posts, setPosts] = useState<any[] | null>(null); 
   const supabase = createClientComponentClient();
-  const [end, setEnd] = useState(49);
+  const [end, setEnd] = useState(30);
 
   async function fetchData() {
       const { data: fetchedData, error } = await supabase
@@ -44,7 +44,7 @@ useEffect(() => {
   }, [end]);
   
   function loadmore() {
-    setEnd(end + 49); 
+    setEnd(end + 10); 
   }
 
   function copyToClipboard(link: string) {

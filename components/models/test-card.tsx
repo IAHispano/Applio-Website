@@ -239,7 +239,7 @@ export default function TestCard({
         </div>
   </div>
   <div className="bg-neutral-800/30 hidden md:block">
-  <Tooltip placement="left" color="foreground" showArrow content="¡You must open Applio for this to work!">
+  <Tooltip placement="left" color="foreground" showArrow content="You must open Applio for this to work!">
     {link.endsWith('.zip') && ( 
       <Link className="place-content-center sm:place-content-center z-50" isExternal target="_blank" 
         style={{

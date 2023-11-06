@@ -47,6 +47,7 @@ export default function TestCard({
   author_id: string;
   likes: string;
 }) {
+  imageUrl = imageUrl ?? 'N/A';
     
     const supabase = createClientComponentClient<Database>(); 
     const [data, setData] = useState<any[] | null>(null);

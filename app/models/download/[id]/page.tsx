@@ -104,7 +104,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     </Head>
       {data.image_url && (
         <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
-          <img src={data.image_url} className="object-fill h-64 w-full" alt="Descripción de la imagen" />
+          <img src={data.image_url} className="object-fill h-64 w-full" />
         </div>
       )}
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">

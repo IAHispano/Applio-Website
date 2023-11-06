@@ -48,7 +48,7 @@ export default function BlogPost({ id }: { id: string}) {
         {data &&
           data?.map((item, index) => (
         <div ><div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
-                  <div className="h-96 top-0 absolute w-full scale-125 rounded-2xl blur-3xl pointer-events-none dark:block hidden">
+                  <div className="h-96 top-0 absolute w-full scale-125 rounded-3xl blur-3xl pointer-events-none dark:block hidden">
                       <img className="z-10 absolute top-0 left-0 w-full h-full object-cover object-center" src={item.image_url}>
                       </img>
                   </div>

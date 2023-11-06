@@ -20,7 +20,7 @@ export default function BotPage() {
       Applio
     </h1>
     <p className="mt-4 text-muted-foreground mb-24 text-xs md:text-xl ">
-      Enjoy +20000 voice models available in our database, but from Discord!
+      Enjoy +500.000 voice models available in our database, but from Discord!
     </p>
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">

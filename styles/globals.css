@@ -134,6 +134,9 @@
 .gtransition-low{
   transition: all 0.2s ease;
 }
+.gtransition-5{
+  transition: all 0.5s ease;
+}
 .christmas {
   background: linear-gradient(to bottom, #2f7336 24%, #aa3a38 );
 }

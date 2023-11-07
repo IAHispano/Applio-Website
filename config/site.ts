@@ -22,11 +22,11 @@ export const siteConfig = {
       href: "/models",
     },
     {
-      title: "Applio Bot",
+      title: "Bot",
       href: "/bot",
     },
     {
-      title: "Applio API",
+      title: "API",
       href: "/api",
     },
   ],
@@ -48,11 +48,11 @@ export const siteConfig = {
       href: "/blog",
     },
     {
-      label: "Applio Bot",
+      label: "Bot",
       href: "/bot",
     },
     {
-      label: "Applio API",
+      label: "API",
       href: "/api",
     },
     {

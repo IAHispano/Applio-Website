@@ -25,7 +25,7 @@ export default function api() {
         </article>
         <article className="md:col-span-5 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
             <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] flex-grow overflow-y-auto max-md:min-h-[8rem]">
-                <p className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 " style={{ wordWrap: 'break-word' }}><span className="underline underline-offset-8 decoration-green-500 italic decoration-4 mx-4 md:hover:text-7xl gtransition">-1s</span> Response Time</p>
+                <p className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 " style={{ wordWrap: 'break-word' }}><span className="underline underline-offset-8 decoration-green-500 italic decoration-4 mx-4 md:hover:text-7xl gtransition">-2s</span> Response Time</p>
             </section>
         </article>
         <article className="md:col-span-5 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">

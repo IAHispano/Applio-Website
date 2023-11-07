@@ -25,6 +25,10 @@ export const siteConfig = {
       title: "Applio Bot",
       href: "/bot",
     },
+    {
+      title: "Applio API",
+      href: "/api",
+    },
   ],
   navMenuItems: [
     {
@@ -46,6 +50,10 @@ export const siteConfig = {
     {
       label: "Applio Bot",
       href: "/bot",
+    },
+    {
+      label: "Applio API",
+      href: "/api",
     },
     {
       label: "Login",

@@ -5,11 +5,11 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@
 
 export default function docsApi() {
   return (
-    <main className="mx-auto max-w-7xl z-10 justify-center items-center mb-12 flex w-3/6">
+    <main className="mx-auto max-w-7xl z-10 justify-center items-center mb-12 flex w-3/6 ">
         <div className="flex justify-center items-center mx-auto">
-            <div className="col-span-12 lg:col-span-10 xl:col-span-8 lg:px-16 mt-8">
+            <div className="mt-8">
                 <div className="w-full prose prose-neutral mb-10">
-                    <h1 className="text-center flex text-6xl max-md:text-2xl font-semibold dark:text-white mb-2">Applio API</h1>
+                    <h1 className="text-center flex text-6xl max-md:text-2xl font-semibold dark:text-white mb-4">Applio API</h1>
                     <p className="mb-3">Welcome to the Applio API documentation! Our API is simple, fast and free, however, before you start using it, it is important that you consult our documentation.</p>
                     <Divider className="h-1 rounded-xl" />
                 </div>

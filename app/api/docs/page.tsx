@@ -21,7 +21,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white">Get All Models</h2>
                 <p className="my-4">Retrieve information about multiple models using the following API endpoint:</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)?type=(kits.ai / rvc)</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)/page=(number)?type=(kits.ai / rvc)</span></Code>
                 </div>
                 <Table removeWrapper aria-label="Example static collection table">
                 <TableHeader>
@@ -33,9 +33,14 @@ export default function docsApi() {
                 <TableRow key="1">
                     <TableCell>perpage</TableCell>
                     <TableCell>Number</TableCell>
-                    <TableCell>Required. Number of models to view.</TableCell>
+                    <TableCell>Required. Number of models to view (max 25).</TableCell>
                 </TableRow>
                 <TableRow key="2">
+                    <TableCell>page</TableCell>
+                    <TableCell>Number</TableCell>
+                    <TableCell>Required. Page number to be displayed</TableCell>
+                </TableRow>
+                <TableRow key="3">
                     <TableCell>type</TableCell>
                     <TableCell>String</TableCell>
                     <TableCell>Optional. Type of model to fetch.</TableCell>
@@ -59,7 +64,7 @@ export default function docsApi() {
                 <TableRow key="1">
                     <TableCell>search</TableCell>
                     <TableCell>String</TableCell>
-                    <TableCell>Required. Name of model to fetch</TableCell>
+                    <TableCell>Required. Name of model to fetch (min 3 letters).</TableCell>
                 </TableRow>
                 <TableRow key="2">
                     <TableCell>type</TableCell>
@@ -85,7 +90,7 @@ export default function docsApi() {
                 <TableRow key="1">
                     <TableCell>user</TableCell>
                     <TableCell>String</TableCell>
-                    <TableCell>Required. User owner of the models you want to see.</TableCell>
+                    <TableCell>Required. User owner of the models you want to see (min 3 letters).</TableCell>
                 </TableRow>
                 <TableRow key="2">
                     <TableCell>type</TableCell>

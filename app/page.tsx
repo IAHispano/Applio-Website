@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { Code2Icon, DownloadIcon } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
-import 'styles/remove-scrollbar.css'
 
 export default async function IndexPage() {
 

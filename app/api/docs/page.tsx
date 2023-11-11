@@ -21,7 +21,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white">Get All Models</h2>
                 <p className="my-4">Retrieve information about multiple models using the following API endpoint:</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)/page=(number)?type=(kits.ai / rvc)</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all "><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)/page=(number)?type=(kits.ai / rvc)</span></Code>
                 </div>
                 <Table removeWrapper aria-label="Example static collection table">
                 <TableHeader>

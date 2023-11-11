@@ -152,4 +152,8 @@
   background-color: #cfc9c5 !important;
   border: 1px solid #1a1a1a !important;
   border-radius: 1px !important;
+} 
+
+.infinite-scroll-component {
+  overflow: hidden !important; 
 }

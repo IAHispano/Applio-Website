@@ -24,6 +24,7 @@ export default function Home() {
   const supabase = createClientComponentClient();
   const [end, setEnd] = useState(14);
   const [hasMore, setHasMore] = useState(true);
+  const [increment, setIncrement] = useState(10);
 
   async function fetchData() {
     let query = supabase.from("models").select("*").order('image_url', { ascending: false }); 
@@ -47,18 +48,19 @@ export default function Home() {
     } else {
       setHasMore(true);
     }
+    
   }
 }
     
-useEffect(() => { 
-    fetchData();
-  }, [end]);
+useEffect(() => {
+  fetchData();
+}, [end]);
   
-  function loadmore() {
-    if (hasMore) {
-      setEnd(end + 10);
-    }
+function loadmore() {
+  if (hasMore) {
+    setEnd(end + increment);
   }
+}
 
   function copyToClipboard(link: string) {
     const textarea = document.createElement("textarea");
@@ -128,6 +130,8 @@ useEffect(() => {
   className="mx-auto flex items-center justify-center w-full"
   onSubmit={(e) => {
     e.preventDefault();
+    setEnd(9);  
+    setIncrement(9);  
     fetchData();
   }}
 >

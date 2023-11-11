@@ -4,12 +4,14 @@ import Image from "next/image";
 import { PostgrestError } from "@supabase/supabase-js";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
-import { Button, Divider, Link } from "@nextui-org/react";
+import { Button, Divider, Link, Spinner } from "@nextui-org/react";
 
 export default function BlogPost({ id }: { id: string}) {
         const supabase = createClientComponentClient<Database>(); 
         const [data, setData] = useState<any[] | null>(null);
         const [error, setError] = useState<PostgrestError | null>(null);
+        const [loading, setLoading] = useState(true);
+
         useEffect(() => {
           async function fetchData() {
             // Fetch user data based on full name
@@ -22,6 +24,7 @@ export default function BlogPost({ id }: { id: string}) {
               return;
             }
             setData(userData);
+            setLoading(false);
           }
         
           fetchData();
@@ -45,10 +48,15 @@ export default function BlogPost({ id }: { id: string}) {
     
       return (
         <div className="text-black dark:text-white">
-        {data &&
+        {loading ? (
+        <div className="flex justify-center items-center mx-auto h-[40svh]">
+        <Spinner color="success"/> 
+        </div>
+        ) : (
+        data &&
           data?.map((item, index) => (
         <div ><div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
-                  <div className="h-96 top-0 absolute w-full scale-125 rounded-3xl blur-3xl pointer-events-none dark:block hidden">
+                  <div className="h-96 top-0 absolute w-full scale-120 rounded-3xl blur-3xl filter brightness-90 pointer-events-none dark:block hidden">
                       <img className="z-10 absolute top-0 left-0 w-full h-full object-cover object-center" src={item.image_url}>
                       </img>
                   </div>
@@ -76,11 +84,12 @@ export default function BlogPost({ id }: { id: string}) {
               <div className="text-start px-5 mb-5">
               <div className="w-full select-text prose prose-invert prose-img:rounded-2xl prose-a:text-red-300 prose-a:underline-offset-2 prose-pre:bg-zone/20 prose-pre:text-white max-width-reset max-w-4xl z-10">
               <p dangerouslySetInnerHTML={{ __html: convertMarkdownToHTML(item.content) }}></p>
-</div>
+            </div>
 
-              </div>
-                  </main></div>
-          ))}
+            </div>
+            </main></div>
+            ))
+            )}
       </div>
       );
     }

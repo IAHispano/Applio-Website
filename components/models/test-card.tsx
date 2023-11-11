@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardBody, CardFooter, CardHeader, Divider, Chip, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link, Checkbox, Tooltip } from "@nextui-org/react";
+import { Skeleton, Button, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Link, Checkbox, Tooltip, Spinner } from "@nextui-org/react";
 import {
   Dialog,
   DialogContent,
@@ -32,6 +32,7 @@ export default function TestCard({
   type,
   algorithm,
   author_id,
+  author_username,
   likes
 }: {
   imageUrl: string;
@@ -45,6 +46,7 @@ export default function TestCard({
   type: string;
   algorithm: string;
   author_id: string;
+  author_username: string;
   likes: string;
 }) {
   imageUrl = imageUrl ?? 'N/A';
@@ -56,6 +58,7 @@ export default function TestCard({
     const [showAlert, setShowAlert] = useState(false); 
     const [buttonClicked, setClicked] = useState(false);
     const { toast } = useToast()
+    const [allLoad, setAllLoad] = useState(false)
 
     useEffect(() => {
       async function fetchData() {
@@ -70,6 +73,7 @@ export default function TestCard({
           return;
         }
         setUser(userData[0] || { full_name: "Unknown user" });
+        setAllLoad(true);
       }
     
       fetchData();
@@ -137,245 +141,50 @@ export default function TestCard({
   }
   };
   const [userLiked, setUserLiked] = useState(false);
+  const defaultImageUrl = "https://i.imgur.com/jDmINMQ.png";
+  const imageUrlToShow = (imageUrl === null || imageUrl === 'n/a' || imageError) ? defaultImageUrl : imageUrl;
+
+  const goToModel = () => {
+    window.location.href = `/models/${id}`;
+  }
 
   return (
-    <div >
-<Dialog>
-  <DialogTrigger style={{ width: '100%' }}> 
-  <Card style={{ flex: 1, height: '150px', overflow: 'hidden' }} className="mx-auto flex items-center justify-center">
-      <CardBody>
-        <p className="text-xl">
-        {name !== '' ? name : 'Unknown name'}
-        </p>
-      </CardBody>
-      
-      <CardFooter style={{ fontSize: 'smaller' }} className="mx-auto flex items-center justify-center">
-      <Chip className="mx-1 text-black dark:text-neutral-200" radius="sm" variant="dot" color="success" size="sm">
-      {type || "Unknown"}
-      </Chip>
-      </CardFooter>
-    </Card>
-  </DialogTrigger>
-  <DialogContent className="max-w-9xl w-6/12 md:h-3/6  rounded-3xl undefined bg-background" style={{ width: '70%', height: '75%' }}>
-    <DialogHeader>
-    <DialogTitle className="text-xl md:text-6xl mt-4 z-30 text-white bg-black/80 h-fit w-fit p-4 rounded">
-  {name !== '' ? name : 'Unknown name'}
-    </DialogTitle>
-    <DialogTitle className="font-semibold text-sm md:text-xl text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
-    {user?.full_name !== 'Unknown user' && user?.full_name !== 'null' && user?.full_name !== '' ? (
-      <a className="button-cursor" href={`/user/${user?.full_name}`}>
-       Created by {user?.full_name}
-      </a>
-    ) : (
-      'Unknown owner'
-    )} 
-    </DialogTitle>
-    <DialogTitle className="font-semibold text-sm md:text-lg text-white z-30 bg-black/80 h-fit w-fit p-2 rounded">
-      {likes !== 'null' ? `${likes} likes ` : 'Unknown likes'}
-    </DialogTitle>
-  <div className="bg-neutral-800/30 hidden md:block">
-  <Link href={link} className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1" isExternal target="_blank" 
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "20px",
-          }}>
-        <Button
-          radius="md"
-          size="lg"
-          variant="bordered"
-        >
-          <p className="text-white z-30">Download</p>
-        </Button>
-        </Link>
-  </div>
-  <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1" 
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "215px",
-          }}
-          >
-<Button
-  radius="md"
-  size="lg"
-  variant="bordered"
-  isIconOnly
-  color="default"
-  className="z-50"
-  onClick={() => {
-    clipboard.copy(`https://applio.org/models/download/${id}`);
-    toast({
-      title: "Link copied to clipboard",
-      description: `Now you can share the ${name} model with your friends!`,
-    })
-
-  }}
-  >
-  <Share className="text-white"/>
-</Button>
-        </div>
-  </div>
-  <div className="bg-neutral-800/30 hidden md:block">
-  <div className="place-content-center sm:place-content-center z-50 bg-black/80 h-fit w-fit rounded-xl md:hover:bg-green-500/50 gtransition md:hover:mb-1"
-          style={{
-            position: "absolute",
-            bottom: "10px",
-            right: "155px",
-          }}
-          >
-<Button
-  radius="md"
-  size="lg"
-  variant="bordered"
-  isDisabled={userLiked}
-  isIconOnly
-  color={userLiked ? 'success' : 'default'}
-  onClick={handleDeletePost}
->
-  <ThumbsUp className="text-white"/>
-</Button>
-        </div>
-  </div>
-  <div className="bg-neutral-800/30 hidden md:block">
-  <Tooltip placement="left" color="foreground" showArrow content="You must open Applio for this to work!">
-    {link.endsWith('.zip') && ( 
-      <Link className="place-content-center sm:place-content-center z-50" isExternal target="_blank" 
-        style={{
-          position: "absolute",
-          bottom: "10px",
-          right: "275px",
-        }}>
-        <Button
-          color="success"
-          radius="md"
-          size="lg"
-          variant="shadow"
-          isIconOnly
-          startContent={isLoading ? null : <img src="https://i.imgur.com/UYCcsNM.png" className="w-10 h-10 md:hover:scale-150 gtransition"></img>}
-          isDisabled={isLoading}
-          isLoading={isLoading}
-          onClick={async () => {
-            toast({
-              title: "Be patient, this process can take time.",
-              description: "You can check the CMD to see how the download is going."
-            })
-            setTimeout(() => {
-            setIsLoading(true);
-            }, 4000);
-
-            try {
-              const response = await fetch('http://localhost:8000/download/' + link);
-              toast({
-                title: '${name} has been downloaded!',
-              })
-
-              if (!response.ok) {
-                throw new Error('La solicitud no pudo completarse correctamente');
-              }
-              setTimeout(() => {
-                setIsLoading(false);
-              }, 4000);
-  
-            } catch (error) {
-              console.error('Error en la solicitud:', error);
-  
-              setIsLoading(false);
-            }
-          }}
-        >
-        </Button>
-      </Link>
-    )}
-  </Tooltip>
-</div>
-      <DialogDescription>
-    </DialogDescription>
-      <DialogDescription className="">
-      <div className="flex items-center justify-center my-auto">
-      <div className="">
-        {isAudioOrError ? (
-          <Image
-          src="https://i.imgur.com/QLOUYSr.png"
-          alt="Image Error"
-          layout="fill"
-          objectFit="cover"
-          objectPosition="center center"
-          style={{
-            boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-            borderRadius: "8px",
-          }}
-          loading="eager"
-          onLoadingComplete={handleImageLoad}
-          onError={handleImageError} 
-          unoptimized
-        />
-
-        ) : (
-          <Image
-            src={imageUrl}
-            alt="Picture of the model"
-            layout="fill"
-            objectFit="cover"
-            objectPosition="center center"
-            style={{
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 1)",
-              borderRadius: "8px",
-            }}
+    <Skeleton className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer hover:scale-105 md:active:scale-75 transition-all gtransition-ultralow" onClick={goToModel} isLoaded={allLoad}>
+      <div className="relative w-full flex items-center justify-center mb-2">
+      <div className="w-full h-[300px] rounded-lg relative">
+          <img
+            src={imageUrlToShow}
             loading="eager"
-            onLoadingComplete={handleImageLoad}
-            onError={handleImageError} 
-            unoptimized
+            decoding="async"
+            className="w-full h-full object-cover rounded-lg"
+            width={300}
+            height={300}
+            onLoad={handleImageLoad}
+            onError={handleImageError}
+            
           />
-        )}
+      </div>
+        <div className="flex gap-2 absolute bottom-2 right-2">
+          <div className="flex items-center gap-1 rounded-md bg-neutral-800 px-2 py-1 text-center text-white">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-thumbs-up"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2h0a3.13 3.13 0 0 1 3 3.88Z"/></svg>
+            <div className="ml-auto mr-auto">{likes}</div>
           </div>
-          </div>
-          <div>
-  <div className="w-full flex justify-start items-center gap-3 flex-wrap">
-  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
-    <Box className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
-      {type !== '' ? type : 'Unknown type.'}
-    </DialogTitle>
-  </div>
-
-  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
-    <Bot className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
-      {algorithm !== '' ? algorithm : 'Unknown algorithm'}
-    </DialogTitle>
-  </div>
-  <div className="text-white z-30 bg-black/60 h-fit w-fit p-3 rounded-lg md:rounded backdrop-blur-lg flex items-center m-0">
-    <Bot className="mx-2 text-white" />
-    <DialogTitle className="text-sm md:text-xl text-neutral-300" style={{ margin: 0 }}>
-      {epochs !== '' ? `${epochs} Epochs` : 'Unknown epochs'}
-    </DialogTitle>
-  </div>
-</div>
-</div>
-
-
-
-
-
-
-          <div className="block md:hidden fixed bottom-0 left-0 right-0 text-center bg-black/80 h-24 overflow-hidden">
-  <Link href={link} className="place-content-center mt-8" isExternal target="_blank">
-        <Button
-          color="secondary"
-          radius="md"
-          variant="shadow"
-        >
-          Download
-        </Button>
-        </Link>
-  </div>
-      </DialogDescription>
-    </DialogHeader>
-  </DialogContent>
-</Dialog>
-</div>
-  
+        </div>
+      </div>
+      <h5 className="font-bold text-lg w-full px-2 text-white  truncate">
+       {name}
+     </h5>
+      <div className="flex flex-col-3 gap-1 p-2">
+        <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
+          <p className="capitalize">{algorithm}</p>
+        </div>
+        <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
+          <p className="uppercase">{type}</p>
+        </div>
+        <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center truncate">
+          <p>{author_username.length > 30 ? `${author_username.substring(0, 10)}...` : author_username}</p>
+        </div>
+      </div>
+      </Skeleton>
   );
 }

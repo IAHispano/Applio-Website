@@ -68,9 +68,7 @@ if (!data) {
         isIndeterminate
         aria-label="Loading..."
         className="max-w-xs md:max-w-md "
-        // HALLOWEEN
-        color="warning"
-        // color="success"
+        color="success"
         size="sm"
       />
       </div>

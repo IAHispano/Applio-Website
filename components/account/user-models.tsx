@@ -26,6 +26,7 @@ function Usermodels({ userFullName }: ModelInfoProps) {
   const supabase = createClientComponentClient();
   const [end, setEnd] = useState(30);
   const [user, setUser] = useState<any | null>(null);
+  const [hasMore, setHasMore] = useState(true);
 
   async function fetchData() {
       const { data: userData, error: userError } = await supabase
@@ -54,6 +55,11 @@ function Usermodels({ userFullName }: ModelInfoProps) {
         setData(fetchedData);
         setPosts(fetchedData); 
       }
+      if (posts && posts.length < end) {
+        setHasMore(false);
+      } else {
+        setHasMore(true);
+      }      
     }
   }
     
@@ -62,7 +68,9 @@ useEffect(() => {
   }, [end]);
   
   function loadmore() {
-    setEnd(end + 10); 
+    if (hasMore) {
+      setEnd(end + 10);
+    }
   }
 
   function copyToClipboard(link: string) {
@@ -87,7 +95,7 @@ useEffect(() => {
     <section className="my-10">
       <InfiniteScroll
       dataLength={data?.length || 0}
-      hasMore={true}
+      hasMore={hasMore}
       next={loadmore}
       loader={
       <div className="flex items-center justify-center">
@@ -127,7 +135,8 @@ useEffect(() => {
             type,
             algorithm,
             author_id,
-            likes
+            likes,
+            author_username
           } = post
 
           const modelSlug = link
@@ -146,6 +155,7 @@ useEffect(() => {
           algorithm={algorithm}
           author_id={author_id}
           likes={likes}
+          author_username={author_username}
           />
        </div>     
           )

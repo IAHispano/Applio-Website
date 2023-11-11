@@ -21,7 +21,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white">Get All Models</h2>
                 <p className="my-4">Retrieve information about multiple models using the following API endpoint:</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)/page=(number)?type=(kits.ai / rvc)</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/perpage=(number)/page=(number)?type=(kits.ai / rvc)</span></Code>
                 </div>
                 <Table removeWrapper aria-label="Example static collection table">
                 <TableHeader>
@@ -52,7 +52,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white mt-10">Search Models</h2>
                 <p className="my-4">Search for specific models by name using the following API endpoint:</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/search?name=(model_name)&type=(kits.ai / rvc)</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/search?name=(model_name)&type=(kits.ai / rvc)</span></Code>
                 </div>
                 <Table removeWrapper aria-label="Example static collection table">
                 <TableHeader>
@@ -78,7 +78,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white mt-10">Search User Models</h2>
                 <p className="my-4">To find specific models based on their associated usernames:</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/user=(username)?type=(kits.ai / rvc)</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/key=(secret)/models/user=(username)?type=(kits.ai / rvc)</span></Code>
                 </div>
                 <Table removeWrapper aria-label="Example static collection table">
                 <TableHeader>
@@ -104,7 +104,7 @@ export default function docsApi() {
                 <h2 className="text-center flex text-4xl max-md:text-xl font-semibold dark:text-white mt-10">Check API Status</h2>
                 <p className="my-4">Check the latency of the API.</p>
                 <div className="w-full prose prose-neutral my-8">
-                <Code size="lg" className="w-full max-md:text-[9px] break-words"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/ping</span></Code>
+                <Code size="lg" className="w-full max-md:text-[9px] break-words select-all"><span className="text-[#ff9492]">GET</span> <span className="text-[#91cbff]">/ping</span></Code>
                 </div>
                 <p className="my-8 font-bold">Make sure to replace (secret) in the API endpoints with your actual API KEY to authenticate your requests.</p>
                 </article>

@@ -1,9 +1,10 @@
-"use client"
+"use client";
 import { Code, Divider } from "@nextui-org/react";
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell} from "@nextui-org/react";
 
 
-export default function docsApi() {
+function ApiDocs() {
+
   return (
     <main className="mx-auto md:max-w-7xl z-10 justify-center items-center mb-12 flex flex-col items-center max-md:mx-4">
         <div className="flex justify-center items-center mx-auto">
@@ -165,5 +166,7 @@ export default function docsApi() {
             </div>
         </div>
     </main>
-  )
+
+  );
 }
+export default ApiDocs;

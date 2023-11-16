@@ -14,7 +14,7 @@ export default function api() {
                 <p className="text-white">Now create, experiment and develop: free, easy and fast.</p>
                 <div className="flex flex-col-2 gap-4">
                 <Button color="primary" className="hover:scale-110 -bottom-4" as={Link} href="/api/app">Go to dashboard</Button>
-                <Button color="primary" variant="faded" className="hover:scale-110 -bottom-4" as={Link} href="/api/docs">Read Docs</Button>
+                <Button color="primary" variant="faded" className="hover:scale-110 -bottom-4" as={Link} href="/api/app/docs">Read Docs</Button>
                 </div>
             </div>
         </article>

@@ -11,9 +11,9 @@ export default function api() {
             </div>
             <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
                 <h2 className="text-5xl md:text-6xl md:hover:text-8xl font-bold tracking-tighter gtransition-5 text-white">Introducing Applio API</h2>
-                <p className="text-white">Now create, experiment and developer: free, easy and fast.</p>
+                <p className="text-white">Now create, experiment and develop: free, easy and fast.</p>
                 <div className="flex flex-col-2 gap-4">
-                <Button color="primary" className="hover:scale-110 -bottom-4" as={Link} href="https://docs.google.com/forms/d/e/1FAIpQLSd0YLF8D4n2KNzxDXDfQXhwrQ0KaIGg-Urezlbcix3lKJVHrg/viewform?usp=send_form" target="_blank">Request Access</Button>
+                <Button color="primary" className="hover:scale-110 -bottom-4" as={Link} href="/api/app">Go to dashboard</Button>
                 <Button color="primary" variant="faded" className="hover:scale-110 -bottom-4" as={Link} href="/api/docs">Read Docs</Button>
                 </div>
             </div>

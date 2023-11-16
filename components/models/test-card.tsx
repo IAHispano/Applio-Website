@@ -149,7 +149,8 @@ export default function TestCard({
   }
 
   return (
-    <Skeleton className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer hover:scale-105 md:active:scale-75 transition-all gtransition-ultralow" onClick={goToModel} isLoaded={allLoad}>
+    <Skeleton onClick={goToModel} isLoaded={allLoad} className=" hover:scale-105 md:active:scale-75 transition-all gtransition-low">
+    <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-white dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer">
       <div className="relative w-full flex items-center justify-center mb-2">
       <div className="w-full h-[300px] rounded-lg relative">
           <img
@@ -171,7 +172,7 @@ export default function TestCard({
           </div>
         </div>
       </div>
-      <h5 className="font-bold text-lg w-full px-2 text-white  truncate">
+      <h5 className="font-bold text-lg w-full px-2 dark:text-white truncate">
        {name}
      </h5>
       <div className="flex flex-col-3 gap-1 p-2">
@@ -184,6 +185,7 @@ export default function TestCard({
         <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center truncate">
           <p>{author_username.length > 30 ? `${author_username.substring(0, 10)}...` : author_username}</p>
         </div>
+      </div>
       </div>
       </Skeleton>
   );

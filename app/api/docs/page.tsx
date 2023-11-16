@@ -139,6 +139,26 @@ export default function docsApi() {
                     <TableCell>1.6s</TableCell>
                     <TableCell>Beta</TableCell>
                 </TableRow>
+                <TableRow key="5">
+                    <TableCell>100</TableCell>
+                    <TableCell>0.3s</TableCell>
+                    <TableCell>1.0</TableCell>
+                </TableRow>
+                <TableRow key="6">
+                    <TableCell>250</TableCell>
+                    <TableCell>0.5s</TableCell>
+                    <TableCell>1.0</TableCell>
+                </TableRow>
+                <TableRow key="7">
+                    <TableCell>500</TableCell>
+                    <TableCell>0.9s</TableCell>
+                    <TableCell>1.0</TableCell>
+                </TableRow>
+                <TableRow key="8">
+                    <TableCell>1000</TableCell>
+                    <TableCell>1.3s</TableCell>
+                    <TableCell>1.0</TableCell>
+                </TableRow>
                 </TableBody>
             </Table>
                 </div>

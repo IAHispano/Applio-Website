@@ -326,6 +326,9 @@ interface Model {
                     data-nimg="fill" 
                     sizes="(max-width: 768px) 4rem, (max-width: 1200px) 7rem"  
                     src={(model.image_url === null || model.image_url === "N/A") ? defaultImageUrl2 : model.image_url}
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = defaultImageUrl2;
+                    }}
                     style={{ 
                         objectFit: 'cover',  
                         objectPosition: '50% 50%'  

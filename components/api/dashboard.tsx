@@ -100,7 +100,7 @@ function ApiDashboard({ auth_id, current_page }: ModelInfoProps) {
       <BreadcrumbItem key="keys" isCurrent={current_page === "keys"} href="./app/keys">
         Keys
       </BreadcrumbItem>
-      <BreadcrumbItem key="docs" isCurrent={current_page === "docs"} href="/api/docs">
+      <BreadcrumbItem key="docs" isCurrent={current_page === "docs"} href="/api/app/docs">
         Docs
       </BreadcrumbItem>
     </Breadcrumbs>

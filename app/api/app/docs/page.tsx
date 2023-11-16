@@ -28,7 +28,7 @@ export default async function User() {
     } else {
       content = ( 
         <main className='min-h-screen flex flex-col justify-start items-center py-10 w-full px-5'>
-        <ApiDashboard auth_id={session.user.id} current_page='home'/>
+        <ApiDashboard auth_id={session.user.id} current_page='docs'/>
         <ApiDocs/>
 
 

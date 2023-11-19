@@ -2,9 +2,8 @@
 import React from 'react';
 import { Tabs, Tab, Button } from "@nextui-org/react";
 import UsersTable from "./tables/users-table";
-import ModelsTable from "./tables/models-table";
-import { Bot, User, Text } from 'lucide-react';
-import BlogsTable from './tables/blogs-table';
+import { Bot, User, Text, KeyRound } from 'lucide-react';
+import KeysTable from './tables/keys-table';
 
 interface tabsprops {
   id: string;
@@ -12,9 +11,9 @@ interface tabsprops {
 
 function TabsComponent({ id }: tabsprops) {
   return (
-        <div>
+        <div className='max-md:my-8'>
             <div className="flex w-full flex-col">
-      <Tabs aria-label="Options" className='mx-auto justify-center' size='lg' color='success' defaultSelectedKey="users">
+      <Tabs aria-label="Options" className='mx-auto justify-center' size='lg' color='success' defaultSelectedKey="keys">
         <Tab key="users" title={
         <div className="flex items-center space-x-2">
               <User />
@@ -23,21 +22,13 @@ function TabsComponent({ id }: tabsprops) {
         >
           <UsersTable id={id}/>
         </Tab>
-        <Tab key="models" title={
+        <Tab key="keys" title={
         <div className="flex items-center space-x-2">
-              <Bot />
-              <span>Models</span>
+              <KeyRound />
+              <span>API Keys</span>
         </div>} 
         >
-          <ModelsTable id={id} />
-        </Tab>
-        <Tab key="blog" title={
-        <div className="flex items-center space-x-2">
-              <Text />
-              <span>Blog</span>
-        </div>} 
-        >
-           <BlogsTable id={id} />
+          <KeysTable id={id} />
         </Tab>
       </Tabs>
     </div>  

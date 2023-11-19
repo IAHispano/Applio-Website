@@ -144,10 +144,10 @@ function Follow({ userFullName }: ModelInfoProps) {
                 <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1150888519972167761/21b9ce319177c09da33ea4114cc60e7f.webp?quality=lossless" color="success" />
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">30</span> models have been uploaded.</span>} placement="bottom" color="foreground">
-                <Avatar isBordered radius="sm" src="https://simpleicon.com/wp-content/uploads/music-note-1.png" color="primary" className="bg-white" />
+                <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/emojis/1141551292498583662?size=512" color="primary" className="bg-white" />
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">50</span> models have been uploaded.</span>} placement="bottom" color="foreground">
-                <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/emojis/1141551292498583662?size=512" color="warning" />
+                <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1142911409202675752/b358c5fddf8cb639e28d58e1f0277b1e.webp?size=40&quality=lossless" color="warning" />
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">269</span> models have been uploaded.</span>} placement="bottom" color="foreground">
                 <Avatar isBordered radius="sm" src="https://images-ext-2.discordapp.net/external/Vnpre0FtmVJVwSGVGwb6kC3DoxEbRBSJJZiF0u3PYXk/%3Fsize%3D512/https/cdn.discordapp.com/emojis/1163273845793378474" color="danger" />
@@ -162,10 +162,10 @@ function Follow({ userFullName }: ModelInfoProps) {
                 <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1150888519972167761/21b9ce319177c09da33ea4114cc60e7f.webp?quality=lossless" color="success"/>
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">30</span> models have been uploaded.</span>} placement="bottom" color="foreground">
-              <Avatar isBordered radius="sm" src="https://simpleicon.com/wp-content/uploads/music-note-1.png" color="primary" className="bg-white"/>
+              <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/emojis/1141551292498583662?size=512" color="primary" className="bg-white"/>
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">50</span> models have been uploaded.</span>} placement="bottom" color="foreground">
-                <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/emojis/1141551292498583662?size=512" color="warning" />
+                <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1142911409202675752/b358c5fddf8cb639e28d58e1f0277b1e.webp?size=40&quality=lossless" color="warning" />
               </Tooltip>
               </>
             ) : data.length >= 30 ? (
@@ -177,7 +177,7 @@ function Follow({ userFullName }: ModelInfoProps) {
                 <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1150888519972167761/21b9ce319177c09da33ea4114cc60e7f.webp?quality=lossless" color="success"/>
               </Tooltip>
               <Tooltip showArrow content={<span>This badge is obtained after <span className="underline decoration-2 italic underline-offset-2 decoration-green-500 select-all md:hover:tracking-wide gtransition-low">30</span> models have been uploaded.</span>} placement="bottom" color="foreground">
-              <Avatar isBordered radius="sm" src="https://simpleicon.com/wp-content/uploads/music-note-1.png" color="primary" className="bg-white"/>
+              <Avatar isBordered radius="sm" src="https://cdn.discordapp.com/role-icons/1142911409202675752/b358c5fddf8cb639e28d58e1f0277b1e.webp?size=40&quality=lossless" color="primary" className="bg-white"/>
               </Tooltip>
               </>
             ) : data.length >= 15 ? (

@@ -18,8 +18,6 @@ export default function ActualKeys() {
     const supabase = createClientComponentClient();
     const { data: { session } } = await supabase.auth.getSession();
 
-    console.log(session?.user.id);
-
     if (session?.user.id) {
       const { data } = await supabase
         .from('tokens')

@@ -1,5 +1,5 @@
 import { Database } from "@/app/types/database";
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input } from "@nextui-org/react";
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, Button, Spinner } from "@nextui-org/react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { PostgrestError } from "@supabase/supabase-js";
 import { SearchIcon } from "lucide-react";
@@ -11,63 +11,110 @@ export default function UsersTable({ id }: { id: string }) {
     const [users, setUsers] = useState<any[] | null>(null);
     const [error, setError] = useState<PostgrestError | null>(null);
     const [search, setSearch] = useState('');
+    const [end, setEnd] = useState(14);
+    const [hasMore, setHasMore] = useState(true);
+    const [increment, setIncrement] = useState(10);
+    const [data, setData] = useState<any[] | null>(null);
+    const [posts, setPosts] = useState<any[] | null>(null); 
 
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const { data: userData, error: userError } = await supabase
-                    .from("profiles")
-                    .select("full_name, id, role");
 
-                if (userError) {
-                    setError(userError);
-                } else {
-                    setUsers(userData);
-                }
-            } catch (err: any) {
-                setError(err);
-            }
+    async function fetchData() {
+        let query = supabase.from("profiles").select("*").order('updated_at', { ascending: false }); 
+      
+        if (search) {
+          query = query.ilike('full_name', `%${search}%`); 
         }
-
-        fetchData();
-    }, []);
+      
+        query = query.range(0, end);
+      
+        const { data: fetchedData, error } = await query;
+      
+        if (error) {
+          setError(error);
+        } else {
+          setData(fetchedData);
+          setPosts(fetchedData);
+    
+        if (fetchedData.length < end) {
+          setHasMore(false); 
+        } else {
+          setHasMore(true);
+        }
+        
+      }
+    }
+        
+    useEffect(() => {
+      fetchData();
+    }, [end]);
+      
+    function loadmore() {
+      if (hasMore) {
+        setEnd(end + increment);
+      }
+    }
 
     return (
         <section className="hidden md:block">
             <div className="">
                 <div className="md:mx-24 h-fit">
-                    <div className="flex justify-between items-center py-2">
-                    <span className="text-default-400 text-small">There are currently <span className="text-white">{users?.length} users</span>.</span>
-                    </div>
-                    <form style={{ marginBottom: '16px' }}>
-                        <Input
-                            placeholder="Type to search a user..."
-                            size="sm"
-                            startContent={<SearchIcon size={18} />}
-                            type="search"
-                            onChange={(e) => setSearch(e.target.value)} />
+                    <form
+                    className="flex items-center justify-center w-full"
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        setEnd(9);  
+                        setIncrement(9);  
+                        fetchData();
+                    }}
+                    >
+                    <Input
+                        classNames={{
+                        base: "w-full my-4", 
+                        mainWrapper: "h-full w-full",
+                        input: "text-small",
+                        inputWrapper: "h-full w-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+                        }}
+                        placeholder="Press ENTER to search a user"
+                        size="sm"
+                        startContent={<SearchIcon size={18} />}
+                        type="search"
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                    />
                     </form>
-                    <Table aria-label="Users table">
+                    <Table aria-label="Users table"
+                    bottomContent={
+                        hasMore ? (
+                        <div className="flex w-full justify-center">
+                            <Button variant="flat" onPress={loadmore}>
+                            Load More
+                            </Button>
+                        </div>
+                        ) : null
+                    }
+                    >
                         <TableHeader>
                             <TableColumn>ID</TableColumn>
                             <TableColumn>NAME</TableColumn>
                             <TableColumn>ROLE</TableColumn>
                         </TableHeader>
                         <TableBody emptyContent={"Loading data..."}>
-                            {(users || [])
-                                ?.filter((item) => {
-                                    const itemName = item && item.full_name ? item.full_name.toLowerCase() : '';
-                                    const searchLower = search.toLowerCase();
-                                    return searchLower === '' ? true : itemName.includes(searchLower);
-                                })
-                                .map((user: any) => (
-                                    <TableRow key={user.id}>
-                                        <TableCell className="select-all">{user.id}</TableCell>
-                                        <TableCell ><a href={`/user/${user?.full_name}`}>{user.full_name}</a></TableCell>
-                                        <TableCell>{user.role}</TableCell>
-                                    </TableRow>
-                                ))}
-                        </TableBody>
+                        {(posts ?? []).map((post: any, index: number) => {
+                            const {
+                                id,
+                                full_name,
+                                role
+                            } = post;
+
+                            return (
+                                <TableRow key={id}>
+                                    <TableCell className="select-all">{id}</TableCell>
+                                    <TableCell><a href={`/user/${full_name}`}>{full_name}</a></TableCell>
+                                    <TableCell>{role}</TableCell>
+                                </TableRow>
+                            );
+                        })}
+                    </TableBody>
                     </Table>
                 </div>
             </div>

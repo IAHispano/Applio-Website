@@ -96,7 +96,7 @@ function loadmore() {
   return (
     <section >
       <InfiniteScroll
-      dataLength={data.length}
+      dataLength={data ? data.length : 0}
       hasMore={hasMore}
       next={loadmore}
       loader={

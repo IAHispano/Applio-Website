@@ -25,8 +25,11 @@ export default function Home() {
   const [end, setEnd] = useState(14);
   const [hasMore, setHasMore] = useState(true);
   const [increment, setIncrement] = useState(10);
+  const [loading, setLoading] = useState(false);
 
   async function fetchData() {
+    if (loading) return; 
+   setLoading(true); 
     let query = supabase.from("models").select("*").order('image_url', { ascending: false }); 
   
     if (search) {
@@ -49,6 +52,7 @@ export default function Home() {
       setHasMore(true);
     }
     
+    setLoading(false);
   }
 }
     
@@ -57,7 +61,7 @@ useEffect(() => {
 }, [end]);
   
 function loadmore() {
-  if (hasMore) {
+  if (hasMore && !loading) {
     setEnd(end + increment);
   }
 }
@@ -96,7 +100,7 @@ function loadmore() {
   return (
     <section >
       <InfiniteScroll
-      dataLength={data ? data.length : 0}
+      dataLength={data.length}
       hasMore={hasMore}
       next={loadmore}
       loader={

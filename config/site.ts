@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "Applio",
   description:
-    "Enhanced RVC Variant: Optimized Performance Through Modifications, Built upon Mangio-RVC-Fork.",
+    "Applio stands at the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
   mainNav: [
     {
       title: "Home",

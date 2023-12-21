@@ -21,7 +21,7 @@ export default function IndexPage() {
         </span>{" "}
       </h1>
       <p className="text-sm text-muted-foreground sm:text-lg text-center mb-4 max-w-xl mx-auto mt-2 ">
-        Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to
+        Applio is a user-friendly fork of RVC, designed to
         provide an intuitive interface, especially for newcomers.
       </p>
 

@@ -35,7 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.ico" />
-          <meta name="description" content="Applio is a user-friendly fork of Mangio-RVC-Fork/RVC, designed to provide an intuitive interface, especially for newcomers." />
+          <meta name="description" content="Applio stands at the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies." />
           <meta name="mobile-web-app-capable" content="yes"/>
           <meta name="apple-mobile-web-app-capable" content="yes"/>
           <meta name="application-name" content="Applio"/>

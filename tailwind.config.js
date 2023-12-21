@@ -73,12 +73,13 @@ module.exports = {
       },
     },
     backgroundImage: {
+      // event
       "gradient-radial":
-        "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
+        "linear-gradient(to bottom right, #A2D240 40%, #1B8B00 70%);",
       // "gradient-radial":
       // "linear-gradient(to right, #27CF15 40%, #159FCF 100%);",
       "gradient-radial-red":
-        "linear-gradient(to right, #FF2929 0%, #963232 100%);",
+        "linear-gradient(to right, #FF0000 0%, #FF7878 100%);",
     },
   },
   darkMode: "class",

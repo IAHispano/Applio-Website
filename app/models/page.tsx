@@ -26,6 +26,8 @@ export default function Home() {
   const [hasMore, setHasMore] = useState(true);
   const [increment, setIncrement] = useState(10);
   const [loading, setLoading] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("");
+  const [algorithmFilter, setAlgorithmFilter] = useState("");
 
   async function fetchData() {
     if (loading) return; 
@@ -35,30 +37,45 @@ export default function Home() {
     if (search) {
       query = query.ilike('name', `%${search}%`); 
     }
+
+    if (selectedFilter) {
+      query = query.ilike('type', selectedFilter);
+    }
+
+    if (algorithmFilter) {
+      query = query.ilike('algorithm', algorithmFilter);
+    }
   
     query = query.range(0, end);
+    console.log(JSON.stringify(query));
   
-    const { data: fetchedData, error } = await query;
+    try {
+      const updatedEnd = end;
+      const { data: fetchedData, error } = await query;
   
-    if (error) {
-      setError(error);
-    } else {
-      setData(fetchedData);
-      setPosts(fetchedData);
-
-    if (fetchedData.length < end) {
-      setHasMore(false); 
-    } else {
-      setHasMore(true);
+      if (error) {
+        setError(error);
+      } else {
+        if (fetchedData.length < updatedEnd) {
+          setHasMore(false);
+        } else {
+          setHasMore(true);
+        }
+  
+        setData(fetchedData);
+        setPosts(fetchedData);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      setError(error as PostgrestError);
+    } finally {
+      setLoading(false);
     }
-    
-    setLoading(false);
   }
-}
     
-useEffect(() => {
-  fetchData();
-}, [end]);
+  useEffect(() => {
+    fetchData();
+  }, [end, search, selectedFilter, algorithmFilter]);
   
 function loadmore() {
   if (hasMore && !loading) {
@@ -154,9 +171,76 @@ function loadmore() {
     onChange={(e) => setSearch(e.target.value)}
   />
 </form>
+<div className="mx-16 mt-2 gap-2 flex items-center justify-start w-full">
+        <Button
+          size="sm"
+          variant={selectedFilter !== "rvc" ? "ghost" : undefined}
+          onClick={() => {
+            setSelectedFilter("rvc");
+            fetchData();
+          }}
+        >
+          RVC
+        </Button>
+        <Button
+        size="sm"
+        variant={selectedFilter !== "kits.ai" ? "ghost" : undefined}
+        onClick={() => {
+          setSelectedFilter("kits.ai");
+          fetchData();
+        }}
+      >
+
+          KITS.AI
+        </Button>
+        <Button
+        size="sm"
+        variant={algorithmFilter !== "rmvpe" ? "ghost" : undefined}
+        onClick={() => {
+          setAlgorithmFilter("rmvpe");
+          fetchData();
+        }}
+      >
+
+        RMVPE
+        </Button>
+        <Button
+        size="sm"
+        variant={algorithmFilter !== "mangio-crepe" ? "ghost" : undefined}
+        onClick={() => {
+          setAlgorithmFilter("mangio-crepe");
+          fetchData();
+        }}
+      >
+
+        MANGIO-CREPE
+        </Button>
+        <Button
+        size="sm"
+        variant={algorithmFilter !== "crepe" ? "ghost" : undefined}
+        onClick={() => {
+          setAlgorithmFilter("crepe");
+          fetchData();
+        }}
+      >
+
+        CREPE
+        </Button>
+        <Button
+        size="sm"
+        variant={algorithmFilter !== "harvest" ? "ghost" : undefined}
+        onClick={() => {
+          setAlgorithmFilter("harvest");
+          fetchData();
+        }}
+      >
+
+        HARVEST
+        </Button>
+      </div>
 
 
-      <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-10 mx-16 items-center justify-center">
+      <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-8 mx-16 items-center justify-center">
       {posts?.map((post: any, index: number) => {
           const {
             name,

@@ -8,7 +8,7 @@ export default async function Tour() {
   const { data: { session } } = await supabase.auth.getSession();
 
   if (session === null) {
-    redirect('/applio/login');
+    redirect('/login');
   }
 
   const { data: modelsData } = await supabase

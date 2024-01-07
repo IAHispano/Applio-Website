@@ -60,7 +60,7 @@ export default function BlogPost({ id }: Readonly<{ id: string}>) {
               <a className="text-white dark:bg-neutral-950/40 bg-neutral-950/60 gtransition hover:opacity-50 py-2 px-4 rounded-lg" href="/blog">
                 Return
               </a>
-              <a className="bg-white text-black gtransition py-2 px-4 hover:opacity-50 rounded-lg" href={`https://twitter.com/intent/tweet?text=${item.title} www.applio.org/blog/${item.id}`} target="_blank">
+              <a className="bg-white text-black gtransition py-2 px-4 hover:opacity-50 rounded-lg" href={`https://twitter.com/intent/tweet?text=${item.title} www.applio.org/blog/${item.id}`} target="_blank" rel="noreferrer">
                 Share
               </a>
               </div>

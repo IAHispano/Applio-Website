@@ -28,7 +28,7 @@ export const siteConfig = {
     {
       title: "API",
       href: "/api",
-    },
+    }
   ],
   navMenuItems: [
     {

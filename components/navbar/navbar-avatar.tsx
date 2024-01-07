@@ -13,7 +13,7 @@ import {
   type Session,
   createClientComponentClient,
 } from "@supabase/auth-helpers-nextjs";
-import { Bell, Bug, LogOut, Settings, Shield, Upload, UserCircle } from "lucide-react";
+import { Bell, Bug, LogOut, Settings, Shield, Sparkles, Upload, UserCircle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Icons } from "../icons/icons";
 import { IconBrandDiscord } from '@tabler/icons-react';
@@ -59,6 +59,10 @@ export default function NavbarAvatar({
   const handleAdminDashboardClick = () => {
     window.location.href = `/admin/${user?.id}`;
   };
+
+  const handleTour = () => {
+    window.location.href = `/tour`;
+  };
   
   const handleSignOut = async () => {
     await supabase.auth.signOut();
@@ -84,7 +88,15 @@ export default function NavbarAvatar({
   }, [userFullName]);
 
   const iconClasses = "text-sm text-default-500 pointer-events-none flex-shrink-0";
+  const tourClasses = "text-sm text-white pointer-events-none flex-shrink-0";
   const dropdownItems = [
+    <DropdownItem key="tour" onClick={handleTour} startContent={<Sparkles  className={tourClasses} />} 
+    className="p-3 my-1 hover:opacity-95 gtransition"
+    style={{
+      background: 'linear-gradient(to right, #41295a, #2F0743)',
+    }}>
+    <span className="z-50">Tour <span className="font-bold">2023</span></span>
+  </DropdownItem>,
     <DropdownItem key="profile" onClick={handleProfileClick} startContent={<UserCircle className={iconClasses} />}>
                 <p className="font-semibold">{userFullName}</p>
   </DropdownItem>,

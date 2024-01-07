@@ -9,7 +9,6 @@ export default function BotPage() {
       <meta name="description" content="Visit Applio's blog with the latest news!" />
     </Head> 
         <section className="md:w-full max-w-6xl p-4 flex flex-col gap-5 rounded-medium max-md:mx-2">
-          <h1 className="text-8xl font-semibold mt-4">Latest news</h1>
           <div className="my-8">
             <BlogCard />  
           </div>

@@ -101,7 +101,7 @@ function loadmore() {
 
   if (!data) {
     return (
-      <div className="flex items-center justify-center h-screen">
+      <div className="flex items-center justify-center h-[40svh]">
       <Progress
         isIndeterminate
         aria-label="Loading..."
@@ -171,7 +171,7 @@ function loadmore() {
     onChange={(e) => setSearch(e.target.value)}
   />
 </form>
-<div className="mx-16 mt-2 gap-2 flex items-center justify-start w-full">
+<div className="md:mx-16 mt-2 gap-2 flex items-center justify-start md:w-full max-md:grid-cols-3 max-md:grid max-md:mx-8">
         <Button
           size="sm"
           variant={selectedFilter !== "rvc" ? "ghost" : undefined}

@@ -157,3 +157,20 @@
 .infinite-scroll-component {
   overflow: hidden !important; 
 }
+
+@keyframes change-gradient {
+  0% {
+    background-size: 200% 200%;
+  }
+  100% {
+    background-size: 200% 200%;
+    background-position: 200% 200%;
+  }
+}
+
+.animate-gradient {
+  animation: change-gradient 10s infinite;
+  background-size: 200% 200%;
+  background-position: 0% 0%;
+  transition: background 0.5s ease;
+}

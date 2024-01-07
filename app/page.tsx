@@ -2,18 +2,17 @@
 import Link from "next/link"
 import { Code2Icon, DownloadIcon } from "lucide-react"
 import { Button, buttonVariants } from "@/components/ui/button"
-import Snowfall from 'react-snowfall'
 
 export default function IndexPage() {
 
   return (      
-  <><div className="z-30"><Snowfall snowflakeCount={40}/></div>
+  <>
     <section className="container flex flex-col justify-center items-center text-center min-h-[600px] h-[100svh]">
-      <Link className="inline-flex scale-105 items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground hover:bg-zinc-500/10 hover:scale-125  gtransition " href={"./blog/14"}>
+      {/* <Link className="inline-flex scale-105 items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground hover:bg-zinc-500/10 hover:scale-125  gtransition " href={"./blog/14"}>
         <span style={{ textShadow: "2px 2px 4px rgba(255, 255, 255, 0.1)" }}>
         🎄 It&apos;s <span className="bg-gradient-radial-red text-transparent bg-clip-text mx-0.5">Christmas</span> at <span className="">Applio</span>!
-        </span>
-      </Link>  
+        </span> *
+      </Link>   */}
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
         Create, experiment, enjoy with{" "}
         <span className="bg-gradient-radial text-transparent bg-clip-text">

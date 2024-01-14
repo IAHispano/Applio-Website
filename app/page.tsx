@@ -67,7 +67,7 @@ export default function IndexPage() {
         <img src="https://contrib.rocks/image?repo=IAHispano/Applio" alt="Github collaborators" />
       </div>
       <div className="md:h-[400px]  flex flex-col items-center bg-black w-full p-5">
-      <p className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white ">What are you waiting for use Applio?</p>
+      <p className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white ">Ready to use Applio?</p>
       </div>
     </main>
     </article>

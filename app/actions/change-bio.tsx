@@ -6,9 +6,13 @@ import { redirect } from "next/navigation";
 
 export const addPost = async (formData: FormData) => {
   const bio = formData.get("bio");
+  const link1 = formData.get("link1");
+  const link2 = formData.get("link2");
 
   if (
-    bio === null 
+    bio === null ||
+    link1 === null ||
+    link2 === null
   )
     return;
 
@@ -31,6 +35,7 @@ export const addPost = async (formData: FormData) => {
   .from('profiles')
   .update({ 
     bio: bio,
+    links: [link1, link2],
     updated_at: currentTime
   })
   .eq('auth_id', user.id)

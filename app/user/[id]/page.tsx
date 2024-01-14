@@ -1,17 +1,13 @@
-import Follow from "@/components/account/follow-user";
-import Usermodels from "@/components/account/user-models";
-import Head from "next/head";
+import UserInfo from "@/components/account/userInfo";
+import UserModels from "@/components/account/userModels";
 
-export default function User({ params }: { params: { id: string } }) {
-  const { id } = params;
-
-  return (
-    <div>
-      <Head>
-        <meta name="description" content={`Visit the user ${id} on Applio.`} />
-      </Head> 
-      <Follow userFullName={id} />
-      <Usermodels userFullName={id} />
-    </div>
-  );
-}
+export default function User({ params }: Readonly<{ params: { id: string } }>) {
+    const { id } = params;
+  
+    return (
+        <main className="w-full py-8 flex flex-col top-0 justify-start items-center text-center min-h-screen relative gap-4 px-5">
+            <UserInfo id={id} />
+            <UserModels id={id} />
+        </main>
+    );
+  }

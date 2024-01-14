@@ -1,16 +1,10 @@
 import { AuthButtonServer } from "@/components/login/auth-button-server";
 
-export default function Login () {
+export default function Login() {
   return (
-    <main className="my-10">
-    <h1 className="bg-gradient-radial text-transparent bg-clip-text mx-auto flex items-center justify-center text-5xl md:text-9xl p-4 font-bold leading-tight tracking-tighter mt-24">
-    You must log in
-    </h1>
-    <div className="block md:hidden">
-    <section className="grid place-content-center md:mt-24">
-      <AuthButtonServer />
-    </section>
+    <div className="flex flex-col gap-2 p-5 justify-center items-center top-0 left-0 w-full h-full fixed text-center text-white">
+    <h1 className='text-4xl font-bold tracking-tight fade-in mb-2'>You must log in. (401)</h1>
+    <AuthButtonServer />
     </div>
-    </main>
   )
 }

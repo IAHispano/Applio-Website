@@ -13,7 +13,7 @@ export function ChangeBioButton() {
       color="primary"
       className="px-5 py-2 self-end my-4"
     >
-      {pending ? "Please wait..." : "Change"}
+      {pending ? "Please wait..." : "Update"}
     </Button>
   );
 }

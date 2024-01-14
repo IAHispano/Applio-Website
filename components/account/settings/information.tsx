@@ -15,56 +15,17 @@ interface ModelInfoProps {
   full_name: string | null;
   role: string;
   bio: string;
+  links: Array<any>;
 }
 
-function Information({ avatar_url, full_name, role, bio }: ModelInfoProps) {
+function Information({ avatar_url, full_name, role, bio, links }: Readonly<ModelInfoProps>) {
   const formRef = useRef<HTMLFormElement>(null);
-  const [isSelected, setIsSelected] = React.useState(false);
 
-  useEffect(() => {
-    const halloweenCookie = Cookies.get('halloween');
-
-    if (halloweenCookie === 'true') {
-      setIsSelected(true);
-    } else {
-      setIsSelected(false);
-    }
-  }, []);
-
-  const handleSwitchChange = (value: boolean) => {
-    setIsSelected(value);
-    if (value) {
-      Cookies.set('halloween', 'true');
-    } else {
-      Cookies.remove('halloween');
-    }
-  };
 
   return (
     <div>
     <h2 className="text-4xl font-bold tracking-tight mb-4">Account</h2>
     <Divider />
-    <section className="w-full flex flex-col items-start justify-start">
-      <h2 className="text-2xl font-semibold tracking-tight mt-10 mb-4">Information</h2>
-      <div className="flex items-center justify-center p-3 w-full bg-neutral-700 gap-3 rounded-3xl">
-      <Avatar
-      isBordered
-      radius="md"
-      className="rounded-xl border-2 border-white/30 h-16 w-16 aspect-square"
-      src={avatar_url}
-    />
-      <div className="flex-grow h-full flex justify-center items-start text-left flex-col">
-        <h2 className="text-2xl font-semibold tracking-tight pb-2">
-          {full_name}
-        </h2>
-        <Chip size="md" className="text-neutral-400 bg-neutral-900">
-          {role}
-        </Chip>
-      </div>
-      </div>
-      {/* <Switch isSelected={isSelected} onValueChange={handleSwitchChange} color="warning" startContent={<IconBat />} endContent={<IconFlare />} size="lg">
-      </Switch>   */}
-    </section>
     <form
         ref={formRef}
         action={async (formData) => {
@@ -81,6 +42,33 @@ function Information({ avatar_url, full_name, role, bio }: ModelInfoProps) {
       key="bio"
       name="bio"
       isClearable
+      radius="sm"
+      >
+        </Input>
+    </section>
+    <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
+      <Input className="text-sm text-neutral-300" 
+      defaultValue={links[0]} 
+      type="link1"
+      label="Link 1"
+      fullWidth
+      key="link1"
+      name="link1"
+      isClearable
+      radius="sm"
+      >
+        </Input>
+    </section>
+    <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
+      <Input className="text-sm text-neutral-300" 
+      defaultValue={links[1]} 
+      type="link2"
+      label="Link 2"
+      fullWidth
+      key="link2"
+      name="link2"
+      isClearable
+      radius="sm"
       >
         </Input>
     </section>
@@ -90,7 +78,7 @@ function Information({ avatar_url, full_name, role, bio }: ModelInfoProps) {
     </form>
     <section className="w-full flex flex-col items-start justify-start gap-4">
     <h2 className="text-2xl font-semibold tracking-tight mb-2">Danger zone</h2>
-      <article className="flex flex-col gap-1 text-left max-w-xl justify-start items-start bg-neutral-700/40 rounded-2xl p-4">
+      <article className="flex flex-col gap-1 text-left max-w-xl justify-start items-start bg-neutral-700/40 rounded-xl p-4">
       <p className="font-medium">Delete Applio account.</p>
       <span className="text-sm text-neutral-400">By clicking delete account button, you will lose access to the page until you log back in to Discord. Your data will be deleted.</span>
       <br />

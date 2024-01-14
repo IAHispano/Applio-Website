@@ -5,21 +5,16 @@ import {
 import { ArrowRight, SearchIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
-import { Button, Input, Link, Pagination, Spinner } from "@nextui-org/react";
+import { Button, Input, Spinner } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TestCard from "@/components/models/test-card";
-import Head from "next/head";
 
 
 export default function Home() {
-  const [showAlert, setShowAlert] = useState(false); 
-
   const [search, setSearch] = useState('');
-
   const [data, setData] = useState<any[] | null>(null);
-  const [filterValue, setFilterValue] = useState("");
-  const [error, setError] = useState<PostgrestError | null>(null);
+  const [_error, setError] = useState<PostgrestError | null>(null);
   const [posts, setPosts] = useState<any[] | null>(null); 
   const supabase = createClientComponentClient();
   const [end, setEnd] = useState(14);
@@ -83,22 +78,6 @@ function loadmore() {
   }
 }
 
-  function copyToClipboard(link: string) {
-    const textarea = document.createElement("textarea");
-    textarea.value = link;
-    document.body.appendChild(textarea);
-    textarea.select();
-    document.execCommand("copy");
-    document.body.removeChild(textarea);
-  
-    setShowAlert(true);
-  
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 3000);
-  }
-  const alertClass = showAlert ? "fade-in" : "fade-out";
-
   if (!data) {
     return (
       <div className="flex items-center justify-center h-[40svh]">
@@ -107,7 +86,6 @@ function loadmore() {
         aria-label="Loading..."
         className="max-w-xs md:max-w-md "
         color="success"
-        // color="success"
         size="sm"
       />
       </div>
@@ -143,19 +121,16 @@ function loadmore() {
         <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
           Models
         </h1>
-        {/* <h1 className="text-3xl font-bold leading-tight tracking-tighter md:text-5xl mt-52 ">
-        Under <span className="bg-gradient-radial-red text-transparent bg-clip-text">maintenance</span>.
-        </h1> */}
       </div>
       <form
-  className="mx-auto flex items-center justify-center w-full"
-  onSubmit={(e) => {
-    e.preventDefault();
-    setEnd(9);  
-    setIncrement(9);  
-    fetchData();
-  }}
->
+      className="mx-auto flex items-center justify-center w-full"
+      onSubmit={(e) => {
+        e.preventDefault();
+        setEnd(9);  
+        setIncrement(9);  
+        fetchData();
+      }}
+    >
   <Input
     classNames={{
       base: "w-full h-10 mx-16", 
@@ -256,11 +231,8 @@ function loadmore() {
             author_username,
             likes
           } = post
-
-          const modelSlug = link
-
           return (
-        <div className="w-full button-cursor" key={modelSlug + index}>  
+        <div className="w-full button-cursor" key={id}>  
       <TestCard
           name={name}
           imageUrl={imageUrl}

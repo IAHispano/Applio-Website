@@ -3,17 +3,17 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { Database } from "@/app/types/database";
 import React, { useEffect, useState } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
-import { Button, Spinner, Tooltip, Skeleton } from "@nextui-org/react";
+import { Button, Tooltip, Skeleton } from "@nextui-org/react";
 import { ThumbsUp, Copy, Download } from "lucide-react";
 import { addPost } from "@/app/actions/like-model-action";
-import { Toaster } from "@/components/ui/toaster";
 import { useClipboard } from "@mantine/hooks";
 import { useToast } from "@/components/ui/use-toast"
+import { useRouter } from "next/navigation";
 
 interface Model {
     id: string;
     image_url: string; 
-    name: string
+    name: string;
     author_username: string | null;
     author_id: string | null;
     created_at: string;
@@ -24,16 +24,14 @@ interface Model {
     likes: string;
   }
 
-  export default function Home({ params }: { params: { id: string } }) {
+  export default function Home({ params }: Readonly<{ params: { id: string } }>) {
     const { id } = params;
-  
+    const router = useRouter();
     const supabase = createClientComponentClient<Database>();
     const [data, setData] = useState<Model | null>(null);
     const [error, setError] = useState<PostgrestError | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [user, setUser] = useState<any | null>(null);
+    const [_loading, setLoading] = useState(true);
     const [userModels, setUserModel] = useState<any | null>(null);
-    const [buttonClicked, setClicked] = useState(false);
     const { toast } = useToast()
     const [allLoad, setAllLoad] = useState(false)
     const [userAllLoad, setUserAllLoad] = useState(false)
@@ -53,18 +51,18 @@ interface Model {
                 setData((userData && userData.length > 0) ? {
                   id: userData[0].id,
                   author_id: userData[0].author_id,
-                  name: userData[0].name || null,
-                  author_username: null,
-                  algorithm: userData[0].algorithm || null,
+                  name: userData[0].name ?? null,
+                  algorithm: userData[0].algorithm ?? null,
                   created_at: userData[0].created_at ? new Date(userData[0].created_at).toLocaleDateString('en-US') : null,
-                  epochs: userData[0].epochs || null,
-                  image_url: userData[0].image_url || null,
-                  link: userData[0].link || null,
-                  type: userData[0].type || null,
+                  epochs: userData[0].epochs ?? null,
+                  image_url: userData[0].image_url ?? null,
+                  link: userData[0].link ?? null,
+                  type: userData[0].type ?? null,
+                  author_username: userData[0].author_username ?? null,
                 } as Model : null);
               }
             } catch (error) {
-              setError;
+              setError(error as PostgrestError);
             } finally {
               setLoading(false); 
               setAllLoad(true);
@@ -77,7 +75,7 @@ interface Model {
     useEffect(() => {
         async function fetchUserData() {
           try {
-            const { data: userData, error: userError } = await supabase
+            const { error: userError } = await supabase
               .from("profiles")
               .select("*")
               .eq("id", data?.author_id ?? '');
@@ -86,10 +84,8 @@ interface Model {
               setError(userError);
               return;
             }
-      
-            setUser(userData && userData.length > 0 ? userData[0] : { full_name: "Unknown username" });
           } catch (error) {
-            setError;
+            setError(error as PostgrestError);
           }
         }
         if (data?.author_id) {
@@ -100,28 +96,21 @@ interface Model {
     const defaultImageUrl = "https://i.imgur.com/jDmINMQ.png";
     const defaultImageUrl2 = "https://i.imgur.com/UYCcsNM.png";
     const defaultName = "Unknown name";
-    const defaultDate = "Unknown date";
     const imageUrlToShow =
       data?.image_url === null || data?.image_url === "n/a" || error
         ? defaultImageUrl
         : data?.image_url;
     const name =
       data?.name === null || data?.name === "n/a" ? defaultName : data?.name;
-
-    const date =
-      data?.created_at === null || data?.created_at === "n/a" ? defaultDate : data?.created_at;
-
     const defaultType = "Unknown type";
     const type =
-    data?.type === null || data?.type === "n/a" ? defaultType : data?.type;
-
+      data?.type === null || data?.type === "n/a" ? defaultType : data?.type;
     const defaultEpochs = "Unknown";
     const epochs =
-    data?.epochs === null || data?.epochs === "n/a" ? defaultEpochs : data?.epochs;
-
+      data?.epochs === null || data?.epochs === "n/a" ? defaultEpochs : data?.epochs;
     const defaultAlgorithm = "Unknown algorithm";
     const algorithm =
-    data?.algorithm === null || data?.algorithm === "n/a" ? defaultAlgorithm : data?.algorithm;
+      data?.algorithm === null || data?.algorithm === "n/a" ? defaultAlgorithm : data?.algorithm;
 
   
       const handleImageError: React.ReactEventHandler<HTMLImageElement> = (event) => {
@@ -134,7 +123,7 @@ interface Model {
       };
 
       const goToProfile = () => {
-        window.location.href = `/user/${user.full_name}`;
+        window.location.href = `/user/${data?.author_username}`;
       }
 
       function redirect(destination: string) {
@@ -167,31 +156,29 @@ interface Model {
       const [isLoading, setIsLoading] = useState(false);
       const clipboard = useClipboard({ timeout: 500 });
       
-      useEffect(() => {
-        async function fetchModelsUser() {
-          try {
-            const { data: userData, error: userError } = await supabase
-              .from("models")
-              .select("*")
-              .eq("author_id", data?.author_id ?? '');
-      
-            if (userError) {
-              setError(userError);
-              return;
-            }
-      
-            setUserModel(userData);
-            setUserAllLoad(true);
-            console.log(userData)
-          } catch (error) {
-            setError;
-          }
+    useEffect(() => {
+      async function fetchModelsUser() {
+        const { data: userData, error: userError } = await supabase
+          .from("models")
+          .select("*")
+          .range(1, 4)
+          .order("image_url", { ascending: true })
+          .eq("author_id", data?.author_id ?? '');
+
+        if (userError) {
+          setError(userError);
+          return;
         }
-        if (data?.author_id) {
-          fetchModelsUser();
-          setUserAllLoad(false);
-        }
-      }, [data?.author_id]); 
+
+        setUserModel(userData);
+        setUserAllLoad(true);
+      }
+
+      if (data?.author_id) {
+        fetchModelsUser().catch(setError);
+        setUserAllLoad(false);
+      }
+    }, [data?.author_id]);
 
       const downloadModel = () => {
         window.open(`/models/download/${data?.id}`, '_blank');
@@ -199,17 +186,20 @@ interface Model {
   
 
     return (
-      <main className="px-2 mx-auto max-w-7xl h-[calc(100vh-64px)] w-full">
-        <div className="px-2 py-12">
+      <main className="px-2 mx-auto max-w-7xl w-full">
+        <div className="px-2 py-4">
+        <div className="flex py-2 items-center flex-wrap gap-3 justify-center">
+        <button onClick={() => router.back()} className="cursor-pointer flex items-center flex-wrap gap-3 px-4 py-2  bg-black/10 dark:bg-[#2C2C2C] mt-5 z-10 dark:hover:bg-opacity-80 active:opacity-50 rounded-lg gtransition dark:text-white w-full justify-center"><span><svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg></span>Return</button>
+        </div>
         <article>
-        <Skeleton isLoaded={allLoad} className="rounded-lg bg-white dark:bg-[#3c3c3c]">
-          <div className="rounded-xl drop-shadow-md p-4 bg-white dark:bg-[#3c3c3c]">
+        <Skeleton isLoaded={allLoad} className="rounded-lg  bg-black/10 dark:bg-[#3c3c3c]">
+          <div className="rounded-xl drop-shadow-md  bg-black/10 dark:bg-[#2C2C2C] ">
           <div className="w-full h-40 md:w-full md:h-[480px] rounded-lg object-cover justify-center items-center mx-auto flex mb-4">
           <img
                   src={imageUrlToShow}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover rounded-lg hover:scale-95 gtransition"
+                  className="w-full h-full object-cover  border-b border-white/30 gtransition"
                   width={300}
                   height={300}
                   onError={handleImageError}
@@ -219,15 +209,15 @@ interface Model {
                 }}
                 />
             </div>
-            <div className="flex items-start flex-col md:flex-row">
+            <div className="flex items-start flex-col md:flex-row pb-4 px-4">
               <div className="flex flex-col w-full h-full md:h-24">
                 <a>
                   <h3 className="text-2xl font-bold dark:text-white mt-1 md:mt-0 hover:text-3xl gtransition">
                     {name}
                   </h3>
                 </a>
-                <div className="flex items-center gap-1 -mt-1 md:mt-0">
-                    <span className="font-bold text-gray-400 dark:text-neutral-400 cursor-pointer hover:underline text-md" onClick={goToProfile} >{user?.full_name}</span>
+                  <div className="flex items-end gap-1 max-md:mb-2 max-md:pl-0.5 md:mt-0 text-gray-400 dark:text-neutral-400 text-md">
+                   by <span className="font-bold text-gray-400 dark:text-neutral-400 cursor-pointer hover:underline text-md" onClick={goToProfile} >{data?.author_username}</span>
                     <span className=" text-gray-400 dark:text-neutral-400 text-md">on {data?.created_at}</span>
                 </div>
                 <div className="flex items-end md:mt-auto gap-1">
@@ -247,7 +237,8 @@ interface Model {
               <div className="hidden md:flex h-24 flex-col items-end">
                     <div className="flex gap-2 justify-center items-end mb-auto">
                         <div>
-                        <Tooltip placement="left" color="foreground" showArrow content="You must open Applio for this to work!">
+                        <Tooltip placement="left" color="foreground" content="Open Applio to run this function!">
+                        <div>
                         {data?.link.endsWith('.zip') && ( 
                         <Button
                             color="success"
@@ -290,12 +281,13 @@ interface Model {
                             >
                             </Button>
                              )}
+                             </div>
                             </Tooltip>
                         </div> 
-                        <Button className="px-3 py-1 w-12 h-10 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-gray-200 text-black hover:scale-110 active:scale-75 gtransition-low" onClick={handleDeletePost}  isDisabled={userLiked} isIconOnly>
+                        <Button className="px-3 py-1 w-12 h-10 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-gray-200 text-black hover:bg-opacity-70 active:scale-75 gtransition" onClick={handleDeletePost}  isDisabled={userLiked} isIconOnly>
                             <ThumbsUp className={userLiked ? 'text-green-500' : 'text-black'} />
                         </Button> 
-                        <div className="px-3 py-1 w-12 h-10 rounded-lg flex  items-center justify-center gap-1 cursor-pointer bg-gray-200 text-black hover:scale-110 active:scale-75 gtransition-low"
+                        <div className="px-3 py-1 w-12 h-10 rounded-lg flex  items-center justify-center gap-1 cursor-pointer bg-gray-200 text-black  hover:bg-opacity-70 active:scale-75 gtransition"
                           onClick={() => {
                             clipboard.copy(`https://applio.org/models/download/${id}`);
                             toast({
@@ -305,34 +297,29 @@ interface Model {
                             >
                         <Copy />
                         </div> 
-                        <div className="px-3 py-1 w-12 h-10 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-black text-white hover:scale-110 active:scale-75 gtransition-low" onClick={downloadModel}>
-                            <Download />
+                        <div className="px-3 py-1 w-fit h-10 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-white text-black font-medium hover:bg-opacity-70 active:scale-75 gtransition" onClick={downloadModel}>
+                            <Download /> <span className="ml-2">Download</span>
                         </div>
                     </div> 
                 </div> 
             </div>
           </div>
           </Skeleton>
-        <Skeleton isLoaded={userAllLoad} className="flex flex-col p-4 rounded-xl gap-2 items-start w-full drop-shadow-md bg-white dark:bg-neutral-700 mt-4">
-            <p>More models by {user?.full_name}</p>
-            <div className="flex items-center gap-2 overflow-x-auto hide-scrollbar w-full rounded-xl MuiBox-root css-0 mt-4">
+        <Skeleton isLoaded={userAllLoad} className="flex flex-col rounded-lg gap-2 md:items-start w-full drop-shadow-md bg-white dark:bg-neutral-700 my-2">
+            <div className="md:flex gap-2  w-full rounded-sm mt-4 md:mx-auto">
             {userModels?.map((model: Model) => (
-                <div key={model.id} className="relative flex items-start bg-gray-100 dark:bg-neutral-800 rounded-xl flex-shrink-0 h-18 w-72 md:w-[300px] cursor-pointer hover:scale-95 gtransition"  onClick={() => (window.location.href = `/models/${model.id}`)}>
-                    <div className="w-32 h-20 md:w-32 md:h-20 rounded-l-lg mr-4 relative object-cover">
-                    <img 
-                    className="rounded-lg w-full h-full object-cover"  
-                    loading="lazy" 
-                    decoding="async" 
-                    data-nimg="fill" 
-                    sizes="(max-width: 768px) 4rem, (max-width: 1200px) 7rem"  
+                <div key={model.id} className="relative flex items-start bg-black/10 dark:bg-neutral-800 rounded-lg flex-shrink-0 h-18 w-full md:w-[305px] cursor-pointer gtransition hover:opacity-80 max-md:mb-4"  onClick={() => (window.location.href = `/models/${model.id}`)}>
+                    <div className="w-32 h-20 md:w-32 md:h-20  mr-4 relative object-cover">
+                   <img
                     src={(model.image_url === null || model.image_url === "N/A") ? defaultImageUrl2 : model.image_url}
                     onError={(e) => {
                       (e.target as HTMLImageElement).src = defaultImageUrl2;
                     }}
-                    style={{ 
-                        objectFit: 'cover',  
-                        objectPosition: '50% 50%'  
-                    }}
+                    loading="eager"
+                    decoding="async"
+                    className="w-full h-full object-cover rounded-l-lg "
+                    width={300}
+                    height={300} 
                 />
                     </div> 
                     <div className="flex flex-col items-start py-2 px-1 ">
@@ -340,7 +327,7 @@ interface Model {
                         <h2>{isNaN(new Date(model.created_at).getTime()) ? 'Unknown date' : new Date(model.created_at).toLocaleDateString('en-US')}</h2>
                     </div>
                     <div className="absolute bottom-1 right-2 flex items-center gap-1 rounded-md">
-                        <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 text-center text-gray-400">
+                        <div className="flex items-center gap-1 rounded-md  bg-black/10 dark:bg-neutral-800 px-2 text-center text-gray-400">
                             <ThumbsUp className="w-4 h-4"/>
                             <div className="ml-auto mr-auto">{model.likes}</div>
                         </div>

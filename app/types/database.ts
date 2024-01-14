@@ -40,6 +40,7 @@ export interface Database {
         Row: {
           algorithm: string | null
           author_id: string
+          author_username: string | null
           created_at: string | null
           epochs: string | null
           id: string
@@ -81,6 +82,7 @@ export interface Database {
           id: string
           role: string
           updated_at: string | null
+          links: Array<any | null>
         }
         Insert: {
           auth_id?: string | null
@@ -90,6 +92,7 @@ export interface Database {
           id: string
           role?: string
           updated_at?: string | null
+          links: Array<any | null>
         }
         Update: {
           auth_id?: string | null
@@ -100,6 +103,7 @@ export interface Database {
           role?: string
           updated_at?: string | null
           halloween?: string
+          links: Array<any | null>
         }
         Relationships: [
           {

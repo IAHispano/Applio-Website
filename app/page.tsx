@@ -1,44 +1,75 @@
-"use client"
-import Link from "next/link"
-import { Code2Icon, DownloadIcon } from "lucide-react"
-import { Button, buttonVariants } from "@/components/ui/button"
-
 export default function IndexPage() {
 
   return (      
-  <>
-    <section className="container flex flex-col justify-center items-center text-center min-h-[600px] h-[100svh]">
-      {/* <Link className="inline-flex scale-105 items-center rounded-full border px-2.5 py-0.5 text-sm font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground hover:bg-zinc-500/10 hover:scale-125  gtransition " href={"./blog/14"}>
-        <span style={{ textShadow: "2px 2px 4px rgba(255, 255, 255, 0.1)" }}>
-        🎄 It&apos;s <span className="bg-gradient-radial-red text-transparent bg-clip-text mx-0.5">Christmas</span> at <span className="">Applio</span>!
-        </span> *
-      </Link>   */}
-      <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
-        Create, experiment, enjoy with{" "}
-        <span className="bg-gradient-radial text-transparent bg-clip-text">
-          Applio.
-        </span>{" "}
-      </h1>
-      <p className="text-sm text-muted-foreground sm:text-lg text-center mb-4 max-w-xl mx-auto mt-2 ">
-        Applio is a user-friendly fork of RVC, designed to
-        provide an intuitive interface, especially for newcomers.
-      </p>
-
-      <div className="flex mb-44">
-        <Link href="/download">
-          <Button className="mr-4 rounded-medium">
-            <DownloadIcon className="h-4 w-4 mr-2" />
-            Download
-          </Button>
-        </Link>
-
-        <Link href="https://github.com/IAHispano/Applio-RVC-Fork">
-          <Button className="rounded-medium">
-            <Code2Icon className="h-4 w-4 mr-2 " />
-            Source Code
-          </Button>
-        </Link>
+    <article className="absolute inset-0 bg-black w-full h-full text-white">
+    <div className="min-h-[600px] h-[95svh] flex flex-col justify-center items-center w-full p-10 relative overflow-hidden [&_video]:hover:blur-xl gtransition rounded-b-3xl"><video className="absolute top-0 left-0 pointer-events-none h-full w-full object-cover blur-3xl opacity-60 gtransition" playsInline autoPlay muted loop poster="https://i.imgur.com/0XhoLE1.png"><source src="/background.mp4" type="video/mp4"></source></video>
+    <div className=" justify-start items-center text-center flex flex-col gap-4 -bottom-48">
+      <p className="text-5xl md:text-6xl font-bold tracking-tighter z-[2]" >&quot;I don&apos;t recommend Applio&quot;</p>
+      <p className="z-[3] text-xl">Discover what&apos;s new at Applio this <span className="font-bold">January 22nd.</span></p>
+    </div>
+    <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">Scroll down to know more</div>
+    </div>
+    <main className="flex flex-col w-full justify-start items-center text-center relative bg-black">
+      <div className="h-[950px] flex flex-col items-center bg-black w-full p-5 -scroll-mt-1 md:pt-44 pt-12">
+        <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4">But what is <span className="text-white">Applio</span>?</p>
+        <p className="font-space-grotesk leading-snug text-white text-[16px] lg:text-[20px] max-w-md md:max-w-xl lg:max-w-[640px] text-center mb-8">It is known as the ultimate voice cloning tool, meticulously optimized to offer unmatched power, modularity and ease of use.</p>
+        <div className="grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-6 lg:gap-y-6 max-w-[1200px]">
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">f0 Inference Algorithm Overhaul</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">f0 Crepe Pitch Extraction for Training</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">f0 Hybrid Estimation Method</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">CLI Functionality</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">TTS (Text-to-Speech)</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">Overtraining Detection</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">Mode Collapse Detection</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">Data Efficiency</h3>
+            </div>
+          </div>
+          <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
+            <div className="flex flex-col gap-2">
+              <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">Efficient Training</h3>
+            </div>
+          </div>
+        </div>
       </div>
-    </section></>
+      <div className="md:h-[1000px] mt-12 flex flex-col items-center bg-black w-full p-5 ">
+        <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4 max-md:pt-4">And who made <span className="font-bold">Applio</span>?</p>
+        <p className="font-space-grotesk leading-snug text-white text-[16px] lg:text-[20px] max-w-md md:max-w-xl lg:max-w-[640px] text-center mb-8">Who better to do it than you, the community.</p>
+        <img src="https://contrib.rocks/image?repo=IAHispano/Applio" alt="Github collaborators" />
+      </div>
+      <div className="md:h-[400px]  flex flex-col items-center bg-black w-full p-5">
+      <p className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white ">What are you waiting for use Applio?</p>
+      </div>
+    </main>
+    </article>
   )
 }

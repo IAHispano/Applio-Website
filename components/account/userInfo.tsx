@@ -55,9 +55,6 @@ export default function UserInfo({id}: Readonly<Props>) {
   
       fetchData();
     }, [id]);
-
-    console.log("User:", user);
-    console.log("Data:", data);
     
     if (!loading && user === undefined && (data === null || data.length === 0)) {
       return (       

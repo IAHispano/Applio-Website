@@ -36,7 +36,6 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
             .eq("id", data.author_id)
             .single();
   
-              console.log("Data from profiles:", userData);
               if (userError) {
                 setError(userError);
                 return;

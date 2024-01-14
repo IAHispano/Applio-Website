@@ -42,7 +42,6 @@ export default function Home() {
     }
   
     query = query.range(0, end);
-    console.log(JSON.stringify(query));
   
     try {
       const updatedEnd = end;

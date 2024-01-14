@@ -5,9 +5,9 @@ export default function IndexPage() {
     <div className="min-h-[600px] h-[95svh] flex flex-col justify-center items-center w-full p-10 relative overflow-hidden [&_video]:hover:blur-xl gtransition rounded-b-3xl"><video className="absolute top-0 left-0 pointer-events-none h-full w-full object-cover blur-3xl opacity-60 gtransition" playsInline autoPlay muted loop poster="https://i.imgur.com/0XhoLE1.png"><source src="/background.mp4" type="video/mp4"></source></video>
     <div className=" justify-start items-center text-center flex flex-col gap-4 -bottom-48">
       <p className="text-5xl md:text-6xl font-bold tracking-tighter z-[2]" >&quot;I don&apos;t recommend Applio&quot;</p>
-      <p className="z-[3] text-xl">Discover what&apos;s new at Applio this <span className="font-bold">January 22nd.</span></p>
+      <p className="z-[3] text-xl">Discover what&apos;s new at Applio this <span className="font-bold">January 19th.</span></p>
     </div>
-    <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">Scroll down to know more</div>
+    <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">Scroll down to know more...</div>
     </div>
     <main className="flex flex-col w-full justify-start items-center text-center relative bg-black">
       <div className="h-[950px] flex flex-col items-center bg-black w-full p-5 -scroll-mt-1 md:pt-44 pt-12">

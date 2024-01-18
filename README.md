@@ -4,10 +4,6 @@
 
 To get started with the development or deployment of the project, follow the steps below:
 
-### Prerequisites
-
-
-
 ### Installation
 Make sure you have Node.js, git and npm installed on your machine.
 
@@ -46,7 +42,6 @@ To build the production version of the application, use the following command:
 ```bash
 npm run build
 ```
-
 
 ## Need Help?
 

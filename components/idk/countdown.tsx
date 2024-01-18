@@ -34,7 +34,7 @@ const CountdownTimer: React.FC = () => {
   }, [targetDate]);
 
   return (
-    <div className={`text-3xl md:text-6xl py-10 text-white gtransition  z-50 ${isExpired ? 'expired' : ''}`} suppressHydrationWarning>
+    <div className={`text-3xl md:text-6xl py-10 text-white gtransition z-20  ${isExpired ? 'expired' : ''}`} suppressHydrationWarning>
       {isExpired ? (
         <div>
           <p className='md:tracking-tighter tracking-tight font-bold '>Introducing <span className='underline underline-offset-8 font-semibold'>Applio <span className='hover:text-8xl gtransition'>V3</span></span></p>

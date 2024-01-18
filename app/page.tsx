@@ -7,7 +7,7 @@ export default function IndexPage() {
   return (      
     <article className="absolute inset-0 bg-black w-full h-full text-white">
     <a className="min-h-[600px] h-[95svh] flex flex-col justify-center items-center w-full p-10 relative overflow-hidden [&_video]:hover:saturate-150  [&_video]:hover:blur-xl gtransition rounded-b-3xl" href="https://www.youtube.com/watch?v=nxqo6kOhsBI" target="_blank" rel="noreferrer"><video className="absolute top-0 left-0 pointer-events-none h-full w-full object-cover blur-3xl opacity-60 gtransition" playsInline autoPlay muted loop poster="/poster.png"><source src="/background.mp4" type="video/mp4"></source></video>
-    <div className=" justify-start items-center text-center flex flex-col gap-4 -bottom-48">
+    <div className=" justify-start items-center text-center flex flex-col gap-4 ">
         <CountdownTimer/>
     </div>
     <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">Scroll down to know more...</div>

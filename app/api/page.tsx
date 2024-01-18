@@ -8,8 +8,8 @@ export default function api() {
         <article className="md:col-span-8 overflow-hidden md:h-72 relative md:hover:h-96 md:hover:-mx-5 md:hover:w-[calc(100%+40px)] md:hover:rounded-[2rem] gtransition w-full h-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-white/20 bg-black justify-start items-start relative">
             <div id="h-full flex flex-col justify-center items-center bg-black w-full p-10 absolute overflow-hidden scale-110 -ml-5 -mt-5 gtransition-5" >
             <video className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover blur-3xl" playsInline autoPlay muted loop>
-                <source src="https://cdn.discordapp.com/attachments/1173355399886405733/1173355597433938052/e37afd5b-fdd1-4589-9a83-d122f2bd7fa9.mp4?ex=6563a78e&is=6551328e&hm=14de0e2da8836881982f6b323a423e651a2e2ec9ceddad9feaf115f58d3f30dc#" type="video/mp4" />
-                <source src="https://cdn.discordapp.com/attachments/1173355399886405733/1173355597433938052/e37afd5b-fdd1-4589-9a83-d122f2bd7fa9.mp4?ex=6563a78e&is=6551328e&hm=14de0e2da8836881982f6b323a423e651a2e2ec9ceddad9feaf115f58d3f30dc#" type="video/mp4" />
+                <source src="/apibackground.mp4" type="video/mp4" />
+                <source src="/apibackground.mp4" type="video/mp4" />
             </video>
             </div>
             <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">

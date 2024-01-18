@@ -102,7 +102,7 @@ export default function TestCard({
     window.location.href = destination;
   }
 
-  const defaultImageUrl = "https://i.imgur.com/jDmINMQ.png";
+  const defaultImageUrl = "/default1.png";
   const imageUrlToShow = (imageUrl === null || imageUrl === 'n/a' || imageError) ? defaultImageUrl : imageUrl;
 
   const goToModel = () => {

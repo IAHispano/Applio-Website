@@ -174,3 +174,7 @@
   background-position: 0% 0%;
   transition: background 0.5s ease;
 }
+
+html {
+  scroll-behavior: smooth;
+}

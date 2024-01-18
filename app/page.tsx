@@ -65,7 +65,7 @@ export default function IndexPage() {
         </div>
       </div>
       <div className="md:h-[1000px] mt-12 flex flex-col items-center bg-black w-full p-5 ">
-        <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4 max-md:pt-4">And who made <span className="font-bold text-white">Applio</span>?</p>
+        <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4 max-md:pt-28">And who made <span className="font-bold text-white">Applio</span>?</p>
         <p className="font-space-grotesk leading-snug text-white text-[16px] lg:text-[20px] max-w-md md:max-w-xl lg:max-w-[640px] text-center mb-8">Who better to do it than you, the community.</p>
         <img src="https://contrib.rocks/image?repo=IAHispano/Applio" alt="Github collaborators" />
       </div>

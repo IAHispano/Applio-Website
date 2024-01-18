@@ -93,8 +93,8 @@ interface Model {
         }
       }, [data?.author_id]); 
   
-    const defaultImageUrl = "https://i.imgur.com/jDmINMQ.png";
-    const defaultImageUrl2 = "https://i.imgur.com/UYCcsNM.png";
+    const defaultImageUrl = "/default1.png";
+    const defaultImageUrl2 = "/default2.png";
     const defaultName = "Unknown name";
     const imageUrlToShow =
       data?.image_url === null || data?.image_url === "n/a" || error

@@ -1,10 +1,10 @@
-"use client";
+"use client"
 
-import { Button } from "@nextui-org/button";
-import { experimental_useFormStatus as useFormStatus } from "react-dom";
+import { Button } from "@nextui-org/button"
+import { experimental_useFormStatus as useFormStatus } from "react-dom"
 
 export function ComposePostButton() {
-  const { pending } = useFormStatus();
+  const { pending } = useFormStatus()
 
   return (
     <Button
@@ -15,5 +15,5 @@ export function ComposePostButton() {
     >
       {pending ? "Please wait..." : "Send"}
     </Button>
-  );
+  )
 }

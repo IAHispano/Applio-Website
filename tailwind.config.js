@@ -1,10 +1,15 @@
+import { nextui } from "@nextui-org/theme"
+
 const { fontFamily } = require("tailwindcss/defaultTheme")
-import {nextui} from '@nextui-org/theme'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ["class"],
-  content: ["app/**/*.{ts,tsx}", "components/**/*.{ts,tsx}", "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "app/**/*.{ts,tsx}",
+    "components/**/*.{ts,tsx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     container: {
       center: true,

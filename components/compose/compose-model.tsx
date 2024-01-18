@@ -1,38 +1,39 @@
-"use client";
+"use client"
 
-import React, { useState } from "react";
-import { addPost } from "@/app/actions/add-post-action";
+import React, { useRef, useState } from "react"
 import {
-  Textarea,
-  Button,
-  User,
-  Input,
   Avatar,
-  SelectItem,
+  Button,
+  Input,
   Select,
-} from "@nextui-org/react";
-import { useRef } from "react";
-import { ComposePostButton } from "./compse-post-button";
+  SelectItem,
+  Textarea,
+  User,
+} from "@nextui-org/react"
+
+import { addPost } from "@/app/actions/add-post-action"
+
+import { ComposePostButton } from "./compse-post-button"
 
 export function ComposeModel({}) {
-  const formRef = useRef<HTMLFormElement>(null);
-  const [value, setValue] = React.useState(new Set([]));
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
+  const formRef = useRef<HTMLFormElement>(null)
+  const [value, setValue] = React.useState(new Set([]))
+  const [selectedLanguage, setSelectedLanguage] = useState("English")
 
   const handleAddPost = async () => {
-    const formData = new FormData();
-    formData.append("language", selectedLanguage);
+    const formData = new FormData()
+    formData.append("language", selectedLanguage)
 
-    await addPost(formData);
-  };
+    await addPost(formData)
+  }
 
   return (
     <div>
       <form
         ref={formRef}
         action={async (formData) => {
-          await addPost(formData);
-          formRef.current?.reset();
+          await addPost(formData)
+          formRef.current?.reset()
         }}
       >
         <div className="flex flex-col m-8">
@@ -76,61 +77,57 @@ export function ComposeModel({}) {
             description="The number of epochs that the model will be trained for"
             isRequired
           />
-                      <Select
+          <Select
             isRequired
             label="Algorithm"
             placeholder="With which algorithm this model was created"
             className="max-w-xs mb-8"
             name="algorithm"
-            >
+          >
             <SelectItem key="Rvmpe" value="Rvmpe">
-                Rvmpe
+              Rvmpe
             </SelectItem>
             <SelectItem key="Harvest" value="Harvest">
-                Harvest
+              Harvest
             </SelectItem>
             <SelectItem key="PM" value="PM">
-                PM
+              PM
             </SelectItem>
             <SelectItem key="Dio" value="Dio">
-                Dio
+              Dio
             </SelectItem>
             <SelectItem key="Crepe" value="Crepe">
-                Crepe
+              Crepe
             </SelectItem>
             <SelectItem key="Crepe-tiny" value="Crepe-tiny">
-                Crepe-tiny
+              Crepe-tiny
             </SelectItem>
             <SelectItem key="Mangio-crepe" value="Mangio-crepe">
-                Mangio-crepe
+              Mangio-crepe
             </SelectItem>
-            </Select>
-            <Select
+          </Select>
+          <Select
             isRequired
             label="Type"
             placeholder="Select the technology here "
             className="max-w-xs"
             name="version"
-            >
+          >
             <SelectItem key="RVC V2" value="RVC V2">
-                RVC V2
+              RVC V2
             </SelectItem>
             <SelectItem key="RVC V1" value="RVC V1">
-                RVC V1
+              RVC V1
             </SelectItem>
             <SelectItem key="SVC" value="SVC">
-                SVC
+              SVC
             </SelectItem>
-            </Select>
-          <div className="w-72 mb-8">
-
-          </div>
-          <div className="w-72 mb-8">
-
-          </div>
+          </Select>
+          <div className="w-72 mb-8"></div>
+          <div className="w-72 mb-8"></div>
           <ComposePostButton />
         </div>
       </form>
     </div>
-  );
+  )
 }

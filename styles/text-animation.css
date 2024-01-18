@@ -1,11 +1,10 @@
-.animate-charcter
-{
+.animate-charcter {
   background: linear-gradient(
-      to right,
-      #27CF15 24%,
-      #0487b7 29%,
-      #0dd621 67%,
-      #0487b7 100%
+    to right,
+    #27cf15 24%,
+    #0487b7 29%,
+    #0dd621 67%,
+    #0487b7 100%
   );
   /* background: linear-gradient(
     to right,
@@ -24,9 +23,9 @@
 }
 @keyframes textShine {
   0% {
-      background-position: 0% 50%;
+    background-position: 0% 50%;
   }
   100% {
-      background-position: 100% 50%;
+    background-position: 100% 50%;
   }
 }

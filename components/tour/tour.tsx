@@ -176,7 +176,7 @@ export default function Tour2023({
         {pageNumber === 12 && (
         <article className="">
         <div className="z-30 gap-4 flex flex-col items-center"> 
-            <img alt="AI Hispano Logo" src="/logo.webp" className="w-96 h-96 z-30"/> 
+            <img alt="AI Hispano Logo" src="/aihispano_logo.webp" className="w-96 h-96 z-30"/> 
         </div>
         <p className="text-neutral-300 text-xs">made by <a className="font-semibold hover:underline" href="https://twitter.com/bygimenezz">bydeivih</a> for fun</p>
         </article>

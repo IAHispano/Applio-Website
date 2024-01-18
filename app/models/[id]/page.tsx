@@ -93,8 +93,8 @@ interface Model {
         }
       }, [data?.author_id]); 
   
-    const defaultImageUrl = "/default1.png";
-    const defaultImageUrl2 = "/default2.png";
+    const defaultImageUrl = "/applio_logo.png";
+    const defaultImageUrl2 = "/no_bg_applio_logo.png";
     const defaultName = "Unknown name";
     const imageUrlToShow =
       data?.image_url === null || data?.image_url === "n/a" || error

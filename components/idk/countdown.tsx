@@ -11,9 +11,11 @@ const CountdownTimer: React.FC = () => {
   function calculateTimeRemaining(): { hours: number; minutes: number; seconds: number } {
     const now = new Date();
     const difference = targetDate.getTime() - now.getTime();
-    const hours = Math.floor(difference / (1000 * 60 * 60));
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+    const hours = Math.max(Math.floor(difference / (1000 * 60 * 60)), 0);
+    const minutes = Math.max(Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)), 0);
+    const seconds = Math.max(Math.floor((difference % (1000 * 60)) / 1000), 0);
+
     return { hours, minutes, seconds };
   }
 

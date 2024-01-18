@@ -133,18 +133,16 @@ export default function TestCard({
           </div>
         </div>
       </div>
-      <h5 className="font-bold text-lg w-full px-2 text-white truncate">
-       {name}
+      <h5 className="font-bold text-lg w-full px-1 text-white">
+       {name.length > 29 ? `${name.substring(0, 20)}...` : name}
      </h5>
-      <div className="flex flex-col-3 gap-1 p-2">
+     <p className="text-xs px-1 text-white/70">by {author_username.length > 30 ? `${author_username.substring(0, 10)}...` : author_username} at {isNaN(new Date(created_at).getTime()) ? 'Unknown date' : new Date(created_at).toLocaleDateString('en-US')}.</p>
+      <div className="flex flex-col-3 gap-1 px-1 mt-2">
         <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
           <p className="capitalize">{algorithm}</p>
         </div>
         <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
           <p className="uppercase">{type}</p>
-        </div>
-        <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center truncate">
-          <p>{author_username.length > 30 ? `${author_username.substring(0, 10)}...` : author_username}</p>
         </div>
       </div>
       </div>

@@ -16,29 +16,18 @@ export default function HeaderMobile() {
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3 flex justify-center"> 
-    </NavbarContent>
-
-      <NavbarMenu>
+      <NavbarMenu className="flex justify-start items-center  w-full flex-wrap gap-4 h-full z-20 text-center">
       {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
-              <Link
-                color={
-                  index === 2
-                    ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
-                    ? "success"
-                    : "foreground"
-                }
-                href={item.href}
-                size="lg"
-              >
-                {item.label}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
+        <NavbarMenuItem key={`${item}-${index}`} className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3">
+          <Link
+            href={item.href}
+            className="p-4 text-2xl flex items-center justify-center gap-2 bg-white/10 active:bg-white/20 rounded-xl tracking-tight gtransition"
+          >
+            {item.label}
+          </Link>
+        </NavbarMenuItem>
+      ))}
+    </NavbarMenu>
     </Navbar>
   );
 }

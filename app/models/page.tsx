@@ -5,10 +5,17 @@ import {
 import { ArrowRight, SearchIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { PostgrestError } from "@supabase/supabase-js";
-import { Button, Input, Spinner } from "@nextui-org/react";
+import { Button, Divider, Input, Spinner } from "@nextui-org/react";
 import {Progress} from "@nextui-org/react";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import TestCard from "@/components/models/test-card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
 
 
 export default function Home() {
@@ -117,9 +124,6 @@ function loadmore() {
         </div>
         </div>
       <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls">
-        <h1 className="text-8xl font-bold leading-tight tracking-tighter md:text-9xl mt-4 ">
-          Models
-        </h1>
       </div>
       <form
       className="mx-auto flex items-center justify-center w-full"
@@ -145,7 +149,7 @@ function loadmore() {
     onChange={(e) => setSearch(e.target.value)}
   />
 </form>
-<div className="md:mx-16 mt-2 gap-2 flex items-center justify-start md:w-full max-md:grid-cols-3 max-md:grid max-md:mx-8">
+<div className=" mt-4 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid">
         <Button
           size="sm"
           variant={selectedFilter !== "rvc" ? "ghost" : undefined}
@@ -157,7 +161,7 @@ function loadmore() {
           RVC
         </Button>
         <Button
-        size="sm"
+          size="sm"
         variant={selectedFilter !== "kits.ai" ? "ghost" : undefined}
         onClick={() => {
           setSelectedFilter("kits.ai");
@@ -168,7 +172,7 @@ function loadmore() {
           KITS.AI
         </Button>
         <Button
-        size="sm"
+          size="sm"
         variant={algorithmFilter !== "rmvpe" ? "ghost" : undefined}
         onClick={() => {
           setAlgorithmFilter("rmvpe");
@@ -179,7 +183,7 @@ function loadmore() {
         RMVPE
         </Button>
         <Button
-        size="sm"
+          size="sm"
         variant={algorithmFilter !== "mangio-crepe" ? "ghost" : undefined}
         onClick={() => {
           setAlgorithmFilter("mangio-crepe");
@@ -187,10 +191,10 @@ function loadmore() {
         }}
       >
 
-        MANGIO-CREPE
+        MANGIO
         </Button>
         <Button
-        size="sm"
+          size="sm"
         variant={algorithmFilter !== "crepe" ? "ghost" : undefined}
         onClick={() => {
           setAlgorithmFilter("crepe");
@@ -201,7 +205,7 @@ function loadmore() {
         CREPE
         </Button>
         <Button
-        size="sm"
+          size="sm"
         variant={algorithmFilter !== "harvest" ? "ghost" : undefined}
         onClick={() => {
           setAlgorithmFilter("harvest");
@@ -212,9 +216,53 @@ function loadmore() {
         HARVEST
         </Button>
       </div>
+      <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
+      <CarouselContent>
+        {posts
+          ?.slice()
+          .sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()) 
+          .map((post: any, index: number) => {
+            const {
+              name,
+              image_url: imageUrl,
+              created_at,
+              link,
+              id,
+              epochs,
+              version,
+              type,
+              algorithm,
+              author_id,
+              author_username,
+              likes
+            } = post;
 
-
-      <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-8 mx-16 items-center justify-center">
+            return (
+              <CarouselItem key={id} className="md:basis-1/3">
+                <div className="p-1">
+                  <TestCard
+                    name={name}
+                    imageUrl={imageUrl}
+                    created_at={created_at}
+                    id={id}
+                    link={link}
+                    epochs={epochs}
+                    version={version}
+                    type={type}
+                    algorithm={algorithm}
+                    author_id={author_id}
+                    likes={likes}
+                    author_username={author_username}
+                  />
+                </div>
+              </CarouselItem>
+            );
+          })}
+      </CarouselContent>
+  <CarouselPrevious />
+  <CarouselNext />
+</Carousel>
+      <section className="mt-4 grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
       {posts?.map((post: any, index: number) => {
           const {
             name,

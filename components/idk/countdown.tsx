@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react"
 
 const CountdownTimer: React.FC = () => {
-  const targetDate = new Date("2024-01-19T22:59:00Z")
+  const targetDate = new Date("2024-01-16T22:59:00Z")
 
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining())
   const [isExpired, setIsExpired] = useState(false)

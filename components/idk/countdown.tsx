@@ -13,7 +13,7 @@ const CountdownTimer: React.FC = () => {
     minutes: number
     seconds: number
   } {
-    const now = new Date()
+    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "UTC"}))
     const difference = targetDate.getTime() - now.getTime()
 
     const hours = Math.max(Math.floor(difference / (1000 * 60 * 60)), 0)

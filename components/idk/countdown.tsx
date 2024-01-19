@@ -8,23 +8,21 @@ const CountdownTimer: React.FC = () => {
   const [timeRemaining, setTimeRemaining] = useState(calculateTimeRemaining())
   const [isExpired, setIsExpired] = useState(false)
 
-  function calculateTimeRemaining(): {
-    hours: number
-    minutes: number
-    seconds: number
-  } {
-    const now = new Date(new Date().toLocaleString("en-US", {timeZone: "UTC"}))
-    const difference = targetDate.getTime() - now.getTime()
+function calculateTimeRemaining(): {
+  hours: number
+  minutes: number
+  seconds: number
+} {
+  const now = new Date(new Date().toLocaleString("en-US", { timeZone: "UTC" }))
+  const difference = targetDate.getTime() - now.getTime()
 
-    const hours = Math.max(Math.floor(difference / (1000 * 60 * 60)), 0)
-    const minutes = Math.max(
-      Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-      0
-    )
-    const seconds = Math.max(Math.floor((difference % (1000 * 60)) / 1000), 0)
+  const totalSeconds = Math.max(Math.floor(difference / 1000), 0)
+  const hours = Math.floor(totalSeconds / 3600)
+  const minutes = Math.floor((totalSeconds % 3600) / 60)
+  const seconds = totalSeconds % 60
 
-    return { hours, minutes, seconds }
-  }
+  return { hours, minutes, seconds }
+}
 
   useEffect(() => {
     const interval = setInterval(() => {

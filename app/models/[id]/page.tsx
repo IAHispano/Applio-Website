@@ -145,28 +145,27 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
   }
 
   const handleDeletePost = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession()
+    const { data: { session } } = await supabase.auth.getSession();
     if (session === null) {
-      redirect("/login")
+      redirect('/login');
     } else {
-      if (userLiked) {
-        return
-      }
 
-      const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]")
-      likedItems.push(id)
-      localStorage.setItem("likedItems", JSON.stringify(likedItems))
-
-      const formData = new FormData()
-      formData.append("id", id)
-
-      await addPost(formData)
-
-      setUserLiked(true)
+    if (userLiked) {
+      return; 
     }
+
+    const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
+    likedItems.push(id);
+    localStorage.setItem("likedItems", JSON.stringify(likedItems));
+
+    const formData = new FormData();
+    formData.append("id", id);
+
+    await addPost(formData);
+
+    setUserLiked(true);
   }
+  };
   const [userLiked, setUserLiked] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const clipboard = useClipboard({ timeout: 500 })

@@ -1,7 +1,3 @@
-"use client"
-
-import CountdownTimer from "@/components/idk/countdown"
-
 export default function IndexPage() {
   return (
     <article className="absolute inset-0 bg-black w-full h-full text-white">
@@ -22,7 +18,17 @@ export default function IndexPage() {
           <source src="/background.mp4" type="video/mp4"></source>
         </video>
         <div className=" justify-start items-center text-center flex flex-col gap-4 ">
-          <CountdownTimer />
+        <div className="text-3xl md:text-6xl py-10 text-white gtransition z-20">
+          <p className="md:tracking-tighter tracking-tight font-bold ">
+            Introducing{" "}
+            <span className="underline underline-offset-8 font-semibold">
+              Applio <span className="hover:text-8xl gtransition">V3</span>
+            </span>
+          </p>
+          <p className="text-xl text-white/30 mt-4 tracking-tight">
+            Click to see the trailer
+          </p>
+        </div>
         </div>
         <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">
           Scroll down to know more...

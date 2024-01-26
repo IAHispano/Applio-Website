@@ -300,7 +300,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                               startContent={
                                 isLoading ? null : (
                                   <img
-                                    src="https://i.imgur.com/UYCcsNM.png"
+                                    src="/no_bg_applio_logo.png"
                                     className="w-full h-full scale-150 hover:scale-110 gtransition"
                                   ></img>
                                 )

@@ -179,9 +179,11 @@ export default function TestCard({
           .
         </p>
         <div className="flex flex-col-3 gap-1 px-1 mt-2">
+        {algorithm !== "N/A" && (
           <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
             <p className="capitalize">{algorithm}</p>
           </div>
+          )}
           <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
             <p className="uppercase">{type}</p>
           </div>

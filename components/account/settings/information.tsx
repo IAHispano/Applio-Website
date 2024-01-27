@@ -1,28 +1,17 @@
 "use client"
 
-import React, { useEffect, useRef } from "react"
-import { Avatar, Button, Chip, Divider, Input, Switch } from "@nextui-org/react"
-import { IconBat, IconFlare } from "@tabler/icons-react"
-import Cookies from "js-cookie"
-import { Trash2, User2 } from "lucide-react"
-
+import React, { useRef } from "react"
+import { Divider, Input } from "@nextui-org/react"
 import { addPost } from "@/app/actions/change-bio"
-
 import { DeleteAccountButton } from "./button-delete-account"
 import { ChangeBioButton } from "./change-bio-button"
 
 interface ModelInfoProps {
-  avatar_url: string
-  full_name: string | null
-  role: string
   bio: string
   links: Array<any>
 }
 
 function Information({
-  avatar_url,
-  full_name,
-  role,
   bio,
   links,
 }: Readonly<ModelInfoProps>) {
@@ -52,10 +41,11 @@ function Information({
             radius="sm"
           ></Input>
         </section>
+        <div>
         <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
           <Input
             className="text-sm text-neutral-300"
-            defaultValue={links[0]}
+            defaultValue={links?.[0] || ''}
             type="link1"
             label="Link 1"
             fullWidth
@@ -68,7 +58,7 @@ function Information({
         <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
           <Input
             className="text-sm text-neutral-300"
-            defaultValue={links[1]}
+            defaultValue={links?.[1] || ''}
             type="link2"
             label="Link 2"
             fullWidth
@@ -78,6 +68,7 @@ function Information({
             radius="sm"
           ></Input>
         </section>
+        </div>
         <div className="items-end justify-end flex flex-col gap-4">
           <ChangeBioButton />
         </div>

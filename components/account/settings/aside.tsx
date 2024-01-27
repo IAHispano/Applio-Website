@@ -61,9 +61,6 @@ export function AsideSelection({
           <div className="flex-grow bg-neutral-900 h-4/5 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">
             {section === "account" && (
               <Information
-                full_name={full_name}
-                avatar_url={avatar_url}
-                role={role}
                 bio={bio}
                 links={links}
               />

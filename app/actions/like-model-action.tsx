@@ -27,7 +27,7 @@ export const addPost = async (formData: FormData) => {
 
   const { likes } = modelData
 
-  const newLikes = likes + 1
+  const newLikes = parseInt(likes, 10) + 1;
 
   await supabase
     .from("models")

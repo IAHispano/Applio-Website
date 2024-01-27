@@ -12,7 +12,7 @@ export default function Tour2023({
   full_name,
 }: Readonly<{
   numberOfModels: number
-  modelLikes: string
+  modelLikes: any
   kitsAiCount: number
   rvcCount: number
   epochsCount: number

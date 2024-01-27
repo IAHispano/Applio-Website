@@ -72,7 +72,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         >
           <Providers>
             <MantineProvider>
-              <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+              <ThemeProvider attribute="class" defaultTheme="dark">
                 <div className="relative flex min-h-screen flex-col">
                   <SiteHeader />
                   <div className="flex-1 bg-background">

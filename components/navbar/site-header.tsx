@@ -61,7 +61,6 @@ export async function SiteHeader() {
                   <span className="sr-only">Support</span>
                 </div>
               </Link>
-              <ThemeToggle />
               <div className="hidden md:flex">
                 <AuthButtonServer />
               </div>

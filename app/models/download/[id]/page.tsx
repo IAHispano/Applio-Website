@@ -21,6 +21,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
         .from("models")
         .select("*")
         .eq("id", id)
+        .limit(1)
         .single()
 
       if (modelsError) {

@@ -224,11 +224,7 @@ export default function Home() {
           <CarouselContent>
             {posts
               ?.slice()
-              .sort(
-                (a, b) =>
-                  new Date(b.created_at).getTime() -
-                  new Date(a.created_at).getTime()
-              )
+              .sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10))
               .map((post: any, index: number) => {
                 const {
                   name,
@@ -270,7 +266,7 @@ export default function Home() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-        <section className="mt-4 grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
+        <section className="mt-4 grid grid-cols-1 2xl:gridcols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
           {posts?.map((post: any, index: number) => {
             const {
               name,

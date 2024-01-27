@@ -12,7 +12,7 @@ export default function Tour2023({
   full_name,
 }: Readonly<{
   numberOfModels: number
-  modelLikes: number
+  modelLikes: string
   kitsAiCount: number
   rvcCount: number
   epochsCount: number
@@ -159,7 +159,7 @@ export default function Tour2023({
               <h1 className="animate-delay-40 fade-in z-30 bg-clip-text text-center font-semibold leading-tight text-white md:text-6xl text-4xl">
                 You have{" "}
                 <span className="underline underline-offset-8 decoration-white/50 text-7xl">
-                  {modelLikes}
+                {parseInt(modelLikes, 10)}
                 </span>{" "}
                 <span>likes</span>
               </h1>

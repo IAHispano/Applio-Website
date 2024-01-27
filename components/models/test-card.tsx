@@ -129,7 +129,7 @@ export default function TestCard({
       isLoaded={allLoad}
       className=" md:active:scale-90 transition-all gtransition-low hover:opacity-80 "
     >
-      <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-black dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer">
+      <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-black dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer border-white/10 border mx-auto">
         <div className="relative w-full flex items-center justify-center mb-2">
           <div className="w-full h-[300px] rounded-lg relative">
             <img
@@ -144,7 +144,7 @@ export default function TestCard({
             />
           </div>
           <div className="flex gap-2 absolute bottom-2 right-2">
-            <div className="flex items-center gap-1 rounded-md bg-neutral-800 px-2 py-1 text-center text-white">
+            <div className="flex items-center gap-1 rounded-md bg-[#3c3c3c] shadow-2xl border-white/10 border px-2 py-1 text-center text-white">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -164,10 +164,10 @@ export default function TestCard({
             </div>
           </div>
         </div>
-        <h5 className="font-bold text-lg w-full px-1 text-white">
-          {name.length > 29 ? `${name.substring(0, 20)}...` : name}
+        <h5 className="font-bold text-lg w-full px-1 text-white justify-start flex">
+          {name.length > 15 ? `${name.substring(0, 14)}...` : name}
         </h5>
-        <p className="text-xs px-1 text-white/70">
+        <p className="text-xs px-1 text-white/70  justify-start flex">
           by{" "}
           {author_username.length > 30
             ? `${author_username.substring(0, 10)}...`
@@ -178,11 +178,11 @@ export default function TestCard({
             : new Date(created_at).toLocaleDateString("en-US")}
           .
         </p>
-        <div className="flex flex-col-3 gap-1 px-1 mt-2">
-        {algorithm !== "N/A" && (
-          <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
-            <p className="capitalize">{algorithm}</p>
-          </div>
+        <div className="flex flex-col-3 gap-1 px-1 mt-2 justify-start flex">
+        {algorithm !== "N/A" && algorithm !== null && algorithm !== "" && (
+            <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
+              <p className="capitalize">{algorithm}</p>
+            </div>
           )}
           <div className="flex items-center gap-1 rounded-md bg-gray-100 dark:bg-neutral-800 px-2 py-.5 text-center">
             <p className="uppercase">{type}</p>

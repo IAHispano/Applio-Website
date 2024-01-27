@@ -68,7 +68,10 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                   author_username: userData[0].author_username ?? null,
                 } as Model)
               : null
-          )
+          );
+          const likedItems = JSON.parse(localStorage.getItem("likedItems") || "[]");
+          const userLikedModel = likedItems.includes(id);
+          setUserLiked(userLikedModel);
         }
       } catch (error) {
         setError(error as PostgrestError)
@@ -161,9 +164,8 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
     const formData = new FormData();
     formData.append("id", id);
 
-    await addPost(formData);
-
     setUserLiked(true);
+    await addPost(formData);
   }
   };
   const [userLiked, setUserLiked] = useState(false)

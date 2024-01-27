@@ -29,7 +29,7 @@ import AccountModelCard from "./model-card-account"
 const supabase = createClientComponentClient<Database>()
 
 interface ModelInfoProps {
-  userFullName: string
+  userFullName: string 
 }
 
 export function ModelsAccount({ userFullName }: ModelInfoProps) {
@@ -105,7 +105,7 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
         <h2 className="text-2xl font-semibold tracking-tight mt-10 mb-4">
           Your Models
         </h2>
-        <div className="grid grid-cols-1 mx-auto md:grid-cols-3 items-center justify-center p-3  bg-neutral-700 gap-3 rounded-3xl">
+        <div className="grid grid-cols-1 mx-auto md:grid-cols-4 lg:grid-cols-5 sm:grid-cols-3 items-center justify-center p-3  bg-neutral-700 gap-3 rounded-3xl">
           {data.map((model) => (
             <div key={model.id}>
               <AccountModelCard

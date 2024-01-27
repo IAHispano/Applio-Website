@@ -133,32 +133,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls"></div>
-        <form
-          className="mx-auto flex items-center justify-center w-full"
-          onSubmit={(e) => {
-            e.preventDefault()
-            setEnd(9)
-            setIncrement(9)
-            fetchData()
-          }}
-        >
-          <Input
-            classNames={{
-              base: "w-full h-10 mx-16",
-              mainWrapper: "h-full w-full",
-              input: "text-small",
-              inputWrapper:
-                "h-full w-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
-            }}
-            placeholder="Press ENTER to search a model"
-            size="sm"
-            startContent={<SearchIcon size={18} />}
-            type="search"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-        </form>
-        <div className=" mt-4 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid">
+        <div className=" mb-2 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid">
           <Button
             size="sm"
             variant={selectedFilter !== "rvc" ? "ghost" : undefined}
@@ -220,6 +195,32 @@ export default function Home() {
             HARVEST
           </Button>
         </div>
+        <form
+          className="mx-auto flex items-center justify-center w-full"
+          onSubmit={(e) => e.preventDefault()}
+        >
+          <Input
+            classNames={{
+              base: "w-full h-10 mx-16",
+              mainWrapper: "h-full w-full",
+              input: "text-small",
+              inputWrapper:
+                "h-full w-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
+            }}
+            placeholder="Press ENTER to search a model"
+            size="sm"
+            startContent={<SearchIcon size={18} />}
+            type="search"
+            value={search}
+            onChange={(e) => {
+              setSearch(e.target.value);
+              setEnd(9);
+              setIncrement(9);
+              fetchData(); 
+            }}
+          />
+        </form>
+        {!search && (
         <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
           <CarouselContent>
             {posts
@@ -266,6 +267,7 @@ export default function Home() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+        )}
         <section className="mt-4 grid grid-cols-1 2xl:gridcols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
           {posts?.map((post: any, index: number) => {
             const {

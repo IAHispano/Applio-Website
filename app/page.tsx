@@ -122,9 +122,9 @@ export default function IndexPage() {
           />
         </div>
         <div className="md:h-[400px]  flex flex-col items-center bg-black w-full p-5">
-          <p className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white ">
-            Ready to use?
-          </p>
+          <a className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white hover:underline decoration-4 underline-offset-8 gtransition cursor-pointer" href="https://download.applio.org/" target="_blank">
+            Download Applio 
+          </a>
         </div>
       </main>
     </article>

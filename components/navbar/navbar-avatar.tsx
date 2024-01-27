@@ -124,14 +124,7 @@ export default function NavbarAvatar({
       onClick={handleProfileClick}
       startContent={<UserCircle className={iconClasses} />}
     >
-      <p className="font-semibold">{userFullName}</p>
-    </DropdownItem>,
-    <DropdownItem
-      key="settings"
-      onClick={handleAlerts}
-      startContent={<Bell className={iconClasses} />}
-    >
-      Notifications
+      <p className="font-semibold">Profile</p>
     </DropdownItem>,
     <DropdownItem
       key="settings"
@@ -139,20 +132,6 @@ export default function NavbarAvatar({
       startContent={<Settings className={iconClasses} />}
     >
       Settings
-    </DropdownItem>,
-    <DropdownItem
-      key="upload"
-      onClick={handleProfileClick3}
-      startContent={<Upload className={iconClasses} />}
-    >
-      Upload model
-    </DropdownItem>,
-    <DropdownItem
-      key="discord"
-      onClick={handleProfileClick1}
-      startContent={<IconBrandDiscord className={iconClasses} />}
-    >
-      Discord
     </DropdownItem>,
     <DropdownItem
       key="bug"

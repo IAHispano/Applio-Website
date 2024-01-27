@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Bot, CalendarSearch, User2 } from "lucide-react"
 
 import Information from "./information"
+import ModelsAccount from "./models"
 
 interface AsideSelectionProps {
   avatar_url: string
@@ -66,6 +67,9 @@ export function AsideSelection({
                 bio={bio}
                 links={links}
               />
+            )}
+            {section === "models" && (
+              <ModelsAccount userFullName={full_name as string}/>
             )}
           </div>
         </div>

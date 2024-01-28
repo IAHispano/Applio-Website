@@ -48,10 +48,6 @@ export default function NavbarAvatar({
     window.location.href = `/user/${encodedFullName}`
   }
 
-  const handleProfileClick1 = () => {
-    window.open("https://discord.gg/iahispano", "_blank")
-  }
-
   const handleProfileClick2 = () => {
     window.open(
       "https://github.com/IAHispano/Applio-Website/issues/new",
@@ -59,16 +55,8 @@ export default function NavbarAvatar({
     )
   }
 
-  const handleProfileClick3 = () => {
-    window.location.href = `/upload`
-  }
-
   const handleSettings = () => {
     window.location.href = `/settings/${user?.id}`
-  }
-
-  const handleAlerts = () => {
-    window.location.href = `/alerts/${user?.id}`
   }
 
   const handleAdminDashboardClick = () => {
@@ -106,19 +94,6 @@ export default function NavbarAvatar({
     "text-sm text-default-500 pointer-events-none flex-shrink-0"
   const tourClasses = "text-sm text-white pointer-events-none flex-shrink-0"
   const dropdownItems = [
-    <DropdownItem
-      key="tour"
-      onClick={handleTour}
-      startContent={<Sparkles className={tourClasses} />}
-      className="p-3 my-1 hover:opacity-95 gtransition"
-      style={{
-        background: "linear-gradient(to right, #41295a, #2F0743)",
-      }}
-    >
-      <span className="z-50">
-        Tour <span className="font-bold">2023</span>
-      </span>
-    </DropdownItem>,
     <DropdownItem
       key="profile"
       onClick={handleProfileClick}

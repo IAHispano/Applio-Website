@@ -130,11 +130,11 @@ export default function UserInfo({ id }: Readonly<Props>) {
             <article className="md:col-span-8 overflow-hidden md:h-96 relative gtransition w-full h-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-black/60 dark:border-white/20 backdrop-filter backdrop-blur-3xl bg-clip-padding justify-start items-start relative">
               <div className="h-full flex flex-col justify-center items-center bg-black w-full absolute overflow-hidden blur-3xl -ml-5 -mt-5 gtransition  opacity-60 ">
                 <img
-                  src={user.avatar_url || "/background.png"}
+                  src={user.avatar_url || "/poster.png"}
                   className="w-full h-full object-cover"
                   alt={user.full_name}
                   onError={(e) => {
-                    e.currentTarget.src = "/background.png"
+                    e.currentTarget.src = "/poster.png"
                   }}
                 />
               </div>

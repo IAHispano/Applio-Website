@@ -177,3 +177,18 @@
 html {
   scroll-behavior: smooth;
 }
+
+.hide-scrollbar {
+  overflow: auto;
+  scrollbar-width: thin;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-color: transparent transparent;  /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  width: 8px;  /* Ancho del scrollbar en navegadores WebKit (Chrome, Safari) */
+}
+
+.hide-scrollbar::-webkit-scrollbar-thumb {
+  background-color: transparent;  /* Color del thumb del scrollbar en navegadores WebKit */
+}

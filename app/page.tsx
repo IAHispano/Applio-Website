@@ -1,41 +1,25 @@
+import { ContainerScroll } from "@/components/landing/container-scroll";
+import { TextRevealCard } from "@/components/landing/text-card";
+
 export default function IndexPage() {
+
   return (
-    <article className="absolute inset-0 bg-black w-full h-full text-white">
-      <a
-        className="min-h-[600px] h-[95svh] flex flex-col justify-center items-center w-full p-10 relative overflow-hidden [&_video]:hover:saturate-150  [&_video]:hover:blur-xl gtransition rounded-b-3xl"
-        href="https://www.youtube.com/watch?v=nxqo6kOhsBI"
-        target="_blank"
-        rel="noreferrer"
-      >
-        <video
-          className="absolute top-0 left-0 pointer-events-none h-full w-full object-cover blur-3xl opacity-60 gtransition"
-          playsInline
-          autoPlay
-          muted
-          loop
-          poster="/poster.png"
-        >
-          <source src="/background.mp4" type="video/mp4"></source>
-        </video>
-        <div className=" justify-start items-center text-center flex flex-col gap-4 ">
-        <div className="text-3xl md:text-6xl py-10 text-white gtransition z-20">
-          <p className="md:tracking-tighter tracking-tight font-bold ">
-            Introducing{" "}
-            <span className="underline underline-offset-8 font-semibold">
-              Applio <span className="hover:text-8xl gtransition">V3</span>
-            </span>
-          </p>
-          <p className="text-xl text-white/30 mt-4 tracking-tight">
-            Click to see the trailer
-          </p>
-        </div>
-        </div>
-        <div className="absolute flex items-center tracking-tight bottom-10 text-sm md:text-lg text-white/50 hover:text-white gap-2 gtransition">
-          Scroll down to know more...
-        </div>
-      </a>
-      <main className="flex flex-col w-full justify-start items-center text-center relative bg-black">
-        <div className="h-[950px] flex flex-col items-center bg-black w-full p-5 -scroll-mt-1 md:pt-44 pt-12">
+    <div className="flex flex-col overflow-hidden">
+      <ContainerScroll
+        images="/v3_trailer.mp4"
+        titleComponent={
+          <>
+            <h1 className="text-4xl font-semibold text-black dark:text-white">
+              Unleash the power of <br />
+              <span className="text-4xl md:text-[8rem] font-extrabold mt-1 leading-none">
+                Version 3
+              </span>
+            </h1>
+          </>
+        }
+      />
+      <main className="flex flex-col w-full justify-start items-center text-center relative">
+        <div className="h-[950px] flex flex-col items-center w-full p-5 -scroll-mt-1 max-md:-mt-32">
           <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4">
             But what is <span className="text-white font-bold">Applio</span>?
           </p>
@@ -47,56 +31,56 @@ export default function IndexPage() {
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  f0 Inference Algorithm Overhaul
+                  Code Modularization
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  f0 Crepe Pitch Extraction for Training
+                  Hop Length Implementation
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  f0 Hybrid Estimation Method
+                Translations to +30 Languages
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  CLI Functionality
+                Cross-Platform Compatibility
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  TTS (Text-to-Speech)
+                Optimized Requirements
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  Overtraining Detection
+                Simple Installation
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  Mode Collapse Detection
+                  Discord Rich Presence
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                  Data Efficiency
+                  Dataset Creator
                 </h3>
               </div>
             </div>
@@ -109,24 +93,30 @@ export default function IndexPage() {
             </div>
           </div>
         </div>
-        <div className="md:h-[1000px] mt-12 flex flex-col items-center bg-black w-full p-5 ">
-          <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4 max-md:pt-28">
+        <div className="md:h-[1000px] flex flex-col items-center w-full p-5 md:-mt-64">
+          <p className="text-4xl md:text-6xl font-semibold tracking-tighter text-neutral-300 gtransition pb-4 max-md:pt-32">
             And who made <span className="font-bold text-white">Applio</span>?
           </p>
           <p className="font-space-grotesk leading-snug text-white text-[16px] lg:text-[20px] max-w-md md:max-w-xl lg:max-w-[640px] text-center mb-8">
             Who better to do it than you, the community.
           </p>
+          <a href="https://github.com/IAHispano/Applio?tab=readme-ov-file#contributors" rel="noreferrer" target="_blank">
           <img
             src="https://contrib.rocks/image?repo=IAHispano/Applio"
             alt="Github collaborators"
           />
-        </div>
-        <div className="md:h-[400px]  flex flex-col items-center bg-black w-full p-5">
-          <a className="font-extrabold tracking-[-0.04em] leading-none text-[40px] md:text-5xl lg:text-[80px] max-w-lg md:max-w-xl lg:max-w-4xl text-center text-white hover:underline decoration-4 underline-offset-8 gtransition cursor-pointer" href="https://download.applio.org/" target="_blank" rel="noreferrer">
-            Download Applio 
           </a>
         </div>
+        <div className="md:h-[400px]  flex flex-col items-center w-full p-5">
+          <a href="https://download.applio.org" rel="noreferrer" target="_blank">
+          <TextRevealCard
+          text="Download Applio V3"
+          revealText=""
+        >
+        </TextRevealCard>
+        </a>
+        </div>
       </main>
-    </article>
+    </div>
   )
 }

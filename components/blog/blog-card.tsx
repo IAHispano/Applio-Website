@@ -29,7 +29,7 @@ export default function BlogCard() {
     }
 
     fetchData()
-  })
+  }, []);
 
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {

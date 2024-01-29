@@ -117,7 +117,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
               <div className="text-start px-5 mb-5">
                 <div className="w-full rounded-lg underline-offset-2 p-5 text-white max-w-4xl z-10 ">
                   <Markdown
-                    className="text-neutral-200 text-lg z-50"
+                    className="text-neutral-200 md:text-lg max-md:max-w-sm z-50"
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (

@@ -135,7 +135,7 @@ export default function MarkdownInput() {
                           code: ({ node, children, ...props }) => (
                             <code
                                 {...props}
-                                className="select-all bg-white/80 text-black font-bold rounded-xl p-3 m-4"
+                                className="select-all bg-white/80 text-black font-bold rounded-xl p-1"
                             >
                                 {children}
                             </code>

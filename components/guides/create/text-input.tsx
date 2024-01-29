@@ -77,8 +77,8 @@ export default function MarkdownInput() {
               >
               </textarea>
               <div className="flex-1 md:ml-4 border rounded-xl" suppressHydrationWarning>
-              <p className='text-3xl font-bold p-2 truncate max-w-2xl'>{title || 'Untitled'}</p>
-              <p className='text-sm px-3 truncate max-w-3xl'>{description || 'Here you will see the description of your guide.'}</p>
+              <p className='text-3xl font-bold px-4 pt-4 truncate max-w-2xl'>{title || 'Untitled'}</p>
+              <p className='text-sm px-4 mt-1 truncate max-w-3xl'>{description || 'Here you will see the description of your guide.'}</p>
               <Divider className='mt-4'/>
                   <Markdown
                       className="text-neutral-200 text-wrap max-w-4xl break-all text-lg z-50 h-[480px] overflow-auto  p-4 hide-scrollbar"
@@ -135,7 +135,7 @@ export default function MarkdownInput() {
                           code: ({ node, children, ...props }) => (
                             <code
                                 {...props}
-                                className="select-all bg-white/80 text-black font-bold rounded-xl p-1"
+                                className="select-all bg-white/80 text-black font-bold rounded-lg p-1"
                             >
                                 {children}
                             </code>

@@ -92,7 +92,7 @@ export const Card = ({
     >
       <div className="bg-gray-100 h-full w-full rounded-2xl gap-4 overflow-hidden">
         <a href="https://www.youtube.com/watch?v=nxqo6kOhsBI" rel="noreferrer" target="_blank">
-        <video src={images} className="w-full h-full scale-105 object-fill object-center" autoPlay loop playsInline muted/>
+        <video src={images} className="w-full h-full scale-105 object-fill object-center" autoPlay loop playsInline muted poster="/poster.png"/>
         </a>
       </div>
     </motion.div>

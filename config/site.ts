@@ -6,16 +6,16 @@ export const siteConfig = {
     "Applio stands at the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
   mainNav: [
     {
-      title: "Blog",
-      href: "/blog",
-    },
-    {
       title: "Models",
       href: "/models",
     },
     {
       title: "Guides",
       href: "/guides",
+    },
+    {
+      title: "Blog",
+      href: "/blog",
     },
     {
       title: "Bot",
@@ -36,16 +36,16 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Blog",
-      href: "/blog",
-    },
-    {
       label: "Models",
       href: "/models",
     },
     {
       label: "Guides",
       href: "/guides",
+    },
+    {
+      label: "Blog",
+      href: "/blog",
     },
     {
       label: "Bot",

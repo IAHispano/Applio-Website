@@ -121,7 +121,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (
-                        <a {...props} className="text-blue-500 hover:underline">
+                        <a {...props} className="text-green-500 hover:underline">
                           {children}
                         </a>
                       ),
@@ -169,6 +169,14 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                           {children}
                         </strong>
                       ),
+                      code: ({ node, children, ...props }) => (
+                        <code
+                            {...props}
+                            className="select-all bg-white/80 text-black font-bold rounded-xl p-3"
+                        >
+                            {children}
+                        </code>
+                    ),
                     }}
                   >
                     {item.content}

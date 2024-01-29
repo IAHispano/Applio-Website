@@ -9,9 +9,10 @@ export default function IndexPage() {
         images="/v3_trailer.mp4"
         titleComponent={
           <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
+            <h1 className="md:text-4xl text-6xl font-semibold text-black dark:text-white">
               Unleash the power of <br />
-              <span className="text-4xl md:text-[8rem] font-extrabold mt-1 leading-none">
+              <span className="text-6xl md:text-[8rem] font-extrabold mt-1 max-md:mt-3 leading-none">
+                <span className="block md:hidden">Applio</span>
                 Version 3
               </span>
             </h1>

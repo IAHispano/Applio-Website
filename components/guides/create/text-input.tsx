@@ -85,7 +85,7 @@ export default function MarkdownInput() {
                       remarkPlugins={[remarkGfm]}
                       components={{
                           a: ({ node, children, ...props }) => (
-                              <a {...props} className="text-blue-500 hover:underline">
+                              <a {...props} className="text-green-500 hover:underline">
                                   {children}
                               </a>
                           ),

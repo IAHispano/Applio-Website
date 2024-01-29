@@ -72,7 +72,6 @@ export default function Guide() {
                 );
     
                 setData(fetchedData);
-                console.log(fetchedData);
                 setPosts(updatedPosts);
                 if (data.length === null) {
                   const error = new Error("No data available."); 
@@ -142,15 +141,15 @@ export default function Guide() {
     };
 
   return (
-    <main>
+    <main className="min-w-screen min-h-screen bg-background">
     {!loading && (
             <><form
-            className="flex items-center justify-start md:w-[1200px] w-[400px]"
+            className="flex items-center justify-start text-center max-md:px-12 max-sm:px-3  w-full"
             onSubmit={handleSearchSubmit}
           >
             <Input
               classNames={{
-                base: "w-full h-10 pb-14",
+                base: "w-full h-10 pb-14 max-md:mx-12 xl:w-[1150px]",
                 mainWrapper: "h-full w-full",
                 input: "text-small",
                 inputWrapper: "h-full w-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
@@ -182,7 +181,7 @@ export default function Guide() {
               return (
                 <div className="w-full" key={id}>
                   <section className="w-full flex flex-col items-center justify-center gap-4">
-                    <a className="xl:w-[1200px] lg:w-[1000px] md:w-[800px] sm:w-[600px] w-[400px] hover:scale-[99%] flex flex-col text-left justify-center items-start gap-2 p-3  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer " href={`/guides/${id}`} >
+                    <a className="mx-12 lg:w-full hover:scale-[99%] flex flex-col text-left justify-center items-start gap-2 p-3  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer " href={`/guides/${id}`} >
                       {/* <img src={image || "/applio_logo.png"} className="w-full rounded-xl flex justify-center items-center object-cover object-top" style={imageStyle} alt="guide banner"/> */}
                       <p className="text-4xl font-bold px-1 mt-2 text-white flex-wrap md:max-w-6xl max-w-sm">{title || "Unknown Title"}</p>
                       <p className="text-lg px-1 whitespace-pre-line flex-wrap md:max-w-6xl  truncate ">{description || "Unknown Description"}</p>

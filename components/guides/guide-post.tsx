@@ -172,7 +172,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                       code: ({ node, children, ...props }) => (
                         <code
                             {...props}
-                            className="select-all bg-white/80 text-black font-bold rounded-xl p-3"
+                            className="select-all bg-white/80 text-black font-bold rounded-xl p-3 m-4"
                         >
                             {children}
                         </code>

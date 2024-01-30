@@ -67,7 +67,7 @@ export default function MarkdownInput() {
                     "*This is italic text*\n\n" +
                     "- This is a dot\n\n" +
                     "`This is code`\n\n"  +
-                    "![This is an image(Link_Image))"
+                    "![This is an image](Link_Image)"
                   }
                   value={markdownText}
                   onChange={(e) => setMarkdownText(e.target.value)}

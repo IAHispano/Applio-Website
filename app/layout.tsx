@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/navbar/site-header"
 import { ThemeProvider } from "@/components/navbar/theme-provider"
-
 import { Providers } from "./providers"
+import GoogleAnalytics from "@/components/stadistics/GoogleAnalytics"
 
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
@@ -70,6 +70,10 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             fontSans.variable
           )}
         >
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+        <GoogleAnalytics ga_id= 
+        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+        ) : null}
           <Providers>
             <MantineProvider>
               <ThemeProvider attribute="class" defaultTheme="dark">
@@ -83,7 +87,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             </MantineProvider>
           </Providers>
           <Toaster />
-        </body>
+        </body> 
       </html>
     </>
   )

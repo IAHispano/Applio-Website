@@ -91,9 +91,20 @@ export const Card = ({
       className="max-w-6xl md:-mt-6 -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] md:p-6 p-2 bg-[#222222] rounded-[30px] shadow-2xl hidden md:block"
     >
       <div className="bg-gray-100 h-full w-full rounded-2xl gap-4 overflow-hidden hover:scale-110 hover:rounded-3xl gtransition">
-        <a href="https://www.youtube.com/watch?v=nxqo6kOhsBI" rel="noreferrer" target="_blank">
-        <video src={images} className="w-full h-full scale-105 object-fill object-center" autoPlay loop playsInline muted poster="/poster.png"/>
-        </a>
+      <a>
+        <div style={{ height: "100%" }}>
+          <iframe
+            width="100%"
+            height="100%" 
+            src="https://www.youtube.com/embed/nxqo6kOhsBI?autoplay=1"
+            title=""
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            className="w-full h-full object-fill object-center"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </a>
       </div>
     </motion.div>
   );

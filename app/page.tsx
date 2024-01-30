@@ -7,7 +7,7 @@ export default function IndexPage() {
     <div className="flex flex-col overflow-hidden">
      <div className="absolute top-0 h-full min-w-full opacity-10 overflow-hidden" style={{ backgroundImage: 'radial-gradient(ellipse 80% 50% at 50% 0%, #fff, transparent)' }}></div>
       <ContainerScroll
-        images="/v3_trailer.mp4"
+        images=""
         titleComponent={
           <>
             <h1 className="md:text-4xl text-6xl font-semibold text-black dark:text-white">

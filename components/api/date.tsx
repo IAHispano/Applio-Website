@@ -76,16 +76,11 @@ function ApiLogs({ auth_id }: ModelInfoProps) {
       <section className="grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1 gap-4 gtransition">
         <article className="md:col-span-8 overflow-hidden md:h-80 relative md:hover:rounded-[2rem] gtransition w-full h-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-white/20 bg-black justify-start items-start relative">
           <div className="h-full flex flex-col justify-center items-center bg-black w-full p-10 absolute overflow-hidden blur-lg scale-110 -ml-5 -mt-5 filter brightness-75">
-            <video
-              className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover"
-              playsInline
-              autoPlay
-              muted
-              loop
+            <img
+              className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover opacity-70 bg-green-500"
+              src="/poster.png"
             >
-              <source src="/apibackground.mp4" type="video/mp4" />
-              <source src="/apibackground.mp4" type="video/mp4" />
-            </video>
+            </img>
           </div>
           <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
             <h2 className="text-5xl md:text-6xl md:hover:text-8xl font-bold tracking-tighter gtransition">

@@ -27,12 +27,9 @@ export const addPost = async (formData: FormData) => {
 
   const { likes } = modelData
 
-  const newLikes = parseInt(likes, 10) + 1;
+  const newLikes = parseInt(likes, 10) + 1
 
-  await supabase
-    .from("models")
-    .update({ likes: newLikes})
-    .eq("id", id)
+  await supabase.from("models").update({ likes: newLikes }).eq("id", id)
 
   revalidatePath("/")
 }

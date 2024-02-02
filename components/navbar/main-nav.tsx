@@ -14,7 +14,12 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <div className="flex h-full items-center justify-start gap-2 flex-grow truncate">
-      <a href="/" className="text-2xl font-bold tracking-tight truncate hover:bg-white/20 hover:px-4 hover:py-0.5 rounded-lg gtransition">Applio</a>
+        <a
+          href="/"
+          className="text-2xl font-bold tracking-tight truncate hover:bg-white/20 hover:px-4 hover:py-0.5 rounded-lg gtransition"
+        >
+          Applio
+        </a>
       </div>
       {items?.length ? (
         <nav className="flex gap-6">

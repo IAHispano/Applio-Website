@@ -1,4 +1,5 @@
 "use client"
+
 import { Button } from "@nextui-org/react"
 import { Apple, Bot, Search } from "lucide-react"
 
@@ -56,10 +57,9 @@ export default function BotPage() {
         <AccordionItem value="item-5">
           <AccordionTrigger>How can I report a bug or issue?</AccordionTrigger>
           <AccordionContent>
-            If you encounter any bugs or issues while using Applio, please
-            don't hesitate to contact us through our support channels or by
-            filing a bug report on our GitHub repository. We appreciate your
-            feedback!
+            If you encounter any bugs or issues while using Applio, please don't
+            hesitate to contact us through our support channels or by filing a
+            bug report on our GitHub repository. We appreciate your feedback!
           </AccordionContent>
         </AccordionItem>
       </Accordion>

@@ -21,17 +21,17 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
         .select("*")
         .eq("id", id)
       const {
-          data: { session },
-        } = await supabase.auth.getSession()
-        
+        data: { session },
+      } = await supabase.auth.getSession()
+
       if (userError) {
         setError(userError)
         return
       }
-  
+
       if (userData && userData.length > 0) {
-        const createdBy = userData[0].created_by;
-  
+        const createdBy = userData[0].created_by
+
         const { data: profileData, error: profileError } = await supabase
           .from("profiles")
           .select("*")
@@ -42,17 +42,17 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
           return
         }
         setData(userData)
-  
+
         if (profileData && profileData.length > 0) {
-          setUserData(profileData[0]);
+          setUserData(profileData[0])
         }
       }
-  
-      setLoading(false);
+
+      setLoading(false)
     }
-  
-    fetchData();
-  }, [id, userData]);
+
+    fetchData()
+  }, [id, userData])
 
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -68,9 +68,9 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
   if (data?.length === null) {
     return (
       <div className="flex flex-col gap-2 p-5 justify-center items-center top-0 left-0 w-full h-full fixed text-center text-white">
-      <h1 className="text-4xl font-bold tracking-tight fade-in">
-        Guide not found (404)
-      </h1>
+        <h1 className="text-4xl font-bold tracking-tight fade-in">
+          Guide not found (404)
+        </h1>
       </div>
     )
   }
@@ -104,27 +104,65 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                     <p className="text-xs md:text-lg tracking-tight dark:text-neutral-300 text-left">{`Written on ${formatDate(
                       item.created_at
                     )},`}</p>
-                    <a className="text-xs md:text-lg tracking-tight dark:text-neutral-300 text-left hover:underline" href={`/user/${userData.full_name}`}>by {userData.full_name || 'unknown user'}.</a>
+                    <a
+                      className="text-xs md:text-lg tracking-tight dark:text-neutral-300 text-left hover:underline"
+                      href={`/user/${userData.full_name}`}
+                    >
+                      by {userData.full_name || "unknown user"}.
+                    </a>
                   </div>
                   <div className="flex justify-center items-center flex-wrap gap-5 w-full">
-                  <a
-                    href={`https://twitter.com/intent/tweet?text=${item.title}&url=https://applio.org/guides/${id}`} rel="noreferrer" target="_blank"
-                    className="flex items-center flex-wrap gap-3 justify-center px-4 py-2 max-sm:aspect-square bg-white text-black hover:bg-opacity-20 active:opacity-50 rounded-full gtransition"
-                  >
-                    Share
-                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-share"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" x2="12" y1="2" y2="15"/></svg>
-                  </a>
-                  {isOwner && (
-                        <a
-                        href={`https://twitter.com/intent/tweet?text=${item.title}&url=https://applio.org/guides/${id}`} rel="noreferrer" target="_blank"
+                    <a
+                      href={`https://twitter.com/intent/tweet?text=${item.title}&url=https://applio.org/guides/${id}`}
+                      rel="noreferrer"
+                      target="_blank"
+                      className="flex items-center flex-wrap gap-3 justify-center px-4 py-2 max-sm:aspect-square bg-white text-black hover:bg-opacity-20 active:opacity-50 rounded-full gtransition"
+                    >
+                      Share
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1em"
+                        height="1em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        className="lucide lucide-share"
+                      >
+                        <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
+                        <polyline points="16 6 12 2 8 6" />
+                        <line x1="12" x2="12" y1="2" y2="15" />
+                      </svg>
+                    </a>
+                    {isOwner && (
+                      <a
+                        href={`https://twitter.com/intent/tweet?text=${item.title}&url=https://applio.org/guides/${id}`}
+                        rel="noreferrer"
+                        target="_blank"
                         className="flex items-center flex-wrap gap-3 justify-center px-4 py-2 max-sm:aspect-square bg-red-500 text-white hover:bg-opacity-20 active:opacity-50 rounded-full gtransition"
                       >
                         Delete
-                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="1em"
+                          height="1em"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          className="lucide lucide-x"
+                        >
+                          <path d="M18 6 6 18" />
+                          <path d="m6 6 12 12" />
+                        </svg>
                       </a>
-                  )}
+                    )}
                   </div>
-                  <div className="border border-white/20 w-full rounded-lg "/>
+                  <div className="border border-white/20 w-full rounded-lg " />
                 </div>
               </div>
               <div className="text-start px-5 mb-5">
@@ -134,7 +172,10 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (
-                        <a {...props} className="text-green-500 hover:underline">
+                        <a
+                          {...props}
+                          className="text-green-500 hover:underline"
+                        >
                           {children}
                         </a>
                       ),
@@ -184,12 +225,12 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                       ),
                       code: ({ node, children, ...props }) => (
                         <code
-                            {...props}
-                            className="select-all bg-white/80 text-black font-bold rounded-lg p-1"
+                          {...props}
+                          className="select-all bg-white/80 text-black font-bold rounded-lg p-1"
                         >
-                            {children}
+                          {children}
                         </code>
-                    ),
+                      ),
                     }}
                   >
                     {item.content}

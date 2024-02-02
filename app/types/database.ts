@@ -111,7 +111,7 @@ export interface Database {
             columns: ["auth_id"]
             referencedRelation: "users"
             referencedColumns: ["id"]
-          }
+          },
         ]
       }
     }

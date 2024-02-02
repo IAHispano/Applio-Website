@@ -59,14 +59,9 @@ export function AsideSelection({
             </div>
           </aside>
           <div className="flex-grow bg-neutral-900 h-4/5 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">
-            {section === "account" && (
-              <Information
-                bio={bio}
-                links={links}
-              />
-            )}
+            {section === "account" && <Information bio={bio} links={links} />}
             {section === "models" && (
-              <ModelsAccount userFullName={full_name as string}/>
+              <ModelsAccount userFullName={full_name as string} />
             )}
           </div>
         </div>

@@ -1,11 +1,16 @@
-import { ContainerScroll } from "@/components/landing/container-scroll";
-import { TextRevealCard } from "@/components/landing/text-card";
+import { ContainerScroll } from "@/components/landing/container-scroll"
+import { TextRevealCard } from "@/components/landing/text-card"
 
 export default function IndexPage() {
-
   return (
     <div className="flex flex-col overflow-hidden">
-     <div className="absolute top-0 h-full min-w-full opacity-10 overflow-hidden" style={{ backgroundImage: 'radial-gradient(ellipse 80% 50% at 50% 0%, #fff, transparent)' }}></div>
+      <div
+        className="absolute top-0 h-full min-w-full opacity-10 overflow-hidden"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 80% 50% at 50% 0%, #fff, transparent)",
+        }}
+      ></div>
       <ContainerScroll
         images=""
         titleComponent={
@@ -47,28 +52,28 @@ export default function IndexPage() {
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                Translations to +30 Languages
+                  Translations to +30 Languages
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                Cross-Platform Compatibility
+                  Cross-Platform Compatibility
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                Optimized Requirements
+                  Optimized Requirements
                 </h3>
               </div>
             </div>
             <div className="box-border relative flex flex-col gap-5 p-8 overflow-hidden no-underline border text-white rounded-xl dark:border-neutral-800">
               <div className="flex flex-col gap-2">
                 <h3 className="m-0 font-bold leading-5  font-space-grotesk text-white">
-                Simple Installation
+                  Simple Installation
                 </h3>
               </div>
             </div>
@@ -102,21 +107,28 @@ export default function IndexPage() {
           <p className="font-space-grotesk leading-snug text-white text-[16px] lg:text-[20px] max-w-md md:max-w-xl lg:max-w-[640px] text-center mb-8">
             Who better to do it than you, the community.
           </p>
-          <a href="https://github.com/IAHispano/Applio?tab=readme-ov-file#contributors" rel="noreferrer" target="_blank">
-          <img
-            src="https://contrib.rocks/image?repo=IAHispano/Applio"
-            alt="Github collaborators"
-          />
+          <a
+            href="https://github.com/IAHispano/Applio?tab=readme-ov-file#contributors"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <img
+              src="https://contrib.rocks/image?repo=IAHispano/Applio"
+              alt="Github collaborators"
+            />
           </a>
         </div>
         <div className="md:h-[400px]  flex flex-col items-center w-full p-5">
-          <a href="https://download.applio.org" rel="noreferrer" target="_blank">
-          <TextRevealCard
-          text="Download Applio V3"
-          revealText=""
-        >
-        </TextRevealCard>
-        </a>
+          <a
+            href="https://download.applio.org"
+            rel="noreferrer"
+            target="_blank"
+          >
+            <TextRevealCard
+              text="Download Applio V3"
+              revealText=""
+            ></TextRevealCard>
+          </a>
         </div>
       </main>
     </div>

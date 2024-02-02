@@ -103,7 +103,10 @@ export default function BlogPost({ id }: Readonly<{ id: string }>) {
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (
-                        <a {...props} className="text-green-500 hover:underline">
+                        <a
+                          {...props}
+                          className="text-green-500 hover:underline"
+                        >
                           {children}
                         </a>
                       ),

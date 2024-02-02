@@ -79,8 +79,7 @@ function ApiLogs({ auth_id }: ModelInfoProps) {
             <img
               className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover opacity-70 bg-green-500"
               src="/poster.png"
-            >
-            </img>
+            ></img>
           </div>
           <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
             <h2 className="text-5xl md:text-6xl md:hover:text-8xl font-bold tracking-tighter gtransition">

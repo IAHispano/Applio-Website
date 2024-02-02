@@ -76,7 +76,9 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
 
     -webkit-user-select: none; /* Safari */
     -ms-user-select: none; /* IE 10 and IE 11 */
@@ -181,14 +183,14 @@ html {
 .hide-scrollbar {
   overflow: auto;
   scrollbar-width: thin;
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-color: transparent transparent;  /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-color: transparent transparent; /* Firefox */
 }
 
 .hide-scrollbar::-webkit-scrollbar {
-  width: 8px;  /* Ancho del scrollbar en navegadores WebKit (Chrome, Safari) */
+  width: 8px; /* Ancho del scrollbar en navegadores WebKit (Chrome, Safari) */
 }
 
 .hide-scrollbar::-webkit-scrollbar-thumb {
-  background-color: transparent;  /* Color del thumb del scrollbar en navegadores WebKit */
+  background-color: transparent; /* Color del thumb del scrollbar en navegadores WebKit */
 }

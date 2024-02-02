@@ -9,12 +9,7 @@ export const addPost = async (formData: FormData) => {
   const description = formData.get("description")
   const content = formData.get("content")
 
-  if (
-    title === null ||
-    description === null ||
-    content === null 
-  )
-    return
+  if (title === null || description === null || content === null) return
 
   const supabase = createServerActionClient({ cookies })
 
@@ -25,10 +20,10 @@ export const addPost = async (formData: FormData) => {
   if (user === null) return
 
   const { data: userProfile } = await supabase
-  .from("profiles")
-  .select("id")
-  .eq("auth_id", user.id)
-  .single()
+    .from("profiles")
+    .select("id")
+    .eq("auth_id", user.id)
+    .single()
 
   await supabase.from("guides").insert({
     title: title,

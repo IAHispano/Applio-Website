@@ -213,60 +213,60 @@ export default function Home() {
             type="search"
             value={search}
             onChange={(e) => {
-              setSearch(e.target.value);
-              setEnd(9);
-              setIncrement(9);
-              fetchData(); 
+              setSearch(e.target.value)
+              setEnd(9)
+              setIncrement(9)
+              fetchData()
             }}
           />
         </form>
         {!search && (
-        <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
-          <CarouselContent>
-            {posts
-              ?.slice()
-              .sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10))
-              .map((post: any, index: number) => {
-                const {
-                  name,
-                  image_url: imageUrl,
-                  created_at,
-                  link,
-                  id,
-                  epochs,
-                  version,
-                  type,
-                  algorithm,
-                  author_id,
-                  author_username,
-                  likes,
-                } = post
+          <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
+            <CarouselContent>
+              {posts
+                ?.slice()
+                .sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10))
+                .map((post: any, index: number) => {
+                  const {
+                    name,
+                    image_url: imageUrl,
+                    created_at,
+                    link,
+                    id,
+                    epochs,
+                    version,
+                    type,
+                    algorithm,
+                    author_id,
+                    author_username,
+                    likes,
+                  } = post
 
-                return (
-                  <CarouselItem key={id} className="md:basis-1/3">
-                    <div className="p-1">
-                      <TestCard
-                        name={name}
-                        imageUrl={imageUrl}
-                        created_at={created_at}
-                        id={id}
-                        link={link}
-                        epochs={epochs}
-                        version={version}
-                        type={type}
-                        algorithm={algorithm}
-                        author_id={author_id}
-                        likes={likes}
-                        author_username={author_username}
-                      />
-                    </div>
-                  </CarouselItem>
-                )
-              })}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+                  return (
+                    <CarouselItem key={id} className="md:basis-1/3">
+                      <div className="p-1">
+                        <TestCard
+                          name={name}
+                          imageUrl={imageUrl}
+                          created_at={created_at}
+                          id={id}
+                          link={link}
+                          epochs={epochs}
+                          version={version}
+                          type={type}
+                          algorithm={algorithm}
+                          author_id={author_id}
+                          likes={likes}
+                          author_username={author_username}
+                        />
+                      </div>
+                    </CarouselItem>
+                  )
+                })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         )}
         <section className="mt-4 grid grid-cols-1 2xl:gridcols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
           {posts?.map((post: any, index: number) => {

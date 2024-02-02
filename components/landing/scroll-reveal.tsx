@@ -1,44 +1,39 @@
-"use client";
-import React, { useRef } from "react";
-import { useMotionValueEvent, useScroll } from "framer-motion";
-import { motion } from "framer-motion";
+"use client"
+
+import React, { useRef } from "react"
+import { motion, useMotionValueEvent, useScroll } from "framer-motion"
 
 export const StickyScroll = ({
   content,
 }: {
   content: {
-    title: string;
-    description: string;
-  }[];
+    title: string
+    description: string
+  }[]
 }) => {
-  const [activeCard, setActiveCard] = React.useState(0);
-  const ref = useRef<any>(null);
+  const [activeCard, setActiveCard] = React.useState(0)
+  const ref = useRef<any>(null)
   const { scrollYProgress } = useScroll({
     container: ref,
     offset: ["start start", "end start"],
-  });
-  const cardLength = content.length;
+  })
+  const cardLength = content.length
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const cardsBreakpoints = content.map((_, index) => index / cardLength);
+    const cardsBreakpoints = content.map((_, index) => index / cardLength)
     cardsBreakpoints.forEach((breakpoint, index) => {
       if (latest > breakpoint - 0.2 && latest <= breakpoint) {
-        setActiveCard(() => index);
+        setActiveCard(() => index)
       }
-    });
-  });
+    })
+  })
 
-  const backgroundColors = [
-    "#040300",
-    "#000000",
-    "#303030",
-    
-  ];
+  const backgroundColors = ["#040300", "#000000", "#303030"]
   const linearGradients = [
     "linear-gradient(to bottom right, #00bcd4, #2ecc71)",
-    "linear-gradient(to bottom right, #e91e63, #3f51b5)",  
+    "linear-gradient(to bottom right, #e91e63, #3f51b5)",
     "linear-gradient(to bottom right, #ff9800, #ffeb3b)",
-  ];
+  ]
   return (
     <motion.div
       animate={{
@@ -85,5 +80,5 @@ export const StickyScroll = ({
         className="hidden lg:block h-60 w-80 rounded-md bg-white sticky top-10 overflow-hidden"
       ></motion.div>
     </motion.div>
-  );
-};
+  )
+}

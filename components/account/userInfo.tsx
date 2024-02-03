@@ -139,7 +139,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
                 />
               </div>
               <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
-                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl">
+                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono">
                   {id}
                 </h1>
                 <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2">

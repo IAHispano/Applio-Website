@@ -92,7 +92,6 @@ export default function NavbarAvatar({
 
   const iconClasses =
     "text-sm text-default-500 pointer-events-none flex-shrink-0"
-  const tourClasses = "text-sm text-white pointer-events-none flex-shrink-0"
   const dropdownItems = [
     <DropdownItem
       key="profile"
@@ -141,7 +140,7 @@ export default function NavbarAvatar({
   }
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center font-mono">
       <Dropdown>
         <DropdownTrigger>
           <div
@@ -150,10 +149,10 @@ export default function NavbarAvatar({
               cursor: "pointer",
             }}
           >
-            <Avatar src={user?.avatar_url} isBordered color="success" />
+            <Avatar src={user?.avatar_url} color="primary" radius="sm" className="hover:opacity-50 gtransition" />
           </div>
         </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions">{dropdownItems}</DropdownMenu>
+        <DropdownMenu aria-label="Static Actions" className="font-mono">{dropdownItems}</DropdownMenu>
       </Dropdown>
     </div>
   )

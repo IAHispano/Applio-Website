@@ -12,12 +12,9 @@ interface MainNavProps {
 
 export function MainNav({ items }: MainNavProps) {
   return (
-    <div className="flex gap-6 md:gap-10">
-      <div className="flex h-full items-center justify-start gap-2 flex-grow truncate">
-      <a href="/" className="text-2xl font-bold tracking-tight truncate hover:bg-white/20 hover:px-4 hover:py-0.5 rounded-lg gtransition">Applio</a>
-      </div>
+    <div>
       {items?.length ? (
-        <nav className="flex gap-6">
+        <nav className="flex gap-6 justify-center items-center mx-auto mr-auto">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -25,7 +22,7 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "flex items-center justify-center text-md text-dark dark:text-white hover:bg-white/20 hover:px-4 hover:py-0.5 gtransition rounded-lg",
+                    "flex items-center justify-center text-md text-dark dark:text-white hover:bg-white/20 hover:px-4 hover:py-0.5 gtransition rounded-lg font-mono",
                     item.disabled && "cursor-not-allowed opacity-80"
                   )}
                 >

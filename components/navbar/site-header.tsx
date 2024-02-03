@@ -26,48 +26,28 @@ export async function SiteHeader() {
       <div className="block md:hidden">
         <HeaderMobile />
       </div>
-      <header className="w-full fixed top-0 border-b dark:border-white/20 backdrop-blur-xl  justify-center px-3 items-center z-50 overflow-hidden hidden md:block">
-        <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0 ">
+      <div className=" hidden md:block">
+      <header className="w-full fixed top-0 left-0 h-16 bg-neutral-800/20 backdrop-blur-lg justify-center px-3 items-center border-b-white/20 border rounded-b-sm  z-50 flex overflow-hidden">
+        <div className="w-full max-w-6xl justify-center items-center flex gap-2.5 h-full">
+          <a href="/" className="flex gap-2.5 items-center truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl false gtransition [&_h1]:hover:ml-0 [&_h1]:hover:scale-100 [&_h1]:hover:blur-none [&_h1]:hover:opacity-100">
+            <div className="w-8 h-8 aspect-square">
+            <img id="a" src="/no_bg_applio_logo.png" className="scale-150" alt="logo"/>
+            </div>
+            <h1 className="text-lg font-semibold truncate tracking-tight md:-ml-10 md:scale-75 md:blur md:opacity-0 gtransition">Applio</h1>
+          </a>
+          <div className="flex-grow h-full flex items-center justify-center md:mr-4">
           <MainNav items={siteConfig.mainNav} />
-          <div className="flex flex-1 items-center justify-end space-x-4">
-            <nav className="flex items-center space-x-1">
-              <Link
-                href={siteConfig.links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={buttonVariants({
-                    size: "icon",
-                    variant: "ghost",
-                  })}
-                >
-                  <Icons.gitHub className="h-5 w-5" />
-                  <span className="sr-only">GitHub</span>
-                </div>
-              </Link>
-              <Link
-                href={siteConfig.links.discord}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <div
-                  className={buttonVariants({
-                    size: "icon",
-                    variant: "ghost",
-                  })}
-                >
-                  <Icons.discord className="h-5 w-5 fill-current" />
-                  <span className="sr-only">Support</span>
-                </div>
-              </Link>
-              <div className="hidden md:flex">
+          </div>
+          <div >
+            <nav >
+              <div >
                 <AuthButtonServer />
               </div>
             </nav>
           </div>
         </div>
       </header>
+      </div>
     </section>
   )
 }

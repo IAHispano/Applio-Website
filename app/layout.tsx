@@ -4,12 +4,14 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
+import { fontMono } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/navbar/site-header"
 import { ThemeProvider } from "@/components/navbar/theme-provider"
 import { Providers } from "./providers"
 import GoogleAnalytics from "@/components/stadistics/GoogleAnalytics"
+import Footer from "@/components/layout/footer"
 
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
@@ -67,7 +69,8 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
         <body
           className={cn(
             "min-h-screen bg-background font-sans antialiased",
-            fontSans.variable
+            fontSans.variable,
+            fontMono.variable
           )}
         >
         {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
@@ -87,6 +90,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             </MantineProvider>
           </Providers>
           <Toaster />
+          <Footer />
         </body> 
       </html>
     </>

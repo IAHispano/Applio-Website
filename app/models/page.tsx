@@ -15,6 +15,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import TestCard from "@/components/models/test-card"
+import { motion } from "framer-motion"
 
 export default function Home() {
   const [search, setSearch] = useState("")

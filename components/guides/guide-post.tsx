@@ -63,8 +63,6 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
     return new Date(dateStr).toLocaleDateString(undefined, options)
   }
 
-  console.log(isOwner)
-
   if (data?.length === null) {
     return (
       <div className="flex flex-col gap-2 p-5 justify-center items-center top-0 left-0 w-full h-full fixed text-center text-white">
@@ -130,16 +128,16 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
               <div className="text-start px-5 mb-5">
                 <div className="w-full rounded-lg underline-offset-2 p-5 text-white max-w-4xl z-10 ">
                   <Markdown
-                    className="text-neutral-200 md:text-lg max-md:max-w-sm z-50"
+                    className="text-neutral-200 md:text-lg max-md:max-w-sm  z-50"
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (
-                        <a {...props} className="text-green-500 hover:underline">
+                        <a {...props} className="text-green-500 hover:underline break-words">
                           {children}
                         </a>
                       ),
                       p: ({ node, children, ...props }) => (
-                        <p {...props} className="mb-4">
+                        <p {...props} className="mb-4 font-mono">
                           {children}
                         </p>
                       ),

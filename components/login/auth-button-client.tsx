@@ -31,8 +31,9 @@ export function AuthButton({ session }: { session: Session | null }) {
   return (
     <header>
       {session === null ? (
-        <Button color="primary" className="ml-4" onClick={handleSignIn}>
-          Login
+        <Button color="primary" className="w-24 flex items-center gap-1 [&_span]:hover:opacity-100 [&_span]:hover:ml-0 gtransition  text-md font-semibold font-mono" radius="sm" onClick={handleSignIn}>
+          Login 
+          <span className="-ml-4 opacity-0 gtransition text-black"><svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg></span>
         </Button>
       ) : (
         <NavbarAvatar userFullName={session?.user?.user_metadata?.full_name} />

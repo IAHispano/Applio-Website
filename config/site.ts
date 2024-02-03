@@ -29,6 +29,10 @@ export const siteConfig = {
       title: "Docs",
       href: "https://docs.applio.org",
     },
+    {
+      title: "Team",
+      href: "/team",
+    },
   ],
   navMenuItems: [
     {

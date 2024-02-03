@@ -29,7 +29,7 @@ import AccountModelCard from "./model-card-account"
 const supabase = createClientComponentClient<Database>()
 
 interface ModelInfoProps {
-  userFullName: string 
+  userFullName: string
 }
 
 export function ModelsAccount({ userFullName }: ModelInfoProps) {

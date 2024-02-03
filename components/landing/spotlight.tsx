@@ -1,10 +1,10 @@
-import React from "react";
-import { cn } from "@/utils/cn";
+import React from "react"
+import { cn } from "@/utils/cn"
 
 type SpotlightProps = {
-  className?: string;
-  fill?: string;
-};
+  className?: string
+  fill?: string
+}
 
 const Spotlight = ({ className, fill }: SpotlightProps) => {
   return (
@@ -52,7 +52,7 @@ const Spotlight = ({ className, fill }: SpotlightProps) => {
         </filter>
       </defs>
     </svg>
-  );
-};
+  )
+}
 
-export default Spotlight;
+export default Spotlight

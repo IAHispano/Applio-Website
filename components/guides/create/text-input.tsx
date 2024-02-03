@@ -1,58 +1,62 @@
 "use client"
-import { useState } from 'react';
-import Markdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+
+import React, { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
-import React, { useRef } from "react"
-import { SendButton } from './send';
-import { addPost } from '@/app/actions/add-guide-action';
-import { Divider } from '@nextui-org/react';
+import { Divider } from "@nextui-org/react"
+import Markdown from "react-markdown"
+import remarkGfm from "remark-gfm"
+
+import { addPost } from "@/app/actions/add-guide-action"
+
+import { SendButton } from "./send"
 
 export default function MarkdownInput() {
-  const [markdownText, setMarkdownText] = useState('');
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
+  const [markdownText, setMarkdownText] = useState("")
+  const [title, setTitle] = useState("")
+  const [description, setDescription] = useState("")
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
-
   return (
     <form
-    ref={formRef}
-    action={async (formData) => {
-      await addPost(formData)
-      formRef.current?.reset()
-    }}
-  >
-    <main className='px-8 pb-8 -mt-8 bg-background'>
-      <div className="flex justify-between mb-4">
-        <button className="cursor-pointer flex items-center flex-wrap gap-3 px-4 py-2  bg-black/10 dark:bg-[#2C2C2C] mt-5 z-10 dark:hover:bg-opacity-80 active:opacity-50 rounded-lg gtransition dark:text-white  justify-center" onClick={() => router.back()}>
-          Return
-        </button>
-        <p className="md:text-5xl font-bold text-white md:ml-5 text-2xl items-center justify-center flex text-center">Splash your creativity in a guide</p>
-        <SendButton />
-      </div>
-      <div className=" grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1  gtransition">
-      <textarea
-                  className="md:col-span-8 h-[80px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 mb-2"
-                  placeholder="Title..."
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  key="title"
-                  name="title"
-                  required
-              >
-              </textarea>
-              <textarea
-                  className="md:col-span-8 h-[80px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 mb-2"
-                  placeholder="Description..."
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
-                  key="description"
-                  name="description"
-                  required
-              >
-              </textarea>
+      ref={formRef}
+      action={async (formData) => {
+        await addPost(formData)
+        formRef.current?.reset()
+      }}
+    >
+      <main className="px-8 pb-8 -mt-8 bg-background">
+        <div className="flex justify-between mb-4">
+          <button
+            className="cursor-pointer flex items-center flex-wrap gap-3 px-4 py-2  bg-black/10 dark:bg-[#2C2C2C] mt-5 z-10 dark:hover:bg-opacity-80 active:opacity-50 rounded-lg gtransition dark:text-white  justify-center"
+            onClick={() => router.back()}
+          >
+            Return
+          </button>
+          <p className="md:text-5xl font-bold text-white md:ml-5 text-2xl items-center justify-center flex text-center">
+            Splash your creativity in a guide
+          </p>
+          <SendButton />
+        </div>
+        <div className=" grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1  gtransition">
+          <textarea
+            className="md:col-span-8 h-[80px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 mb-2"
+            placeholder="Title..."
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            key="title"
+            name="title"
+            required
+          ></textarea>
+          <textarea
+            className="md:col-span-8 h-[80px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 mb-2"
+            placeholder="Description..."
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            key="description"
+            name="description"
+            required
+          ></textarea>
         </div>
         <div className="md:flex ">
               <textarea

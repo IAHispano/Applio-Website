@@ -2,7 +2,9 @@
 
 import React, { useRef } from "react"
 import { Divider, Input } from "@nextui-org/react"
+
 import { addPost } from "@/app/actions/change-bio"
+
 import { DeleteAccountButton } from "./button-delete-account"
 import { ChangeBioButton } from "./change-bio-button"
 
@@ -11,10 +13,7 @@ interface ModelInfoProps {
   links: Array<any>
 }
 
-function Information({
-  bio,
-  links,
-}: Readonly<ModelInfoProps>) {
+function Information({ bio, links }: Readonly<ModelInfoProps>) {
   const formRef = useRef<HTMLFormElement>(null)
 
   return (
@@ -42,32 +41,32 @@ function Information({
           ></Input>
         </section>
         <div>
-        <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
-          <Input
-            className="text-sm text-neutral-300"
-            defaultValue={links?.[0] || ''}
-            type="link1"
-            label="Link 1"
-            fullWidth
-            key="link1"
-            name="link1"
-            isClearable
-            radius="sm"
-          ></Input>
-        </section>
-        <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
-          <Input
-            className="text-sm text-neutral-300"
-            defaultValue={links?.[1] || ''}
-            type="link2"
-            label="Link 2"
-            fullWidth
-            key="link2"
-            name="link2"
-            isClearable
-            radius="sm"
-          ></Input>
-        </section>
+          <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
+            <Input
+              className="text-sm text-neutral-300"
+              defaultValue={links?.[0] || ""}
+              type="link1"
+              label="Link 1"
+              fullWidth
+              key="link1"
+              name="link1"
+              isClearable
+              radius="sm"
+            ></Input>
+          </section>
+          <section className="w-full flex flex-col items-start justify-start gap-4 my-4 ">
+            <Input
+              className="text-sm text-neutral-300"
+              defaultValue={links?.[1] || ""}
+              type="link2"
+              label="Link 2"
+              fullWidth
+              key="link2"
+              name="link2"
+              isClearable
+              radius="sm"
+            ></Input>
+          </section>
         </div>
         <div className="items-end justify-end flex flex-col gap-4">
           <ChangeBioButton />

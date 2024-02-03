@@ -56,8 +56,8 @@ export default function UserInfo({ id }: Readonly<Props>) {
       const likes = modelsData.reduce(
         (total, model) => total + (parseInt(model.likes, 10) || 0),
         0
-      );
-      setTotalLikes(likes);
+      )
+      setTotalLikes(likes)
 
       setLoading(false)
     }

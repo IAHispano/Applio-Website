@@ -9,9 +9,10 @@ import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { SiteHeader } from "@/components/navbar/site-header"
 import { ThemeProvider } from "@/components/navbar/theme-provider"
-import { Providers } from "./providers"
 import GoogleAnalytics from "@/components/stadistics/GoogleAnalytics"
 import Footer from "@/components/layout/footer"
+
+import { Providers } from "./providers"
 
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
@@ -62,7 +63,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           />
           <meta
             name="keywords"
-            content="AI, IA, IA Hispano, Applio, Applio-RVC-Fork, RVC, SVC, Open Source, Mangio-RVC-Fork, music"
+            content="AI, IA, AI Hispano, AI Hub, IA Hispano, Applio, Applio-RVC-Fork, RVC, SVC, Open Source, Mangio-RVC-Fork, music, Artificial Intelligence, Guides, Tutorials, Voice Models, Voice Search, Machine Learning, Natural Language Processing, NLP, AI Development, AI Programming, Voice Recognition, Speech Recognition, Conversational AI, Virtual Assistants, Neural Networks, Deep Learning, Open Source AI, Voice Assistant Development, AI Tools, AI Solutions, Voice Interface, Voice Technology, Voice Control, AI Applications, Voice-enabled Devices, AI Development Frameworks, Voice Model Integration, AI Development Community, AI Development Resources, Programming, Coding, Data Science, Robotics, Automation, Chatbots, IoT, Internet of Things, Big Data, Cloud Computing, Computer Vision, Reinforcement Learning, Data Mining, Predictive Analytics, Sentiment Analysis, Text Mining, Recommender Systems, Decision Trees, Support Vector Machines, Genetic Algorithms, Swarm Intelligence, Autonomous Systems, Cognitive Computing, Humanoid Robots, Data Engineering, Data Warehousing, Data Visualization, Data Analysis, Algorithm Development, Model Deployment, Model Optimization, DevOps, Continuous Integration, Continuous Deployment, Agile Development, Software Engineering, Software Development Life Cycle, Web Development, Mobile Development, Game Development, Augmented Reality, Virtual Reality, Mixed Reality, Blockchain, Cryptocurrency, Cybersecurity, Ethical Hacking, Privacy Protection, Digital Transformation, Industry 4.0, Smart Cities, Smart Homes, Edge Computing, Quantum Computing, Startup, Entrepreneurship, Innovation, Research, Education, Training, Community, Forums, Conferences, Workshops, Publications, Journals, Blogs, Podcasts, Social Media."
           />
           <ColorSchemeScript defaultColorScheme="auto" />
         </head>
@@ -73,10 +74,9 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             fontMono.variable
           )}
         >
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
-        <GoogleAnalytics ga_id= 
-        {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
-        ) : null}
+          {process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+            <GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+          ) : null}
           <Providers>
             <MantineProvider>
               <ThemeProvider attribute="class" defaultTheme="dark">

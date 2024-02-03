@@ -120,7 +120,7 @@ export default function Home() {
         <div className="fixed rounded-2xl w-11/12 sm:w-[581px] h-40 sm:h-[80px] p-0.5 z-10 bottom-10 left-0 right-0 mx-auto">
           <div className="rounded-[14px] w-full h-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
             <p className="dark:text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3 text-black">
-              Enjoy +500.000 voice models available in our database!
+              Enjoy +600.000 voice models available in our database!
             </p>
             <a
               className="dark:text-black text-white text-[13px] dark:bg-white bg-[#090909] hover:bg-gray-700 transition-all rounded-md w-[220px] h-10 flex items-center justify-center "
@@ -214,60 +214,60 @@ export default function Home() {
             type="search"
             value={search}
             onChange={(e) => {
-              setSearch(e.target.value);
-              setEnd(9);
-              setIncrement(9);
-              fetchData(); 
+              setSearch(e.target.value)
+              setEnd(9)
+              setIncrement(9)
+              fetchData()
             }}
           />
         </form>
         {!search && (
-        <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
-          <CarouselContent>
-            {posts
-              ?.slice()
-              .sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10))
-              .map((post: any, index: number) => {
-                const {
-                  name,
-                  image_url: imageUrl,
-                  created_at,
-                  link,
-                  id,
-                  epochs,
-                  version,
-                  type,
-                  algorithm,
-                  author_id,
-                  author_username,
-                  likes,
-                } = post
+          <Carousel className="flex max-md:flex-wrap pb-4 md:max-w-8xl gap-5 mx-16 items-center justify-center py-2">
+            <CarouselContent>
+              {posts
+                ?.slice()
+                .sort((a, b) => parseInt(b.likes, 10) - parseInt(a.likes, 10))
+                .map((post: any, index: number) => {
+                  const {
+                    name,
+                    image_url: imageUrl,
+                    created_at,
+                    link,
+                    id,
+                    epochs,
+                    version,
+                    type,
+                    algorithm,
+                    author_id,
+                    author_username,
+                    likes,
+                  } = post
 
-                return (
-                  <CarouselItem key={id} className="md:basis-1/3">
-                    <div className="p-1">
-                      <TestCard
-                        name={name}
-                        imageUrl={imageUrl}
-                        created_at={created_at}
-                        id={id}
-                        link={link}
-                        epochs={epochs}
-                        version={version}
-                        type={type}
-                        algorithm={algorithm}
-                        author_id={author_id}
-                        likes={likes}
-                        author_username={author_username}
-                      />
-                    </div>
-                  </CarouselItem>
-                )
-              })}
-          </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
-        </Carousel>
+                  return (
+                    <CarouselItem key={id} className="md:basis-1/3">
+                      <div className="p-1">
+                        <TestCard
+                          name={name}
+                          imageUrl={imageUrl}
+                          created_at={created_at}
+                          id={id}
+                          link={link}
+                          epochs={epochs}
+                          version={version}
+                          type={type}
+                          algorithm={algorithm}
+                          author_id={author_id}
+                          likes={likes}
+                          author_username={author_username}
+                        />
+                      </div>
+                    </CarouselItem>
+                  )
+                })}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+          </Carousel>
         )}
         <section className="mt-4 grid grid-cols-1 2xl:gridcols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 max-w-8xl gap-5 pb-8 md:pb-8 mx-16 items-center justify-center">
           {posts?.map((post: any, index: number) => {

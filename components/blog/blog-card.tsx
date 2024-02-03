@@ -29,7 +29,7 @@ export default function BlogCard() {
     }
 
     fetchData()
-  }, []);
+  }, [])
 
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -43,7 +43,7 @@ export default function BlogCard() {
   return (
     <div className="w-full max-w-6xl p-5 pt-0 flex flex-col gap-5 text-white">
       {loading === false && (
-        <h1 className="text-8xl font-semibold mb-4 dark:text-white text-black">
+        <h1 className="text-7xl font-bold mb-4 dark:text-white text-black">
           Latest news
         </h1>
       )}

@@ -1,6 +1,6 @@
-import React from "react";
-import { motion } from "framer-motion";
-import { cn } from "@/utils/cn";
+import React from "react"
+import { cn } from "@/utils/cn"
+import { motion } from "framer-motion"
 
 export function LampDemo() {
   return (
@@ -18,15 +18,15 @@ export function LampDemo() {
         Build lamps <br /> the right way
       </motion.h1>
     </LampContainer>
-  );
+  )
 }
 
 export const LampContainer = ({
   children,
   className,
 }: {
-  children: React.ReactNode;
-  className?: string;
+  children: React.ReactNode
+  className?: string
 }) => {
   return (
     <div
@@ -99,5 +99,5 @@ export const LampContainer = ({
         {children}
       </div>
     </div>
-  );
-};
+  )
+}

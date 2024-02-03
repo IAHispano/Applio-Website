@@ -20,7 +20,7 @@ export default function BotPage() {
         Applio
       </h1>
       <p className="text-muted-foreground mb-24 text-xs md:text-xl ">
-        Enjoy +500.000 voice models available in our database, but from Discord!
+        Enjoy +600.000 voice models available in our database, but from Discord!
       </p>
       <Accordion type="single" collapsible className="w-full">
         <AccordionItem value="item-1">
@@ -46,10 +46,26 @@ export default function BotPage() {
             working to expand it to more languages.
           </AccordionContent>
         </AccordionItem>
+        <AccordionItem value="item-4">
+          <AccordionTrigger>Can I contribute to the database?</AccordionTrigger>
+          <AccordionContent>
+            Absolutely! We welcome contributions from the community to help
+            expand and improve our database. Feel free to reach out to us for
+            more information on how to contribute.
+          </AccordionContent>
+        </AccordionItem>
+        <AccordionItem value="item-5">
+          <AccordionTrigger>How can I report a bug or issue?</AccordionTrigger>
+          <AccordionContent>
+            If you encounter any bugs or issues while using Applio, please don&apos;t
+            hesitate to contact us through our support channels or by filing a
+            bug report on our GitHub repository. We appreciate your feedback!
+          </AccordionContent>
+        </AccordionItem>
       </Accordion>
       <div className="m-12">
         <Button size="lg" color="primary" onClick={handleonclick}>
-          Invite Applio
+          Try Applio Bot now!
         </Button>
       </div>
     </section>

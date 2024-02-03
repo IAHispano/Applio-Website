@@ -1,37 +1,39 @@
-"use client";
-import React, { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
+"use client"
+
+import React, { useRef } from "react"
+import { motion, useScroll, useTransform } from "framer-motion"
+
 export const ContainerScroll = ({
   images,
   titleComponent,
 }: {
-  images: string;
-  titleComponent: string | React.ReactNode;
+  images: string
+  titleComponent: string | React.ReactNode
 }) => {
-  const containerRef = useRef<any>(null);
+  const containerRef = useRef<any>(null)
   const { scrollYProgress } = useScroll({
     target: containerRef,
-  });
-  const [isMobile, setIsMobile] = React.useState(false);
+  })
+  const [isMobile, setIsMobile] = React.useState(false)
 
   React.useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
+      setIsMobile(window.innerWidth <= 768)
+    }
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
     return () => {
-      window.removeEventListener("resize", checkMobile);
-    };
-  }, []);
+      window.removeEventListener("resize", checkMobile)
+    }
+  }, [])
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1];
-  };
+    return isMobile ? [0.7, 0.9] : [1.05, 1]
+  }
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions());
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], scaleDimensions())
+  const translate = useTransform(scrollYProgress, [0, 1], [0, -100])
 
   return (
     <div
@@ -53,8 +55,8 @@ export const ContainerScroll = ({
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export const Header = ({ translate, titleComponent }: any) => {
   return (
@@ -66,19 +68,19 @@ export const Header = ({ translate, titleComponent }: any) => {
     >
       {titleComponent}
     </motion.div>
-  );
-};
+  )
+}
 
 export const Card = ({
   rotate,
   scale,
   translate,
-  images
+  images,
 }: {
-  rotate: any;
-  scale: any;
-  translate: any;
-  images: string;
+  rotate: any
+  scale: any
+  translate: any
+  images: string
 }) => {
   return (
     <motion.div
@@ -91,21 +93,21 @@ export const Card = ({
       className="max-w-6xl md:-mt-6 -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] md:p-6 p-2 bg-[#222222] rounded-[30px] shadow-2xl hidden md:block"
     >
       <div className="bg-gray-100 h-full w-full rounded-2xl gap-4 overflow-hidden hover:scale-110 hover:rounded-3xl gtransition">
-      <a>
-        <div style={{ height: "100%" }}>
-          <iframe
-            width="100%"
-            height="100%" 
-            src="https://www.youtube.com/embed/nxqo6kOhsBI?autoplay=1"
-            title=""
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            className="w-full h-full object-fill object-center"
-            allowFullScreen
-          ></iframe>
-        </div>
-      </a>
+        <a>
+          <div style={{ height: "100%" }}>
+            <iframe
+              width="100%"
+              height="100%"
+              src="https://www.youtube.com/embed/nxqo6kOhsBI?autoplay=1"
+              title=""
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              className="w-full h-full object-fill object-center"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </a>
       </div>
     </motion.div>
-  );
-};
+  )
+}

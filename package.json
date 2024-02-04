@@ -15,6 +15,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.1.0",
     "bootstrap-icons": "^1.11.1",
+    "bufferutil": "^4.0.8",
     "class-variance-authority": "^0.4.0",
     "clsx": "^1.2.1",
     "date-fns": "^2.30.0",
@@ -32,7 +33,8 @@
     "sharp": "^0.31.3",
     "simplex-noise": "^4.0.1",
     "tailwind-merge": "^1.13.2",
-    "tailwindcss-animate": "^1.0.6"
+    "tailwindcss-animate": "^1.0.6",
+    "utf-8-validate": "^6.0.3"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",

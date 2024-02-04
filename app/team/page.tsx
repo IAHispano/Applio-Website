@@ -9,7 +9,7 @@ export default function Home() {
                     <div className="md:py-16 py-4 lg:text-center">
                         <p className="text-base font-semibold leading-6 tracking-wide text-[#00AA68] uppercase ">TEAM</p>
                         <h1 className="mt-2 text-3xl font-extrabold leading-8 tracking-tight md:text-5xl text-white sm:text-4xl sm:leading-10 font-mono">
-                        Thanks, because without you we would be nothing
+                        We would be nothing without you
                         </h1>
                         <p className="max-w-3xl mt-4 text-xl leading-7 text-gray-500 dark:text-gray-400 lg:mx-auto">
 

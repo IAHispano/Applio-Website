@@ -1,14 +1,10 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { cookies } from "next/headers"
 import {
   createClientComponentClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs"
-import { PostgrestError, createClient } from "@supabase/supabase-js"
-
-import { Database } from "@/app/types/database"
 
 import "@/styles/text-animation.css"
 import { Progress, Select, SelectItem } from "@nextui-org/react"

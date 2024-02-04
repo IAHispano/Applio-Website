@@ -1,10 +1,21 @@
 "use client"
 
 import { Button, Link } from "@nextui-org/react"
+import { motion } from "framer-motion"
 
 export default function api() {
   return (
     <main className="min-h-screen flex flex-col justify-start items-center py-8 md:w-5/6 mx-auto px-5">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+        className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 40% 50% at 50% 0%, #00AA68, transparent)",
+        }}
+      ></motion.div>
       <div className="grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1 gap-5 gtransition">
         <article className="md:col-span-8 overflow-hidden md:h-72 relative md:hover:h-96 md:hover:-mx-5 md:hover:w-[calc(100%+40px)] md:hover:rounded-[2rem] gtransition w-full h-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-white/20 bg-green-500/50 justify-start items-start relative">
           <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">

@@ -4,7 +4,7 @@ import Head from "next/head"
 
 import BlogCard from "@/components/blog/blog-card"
 
-export default function BotPage() {
+export default function BlogPage() {
   return (
     <main className="flex flex-col justify-center items-center text-center min-h-[600px]">
       <Head>

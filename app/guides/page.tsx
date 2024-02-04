@@ -20,6 +20,7 @@ export default function Guides() {
             </span>
           </a>
         </div>
+
         <Guide />
       </section>
     </main>

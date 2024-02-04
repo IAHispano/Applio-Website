@@ -1,6 +1,6 @@
 "use client"
 
-import { experimental_useFormStatus as useFormStatus } from "react-dom"
+import { useFormStatus } from "react-dom"
 
 export function SendButton() {
   const { pending } = useFormStatus()
@@ -15,9 +15,9 @@ export function SendButton() {
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
         className="lucide lucide-send-horizontal hidden md:block"
       >
         <path d="m3 3 3 9-3 9 19-9Z" />

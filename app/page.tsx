@@ -1,11 +1,22 @@
 "use client"
-import Particles from "@/components/landing/particles";
-import { motion } from "framer-motion";
+
+import { motion } from "framer-motion"
+
+import Particles from "@/components/landing/particles"
 
 export default function IndexPage() {
   return (
     <div className="flex flex-col overflow-hidden">
-     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{duration: 3}} className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl" style={{ backgroundImage: 'radial-gradient(ellipse 40% 50% at 50% 0%, #00AA68, transparent)' }}></motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+        className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 40% 50% at 50% 0%, #00AA68, transparent)",
+        }}
+      ></motion.div>
       <Particles className="absolute top-0 h-full min-w-full overflow-hidden" />
       <main className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
         <div className="min-h-[70svh] flex flex-col justify-center items-center w-full p-10 pt-32  relative">

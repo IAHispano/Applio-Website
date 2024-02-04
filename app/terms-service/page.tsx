@@ -16,7 +16,7 @@ export default function TermsPage() {
               <p className="mb-4">Last updated: February 04, 2024</p>
 
               <p className="mb-4">
-                These Terms of Service ("Terms") govern your access to and use
+                These Terms of Service (&#34;Terms&#34;) govern your access to and use
                 of our website and services. By using our website or services,
                 you agree to be bound by these Terms.
               </p>
@@ -53,7 +53,7 @@ export default function TermsPage() {
                 5. Disclaimer of Warranties
               </h2>
               <p className="mb-4">
-                Our website and services are provided "as is" and without
+                Our website and services are provided &#34;as is&#34; and without
                 warranties of any kind. We disclaim all warranties, express or
                 implied, including, but not limited to, warranties of
                 merchantability, fitness for a particular purpose, and

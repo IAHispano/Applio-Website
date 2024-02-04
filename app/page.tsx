@@ -1,8 +1,8 @@
 "use client"
 
+import SparklesCore from "@/components/landing/particles"
 import { motion } from "framer-motion"
 
-// import Particles from "@/components/landing/particles"
 
 export default function IndexPage() {
   return (
@@ -17,9 +17,17 @@ export default function IndexPage() {
             "radial-gradient(ellipse 40% 50% at 50% 0%, #00AA68, transparent)",
         }}
       ></motion.div>
-      {/* <div className="absolute top-0 h-full min-w-full overflow-hidden" >
-      <Particles/>
-      </div> */}
+      <div className="absolute top-0 h-full min-w-full overflow-hidden">
+      <SparklesCore
+          id="tsparticlesfullpage"
+          background="transparent"
+          minSize={0.6}
+          maxSize={1.4}
+          particleDensity={30}
+          className="w-full h-full"
+          particleColor="#FFFFFF"
+        />
+      </div> 
       <main className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
         <div className="min-h-[70svh] flex flex-col justify-center items-center w-full p-10 pt-32  relative">
           <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-tighter py-10 text-white max-w-4xl">A universe of possibilities powered by AI</p>

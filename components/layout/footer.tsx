@@ -77,19 +77,19 @@ export default function Footer() {
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/privacy"
           >
-            Privacy policies
+            Privacy Policy
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/terms-service"
           >
-            Terms of services
+            Terms of Service
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/terms-use"
           >
-            Terms of uses
+            Terms of Use
           </a>
         </div>
         <div className="col-span-1 flex flex-col space-y-2">

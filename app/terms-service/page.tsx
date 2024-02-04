@@ -5,13 +5,13 @@ export default function TermsPage() {
     <div className="flex flex-col overflow-hidden">
       <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-4xl">
         <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl mt-7 z-[1]">
-          Terms of services
+          Terms of Service
         </h2>
         <Card className="my-6 md:w-[800px] w-full h-fit font-mono">
           <CardBody>
             <div className="md:m-4">
               <h1 className="mb-4 text-xl md:text-3xl font-bold">
-                Terms of Services
+                Terms of Service
               </h1>
               <p className="mb-4">Last updated: February 04, 2024</p>
 

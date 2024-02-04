@@ -1,7 +1,7 @@
 "use client"
 
-import { Button } from "@nextui-org/button"
-import { experimental_useFormStatus as useFormStatus } from "react-dom"
+import { Button } from "@nextui-org/react"
+import { useFormStatus } from "react-dom"
 
 export function ChangeBioButton() {
   const { pending } = useFormStatus()

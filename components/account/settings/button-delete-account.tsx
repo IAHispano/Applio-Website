@@ -1,9 +1,10 @@
 "use client"
 
-import { Button } from "@nextui-org/button"
-import { experimental_useFormStatus as useFormStatus } from "react-dom"
+
+import { useFormStatus } from "react-dom"
 
 import { addPost } from "@/app/actions/delete-account-action"
+import { Button } from "@nextui-org/react"
 
 export function DeleteAccountButton() {
   const { pending } = useFormStatus()

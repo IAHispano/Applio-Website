@@ -3,7 +3,6 @@ import Link from "next/link"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons/icons"
 import { MainNav } from "@/components/navbar/main-nav"
 import { ThemeToggle } from "@/components/navbar/theme-toggle"

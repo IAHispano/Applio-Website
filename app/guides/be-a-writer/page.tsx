@@ -1,4 +1,4 @@
-// import SparklesCore from "@/components/landing/particles"
+import SparklesCore from "@/components/landing/particles"
 
 export default function writer() {
   return (
@@ -11,7 +11,7 @@ export default function writer() {
         }}
       ></div>
       <section className="pt-40 flex justify-center items-center text-center flex-col gap-5 max-w-6xl w-full z-[2]">
-        {/* <div className="absolute w-[1000px]  h-[300px]">
+        <div className="absolute w-[1000px]  h-[300px]">
           <SparklesCore
             id="tsparticlesfullpage"
             background="transparent"
@@ -21,7 +21,7 @@ export default function writer() {
             className="w-full h-full"
             particleColor="#FFFFFF"
           />
-        </div> */}
+        </div> 
         <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
           Help the community, just by writing
         </h1>

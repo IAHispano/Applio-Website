@@ -1,6 +1,6 @@
 "use client"
 
-import SparklesCore from "@/components/landing/particles"
+// import SparklesCore from "@/components/landing/particles"
 import { motion } from "framer-motion"
 
 
@@ -18,7 +18,7 @@ export default function IndexPage() {
         }}
       ></motion.div>
       <div className="absolute top-0 h-full min-w-full overflow-hidden">
-      <SparklesCore
+      {/* <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"
           minSize={0.6}
@@ -26,7 +26,7 @@ export default function IndexPage() {
           particleDensity={30}
           className="w-full h-full"
           particleColor="#FFFFFF"
-        />
+        /> */}
       </div> 
       <main className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
         <div className="min-h-[70svh] flex flex-col justify-center items-center w-full p-10 pt-32  relative">

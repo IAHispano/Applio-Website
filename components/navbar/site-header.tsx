@@ -26,7 +26,7 @@ export async function SiteHeader() {
         <HeaderMobile />
       </div>
       <div className=" hidden md:block">
-      <header className="w-full fixed top-0 left-0 h-16 bg-neutral-800/20 backdrop-blur-lg justify-center px-3 items-center border-b-white/20 border rounded-b-sm  z-50 flex overflow-hidden">
+      <header className="w-full fixed top-0 left-0 h-16 bg-neutral-800/20 backdrop-blur-lg justify-center px-3 items-center border-b border-white/20 rounded-b-sm   z-50 flex overflow-hidden">
         <div className="w-full max-w-6xl justify-center items-center flex gap-2.5 h-full">
           <a href="/" className="flex gap-2.5 items-center truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl false gtransition [&_img]:hover:ml-0 [&_img]:hover:scale-100 [&_img]:hover:blur-none [&_img]:hover:opacity-100">
             <div className="w-8 h-8 aspect-square">

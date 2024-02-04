@@ -49,7 +49,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="application-name" content="Applio" />
           <meta name="apple-mobile-web-app-title" content="Applio" />
-          <meta name="theme-color" content="#000" />
+          <meta name="theme-color" content="#090909" />
           <meta name="msapplication-navbutton-color" content="#090909" />
           <meta
             name="apple-mobile-web-app-status-bar-style"

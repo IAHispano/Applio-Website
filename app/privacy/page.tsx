@@ -1,6 +1,6 @@
 import { Card, CardBody } from "@nextui-org/react"
 
-export default function IndexPage() {
+export default function PrivacyPage() {
   return (
     <div className="flex flex-col overflow-hidden">
       <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-4xl">
@@ -30,7 +30,9 @@ export default function IndexPage() {
               </li>
             </ul>
 
-            <h2 className="text-2xl font-bold mb-2">How We Use the Information</h2>
+            <h2 className="text-2xl font-bold mb-2">
+              How We Use the Information
+            </h2>
 
             <p className="mb-4">
               We require this information to understand your needs and provide
@@ -48,8 +50,8 @@ export default function IndexPage() {
               <li>
                 From time to time, we may also use your information to contact
                 you for market research purposes. We may contact you by email.
-                We may use the information to customize the
-                website according to your interests.
+                We may use the information to customize the website according to
+                your interests.
               </li>
             </ul>
 
@@ -66,12 +68,12 @@ export default function IndexPage() {
 
             <p className="mb-4">
               A cookie is a small file that asks permission to be placed on your
-              computer&apos;s hard drive. Once you agree, the file is added, and the
-              cookie helps analyze web traffic or lets you know when you visit a
-              particular site. Cookies allow web applications to respond to you
-              as an individual. The web application can tailor its operations to
-              your needs, likes, and dislikes by gathering and remembering
-              information about your preferences.
+              computer&apos;s hard drive. Once you agree, the file is added, and
+              the cookie helps analyze web traffic or lets you know when you
+              visit a particular site. Cookies allow web applications to respond
+              to you as an individual. The web application can tailor its
+              operations to your needs, likes, and dislikes by gathering and
+              remembering information about your preferences.
             </p>
 
             <p className="mb-4">
@@ -108,7 +110,8 @@ export default function IndexPage() {
               <li>
                 By using our services you agree to us using your personal
                 information for direct marketing purposes, you may change your
-                mind at any time by writing to or emailing us at iahispano0@gmail.com
+                mind at any time by writing to or emailing us at
+                iahispano0@gmail.com
               </li>
               <li>
                 We will not sell, distribute, or lease your personal information

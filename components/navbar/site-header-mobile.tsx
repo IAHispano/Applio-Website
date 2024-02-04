@@ -23,13 +23,20 @@ export default function HeaderMobile() {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       isBlurred
-      className="z-50"
+      className="z-50 fixed"
     >
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        />
-      </NavbarContent>
+    <NavbarContent className="sm:hidden">
+      <NavbarMenuToggle
+        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+      />
+      <NavbarBrand className="flex justify-center w-full mr-8">
+      <a href="/" className="flex items-center gap-2.5 truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl gtransition">
+      <div className="w-10 h-10 aspect-square">
+            <img id="a" src="/no_bg_applio_logo.png" className="scale-150" alt="logo"/>
+      </div>
+      </a>
+      </NavbarBrand>
+    </NavbarContent>
       <NavbarMenu className="flex justify-start items-center  w-full flex-wrap gap-4 h-full z-20 text-center">
         {siteConfig.navMenuItems.map((item, index) => (
           <NavbarMenuItem

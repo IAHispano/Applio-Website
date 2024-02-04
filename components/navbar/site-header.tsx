@@ -29,11 +29,11 @@ export async function SiteHeader() {
       <div className=" hidden md:block">
       <header className="w-full fixed top-0 left-0 h-16 bg-neutral-800/20 backdrop-blur-lg justify-center px-3 items-center border-b-white/20 border rounded-b-sm  z-50 flex overflow-hidden">
         <div className="w-full max-w-6xl justify-center items-center flex gap-2.5 h-full">
-          <a href="/" className="flex gap-2.5 items-center truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl false gtransition [&_h1]:hover:ml-0 [&_h1]:hover:scale-100 [&_h1]:hover:blur-none [&_h1]:hover:opacity-100">
+          <a href="/" className="flex gap-2.5 items-center truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl false gtransition [&_img]:hover:ml-0 [&_img]:hover:scale-100 [&_img]:hover:blur-none [&_img]:hover:opacity-100">
             <div className="w-8 h-8 aspect-square">
-            <img id="a" src="/no_bg_applio_logo.png" className="scale-150" alt="logo"/>
+            <img id="a" src="/no_bg_applio_logo.png" className="md:-ml-10 md:scale-75 md:blur md:opacity-0 gtransition" alt="logo"/>
             </div>
-            <h1 className="text-lg font-semibold truncate tracking-tight md:-ml-10 md:scale-75 md:blur md:opacity-0 gtransition">Applio</h1>
+            <h1 className="text-2xl font-semibold truncate tracking-tight">Applio</h1>
           </a>
           <div className="flex-grow h-full flex items-center justify-center md:mr-4">
           <MainNav items={siteConfig.mainNav} />

@@ -134,7 +134,7 @@ export default function Home() {
           </div>
         </div>
         <div className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xls"></div>
-        <div className=" mb-2 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid">
+        <div className=" mb-2 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid max-md:mt-24">
           <Button
             size="sm"
             variant={selectedFilter !== "rvc" ? "ghost" : undefined}

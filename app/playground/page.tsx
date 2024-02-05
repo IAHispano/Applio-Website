@@ -5,7 +5,6 @@ export default function IndexPage() {
         src="https://iahispano-applio.hf.space"
         width="100%"
         height="100%"
-        
       ></iframe>
     </main>
   );

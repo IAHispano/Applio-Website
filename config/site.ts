@@ -3,7 +3,7 @@ export type SiteConfig = typeof siteConfig
 export const siteConfig = {
   name: "Applio",
   description:
-    "Applio stands at the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
+    "At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
   mainNav: [
     {
       title: "Playground",

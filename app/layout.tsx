@@ -45,7 +45,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           <link rel="icon" href="/favicon.ico" />
           <meta
             name="description"
-            content="Applio stands at the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies."
+            content="At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies."
           />
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-mobile-web-app-capable" content="yes" />

@@ -35,30 +35,35 @@ export default function Footer() {
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/"
+            target="_blank"
           >
             Home
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/models"
+            target="_blank"
           >
             Models
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/guides"
+            target="_blank"
           >
             Guides
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/bot"
+            target="_blank"
           >
             Bot
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/api"
+            target="_blank"
           >
             API
           </a>
@@ -69,25 +74,29 @@ export default function Footer() {
           </h1>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/faq"
+            href="https://docs.applio.org/faq/"
+            target="_blank"
           >
             FAQs
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/privacy"
+            target="_blank"
           >
             Privacy Policy
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/terms-service"
+            target="_blank"
           >
             Terms of Service
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/terms-use"
+            target="_blank"
           >
             Terms of Use
           </a>
@@ -110,7 +119,7 @@ export default function Footer() {
             rel="noreferrer"
             target="_blank"
           >
-            Linkedin
+            LinkedIn
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
@@ -118,12 +127,12 @@ export default function Footer() {
             rel="noreferrer"
             target="_blank"
           >
-            Youtube
+            YouTube
           </a>
         </div>
         <div className="col-span-1 flex flex-col space-y-2">
           <h1 className="mb-1 text-xs font-bold uppercase text-[#00AA68]">
-            Have any project idea?
+            Any project idea?
           </h1>
           <a
             className="border-2 border-white/30 hover:border-white/80 rounded-md flex px-4 py-2 items-center justify-center gap-2 z-[1] gtransition"

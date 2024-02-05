@@ -7,7 +7,7 @@ export const siteConfig = {
   mainNav: [
     {
       title: "Playground",
-      href: "/execute",
+      href: "/playground",
     },
     {
       title: "Models",
@@ -45,7 +45,7 @@ export const siteConfig = {
     },
     {
       label: "Playground",
-      href: "/execute",
+      href: "/playground",
     },
     {
       label: "Models",

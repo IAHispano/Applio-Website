@@ -75,6 +75,7 @@ function ApiLogs({ auth_id }: ModelInfoProps) {
             <img
               className="absolute top-0 left-0 pointer-events-none w-full h-full object-cover opacity-70 bg-green-500"
               src="/poster.png"
+              alt="api poster"
             ></img>
           </div>
           <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">

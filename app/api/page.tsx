@@ -17,8 +17,8 @@ export default function api() {
         }}
       ></motion.div>
       <div className="grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1 gap-5 gtransition">
-        <article className="md:col-span-8 overflow-hidden md:h-72 relative md:hover:h-96 md:hover:-mx-5 md:hover:w-[calc(100%+40px)] md:hover:rounded-[2rem] gtransition w-full h-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-white/20 bg-green-500/50 justify-start items-start relative">
-          <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
+        <article className="md:col-span-8 overflow-hidden md:h-72 relative md:hover:h-96 md:hover:-mx-5 md:hover:w-[calc(100%+40px)] md:hover:rounded-[2rem] gtransition size-full p-5 gap-4 flex flex-col rounded-3xl border-2 border-white/20 bg-green-500/50 justify-start items-start relative">
+          <div className="flex flex-col justify-center items-center text-center gap-4 size-full z-[2] p-5">
             <h2 className="text-5xl md:text-6xl md:hover:text-8xl font-bold tracking-tighter gtransition-5 text-white ">
               Applio API
             </h2>
@@ -47,15 +47,15 @@ export default function api() {
             </div>
           </div>
         </article>
-        <article className="md:col-span-3 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
-          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] flex-grow overflow-y-auto max-md:min-h-[8rem]">
-            <p className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 break-words">
+        <article className="md:col-span-3 size-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
+          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] grow overflow-y-auto max-md:min-h-[8rem]">
+            <p className="text-center size-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 break-words">
               +600.000 Models
             </p>
           </section>
         </article>
-        <article className="md:col-span-5 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
-          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] flex-grow overflow-y-auto max-md:min-h-[8rem]">
+        <article className="md:col-span-5 size-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
+          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] grow overflow-y-auto max-md:min-h-[8rem]">
             <p
               className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 "
               style={{ wordWrap: "break-word" }}
@@ -67,10 +67,10 @@ export default function api() {
             </p>
           </section>
         </article>
-        <article className="md:col-span-5 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
-          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] flex-grow overflow-y-auto max-md:min-h-[8rem]">
+        <article className="md:col-span-5 size-full p-5 gap-4 flex flex-col rounded-3xl bg-black justify-start items-start relative border-2 border-white/5">
+          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] grow overflow-y-auto max-md:min-h-[8rem]">
             <p
-              className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 "
+              className="text-center size-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 "
               style={{ wordWrap: "break-word" }}
             >
               Completely{" "}
@@ -80,10 +80,10 @@ export default function api() {
             </p>
           </section>
         </article>
-        <article className="md:col-span-3 w-full h-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
-          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] flex-grow overflow-y-auto max-md:min-h-[8rem]">
+        <article className="md:col-span-3 size-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
+          <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] grow overflow-y-auto max-md:min-h-[8rem]">
             <p
-              className="text-center w-full h-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 "
+              className="text-center size-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 "
               style={{ wordWrap: "break-word" }}
             >
               Highly functional

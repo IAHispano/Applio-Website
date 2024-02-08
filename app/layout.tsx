@@ -23,15 +23,21 @@ export const metadata: Metadata = {
     template: `%s - ${siteConfig.name}`,
   },
   description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-    { media: "(prefers-color-scheme: light)", color: "black" },
-  ],
   icons: {
     icon: "/favicon.ico",
   },
   metadataBase: new URL("https://applio.org/"),
+  manifest: "/manifest.json",
 }
+
+export const viewport = {
+  themeColor: {
+    default: "#090909", 
+    light: "black",
+    dark: "black",
+  },
+}
+
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -39,8 +45,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
         <head>
           <link rel="icon" href="/favicon.ico" />
           <meta
@@ -51,7 +56,6 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           <meta name="apple-mobile-web-app-capable" content="yes" />
           <meta name="application-name" content="Applio" />
           <meta name="apple-mobile-web-app-title" content="Applio" />
-          <meta name="theme-color" content="#090909" />
           <meta name="msapplication-navbutton-color" content="#090909" />
           <meta
             name="apple-mobile-web-app-status-bar-style"
@@ -94,6 +98,5 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
           <Footer />
         </body> 
       </html>
-    </>
   )
 }

@@ -117,8 +117,8 @@ export default function Home() {
           </div>
         }
       >
-        <div className="fixed rounded-2xl w-11/12 sm:w-[581px] h-40 sm:h-[80px] p-0.5 z-10 bottom-10 left-0 right-0 mx-auto">
-          <div className="rounded-[14px] w-full h-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
+        <div className="fixed rounded-2xl w-11/12 sm:w-[581px] h-40 sm:h-[80px] p-0.5 z-10 bottom-10 inset-x-0 mx-auto">
+          <div className="rounded-[14px] size-full bg-background border-2 border-zinc-600   flex flex-col sm:flex-row items-center justify-center sm:justify-between space-y-3 sm:space-y-0 px-5">
             <p className="dark:text-white text-[13px] w-[304px] h-10 flex items-center justify-center p-3 text-black">
               Enjoy +600.000 voice models available in our database!
             </p>

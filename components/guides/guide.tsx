@@ -213,9 +213,9 @@ export default function Guide() {
                         {description || "Unknown Description"}
                       </p>
                       <div className="flex justify-start w-full flex-wrap gap-2 items-center md:justify-end">
-                        <a
+                        <div
                           className="flex gap-2 items-center justify-center bg-neutral-900 hover:bg-neutral-800 active:opacity-50 rounded-lg p-2 gtransition max-md:w-full max-md:mt-2"
-                          href={`/user/${full_name}`}
+                          onClick={() => { window.location.href = `/user/${full_name}`; }}
                         >
                           <p className="text-neutral-300 font-medium md:text-xs text-sm">
                             by{" "}
@@ -224,7 +224,7 @@ export default function Guide() {
                             </span>{" "}
                             {formattedDate}
                           </p>
-                        </a>
+                        </div>
                       </div>
                     </a>
                   </section>

@@ -18,7 +18,7 @@ export default function writer() {
             minSize={0.6}
             maxSize={1.4}
             particleDensity={100}
-            className="w-full h-full"
+            className="size-full"
             particleColor="#FFFFFF"
           />
         </div> 

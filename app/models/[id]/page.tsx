@@ -241,9 +241,10 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                   src={imageUrlToShow}
                   loading="eager"
                   decoding="async"
-                  className="w-full h-full object-cover  border-b border-white/30 gtransition"
+                  className="size-full object-cover  border-b border-white/30 gtransition"
                   width={300}
                   height={300}
+                  alt="model image"
                   onError={handleImageError}
                   style={{
                     objectFit: "cover",
@@ -393,7 +394,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
               {userModels?.map((model: Model) => (
                 <div
                   key={model.id}
-                  className="relative flex items-start bg-black/10 dark:bg-neutral-800 rounded-lg flex-shrink-0 h-18 w-full md:w-[305px] cursor-pointer gtransition hover:opacity-80 max-md:mb-4"
+                  className="relative flex items-start bg-black/10 dark:bg-neutral-800 rounded-lg shrink-0 h-18 w-full md:w-[305px] cursor-pointer gtransition hover:opacity-80 max-md:mb-4"
                   onClick={() => (window.location.href = `/models/${model.id}`)}
                 >
                   <div className="w-32 h-20 md:w-32 md:h-20  mr-4 relative object-cover">
@@ -408,13 +409,14 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                       }}
                       loading="eager"
                       decoding="async"
-                      className="w-full h-full object-cover rounded-l-lg "
+                      className="size-full object-cover rounded-l-lg "
                       width={300}
                       height={300}
+                      alt="Model image"
                     />
                   </div>
                   <div className="flex flex-col items-start py-2 px-1 ">
-                    <h1 className="line-clamp-1 overflow-hidden overflow-ellipsis w-full">
+                    <h1 className="line-clamp-1 overflow-hidden text-ellipsis w-full">
                       {model.name}
                     </h1>
                     <h2>

@@ -113,7 +113,8 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
       </Head>
       {data.image_url && (
         <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
-          <img src={data.image_url} className="object-fill h-64 w-full" />
+          <img src={data.image_url || '/no_bg_applio_logo.png'} className="object-fill h-64 w-full" alt="Model image"
+          onError={(e) => e.currentTarget.src = '/no_bg_applio_logo.png'} />
         </div>
       )}
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
@@ -121,7 +122,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
       </h1>
       <div>
         <div className="flex justify-between items-center flex-wrap gap-5 w-full">
-          <div className="flex flex-col text-left gap-1 flex-grow">
+          <div className="flex flex-col text-left gap-1 grow">
             <p className="text-sm md:text-lg tracking-tight text-neutral-400 text-left">
               Uploaded at {formatDate(data.created_at)}
             </p>

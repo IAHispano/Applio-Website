@@ -2,11 +2,11 @@
 
 import { useFormStatus } from "react-dom"
 
-export function SendButton() {
+export function SendButton({ isDisabled }: { isDisabled?: boolean }) {
   const { pending } = useFormStatus()
 
   return (
-    <button className="cursor-pointer flex items-center flex-wrap gap-3 px-4 py-2  bg-white mt-5 z-10 dark:hover:bg-opacity-80 active:opacity-50 rounded-lg gtransition text-black  justify-center">
+  <button className={`flex items-center flex-wrap gap-3 px-4 py-2 bg-white mt-5 z-10  rounded-lg text-black justify-center ${pending || isDisabled ? "opacity-40 cursor-default hover:none" : "cursor-pointer hover:bg-opacity-80 active:opacity-50 gtransition"}`}  disabled={isDisabled}>
       {pending ? "Please wait..." : "Send"}
       <svg
         xmlns="http://www.w3.org/2000/svg"

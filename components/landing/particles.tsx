@@ -42,7 +42,6 @@ const SparklesCore = (props: ParticlesProps) => {
 
   const particlesLoaded = async (container?: Container) => {
     if (container) {
-      console.log(container);
       controls.start({
         opacity: 1,
         transition: {
@@ -53,11 +52,11 @@ const SparklesCore = (props: ParticlesProps) => {
   };
 
   return (
-    <motion.div animate={controls} className={cn("opacity-0", className)}>
+    <motion.div animate={controls} className={cn("opacity-0", className)} transition={{ duration: 3 }} initial={{ opacity: 0 }} exit={{ opacity: 1 }}>
       {init && (
         <Particles
           id={id || "tsparticles"}
-          className={cn("h-full w-full")}
+          className={cn("h-full w-full overflow-visible")}
           particlesLoaded={particlesLoaded}
           options={{
             fullScreen: {

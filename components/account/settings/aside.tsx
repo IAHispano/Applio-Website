@@ -28,7 +28,7 @@ export function AsideSelection({
   return (
     <main>
       <div className="w-full flex fixed h-full justify-center items-center text-white dark:text-white flex mx-auto">
-        <div className="md:max-w-[100rem] max-md:flex-col w-full h-full p-2 flex gap-4 max-md:mx-4">
+        <div className="md:max-w-[100rem] max-md:flex-col size-full p-2 flex gap-4 max-md:mx-4">
           <aside className="md:w-72 xl:w-96 bg-neutral-900 md:h-4/5 p-5 gap-3 md:flex flex-col rounded-3xl gtransition">
             <h2 className="text-4xl font-bold tracking-tight">Settings</h2>
             <div className="flex flex-col gap-3 max-md:mt-2 overflow-y-auto rounded-2xl">
@@ -58,7 +58,7 @@ export function AsideSelection({
               </a>
             </div>
           </aside>
-          <div className="flex-grow bg-neutral-900 h-4/5 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">
+          <div className="grow bg-neutral-900 h-4/5 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">
             {section === "account" && <Information bio={bio} links={links} />}
             {section === "models" && (
               <ModelsAccount userFullName={full_name as string} />

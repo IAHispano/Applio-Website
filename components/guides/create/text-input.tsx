@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import { Divider } from "@nextui-org/react"
 import Markdown from "react-markdown"
@@ -14,8 +14,17 @@ export default function MarkdownInput() {
   const [markdownText, setMarkdownText] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
+  const [disabled, setDisabled] = useState(true)
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
+
+  useEffect(() => {
+    if (markdownText.length > 20) {
+      setDisabled(false);
+    } else {
+      setDisabled(true);
+    }
+  }, [markdownText]);
 
   return (
     <form
@@ -36,7 +45,7 @@ export default function MarkdownInput() {
           <p className="md:text-5xl font-bold text-white md:ml-5 text-2xl items-center justify-center flex text-center">
             Splash your creativity in a guide
           </p>
-          <SendButton />
+          <SendButton isDisabled={disabled}/>
         </div>
         <div className=" grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1  gtransition">
           <textarea
@@ -60,7 +69,7 @@ export default function MarkdownInput() {
         </div>
         <div className="md:flex ">
               <textarea
-                  className="md:flex-1 h-[600px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4"
+                  className="md:flex-1 h-[600px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 font-mono"
                   placeholder={
                     "Here you can start writing your guide, before we start, and we will show you how it works.\n\n" +
                     "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
@@ -78,6 +87,7 @@ export default function MarkdownInput() {
                   key="content"
                   name="content"
                   required
+                  
               >
               </textarea>
               <div className="flex-1 md:ml-4 border rounded-xl" suppressHydrationWarning>
@@ -94,7 +104,7 @@ export default function MarkdownInput() {
                               </a>
                           ),
                           p: ({ node, children, ...props }) => (
-                              <p {...props} className="mb-4">
+                              <p {...props} className="mb-4 font-mono">
                                   {children}
                               </p>
                           ),

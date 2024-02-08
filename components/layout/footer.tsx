@@ -4,20 +4,20 @@ import { motion } from "framer-motion"
 
 export default function Footer() {
   return (
-    <footer className="relative pt-3  bg-background overflow-visible">
+    <footer id="footer" className="relative pt-3  bg-background overflow-visible">
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 2 }}
-        className="absolute bottom-0 left-0 h-full min-w-full blur-xl hidden md:block"
+        transition={{ duration: 2.5 }}
+        className="absolute top-0 h-full min-w-full overflow-hidden md:block hidden blur-xl"
         style={{
           backgroundImage:
             "radial-gradient(ellipse 20% 100% at 0% 100%, #00AA68, transparent)",
         }}
       ></motion.div>
-      <div className="m-auto grid min-h-64 max-w-[100rem] grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-6">
+      <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-6 z-[1]">
         <div className="col-span-2">
-          <h2 className="text-3xl font-bold truncate tracking-tight  gtransition text-[#00AA68] mb-5">
+          <h2 className="text-3xl font-bold truncate tracking-tight gtransition text-[#00AA68] mb-5">
             Applio
           </h2>
           <p className="text-sm max-w-xs  font-mono ">
@@ -126,7 +126,7 @@ export default function Footer() {
             Have any project idea?
           </h1>
           <a
-            className="border-2 border-white/30 hover:border-white/80 rounded-md flex px-4 py-2 items-center justify-center gap-2 z-[1] gtransition"
+            className="border-2 border-white/30 hover:border-white/80 rounded-md flex px-4 py-2 items-center justify-center gap-2 z-[1] gtransition truncate text-wrap"
             href="https://discord.gg/iahispano"
             rel="noreferrer"
             target="_blank"

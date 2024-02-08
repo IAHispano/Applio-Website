@@ -73,6 +73,7 @@
 @layer base {
   * {
     @apply border-border;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
@@ -85,6 +86,10 @@
     user-select: none; /* Standard syntax */
   }
 }
+html {
+  scroll-behavior: smooth;
+}
+
 .image-zoom:hover {
   transform: scale(1.2);
 }
@@ -138,9 +143,6 @@
 .gtransition-5 {
   transition: all 0.5s ease;
 }
-.christmas {
-  background: linear-gradient(to bottom, #2f7336 24%, #aa3a38);
-}
 
 ::-webkit-scrollbar {
   width: 5px !important;
@@ -174,10 +176,6 @@
   background-size: 200% 200%;
   background-position: 0% 0%;
   transition: background 0.5s ease;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 .hide-scrollbar {

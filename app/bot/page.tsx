@@ -1,24 +1,33 @@
 "use client"
 
-import { Button } from "@nextui-org/react"
+import { BentoGridThirdDemo } from "@/components/bot/features"
+import SparklesCore from "@/components/landing/particles"
+import { motion } from "framer-motion"
 
-export default function BotPage() {
-  const handleonclick = () => {
-    window.open("https://bot.applio.org", "_blank")
-  }
+
+export default function IndexPage() {
   return (
-    <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl my-10">
-      <h1 className="text-9xl font-bold leading-tight tracking-tighter md:text-8xl mt-4 text-[#00AA68] p-1">
-        Applio
-      </h1>
-      <p className="text-muted-foreground mb-24 text-xs md:text-xl ">
-        Enjoy +600.000 voice models available in our database, but from Discord!
-      </p>
-      <div className="m-12">
-        <Button size="lg" color="primary" onClick={handleonclick}>
-          Try Applio Bot now!
-        </Button>
+    <main className="flex flex-col overflow-hidden">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 40% 30% at 50% 0%, #00AA68, transparent)",
+        }}
+      ></motion.div>
+      <div className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
+        <div className="min-h-[30svh] flex flex-col justify-center items-center w-full p-10 relative">
+          <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-normal pt-6 text-white max-w-4xl">Discord integration</p>
+          <p className="font-mono max-w-2xl tracking-wide p-2">Access from anywhere on Discord to thousands of voice models thanks to Applio Bot</p>
+        </div>
+        <BentoGridThirdDemo />
+        <div className="mt-24 w-full ">
+          <a className="bg-[#27292c] hover:opacity-80 w-[300px] text-6xl rounded-lg px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
+        </div>
       </div>
-    </section>
+    </main>
   )
 }

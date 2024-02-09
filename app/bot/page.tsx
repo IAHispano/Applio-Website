@@ -25,7 +25,7 @@ export default function IndexPage() {
         </div>
         <BentoGridThirdDemo />
         <div className="mt-24 w-full ">
-          <a className="bg-[#27292c] hover:opacity-80 w-[300px] text-6xl rounded-lg px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
+          <a className="bg-[#27292c] hover:opacity-80 md:w-[300px] w-full text-xl md:text-6xl rounded-lg px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
         </div>
       </div>
     </main>

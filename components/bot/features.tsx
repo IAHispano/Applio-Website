@@ -193,7 +193,7 @@ const SkeletonFour = () => {
         backgroundSize: "400% 400%",
       }}
     >
-      <motion.div initial={{opacity: 0}} whileHover={{opacity: 1}} transition={{duration: 1}} className="h-full w-full rounded-lg text-white z-50 text-8xl flex justify-center items-center"><IconSparkles className="h-44 w-44 text-white" /></motion.div>
+      <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}} className="h-full w-full rounded-lg text-white z-50 text-8xl flex justify-center items-center"><IconSparkles className="h-44 w-44 text-white" /></motion.div>
     </motion.div>
     </motion.div>
   );

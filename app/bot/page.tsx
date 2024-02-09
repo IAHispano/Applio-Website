@@ -23,9 +23,11 @@ export default function IndexPage() {
           <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-normal pt-6 text-white max-w-4xl">Discord integration</p>
           <p className="font-mono max-w-2xl tracking-wide p-2">Access from anywhere on Discord to thousands of voice models thanks to Applio Bot</p>
         </div>
+        <div className="px-12">
         <BentoGridThirdDemo />
-        <div className="mt-24 w-full ">
-          <a className="bg-[#27292c] hover:opacity-80 md:w-[300px] w-full text-xl md:text-6xl rounded-lg px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
+        </div>
+        <div className="my-24 w-full ">
+          <a className="bg-[#27292c] hover:opacity-80 md:w-[300px] w-full text-xl md:text-6xl rounded-lg md:px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
         </div>
       </div>
     </main>

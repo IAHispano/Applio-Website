@@ -9,7 +9,7 @@ export default function Footer() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 2.5 }}
-        className="absolute top-0 h-full min-w-full overflow-hidden md:block hidden blur-xl"
+        className="absolute top-0 h-full min-w-full overflow-hidden  md:blur-xl blur-3xl"
         style={{
           backgroundImage:
             "radial-gradient(ellipse 20% 100% at 0% 100%, #00AA68, transparent)",

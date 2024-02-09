@@ -53,7 +53,7 @@ export default function Team() {
 
   return (
     <div className="md:justify-center md:items-center flex flex-col md:mx-auto ">
-    <div className="md:my-10 my-4 grid grid-cols-2 gap-x-5 gap-y-10 xs:grid-cols-3 sm:grid-cols-7">
+    <div className="md:my-10 my-4 grid grid-cols-2 gap-x-5 gap-y-10 xs:grid-cols-3 sm:grid-cols-4">
       {data.map((item: any) => (
         <a className="flex flex-col" key={item.id} href={`/user/${item.full_name}`}>
           <img className="m-0 inline-flex rounded-md object-cover !xs:w-36 !xs:h-36 !sm:w-40 !sm:h-40 h-32 w-32 cursor-pointer gtransition" src={item.avatar_url || '/aihispano_logo.png'} alt={item.full_name} 

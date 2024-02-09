@@ -83,30 +83,6 @@ export default function UserInfo({ id }: Readonly<Props>) {
 
   return (
     <div className="w-full max-w-7xl flex flex-col gap-4 text-center">
-      <div className="flex py-2 items-center flex-wrap gap-3 justify-center">
-        <button
-          onClick={() => router.back()}
-          className="cursor-pointer flex items-center flex-wrap gap-3 px-4 py-2 bg-black dark:bg-white dark:bg-opacity-20 mt-5 z-10 hover:bg-opacity-80 dark:hover:bg-opacity-5 active:opacity-50 rounded-lg gtransition text-white w-full justify-center"
-        >
-          <span>
-            <svg
-              stroke="currentColor"
-              fill="none"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              height="1em"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <line x1="19" y1="12" x2="5" y2="12"></line>
-              <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-          </span>
-          Return
-        </button>
-      </div>
       {loading && (
         <div className="justify-center items-center flex flex-col h-72">
           <div className="text-white h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-success motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
@@ -139,10 +115,10 @@ export default function UserInfo({ id }: Readonly<Props>) {
                 />
               </div>
               <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
-                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono">
+                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono max-md:max-w-sm truncate px-4">
                   {id}
                 </h1>
-                <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2">
+                <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2  max-md:truncate max-md:px-4">
                   {user.bio}
                 </p>
               </div>

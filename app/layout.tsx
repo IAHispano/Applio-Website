@@ -88,7 +88,7 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
                 <div className="relative flex min-h-screen flex-col bg-background">
                   <SiteHeader />
                   <div className="flex-1 bg-background">
-                    <div className="h-full md:py-16">{children}</div>
+                    <div className="h-full py-16">{children}</div>
                   </div>
                 </div>
               </ThemeProvider>

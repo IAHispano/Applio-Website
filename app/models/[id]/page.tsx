@@ -287,7 +287,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                 </div>
                 <div className="hidden md:flex h-24 flex-col items-end">
                   <div className="flex gap-2 justify-center items-end mb-auto">
-                    {/* <div>
+                    <div>
                       <Tooltip
                         placement="left"
                         color="foreground"
@@ -350,7 +350,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                           )}
                         </div>
                       </Tooltip>
-                    </div> */}
+                    </div> 
                     <Button
                       className="px-3 py-1 w-12 h-10 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-gray-200 text-black hover:bg-opacity-70 active:scale-75 gtransition"
                       onClick={handleDeletePost}

@@ -50,7 +50,7 @@ export default function api() {
         <article className="md:col-span-3 size-full p-5 gap-4 flex flex-col rounded-3xl undefined bg-black justify-start items-start relative border-2 border-white/5">
           <section className="w-full flex flex-col gap-2 rounded-lg min-h-[13rem] max-h-[16rem] grow overflow-y-auto max-md:min-h-[8rem]">
             <p className="text-center size-full justify-center items-center flex text-5xl max-md:text-2xl font-semibold text-white px-5 break-words">
-              +600.000 Models
+              +20.000 Models
             </p>
           </section>
         </article>

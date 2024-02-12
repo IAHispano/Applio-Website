@@ -154,23 +154,49 @@ export default function UserInfo({ id }: Readonly<Props>) {
                   Links
                 </h2>
                 <div className="flex flex-col gap-2 w-full">
-                  {user.links && user.links.length > 0 ? (
-                    user.links
-                      .slice(0, 2)
-                      .map((link: string, index: number) => {
-                        const linkWithoutHttps = link.replace(/^https:\/\//, "")
-                        return (
+                    {user.links && user.links.length > 0  ? (
+                      <>
+                        <a
+                          key={id + "_1"}
+                          href={user.links[0]} 
+                          rel="noreferrer"
+                          target="_blank"
+                          className="bg-white/10 hover:bg-white/20 active:opacity-50 flex gap-2 gtransition w-full py-2 px-3 rounded-xl"
+                        >
+                          <div className="h-full flex justify-center items-start flex-col flex-grow text-left truncate">
+                            <p className="text-xl truncate w-full text-white">
+                              {user.links[0].replace(/^https:\/\//, "")}
+                            </p>
+                          </div>
+                          <span className="h-full flex justify-center items-center text-white">
+                            <svg
+                              stroke="currentColor"
+                              fill="none"
+                              strokeWidth="2"
+                              viewBox="0 0 24 24"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              height="1em"
+                              width="1em"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                              <polyline points="15 3 21 3 21 9"></polyline>
+                              <line x1="10" y1="14" x2="21" y2="3"></line>
+                            </svg>
+                          </span>
+                        </a>
+                        {user.links[1] && (
                           <a
-                            key={id}
-                            href={link}
+                            key={id + "_2"}
+                            href={user.links[1]} 
                             rel="noreferrer"
                             target="_blank"
                             className="bg-white/10 hover:bg-white/20 active:opacity-50 flex gap-2 gtransition w-full py-2 px-3 rounded-xl"
                           >
                             <div className="h-full flex justify-center items-start flex-col flex-grow text-left truncate">
-                              <p></p>
                               <p className="text-xl truncate w-full text-white">
-                                {linkWithoutHttps}
+                                {user.links[1].replace(/^https:\/\//, "")}
                               </p>
                             </div>
                             <span className="h-full flex justify-center items-center text-white">
@@ -191,14 +217,15 @@ export default function UserInfo({ id }: Readonly<Props>) {
                               </svg>
                             </span>
                           </a>
-                        )
-                      })
-                  ) : (
-                    <p className="text-neutral-300 pt-6">
-                      This user does not have any links to share.
-                    </p>
-                  )}
-                </div>
+                        )}
+                      </>
+                    ) : (
+                      <p className="text-neutral-300 pt-6">
+                        This user does not have any links to share.
+                      </p>
+                    )}
+                  </div>
+
               </article>
             </section>
           </>

@@ -5,6 +5,7 @@ import Head from "next/head"
 import { Divider, Spinner } from "@nextui-org/react"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
+import { motion } from "framer-motion"
 
 import { Database } from "@/app/types/database"
 
@@ -84,6 +85,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
   }
 
   if (data.link) {
+    navigator.clipboard.writeText(data.link)
     window.open(data.link, "_blank")
     window.location.href = data.link
   }
@@ -98,6 +100,16 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
 
   return (
     <main className="container flex flex-col justify-center items-center pb-8 pt-6 gap-5 md:py-10 mx-auto text-center max-w-7xl">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2 }}
+        className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl"
+        style={{
+          backgroundImage:
+            "radial-gradient(ellipse 40% 30% at 50% 0%, #00AA68, transparent)",
+        }}
+      ></motion.div>
       <Head>
         <meta property="og:title" content={`${data.name} at Applio.`} />
         <meta
@@ -113,8 +125,11 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
       </Head>
       {data.image_url && (
         <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
-          <img src={data.image_url || '/no_bg_applio_logo.png'} className="object-fill h-64 w-full" alt="Model image"
-          onError={(e) => e.currentTarget.src = '/no_bg_applio_logo.png'} />
+          <img
+            src={data.image_url || "/no_bg_applio_logo.png"}
+            alt="Model image"
+            onError={(e) => (e.currentTarget.src = "/no_bg_applio_logo.png")}
+          />
         </div>
       )}
       <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
@@ -128,7 +143,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
             </p>
           </div>
           <p className="text-sm md:text-lg tracking-tight text-neutral-400 text-left">
-            Created by {user ? user.full_name : "unknown"}
+            Created by {data.author_username}
           </p>
         </div>
         <Divider className="w-full my-1" />
@@ -143,6 +158,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
           </span>
           .
         </h2>
+        {data.link}
       </div>
     </main>
   )

@@ -385,10 +385,16 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                 </div>
               </div>
             </div>
+            <div
+            className="md:hidden mt-3 p-4 rounded-lg flex items-center justify-center gap-1 cursor-pointer bg-white text-black font-medium hover:bg-opacity-70 active:scale-75 gtransition"
+            onClick={downloadModel}
+          >
+              <span className="ml-2">Download</span>
+          </div>
           </Skeleton>
           <Skeleton
             isLoaded={userAllLoad}
-            className="flex flex-col rounded-lg gap-2 md:items-start w-full drop-shadow-md bg-white dark:bg-neutral-700 my-2"
+            className="flex flex-col rounded-lg gap-2 md:items-start w-full drop-shadow-md bg-white dark:bg-neutral-700 mb-2"
           >
             <div className="md:flex gap-2  w-full rounded-sm mt-4 md:mx-auto">
               {userModels?.map((model: Model) => (

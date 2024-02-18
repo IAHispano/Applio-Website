@@ -81,7 +81,7 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
     fetchData()
   }, [userFullName])
 
-  if (error) {
+  if (data?.length === 0) {
     return (
       <div className="flex items-center justify-center">
         <h1>You have not uploaded any models.</h1>
@@ -96,6 +96,8 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
       </div>
     )
   }
+
+  console.log(data)
 
   return (
     <div>

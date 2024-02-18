@@ -24,7 +24,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("*")
-        .eq("full_name", id)
+        .eq("full_name", decodeURIComponent(id))
 
       if (userError) {
         setError(userError)
@@ -44,7 +44,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
       const { data: modelsData, error: modelsError } = await supabase
         .from("models")
         .select("*")
-        .eq("author_username", id)
+        .eq("author_username", decodeURIComponent(id))
 
       if (modelsError) {
         setError(modelsError)
@@ -92,7 +92,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
         (user === undefined && (
           <div className="justify-center items-center flex flex-col ">
             <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl">
-              {id.length > 15 ? `${id.slice(0, 15)}...` : id}
+              {id.length > 15 ? `${id.slice(0, 15)}...` : decodeURIComponent(id)}
             </h1>
             <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2 text-center">
               This user does not have an account at this web, but we still have
@@ -116,7 +116,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
               </div>
               <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
                 <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono max-md:max-w-sm truncate px-4">
-                  {id}
+                  {decodeURIComponent(id)}
                 </h1>
                 <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2  max-md:truncate max-md:px-4">
                   {user.bio}

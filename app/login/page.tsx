@@ -1,28 +1,42 @@
-import { AuthButtonServer } from "@/components/login/auth-button-server"
-import { cookies } from "next/headers"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { redirect } from "next/navigation"
+"use client"
 
-export default async function Login() {
-  const supabase = createServerComponentClient({ cookies })
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+import { ThemeSupa } from '@supabase/auth-ui-shared'
+import { Auth } from "@supabase/auth-ui-react"
+import { motion } from 'framer-motion';
+import SparklesCore from '@/components/landing/particles';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
-  if (!session) {
-    return (
-      <div className="flex flex-col gap-2 p-5 justify-center items-center top-0 left-0 size-full fixed text-center text-white">
-        <h1 className="text-4xl font-bold tracking-tight fade-in mb-2">
-          You must log in. (401)
-        </h1>
-        <AuthButtonServer />
-      </div>
-    ); 
-  }
-  
-  if (session) {
-    redirect(`/user/${session.user.user_metadata.full_name}`);
-  }
+export default function Login() {
+  const supabase = createClientComponentClient()
 
-  return null; 
+  return (
+  <div className="flex flex-col">
+    <div className="absolute top-0 h-full min-w-full overflow-hidden">
+  <SparklesCore
+      id="tsparticlesfullpage"
+      background="transparent"
+      minSize={0.6}
+      maxSize={1.4}
+      particleDensity={30}
+      className="size-full"
+      particleColor="#FFFFFF"
+    /> 
+  </div> 
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.3, delay: 1 }} className="absolute drop-shadow-2xl border border-white/10 top-[50%] left-[50%] max-h-full h-full md:h-auto md:max-h-[85vh] w-full md:w-[90vw] md:max-w-[450px] translate-x-[-50%] translate-y-[-50%] md:rounded-xl bg-neutral-800/40 p-[25px] focus:outline-none ">
+  <div className='max-w-2xl max-md:py-24'>
+  <Auth
+    supabaseClient={supabase}
+    providers={['discord', 'twitter', 'github']}
+    redirectTo='http://applio.org/auth/callback'
+    appearance={{ 
+    theme: ThemeSupa, }}
+    theme='dark'
+    socialLayout='vertical'
+    showLinks
+    onlyThirdPartyProviders
+  />
+  </div>
+</motion.div>
+</div>
+  ); 
 }

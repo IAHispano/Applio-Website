@@ -27,7 +27,6 @@ export default async function CreateGuide() {
   }
 
   const userRole = user?.role || ""
-  console.log(userRole)
 
   if (userRole !== "writer" && userRole !== "admin") {
     redirect("/guides/be-a-writer")

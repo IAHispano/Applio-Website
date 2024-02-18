@@ -97,7 +97,6 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
     )
   }
 
-  console.log(data)
 
   return (
     <div>

@@ -26,7 +26,7 @@ export default function AuthUI() {
   <div className='max-w-2xl max-md:py-24'>
   <Auth
     supabaseClient={supabase}
-    providers={['discord', 'twitter', 'github']}
+    providers={['discord', 'github']}
     redirectTo='http://applio.org/auth/callback'
     appearance={{ 
     theme: ThemeSupa, }}

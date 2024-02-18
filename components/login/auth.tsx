@@ -29,10 +29,12 @@ export default function AuthUI() {
     providers={['discord', 'github']}
     redirectTo='http://applio.org/auth/callback'
     appearance={{ 
-    theme: ThemeSupa, }}
+    theme: ThemeSupa, style: { button: { color: 'white', backgroundColor: 'rgb(38, 38, 38)', borderRadius: '5px' } } 
+    }}
     theme='dark'
     socialLayout='vertical'
     showLinks
+    magicLink
     onlyThirdPartyProviders
   />
   </div>

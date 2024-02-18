@@ -13,12 +13,6 @@ import NavbarAvatar from "./navbar-avatar"
 import HeaderMobile from "./site-header-mobile"
 
 export async function SiteHeader() {
-  const supabase = createServerComponentClient<Database>({ cookies })
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
-  const { data: posts } = await supabase.from("profiles").select("*")
 
   return (
     <section>
@@ -40,7 +34,9 @@ export async function SiteHeader() {
           <div >
             <nav >
               <div >
+                {process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY && (
                 <AuthButtonServer />
+                )}
               </div>
             </nav>
           </div>

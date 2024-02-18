@@ -8,15 +8,22 @@ import ApiLogs from "@/components/api/date"
 import { Database } from "../../types/database"
 
 export default async function User() {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? createServerComponentClient<Database>({ cookies }) : null;
+
+  if (!supabase) {
+    return (
+      <p className="text-neutral-300 text-center h-[400px] flex justify-center items-center text-3xl">Development mode activated</p>
+    );
+  }
+
+
   const {
     data: { session },
   } = await supabase.auth.getSession()
 
   let content = null
   let section = ""
-
-  if (session === null) {
+  if (session === null ) {
     redirect("/login")
   } else {
     const { data: userProfile } = await supabase

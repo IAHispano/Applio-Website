@@ -43,6 +43,10 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
+if (!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || !process.env.NEXT_PUBLIC_SUPABASE_URL) {
+  console.error(' ❌ We have not found any API KEYS, we understand that you are in development mode so you will not have errors but you will not be able to access database functionality.')
+}
+
 export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
   return (
     <html lang="en" suppressHydrationWarning>

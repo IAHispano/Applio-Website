@@ -22,7 +22,7 @@ export default function Home() {
   const [data, setData] = useState<any[] | null>(null)
   const [_error, setError] = useState<PostgrestError | null>(null)
   const [posts, setPosts] = useState<any[] | null>(null)
-  const supabase = createClientComponentClient()
+  const supabase = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? createClientComponentClient() : null;
   const [end, setEnd] = useState(14)
   const [hasMore, setHasMore] = useState(true)
   const [increment, setIncrement] = useState(10)
@@ -31,9 +31,9 @@ export default function Home() {
   const [algorithmFilter, setAlgorithmFilter] = useState("")
 
   async function fetchData() {
-    if (loading) return
+    if (loading || !supabase) return;
     setLoading(true)
-    let query = supabase
+    let query = supabase 
       .from("models")
       .select("*")
       .order("image_url", { ascending: false })
@@ -77,7 +77,11 @@ export default function Home() {
   }
 
   useEffect(() => {
-    fetchData()
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      return;
+    }
+
+    fetchData();
   }, [end, search, selectedFilter, algorithmFilter])
 
   function loadmore() {
@@ -86,7 +90,13 @@ export default function Home() {
     }
   }
 
-  if (!data) {
+  if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+    return (
+      <p className="text-neutral-300 text-center h-[400px] flex justify-center items-center text-3xl">Development mode activated</p>
+    );
+  }
+
+  if (!data ) {
     return (
       <div className="flex items-center justify-center h-[40svh]">
         <Progress

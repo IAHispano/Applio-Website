@@ -12,9 +12,12 @@ export default function Home() {
                         We would be nothing without you
                         </h1>
                         <p className="max-w-3xl mt-4 text-xl leading-7 text-gray-500 dark:text-gray-400 lg:mx-auto">
-
-                        </p>
-                        <Team />
+                        </p>          
+                        {process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? (
+                          <Team />
+                        ) : (
+                          <p className="text-neutral-300 text-center h-[400px] flex justify-center items-center text-3xl">Development mode activated</p>
+                        )}
                     </div>
                 </div>
             </div>

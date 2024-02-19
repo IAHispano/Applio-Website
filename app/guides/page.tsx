@@ -23,7 +23,8 @@ export default function Guides() {
           )}
         </div>
         {process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? (
-            <Guide />
+            // <Guide /> 
+            <h1 className="text-center text-3xl font-bold mt-24 text-neutral-300">Under maintenance</h1>
           ) : (
             <p className="text-neutral-300 text-center h-[400px] flex justify-center items-center text-3xl">Development mode activated</p>
           )}

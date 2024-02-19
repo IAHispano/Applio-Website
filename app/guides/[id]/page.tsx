@@ -8,7 +8,7 @@ export default async function PostGuide({
   const { id } = params
   return (
     <section>
-      <GuidePost id={id} />
+      {/* <GuidePost id={id} /> */}             <h1 className="text-center text-3xl font-bold mt-24 text-neutral-300">Under maintenance</h1>
     </section>
   )
 }

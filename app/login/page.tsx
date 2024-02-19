@@ -14,7 +14,8 @@ export default async function User({ params }: { params: { id: string } }) {
 
   if (session) {
     redirect("/")
-  } 
+  }
+   
   return (
     <section>
         <AuthUI />

@@ -5,7 +5,7 @@ import BlogCard from "@/components/blog/blog-card"
 export default function BlogPage() {
   return (
     <main className="flex flex-col justify-center items-center text-center min-h-[600px]">
-      <section className="md:w-full max-w-6xl p-4 flex flex-col gap-5 rounded-medium max-md:mx-2">
+      <section className="md:w-full max-w-6xl p-4 flex flex-col gap-5 rounded-medium max-md:mx-2 justify-center items-center place-items-center">
         <div className="my-8">
         {process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? (
             <BlogCard />

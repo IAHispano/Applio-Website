@@ -6,7 +6,7 @@ To get started with the development or deployment of the project, follow the ste
 
 ### Installation
 
-Make sure you have Node.js, git and npm installed on your machine.
+Make sure you have Node.js, git and pnpm installed on your machine.
 
 1. Clone the repository:
 

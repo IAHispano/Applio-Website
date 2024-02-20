@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@hcaptcha/react-hcaptcha": "^1.10.1",
     "@mantine/core": "^7.5.1",
     "@mantine/hooks": "^7.5.1",
     "@nextui-org/react": "^2.2.9",
@@ -38,6 +39,7 @@
     "zustand": "^4.5.1"
   },
   "devDependencies": {
+    "@hcaptcha/types": "^1.0.3",
     "@ianvs/prettier-plugin-sort-imports": "^4.1.1",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20.11.16",

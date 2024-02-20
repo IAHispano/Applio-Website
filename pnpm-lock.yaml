@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@hcaptcha/react-hcaptcha':
+    specifier: ^1.10.1
+    version: 1.10.1(react-dom@18.2.0)(react@18.2.0)
   '@mantine/core':
     specifier: ^7.5.1
     version: 7.5.1(@mantine/hooks@7.5.1)(@types/react@18.2.52)(react-dom@18.2.0)(react@18.2.0)
@@ -115,6 +118,9 @@ dependencies:
     version: 4.5.1(@types/react@18.2.52)(react@18.2.0)
 
 devDependencies:
+  '@hcaptcha/types':
+    specifier: ^1.0.3
+    version: 1.0.3
   '@ianvs/prettier-plugin-sort-imports':
     specifier: ^4.1.1
     version: 4.1.1(prettier@3.2.5)
@@ -1468,6 +1474,26 @@ packages:
     dependencies:
       tslib: 2.6.2
     dev: false
+
+  /@hcaptcha/loader@1.2.2:
+    resolution: {integrity: sha512-TNMNj/H87TB5P4/Y4nUFi7ARWt5cLML+UN0sm+OYV4DWUQdZ2tGAf3oIILdXz/31+ITX2XYWbiApavxN6Yz/4A==}
+    dev: false
+
+  /@hcaptcha/react-hcaptcha@1.10.1(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-P0en4gEZAecah7Pt3WIaJO2gFlaLZKkI0+Tfdg8fNqsDxqT9VytZWSkH4WAkiPRULK1QcGgUZK+J56MXYmPifw==}
+    peerDependencies:
+      react: '>= 16.3.0'
+      react-dom: '>= 16.3.0'
+    dependencies:
+      '@babel/runtime': 7.23.9
+      '@hcaptcha/loader': 1.2.2
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
+
+  /@hcaptcha/types@1.0.3:
+    resolution: {integrity: sha512-1mbU6eSGawRrqeahRrOzZo/SVLI6oZ5/azuBpSyVrRRR96CnS3fOVDWfzxpngfxKD0/I9Rwu6c/3ITqD8rXeTQ==}
+    dev: true
 
   /@humanwhocodes/config-array@0.11.14:
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}

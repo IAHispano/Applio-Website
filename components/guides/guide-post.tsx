@@ -28,26 +28,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
         setError(userError)
         return
       }
-
-      if (userData && userData.length > 0) {
-        const createdBy = userData[0].created_by
-
-        const { data: profileData, error: profileError } = await supabase
-          .from("profiles")
-          .select("*")
-          .eq("id", createdBy)
-
-        if (profileError) {
-          setError(profileError)
-          return
-        }
         setData(userData)
-
-        if (profileData && profileData.length > 0) {
-          setUserData(profileData[0])
-        }
-      }
-
       setLoading(false)
     }
 
@@ -104,9 +85,9 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                     )},`}</p>
                     <a
                       className="text-xs md:text-lg tracking-tight dark:text-neutral-300 text-left hover:underline"
-                      href={`/user/${userData.full_name}`}
+                      href={`/user/${item.created_by}`}
                     >
-                      by {userData.full_name || "unknown user"}.
+                      by {item.created_by || "unknown user"}.
                     </a>
                   </div>
                   <div className="flex justify-center items-center flex-wrap gap-5 w-full">
@@ -173,6 +154,8 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                         <a
                           {...props}
                           className="text-green-500 hover:underline break-words"
+                          target="_blank"
+                          rel="noreferrer"
                         >
                           {children}
                         </a>

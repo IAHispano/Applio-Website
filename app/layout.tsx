@@ -90,7 +90,9 @@ export default function RootLayout({ children }: Readonly<RootLayoutProps>) {
             <MantineProvider>
               <ThemeProvider attribute="class" defaultTheme="dark">
                 <div className="relative flex min-h-screen flex-col bg-background">
-                  <SiteHeader />
+                  <div className="z-[5]">
+                    <SiteHeader />
+                  </div>
                   <div className="flex-1 bg-background">
                     <div className="h-full py-16">{children}</div>
                   </div>

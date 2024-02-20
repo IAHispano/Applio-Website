@@ -175,7 +175,7 @@ export default function Guide() {
             dataLength={data.length}
             hasMore={hasMore}
             next={loadmore}
-            className="gap-4 flex flex-col"
+            className="gap-4 flex flex-col my-8"
             loader={
               <div className="flex items-center justify-center">
                 <Spinner color="success" />
@@ -186,7 +186,7 @@ export default function Guide() {
               const {
                 id,
                 created_at,
-                full_name,
+                created_by,
                 type,
                 title,
                 description,
@@ -214,13 +214,13 @@ export default function Guide() {
                       </p>
                       <div className="flex justify-start w-full flex-wrap gap-2 items-center md:justify-end">
                         <div
-                          className="flex gap-2 items-center justify-center bg-neutral-900 hover:bg-neutral-800 active:opacity-50 rounded-lg p-2 gtransition max-md:w-full max-md:mt-2"
-                          onClick={() => { window.location.href = `/user/${full_name}`; }}
+                          className="flex gap-2 items-center justify-center bg-neutral-900 hover:bg-neutral-800 active:opacity-50 rounded-lg p-2 gtransition max-md:w-full max-md:mt-2 z-50"
+                          onClick={() => { window.location.href = `/user/${created_by}`; }}
                         >
                           <p className="text-neutral-300 font-medium md:text-xs text-sm">
                             by{" "}
                             <span className="text-white flex-wrap truncate">
-                              {full_name || "Unknown User"}
+                              {created_by || "Unknown User"}
                             </span>{" "}
                             {formattedDate}
                           </p>

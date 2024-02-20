@@ -17,7 +17,12 @@ export const addPost = async (formData: FormData) => {
     data: { user },
   } = await supabase.auth.getUser()
 
+  const {
+    data: { session }
+  } = await supabase.auth.getSession()
+
   if (user === null) return
+  if (session === null) return
 
   const { data: userProfile } = await supabase
     .from("profiles")
@@ -29,7 +34,7 @@ export const addPost = async (formData: FormData) => {
     title: title,
     description: description,
     content: content,
-    created_by: userProfile?.id,
+    created_by: session?.user.user_metadata.full_name,
   })
 
   redirect("/guides")

@@ -2,9 +2,9 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Database } from "@/app/types/database"
-import AuthUI from "@/components/login/auth"
+import UpdatePassword from "@/components/login/update-password"
 
-export default async function Login() {
+export default async function updatepassword() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const {
     data: { session },
@@ -17,7 +17,7 @@ export default async function Login() {
    
   return (
     <section>
-        <AuthUI />
+        <UpdatePassword />
     </section>
   )
 }

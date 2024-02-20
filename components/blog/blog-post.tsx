@@ -52,7 +52,7 @@ export default function BlogPost({ id }: Readonly<{ id: string }>) {
             <div className="dark:h-[48rem] absolute w-full pointer-events-none overflow-hidden">
               <div className="h-96 top-0 absolute w-full scale-120 rounded-3xl blur-3xl filter brightness-90 pointer-events-none">
                 <img
-                  className="z-10 absolute top-0 left-0 w-full h-full object-cover object-center"
+                  className="absolute top-0 left-0 w-full h-full object-cover object-center"
                   src={item.image_url}
                   alt="post banner"
                 ></img>

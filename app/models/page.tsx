@@ -36,7 +36,7 @@ export default function Home() {
     let query = supabase 
       .from("models")
       .select("*")
-      .order("image_url", { ascending: false })
+      .order("id", { ascending: false })
 
     if (search) {
       query = query.ilike("name", `%${search}%`)

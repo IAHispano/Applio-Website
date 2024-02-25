@@ -44,22 +44,16 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
         </div>
         <motion.div className='' animate={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ duration: 1, delay: 3 }}>
           {products.map((product, index) => (
-            <div key={index} className="rounded-xl max-w-sm p-4 sm:p-10 bg-white/10 mx-auto justify-center items-center flex flex-col drop-shadow-xl border border-white/10">
-              <img
-                src={product.image}
-                alt={product.title}
-                height="400"
-                width="400"
-                className="object-contain rounded-lg border border-black/10" />
-              <p className="text-3xl mt-4 mb-2 font-bold text-neutral-200">
+            <div key={index} className="rounded-lg max-w-sm p-1 sm:p-10 bg-white/10 mx-auto justify-center text-justify flex flex-col drop-shadow-xl border border-white/10">
+              <p className="text-3xl mb-2 font-bold text-neutral-200 text-left">
                 {product.title}
               </p>
-              <p className="text-md text-center text-neutral-200 mb-4 font-mono">
+              <p className="text-md text-left text-neutral-200 mb-4 font-mono">
                 {product.description}
               </p>
-              <ul className='list-outside flex-col justify-center items-center mx-auto'>
+              <ul className='list-outside flex-col '>
               {product.features.map((feature: { name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | PromiseLikeOfReactNode | null | undefined }, index: Key | null | undefined) => (
-                <li key={index} className="text-sm text-center font-mono text-neutral-400">
+                <li key={index} className="text-sm text-left font-mono text-neutral-400 list-outside py-0.5">
                     {feature.name}
                 </li>
                 ))}
@@ -85,14 +79,16 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
                   <span className="rounded-full text-2xl px-2 py-0 text-white font-mono text-center">
                     {(product.unit_amount / 100).toFixed(2)} €
                   </span>
-                </button><span className="rounded-full text-xs m-1 mt-3 text-neutral-300 font-mono font-light text-center">
-                    One time
-                  </span></>
+                </button>
+                <span className="rounded-full text-xs m-1 mt-2 text-neutral-300 font-mono font-light text-center">
+                  One-time payment
+                </span>
+              </>
               )}
               {data.role === 'premium' && (
-                <div className="rounded-lg px-12 py-3 text-white flex items-center space-x-1 mt-8 text-xs font-bold bg-green-500/40 gtransition border border-white/10"
+                <div className="rounded-lg px-12 py-3 text-white flex items-center justify-center space-x-1 mt-8 text-xs font-bold bg-green-500/40 gtransition border border-white/10"
                 >
-                <span className="rounded-full text-2xl px-2 py-0 text-white font-mono">
+                <span className="rounded-full text-2xl px-2 py-0 text-white font-mono flex items-center justify-center mx-auto">
                 <CheckCircleIcon />
                 </span>
             </div>

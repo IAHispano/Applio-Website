@@ -74,6 +74,55 @@ export async function POST(request) {
           console.error('Error:', discordError);
           return NextResponse.json({ error: discordError.message }, { status: 400 });
         }
+
+        try {
+          const discordChannelId = '1164454816005771355'; 
+          const discordToken = process.env.DISCORD_BOT_TOKEN;
+          const message = {
+            embeds: [
+              {
+                title: 'New client at Applio Premium 🎉',
+                fields: [
+                  {
+                    name: 'Payment ID:',
+                    value: id,
+                  },
+                  {
+                    name: 'Price ID:',
+                    value: priceId
+                  },
+                  {
+                    name: 'Payment status:',
+                    value: payment_status
+                  },
+                  {
+                    name: 'Username:',
+                    value: client_reference_id,
+                  }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                  "text": "Applio Website"
+                },
+                color: 0x00ff00, 
+              }
+            ]
+          };
+        
+          const response = await fetch(`https://discord.com/api/v9/channels/${discordChannelId}/messages`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bot ${discordToken}`,
+            },
+            body: JSON.stringify(message),
+          });
+        
+          console.log('Log send.');
+        } catch (discordError) {
+          console.error('Error:', discordError);
+          return NextResponse.json({ error: discordError.message }, { status: 400 });
+        }
         
       break;
     default:

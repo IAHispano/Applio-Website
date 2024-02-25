@@ -16,7 +16,7 @@ export async function POST(request) {
       },
     ],
     success_url: `http://applio.org/premium/success/{CHECKOUT_SESSION_ID}`,
-    cancel_url: 'http://applio.org/pricing',
+    cancel_url: 'http://applio.org/premium',
     client_reference_id: userId,
     metadata: {
       priceId,

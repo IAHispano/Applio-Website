@@ -11,12 +11,13 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
     const [data, setData] = useState<any>([])
     const [loading, setLoading] = useState(true)
     const userId = data.full_name
+    const id = data.id
     
     useEffect(() => {
         async function fetchData() {
             const { data: userData } = await supabase
                 .from("profiles")
-                .select("role, full_name")
+                .select("role, full_name, id")
                 .eq('auth_id', session.user.id)
                 .single()
     
@@ -70,7 +71,8 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
                       method: 'POST',
                       body: JSON.stringify({
                         priceId: product.id,
-                        userId: userId
+                        userId: userId,
+                        auth_id: id
                       }),
                       headers: {
                         'Content-Type': 'application/json'

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { Stripe } from 'stripe';
 
 export async function POST(request) {
-  const { priceId, userId } = await request.json();
+  const { priceId, userId, auth_id } = await request.json();
 
   const stripe = new Stripe(process.env.STRIPE_API_SECRET);
 
@@ -20,6 +20,7 @@ export async function POST(request) {
     client_reference_id: userId,
     metadata: {
       priceId,
+      auth_id
     },
   });
 

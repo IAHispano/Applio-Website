@@ -24,7 +24,7 @@ export async function POST(request) {
   switch (event.type) {
     case "checkout.session.completed":
       const { id, client_reference_id, payment_status } = event.data.object;
-      const { priceId } = event.data.object.metadata;
+      const { priceId, auth_id } = event.data.object.metadata;
 
       console.log({
         priceId,
@@ -60,6 +60,21 @@ export async function POST(request) {
           return NextResponse.json({ error: error.message }, { status: 400 });
         }
 
+        try {
+          const discordUrl = `https://discord.com/api/v9/guilds/1096877223765606521/members/${auth_id}/roles/1135641199420653702`;
+          const discordToken = process.env.DISCORD_BOT_TOKEN;
+          const response = await fetch(discordUrl, {
+            method: 'PUT',
+            headers: {
+              Authorization: `Bot ${discordToken}`,
+            },
+          });
+          console.log('Role assigned');
+        } catch (discordError) {
+          console.error('Error:', discordError);
+          return NextResponse.json({ error: discordError.message }, { status: 400 });
+        }
+        
       break;
     default:
       console.log(`Event: ${event.type}`);

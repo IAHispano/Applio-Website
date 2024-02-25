@@ -135,12 +135,23 @@ export default function UserInfo({ id }: Readonly<Props>) {
                     </h2>
                     <p className="text-neutral-300 truncate">Models</p>
                   </article>
+                  {user.role === 'user' && (
                   <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
                     <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize">
                       {user.role}
                     </h2>
                     <p className="text-neutral-300 truncate">Role</p>
                   </article>
+                  )}
+                {(user.role === 'premium' || user.role === 'admin') && (
+                  <article className="undefined flex flex-col rounded-2xl p-4 justify-center items-center text-center truncate relative">
+                    <div className="w-full h-full absolute top-0 left-0" style={{background: 'radial-gradient(100% 100% at 50% 100%,#00AA6B 0%,#000 100%)'}}></div>
+                    <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize z-10">
+                      {user.role}
+                    </h2>
+                    <p className="text-neutral-300 truncate z-10">Role</p>
+                  </article>
+                  )}
                   <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
                     <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white">
                       {totalLikes}

@@ -82,6 +82,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
                 >
                 <span className="rounded-full text-2xl px-2 py-0 text-white font-mono">
                 {(product.unit_amount / 100).toFixed(2)} €
+                
                 </span>
               </button>
               )}

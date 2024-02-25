@@ -135,7 +135,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
                     </h2>
                     <p className="text-neutral-300 truncate">Models</p>
                   </article>
-                  {user.role === 'user' && (
+                  {(user.role === 'writer' || user.role === 'user') && (
                   <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
                     <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize">
                       {user.role}

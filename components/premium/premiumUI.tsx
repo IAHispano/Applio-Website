@@ -33,7 +33,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
   return (
     <>
       <motion.div style={{ background: 'radial-gradient(100% 100% at 50% 0%,#222 0%,#09090b 100%)' }} className="w-full h-full absolute top-0 left-0 " initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2.5 }}></motion.div>
-      <section className='min-h-[100vh] p-3 overflow-hidden w-full overflow-x-hidden overflow-y-auto shadow-[0_1px_7px_rgba(0,0,0,0.1)] rounded-2xl z-20 relative px-12'>
+      <section className='min-h-[100vh] p-3 overflow-hidden w-full overflow-x-hidden overflow-y-auto rounded-2xl z-20 relative px-12'>
         <div className='px-3 mb-12'>
           <div className='max-md:max-w-sm'>
             <motion.h1 initial={{ marginLeft: 400, fontSize: '70px' }} animate={{ marginLeft: 0, fontSize: '60px' }} transition={{ duration: 0.3, delay: 1 }} className='font-bold tracking-tight gtransition text-white text-center'>Applio <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 2.0 }} className='text-[#00AA68] md:text-7xl text-5xl text-center'>Premium</motion.span></motion.h1>

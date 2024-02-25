@@ -30,6 +30,11 @@ export default function IndexPage() {
       </div> 
       <main className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
         <div className="min-h-[70svh] flex flex-col justify-center items-center w-full p-10 pt-32  relative">
+        <a className="p-2 bg-black/30 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex hover:scale-90 gtransition" role="alert" href="/premium">
+        <span className="flex rounded-full bg-[#00AA68] uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
+        <span className="font-semibold mr-2 text-left flex-auto">Introducing Applio Premium</span>
+        <svg className="fill-current opacity-75 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
+      </a>
           <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-tighter py-10 text-white max-w-4xl">A universe of possibilities powered by AI</p>
           <p className="font-mono max-w-xl tracking-wide">At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.</p>
         <div className="flex justify-center items-center gap-4 flex-wrap py-8">

@@ -64,27 +64,28 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
                 ))}
                 </ul>            
               {data.role !== 'premium' && (
-              <button className="rounded-lg px-8 py-3 text-white flex items-center space-x-1 mt-8 text-xs font-bold bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10"
-                onClick={async () => {
+              <><button className="rounded-lg px-8 py-3 text-white flex flex-col items-center space-x-1 mt-8 text-xs font-bold bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10"
+                  onClick={async () => {
                     const res: Response = await fetch('/api/checkout', {
-                        method: 'POST',
-                        body: JSON.stringify({
-                            priceId: product.id,
-                            userId: userId
-                        }),
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
+                      method: 'POST',
+                      body: JSON.stringify({
+                        priceId: product.id,
+                        userId: userId
+                      }),
+                      headers: {
+                        'Content-Type': 'application/json'
+                      }
                     })
                     const data = await res.json()
                     window.location.href = data.url
-                }}
+                  } }
                 >
-                <span className="rounded-full text-2xl px-2 py-0 text-white font-mono">
-                {(product.unit_amount / 100).toFixed(2)} €
-                
-                </span>
-              </button>
+                  <span className="rounded-full text-2xl px-2 py-0 text-white font-mono text-center">
+                    {(product.unit_amount / 100).toFixed(2)} €
+                  </span>
+                </button><span className="rounded-full text-xs m-1 mt-3 text-neutral-300 font-mono font-light text-center">
+                    One time
+                  </span></>
               )}
               {data.role === 'premium' && (
                 <div className="rounded-lg px-12 py-3 text-white flex items-center space-x-1 mt-8 text-xs font-bold bg-green-500/40 gtransition border border-white/10"

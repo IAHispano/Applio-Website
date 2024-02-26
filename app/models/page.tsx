@@ -147,26 +147,6 @@ export default function Home() {
         <div className=" mb-2 gap-4 flex items-center justify-end mx-16 max-md:grid-cols-3 max-md:grid max-md:mt-24">
           <Button
             size="sm"
-            variant={selectedFilter !== "rvc" ? "ghost" : undefined}
-            onClick={() => {
-              setSelectedFilter("rvc")
-              fetchData()
-            }}
-          >
-            RVC
-          </Button>
-          <Button
-            size="sm"
-            variant={selectedFilter !== "kits.ai" ? "ghost" : undefined}
-            onClick={() => {
-              setSelectedFilter("kits.ai")
-              fetchData()
-            }}
-          >
-            KITS.AI
-          </Button>
-          <Button
-            size="sm"
             variant={algorithmFilter !== "rmvpe" ? "ghost" : undefined}
             onClick={() => {
               setAlgorithmFilter("rmvpe")

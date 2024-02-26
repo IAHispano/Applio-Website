@@ -37,7 +37,7 @@ async function applioPremium() {
     }
      
   return (
-    <main className='min-h-screen flex flex-col justify-start items-center w-full md:px-24 pb-12 mt-4'>
+    <main className='min-h-screen flex flex-col justify-start items-center w-full md:px-24 pb-12 md:mt-4 px-5'>
     <PremiumUI products={products} session={session}/>
     </main> 
   )

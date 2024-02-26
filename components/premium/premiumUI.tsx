@@ -57,13 +57,13 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
     <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-3 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-4'>
     <div className='m-4'>
     <h2 className='text-3xl font-bold tracking-tighter text-balance'>What is it?</h2>
-    <p className='text-left text-sm max-w-3xl p-1 mt-2'>Applio Premium is conceived as a special membership within the Applio platform. Although it does not have significant advantages compared to a standard account, it offers a number of exclusive features. By subscribing to this membership, users contribute directly to the support of this website. Your support is crucial for our continuity and to continue to provide excellent service. Join Applio Premium and become part of our dedicated community.</p>
+    <p className='text-justify text-md max-w-3xl p-1 mt-2'>Applio Premium is conceived as a special membership within the Applio platform. Although it does not have significant advantages compared to a standard account, it offers a number of exclusive features. </p>
     </div>
     </motion.section>
     <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-5 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-4'>
     <div className='m-4'>
     <h2 className='text-3xl font-bold tracking-tighter text-balance'>Why?</h2>
-    <p className='text-left text-sm max-w-3xl p-1 mt-2'>Applio Premium emerged as a way to financially support the Applio platform. Although it does not offer significant advantages compared to a normal account, users who opt for this modality gain access to exclusive features. By subscribing, they are directly supporting the maintenance of the website, which is vital for its continuity and to continue offering a quality service. In short, Applio Premium allows users to become actively involved in the support of the platform and be part of a committed community.</p>
+    <p className='text-justify text-md max-w-3xl p-1 mt-2'>By subscribing to this membership, users contribute directly to the sustainability of this website. Your support is crucial for our continuity and to continue offering an excellent service. Join Applio Premium and become part of our community.</p>
     </div>
     </motion.section>
     {products.map((product, index) => (

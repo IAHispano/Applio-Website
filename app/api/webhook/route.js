@@ -76,7 +76,7 @@ export async function POST(request) {
         }
 
         try {
-          const discordChannelId = '1164454816005771355'; 
+          const discordChannelId = process.env.DISCORD_CHANNEL_ID;
           const discordToken = process.env.DISCORD_BOT_TOKEN;
           const message = {
             embeds: [

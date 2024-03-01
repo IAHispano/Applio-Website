@@ -63,14 +63,6 @@ export const siteConfig = {
       label: "API",
       href: "/api",
     },
-    {
-      label: "Docs",
-      href: "https://docs.applio.org",
-    },
-    {
-      label: "Team",
-      href: "/team",
-    },
   ],
   links: {
     discord: "https://discord.gg/IAHispano",

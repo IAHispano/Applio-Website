@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export default function HistoryPage() {
   return (
-    <main className="mx-auto flex flex-col max-w-[90rem] py-24">
+    <main className="mx-auto flex flex-col max-w-[90rem] py-24 max-md:mx-8">
         <h1 className="text-5xl font-bold tracking-tight text-center mb-8">Our History</h1>
         <TracingBeam>
         <div className="max-w-2xl mx-auto antialiased pt-4 relative">

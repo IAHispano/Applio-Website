@@ -5,10 +5,10 @@ import { motion } from "framer-motion"
 
 export default function HistoryPage() {
   return (
-    <main className="mx-auto flex flex-col max-w-[90rem] py-24 max-md:mx-24">
+    <main className="mx-auto flex flex-col max-w-[90rem] py-24">
         <h1 className="text-5xl font-bold tracking-tight text-center mb-8">Our History</h1>
         <TracingBeam>
-        <div className="max-w-2xl mx-auto antialiased pt-4 relative">
+        <div className="max-w-2xl mx-auto antialiased pt-4 relative max-md:mx-24">
             {dummyContent.map((item, index) => (
             <div key={`content-${index}`} className="mb-10">
                 <h2 className="bg-white/30 text-white rounded-lg text-xs w-fit px-4 py-1 mb-4 font-mono font-medium">

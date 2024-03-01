@@ -9,13 +9,13 @@ export default function Footer() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 2.5 }}
-        className="absolute top-0 h-full min-w-full overflow-hidden  md:blur-xl blur-3xl"
+        className="absolute top-0 h-full min-w-full overflow-hidden md:blur-xl blur-3xl"
         style={{
           backgroundImage:
             "radial-gradient(ellipse 20% 100% at 0% 100%, #00AA68, transparent)",
         }}
       ></motion.div>
-      <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-6 z-[1]">
+      <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-7 z-[1]">
         <div className="col-span-2">
           <h2 className="text-3xl font-bold truncate tracking-tight gtransition text-[#00AA68] mb-5">
             Applio
@@ -24,7 +24,7 @@ export default function Footer() {
             At the forefront of innovation as an open-source ecosystem that
             hosts cutting-edge AI voice cloning technologies.
           </p>
-          <p className="text-md text-neutral-300  mt-5">
+          <p className="text-md text-neutral-200  mt-5">
             Copyright 2024 © All Right Reserved
           </p>
         </div>
@@ -34,10 +34,17 @@ export default function Footer() {
           </h1>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/"
+            href="/premium"
             target="_blank"
           >
-            Home
+            Premium
+          </a>
+          <a
+            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
+            href="/playground"
+            target="_blank"
+          >
+            Playground
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
@@ -55,17 +62,10 @@ export default function Footer() {
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/bot"
+            href="https://docs.applio.org"
             target="_blank"
           >
-            Bot
-          </a>
-          <a
-            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/api"
-            target="_blank"
-          >
-            API
+            Docs
           </a>
         </div>
         <div className="col-span-1 flex flex-col space-y-2">
@@ -128,6 +128,32 @@ export default function Footer() {
             target="_blank"
           >
             YouTube
+          </a>
+        </div>
+        <div className="col-span-1 flex flex-col space-y-2">
+          <h1 className="mb-1 text-xs font-bold uppercase text-[#00AA68]">
+            About Us
+          </h1>
+          <a
+            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
+            href="/team"
+            target="_blank"
+          >
+            Team
+          </a>
+          <a
+            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
+            href="/history"
+            target="_blank"
+          >
+            History
+          </a>
+          <a
+            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
+            href="/careers"
+            target="_blank"
+          >
+            Careers
           </a>
         </div>
         <div className="col-span-1 flex flex-col space-y-2">

@@ -28,20 +28,16 @@ export const siteConfig = {
     {
       title: "API",
       href: "/api",
-    },
-    {
-      title: "Docs",
-      href: "https://docs.applio.org",
-    },
-    {
-      title: "Team",
-      href: "/team",
-    },
+    }
   ],
   navMenuItems: [
     {
       label: "Home",
       href: "/",
+    },
+    {
+      label: "Premium",
+      href: "/premium",
     },
     {
       label: "Playground",
@@ -70,6 +66,10 @@ export const siteConfig = {
     {
       label: "Docs",
       href: "https://docs.applio.org",
+    },
+    {
+      label: "Team",
+      href: "/team",
     },
   ],
   links: {

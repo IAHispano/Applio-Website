@@ -8,24 +8,28 @@ import { cookies } from "next/headers";
 
 async function loadProducts() {
   const stripe = new Stripe(process.env.STRIPE_API_SECRET as any)
-  const products = await stripe.prices.list({ active: true, product: 'prod_PbD4vh3AliVRrO'})
-
-  return Promise.all(products.data.map(async (product) => {
-    const productDetails = await stripe.products.retrieve(product.product as string);
-    return {
-      id: product.id,
-      currency: product.currency,
-      unit_amount: product.unit_amount,
-      image: productDetails.images[0], 
-      title: productDetails.name,
-      description: productDetails.description,
-      features: productDetails.features
-    };
+  const productIds = ['prod_PbD4vh3AliVRrO', 'prod_PfFAVxGWSvVS4T'];
+  const products = await Promise.all(productIds.map(async (productId) => {
+    const prices = await stripe.prices.list({ active: true, product: productId });
+    return Promise.all(prices.data.map(async (price) => {
+      const productDetails = await stripe.products.retrieve(price.product as string);
+      return {
+        id: price.id,
+        currency: price.currency,
+        unit_amount: price.unit_amount,
+        image: productDetails.images[0], 
+        title: productDetails.name,
+        description: productDetails.description,
+        features: productDetails.features
+      };
+    }));
   }));
+  return products.flat();
 }
 
 async function applioPremium() {
-    const products = await loadProducts()
+  const productsNested = await loadProducts(); 
+  const products = productsNested.flat(); 
     const supabase = createServerComponentClient<Database>({ cookies })
     const {
       data: { session },

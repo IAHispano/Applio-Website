@@ -30,8 +30,9 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
         fetchData();
     }, []);
 
+
   return (
-    <article className='grid grid-cols-1md:grid-cols-8 w-full grid-rows-1 gap-4 gtransition max-w-6xl my-6'>
+    <article className='grid grid-cols-1md:grid-cols-8 w-full grid-rows-1 gap-3 gtransition max-w-6xl my-6'>
     {data.role !== "premium" && (
     <section className='md:col-span-8 h-full w-full flex justify-center text-center relative bg-[#000] md:rounded-[2.5rem] rounded-b-[2.5rem]'>
       <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 2}} style={{background: 'radial-gradient(100% 100% at 50% 100%,#222 0%,#000 100%)'}} className='w-full h-full absolute top-0 left-0 md:rounded-[2.5rem] rounded-b-[2.5rem]'></motion.div>
@@ -54,20 +55,20 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
     </div>
   </section>
     )}
-    <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-3 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-4'>
+    <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-3 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-3'>
     <div className='m-4'>
     <h2 className='text-3xl font-bold tracking-tighter text-balance'>What is it?</h2>
     <p className='text-justify text-md max-w-3xl p-1 mt-2'>Applio Premium is conceived as a special membership within the Applio platform. Although it does not have significant advantages compared to a standard account, it offers a number of exclusive features. </p>
     </div>
     </motion.section>
-    <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-5 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-4'>
+    <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-5 bg-[#222] h-full w-full rounded-3xl flex justify-center text-center mt-3'>
     <div className='m-4'>
     <h2 className='text-3xl font-bold tracking-tighter text-balance'>Why?</h2>
     <p className='text-justify text-md max-w-3xl p-1 mt-2'>By subscribing to this membership, users contribute directly to the sustainability of this website. Your support is crucial for our continuity and to continue offering an excellent service. Join Applio Premium and become part of our community.</p>
     </div>
     </motion.section>
     {products.map((product, index) => (
-      <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-8 bg-[#222] h-full w-full rounded-3xl flex max-md:flex-col justify-between text-center mt-6 relative' key={index}>
+      <motion.section initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3.5}} className='md:col-span-8 bg-[#222] h-full w-full rounded-3xl flex max-md:flex-col justify-between text-center relative mt-6' key={index}>
       <div className='m-4 flex items-center '>
         <img className='rounded-3xl mr-6 hidden md:block' width='200px' height='200px' src={product.image} alt='product image'/>
         <div>
@@ -79,7 +80,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
           ))}
         </div>
       </div>
-      {data.role !== 'premium' && (
+      {(data.role !== 'premium' || product.title === 'Donation') && (
       <button className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10 md:rounded-xl px-4 py-1.5"
         onClick={async () => {
           const res: Response = await fetch('/api/checkout', {
@@ -96,14 +97,19 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
           const data = await res.json()
           window.location.href = data.url
         } }> 
-          <h2 className='text-3xl font-bold'>{(product.unit_amount / 100).toFixed(2)} €</h2>
+        
+          <h2 className='text-3xl font-bold'>
+            {product.unit_amount !== null 
+              ? `${(product.unit_amount / 100).toFixed(2)} €` 
+              : 'Custom'}
+          </h2>
           <p className='text-[10px] mt-1 font-light text-neutral-300'>One-time payment</p>
       </button>
       )}
-      {data.role === 'premium' && (
+      {data.role === 'premium' && product.title !== 'Donation' && (
         <div className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-green-500/40 gtransition border border-white/10 md:rounded-xl px-6 py-2"> 
           <CheckCircleIcon />
-      </div>
+        </div>
       )}
     </motion.section>
     ))}

@@ -66,11 +66,6 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
           <div key={id}>
             <div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
               <div className="h-96 top-0 absolute w-full scale-125 rounded-2xl blur-3xl backdrop-blur-sm pointer-events-none">
-                {/* <img
-                  className="z-10 absolute top-0 left-0 w-full h-full object-cover object-center opacity-20"
-                  src={item.image || '/applio_logo.png'}
-                  alt="post banner"
-                ></img> */}
               </div>
             </div>
             <main className="w-full py-14 flex flex-col top-0 justify-start items-center text-center min-h-screen overflow-x-hidden relative">

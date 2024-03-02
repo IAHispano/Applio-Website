@@ -30,24 +30,17 @@ export default function HeaderMobile() {
       <NavbarMenuToggle
         aria-label={isMenuOpen ? "Close menu" : "Open menu"}
       />
-      <NavbarBrand className="flex justify-center w-full items-center ml-16">
-      <a href="/" className="flex items-center gap-2.5 truncate hover:bg-white/10 active:bg-white/20 active:scale-90 p-2.5 rounded-xl gtransition">
-      <div className="w-10 h-10 aspect-square">
-            <img id="a" src="/no_bg_applio_logo.png" className="scale-150" alt="logo"/>
-      </div>
-      </a>
-      </NavbarBrand>
     </NavbarContent>
         <AvatarMobile />
-      <NavbarMenu className="flex justify-start items-center  w-full flex-wrap gap-4 h-full z-20 text-center">
+      <NavbarMenu className="flex justify-start items-center w-full flex-wrap gap-4 h-full z-20 text-center">
         {siteConfig.navMenuItems.map((item, index) => (
           <NavbarMenuItem
             key={`${item}-${index}`}
-            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/3"
+            className="sm:w-1/2 w-72 md:w-1/3 lg:w-1/3 first:mt-4"
           >
             <Link
               href={item.href}
-              className="p-4 text-2xl flex items-center justify-center gap-2 bg-white/10 active:bg-white/20 rounded-xl tracking-tight gtransition"
+              className="p-3 text-2xl flex items-center justify-center gap-6 bg-white/10 active:bg-white/20 rounded-2xl tracking-tight gtransition"
             >
               {item.label}
             </Link>

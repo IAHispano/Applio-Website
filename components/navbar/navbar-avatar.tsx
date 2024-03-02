@@ -21,6 +21,7 @@ import { IconBrandDiscord } from "@tabler/icons-react"
 import {
   Bell,
   Bug,
+  HandHeart,
   LogOut,
   Settings,
   Shield,
@@ -30,6 +31,7 @@ import {
 } from "lucide-react"
 
 import { Icons } from "../icons/icons"
+import { motion } from "framer-motion"
 
 export default function NavbarAvatar({
   userFullName,
@@ -63,8 +65,8 @@ export default function NavbarAvatar({
     window.location.href = `/admin/${user?.id}`
   }
 
-  const handleTour = () => {
-    window.location.href = `/tour`
+  const premium = () => {
+    window.location.href = `/premium`
   }
 
   const handleSignOut = async () => {
@@ -93,6 +95,12 @@ export default function NavbarAvatar({
   const iconClasses =
     "text-sm text-default-500 pointer-events-none flex-shrink-0"
   const dropdownItems = [
+      <DropdownItem key="tour" onClick={premium} startContent={<HandHeart  className='text-sm text-white pointer-events-none flex-shrink-0' />} 
+      className="p-3 my-1 hover:opacity-95 gtransition border-2 border-white/10 rounded-xl">
+      <div style={{background: 'radial-gradient(100% 100% at 50% 100%,#222 0%,#000 100%)'}} className='w-full h-full absolute top-0 left-0 z-0 rounded-xl mb-2'>
+      <span className="z-50 flex justify-center text-center items-center p-4">Applio <span className="font-bold">Premium</span></span>
+      </div>
+    </DropdownItem>,
     <DropdownItem
       key="profile"
       onClick={handleProfileClick}
@@ -149,7 +157,7 @@ export default function NavbarAvatar({
               cursor: "pointer",
             }}
           >
-            <Avatar src={user?.avatar_url} color="primary" radius="sm" className="hover:opacity-50 gtransition" />
+            <Avatar src={user?.avatar_url} color="primary" radius="sm" className="hover:opacity-50 gtransition w-12 h-12 border-2 border-neutral-600"/>
           </div>
         </DropdownTrigger>
         <DropdownMenu aria-label="Static Actions" className="font-mono">{dropdownItems}</DropdownMenu>

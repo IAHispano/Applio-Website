@@ -16,24 +16,52 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
 
   useEffect(() => {
     async function fetchData() {
-      const { data: userData, error: userError } = await supabase
-        .from("guides")
-        .select("*")
-        .eq("id", id)
-      const {
-        data: { session },
-      } = await supabase.auth.getSession()
+      try {
+        const { data: userData, error: userError } = await supabase
+          .from("guides")
+          .select("*")
+          .eq("id", id);
+  
+        const { data: { session }, error: sessionError }: { data: any, error: any } = await supabase.auth.getSession();
+  
+        if (userError) {
+          setError(userError);
+          return;
+        }
+  
+        setData(userData);
+  
+        if (session) {
+          const{ data: roleData, error: roleError }: { data: any, error: any } = await supabase
+            .from("profiles")
+            .select("role, full_name")
+            .eq("auth_id", session.user.id);
+  
+          if (roleError) {
+            setError(roleError);
+            return;
+          }
+  
+          if (roleData[0].role === "admin") {
+            setIsOwner(true);
+          }
 
-      if (userError) {
-        setError(userError)
-        return
+          if (userData[0].created_by === roleData[0].full_name) {
+            setIsOwner(true);
+          }
+
+        }
+  
+        setLoading(false);
+      } catch (error) {
+        console.error("error:", (error as Error).message);
+        setError(error as PostgrestError);
+        setLoading(false);
       }
-        setData(userData)
-      setLoading(false)
     }
-
-    fetchData()
-  }, [id, userData])
+  
+    fetchData();
+  }, [id, userData]);
 
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -54,6 +82,20 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
     )
   }
 
+  const handleDelete = async () => {
+    const { error } = await supabase
+      .from('guides')
+      .delete()
+      .eq('id', id);
+  
+    if (error) {
+      console.error(error);
+    } else {
+      window.location.href = '/guides';
+    }
+  };
+  
+
   return (
     <div className="text-black dark:text-white">
       {loading ? (
@@ -71,7 +113,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
             <main className="w-full py-14 flex flex-col top-0 justify-start items-center text-center min-h-screen overflow-x-hidden relative">
               <div className="px-5 w-full flex justify-center items-center">
                 <div className="pt-5 pb-10 z-10 flex justify-center items-center gap-5 flex-col w-full max-w-4xl">
-                  <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-white">
+                  <h1 className="text-3xl md:text-5xl font-bold tracking-tight dark:text-white max-w-7xl flex-wrap truncate">
                     {item.title}
                   </h1>
                   <div className="flex flex-col-2 text-left gap-2 flex-grow justify-center items-center w-full">
@@ -111,10 +153,8 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                       </svg>
                     </a>
                     {isOwner && (
-                      <a
-                        href={`https://twitter.com/intent/tweet?text=${item.title}&url=https://applio.org/guides/${id}`}
-                        rel="noreferrer"
-                        target="_blank"
+                      <button
+                        onClick={handleDelete}
                         className="flex items-center flex-wrap gap-3 justify-center px-4 py-2 max-sm:aspect-square bg-red-500 text-white hover:bg-opacity-20 active:opacity-50 rounded-full gtransition"
                       >
                         Delete
@@ -133,7 +173,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
                           <path d="M18 6 6 18" />
                           <path d="m6 6 12 12" />
                         </svg>
-                      </a>
+                      </button>
                     )}
                   </div>
                   <div className="border border-white/20 w-full rounded-lg " />
@@ -142,7 +182,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
               <div className="text-start px-5 mb-5">
                 <div className="w-full rounded-lg underline-offset-2 p-5 text-white max-w-4xl z-10 ">
                   <Markdown
-                    className="text-neutral-200 md:text-lg max-md:max-w-sm  z-50"
+                    className="text-neutral-200 md:text-lg max-md:max-w-sm  z-50 max-w-6xl flex-wrap break-all"
                     remarkPlugins={[remarkGfm]}
                     components={{
                       a: ({ node, children, ...props }) => (

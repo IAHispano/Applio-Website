@@ -6,9 +6,9 @@ import { Divider } from "@nextui-org/react"
 import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
-import { addPost } from "@/app/actions/add-guide-action"
+import { SendButton } from "./blog-send"
+import { addPost } from "@/app/actions/add-blog-action"
 
-import { SendButton } from "./send"
 
 export default function MarkdownInput() {
   const [markdownText, setMarkdownText] = useState("")
@@ -56,7 +56,7 @@ export default function MarkdownInput() {
           ></textarea>
           <textarea
             className="md:col-span-8 h-[80px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 mb-2"
-            placeholder="Description..."
+            placeholder="Image URL"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             key="description"
@@ -68,7 +68,7 @@ export default function MarkdownInput() {
               <textarea
                   className="md:flex-1 h-[600px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 font-mono"
                   placeholder={
-                    "Here you can start writing your guide, before we start, and we will show you how it works.\n\n" +
+                    "Here you can start writing your blog, before we start, and we will show you how it works.\n\n" +
                     "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
                     "# This is a title \n\n" +
                     "## This is a subtitle \n\n" +
@@ -154,7 +154,7 @@ export default function MarkdownInput() {
                       }}
                   >
                     {markdownText || 
-                    "Here you will see a preview of your guide, before we start, and we will show you how it works.\n\n" +
+                    "Here you will see a preview of your blog, before we start, and we will show you how it works.\n\n" +
                     "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
                     "# This is a title \n\n" +
                     "## This is a subtitle \n\n" +

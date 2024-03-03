@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
-
 type Props = {
   id: string
 }
@@ -18,6 +17,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
   const [_error, setError] = useState<PostgrestError | null>(null)
   const [totalLikes, setTotalLikes] = useState<number>(0)
   const [loading, setLoading] = useState(true)
+  const [guides, setGuides] = useState<any>()
 
   useEffect(() => {
     async function fetchData() {
@@ -37,6 +37,23 @@ export default function UserInfo({ id }: Readonly<Props>) {
           code: "",
           message: "This user does not exist",
         })
+      }
+
+      const { data: userGuides, error: userGuidesError } = await supabase
+      .from("guides")
+      .select("*")
+      .eq("created_by", decodeURIComponent(id))
+
+      if (userError) {
+        setError(userError)
+      }
+
+      if (userGuidesError) {
+        setError(userGuidesError)
+      }
+
+      if (userGuides) {
+        setGuides(userGuides)
       }
 
       setUser(userData?.[0])
@@ -160,7 +177,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
                   </article>
                 </section>
               </article>
-              <article className="md:col-span-3 w-full h-full p-5 gap-4 flex flex-col rounded-3xl bg-black border-2 border-white/20 justify-start items-start relative">
+              <article className="md:col-span-4 w-full h-full p-5 gap-4 flex flex-col rounded-3xl bg-black border-2 border-white/20 justify-start items-start relative">
                 <h2 className="font-semibold text-2xl z-10 text-white">
                   Links
                 </h2>
@@ -228,7 +245,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
                               </svg>
                             </span>
                           </a>
-                        )}
+                        )}  
                       </>
                     ) : (
                       <p className="text-neutral-300 pt-6">
@@ -238,6 +255,34 @@ export default function UserInfo({ id }: Readonly<Props>) {
                   </div>
 
               </article>
+              <article className="md:col-span-8 overflow-hidden md:h-fit relative transition w-full h-full p-5 gap-4 flex flex-col rounded-3xl bg-black justify-start items-start relative border-2 border-white/20">
+              <h2 className="font-semibold text-2xl z-10 text-white text-center w-full">
+                  Guides
+                </h2>
+              {(!guides || guides.length === 0) && (
+              <p className="text-neutral-300 text-center flex justify-center items-center h-full w-full py-6">
+                  This user does not have any guides.
+                </p>
+              )}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {guides && guides.map((guide: any, index: number) => (
+                  <a key={index} className="overflow-hidden md:overflow-y-auto transition flex-col gap-5 w-full md:min-w-[300px] md:w-[300px] items-center hover:bg-opacity-70 justify-start flex bg-neutral-700 p-5 rounded-[15px] cursor-pointer border-2 border-white/10" href={`/guides/${guide.id}`}>
+                    <div className="flex justify-start items-start flex-col gap-3 px-4 pb-2">
+                      <p className="text-white text-left font-bold text-xl tracking-wider rounded-full truncate max-w-[280px]  min-w-[280px] w-full">
+                        {guide.title}
+                      </p>
+                      <p className="text-white text-left text-xs rounded-full">
+                        {new Date(guide.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })}
+                      </p>
+                      <div className="border border-white/10 w-full h-0  w-full"/>
+                      <p className="text-neutral-100 text-left text-sm rounded-full truncate min-w-[280px] w-full max-w-[280px]">
+                        {guide.description}
+                      </p>
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </article>
             </section>
           </>
         ))}

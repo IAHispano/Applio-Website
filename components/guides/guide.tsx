@@ -59,13 +59,7 @@ export default function Guide() {
 
         const updatedPosts = await Promise.all(
           fetchedData.map(async (post: any) => {
-            const { data: profileData, error: profileError } = await supabase
-              .from("profiles")
-              .select("full_name")
-              .eq("id", post.created_by)
-              .single()
-
-            const full_name = profileData?.full_name || "Unknown User"
+            const full_name = post.created_by || "Unknown User"
 
             return { ...post, full_name }
           })
@@ -206,7 +200,7 @@ export default function Guide() {
                       href={`/guides/${id}`}
                     >
                       {/* <img src={image || "/applio_logo.png"} className="w-full rounded-xl flex justify-center items-center object-cover object-top" style={imageStyle} alt="guide banner"/> */}
-                      <p className="text-4xl font-bold px-1 mt-2 text-white flex-wrap md:max-w-6xl max-w-sm">
+                      <p className="text-4xl font-bold px-1 mt-2 text-white flex-wrap md:max-w-5xl max-w-sm truncate">
                         {title || "Unknown Title"}
                       </p>
                       <p className="text-lg px-1 whitespace-pre-line flex-wrap md:max-w-6xl  truncate ">

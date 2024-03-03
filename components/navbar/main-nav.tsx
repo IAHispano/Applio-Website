@@ -2,9 +2,7 @@ import * as React from "react"
 import Link from "next/link"
 
 import { NavItem } from "@/types/nav"
-import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Icons } from "@/components/icons/icons"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -12,9 +10,9 @@ interface MainNavProps {
 
 export function MainNav({ items }: MainNavProps) {
   return (
-    <div>
+    <div className="flex justify-center">
       {items?.length ? (
-        <nav className="flex gap-6 justify-center items-center mx-auto mr-auto">
+        <nav className="flex justify-center items-center mx-auto mr-28">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -22,9 +20,11 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "flex items-center justify-center text-md text-dark dark:text-white hover:bg-white/20 hover:px-4 hover:py-0.5 gtransition rounded-lg font-mono",
-                    item.disabled && "cursor-not-allowed opacity-80"
+                    "flex items-center justify-center text-md text-dark dark:text-white hover:bg-white/20 hover:py-0.5 gtransition rounded-lg font-mono py-1 px-3 hover:last:after:content-['_↗'] hover:last:gap-2",
+                    item.disabled && "cursor-not-allowed opacity-80",
+                    "flex-grow"
                   )}
+                  {...(index === items.length - 1 ? { target: "_blank" } : {})}
                 >
                   {item.title}
                 </Link>

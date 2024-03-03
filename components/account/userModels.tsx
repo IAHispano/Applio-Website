@@ -86,9 +86,10 @@ export default function UserModels({ id }: Readonly<Props>) {
             dataLength={data.length}
             hasMore={hasMore}
             next={loadmore}
+            className="w-full"
             loader={
               <div className="flex items-center justify-center">
-                <Spinner color="success" />
+                <p>Loading...</p>
               </div>
             }
             endMessage={
@@ -97,7 +98,7 @@ export default function UserModels({ id }: Readonly<Props>) {
               </div>
             }
           >
-            <section className="grid grid-cols-1 md:grid-cols-5 max-w-8xl gap-5 py-8 md:py-8 mx-16 items-center justify-center">
+            <section className="mt-4 grid grid-cols-1 2xl:gridcols-6 xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 w-full gap-5 pb-8 md:pb-8 items-center justify-center mx-auto">
               {data?.map((post: any, index: number) => {
                 const {
                   name,

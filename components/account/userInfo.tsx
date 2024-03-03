@@ -264,7 +264,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
                   This user does not have any guides.
                 </p>
               )}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="grid md:grid-cols-4 gap-4">
                 {guides && guides.map((guide: any, index: number) => (
                   <a key={index} className="overflow-hidden md:overflow-y-auto transition flex-col gap-5 w-full md:min-w-[300px] md:w-[300px] items-center hover:bg-opacity-70 justify-start flex bg-neutral-700 p-5 rounded-[15px] cursor-pointer border-2 border-white/10" href={`/guides/${guide.id}`}>
                     <div className="flex justify-start items-start flex-col gap-3 px-4 pb-2">

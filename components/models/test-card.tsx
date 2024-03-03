@@ -129,7 +129,7 @@ export default function TestCard({
       isLoaded={allLoad}
       className=" md:active:scale-90 transition-all gtransition-low hover:opacity-80 "
     >
-      <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-black dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer border-white/10 border mx-auto">
+      <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg bg-black dark:bg-[#3c3c3c] w-full min-h-[400px] max-h-[400px] cursor-pointer border-white/10 border">
         <div className="relative w-full flex items-center justify-center mb-2">
           <div className="w-full h-[300px] rounded-lg relative">
             { imageUrl === null || imageUrl === 'n/a' || imageError && (

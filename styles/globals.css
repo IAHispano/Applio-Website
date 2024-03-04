@@ -192,3 +192,7 @@ html {
 .hide-scrollbar::-webkit-scrollbar-thumb {
   background-color: transparent; /* Color del thumb del scrollbar en navegadores WebKit */
 }
+
+img::before {
+  content: '';
+}

@@ -13,7 +13,7 @@ const getModelsByTitle = async (title: string, order?: string) => {
     query = query.order('created_at', { ascending: false });
   }
 
-  const { data, error } = await query.range(0, 10);
+  const { data, error } = await query.range(0, 14);
 
   if (error) {
     console.log(error.message);

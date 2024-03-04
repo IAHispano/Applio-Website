@@ -61,6 +61,7 @@ export default function ModelsData() {
           if (value !== '') {
               setLoading(true);
               const result = await getModelsByTitle(value, selectedSortBy !== null ? selectedSortBy : undefined);
+              setHasMore(false);
               setModeldata(result);
               setLoading(false);
           } else {

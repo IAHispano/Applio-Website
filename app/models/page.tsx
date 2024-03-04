@@ -48,7 +48,7 @@ export default function Models() {
 
   return (
 <main className="flex items-center w-full h-full flex-col overflow-visible max-md:px-4">
-  <div className="w-full h-full absolute top-0 left-0" style={{background: 'radial-gradient(100% 30% at 50% 0%, #00AA68 0%, #09090b 100%)'}}></div>
+  <div className="w-full h-full fixed top-0 left-0" style={{background: 'radial-gradient(100% 100% at 50% 0%,#00AA68 0%,#09090b 80%)'}}></div>
   <div className="flex-col justify-center items-center text-center w-full md:min-h-[90svh] px-5 pb-[500px] flex relative overflow-hidden md:min-w-[110rem] md:max-w-[110rem] mx-auto">
     <div className="my-12">
     {data.length > 0 && (

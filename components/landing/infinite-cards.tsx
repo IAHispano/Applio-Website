@@ -146,7 +146,7 @@ export const InfiniteMovingCards = ({
           </div> 
         )}
         <div className="flex gap-2 absolute bottom-2 right-2">
-        <div className="flex items-center gap-1 rounded-md bg-[#3c3c3c] shadow-2xl border-white/10 border px-2 py-1 text-center text-white">
+        <div className="flex items-center gap-1 rounded-md bg-neutral-700/30 backdrop-blur-sm shadow-2xl border-white/10 border px-2 py-1 text-center text-white">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

@@ -24,7 +24,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
       const { data: userData, error: userError } = await supabase
         .from("profiles")
         .select("*")
-        .eq("full_name", decodeURIComponent(id))
+        .eq("full_name", id)
 
       if (userError) {
         setError(userError)
@@ -42,7 +42,7 @@ export default function UserInfo({ id }: Readonly<Props>) {
       const { data: userGuides, error: userGuidesError } = await supabase
       .from("guides")
       .select("*")
-      .eq("created_by", decodeURIComponent(id))
+      .eq("created_by", id)
 
       if (userError) {
         setError(userError)

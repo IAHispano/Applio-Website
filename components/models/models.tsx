@@ -117,7 +117,7 @@ export default function ModelsData() {
             </span>
                 <input 
                 className="md:w-[1470px] h-10 px-10 w-[300px] bg-white/10 hover:bg-white/20 rounded-full border border-white/20 focus:border-white/40 focus:outline-none focus:ring-0"
-                placeholder='Search a model'
+                placeholder='Search a model...'
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 />

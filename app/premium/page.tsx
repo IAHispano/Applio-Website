@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 
 async function loadProducts() {
   const stripe = new Stripe(process.env.STRIPE_API_SECRET as any)
-  const productIds = ['prod_PbD4vh3AliVRrO', 'prod_PfFAVxGWSvVS4T'];
+  const productIds = ['prod_PieYieSkn9iqfk', 'prod_PfFAVxGWSvVS4T'];
   const products = await Promise.all(productIds.map(async (productId) => {
     const prices = await stripe.prices.list({ active: true, product: productId });
     return Promise.all(prices.data.map(async (price) => {
@@ -20,7 +20,8 @@ async function loadProducts() {
         image: productDetails.images[0], 
         title: productDetails.name,
         description: productDetails.description,
-        features: productDetails.features
+        features: productDetails.features,
+        type: productDetails.metadata.type
       };
     }));
   }));

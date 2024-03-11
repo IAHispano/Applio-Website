@@ -81,14 +81,15 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
         </div>
       </div>
       {(data.role !== 'premium' || product.title === 'Donation') && (
-      <button className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10 md:rounded-xl px-4 py-1.5"
+      <button className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10 md:rounded-xl px-4 py-1.5 w-[180px]"
         onClick={async () => {
           const res: Response = await fetch('/api/checkout', {
             method: 'POST',
             body: JSON.stringify({
               priceId: product.id,
               userId: userId,
-              auth_id: id
+              auth_id: id,
+              type: product.type
             }),
             headers: {
               'Content-Type': 'application/json'
@@ -103,7 +104,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
               ? `${(product.unit_amount / 100).toFixed(2)} €` 
               : 'Custom'}
           </h2>
-          <p className='text-[10px] mt-1 font-light text-neutral-300'>One-time payment</p>
+          <p className='text-[10px] mt-1 font-light text-neutral-300'>{product.type === 'sub' ? 'per month.' : 'one time.' }</p>
       </button>
       )}
       {data.role === 'premium' && product.title !== 'Donation' && (

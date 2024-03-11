@@ -12,7 +12,6 @@ export async function POST(request) {
     session = await stripe.checkout.sessions.create({
       mode: 'payment',
       payment_method_types: ['card'],
-      allow_promotion_codes,
       line_items: [
         {
           price: priceId,

@@ -32,7 +32,7 @@ export default function writer() {
             </p>
             <a
               className="px-4 py-2 font-bold uppercase text-sm text-black bg-white rounded-full hover:scale-110 active:scale-90 gtransition cursor-pointer z-[3] w-[500px] mb-12 mt-4"
-              href="https://fynyatti4xa.typeform.com/to/bedsT8L1"
+              href="https://form.typeform.com/to/bedsT8L1"
               rel="noreferrer"
               target="_blank"
             >

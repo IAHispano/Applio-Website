@@ -81,7 +81,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
         </div>
       </div>
       {(data.role !== 'premium' || product.title === 'Donation') && (
-      <button className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10 md:rounded-xl px-4 py-1.5 w-[180px]"
+      <button className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-neutral-900 hover:bg-neutral-600 gtransition border border-white/10 md:rounded-xl px-4 py-1.5 w-full md:w-[180px] max-md:rounded-b-3xl"
         onClick={async () => {
           const res: Response = await fetch('/api/checkout', {
             method: 'POST',
@@ -108,7 +108,7 @@ function PremiumUI({ products, session }: { products: any[], session: any}) {
       </button>
       )}
       {data.role === 'premium' && product.title !== 'Donation' && (
-        <div className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-green-500/40 gtransition border border-white/10 md:rounded-xl px-6 py-2"> 
+        <div className="md:absolute md:bottom-0 md:right-0 md:m-4 bg-green-500/40 gtransition border border-white/10 md:rounded-xl rounded-b-3xl justify-center items-center flex px-6 py-2"> 
           <CheckCircleIcon />
         </div>
       )}

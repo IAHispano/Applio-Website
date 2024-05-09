@@ -127,7 +127,7 @@ export default function TestCard({
     <Skeleton
       onClick={goToModel}
       isLoaded={allLoad}
-      className=" md:active:scale-90 transition-all gtransition-low hover:opacity-80 "
+      className="rounded-lg"
     >
       <div className="flex flex-col p-2 rounded-lg overflow-hidden shadow-lg w-full md:min-h-[400px] md:max-h-[400px] cursor-pointer md:border-white/20 md:border bg-white/20 backdrop-blur-sm max-md:p-8">
         <div className="relative w-full flex items-center justify-center mb-2">

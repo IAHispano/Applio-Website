@@ -42,19 +42,19 @@ export function PremiumSettings({ userFullName }: ModelInfoProps) {
 
     return (
     
-    <section className='md:col-span-8 h-full w-full flex justify-center text-center relative bg-[#000] md:rounded-[2.5rem] rounded-b-[2.5rem]'>
-    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 2}} style={{background: 'radial-gradient(100% 100% at 50% 100%,#00AA68 0%,#000 100%)'}} className='w-full h-full absolute top-0 left-0 md:rounded-[2.5rem] rounded-b-[2.5rem]'></motion.div>
-    <div className='my-24 flex-col items-center text-center mx-auto flex z-10'>
+    <section className='md:col-span-8 h-full w-full flex justify-center text-center relative bg-[#000] md:rounded-[2.5rem] rounded-[2.5rem]'>
+    <motion.div initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 2}} style={{background: 'radial-gradient(100% 100% at 50% 100%,#00AA68 0%,#000 100%)'}} className='w-full h-full absolute top-0 left-0 md:rounded-[2.5rem] rounded-[2.5rem]'></motion.div>
+    <div className='my-24 flex-col items-center text-center mx-auto flex z-10 max-md:mx-12'>
     <motion.h1 initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 2.5}} className='text-5xl mt-8 font-bold'>You are <span className='text-white'>Premium</span></motion.h1>
-    <motion.h1 initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 2.5}} className='text-lg mt-4 text-neutral-300'>Thanks to you this site is maintained every day</motion.h1>
+    <motion.h1 initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 2.5}} className='text-lg max-md:max-w-xl max-md:text-sm mt-4 text-neutral-300'>Thanks to you this site is maintained every day</motion.h1>
     {data && data[0]?.end_at && (
-    <motion.div className="bg-black/80 w-full h-44 mt-24 rounded-2xl p-8" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3}}>
+    <motion.div className="bg-black/80 w-full md:h-44 h-fit md:mt-24 rounded-2xl p-8 max-md:m-4" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3}}>
         <p>Your next bill will be the day</p>
-        <p className="text-white text-5xl mt-4 font-bold">{new Date(data[0].end_at).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}.</p> 
+        <p className="text-white md:text-5xl text-xl mt-4 font-bold">{new Date(data[0].end_at).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}.</p> 
     </motion.div>
     )}
     {data && sub_id && type && (
-    <><button className="absolute bottom-0 mb-8 bg-black/80 hover:bg-black/50 gtransition p-4 font-medium rounded-full" onClick={onOpen}>Do you want to unsubscribe from Applio Premium?</button><Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur" size="3xl">
+    <><button className="md:absolute md:bottom-0 flex mb-8 bg-black/80 hover:bg-black/50 gtransition p-4 font-medium md:rounded-full rounded-lg" onClick={onOpen}>Do you want to unsubscribe from Applio Premium?</button><Modal isOpen={isOpen} onOpenChange={onOpenChange} backdrop="blur" size="3xl">
                         <ModalContent>
                             {(onClose) => (
                                 <>

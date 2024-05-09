@@ -132,10 +132,10 @@ export default function UserInfo({ id }: Readonly<Props>) {
                 />
               </div>
               <div className="flex flex-col justify-center items-center text-center gap-4 w-full h-full z-[2] p-5">
-                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono max-md:max-w-sm truncate px-4">
+                <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl font-mono max-md:max-w-sm flex-wrap px-4">
                   {decodeURIComponent(id)}
                 </h1>
-                <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2  max-md:truncate max-md:px-4">
+                <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2  max-md:flex-wrap max-md:px-4">
                   {user.bio}
                 </p>
               </div>

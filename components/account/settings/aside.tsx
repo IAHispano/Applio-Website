@@ -28,7 +28,7 @@ export function AsideSelection({
 
   return (
     <main>
-      <div className="w-full flex fixed h-full justify-center items-center text-white dark:text-white flex mx-auto">
+      <div className="w-full flex md:fixed h-full justify-center items-center text-white flex mx-auto">
         <div className="md:max-w-[100rem] max-md:flex-col size-full p-2 flex gap-4 max-md:mx-4">
           <aside className="md:w-72 xl:w-96 bg-neutral-900 md:h-4/5 p-5 gap-3 md:flex flex-col rounded-3xl gtransition">
             <h2 className="text-4xl font-bold tracking-tight">Settings</h2>

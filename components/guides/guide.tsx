@@ -151,7 +151,7 @@ export default function Guide() {
           >
             <Input
               classNames={{
-                base: "w-full h-10 pb-14 max-md:mx-12 xl:w-[1150px]",
+                base: "w-5/6 h-10 pb-4 max-md:mx-12 justify-center flex items-center mx-auto",
                 mainWrapper: "h-full w-full",
                 input: "text-small",
                 inputWrapper:
@@ -196,14 +196,14 @@ export default function Guide() {
                 <div className="w-full" key={id}>
                   <section className="w-full flex flex-col items-center justify-center gap-4">
                     <a
-                      className="mx-12 lg:w-full hover:scale-[99%] flex flex-col text-left justify-center items-start gap-2 p-3  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer "
+                      className="mx-12 w-5/6 w-full hover:scale-[99%] flex flex-col text-left justify-left items-left gap-2 p-3 px-6  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer "
                       href={`/guides/${id}`}
                     >
                       {/* <img src={image || "/applio_logo.png"} className="w-full rounded-xl flex justify-center items-center object-cover object-top" style={imageStyle} alt="guide banner"/> */}
-                      <p className="text-4xl font-bold px-1 mt-2 text-white flex-wrap md:max-w-5xl max-w-sm truncate">
+                      <p className="text-4xl font-bold px-1 mt-2 text-white flex-wrap md:max-w-4xl max-w-sm">
                         {title || "Unknown Title"}
                       </p>
-                      <p className="text-lg px-1 whitespace-pre-line flex-wrap md:max-w-6xl  truncate ">
+                      <p className="text-lg px-1 whitespace-pre-line flex-wrap md:max-w-4xl">
                         {description || "Unknown Description"}
                       </p>
                       <div className="flex justify-start w-full flex-wrap gap-2 items-center md:justify-end">

@@ -112,7 +112,7 @@ export default function PrivacyPage() {
                 By using our services you agree to us using your personal
                 information for direct marketing purposes, you may change your
                 mind at any time by writing to or emailing us at
-                iahispano0@gmail.com
+                support@applio.org
               </li>
               <li>
                 We will not sell, distribute, or lease your personal information
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
               <li>
                 You may request details of personal information which we hold
                 about you. If you would like a copy of the information held on
-                you, email to iahispano0@gmail.com
+                you, email to support@applio.org
               </li>
               <li>
                 If you believe that any information we are holding on you is

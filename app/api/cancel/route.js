@@ -9,12 +9,39 @@ export async function POST(request) {
   const stripe = new Stripe(process.env.STRIPE_API_SECRET);
 
   if (type === 'sub') {
-    subscription = await stripe.subscriptions.cancel(sub_id);
+    try {
+      await stripe.subscriptions.update(
+        sub_id,
+        {cancel_at_period_end: true}
+      );
+    } catch (error) {
+      console.log('stripe error:', error)
+    }
 
     try {
     const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY)
     await supabase.from('premium').delete().eq('user_id', user_id);
     await supabase.from('profiles').update({ role: 'user'}).eq('full_name', user_id);
+    try {
+      const auth_id = await supabase.from('profiles').select("id").eq('full_name', user_id);
+      if (auth_id) {      const discordToken = process.env.DISCORD_BOT_TOKEN;
+      const res = await fetch(`https://discord.com/api/v9/guilds/1096877223765606521/members/${auth_id.data[0].id}/roles/1135641199420653702`, {
+            method: 'DELETE',
+            headers: {
+              Authorization: `Bot ${discordToken}`,
+              'X-Audit-Log-Reason': 'Applio Website',
+            }
+        })
+      if (res.ok) {
+        console.log('removed discord role')
+      } else {
+        console.log(res)
+      }
+    }
+    } catch {
+      console.log('user not have discord')
+    }
+
     } catch (error) {
       console.error('Error:', error);
       return NextResponse.json({ error: error.message }, { status: 400 });

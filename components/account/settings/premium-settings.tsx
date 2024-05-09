@@ -47,7 +47,7 @@ export function PremiumSettings({ userFullName }: ModelInfoProps) {
     <div className='my-24 flex-col items-center text-center mx-auto flex z-10'>
     <motion.h1 initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 2.5}} className='text-5xl mt-8 font-bold'>You are <span className='text-white'>Premium</span></motion.h1>
     <motion.h1 initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 2.5}} className='text-lg mt-4 text-neutral-300'>Thanks to you this site is maintained every day</motion.h1>
-    {data && data[0].end_at && (
+    {data && data[0]?.end_at && (
     <motion.div className="bg-black/80 w-full h-44 mt-24 rounded-2xl p-8" initial={{opacity: 0}} animate={{opacity: 1}} transition={{duration: 1, delay: 3}}>
         <p>Your next bill will be the day</p>
         <p className="text-white text-5xl mt-4 font-bold">{new Date(data[0].end_at).toLocaleString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}.</p> 
@@ -87,7 +87,11 @@ export function PremiumSettings({ userFullName }: ModelInfoProps) {
                                                 'Content-Type': 'application/json'
                                             }
                                             })
-                                            window.location.href = '/premium/cancel'
+                                            if (res.ok) {
+                                                window.location.href = '/premium/cancel'
+                                            } else {
+                                                alert('An error has occurred, please contact us at discord.gg/iahispano to finalize your subscription.')
+                                            }
                                         } }> 
                                             Unsubscribe
                                         </Button>

@@ -196,7 +196,7 @@ export default function Guide() {
                 <div className="w-full" key={id}>
                   <section className="w-full flex flex-col items-center justify-center gap-4">
                     <a
-                      className="mx-12 w-5/6 w-full hover:scale-[99%] flex flex-col text-left justify-left items-left gap-2 p-3 px-6  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer "
+                      className="mx-12 w-5/6  hover:scale-[99%] flex flex-col text-left justify-left items-left gap-2 p-3 px-6  border border-white/30  bg-black bg-opacity-70 rounded-xl gtransition cursor-pointer "
                       href={`/guides/${id}`}
                     >
                       {/* <img src={image || "/applio_logo.png"} className="w-full rounded-xl flex justify-center items-center object-cover object-top" style={imageStyle} alt="guide banner"/> */}

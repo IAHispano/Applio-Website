@@ -14,6 +14,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
   const [data, setData] = useState<any | null>(null)
   const [error, setError] = useState<PostgrestError | null>(null)
   const [user, setUser] = useState<any | null>(null)
+  const [loading, setLoading] =useState<boolean>(true)
   const supabase = createClientComponentClient<Database>()
 
   const fetchData = async () => {
@@ -30,6 +31,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
         setError(modelsError as PostgrestError)
       } else {
         setData(modelsData)
+        setLoading(false)
 
         if (data) {
           try {
@@ -58,9 +60,51 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     }
   }
 
+  async function getUserAndUpdateHistory() {
+    try {
+        const { data: userData, error: userError } = await supabase.auth.getUser();
+
+        if (userError) {
+            console.error("Error fetching user data:", userError);
+            return;
+        }
+
+        const { data: userProfile, error: profileError } = await supabase
+            .from("profiles").select("full_name").eq("auth_id", userData.user.id).single();
+
+        if (profileError) {
+            console.error("Error fetching user profile:", profileError);
+            return;
+        }
+
+        const historyInsert = {
+            see_by: userProfile.full_name, 
+            model: id
+        };
+
+        const { error: historyError } = await supabase
+            .from('downloads')
+            .insert(historyInsert);
+        
+        if (historyError) {
+            console.error("Error inserting into history:", historyError);
+        }
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+  
   useEffect(() => {
-    fetchData()
-  }, [id])
+      fetchData();
+  }, [id]);
+  
+  useEffect(() => {
+    if (loading === false) {
+    getUserAndUpdateHistory();
+    }
+  }, [loading]);
+  
 
   if (error) {
     return (
@@ -84,11 +128,6 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     )
   }
 
-  if (data.link) {
-    navigator.clipboard.writeText(data.link)
-    window.open(data.link, "_blank")
-    window.location.href = data.link
-  }
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -96,6 +135,10 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
       day: "numeric",
     }
     return new Date(dateStr).toLocaleDateString(undefined, options)
+  }
+
+  function copyUrl(link: any) {
+    navigator.clipboard.writeText(link)
   }
 
   return (
@@ -110,19 +153,6 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
             "radial-gradient(ellipse 40% 30% at 50% 0%, #00AA68, transparent)",
         }}
       ></motion.div>
-      <Head>
-        <meta property="og:title" content={`${data.name} at Applio.`} />
-        <meta
-          property="og:description"
-          content={`Download ${data.name} model from Applio.`}
-        />
-        <meta property="og:image" content={data.image_url} />
-        <meta
-          property="og:url"
-          content={`https://applio.org/models/download/${id}`}
-        />
-        <meta property="og:type" content="website" />
-      </Head>
       {data.image_url && (
         <div className="overflow-hidden w-full max-w-md md:hover:scale-105 md:active:scale-150 md:active:z-50 rounded-2xl relative shadow-2xl mb-5 gtransition">
           <img
@@ -132,7 +162,7 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
           />
         </div>
       )}
-      <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-8xl my-4">
+      <h1 className="text-6xl font-bold leading-tight tracking-tighter md:text-6xl max-w-4xl truncate my-4">
         {data.name}
       </h1>
       <div>
@@ -147,18 +177,11 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
           </p>
         </div>
         <Divider className="w-full my-1" />
-        <h2 className="text-3xl font-bold leading-tight tracking-tighter md:text-6xl my-4">
-          We are{" "}
-          <span className="bg-gradient-radial bg-clip-text text-transparent">
-            downloading
-          </span>{" "}
-          the model{" "}
-          <span className="bg-gradient-radial bg-clip-text text-transparent">
-            for you
-          </span>
-          .
-        </h2>
-        {data.link}
+        <div className="grid grid-cols-4 gap-4 mt-12">
+        <div className="col-span-2 p-3 w-full rounded-xl bg-white/10 text-center text-xs max-w-xl select-text">{data.link}</div>
+        <button className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer" onClick={() => copyUrl(data.link)}>Copy Link</button>
+        <a href={data.link} className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer">Download</a>
+        </div>
       </div>
     </main>
   )

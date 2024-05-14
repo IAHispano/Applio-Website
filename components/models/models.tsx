@@ -31,7 +31,7 @@ export default function ModelsData() {
       let query = supabase
           .from('models')
           .select('*')
-          .order('id', { ascending: false })
+          .order('created_at', { ascending: false })
           .range(0, end);
 
       const { data, error, count } = await query;

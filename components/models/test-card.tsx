@@ -142,7 +142,7 @@ export default function TestCard({
             )}
             { imageUrl !== null && imageUrl !== 'n/a' && !imageError && (
               <img
-                src={imageUrlToShow}
+                src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${id}.webp`}
                 loading="eager"
                 decoding="async"
                 className="w-full h-full object-cover rounded-lg "

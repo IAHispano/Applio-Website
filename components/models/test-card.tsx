@@ -117,7 +117,7 @@ export default function TestCard({
   const imageUrlToShow =
     imageUrl === null || imageUrl === "n/a" || imageError
       ? defaultImageUrl
-      : imageUrl
+      : `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${id}.webp`
 
   const goToModel = () => {
     window.location.href = `/models/${id}`

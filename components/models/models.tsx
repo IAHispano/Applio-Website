@@ -132,7 +132,6 @@ export default function ModelsData() {
           .map((post: any, index: number) => {
             const {
               name,
-              image_url: imageUrl,
               created_at,
               link,
               id,
@@ -144,6 +143,7 @@ export default function ModelsData() {
               author_username,
               likes,
             } = post
+            const imageUrl = `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${id}.webp`;
             return (
               <div className="w-full button-cursor" key={id}>
                 <TestCard

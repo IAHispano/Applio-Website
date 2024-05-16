@@ -1,0 +1,35 @@
+{
+  "name": "applio-docs",
+  "version": "0.0.1",
+  "description": "Documentation for the Applio project.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "author": "Applio",
+  "publisher": "AI Hispano",
+  "license": "Attribution-NonCommercial 4.0 International",
+  "bugs": {
+    "url": "https://github.com/iahispano/applio-docs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IAHispano/applio-docs.git"
+  },
+  "homepage": "https://docs.applio.org",
+  "dependencies": {
+    "next": "^13.0.6",
+    "nextra": "latest",
+    "nextra-theme-docs": "latest",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.11.10",
+    "autoprefixer": "^10.4.18",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^4.9.3"
+  }
+}

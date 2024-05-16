@@ -1,0 +1,32 @@
+{
+    "home": {
+      "most_viewed": "Most viewed",
+      "search_category": "Search by category",
+      "recommended": "Recommended for you",
+      "not_found_top": "We have not found the most viewed videos",
+      "end_message": "You reached the end",
+      "loading": "Loading...",
+      "not_found_recommended": "We haven't found any video for you.",
+      "applio_premium_ad": "Buy Applio Premium today.",
+      "search": "Search",
+      "search_placeholder": "Start writing here..."
+    },
+    "navbar": {
+      "upload_video": "Upload a video",
+      "settings": "Settings",
+      "report_bug": "Report a bug",
+      "logout": "Logout",
+      "loading": "Loading..."
+    },
+    "login": {
+      "title": "Login at",
+      "sign_in": "Sign in",
+      "sign_up": "Sign up",
+      "forgot_password": "Forgot your password?",
+      "more_help": "Need more help?",
+      "privacy_policy": "What do we do with your data?",
+      "continue_with": "or continue with",
+      "email_placeholder": "Email",
+      "password_placeholder": "Password"
+    }
+  }

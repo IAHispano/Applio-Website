@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slow {
+transition: .3s cubic-bezier(0,.7,.4,1);
+}

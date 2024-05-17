@@ -15,7 +15,6 @@ import { Steps } from 'nextra/components'
  1. Upload your audio in .wav format using the **Dataset Maker (if it is a single audio)** or setup it manually (various audios) to `applio/assets/datasets` creating inside a folder for the program to read it.
  - [don't know how to create a dataset?, check the dataset section](/guides/Datasets/Create-Datasets.md)
 
- ---
  ### Dataset Processing
  1. Once the model is named and the dataset selected press **"Prepocess Dataset"** and wait for the message in the CMD.
   
@@ -27,19 +26,18 @@ import { Steps } from 'nextra/components'
 
  - [don't know how to check sample rate?, check the sample rate section](/guides/Datasets/Sample-Rate.md)
 
- --- 
  ### Feature Extraction
  1. Select an [F0 method](https://docs.applio.org/faq/rvc/#f0-extraction-methods) that suits your needs.
  2. **(optional)** modify [Hop lenght](https://docs.applio.org/get-started/inferencing/#advanced-settings), lower value, higher smoothness of pitch change but slower training and vice versa.
  3. **(optional)** select the Embedder model (hubert or contentvec)
 
- ---
+ 
  ### Model Training
  Configure the training parameters according to your needs.
 
  ![](/Training-Example.png)
 
- ---
+
  - **Save Every Epoch:** Set this value between 10 and 50 to determine how often the model's state is saved during training.
 
  - **Total Epochs:** The number of epochs needed varies based on your dataset. Monitor progress using TensorBoard; typically, models perform well around 200-400 epochs.
@@ -60,11 +58,9 @@ import { Steps } from 'nextra/components'
 <Callout type="info" emoji="ℹ️">
   Mark the **Save Only Latest** option before training to prevent it from filling up your storage.
 </Callout> 
- ---
  Once configured, press **_'Start training'_** to start the process, everything is registered in the **CMD.**
 
  - [don't know how to use Tensorboard for correct training? Check out the Tensorboard section](/get-started/tensorboard.md)
- ---
  ### Model Saving and Index File Generation
  1. Once training is completed, generate the index file by clicking the "Train Feature Index" button.
  2. Your trained model is located in the `logs/model folder`, and the [.pth](https://docs.applio.org/faq/rvc/#pth) files are in the `logs/zips` folder.
@@ -72,7 +68,6 @@ import { Steps } from 'nextra/components'
 <Callout type="info" emoji="ℹ️">
  Now you can export your trained model directly from the Applio interface, go to the **Export Model** section in the **train** tab, click on the **Refresh** button and select the **pth and the [added index](https://docs.applio.org/faq/rvc/#added-index)** of the model to export.
 </Callout>
- ---
 
  ### Optional Resume training
  1. Open Applio if you have closed it.

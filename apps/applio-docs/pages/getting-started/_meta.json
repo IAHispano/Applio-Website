@@ -1,14 +1,13 @@
 {
-    "installation": "Installation",
-    "download-models": "Infer & Download models",
-    "training": "Training",
-    "tts": "TTS",
-    "pretrained": "Pretrained",
-    "tensorboard": "Tensorboard",
-    "audio-analizer": "Audio Analizer",
-    "voice-blender": "Voice Blender",
-    "plugins": "Plugins",
-    "extra": "Extra",
-    "other-alternatives": "Other alternatives"
+	"installation": "Installation",
+	"download-models": "Infer & Download models",
+	"training": "Training",
+	"tts": "TTS",
+	"pretrained": "Pretrained",
+	"tensorboard": "Tensorboard",
+	"audio-analizer": "Audio Analizer",
+	"voice-blender": "Voice Blender",
+	"plugins": "Plugins",
+	"extra": "Extra",
+	"other-alternatives": "Other alternatives"
 }
-

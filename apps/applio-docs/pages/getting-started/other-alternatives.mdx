@@ -2,7 +2,7 @@
 
 Thanks to our team, we were able to bring Applio to other places for your convenience
 
-+++ Google Colab UI
+Google Colab UI
 
 ## What is Google Colab?
 
@@ -86,7 +86,7 @@ function ClickConnect() {
 }
 setInterval(ClickConnect, 6000);
 ```
-+++ Google Colab No UI
+Google Colab No UI
 
 ## What is Google Colab?
 
@@ -101,7 +101,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 2. Place the **Google Drive or Hugging Face** model link in the **model_link** and run the **Download model** cell.
 
 3. Click on :file_folder: in Colab, then navigate to your audio, copy the path, it should look like this: `/content/drive/MyDrive/audio name.wav` and paste it into the **input_path**. Finally run the **Run inference** cell.
-==- **Advanced Settings**
+**Advanced Settings**
 - **Export_format:** Select the format to export the audio.
 - **F0method:** Select between [rvmpe, crepe or other](https://docs.applio.org/faq/rvc/#f0-extraction-methods)
 - **f0up_key:** Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12. 
@@ -114,7 +114,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 - **Split_audio:** Basically cuts the audio into parts to make the inference by parts and then joins them together.
 - **Clean_audio:** Clean your audio output using noise detection algorithms, recommended for speaking audios.
 - **Autotune:** Apply a soft autotune to your inferences, recommended for singing conversions.
-==- 
+
 
 ### How to train in Google Colab No UI?
 
@@ -131,7 +131,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
   - [**Batch_size:**](https://docs.applio.org/faq/rvc/#batch-size) Adjust the batch size according to your preference; a batch size of 8 is mostly recommended.
 
   - **Save_every_epoch:** Set this value between 10 and 50 to determine how often the model's state is saved during training.
-==- **Other Options**
+**Other Options**
 - **Pitch_guidance:** Gives variation of pitch.
 - **auto_backups (recomended):** Keep this checked it if you want to save a copy of your model in your Google Drive after training completes.
 - [Pretrained:](https://docs.applio.org/faq/rvc/#pretrained) Uses the [RVC](https://docs.applio.org/faq/rvc/#what-is-rvc) pretrained.
@@ -141,7 +141,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 - **overtraining_detector:** Mark it only if you will train for more than 200 epochs.
 - **overtraining_threshold:** Set the maximum number of epochs you want your model to stop training if no improvement is detected.
 - [Custom_pretrained:](/get-started/pretrained.md) Keep this checked if you want to use the Custom Pretrained that are loaded.
-==- 
+
 - [don't know how to use Tensorboard for correct training? Check out the Tensorboard section](/get-started/tensorboard.md)
 
 5. Finally your trained model will be located in your Google Drive within the **RVC_Backup folder**.
@@ -185,7 +185,7 @@ function ClickConnect() {
 }
 setInterval(ClickConnect, 6000);
 ```
-+++ Hugging Face
+Hugging Face
 
 ## What is Hugging Face?
 
@@ -200,7 +200,7 @@ Hugging Face is a company specialized in artificial intelligence that has distin
 <Callout type="warning" emoji="⚠️">
 You can't train models here because it only utilizes CPU.
 </Callout>
-+++ Paperspace
+Paperspace
 
 ## What is Paperspace?
 
@@ -270,4 +270,3 @@ If the model still needs training, simply do the following:
 <Callout type="warning" emoji="⚠️">
   Make sure to set the [batch size](https://docs.applio.org/faq/rvc/#batch-size) according to the VRAM of your chosen GPU.
 </Callout>
-+++

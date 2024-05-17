@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Syne, Poppins } from "next/font/google";
 import "../styles/globals.css";
+import Navbar from "@/components/layout/navbar";
 
 const inter = Syne({ subsets: ["latin"] });
 
@@ -21,7 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }

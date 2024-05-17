@@ -2,98 +2,72 @@
 
 Common general errors in RVC/Applio.
 
-**Dependencies**
+## Dependencies
 
-In the conda installation method, Applio is installed in a conda environment. This enviroment has all the dependencies needed to run RVC/Applio so you don't need to install anything else.
+When installing Applio using the conda method, all necessary dependencies are included in the conda environment. You do not need to install any additional packages.
 
+## Error Downloading Miniconda
 
-**Error Downloading Miniconda**
+If there are issues with automatically downloading Miniconda, download it [manually](https://repo.anaconda.com/miniconda/Miniconda3-py39_23.9.0-0-Windows-x86_64.exe) and install it.
 
-If there are issues automatically downloading Miniconda, download it [manually](https://repo.anaconda.com/miniconda/Miniconda3-py39_23.9.0-0-Windows-x86_64.exe) and install it.
+## Conda Error Building Wheels
 
+If Conda shows an error related to the "Wheels" dependency, ensure that Visual Studio Build Tools are installed. The installer should handle this automatically, but verify if needed.
 
-**Conda Error Building Wheels**
+## Tensorboard or Dependency Error
 
-If Conda shows an error related to the "Wheels" dependency, check that Visual Studio Build Tools are installed. This requirement it should be installed semi automatically by the installer.
+If you encounter an error related to Tensorboard, it likely means dependencies were not installed correctly. Ensure you have the [latest installer version](/get-started/Installation.md).
 
+Also, check the following:
 
-**Tensorboard or dependency error**
+- Did you install Applio in a directory with spaces or non-ASCII characters in the path? If so, reinstall Applio in a directory without spaces or non-ASCII characters (e.g., the root of your C: drive).
+- Was the antivirus/firewall enabled during installation? If so, disable the antivirus and reinstall Applio.
+- Did you open the `run-applio.bat` file with administrator privileges? If so, open it without administrator privileges.
 
-If an error related to Tensorboard occurs, it's likely that no dependencies were installed correctly. [Review if you have the latest installer version](/get-started/Installation.md).
+## Situation with Google Colab
 
-Also, please check if you have done any of the following:
+Google Colab is currently unavailable due to restrictions by Google. Our team has restored access to Applio. [More information here](/get-started/Alternatives.md).
 
-||| Did you install applio in a directory with spaces or non ASCII characters in the path?
+## FFmpeg Error / UTF-8 Error
 
-If you did, please reinstall applio in a directory without spaces or non ASCII characters in the path. (For example your C: drive root)
-|||
+Ensure that all file paths are free of special characters.
 
-||| Did you have the antivirus/firewall enabled during the installation?
+## Connection Error
 
-If you did, please reinstall applio with the antivirus disabled.
-|||
+Ensure that the console (black command line window) remains open.
 
-||| Did you open the run-applio.bat file with administrator privileges?
+## WebUI Popup: 'Expecting value: line 1 column 1 (char 0)'
 
-If you did, please open it without administrator privileges.
-|||
+Disable any system LAN proxy/global proxy and refresh the page.
 
+## CUDA Error / CUDA Out of Memory
 
-**Situation with Google Colab**
+Adjust the batch size for training. For inference, modify settings in `config.py`. Consider upgrading your GPU if necessary.
 
-Unfortunately, Google Colab is currently unavailable as Google has taken measures to restrict access to Colab services, including Applio. Thanks to our team, we have been able to bring Applio back. [More information here](/get-started/Alternatives.md).
+## File/Memory Error (During Training)
 
+Reduce the "Number of CPU threads" or pre-cut the training set into shorter audio files.
 
-**FFmpeg error/utf8 error**
-
-Ensure paths are free of special characters.
-
-
-**Connection Error**
-
-Ensure the console (black command line window) is open.
-
-
-**WebUI popup 'Expecting value: line 1 column 1 (char 0)**
-
-Disable system LAN proxy/global proxy and refresh.
-
-
-**Cuda error/Cuda out of memory**
-
-Adjust batch size for training; for inference, modify settings in config.py. Consider upgrading the GPU if needed.
-
-
-**File/memory error(when training)**
-
-Reduce "Number of CPU threads" or pre-cut training set to shorter audio files.
-
-
-**Error about llvmlite.dll**
+## Error Regarding llvmlite.dll
 
 Install [vc_redist.x64.exe](https://aka.ms/vs/17/release/vc_redist.x64.exe) for Windows.
 
+## RuntimeError: The expanded size of the tensor...
 
-**RuntimeError: The expanded size of the tensor...**
+Delete smaller-sized WAV files, then click "train the model" and "train the index."
 
-Delete smaller-sized wav files, then click "train the model" and "train the index."
+## RuntimeError: The size of tensor a must match...
 
+Avoid changing the sampling rate mid-training. If necessary, change the experiment name and train from scratch or copy the pitch and features folders to accelerate training.
 
-**RuntimeError: The size of tensor a must match...**
+## The Filename, Directory Name, or Volume Label Syntax is Incorrect
 
-Avoid changing the sampling rate mid-training. If necessary, change the exp name and train from scratch or copy pitch and features folders to accelerate training.
+Ensure that the dataset path is correctly set before training. The dataset should not be in a zip file within the `Applio/assets/datasets` folder.
 
+## IndexError: List Index Out of Range
 
-**The filename, directory name, or volume label syntax is incorrect**
+Use the same sample rate when retraining or selecting a custom pretrain.
 
-Make sure to correctly set the path for your dataset before training. Remember that the dataset should not be in a zip file within the Applio/assets/datasets folder.
+## Alternative
 
-
-**IndexError: list index out of range**
-
-Make sure to use the same sample rate when retraining or when selecting a custom pretrain.
-
-
-**Alternative**
-
-If all else fails, download the precompiled (Zip or Exe) version. This will bring everything ready to start applio without the need to perform the installation.
+If all else fails, download the precompiled (Zip or Exe) version. This version comes ready to use without requiring installation.

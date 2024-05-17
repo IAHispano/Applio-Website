@@ -1,13 +1,9 @@
 {
-	"index": "Home",
-	"--": {
-		"type": "separator"
-	},
-
-	"getting-started": "Getting started",
-	"guides": "Guides",
-	"voice-models": "Voice Models",
-	"developers": "Developers",
-	"faq": "Frequently Asked Question",
-	"license": ""
+  "index": "Home",
+  "getting-started": "Getting started",
+  "guides": "Guides",
+  "voice-models": "Voice Models",
+  "developers": "Developers",
+  "faq": "Frequently Asked Question",
+  "license": ""
 }

@@ -1,76 +1,114 @@
+import { Steps } from "nextra/components";
+
 # Installation
 
-Installing [Applio](https://docs.applio.org/beginners/frequent-doubts/#what-is-applio-and-where-can-i-use-it) is a simple process, you can download and install Applio in different ways. If you are new to Applio we recommend installing the precompiled version (Zip or Exe) as it comes ready to use Applio.
+Installing [Applio](https://docs.applio.org/beginners/frequent-doubts/#what-is-applio-and-where-can-i-use-it) is a simple process, and there are several ways to download and install it. If you are new to Applio, we recommend installing the precompiled version (Zip or Exe) as it comes ready to use.
 
-GitHub
-Here you will learn how to install Applio via the official repository.
-- Download the **.bat** file of the latest version from **[GitHub repository](https://github.com/IAHispano/Applio/releases)**
-- Extract the zip file
-!!!warning Before Installing:
-- Make sure that you place Applio inside a folder on C driver.
+<Steps>
+## GitHub
+### Step 1: Download from GitHub
+
+Learn how to install Applio via the official repository.
+
+1. Download the **.bat** file of the latest version from the [GitHub repository](https://github.com/IAHispano/Applio/releases).
+2. Extract the zip file.
+
+**⚠️ Before installing:**
+- Make sure that you place Applio inside a folder on the C drive.
 - Don't put it in a folder with privileged access.
 - Don't run the run-install.bat as an administrator.
-- Make sure the path does not contain any spaces or special characters.
-- Desactivate your antivirus and firewall to avoid missing dependencies.
-!!!
-### Windows:
-- Run the `run-install.bat`, wait for it to download the necessary content
-- Run the `run-applio.bat` file
-### Linux:
-- Run the `run-install.sh`, wait for it to download the necessary content
-- Run the `run-applio.sh` file
+- Ensure the path does not contain any spaces or special characters.
+- Disable your antivirus and firewall to avoid missing dependencies.
+
+### Step 2: Installation on Windows
+
+1. Run the `run-install.bat`, and wait for it to download the necessary content.
+2. Run the `run-applio.bat` file.
+
+### Step 3: Installation on Linux
+
+1. Run the `run-install.sh`, and wait for it to download the necessary content.
+2. Run the `run-applio.sh` file.
+
+</Steps>
 
 **If you encounter an error during execution, you can try the precompiled (Zip or Exe) version of Applio.**
-Zip
-If you encounter an error during execution, you can try the precompiled **(Zip)** version of Applio. 
-- Download the zip [here](https://huggingface.co/IAHispano/Applio/resolve/main/Compiled/ApplioV3.1.1.zip?download=true) 
-- Extract it 
-- Click on `run-applio.bat`, that’s all.
-!!!warning Before executing run-applio:
-- Make sure that you place Applio inside a folder on C driver.
+
+<Steps>
+## Hugging Face
+### Step 1: Zip Version
+
+If you encounter an error during execution, try the precompiled **Zip** version of Applio.
+
+1. Download the zip [here](https://huggingface.co/IAHispano/Applio/resolve/main/Compiled/ApplioV3.1.1.zip?download=true).
+2. Extract it.
+3. Click on `run-applio.bat`.
+
+**⚠️ Before executing:**
+- Make sure that you place Applio inside a folder on the C drive.
 - Don't put it in a folder with privileged access.
 - Don't run the run-applio.bat as an administrator.
-- Make sure the path does not contain any spaces or special characters.
-!!!
-**If you are having problems trying to run the executable, try with the Exe format.**
-Exe
-If you encounter an error during execution, you can try the precompiled **(Exe)** version of Applio. 
-- Download [here](https://huggingface.co/IAHispano/Applio/resolve/main/Compiled/ApplioV3.1.1.exe)
-- Open the executable so it can extract the program files
-- Click on `run-applio.bat`, that’s all.
-!!!warning Before installing:
-- In case you get a Windows message, just click on **More information** and then on **Run anyway**.
-- Make sure that you place Applio inside a folder on C driver.
+- Ensure the path does not contain any spaces or special characters.
+
+### Step 2: Exe Version
+
+If you encounter an error during execution, try the precompiled **Exe** version of Applio.
+
+1. Download [here](https://huggingface.co/IAHispano/Applio/resolve/main/Compiled/ApplioV3.1.1.exe).
+2. Open the executable to extract the program files.
+3. Click on `run-applio.bat`.
+
+**⚠️ Before installing:**
+- In case you get a Windows message, click on **More information** and then on **Run anyway**.
+- Make sure that you place Applio inside a folder on the C drive.
 - Don't put it in a folder with privileged access.
 - Don't open the Applio.exe or run-applio.bat as an administrator.
-- Make sure the path does not contain any spaces or special characters.
-!!!
+- Ensure the path does not contain any spaces or special characters.
+
+</Steps>
+
 **If you are having problems trying to run the executable, try with the Zip format.**
-Script
-Here you will learn how to install Applio using commands in CMD.
-## Windows
-``` js
+
+## Run Applio
+Learn how to install Applio using commands in CMD.
+
+<Steps>
+
+
+### Windows
+
+```sh
 ./run-install.bat
 ```
-``` js
+
+```sh
 ./run-applio.bat
 ```
-## Linux/Mac
-``` js
+
+### Linux/Mac
+
+```sh
 chmod +x run-install.sh
 ./run-install.sh
 ```
-``` js
+
+```sh
 chmod +x run-applio.sh
 ./run-applio.sh
 ```
-## Paperspace
-``` js
+
+### Paperspace
+
+```sh
 make run-install
 ```
-``` js
+
+```sh
 make run-applio
 ```
 
-## How to update Applio?
-To update, it is necessary to delete the current Applio folder and reinstall it. Make sure to save your audios and models before deleting the current folder.
+</Steps>
+
+## How to Update Applio?
+
+To update, delete the current Applio folder and reinstall it. Make sure to save your audios and models before deleting the current folder.

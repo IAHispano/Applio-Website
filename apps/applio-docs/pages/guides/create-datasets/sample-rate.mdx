@@ -1,24 +1,27 @@
+import { Callout } from "nextra/components";
+
 # Sample Rate
-Here you will learn how to see the sampling frequency of an audio.
+
+Understanding the sample rate is crucial when dealing with audio data.
 
 ## What is sample rate?
-Basically, it’s the frequency that our audio can reach, which is measured in KHz. If you choose an incorrect sample rate to train a type of sound unrelated to the voice, it can result in a poor model.
 
-1. To do this, we need the program [Spek](https://www.spek.cc/p/download). If you have Applio installed on your PC, you can check the [audio analyzer](/get-started/audio-analyzer.md/) section.
+The sample rate represents the number of samples of audio carried per second, typically measured in kHz (kilohertz). Selecting an inappropriate sample rate for training data unrelated to voice can significantly impact model performance.
 
-2. Drag your dataset into the program, and you’ll get the following image and information:
-     - Sample rate
-     - Duration of the audio
-     - Number of Samples
-     - Bits per Samples
-     - Channels (Mono or Stereo)
+1. To determine the sample rate, you can utilize the program [Spek](https://www.spek.cc/p/download). Alternatively, if you have Applio installed on your PC, refer to the [audio analyzer](/get-started/audio-analyzer.md/) section.
 
- ![](/Audio-Analyzer-Result.png)
+2. Import your dataset into Spek, and it will provide essential information, including:
+   - Sample rate
+   - Audio duration
+   - Number of samples
+   - Bits per sample
+   - Channels (Mono or Stereo)
 
-3. Now that we’ve seen in the **Spectrogram** image that our audio has an audio frequency of 22050 KHz, we multiply it by two, and we would have our sample rate.
+![Audio Analyzer Result](/Audio-Analyzer-Result.png)
 
-import { Callout } from 'nextra/components'
+3. By examining the **Spectrogram** image, you can identify the audio frequency, often displayed in kHz. To determine the sample rate, double the frequency displayed.
 
 <Callout type="info" emoji="ℹ️">
-  In case you get a frequency like 44100k, you should choose the one that is closest to that frequency.
+  If you encounter a frequency such as 44100 kHz, opt for the sample rate
+  closest to it.
 </Callout>

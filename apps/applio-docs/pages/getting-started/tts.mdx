@@ -11,13 +11,14 @@
 ![](/TTS.png)
 
 **Advanced Settings**
+
 - **Export Format:** Select the format to export the audio.
 - **Split Audio:** Basically cuts the audio into parts to make the inference by parts and then joins them together.
 - **Autotune:** Apply a soft autotune to your inferences, recommended for singing conversions.
 - **Clean Audio:** Clean your audio output using noise detection algorithms, recommended for speaking audios.
 - **Upscale Audio:** Upscale the audio to a higher quality, recommended for low-quality audios.
 - **Clean Strenght:** The more you increase it the more it will clean up, but it will be more compressed.
-- **Pitch:** Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12. 
+- **Pitch:** Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12.
 - **Filter Radius:** Applies respiration filtering to the results, the value represents the filter radius and respiration reduction to avoid artifacts.
 - **Search Feature Ratio:** It is the one in charge of controlling the index, the larger the ratio, the more single the dataset but it can result in artifacts, so it is better to leave it as it is by default.
 - **Volume Envelope:** Substitute or blend with the volume envelope of the output.
@@ -25,6 +26,5 @@
 - **Hop Length:** Denotes the duration it takes for the system to transition to a significant pitch change. Smaller hop lengths require more time for inference and training but tend to yield higher pitch accuracy.
 - **Pitch extraction algorithm:** Select between [rvmpe, crepe or other](https://docs.applio.org/faq/rvc/#f0-extraction-methods)
 - **(optional) Embedder Model:** select the Embedder model (hubert or contentvec).
-
 
 - Applio also features ElevenLabs TTS. Check the [Plugins section](/get-started/plugins.md) for more information.

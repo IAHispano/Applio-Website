@@ -1,14 +1,11 @@
-# Other Alternatives
+import { Callout } from 'nextra/components'
 
-Thanks to our team, we were able to bring Applio to other places for your convenience
-
-Google Colab UI
+# Google Colab UI
 
 ## What is Google Colab?
 
 Google Colab **(Google Colaboratory)** is a free cloud based platform that enables writing and executing Python code within an interactive notebook environment. It provides free access to computing resources, including CPUs, **GPUs** and TPUs from Google’s servers, making it particularly useful for machine learning tasks and data analysis. Additionally, Colab offers a Pro subscription, but it’s not highly recommended to pay for it when there are better alternatives available. Some Colabs have an **interface (UI)** through Gradio, providing a simple and user-friendly experience for users, however, these interfaces are not allowed by Google Colab, so there is a possibility of jeopardizing your google account.
 
-import { Callout } from 'nextra/components'
  
 <Callout type="warning" emoji="⚠️">
  Please note noted that Gradio is banned from Colab, so it is preferable to use a secondary, a new account or [Applio No UI Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) to avoid a possible ban. Additionally, it is possible that Colab may disconnect after a few hours due to Google’s limitations.
@@ -42,9 +39,9 @@ In this section, you will find the following options:
 
 To load your dataset in Colab, there are two ways to do it:
 
-- Place your audio in a folder on your Google Drive, run the **Mount Drive** cell in Colab and click on :file_folder: in Colab. Then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset folder` and paste it into the **dataset path**.
+- Place your audio in a folder on your Google Drive, run the **Mount Drive** cell in Colab and click on folder icon in Colab. Then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset folder` and paste it into the **dataset path**.
 
-- Upload your audio in .wav format using the **Dataset Maker** or click on :file_folder: in Colab and setup it manually to `program/assets/datasets` creating inside a folder for the program to read it.
+- Upload your audio in .wav format using the **Dataset Maker** or click on folder icon in Colab and setup it manually to `program/assets/datasets` creating inside a folder for the program to read it.
 
 <Callout type="info" emoji="ℹ️">
   Mark the **Save Only Latest** option before training to prevent it from filling up your Colab storage.
@@ -58,7 +55,7 @@ To save your model, there are three ways to do it:
 
 - **Model to continue training:** if you want to save all the archives of your model folder in your Drive, you just need to run the **Mount Drive** and **AutoBackup** cell before run **Start Applio** cell, your model folder will be found inside the **ApplioBackup** folder.
 
-- **Manual (NOT RECOMENDED):** click on :file_folder: in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
+- **Manual (NOT RECOMENDED):** click on folder icon in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
 
 ### How to resume training in Google Colab?
 
@@ -100,7 +97,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 
 2. Place the **Google Drive or Hugging Face** model link in the **model_link** and run the **Download model** cell.
 
-3. Click on :file_folder: in Colab, then navigate to your audio, copy the path, it should look like this: `/content/drive/MyDrive/audio name.wav` and paste it into the **input_path**. Finally run the **Run inference** cell.
+3. Click on folder icon in Colab, then navigate to your audio, copy the path, it should look like this: `/content/drive/MyDrive/audio_name.wav` and paste it into the **input_path**. Finally run the **Run inference** cell.
 **Advanced Settings**
 - **Export_format:** Select the format to export the audio.
 - **F0method:** Select between [rvmpe, crepe or other](https://docs.applio.org/faq/rvc/#f0-extraction-methods)
@@ -118,7 +115,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 
 ### How to train in Google Colab No UI?
 
-1. Place your audio in a folder on your Google Drive and click on :file_folder: in Colab, then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset name folder` and paste it into the **dataset_path**, make sure the audio and folder name don't contain spaces or special characters. Also, specify the [**sample rate**](https://docs.applio.org/guides/datasets/sample-rate/) and run the **Preprocess Dataset** cell.
+1. Place your audio in a folder on your Google Drive and click on folder icon in Colab, then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset name folder` and paste it into the **dataset_path**, make sure the audio and folder name don't contain spaces or special characters. Also, specify the [**sample rate**](https://docs.applio.org/guides/datasets/sample-rate/) and run the **Preprocess Dataset** cell.
 
 2. Next, in the **Extract Features** section, set the [**f0method**](https://docs.applio.org/faq/rvc/#f0-extraction-methods) and **hop_length**, and run that cell.
 
@@ -150,7 +147,7 @@ Google Colab **(Google Colaboratory)** is a free cloud based platform that enabl
 
 - Download the [pretrained](https://docs.applio.org/get-started/pretrained/#where-to-find-pretraineds) you want to use and upload the d.pth and g.pth files to your Google Drive.
 
-- Click on :file_folder: in Colab, and create a new folder named **pretrained_custom** inside the **pretraineds** folder located in **Applio/rvc/pretraineds**.
+- Click on folder icon in Colab, and create a new folder named **pretrained_custom** inside the **pretraineds** folder located in **Applio/rvc/pretraineds**.
 
 - Locate your pretrained model on your Google Drive and drag it into the newly created folder.
 
@@ -185,7 +182,7 @@ function ClickConnect() {
 }
 setInterval(ClickConnect, 6000);
 ```
-Hugging Face
+# Hugging Face
 
 ## What is Hugging Face?
 
@@ -200,7 +197,7 @@ Hugging Face is a company specialized in artificial intelligence that has distin
 <Callout type="warning" emoji="⚠️">
 You can't train models here because it only utilizes CPU.
 </Callout>
-Paperspace
+# Paperspace
 
 ## What is Paperspace?
 
@@ -229,7 +226,7 @@ During the account creation
 
 4. Now type the following commands one at a time in the terminal; this is only for the first time:
 
-```js
+```bash
 git clone https://github.com/IAHispano/Applio.git
 cd /notebooks/Applio
 make run-install
@@ -244,7 +241,7 @@ make run-applio
 
 ### How to upload my dataset in Paperspace?
 
-Upload your audio in .wav format using the **Dataset Maker** or click on :file_folder: and setup it manually to `Applio/assets/datasets` creating inside a folder for the program to read it.
+Upload your audio in .wav format using the **Dataset Maker** or click on folder icon and setup it manually to `Applio/assets/datasets` creating inside a folder for the program to read it.
 
 <Callout type="info" emoji="ℹ️">
   Mark the **Save Only Latest** option before training to prevent it from filling up your storage.
@@ -252,12 +249,12 @@ Upload your audio in .wav format using the **Dataset Maker** or click on :file_f
 
 7. Run tensorboard in another terminal, click on the terminal icon and enter the following commands:
 
-```js
+```bash
 cd /notebooks/Applio
 make run-tensorboard
 ```
 
-8. Click on :file_folder: and locate your trained model in the `Applio/logs/model` folder, and the .pth files are in the `Applio/logs/zips` folder.
+8. Click on folder icon and locate your trained model in the `Applio/logs/model` folder, and the .pth files are in the `Applio/logs/zips` folder.
 
 ### How to resume training in Paperspace?
 

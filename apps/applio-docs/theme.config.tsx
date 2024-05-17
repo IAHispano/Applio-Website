@@ -10,7 +10,7 @@ const config: DocsThemeConfig = {
   chat: {
     link: "https://discord.gg/iahispano",
   },
-  docsRepositoryBase: "https://github.com/iahispano/applio",
+  docsRepositoryBase: "https://github.com/iahispano/applio-website",
   footer: {
     text: (
       <span>
@@ -22,13 +22,23 @@ const config: DocsThemeConfig = {
     defaultTheme: "dark",
   },
   feedback: {
-    content: null,
+    content: "Do you think we should improve something? Let us know!",
+
   },
   editLink: {
     component: null,
   },
-  faviconGlyph: "/favicon.ico",
-  logoLink: "/favicon.ico",
+  themeSwitch: {
+    useOptions() {
+      return {
+        light: '☀️ Light',
+        dark: '🌑 Dark',
+        system: '💻 System'
+      }
+    }
+  },
+  faviconGlyph: "favicon.ico",
+  logoLink: "favicon.ico",
   banner: {
     key: "new-release",
     text: (

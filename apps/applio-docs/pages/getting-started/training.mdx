@@ -1,41 +1,44 @@
-import { Callout, Steps } from "nextra/components";
+import { Callout, Steps, Tabs } from "nextra/components";
+
 
 # Training
 
-<Callout type="warning" emoji="⚠️">
-  Training is only for **NVDIA GPUs**, If you don’t have a compatible GPU, the
-  Training tab will be disabled.
-</Callout>
+Training is the process by which the program will be able to clone any voice or sound via Self-Supervised Speech.
 
-- [If you don’t have an NVIDIA GPU, you can try Applio Colab or Applio No UI Colab. Check the other alternatives section.](/get-started/Alternatives.md)
+---
+
+<Callout type="warning" emoji="⚠️">
+  - Training is only for **NVDIA GPUs**, if this is not available
+  Training tab will be disabled.
+  - If you don’t have an compatible GPU, we offer alternatives to [run Applio in the cloud.](/get-started/Alternatives.md)
+</Callout>
 
 <Steps>
- ### Dataset Preparation
- 1. Upload your audio in .wav format using the **Dataset Maker (if it is a single audio)** or setup it manually (various audios) to `applio/assets/datasets` creating inside a folder for the program to read it.
- - [don't know how to create a dataset?, check the dataset section](/guides/Datasets/Create-Datasets.md)
+## Training a Model
+ ### Step 1: Dataset Preparation
+ Before you can start the training process you need to have an audio set of the desired voice, it is recommended to have
+- A minimum amount of 10 minutes of clean audio, without noise or silences.
+- Uncompressed audio format, this can be either `.wav` or `.flac`
 
-### Dataset Processing
+The recommended duration to have a good dataset is 30 minutes, but if you have even less audio than recommended, pretraineds will be your solution to get a good model with low data.
 
-1.  Once the model is named and the dataset selected press **"Prepocess Dataset"** and wait for the message in the CMD.
 
-<Callout type="info" emoji="ℹ️">
-  Make sure your dataset consists of single audio file or if you split it,
-  ensure that each audio segment has a duration of 10 to 15 seconds per audio.
-</Callout>
 
-- you can select one of the **3 available frequencies** according to the audio `(32k, 40k, 48k)`, this will help to avoid filtering out more artifacts or background noise.
+### Step 2: Dataset Processing
 
-- [don't know how to check sample rate?, check the sample rate section](/guides/Datasets/Sample-Rate.md)
+Once you have the audio ready, be sure to select the correct frequency for your file `(32k, 40k, 48k)`, with that you can proceed to name your model and run the **Preprocess Dataset** Step.
 
-### Feature Extraction
+### Step 3: Feature Extraction
+Now you are in the second last step!, but... what is ***feature extraction***?
 
-1.  Select an [F0 method](https://docs.applio.org/faq/rvc/#f0-extraction-methods) that suits your needs.
-2.  **(optional)** modify [Hop lenght](https://docs.applio.org/get-started/inferencing/#advanced-settings), lower value, higher smoothness of pitch change but slower training and vice versa.
-3.  **(optional)** select the Embedder model (hubert or contentvec)
+Extracting features is an essential step to train, this process will convert each audio fragment divided by the post-processing step to a file readable by the F0 (Fundamental frequency).
 
-### Model Training
+Several F0 models are available to choose from, but the best performer is **RVMPE.**
+- When you select your model, press **Extract Features** to start the process, remember to check your CMD until you see a message indicating that the process is complete.
 
-Configure the training parameters according to your needs.
+### Final Step: Model & Index Training 
+
+This is where the real work begins, to start training your model you will need to make a few small adjustments before you begin.
 
 ![](/Training-Example.png)
 
@@ -45,41 +48,39 @@ Configure the training parameters according to your needs.
 
 - **Batch Size:** Adjust based on your GPU's VRAM. For 8 GB VRAM, use a batch size between 6 and 8. Consider CUDA cores when experimenting with higher batch sizes.
 
-**Other Options**
+**ℹ️ Index Generation:** generating an index is a must, just click on the “train index” button to perform the process.
 
+<FAQBox title="Other Options">
 - **Pitch Guidance:** Gives variation of pitch.
-- [Pretrained:](https://docs.applio.org/faq/rvc/#pretrained) Uses the [RVC](https://docs.applio.org/faq/rvc/#what-is-rvc) pretrained.
-- **Save Only Latest:** Save a single D/G file with information.
+- **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain.
+- **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
 - **Save Every Weights:** Save the weights of the model when a cycle of 'Save Every Epoch' is completed.
-- [Custom Pretrained:](/get-started/pretrained.md) Uses the Custom Pretrained that are loaded.
+- **Custom Pretrained:** Uses the Custom Pretrained that are loaded.
 - **GPU Settings:** Allows to choose GPUs (only for users who have more than one GPU).
 - **Overtraining Detector:** Mark it only if you will train for more than 200 epochs.
 - **Overtraining Threshold:** Set the maximum number of epochs you want your model to stop training if no improvement is detected.
 
-<Callout type="info" emoji="ℹ️">
-  Mark the **Save Only Latest** option before training to prevent it from
-  filling up your storage.
-</Callout>
-Once configured, press **_'Start training'_** to start the process, everything is
-registered in the **CMD.**
+</FAQBox>
 
-- [don't know how to use Tensorboard for correct training? Check out the Tensorboard section](/get-started/tensorboard.md)
 
-### Model Saving and Index File Generation
+</Steps>
+<Steps>
+## (Optional) Resume Training
+- Open Applio if you have closed it.
+- Then, in the Applio interface, input your model name, use the same sample rate, and proceed to the last part of the train tab. Set the same batch size, pretrained (if you used) and increase the number of epochs you want to train.
+- Once configured, press 'Start training' to start the process, everything is registered in the CMD.
+</Steps>
 
-1.  Once training is completed, generate the index file by clicking the "Train Feature Index" button.
-2.  Your trained model is located in the `logs/model folder`, and the [.pth](https://docs.applio.org/faq/rvc/#pth) files are in the `logs/zips` folder.
-
-<Callout type="info" emoji="ℹ️">
-  Now you can export your trained model directly from the Applio interface, go
-  to the **Export Model** section in the **train** tab, click on the **Refresh**
-  button and select the **pth and the [added
-  index](https://docs.applio.org/faq/rvc/#added-index)** of the model to export.
-</Callout>
-
-### Optional Resume training
-
-1.  Open Applio if you have closed it.
-2.  Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
-3.  Once configured, press **_'Start training'_** to start the process, everything is registered in the **CMD.**
-  </Steps>
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      close
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}

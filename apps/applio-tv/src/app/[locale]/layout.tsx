@@ -4,6 +4,8 @@ import "../../styles/globals.css";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
+export const runtime = 'edge';
+
 const inter = Inter({ subsets: ["latin"]});
 
 export const metadata: Metadata = {

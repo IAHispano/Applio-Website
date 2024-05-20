@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin"]});
 
 export const metadata: Metadata = {
   title: "Applio TV",
-  description: "Listen to music created with artificial intelligence.",
+  description: "Listen music created with artificial intelligence.",
 };
 
 export default async function RootLayout({

@@ -1,6 +1,5 @@
 "use client"
 
-
 import { supabase } from "@/utils/database"
 import { useRouter } from "next/navigation"
 import { useState } from "react"

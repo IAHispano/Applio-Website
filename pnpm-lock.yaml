@@ -132,15 +132,6 @@ importers:
         specifier: ^6.1.0
         version: 6.1.0(react@18.3.1)
     devDependencies:
-      '@repo/eslint-config':
-        specifier: workspace:../config-eslint
-        version: link:../config-eslint
-      '@repo/tailwind-config':
-        specifier: workspace:../config-tailwind
-        version: link:../config-tailwind
-      '@repo/typescript-config':
-        specifier: workspace:../config-typescript
-        version: link:../config-typescript
       '@types/node':
         specifier: ^20
         version: 20.12.12

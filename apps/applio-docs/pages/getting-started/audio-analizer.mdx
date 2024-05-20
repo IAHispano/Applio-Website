@@ -1,6 +1,42 @@
-# Audio Analizer
+import { Steps } from 'nextra/components'
 
-To use this tool, we go to the **Extra** section in the **Audio Analyzer**, drag our dataset and click on **Get audio information**.
+# Audio Analizer
+Audio Analyzer is a tool designed to obtain detailed information about audio files.
+
+---
+
+
 ![](/Audio-Analyzer.png)
 
-- [don't understand how it works?, check the sample rate section](/guides/datasets/sample-rate/)
+## On what kind of occasion can audio analyzer be useful?
+
+If you want to perform a training session correctly, it is advisable to know the frequency of the audio that is being used. Currently applio is compatible and has pretraineds in `32k, 40k and 48k`, these values refer to the hertz rate at which the pretraineds are created to use (32000hz, 40000hz, 48000hz). This clearly means that you will have to use audio in the mentioned frequencies to have an adequate result, especially when you have clean and quality audio.
+- you can observe the audio frequency in a reliable software such as audacity, fl studio, etc, But if you need to have more precise details about it, use the tool.
+
+
+
+## Use Audio Analyzer Tool
+<Steps>
+### Upload your Audio
+To proceed to use the Analyzer tool, go to the extra section, upload your audio, and click “get information about audio”.
+
+### Check the information given
+
+When you get your audio you will see several information about it
+
+![](/Audio-Analyzer-Result.png)
+
+## How these graphs can help
+
+These three graphs provide valuable information about the audio you are about to use, allowing you to fine-tune your settings prior to training for optimal results, like the Spectrogram and Spectral Features, these provide crucial information. The spectrogram displays the full set of frequencies present in the audio, allowing you to identify unwanted sounds, such as background noise or unwanted frequencies.
+
+This also applies to the Spectral Features, with the three data thresholds that are provided, a lot of information is shared about the audio, which helps to further examine its characteristics in low, mid and high frequencies, for example;
+
+- **Spectral Centroid:** This graph shows both low and high frequencies within the audio, _represented as mentioned_, in the graph the higher frequencies will be upwards, while the lower frequencies will be downwards.
+
+- **Spectral Bandwidth:** This can somewhat represent the "variety of things (in this case taking context of the general content of the audio)", normally this would not take on much importance except for cloning something other than a voice.
+
+- **Spectral Rolloff:** Basically, the rolloff takes all the audio context of the above-mentioned graphs under a specific volume threshold (in this case of the audio).
+
+Finally, you can also get the frequency using the audio analyzer, both for the spectrogram section as the Spectral Features, in the spectrogram you can observe the values and duplicate them, as with the Spectral Features, the numbers shown around the graph will help determine the frequency.
+</Steps>

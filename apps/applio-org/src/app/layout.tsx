@@ -5,6 +5,8 @@ import Navbar from "@/components/layout/navbar";
 
 const inter = Syne({ subsets: ["latin"] });
 
+export const runtime = 'edge';
+
 export const metadata: Metadata = {
   title: "Applio",
   description: "At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",

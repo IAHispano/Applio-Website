@@ -1,24 +1,41 @@
-import { Callout } from 'nextra/components'
+import { Callout, Steps } from 'nextra/components'
 
-# Google Colab UI
 
-## What is Google Colab?
+# Alternatives on the Cloud
 
-Google Colab **(Google Colaboratory)** is a free cloud based platform that enables writing and executing Python code within an interactive notebook environment. It provides free access to computing resources, including CPUs, **GPUs** and TPUs from Google’s servers, making it particularly useful for machine learning tasks and data analysis. Additionally, Colab offers a Pro subscription, but it’s not highly recommended to pay for it when there are better alternatives available. Some Colabs have an **interface (UI)** through Gradio, providing a simple and user-friendly experience for users, however, these interfaces are not allowed by Google Colab, so there is a possibility of jeopardizing your google account.
-
- 
 <Callout type="warning" emoji="⚠️">
- Please note noted that Gradio is banned from Colab, so it is preferable to use a secondary, a new account or [Applio No UI Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) to avoid a possible ban. Additionally, it is possible that Colab may disconnect after a few hours due to Google’s limitations.
+- Before starting. Note that launching any external interfaces (UIs) through Google Colaboratory is against the ToS of the platform. Running these can cause **limitations to your Google Account**, if you understand the risks you can continue to use the following alternative.
+ 
+ 
+ Otherwise you can choose to use others such as [Applio No UI.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb)
 </Callout>
 
-1. Enter [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb) and just **run the 2 cells**.
+<Steps>
+
+## Alternative 1: Applio UI Colab
+
+### Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb) and execute the following **two cells**
+    
     ![](/Colab.png)
 
-2. Due to recent issues with Gradio links, a **shared_tunnel** has been implemented. If you select this option, you’ll need to access the **shared link** and enter the **Password IP**. If you leave it unchecked, a **public link** will appear to enter the interface, in case it doesn't appear, use the other method.
+### Access the interface
+You will find that when the first **“Install Applio”** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to activate the **“Share tunnel”** checkbox and follow the following simple procedure
 
+- Open the given URL.
+- Paste the IP given on Collab.
+    
     ![](/tunel.png)
 
-### Extra cells (only for training)
+and yap, that's all, have fun using the Applio UI version!
+
+</Steps>
+
+<Callout type="info" emoji="ℹ️">
+In case you want to train in the UI version, it is advisable to use the advanced options in order not to lose progress in case of disconnection.
+
+</Callout>
+
+<FAQBox title="Extra cells (only for training)">
 
 In this section, you will find the following options:
 
@@ -26,28 +43,18 @@ In this section, you will find the following options:
 - **AutoBackup:** Saves our trained model to our drive. Drive needs to be mounted first.
 - **Load a Backup:** Used to load our model if we want to retrain it. Drive must be mounted.
 - **Download [Custom Pretrains](https://docs.applio.org/get-started/pretrained/):** Allows direct downloading of custom pretrains to Applio.
-
 ![](/Extra-Colab.png)
 
-3.  You can [train](../get-started/training.md/) models while checking [Tensorboard](../get-started/tensorboard.md), do [inference](../get-started/inferencing.md/), or use [TTS](../get-started/tts.md/)
+Options inside UI
 
-<Callout type="info" emoji="ℹ️">
-  In case you want to **train**, you should run the **Extra cells** before run **Start Applio** cell. Otherwise, simply run the **Install Applio** and **Start Applio** cells.
-</Callout>
+- **Dataset Maker:** Upload your audio directly to its proper path via the interface.
 
-### How to upload my dataset in Colab?
+- **Or manual audio upload:** Place your audio in a folder on your Google Drive, run the Mount Cell, enter collab's file explorer, copy the path to the folder (`Drive/content/drive/MyDrive/My_custom_folderd`)
 
-To load your dataset in Colab, there are two ways to do it:
+</FAQBox>
 
-- Place your audio in a folder on your Google Drive, run the **Mount Drive** cell in Colab and click on folder icon in Colab. Then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset folder` and paste it into the **dataset path**.
-
-- Upload your audio in .wav format using the **Dataset Maker** or click on folder icon in Colab and setup it manually to `program/assets/datasets` creating inside a folder for the program to read it.
-
-<Callout type="info" emoji="ℹ️">
-  Mark the **Save Only Latest** option before training to prevent it from filling up your Colab storage.
-</Callout>
-
-### How to export my model to my Google Drive?
+<Steps>
+## How to export my model to my Google Drive?
 
 To save your model, there are three ways to do it:
 
@@ -57,17 +64,17 @@ To save your model, there are three ways to do it:
 
 - **Manual (NOT RECOMENDED):** click on folder icon in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
 
-### How to resume training in Google Colab?
+## How to resume training in Google Colab?
 
 If the model still needs training, simply do the following:
 
 - Run the same cells as before, but now you’ll need to enter your **model name** in **Load a backup** and run it.
 
 - Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
-
+</Steps>
 ### Code to be afk
 
-To run this code in Colab, we have to press the keys **Ctrl + Shift + i** to open the **developer tools** option and the following window will open. In case another window is displayed, we can locate it by selecting the **Console** option, so in this way Colab will not disconnect during the separation process. First, we put **Allow pasting**, then we press enter and only then it will let us enter the code.
+If you want to remain inactive without fear of being disconnected from your environment run this Java Script on your browser console, press the keys **Ctrl + Shift + i** to open the **developer tools** option and the following window will open. In case another window is displayed, we can locate it by selecting the **Console** option, so in this way Colab will not disconnect during the separation process. First, we put **Allow pasting**, then we press enter and only then it will let us enter the code.
 
 ```js
 function ClickConnect() {
@@ -83,127 +90,41 @@ function ClickConnect() {
 }
 setInterval(ClickConnect, 6000);
 ```
-Google Colab No UI
+## Alternative 2: Applio No UI colab (recommended)
 
-## What is Google Colab?
+To use the CLI version, enter to the [Applio No UI Colab.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) Click on the installation cell. If everything runs correctly, you can proceed to the next step. In case a pop-up window appears asking you to restart the environment, select 'Restart'. Once the environment has restarted, run the cell above the installation cell and then run the installation cell again.
 
-Google Colab **(Google Colaboratory)** is a free cloud based platform that enables writing and executing Python code within an interactive notebook environment. Some Colabs do not use **interfaces (No UI)** because their use is banned in Google Colab, which means that the entire process is done directly from the notebook using cells, making it challenging for some users.
+The notebook is easy to understand, even more so when this notebook shares the same processes as the UI version!, so you can be guided by the existing explanations such as [Training](/getting-started/training) or [Inference.](/getting-started/download-models)
 
-- Enter [Applio No UI Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) and run the **Installation** cell.
-
-### How to [infer](https://docs.applio.org/faq/rvc/#inference) in Google Colab No UI?
-
-1. First, you’ll need to upload the audio you want to use to your Google Drive. Make sure the audio name don't contain spaces or special characters.
-
-2. Place the **Google Drive or Hugging Face** model link in the **model_link** and run the **Download model** cell.
-
-3. Click on folder icon in Colab, then navigate to your audio, copy the path, it should look like this: `/content/drive/MyDrive/audio_name.wav` and paste it into the **input_path**. Finally run the **Run inference** cell.
-**Advanced Settings**
-- **Export_format:** Select the format to export the audio.
-- **F0method:** Select between [rvmpe, crepe or other](https://docs.applio.org/faq/rvc/#f0-extraction-methods)
-- **f0up_key:** Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12. 
-- **Filter_radius:** Applies respiration filtering to the results, the value represents the filter radius and respiration reduction to avoid artifacts.
-- **Rms_mix_rate:** Substitute or blend with the volume envelope of the output.
-- **Protect:** Safeguard distinct consonants and breathing sounds to prevent electro-acoustic tearing and other artifacts.
-- **Index_rate:** It is the one in charge of controlling the index, the larger the ratio, the more single the dataset but it can result in artifacts, so it is better to leave it as it is by default.
-- **Hop_length:** Denotes the duration it takes for the system to transition to a significant pitch change. Smaller hop lengths require more time for inference and training but tend to yield higher pitch accuracy.
-- **Clean_strenght:** The more you increase it the more it will clean up, but it will be more compressed.
-- **Split_audio:** Basically cuts the audio into parts to make the inference by parts and then joins them together.
-- **Clean_audio:** Clean your audio output using noise detection algorithms, recommended for speaking audios.
-- **Autotune:** Apply a soft autotune to your inferences, recommended for singing conversions.
+Finally, for upload or download files in Google Colab, it is recommended to click on the folder located in the left sidebar. This will open the file explorer, which allows you to transfer documents almost instantly between Google Drive and Colab. This feature facilitates file management, allowing you to quickly access and move data without hassle.
 
 
-### How to train in Google Colab No UI?
+## Alternative 3: Hugging Face
 
-1. Place your audio in a folder on your Google Drive and click on folder icon in Colab, then navigate to your dataset folder, copy the path, it should look like this `/content/drive/MyDrive/dataset name folder` and paste it into the **dataset_path**, make sure the audio and folder name don't contain spaces or special characters. Also, specify the [**sample rate**](https://docs.applio.org/guides/datasets/sample-rate/) and run the **Preprocess Dataset** cell.
+Hugging Face is a artificial intelligence and machine learning community, where you can collaborate on models, datasets, and applications. HugginFace has a section called “Spaces”, which allows to build applications and run them using CPUs or GPUs. 
 
-2. Next, in the **Extract Features** section, set the [**f0method**](https://docs.applio.org/faq/rvc/#f0-extraction-methods) and **hop_length**, and run that cell.
+---
+<Steps>
+- Applio is available as a space, you can use it directly without registering via [Applio Web.](https://applio.org/playground)
 
-3. Afterward, run the **Generate [index](https://docs.applio.org/faq/rvc/#added-index) file** cell.
+- Or you can go to the Hugging Face website and create an account. Then, enter to the [Applio space](https://huggingface.co/spaces/IAHispano/Applio), go to the top bar, click on the three-dot icon on the right and select “Duplicate this space”. This will duplicate the program in a private running environment for you.
+</Steps>
 
-4. In the **Train** section, before run that cell you should set the following:
-
-  - **Total_epoch:** The number of epochs needed varies based on your dataset. Monitor progress using TensorBoard; typically, models perform well around 200-400 epochs.
-
-  - [**Batch_size:**](https://docs.applio.org/faq/rvc/#batch-size) Adjust the batch size according to your preference; a batch size of 8 is mostly recommended.
-
-  - **Save_every_epoch:** Set this value between 10 and 50 to determine how often the model's state is saved during training.
-**Other Options**
-- **Pitch_guidance:** Gives variation of pitch.
-- **auto_backups (recomended):** Keep this checked it if you want to save a copy of your model in your Google Drive after training completes.
-- [Pretrained:](https://docs.applio.org/faq/rvc/#pretrained) Uses the [RVC](https://docs.applio.org/faq/rvc/#what-is-rvc) pretrained.
-- **tensorboard:** Keep this checked; it will determine if the model is overfitting.
-- **Save Only Latest:** Save a single D/G file with information.
-- **Save Every Weights:** Save the weights of the model when a cycle of 'Save Every Epoch' is completed.
-- **overtraining_detector:** Mark it only if you will train for more than 200 epochs.
-- **overtraining_threshold:** Set the maximum number of epochs you want your model to stop training if no improvement is detected.
-- [Custom_pretrained:](/get-started/pretrained.md) Keep this checked if you want to use the Custom Pretrained that are loaded.
-
-- [don't know how to use Tensorboard for correct training? Check out the Tensorboard section](/get-started/tensorboard.md)
-
-5. Finally your trained model will be located in your Google Drive within the **RVC_Backup folder**.
-
-### How to use custom pretrained in Goggle Colab No UI?
-
-- Download the [pretrained](https://docs.applio.org/get-started/pretrained/#where-to-find-pretraineds) you want to use and upload the d.pth and g.pth files to your Google Drive.
-
-- Click on folder icon in Colab, and create a new folder named **pretrained_custom** inside the **pretraineds** folder located in **Applio/rvc/pretraineds**.
-
-- Locate your pretrained model on your Google Drive and drag it into the newly created folder.
-
-- Finally, copy the path of G.pth and paste it into **g_pretrained_path**, and do the same for D.pth into **d_pretrained_path**. It should look like this: `/content/Applio/rvc/pretraineds/pretraineds_custom/G48k.pth` and `/content/Applio/rvc/pretraineds/pretraineds_custom/D48k.pth`, make sure to select the sample rate according to the [sample rate](https://docs.applio.org/guides/datasets/sample-rate/#what-is-sample-rate) of the custom pretraineds.
-
-
-### How to resume training in Google Colab No UI?
-
-If the model still needs training, simply do the following:
-
-- Run the **Installation** cell as before, but now you’ll need to enter your **model name** in **Load a backup** cell and run it.
-
-- Then, in the **Set training variables** cell, input your **model_name**, use the same **sample_rate** and **hop_length** amd run it.
-
-- Finally in the **Train** set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[custom_pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)**, increase the number of **total_epoch** you want to train and other seetting that you used before and run that cell.
-
-### Code to be afk
-
-To run this code in Colab, we have to press the keys **Ctrl + Shift + i** to open the **developer tools** option and the following window will open. In case another window is displayed, we can locate it by selecting the **Console** option, so in this way Colab will not disconnect during the separation process. First, we put **Allow pasting**, then we press enter and only then it will let us enter the code.
-
-```js
-function ClickConnect() {
-  var iconElement = document.getElementById("toggle-header-button");
-  if (iconElement) {
-    var clickEvent = new MouseEvent("click", {
-      bubbles: true,
-      cancelable: true,
-      view: window,
-    });
-    iconElement.dispatchEvent(clickEvent);
-  }
-}
-setInterval(ClickConnect, 6000);
-```
-# Hugging Face
-
-## What is Hugging Face?
-
-Hugging Face is a company specialized in artificial intelligence that has distinguished itself through its work in developing tools and models for **natural language processing (NLP)**. This has made it one of the leading online communities and platforms for cutting edge NLP model research, development and distribution.
-
-1.  First you need to create a hugging Face account.
-
-2.  Then enter [Applio Hugging Face Space](https://huggingface.co/spaces/IAHispano/Applio) and duplicate the space, that is all. If you don't want to use hugging Face you can use [Applo playground](https://applio.org/playground).
 
 ![](/Duplicate.png)
 
-<Callout type="warning" emoji="⚠️">
-You can't train models here because it only utilizes CPU.
-</Callout>
-# Paperspace
 
-## What is Paperspace?
+Please note that the space is limited to inference only, as it runs on a free CPU. The processing time is not optimal, and the longer the uploaded audio, the longer it will take. You can use the 'split audio' option to help mitigate this.
+
+
+## Alternative 4: Paperspace
 
 Paperspace is a cloud platform that provides access to powerful virtual machines with dedicated GPU for software development, machine learning, artificial intelligence, and other applications that require substantial processing power. This has made it one of the most competent **paid** alternatives to Colab.
+<Steps>
 
-1. First you should create an account on [Paperspace](https://console.paperspace.com/signup)
+### Create a Account
+
+First you should create an account on [Paperspace](https://console.paperspace.com/signup)
 
 <Callout type="info" emoji="ℹ️">
 During the account creation
@@ -215,16 +136,19 @@ During the account creation
 - You will need to clarify some additional account details before starting to use Paperspace.
 </Callout>
 
-2. Once the account is created, you will need to choose a Paperspace plan. To do this, click on **Upgrade** and select the one that suits your preference. The best option is the **Pro** plan.
+### Buy a Paperspace plan
+Once the account is created, you will need to choose a Paperspace plan. To do this, click on **Upgrade** and select the one that suits your preference. The best option is the **Pro** plan.
 
-3. Go to the **Gradient** tab and click on the **Create** button:
+### Set up your Paperpsace environment
+Go to the **Gradient** tab and click on the **Create** button:
 
 - Select the template: **Start from Scratch**
 - Select a avaible **GPU**
 - Select the number of hours your computer will remain active.
   Then click on **Start Notebook**.
 
-4. Now type the following commands one at a time in the terminal; this is only for the first time:
+### Install Applio in your environment
+Now type the following commands one at a time in the terminal; this is only for the first time:
 
 ```bash
 git clone https://github.com/IAHispano/Applio.git
@@ -239,7 +163,7 @@ make run-applio
 
 6. You can [train](/get-started/training.md/) models while checking [Tensorboard](/get-started/tensorboard.md), do [inference](/get-started/inferencing.md/), or use [TTS](/get-started/tts.md/)
 
-### How to upload my dataset in Paperspace?
+## How to upload my dataset in Paperspace?
 
 Upload your audio in .wav format using the **Dataset Maker** or click on folder icon and setup it manually to `Applio/assets/datasets` creating inside a folder for the program to read it.
 
@@ -256,14 +180,25 @@ make run-tensorboard
 
 8. Click on folder icon and locate your trained model in the `Applio/logs/model` folder, and the .pth files are in the `Applio/logs/zips` folder.
 
-### How to resume training in Paperspace?
+## How to resume training in Paperspace?
 
 If the model still needs training, simply do the following:
 
 - Entering the last 3 commands from step 4.
 
 - Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
+</Steps>
 
-<Callout type="warning" emoji="⚠️">
-  Make sure to set the [batch size](https://docs.applio.org/faq/rvc/#batch-size) according to the VRAM of your chosen GPU.
-</Callout>
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      close
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}

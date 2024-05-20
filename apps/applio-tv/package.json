@@ -19,9 +19,9 @@
     "react-infinite-scroll-component": "^6.1.0"
   },
   "devDependencies": {
-    "@repo/eslint-config": "workspace:../config-eslint",
-    "@repo/tailwind-config": "workspace:../config-tailwind",
-    "@repo/typescript-config": "workspace:../config-typescript",
+    "@repo/eslint-config": "workspace:../packages/config-eslint",
+    "@repo/tailwind-config": "workspace:../packages/config-tailwind",
+    "@repo/typescript-config": "workspace:../packages/config-typescript",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

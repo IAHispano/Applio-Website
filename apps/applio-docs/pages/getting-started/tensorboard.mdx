@@ -4,23 +4,20 @@ import { Callout } from "nextra/components";
 
 Tensorboard is a series of graphs where we can monitor the progress of our model during training, but there are many graphs. We are only interested in the graph called 'g/total'. You can find this by clicking on 'inactive' and selecting 'scalars'. Then, go to the last page, where you will find it in the last graph.
 
-## How tu use it?
+## How to use it?
 
-1. Open TensorBoard by running the following command in your terminal or use the run-tensorboard.bat file:
+**1.** Open TensorBoard by running the run-tensorboard.bat file or type the following command in your terminal:
 
    ```
-   tensorboard --logdir=path/to/your/logs
+   tensorboard --logdir=replace/with/your/logs/folder/path
    ```
 
-   Replace "path/to/your/logs" with the actual path to your TensorBoard logs.
+**2.** Once TensorBoard is running, open your web browser and navigate to `http://localhost:6006` (or the address indicated in your terminal).
 
-2. Once TensorBoard is running, open your web browser and navigate to `http://localhost:6006` (or the address indicated in your terminal).
+**3.** Click on the "Scalars" tab in TensorBoard.
 
-3. Click on the "Scalars" tab in TensorBoard.
-
-4. Look for the "g/total" metric at the top to monitor the progress of your training.
-
-![Hello](/Tensorboard.png)
+**4.** Look for the "g/total" metric at the top to monitor the progress of your training.
+![TensorBoard Example](/Tensorboard.png)
 
 This image provides a visual guide for locating the "g/total" metric within the "Scalars" tab.
 
@@ -40,7 +37,7 @@ It’s when the graph goes to a point so low that it doesn’t happen again. Dur
 ![](/Point.png)
 
 Advanced Information
-Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates [overtraining](https://docs.applio.org/faq/rvc/#overtraining).
+Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates overtraining.
 
 ## Loss Terms
 
@@ -50,13 +47,17 @@ Monitoring these loss terms together provides a comprehensive picture of the tra
 
 The optimal values will vary depending on the specific task and dataset. However, by monitoring the trends in these loss terms, you can gain valuable insights into the progress of the training and identify any potential issues that may arise.
 
+
 ### (D) Discriminator Loss (loss_disc):
+
+---
 
 The discriminator loss measures the discriminator’s ability to distinguish between real and synthetic data samples. It is typically formulated as a cross-entropy loss, where the discriminator is penalized for misclassifying real and synthetic samples.
 
 A decreasing discriminator loss indicates that the discriminator is becoming better at distinguishing between real and synthetic data. This is generally a good sign, as it suggests that the generator is producing increasingly realistic synthetic data. However, if the discriminator loss becomes too low, it may indicate that the generator is simply memorizing real data samples rather than learning to capture the underlying patterns in the data.
 
 ### (G) Generator Loss (loss_gen):
+---
 
 The generator loss measures the generator’s ability to produce synthetic data samples that are indistinguishable from real data. It is typically formulated as an adversarial loss, where the generator is penalized for producing data that is easily classified as synthetic by the discriminator.
 
@@ -64,17 +65,25 @@ A decreasing generator loss indicates that the generator is successful learning 
 
 ### Feature Matching Loss (loss_fm):
 
+---
+
 The feature matching loss encourage the generator to produce synthetic data that has similar intermediate feature representations to those of real data. This is achieved by comparing the intermediate activations of a feature extractor applied to both real and synthetic data.
 
 A decreasing feature matching loss indicates that the generator is producing synthetic data with similar intermediate feature representations to those of real data. This suggests that the generator is learning to capture the underlying structure of real data, which contributes to the realism of the synthetic data.
 
+
 ### Mel Spectrogram Loss (loss_mel):
+
+---
 
 The mel spectrogram loss compares the mel spectrograms of real and synthetic data samples. Mel spectrograms are a way of representing the frequency content of an audio signal, and this loss encourage the generator to produce synthetic data that sound similar to real data.
 
 A decreasing mel spectrogram loss indicates that the generator is producing synthetic data with a similar spectral distribution to real data. This is particularly important for audio generation tasks, as it ensures that the synthetic audio sound similar to real audio.
 
+
 ### KL Divergence Loss (loss_kl):
+
+---
 
 The KL divergence loss encourages the generator to produce synthetic data that has a similar distribution of latest variables to real data. Latent variables are a representation of the underlying factors that generate the data, and this loss ensures that the generator is not simply memorizing real data samples but is learning to capture the underlying patterns in the data.
 

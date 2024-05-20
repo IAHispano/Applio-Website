@@ -14,11 +14,12 @@ import { Callout, Steps } from 'nextra/components'
 
 ## Alternative 1: Applio UI Colab
 
-**1.** Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb) and execute the following **two cells**
+### Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb) and execute the following **two cells**
     
     ![](/Colab.png)
 
- **2.** You will find that when the first **“Install Applio”** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to activate the **“Share tunnel”** checkbox and follow the following simple procedure
+### Access the interface
+You will find that when the first **“Install Applio”** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to activate the **“Share tunnel”** checkbox and follow the following simple procedure
 
 - Open the given URL.
 - Paste the IP given on Collab.
@@ -121,7 +122,9 @@ Please note that the space is limited to inference only, as it runs on a free CP
 Paperspace is a cloud platform that provides access to powerful virtual machines with dedicated GPU for software development, machine learning, artificial intelligence, and other applications that require substantial processing power. This has made it one of the most competent **paid** alternatives to Colab.
 <Steps>
 
-1. First you should create an account on [Paperspace](https://console.paperspace.com/signup)
+### Create a Account
+
+First you should create an account on [Paperspace](https://console.paperspace.com/signup)
 
 <Callout type="info" emoji="ℹ️">
 During the account creation
@@ -133,16 +136,19 @@ During the account creation
 - You will need to clarify some additional account details before starting to use Paperspace.
 </Callout>
 
-2. Once the account is created, you will need to choose a Paperspace plan. To do this, click on **Upgrade** and select the one that suits your preference. The best option is the **Pro** plan.
+### Buy a Paperspace plan
+Once the account is created, you will need to choose a Paperspace plan. To do this, click on **Upgrade** and select the one that suits your preference. The best option is the **Pro** plan.
 
-3. Go to the **Gradient** tab and click on the **Create** button:
+### Set up your Paperpsace environment
+Go to the **Gradient** tab and click on the **Create** button:
 
 - Select the template: **Start from Scratch**
 - Select a avaible **GPU**
 - Select the number of hours your computer will remain active.
   Then click on **Start Notebook**.
 
-4. Now type the following commands one at a time in the terminal; this is only for the first time:
+### Install Applio in your environment
+Now type the following commands one at a time in the terminal; this is only for the first time:
 
 ```bash
 git clone https://github.com/IAHispano/Applio.git

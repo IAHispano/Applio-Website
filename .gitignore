@@ -35,3 +35,8 @@ yarn-error.log*
 
 # ui
 dist/
+.vercel
+
+
+# output
+/output

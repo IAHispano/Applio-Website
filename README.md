@@ -17,13 +17,13 @@ Welcome to the Applio websites official monorepo! This README outlines the rules
 1. **Format**
    - Use the following format for commit messages:
      ```
-     [project] Short description of the change
+     [project]: Short description of the change
 
      Detailed explanation (if necessary)
      ```
    - Example: 
      ```
-     [docs] Add new section to documentation
+     docs: Add new section to documentation
 
      The new section includes detailed instructions on setting up the development environment. Adjusted the formatting to ensure consistency.
      ```

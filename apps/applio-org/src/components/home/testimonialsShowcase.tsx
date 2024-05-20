@@ -32,9 +32,9 @@ const TestimonialsShowcase= () => {
       <div className="gap-4 md:p-4 mt-12 w-full">
         {loading && (<p className="text-center text-xs justify-center flex md:mx-auto items-center">Loading...</p>)}
         {!loading && (
-          <div className="flex md:flex-cols-3 max-md:flex-col gap-6 h-full w-full justify-center ">
+          <div className="grid md:grid-cols-2 md:grid-rows-2 h-full w-full justify-center items-center gap-6">
           {data?.map((data: any) => (
-            <article key={data.id} className="bg-white/[.03] hover:bg-white/10 hover:rounded-xl md:hover:-mt-6 slow rounded-t-xl p-4 md:w-[400px] md:h-[200px] relative mx-4 max-md:rounded-2xl">
+            <article key={data.id} className="bg-white/[.03] hover:bg-white/10 hover:rounded-xl md:hover:-mt-2 slow rounded-xl p-4 w-full h-full relative md:mx-4 max-md:rounded-2xl">
             <div className="flex flex-col items-start justify-start">
               <p className="font-bold text-lg text-left md:max-w-[100%] md:min-h-[100px] md:line-clamp-4 overflow-hidden break-words max-w-[300px]" >{data.text}</p>
             </div>

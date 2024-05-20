@@ -44,7 +44,7 @@ const ModelsShowcase= () => {
                 alt={data.name} 
                 className="min-w-[80px] max-w-[80px] h-[80px] object-cover object-top rounded-3xl" 
               />
-              <p className="text-white mt-2 justify-start items-start flex mb-auto max-w-[280px] text-ellipsis pl-2 pr-2 text-left text-sm border border-white/10 rounded-2xl w-full h-full py-2 bg-white/[0.05]" >{data.name}</p>
+              <p className="text-white  justify-start items-start flex mb-auto max-w-[280px] text-ellipsis px-2 text-left text-sm border border-white/10 rounded-2xl w-full h-full py-2 bg-white/[0.05]" >{data.name}</p>
               </div>
           ))}
           </div>

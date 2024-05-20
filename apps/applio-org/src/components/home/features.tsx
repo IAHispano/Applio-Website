@@ -45,7 +45,7 @@ export default function Features() {
                 <h4 className="max-w-[350px]">Lorem ipsum dolor sit amet consectetur. Tortor accumsan non eget orci. Faucibus sed sed libero amet ac eu.</h4>
             </div>
         </article>
-        <p className="text-center mt-8">Want to know more? <a className="underline underline-offset-2 hover:text-white/90" href="https://github.com/iahispano/applio" target="_blank">Try Applio now!</a></p>
+        <p className="text-center mt-8 z-50">Want to know more? <a className="underline underline-offset-2 hover:text-white/90 cursor-pointer" href="https://github.com/iahispano/applio" target="_blank">Try Applio now!</a></p>
         </section>
     );
 }

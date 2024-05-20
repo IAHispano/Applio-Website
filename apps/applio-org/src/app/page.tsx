@@ -10,7 +10,7 @@ export default function Home() {
       <div className="absolute">
       <Background1 />
       </div>
-      <section className="z-30 mt-72 text-center flex justify-center items-center flex-col">
+      <section className="z-30 md:mt-72 max-md:mt-44 text-center flex justify-center items-center flex-col">
       <a className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5" role="alert" href="/premium">
         <span className="flex rounded-full bg-white uppercase px-2 py-1 text-xs font-bold mr-3 font-bold">New</span>
         <span className="font-semibold mr-2 text-left flex-auto text-white">Introducing Applio Premium</span>
@@ -34,12 +34,12 @@ export default function Home() {
       <p className="font-light text-white/90 my-8">No matter what voice you want, you can create it for free at Applio.</p>
       <a className="rounded-2xl border border-white/10 hover:bg-white/10 px-14 py-3 font-medium read-font cursor-pointer slow" href="/models">Explore now!</a>
       </div>
-      <div className="md:mt-[40svh] max-md:mt-[10svh] mb-4 py-8 md:h-[80svh] w-full md:mx-24 rounded-3xl bg-gradient-to-b from-[#110F0F] to-white/[0.1] md:px-12 rounded-t-xl">
+      <div className="md:mt-[40svh] max-md:mt-[10svh] mb-4 py-8 md:h-[80svh] w-full md:mx-24 bg-gradient-to-b from-[#110F0F] to-white/[0.1] md:px-12">
       <h1 className="text-4xl font-bold">Testimonials</h1>
       <p className="font-light text-white/90 mt-2">See what users are saying about Applio.</p>
       <TestimonialsShowcase />
       <div className="mt-12">
-      <a className="bg-white rounded-2xl px-14 py-3 text-black font-medium cursor-pointer">Join Discord</a>
+      <a className="bg-white rounded-2xl px-14 py-3 text-black font-medium cursor-pointer" href="https://discord.gg/iahispano" target="_blank">Join Discord</a>
       <p className="text-xs font-light mt-4">🤔 Ask our community about Applio!</p>
       </div>
       </div>

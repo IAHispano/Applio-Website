@@ -2,7 +2,7 @@
 
 import { supabase } from "@/utils/database"
 import { useRouter } from "next/navigation"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 
 export default function AuthUI(){
@@ -48,6 +48,16 @@ export default function AuthUI(){
         }
       })
     }
+
+    useEffect(() => {
+        const tryGetSession = async () => {
+          const { data } = await supabase.auth.getUser();
+          if (data) {
+            window.history.back()
+          }
+        }
+        tryGetSession();
+    }, [])
 
 
     return (

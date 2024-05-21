@@ -11,7 +11,6 @@ export default function Avatar() {
         if (data && data.user) {
             const userInfo = await supabase.from("profiles").select("*").eq("auth_id", data.user.id).single()
             setData(userInfo.data)
-            console.log(userInfo.data)
         } else {
             setData(null)
         }

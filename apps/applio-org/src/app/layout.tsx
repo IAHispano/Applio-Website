@@ -5,7 +5,7 @@ import Navbar from "@/components/layout/navbar";
 
 const inter = Syne({ subsets: ["latin"] });
 
-export const runtime = 'edge';
+export const runtime = process.env.NODE_ENV === "production" ? 'edge' : undefined;
 
 export const metadata: Metadata = {
   title: "Applio",

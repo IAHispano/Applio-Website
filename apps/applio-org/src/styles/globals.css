@@ -21,3 +21,8 @@ body {
 .slow {
   transition: .3s cubic-bezier(0,.7,.4,1);
 }
+
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

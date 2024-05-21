@@ -14,15 +14,33 @@ export default function NavbarMobile() {
             </button>
         )}
         {isOpen && (
-        <div className="bg-white/[3%] backdrop-blur-lg md:w-[80%] md:h-[8svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
+        <div className="overflow-auto bg-white/[3%] backdrop-blur-lg md:w-[80%] md:h-[8svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
             <div className="flex md:flex-cols-3 max-md:flex-col md:px-16 px-2 w-full">
             <p className="text-3xl font-semibold tracking-tight py-0.5">Applio</p>
             <button className="absolute top-0 right-0 mx-6 my-3 px-3 py-1 text-3xl bg-white/10 rounded-xl hover:bg-red-500/20 slow" onClick={() => setIsOpen(false)}>X</button>
             <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
                 <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">Pricing</a>
                 <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">Explore</a>
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">Products</a>
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">About us</a>
+                <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
+                <h1 className="font-bold mb-4">Products</h1>
+                <div className="flex flex-col gap-4">
+                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/IAHispano/Applio/releases" target="_blank">Applio RVC</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/app">Applio APP</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="https://docs.applio.org" target="_blank">Applio Docs</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/bot">Applio Bot</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/IAHispano/Applio-plugins" target="_blank">Applio Plugins</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/api">Applio API</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/blaise-tk/rvc_cli" target="_blank">RVC CLI</a>
+                </div>
+                </div>
+                <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
+                <h1 className="font-bold mb-4">About us</h1>
+                <div className="flex flex-col gap-4">
+                    <a className="bg-white/10 rounded-xl p-4" href="/team">Team</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/join-team">Join us</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/history">History</a>
+                </div>
+                </div>
             </div>
             <Avatar />
             </div>

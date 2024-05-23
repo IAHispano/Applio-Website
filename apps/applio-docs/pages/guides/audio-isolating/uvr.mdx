@@ -1,101 +1,95 @@
-import { Callout } from "nextra/components";
+import { Callout, Steps, Tabs } from "nextra/components";
 
-# UVR
+# Audio isolating with UVR5
 
-Here you will learn how to Separate the Vocals and the Instrumental of songs with UVR.
+Ultimate vocal remover (UVR) is an Free and Open Source AI audio editing tool with the ability to remove stems and other objects from a base audio. It is possible to execute the program through several ways, this section will explain how to use each of them.
+<Steps>
+## Alternative 1: Locally execution
+### Download UVR5
 
-## Local
-
-1. **Download** and **install** [Ultimate Vocal Remover](https://github.com/Anjok07/ultimatevocalremovergui/releases/tag/v5.6).
-
-<Callout type="info" emoji="ℹ️">
-  In case you get a Windows message, just click on **More information** and then
-  on **Run anyway**.
-</Callout>
-
-2. **Download** the video of the song you want to use as a basis for creating the dataset or the AI cover:
-
-<Callout emoji="👾">
-  **For Youtube** : copy the song link from the search bar and paste it onto
-  [Cobalt](https://cobalt.tools/).
-</Callout>
-
-3. **Open** Ultimate Vocal Remover and download the models, with which you can separate the voices and the instrumental parts into separate audios. For that, you will have to click here :wrench: and we go to the **Download Center** section.
-
-- **MDX-NET models**
-  - MDX23C-InstVoc HQ (the best to remove the instrumental and vocals)
-  - UVR-MDX-NET Voc FT (to remove the instrumental and vocals)
-  - UVR-MDX-NET Crowd HQ 1 (to remove crowd from vocals)
-- **VR Arch models**
-  - UVR-DeEcho-DeReverb (to remove reverb from vocals)
-  - UVR-BVE-4B_SN-44100-1 (to separate 2 or more voices singing at the same time)
-  - 5_Hp-Karaoke-UVR (to remove choruses from vocals)
-  - UVR-DeNoise (to remove noise from vocals)
-
-4. **Select** the audio or song as input and **choose** the output folder for the instrumental or final vocals.
+To start using uvr locally, download and install the program via https://ultimatevocalremover.com/
 
 <Callout type="info" emoji="ℹ️">
-  You can change the **type of wav or the MP3 bitrate** in **Additional
-  settings**, in **Audio Format Settings**.
+When running the installer, Windows may mistakenly detect it as malware due to the lack of a license. If you have any concerns, you can review the program's source code or use alternative installation methods.
 </Callout>
 
-5. Choose **Process Method** select the type of models you need to use (MDX-Net or VR Arch) after that select the model and click **Start Processing**.
 
-<Callout type="info" emoji="ℹ️">
-  Before Processing - You can choose the **output format** format of your
-  separate audio. - You can select if you only want the **Vocals Only**,
-  **Instrumental Only**, the vocals with **No Reverb Only**, **No Crowd Only**,
-  **No Noise Only** or with those effects. - If you wish, you can change the
-  **Segment Size** and the **Overlap** in case of **MDX23C** and **MDX-NET**,
-  the **windows size** and the **aggression setting** for **VR Arc** to your
-  preference or leave it as it is.
-</Callout>
+### Download Models 
+When inside UVR, you first need to download separation models.
 
-6. Finally, look for your processed audio in the location you selected as output.
+- Click on the wrench icon.
+- Go to “Download Center”.
+- Choose your preferred models.
 
-## Google Colab
-
-1. First, we go to the [UVR Colab](https://colab.research.google.com/github/Eddycrack864/UVR5-NO-UI/blob/main/UVR5_NO_UI.ipynb).
-
-2. In our Google Drive, we created the folder **Separar** where we will put our songs to separate, and **Vocales** where our already separated song will be stored.
-
-3. Run the **Installation** cell to start cloning the repository to the colab and mount drive.
-
-4. In case you want to separate directly from YouTube, place the link in the **audio input**, otherwise leave it as it is.
-
-<Callout type="info" emoji="ℹ️">
-  Also you can download the music that you want to separate from Colab, go to
-  the **YouTube Audio Downloader for Separation** cell, just place the link of
-  the song in **video_url** and song name in **audio_name**, then run that cell.
-  Your song will be stored in the **Separar** folder that you created in your
-  Drive.
-</Callout>
-
-5. Run the cell of your choice: **BS Reformer, MDX23C, MDX-NET, VR ARCH, Demucs**.
+In the section you will find three structures which contain several models, but these are one of the best known:
+<Tabs items={['MDX-Net', 'Vr Arch', 'Demucs']}>
+  <Tabs.Tab>
+  **MDX-net** is a prize-winning model framework from an ML enthusiasts contest, designed for audio source separation and enabling improvements from a base model.
 
 
-- **BS Reformer**
-  - BS-Reformer-Viperx-1297 (the best to remove instrumental and vocals)
-- **MDX23C**
-  - MDX23C 8KFFT instVoc HQ2 (one of the best to remove the instrumental and vocals)
-  - MDX23C 8KFFT InstVoc HQ (one of the best to remove vocals and instrumental)
-- **MDX-NET models**
-  - UVR-MDX-NET Voc FT (to remove the instrumental and vocals)
-  - UVR-MDX-NET Crowd HQ 1 (to remove crowd from vocals)
-- **VR Arch models**
-  - UVR-DeEcho-DeReverb (to remove reverb from vocals)
-  - 5_Hp-Karaoke-UVR (to remove choruses from vocals)
-  - UVR-DeNoise (to remove noise from vocals)
-- **Demucs**
-  - htdemucs_ft (to remove instrumental, vocals, drums, bass and other)
-  - htdemucs (to remove instrumental, vocals, drums, bass and other)
+   - **MDX23C-InstVoc HQ:** A set of different models that works to deliver a single result (currently the best).
+  - **UVR-MDX-NET Voc FT:** Model focused mainly on separating vocals.
+  - **UVR-MDX-NET Crowd HQ 1:** separate background vocals from a main one.
+  </Tabs.Tab>
+  <Tabs.Tab>
+**Vr-Arch** is a location-guided audio-visual spatial audio separator model, capable of giving great results in most tasks.
 
-<Callout type="info" emoji="ℹ️">
-  Before Processing - You can choose the **output format** format of your
-  separate audio. - If you wish, you can change the **Segment Size** and the
-  **Overlap** in case of **MDX23C** and **MDX-NET**, the **windows size** and
-  the **aggression setting** for **VR Arc** to your preference or leave it as it
-  is.
-</Callout>
+  - **UVR-DeEcho-DeReverb:** Separate Reverb and echo.
+  - **UVR-BVE-4B_SN-44100-1:** Multiple background voices separator.
+  - **5_Hp-Karaoke-UVR:** Separate Background vocals (best one).
+  - **UVR-DeNoise:** Separate Noise and some artifacts.
+  </Tabs.Tab>
+  <Tabs.Tab>
+   **Demucs** is an all-in-one model capable of separating most objects from an audio between 4 to 6 stems. Being their best version of DemucsV4. 
+  - **Demucs:** Default Model, normal proccesing time and good results.
+  - **Demucs_FT:** Slow processing but better results.
+  - **Demucs_6s:** Capability of separing Guitar and Piano stems.
+</Tabs.Tab>
+</Tabs> 
+### Make the Audio conversion
 
-6. Now we go to the **Vocales folder**, there we find our separate audios, we download the audio with the name of the **song-Vocals**, in case you want the instrumental is **song-Instrumental**.
+When the models have been downloaded, you can go back to the home screen to make your separation.
+
+- Select the desired structure and the downloaded model.
+- Select your audio, it can be easily downloaded from sites such as [Cobalt.Tools](https://cobalt.tools/)
+- Select the output path for the results and click convert.
+
+<FAQBox title="Other Options">
+- **Window Size:** Change the audio processing bucket, a lower number indicates a much slower processing but a better worked result, and vice versa with a higher number.
+- **Aggression Settings:** Change the aggressiveness with which the separation will be performed, a higher number can eat important frequencies of the audio.
+</FAQBox>
+
+*(This small application applies to any alternative that runs the GUI version of the program.)*
+</Steps>
+
+
+## Alternative 2: MVSEP
+
+MVSEP is a website belonging to the **UVR team** which offers a fast and direct way to use the software in the cloud with a free version and paid upgrades.
+
+To use mvsep, it is as easy as enter to their website (https://mvsep.com/) and registering.
+
+
+## Alternative 3: Google Collab
+This is a list of currently functional uvr notebooks.
+<Steps>
+- [VR-Arch](https://colab.research.google.com/drive/16Q44VBJiIrXOgTINztVDVeb0XKhLKHwl?usp=sharing#scrollTo=CT8TuXWLBrXF) - By UVR Team
+- [MVsep-MDX23](https://colab.research.google.com/github/jarredou/MVSEP-MDX23-Colab_v2/blob/v2.4/MVSep-MDX23-Colab.ipynb)- By UVR Team
+- [MDX-Net](https://colab.research.google.com/github/NaJeongMo/Colab-for-MDX_B/blob/main/MDX-Net_Colab.ipynb) - By UVR Team
+
+These notebooks are the main and most used ones, if you have any doubt about them or want to see if there are any editions to the notebooks it is recommended to check the [official UVR server.](https://discord.gg/P7FhQFH)
+</Steps>
+
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      close
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  )
+}

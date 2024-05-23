@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer id="footer" className="relative pt-3 bg-gradient-to-b from-transparent to-white/[0.05] mt-52 border-t border-white/10 z-[1]">
+    <footer id="footer" className="relative pt-3 bg-gradient-to-b from-transparent to-white/[0.05] mt-52 z-[1]">
       <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-7 z-[1]">
         <div className="col-span-2">
           <h2 className="text-3xl font-bold truncate tracking-tight gtransition mb-5">

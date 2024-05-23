@@ -43,6 +43,8 @@ export default function BlogMore() {
             </p>
         }>
         <section>
+            {data && (
+            <>
             <h1 className="text-left text-3xl px-4 font-bold tracking-tight md:tracking-tighter text-white max-w-4xl mt-12">Browse more</h1>
             <div className="grid md:grid-cols-3 md:w-[120svh] gap-4 p-4">
             {data && JSON.parse(data).map((item: any) => (
@@ -58,6 +60,8 @@ export default function BlogMore() {
                 </a>
             ))}
             </div>
+            </>
+            )}
         </section>
         </InfiniteScroll>
     )

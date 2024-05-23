@@ -5,10 +5,10 @@ import { useEffect, useState } from "react";
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
 
-const ModelsShowcase = () => {
+const ModelsShowcase2 = () => {
   const [data, setData] = useState<any>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay()])
 
   useEffect(() => {
     if (emblaApi) {
@@ -22,7 +22,8 @@ const ModelsShowcase = () => {
       .from('models')
       .select('*')
       .range(0, 20)
-      .order('created_at', { ascending: false });
+      .eq('server_name', 'AI Hispano')
+      .order('created_at', {ascending: false});
 
     if (error) {
       console.error(error);
@@ -39,10 +40,10 @@ const ModelsShowcase = () => {
   }, []);
 
   return (
-    <div className="gap-4 p-4 mt-4 w-full embla select-none" ref={emblaRef}>
-      {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
+    <div className="gap-4 w-full embla select-none overflow-hidden" ref={emblaRef}>
+      {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center"></p>)}
       {!loading && (
-        <div className="grid grid-rows-1 grid-flow-col overflow-visible gap-4 embla__container">
+        <div className="grid md:grid-rows-1 md:grid-flow-col overflow-visible gap-4 embla__container">
           {data?.map((item: any) => (
             <div key={item.id} className="first:pl-4 embla__slide">
               <img 
@@ -52,7 +53,7 @@ const ModelsShowcase = () => {
                   e.currentTarget.src = '/favicon.ico'; 
                 }}
                 alt={item.name} 
-                className="h-full object-cover object-top rounded-3xl mb-2 bg-white/10" 
+                className="h-full w-full object-cover object-top rounded-3xl mb-2 bg-white/10" 
               />
             </div>
           ))}
@@ -62,4 +63,4 @@ const ModelsShowcase = () => {
   );
 };
 
-export default ModelsShowcase;
+export default ModelsShowcase2;

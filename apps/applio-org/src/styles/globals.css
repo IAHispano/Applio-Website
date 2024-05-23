@@ -35,7 +35,6 @@ body {
 }
 .embla__slide {
   flex: 0 0 200px;
-  min-height: 200px;
+  height: 300px;
   min-width: 0px;
-  object-fit: contain;
 }

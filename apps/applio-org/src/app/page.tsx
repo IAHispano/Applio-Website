@@ -1,8 +1,9 @@
 import Features from "@/components/home/features";
 import Background1 from "../components/svg/background1"
-import ModelsShowcase from "@/components/home/modelsShowcase";
 import TestimonialsShowcase from "@/components/home/testimonialsShowcase";
 import Background2 from "@/components/svg/background2";
+import ModelsShowcase1 from "@/components/home/modelCarrousel1";
+import ModelsShowcase2 from "@/components/home/modelCarrousel2";
 
 export default function Home() {
   return (
@@ -30,7 +31,10 @@ export default function Home() {
       </div>
       <div className="md:mt-[30svh] max-md:mt-[10svh] z-30">
       <h1 className="text-4xl font-bold">Explore the Applio AI Voices Library</h1>
-      <ModelsShowcase />
+      <div className="flex flex-col gap-4">
+      <ModelsShowcase1 />
+      <ModelsShowcase2 />
+      </div>
       <p className="font-light text-white/90 my-8">No matter what voice you want, you can create it <span className="text-white underline">for free</span> 🤑 at Applio.</p>
       <a className="rounded-2xl border border-white/10 hover:bg-white/10 px-14 py-3 font-medium read-font cursor-pointer slow" href="/models">Explore now!</a>
       </div>

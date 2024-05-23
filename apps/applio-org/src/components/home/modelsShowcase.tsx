@@ -1,56 +1,65 @@
 "use client"
 
 import { supabase } from "@/utils/database";
-import { lazy, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from 'embla-carousel-autoplay'
 
-const ModelsShowcase= () => {
-  const [data, setData] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(true)
+const ModelsShowcase = () => {
+  const [data, setData] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()])
 
-    const fetchData = async () => {
-      const { data, error } = await supabase
-        .from('models')
-        .select('*')
-        .range(0, 11)
-        .order('created_at', { ascending: false })
+  useEffect(() => {
+    if (emblaApi) {
+      console.log(emblaApi.slideNodes())
+      emblaApi.plugins().autoplay.play
+    }
+  }, [emblaApi])
 
-      if (error) {
-        console.error(error);
-        setData(data)
-        setLoading(false)
-      }
-      console.log(data)
-      setData(data)
-      setLoading(false)
-    };
-    
-    useEffect(() => {
-        fetchData();
-    }, []);
+  const fetchData = async () => {
+    const { data, error } = await supabase
+      .from('models')
+      .select('*')
+      .range(0, 20)
+      .order('created_at', { ascending: false });
 
-    return (
-      <div className="gap-4 p-4 mt-4 w-full">
-        {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
-        {!loading && (
-          <div className="grid md:grid-cols-3 gap-4">
-          {data?.map((data: any) => (
-            <div key={data.id} className="flex flex-cols-2 gap-4 items-center">
+    if (error) {
+      console.error(error);
+      setLoading(false);
+      return;
+    }
+
+    setData(data);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    <div className="gap-4 p-4 mt-4 w-full embla select-none" ref={emblaRef}>
+      {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
+      {!loading && (
+        <div className="grid grid-rows-1 grid-flow-col overflow-visible gap-4 embla__container">
+          {data?.map((item: any) => (
+            <div key={item.id} className="first:pl-4 embla__slide">
               <img 
-                src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${data.id}.webp`}  
+                src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${item.id}.webp`}  
                 onError={(e) => {
                   e.currentTarget.onerror = null;
                   e.currentTarget.src = '/favicon.ico'; 
                 }}
-                alt={data.name} 
-                className="min-w-[80px] max-w-[80px] h-[80px] object-cover object-top rounded-3xl" 
+                alt={item.name} 
+                className="h-full object-cover object-top rounded-3xl mb-2 bg-white/10" 
               />
-              <p className="text-white  justify-start items-start flex mb-auto max-w-[280px] text-ellipsis px-2 text-left text-sm border border-white/10 rounded-2xl w-full h-full py-2 bg-white/[0.05]" >{data.name}</p>
-              </div>
+            </div>
           ))}
-          </div>
-        )}
-      </div>
-    );
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default ModelsShowcase;

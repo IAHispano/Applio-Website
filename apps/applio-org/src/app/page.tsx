@@ -31,7 +31,7 @@ export default function Home() {
       <div className="md:mt-[30svh] max-md:mt-[10svh] z-30">
       <h1 className="text-4xl font-bold">Explore the Applio AI Voices Library</h1>
       <ModelsShowcase />
-      <p className="font-light text-white/90 my-8">No matter what voice you want, you can create it for free at Applio.</p>
+      <p className="font-light text-white/90 my-8">No matter what voice you want, you can create it <span className="text-white underline">for free</span> 🤑 at Applio.</p>
       <a className="rounded-2xl border border-white/10 hover:bg-white/10 px-14 py-3 font-medium read-font cursor-pointer slow" href="/models">Explore now!</a>
       </div>
       <div className="md:mt-[40svh] max-md:mt-[10svh] mb-4 py-8 md:h-[80svh] w-full md:mx-24 bg-gradient-to-b from-[#110F0F] to-white/[0.1] md:px-12">

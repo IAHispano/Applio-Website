@@ -26,3 +26,16 @@ body {
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.embla {
+  overflow: hidden;
+}
+.embla__container {
+  display: flex;
+}
+.embla__slide {
+  flex: 0 0 200px;
+  min-height: 200px;
+  min-width: 0px;
+  object-fit: contain;
+}

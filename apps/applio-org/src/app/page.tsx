@@ -7,7 +7,7 @@ import ModelsShowcase2 from "@/components/home/modelCarrousel2";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center max-md:mx-4 md:-mt-28">
+    <main className="flex min-h-screen flex-col items-center max-md:mx-12 md:-mt-28">
       <div className="absolute">
       <Background1 />
       </div>

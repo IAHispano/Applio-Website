@@ -43,7 +43,7 @@ const ModelsShowcase2 = () => {
     <div className="gap-4 w-full embla select-none overflow-hidden" ref={emblaRef}>
       {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center"></p>)}
       {!loading && (
-        <div className="grid md:grid-rows-1 md:grid-flow-col overflow-visible gap-4 embla__container">
+        <div className="grid md:grid-rows-1 md:grid-flow-col md:overflow-visible gap-4 embla__container">
           {data?.map((item: any) => (
             <div key={item.id} className="first:pl-4 embla__slide">
               <img 

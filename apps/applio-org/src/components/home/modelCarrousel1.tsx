@@ -41,10 +41,10 @@ const ModelsShowcase1 = () => {
   }, []);
 
   return (
-    <div className="gap-4 mt-4 w-full embla select-none" ref={emblaRef}>
+    <div className="gap-4 mt-4 w-full embla select-none overflow-hidden" ref={emblaRef}>
       {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
       {!loading && (
-        <div className="grid grid-rows-1 grid-flow-col overflow-visible gap-4 embla__container">
+        <div className="grid md:grid-rows-1 md:grid-flow-col md:overflow-visible gap-4 embla__container">
           {data?.map((item: any) => (
             <div key={item.id} className="first:pl-4 embla__slide">
               <img 

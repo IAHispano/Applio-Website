@@ -16,11 +16,12 @@ export default function NavbarMobile() {
         {isOpen && (
         <div className="overflow-auto bg-white/[3%] backdrop-blur-lg md:w-[80%] md:h-[8svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
             <div className="flex md:flex-cols-3 max-md:flex-col md:px-16 px-2 w-full">
-            <p className="text-3xl font-semibold tracking-tight py-0.5">Applio</p>
+            <a className="text-3xl font-semibold tracking-tight py-0.5" href="/">Applio</a>
             <button className="absolute top-0 right-0 mx-6 my-3 px-3 py-1 text-3xl bg-white/10 rounded-xl hover:bg-red-500/20 slow" onClick={() => setIsOpen(false)}>X</button>
             <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">Pricing</a>
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full">Explore</a>
+                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
+                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
+                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
                 <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
                 <h1 className="font-bold mb-4">Products</h1>
                 <div className="flex flex-col gap-4">

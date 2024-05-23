@@ -9,6 +9,7 @@ const inter = Syne({ subsets: ["latin"] });
 export const runtime = process.env.NODE_ENV === "production" ? 'edge' : undefined;
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://applio.org'),
   title: "Applio",
   description: "At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
   openGraph: {

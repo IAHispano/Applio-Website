@@ -1,6 +1,6 @@
 export default function Background2() {
     return (
-        <svg xmlns="http://www.w3.org/2000/svg" width="1435" height="1421" viewBox="0 0 1867 1843" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" className="max-md:max-w-xs" width="1435" height="1421" viewBox="0 0 1867 1843" fill="none">
         <g filter="url(#filter0_f_190_199)">
         <ellipse cx="933.5" cy="921.5" rx="424.5" ry="412.5" fill="white" fill-opacity="0.2"/>
         </g>

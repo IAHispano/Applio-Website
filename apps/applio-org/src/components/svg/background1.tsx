@@ -1,6 +1,6 @@
 export default function Background1() {
     return (
-      <svg xmlns="http://www.w3.org/2000/svg" width="1372" height="939" viewBox="0 0 1372 939" fill="none">
+      <svg xmlns="http://www.w3.org/2000/svg" className="max-md:max-w-xs" width="1372" height="939" viewBox="0 0 1372 939" fill="none">
       <g filter="url(#filter0_f_121_21)">
       <circle cx="1236" cy="542" r="48" fill="url(#paint0_radial_121_21)"/>
       </g>

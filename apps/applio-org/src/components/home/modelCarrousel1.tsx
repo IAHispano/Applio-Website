@@ -41,7 +41,7 @@ const ModelsShowcase1 = () => {
   }, []);
 
   return (
-    <div className="gap-4 mt-4 w-full embla select-none overflow-hidden" ref={emblaRef}>
+    <div className="gap-4 mt-6 w-full embla select-none overflow-hidden" ref={emblaRef}>
       {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
       {!loading && (
         <div className="grid md:grid-rows-1 md:grid-flow-col md:overflow-visible gap-4 embla__container">

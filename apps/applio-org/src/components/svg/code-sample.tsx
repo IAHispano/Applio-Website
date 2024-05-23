@@ -1,6 +1,6 @@
 export default function CodeSample() {
     return (
-    <svg className="max-md:w-[350px] max-md:h-[350px]" xmlns="http://www.w3.org/2000/svg" width="925" height="509" viewBox="0 0 1125 709" fill="none">
+    <svg className="max-md:max-w-xs" xmlns="http://www.w3.org/2000/svg" width="925" height="509" viewBox="0 0 1125 709" fill="none">
     <g filter="url(#filter0_d_147_91)">
     <g clip-path="url(#clip0_147_91)">
     <g filter="url(#filter1_b_147_91)">

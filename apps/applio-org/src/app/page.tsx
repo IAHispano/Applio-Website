@@ -31,7 +31,7 @@ export default function Home() {
       </div>
       <div className="md:mt-[30svh] max-md:mt-[10svh] z-30">
       <h1 className="text-4xl font-bold">Explore the Applio AI Voices Library</h1>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-2">
       <ModelsShowcase1 />
       <ModelsShowcase2 />
       </div>

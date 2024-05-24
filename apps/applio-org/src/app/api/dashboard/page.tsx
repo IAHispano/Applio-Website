@@ -42,12 +42,11 @@ export default function ApiDashboard() {
           const { data: newToken, error } = await supabase
             .from("tokens")
             .upsert([{ user: user.data.user?.id }])
-
-            
+    
           if (error) {
             console.error("Error at saving token:", error.message)
           } else {
-            window.location.reload();
+            fetchUserTokens()
           }
         } else {
           console.error("Error: User ID is undefined.")

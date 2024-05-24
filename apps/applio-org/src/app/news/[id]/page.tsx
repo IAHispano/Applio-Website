@@ -16,7 +16,7 @@ export default function NewsPost({ params }: { params: { id: number } }) {
 export async function generateMetadata({ params }: { params: { id: number } }) {
     const { data, error } = await supabase
         .from("blog")
-        .select("title, image_url, by, created_at")
+        .select("title, image_url, by, created_at, tag")
         .eq("id", params.id)
         .single()
     
@@ -28,11 +28,11 @@ export async function generateMetadata({ params }: { params: { id: number } }) {
     
     return {
         title: data.title,
-        description: `Read ${data.title} created by ${data.by} at ${new Date(data.created_at), 'MMMM do, yyyy'}.`,
+        description: `Read an article about ${data.tag} created by ${data.by} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })}.`,
         openGraph: {
             title: data.title,
             images: data.image_url,
-            description: `Read ${data.title} created by ${data.by} at ${new Date(data.created_at), 'MMMM do, yyyy'}.`,
+            description: `Read about ${data.tag} article created by ${data.by} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })}.`,
             }  
     }
     }

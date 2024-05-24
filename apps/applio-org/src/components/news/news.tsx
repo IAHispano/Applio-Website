@@ -5,14 +5,16 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 export default function BlogMore() {
-    const [data, setData] = useState("")
+    const [data, setData] = useState<any>([])
     const [end, setEnd] = useState(14)
+    const [loading, setLoading] = useState(true)
     const [hasMore, setHasMore] = useState(true)
 
     async function getFixedNews() {
         const {data, error} = await supabase.from("blog").select("*").order("created_at", {ascending: false}).range(0, end);
         if (data) {
-            setData(JSON.stringify(data))
+            setData(data)
+            setLoading(false)
 
             const updatedEnd = end
             if (data.length < updatedEnd) {
@@ -24,6 +26,7 @@ export default function BlogMore() {
 
         if (error) {
             console.log(error)
+            setLoading(false)
         }
     }
 
@@ -43,11 +46,14 @@ export default function BlogMore() {
             </p>
         }>
         <section>
+        <h1 className="text-left text-3xl px-4 font-bold tracking-tight md:tracking-tighter text-white max-w-4xl mt-12">Browse more</h1>
+            {data?.length === 0 && !loading && (
+                <h1 className="text-xl text-center">Oops... we didn&apos;t find overview news.</h1>
+            )}
             {data && (
             <>
-            <h1 className="text-left text-3xl px-4 font-bold tracking-tight md:tracking-tighter text-white max-w-4xl mt-12">Browse more</h1>
             <div className="grid md:grid-cols-3 md:w-[120svh] gap-4 p-4">
-            {data && JSON.parse(data).map((item: any) => (
+            {data && data.map((item: any) => (
                 <a key={item.id} className="relative w-full h-full rounded-lg overflow-hidden flex flex-col justify-end" href={`/news/${item.id}`}>
                 <div className="absolute inset-x-0 bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent"></div>
                 <img src={item.image_url} className="rounded-md h-[40svh] object-cover bg-center bg-white/10 shadow-xl"/>

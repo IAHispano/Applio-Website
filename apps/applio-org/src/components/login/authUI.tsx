@@ -68,12 +68,12 @@ export default function AuthUI(){
     return (
       <main>
       <div className="flex items-center justify-center p-6 h-[100svh] max-md:mt-24">
-        <div className="grid gap-4 max-md:rounded-xl mt-12 z-[2] md:absolute max-md:flex border border-white/10 md:top-[49%] md:left-[50%] h-[100svh] max-md:h-fit md:max-h-[70vh] max-md:w-fit md:min-w-[120vh] md:translate-x-[-50%] md:translate-y-[-50%] md:rounded-xl bg-white/10 backdrop-blur-3xl p-[25px] focus:outline-none ">
+        <div className="grid gap-4 max-md:rounded-xl z-[2] md:absolute max-md:flex border border-white/10 md:top-[49%] md:left-[50%] h-[100svh] max-md:h-fit md:max-h-[70vh] max-md:w-fit md:min-w-[120vh] md:translate-x-[-50%] md:translate-y-[-50%] md:rounded-xl bg-white/10 backdrop-blur-3xl p-[25px] focus:outline-none ">
           <div className="mx-4 min-h-full">
             <h1 className="text-4xl font-medium tracking-lighter mt-0.5 mb-2">Login at Applio</h1>
           <input required type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="my-4 mt-6 w-full p-3 rounded-md bg-white/10 border border-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2"></input>
           <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="mb-4 w-full p-3 rounded-md bg-white/10 border border-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2"></input>
-          {error && (<p className="text-red-500 read-text text-sm text-center bg-black/[0.1] border border-white/10 rounded-lg p-4">{error}</p>)}
+          {error && (<p className="text-red-500 read-text text-sm text-center bg-white/10 border border-white/10 rounded-lg p-4">{error}</p>)}
           <div className="text-center flex-col flex py-3 gap-4">
           <button onClick={handleSignIn} className="w-full p-3 font-bold rounded-md bg-white/10 text-white hover:bg-white/20  gtransition focus:outline-none">Sign in</button>
           <button onClick={() => (window.location.href = `/login/new-user`)} className="w-full p-3 font-bold rounded-md bg-white text-black hover:bg-white/80 gtransition focus:outline-none">Sign Up</button>

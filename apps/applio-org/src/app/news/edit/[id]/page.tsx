@@ -1,6 +1,6 @@
-import EditPost from "@/components/news/edit-post"
+"use client"
 
-export const runtime = process.env.NODE_ENV !== "development" ? 'edge' : undefined;
+import EditPost from "@/components/news/edit-post"
 
 export default function NewsPost({ params }: { params: { id: number } }) {
     const { id } = params

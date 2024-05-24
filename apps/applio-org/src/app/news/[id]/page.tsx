@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: { params: { id: number } }) {
         openGraph: {
             title: data.title,
             images: data.image_url,
-            description: `Read about ${data.tag} article created by ${data.by} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })}.`,
+            description: `Read an article about ${data.tag} created by ${data.by} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })}.`,
             }  
     }
     }

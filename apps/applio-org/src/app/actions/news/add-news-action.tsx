@@ -8,7 +8,7 @@ export const config = {
 };
 
 
-export const addPost = async (formData: FormData, id: string, role: string) => {
+export const addPost = async (formData: FormData, id: number, role: string) => {
   const title = formData.get("title")
   const description = formData.get("description")
   const content = formData.get("content")
@@ -22,7 +22,7 @@ export const addPost = async (formData: FormData, id: string, role: string) => {
         image_url: description,
         content: content,
         fixed: fixed, 
-    }).eq("title", decodeURIComponent(id))
+    }).eq("id", id)
 
   }
   redirect("/news")

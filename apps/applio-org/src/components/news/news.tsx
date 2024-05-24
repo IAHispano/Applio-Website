@@ -49,7 +49,7 @@ export default function BlogMore() {
             <>
             <div className="grid md:grid-cols-3 md:w-[120svh] gap-4 p-4">
             {data && data.map((item: any) => (
-                <a key={item.id} className="relative w-full h-full rounded-lg overflow-hidden flex flex-col justify-end" href={`/news/${item.title}`}>
+                <a key={item.id} className="relative w-full h-full rounded-lg overflow-hidden flex flex-col justify-end" href={`/news/${item.id}`}>
                 <div className="absolute inset-x-0 bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent"></div>
                 <img src={item.image_url} className="rounded-md h-[40svh] object-cover bg-center bg-white/10 shadow-xl"/>
                 <div className="p-4 absolute top-0">

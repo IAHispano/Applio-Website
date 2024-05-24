@@ -7,7 +7,7 @@ import { supabase } from "@/utils/database"
 import { SendButton } from "./send-post"
 import { addPost } from "@/app/actions/news/add-news-action"
 
-export default function MarkdownInput({ id }: Readonly<{ id: string }>) {
+export default function MarkdownInput({ id }: Readonly<{ id: number }>) {
   const [markdownText, setMarkdownText] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -29,7 +29,7 @@ export default function MarkdownInput({ id }: Readonly<{ id: string }>) {
 
   useEffect(() => {
     async function getData() {
-        const {data, error} = await supabase.from("blog").select("*").eq("title", decodeURIComponent(id)).single();
+        const {data, error} = await supabase.from("blog").select("*").eq("id", id).single();
 
         if (data) {
             setMarkdownText(data.content)

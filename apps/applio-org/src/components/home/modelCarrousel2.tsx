@@ -35,7 +35,7 @@ const ModelsShowcase1 = () => {
       {loading && (<p className="text-center text-xs justify-center flex mx-auto items-center">Loading...</p>)}
       {!loading && (
         <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden rounded-lg md:shadow-xl">
-          <Marquee pauseOnHover reverse className="[--duration:50s] pointer-events-none flex w-full h-full">
+          <Marquee pauseOnHover reverse className="[--duration:60s] pointer-events-none flex w-full h-full">
           {data?.map((item: any) => (
             <div key={item.id} className="md:w-[200px] md:h-[280px] w-44 h-44">
             <img 

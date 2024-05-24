@@ -8,11 +8,11 @@ export const config = {
   };
   
 
-export async function removeNews(id: number) {
+export async function removeNews(id: string) {
     const { error, status } = await supabase
         .from('blog')
         .delete()
-        .eq('id', id)
+        .eq("title", decodeURIComponent(id))
 
     if (error) {
         console.log(error)
@@ -21,7 +21,7 @@ export async function removeNews(id: number) {
         redirect("/news")
     }
 
-    if (status) {
-        console.log(status)
-    }
+    return (
+        status
+    )
 }

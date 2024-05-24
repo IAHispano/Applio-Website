@@ -39,22 +39,17 @@ export default function BlogMore() {
         dataLength={data.length}
         next={getFixedNews}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-            <p className="text-center mt-12">
-            <b>Yay! You have seen it all</b>
-            </p>
-        }>
+        loader={<h4>Loading...</h4>}>
         <section>
         <h1 className="text-left text-3xl px-4 font-bold tracking-tight md:tracking-tighter text-white max-w-4xl mt-12">Browse more</h1>
             {data?.length === 0 && !loading && (
-                <h1 className="text-xl text-center">Oops... we didn&apos;t find overview news.</h1>
+                <h1 className="text-xl text-center">Oops... we didn&apos;t find more news.</h1>
             )}
             {data && (
             <>
             <div className="grid md:grid-cols-3 md:w-[120svh] gap-4 p-4">
             {data && data.map((item: any) => (
-                <a key={item.id} className="relative w-full h-full rounded-lg overflow-hidden flex flex-col justify-end" href={`/news/${item.id}`}>
+                <a key={item.id} className="relative w-full h-full rounded-lg overflow-hidden flex flex-col justify-end" href={`/news/${item.title}`}>
                 <div className="absolute inset-x-0 bottom-0 w-full h-1/3 bg-gradient-to-t from-black to-transparent"></div>
                 <img src={item.image_url} className="rounded-md h-[40svh] object-cover bg-center bg-white/10 shadow-xl"/>
                 <div className="p-4 absolute top-0">

@@ -7,7 +7,7 @@ import { supabase } from "@/utils/database"
 import { SendButton } from "./send-post"
 import { addPost } from "@/app/actions/news/add-news-action"
 
-export default function MarkdownInput({ id }: Readonly<{ id: number }>) {
+export default function MarkdownInput({ id }: Readonly<{ id: string }>) {
   const [markdownText, setMarkdownText] = useState("")
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
@@ -15,6 +15,7 @@ export default function MarkdownInput({ id }: Readonly<{ id: number }>) {
   const [fixed, setFixed] = useState<any>(false)
   const [full_name, setFull_name] = useState<any>()
   const [disabled, setDisabled] = useState(true)
+  const [post_id, setPost_Id] = useState<number>(0)
   const router = useRouter()
   const formRef = useRef<HTMLFormElement>(null)
 
@@ -28,13 +29,14 @@ export default function MarkdownInput({ id }: Readonly<{ id: number }>) {
 
   useEffect(() => {
     async function getData() {
-        const {data, error} = await supabase.from("blog").select("*").eq("id", id).single();
+        const {data, error} = await supabase.from("blog").select("*").eq("title", decodeURIComponent(id)).single();
 
         if (data) {
             setMarkdownText(data.content)
             setTitle(data.title)
             setDescription(data.image_url)
             setFixed(data.fixed)
+            setPost_Id(data.id)
         }
 
         if (error) {

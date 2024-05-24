@@ -5,7 +5,7 @@ import { PostgrestError } from "@supabase/supabase-js"
 import Markdown from "react-markdown"
 import { supabase } from "@/utils/database"
 
-export default function BlogPost({ id }: Readonly<{ id: number }>) {
+export default function BlogPost({ id }: Readonly<{ id: string }>) {
   const [data, setData] = useState<any[] | null>(null)
   const [_error, setError] = useState<PostgrestError | null>(null)
   const [loading, setLoading] = useState(true)
@@ -15,13 +15,15 @@ export default function BlogPost({ id }: Readonly<{ id: number }>) {
       const { data: userData, error: userError } = await supabase
         .from("blog")
         .select("*")
-        .eq("id", id)
+        .eq("title", decodeURIComponent(id))
+
       if (userError) {
         setError(userError)
         return
       }
       setData(userData)
       setLoading(false)
+      
     }
 
     fetchData()

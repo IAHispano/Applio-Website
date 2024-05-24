@@ -7,8 +7,9 @@ import { useEffect, useState } from "react";
 
 export default function ApiDashboard() {
     const [auth_id, setAuth_id] = useState<string>("");
-    const [userTokens, setUserTokens] = useState<any[]>([])
+    const [userTokens, setUserTokens] = useState<any>([])
     const [loading, setLoading] = useState(true)
+    const [end, setEnd] = useState(3)
 
     const fetchUserTokens = async () => {
         const {
@@ -20,6 +21,7 @@ export default function ApiDashboard() {
             .from("tokens")
             .select("*")
             .eq("user", session.user.id)
+            .range(0, end);
     
           setUserTokens(data || [])
           setLoading(false)
@@ -72,6 +74,7 @@ export default function ApiDashboard() {
 
         fetchUserTokens();
         tryGetSession();
+        console.log(userTokens.length)
     }, [])
 
     return (
@@ -85,14 +88,17 @@ export default function ApiDashboard() {
                 </a>
                 <div className="flex md:justify-between w-full max-md:gap-6">
                 <h1 className="pl-0.5 md:text-5xl text-4xl font-bold">Dashboard</h1>
-                <button className={`rounded-full w-12 h-12 max-md:mx-4 max-md:px-2 bg-white text-black text-3xl font-bold slow ${userTokens.length < 3 ? "hover:shadow-lg hover:shadow-white " : "opacity-50 cursor-not-allowed"}`} onClick={userTokens.length < 3 ? handleGenerateToken : undefined}>+</button>
+                <button className={`rounded-full w-12 h-12 max-md:mx-4 max-md:px-2 max-md:mb-1 bg-white text-black text-3xl font-bold slow ${userTokens.length < 3 ? "hover:shadow-lg hover:shadow-white " : "opacity-50 cursor-not-allowed"}`} onClick={userTokens.length < 3 ? handleGenerateToken : undefined}>+</button>
                 </div>
                 <p className="pl-1 text-[#9E9E9E]">Manage your API keys, if you have any questions please refer to the documentation.</p>
             </div>
             <ApiUsage auth_id={auth_id}/>
+            {!loading && userTokens.length === 0 && (
+                <p className="md:h-[40svh] text-[#9E9E9E] md:mt-40 text-xl max-md:mb-12 md:text-3xl">Not find api keys, generate one.</p>
+            )}
             {!loading && userTokens && ( 
-            <p className="justify-start items-end flex text-[#9E9E9E] mt-4">
-             You have {userTokens.length} space left out of 3 for a new key.
+            <p className="md:justify-start md:items-end flex max-md:flex-col max-md:text-center max-md:w-full text-[#9E9E9E] mt-4">
+             You have <span className="read-font md:mx-1 text-white/80">{userTokens.length}</span> space left out of <span className="read-font md:mx-1 text-white/80">{end}</span> for a new key.
             </p>
             )}
         </main>

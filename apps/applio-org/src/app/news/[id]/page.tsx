@@ -1,6 +1,5 @@
 import NewsPostComponent from "@/components/news/NewsPost"
 import AdminDashboard from "@/components/news/admin-post"
-import { supabase } from "@/utils/database";
 
 export const runtime = 'edge';
 

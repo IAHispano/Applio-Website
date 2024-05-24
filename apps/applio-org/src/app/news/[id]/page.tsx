@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
     const { data, error } = await supabase
         .from("blog")
         .select("title, image_url, by, created_at")
-        .eq("title", params.id)
+        .eq("id", params.id)
         .single()
     
     if (error) {
@@ -33,6 +33,6 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
             title: data.title,
             images: data.image_url,
             description: `Read ${data.title} created by ${data.by} at ${new Date(data.created_at), 'MMMM do, yyyy'}.`,
-          }  
+            }  
     }
     }

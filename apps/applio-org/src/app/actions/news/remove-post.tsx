@@ -3,6 +3,8 @@
 import { supabase } from "@/utils/database"
 import { redirect } from "next/navigation"
 
+export const runtime = 'edge';
+
 export async function removeNews(id: number) {
     const { error, status } = await supabase
         .from('blog')

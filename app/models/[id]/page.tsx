@@ -114,7 +114,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
   const imageUrlToShow =
     data?.image_url === null || data?.image_url === "n/a" || error
       ? defaultImageUrl
-      : `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${data?.id}.webp`
+      : data?.image_url
   const name =
     data?.name === null || data?.name === "n/a" ? defaultName : data?.name
   const defaultType = "Unknown type"
@@ -242,7 +242,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
             )}
               { data?.image_url !== null && data?.image_url !== 'n/a' && !imageError && (
                 <img
-                  src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${data?.id}.webp`}
+                  src={imageUrlToShow}
                   loading="eager"
                   decoding="async"
                   className="size-full object-cover  border-b border-white/30 gtransition"
@@ -413,7 +413,7 @@ export default function Home({ params }: Readonly<{ params: { id: string } }>) {
                       src={
                         model.image_url === null || model.image_url === "N/A"
                           ? defaultImageUrl2
-                          : `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${model?.id}.webp`
+                          : model.image_url
                       }
                       onError={(e) => {
                         ;(e.target as HTMLImageElement).src = defaultImageUrl2

@@ -117,8 +117,7 @@ export default function TestCard({
   const imageUrlToShow =
     imageUrl === null || imageUrl === "n/a" || imageError
       ? defaultImageUrl
-      : `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${id}.webp`
-
+      : imageUrl
   const goToModel = () => {
     window.location.href = `/models/${id}`
   }
@@ -142,7 +141,7 @@ export default function TestCard({
             )}
             { imageUrl !== null && imageUrl !== 'n/a' && !imageError && (
               <img
-                src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${id}.webp`}
+                src={imageUrlToShow}
                 loading="eager"
                 decoding="async"
                 className="w-full h-full object-cover rounded-lg "

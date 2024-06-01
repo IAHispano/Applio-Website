@@ -41,21 +41,21 @@ Welcome to the Applio websites official monorepo! This README outlines the rules
 1. **Running Tasks**
    - Use Turborepo to run tasks across projects efficiently.
    - Common tasks include:
-     - `turbo run build` to build all projects.
-     - `turbo run lint` to lint all projects.
-     - `turbo run test` to test all projects.
+     - `pnpm run build` to build all projects.
+     - `pnpm run lint` to lint all projects.
+     - `pnpm run test` to test all projects.
 
 2. **Project-specific Commands**
    - You can run tasks for specific projects by using the project identifier:
-     - `turbo run build --filter=applio-docs`
-     - `turbo run test --filter=applio-org`
+     - `pnpm run build --filter=applio-docs`
+     - `pnpm run test --filter=applio-org`
 
 ## Contribution Workflow
 
 1. **Cloning the Repository**
    - Clone the monorepo to your local machine:
      ```sh
-     git clone https://github.com/IAHispano/Applio-Website
+     git clone https://github.com/IAHispano/Applio-Website.git
      cd Applio-Website
      ```
 

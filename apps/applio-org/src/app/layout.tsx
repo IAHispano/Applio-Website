@@ -6,7 +6,6 @@ import Footer from "@/components/layout/footer";
 
 const inter = Syne({ subsets: ["latin"] });
 
-export const runtime = process.env.NODE_ENV === "production" ? 'edge' : undefined;
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://applio.org'),

@@ -17,15 +17,15 @@ export default function Navbar() {
                             <div className="grid grid-cols-3 w-full divide-x divide-white/20 items-start text-left">
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">Voice cloning</p>
-                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="https://github.com/IAHispano/Applio/releases" target="_blank">
+                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/rvc">
                                         <h1 className="font-bold text-lg">Applio RVC</h1>
                                         <p className="text-xs">VITS-based Voice Conversion focused on simplicity, quality and performance</p>
                                     </a>
-                                    <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/app">
+                                    <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/app">
                                         <h1 className="font-bold text-lg">Applio APP</h1>
                                         <p className="text-xs">Our next voice conversion client, designed for beginners.</p>
                                     </a>
-                                    <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/playground">
+                                    <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/playground">
                                         <h1 className="font-bold text-lg">Playground</h1>
                                         <p className="text-xs">Want to try Applio? Click here to access a reduced version to test Applio before installing it on your computer.</p>
                                     </a>
@@ -36,7 +36,7 @@ export default function Navbar() {
                                         <h1 className="font-bold text-lg">Applio Docs</h1>
                                         <p className="text-xs">Here you will learn how to use Applio.</p>
                                     </a>
-                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/bot">
+                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/bot">
                                         <h1 className="font-bold text-lg">Applio BOT</h1>
                                         <p className="text-xs">Applio-Bot is an all-in-one solution to simplify various tasks in Discord. Automate responses, moderate your chat or efficiently manage your community, with unique functions powered by AI.</p>
                                     </a>
@@ -47,7 +47,7 @@ export default function Navbar() {
                                 </div>
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">For developers</p>
-                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/api">
+                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/api">
                                         <h1 className="font-bold text-lg">Applio API</h1>
                                         <p className="text-xs">Robust functionality, focused on granting convenient access to AI models developed using the RVC technology.</p>
                                     </a>

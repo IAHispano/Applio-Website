@@ -4,6 +4,7 @@ import "../../styles/globals.css";
 import {NextIntlClientProvider} from 'next-intl';
 import {getMessages} from 'next-intl/server';
 
+// Runtime for cloudflare, comment for local dev mode.
 export const runtime = 'edge';
 
 const inter = Inter({ subsets: ["latin"]});

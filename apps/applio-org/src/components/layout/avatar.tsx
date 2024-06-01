@@ -51,7 +51,7 @@ export default function Avatar() {
         <header>
         {data ? (
             <button className="flex gap-4 items-center max-md:mt-12 max-md:w-full max-md:bg-white/10 max-md:p-6 max-md:rounded-2xl" onClick={logout}>
-                        <img className="relative w-14 h-14 bg-white/10 p-1 rounded-full z-50 border border-white/10" src={data.avatar_url || "/favicon.ico"}/>
+                        <img className="relative w-14 h-14 bg-white/10 p-1 rounded-full z-50 border border-white/10" src={data.avatar_url || "/favicon.ico"}  onError={(e) => (e.target as HTMLImageElement).src = "/favicon.ico"}  />
                         <div className="flex flex-col text-left w-full">
                         <p className="w-full text-nowrap capitalize font-medium max-w-[100px] truncate">{data.full_name}</p>
                         <p className="w-full text-nowrap text-xs text-white/80 max-w-[100px] truncate">@{data.full_name}</p>

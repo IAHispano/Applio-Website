@@ -44,10 +44,10 @@ const TestimonialsShowcase= () => {
             </svg>
             </div>
             <div className="flex flex-col text-left md:mt-2">
-            <p className="font-medium text-sm">{data.from}</p>
-            <div className="flex flex-cols-2 gap-1 text-sm text-wrap">
-            {data.title && (<p>{data.title}</p>)}{data.title && data.company && (<span>from</span>)}{data.company && (<p>{data.company}</p>)}
+            <div className="text-sm text-wrap">
+            {data.title && (<p>{data.title}.</p>)}
             </div>
+            <p className="font-medium text-sm flex flex-cols-2 gap-1 ">{data.from}{data.from && data.company && (<span>from</span>)}{data.company && (<p>{data.company}</p>)}</p>
             </div>
             </article>
           ))}

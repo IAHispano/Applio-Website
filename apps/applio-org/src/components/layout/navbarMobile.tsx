@@ -25,12 +25,12 @@ export default function NavbarMobile() {
                 <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
                 <h1 className="font-bold mb-4">Products</h1>
                 <div className="flex flex-col gap-4">
-                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/IAHispano/Applio/releases" target="_blank">Applio RVC</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/app">Applio APP</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/products/rvc">Applio RVC</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/products/app">Applio APP</a>
                     <a className="bg-white/10 rounded-xl p-4" href="https://docs.applio.org" target="_blank">Applio Docs</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/bot">Applio Bot</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/products/bot">Applio Bot</a>
                     <a className="bg-white/10 rounded-xl p-4" href="https://github.com/IAHispano/Applio-plugins" target="_blank">Applio Plugins</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/api">Applio API</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/products/api">Applio API</a>
                     <a className="bg-white/10 rounded-xl p-4" href="https://github.com/blaise-tk/rvc_cli" target="_blank">RVC CLI</a>
                 </div>
                 </div>

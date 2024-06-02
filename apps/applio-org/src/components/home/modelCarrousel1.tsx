@@ -39,7 +39,7 @@ const ModelsShowcase1 = () => {
           {data?.map((item: any) => (
             <div key={item.id} className="md:w-[200px] md:h-[280px] w-44 h-44">
             <img 
-            src={`https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${item.id}.webp`}  
+            src={item.image_url} 
             onError={(e) => {
             e.currentTarget.onerror = null;
             e.currentTarget.src = '/favicon.ico'; 

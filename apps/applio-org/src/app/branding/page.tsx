@@ -1,6 +1,6 @@
 export default function Branding() {
     return (
-        <main className="flex min-h-[400svh] md:min-h-[140svh] flex-col items-center max-md:mx-4 max-md:mt-24">
+        <main className="flex min-h-[500svh] md:min-h-[140svh] flex-col items-center max-md:mx-4 max-md:mt-24">
             <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12  max-md:rounded-xl">
                 <div className="">
                 <h1 className="text-7xl">Our Brand</h1>

@@ -1,6 +1,6 @@
 export default function Branding() {
     return (
-        <main className="max-md:min-h-screen md:h-[180svh] w-screen bg-black rounded-b-2xl">
+        <main className="md:h-[180svh] max-md:min-h-[300svh] w-screen bg-black rounded-b-2xl">
             <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
                 <div className="">
                 <h1 className="text-7xl">Our Brand</h1>

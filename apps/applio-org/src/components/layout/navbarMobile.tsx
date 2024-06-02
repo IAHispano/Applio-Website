@@ -40,6 +40,7 @@ export default function NavbarMobile() {
                     <a className="bg-white/10 rounded-xl p-4" href="/team">Team</a>
                     <a className="bg-white/10 rounded-xl p-4" href="/join-team">Join us</a>
                     <a className="bg-white/10 rounded-xl p-4" href="/history">History</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/branding">Brand</a>
                 </div>
                 </div>
             </div>

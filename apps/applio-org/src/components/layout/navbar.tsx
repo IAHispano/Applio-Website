@@ -80,6 +80,10 @@ export default function Navbar() {
                                         <h1 className="font-bold text-lg">History</h1>
                                         <p className="text-xs">Find out how Applio started and how it is progressing during its history.</p>
                                     </a>
+                                    <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/branding">
+                                        <h1 className="font-bold text-lg">Brand</h1>
+                                        <p className="text-xs">Read about how you should use our brand.</p>
+                                    </a>
                                 </div>
                             </div>
                         </div>

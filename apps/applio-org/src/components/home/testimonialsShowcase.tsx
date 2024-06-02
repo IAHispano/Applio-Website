@@ -1,58 +1,40 @@
-"use client"
-
-import { supabase } from "@/utils/database";
-import { lazy, useEffect, useState } from "react";
-
 const TestimonialsShowcase= () => {
-  const [data, setData] = useState<any>();
-  const [loading, setLoading] = useState<boolean>(true)
-
-    const fetchData = async () => {
-      const { data, error } = await supabase
-        .from('testimonials')
-        .select('*')
-        .range(0, 3)
-        .order('created_at', { ascending: false })
-
-      if (error) {
-        console.error(error);
-        setData(data)
-        setLoading(false)
-      }
-      console.log(data)
-      setData(data)
-      setLoading(false)
-    };
-    
-    useEffect(() => {
-        fetchData();
-    }, []);
 
     return (
-      <div className="gap-4 md:p-4 mt-12 w-full">
-        {loading && (<p className="text-center text-xs justify-center flex md:mx-auto items-center">Loading...</p>)}
-        {!loading && (
-          <div className="grid md:grid-cols-2 md:grid-rows-2 h-full w-full justify-center items-center gap-6">
-          {data?.map((data: any) => (
-            <article key={data.id} className="bg-white/[.03] hover:bg-white/10 hover:rounded-xl md:hover:-mt-2 slow rounded-xl p-4 w-full h-full relative md:mx-4 max-md:rounded-2xl">
-            <div className="flex flex-col items-start justify-start">
-              <p className="font-bold text-lg text-left md:max-w-[100%] md:min-h-[100px] md:line-clamp-4 overflow-hidden break-words max-w-[300px]" >{data.text}</p>
-            </div>
-            <div className="md:absolute bottom-2 right-2 max-md:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-16 md:w-[90px]" fill="none">
-            <path opacity="0.1" d="M84 18.0282C84 27.0423 82.0268 35.3052 78.0805 42.8169C74.1342 50.3286 68.3087 56.0563 60.604 60L51.0201 52.1127C55.3423 50.6103 59.1007 47.3239 62.2953 42.2535C66.0537 36.9953 67.9329 32.2066 67.9329 27.8873H49.6107V0H84V18.0282ZM34.3893 18.0282C34.3893 26.8545 32.3221 35.3052 28.1879 43.3803C23.8658 51.4554 18.1342 56.9953 10.9933 60L1.4094 52.1127C5.73154 50.6103 9.48993 47.3239 12.6846 42.2535C16.443 36.9953 18.3221 32.2066 18.3221 27.8873H0V0H34.3893V18.0282Z" fill="white"/>
-            </svg>
-            </div>
-            <div className="flex flex-col text-left md:mt-2">
-            <div className="text-sm text-wrap">
-            {data.title && (<p>{data.title}.</p>)}
-            </div>
-            <p className="font-medium text-sm flex flex-cols-2 gap-1 ">{data.from}{data.from && data.company && (<span>from</span>)}{data.company && (<p>{data.company}</p>)}</p>
-            </div>
-            </article>
-          ))}
+      <div className="gap-4 md:p-4 mt-12 w-full flex flex-col justify-center items-center">
+        <div className="grid md:grid-cols-3 md:grid-rows-4 gap-4 md:w-[100svh] md:h-[50svh]">
+          <div className="md:row-span-1 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p className="p-2">&quot;Fastest and easiest way to demo with any voice.&quot;</p>
           </div>
-        )}
+          <div className="md:row-span-1 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+           <p className="p-2">&quot;I love the speed and quality of Applio&apos;s voice conversions.&quot;</p>
+          </div>
+          <div className="md:row-span-3 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p>&quot;Applio stands out as the sole actively updated fork, ensuring it remains reliable, current, and optimized. Its simplicity and convenience contribute to its dependability.&quot;</p>
+          </div>
+          <div className="md:row-span-2 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p>&quot;I am very satisfied with Applio. I have always liked Applio and everything has been fine so far, so far I haven&apos;t found any bugs, everything is fine.&quot;</p>
+          </div>
+          <div className="md:row-span-3 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p className="max-w-[140px]">&quot;After experimenting with several similar applications, this is definitely the best I have tried, very clean, easy to understand, and top quality results!&quot;</p>
+          </div>
+          <div className="md:row-span-1 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p>&quot;i really like applio&quot;</p>
+          </div>
+          <div className="md:-span-1 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
+            <p>&quot;It has an incredible variety of models.&quot;</p>
+          </div>
+        </div>
+        <div className="md:flex gap-12 md:mt-12">
+          <div className="flex flex-col">
+            <h1 className="text-4xl font-bold">50,000+</h1>
+            <h2>downloads /month</h2>
+          </div>
+          <div className="flex flex-col">
+            <h1 className="text-4xl font-bold">600,000+</h1>
+            <h2>supported by users</h2>
+          </div>
+        </div>
       </div>
     );
 };

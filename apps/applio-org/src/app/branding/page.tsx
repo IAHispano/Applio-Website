@@ -1,7 +1,7 @@
 export default function Branding() {
     return (
-        <main className="md:h-[180svh] max-md:min-h-[300svh] w-screen bg-black rounded-b-2xl">
-            <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
+        <main className="flex min-h-[400svh] md:min-h-[140svh] flex-col items-center max-md:mx-4 max-md:mt-24">
+            <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12  max-md:rounded-xl">
                 <div className="">
                 <h1 className="text-7xl">Our Brand</h1>
                 </div>
@@ -32,7 +32,7 @@ export default function Branding() {
                     <p className="text-xs text-center my-2">There are two variants of the logo for the Workbench design agency: horizontal and vertical.</p>
                     </div>
                     <div className="w-full h-full">
-                    <div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl">
+                    <div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl border border-white/10">
                     <svg xmlns="http://www.w3.org/2000/svg" width="204" height="333" viewBox="0 0 507 556" fill="none">
                     <g filter="url(#filter0_d_270_146)">
                     <path d="M284.726 162.228C304.213 155.042 323.539 151.276 343.519 151.996C372.621 152.606 394.584 166.316 412.886 187.652C433.493 211.675 445.387 239.728 448.846 271.521C450.838 289.835 450.134 308.143 447.632 326.438C444.229 351.319 438.569 375.533 428.429 398.415C419.705 418.101 410.568 437.712 396.762 454.237C379.499 474.901 358.711 490.453 332.708 497.431C323.79 499.824 314.886 499.478 306.081 496.403C292.827 491.772 279.367 487.827 265.951 483.733C259.715 481.831 253.627 481.756 247.395 483.444C231.092 487.861 214.875 492.694 198.433 496.471C175.412 501.759 154.758 496.62 136.918 480.02C109.315 454.335 89.9625 422.896 75.8121 387.752C66.8309 365.446 60.1796 342.375 58.0346 318.301C54.4655 278.244 59.6862 239.691 80.6817 204.901C92.178 185.851 107.013 169.903 126.705 159.525C138.659 153.225 151.534 151.468 164.776 151.829C187.466 152.448 209.498 157.603 231.61 162.209C233.14 162.528 234.682 162.788 236.226 163.03C236.434 163.062 236.682 162.823 237.285 162.526C235.767 156.669 232.886 151.379 229.854 146.264C222.534 133.917 214.312 122.205 205.681 110.796C203.058 107.33 199.892 105.747 195.553 105.823C186.386 105.983 182.881 100.727 185.748 91.6141C188.732 82.1336 197.225 78.9883 205.317 84.3189C208.003 86.0882 210.219 88.3364 212.252 90.8392C221.034 101.655 228.33 113.514 235.137 125.708C238.626 131.957 240.791 138.772 242.759 145.661C243.261 147.418 243.4 149.413 245.223 150.799C247.647 148.703 247.205 145.573 247.463 143.035C250.025 117.808 262.091 98.508 281.187 83.1859C294.302 72.6632 307.929 63.2908 324.025 58.3704C325.525 57.9119 327.049 57.5081 328.587 57.2201C334.464 56.1195 337.883 59.1954 338.608 65.3553C342.004 94.1769 330.519 116.886 311.645 136.692C304.461 144.231 296.683 151.024 288.483 157.33C287.165 158.345 285.569 159.142 284.726 162.228Z" fill="white"/>
@@ -88,7 +88,7 @@ export default function Branding() {
                     <p className="text-xs text-center my-2">HEX - ffffff</p>
                     </div>
                     <div className="w-full h-full">
-                    <div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44">
+                    <div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10">
                     </div>
                     <p className="text-xs text-center my-2">HEX - 110F0F</p>
                     </div>  

@@ -35,10 +35,10 @@ export default function NavbarMobile() {
                 </div>
                 </div>
                 <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
-                <h1 className="font-bold mb-4">About us</h1>
+                <h1 className="font-bold mb-4">About Us</h1>
                 <div className="flex flex-col gap-4">
                     <a className="bg-white/10 rounded-xl p-4" href="/team">Team</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/join-team">Join us</a>
+                    <a className="bg-white/10 rounded-xl p-4" href="/join-team">Join Us</a>
                     <a className="bg-white/10 rounded-xl p-4" href="/history">History</a>
                     <a className="bg-white/10 rounded-xl p-4" href="/branding">Brand</a>
                 </div>

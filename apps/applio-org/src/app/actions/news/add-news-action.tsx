@@ -3,9 +3,10 @@
 import { supabase } from "@/utils/database"
 import { redirect } from "next/navigation"
 
-export const config = {
+const runtimeConfig = {
   runtime: 'edge',
-};
+}
+
 
 export const addPost = async (formData: FormData, id: number, role: string) => {
   const title = formData.get("title")
@@ -25,4 +26,8 @@ export const addPost = async (formData: FormData, id: number, role: string) => {
 
   }
   redirect("/news")
+}
+
+export const getConfig = async () => {
+  return runtimeConfig;
 }

@@ -3,9 +3,9 @@
 import { supabase } from "@/utils/database"
 import { redirect } from "next/navigation"
 
-export const config = {
+const runtimeConfig = {
     runtime: 'edge',
-};
+}
   
 
 export const removeNews = async (id: number) => {
@@ -24,4 +24,8 @@ export const removeNews = async (id: number) => {
     return (
         status
     )
+}
+
+export const getConfig = async () => {
+    return runtimeConfig;
 }

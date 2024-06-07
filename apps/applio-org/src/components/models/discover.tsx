@@ -152,7 +152,10 @@ export default function DiscoverModels() {
             </div>
             {data && data.length === 0 && !loading && (<h1 className="text-white/80 my-14 md:text-xl text-center">We have not found any voice models</h1>)}
             {data && data.length === 0 && loading && (<h1 className="text-white/80 my-14 md:text-xl text-center">Loading...</h1>)}
-            {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">We have found <span className="text-white/80">{data.length}</span> results in less than <span className="text-white/80">{searchTime}ms</span></p>)}
+            <div className="justify-between flex">
+            {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">We have found <span className="text-white/80">{data.length}</span> results in less than <span className="text-white/80">{searchTime}s</span></p>)}
+            {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">😕 Don&apos;t find a voice? Create your own!</p>)}
+            </div>
             <article className="flex flex-col gap-4 w-full h-full p-4">
             {data && data.map((model: any, index: number) => (
             <ModelCard key={index} data={model} />

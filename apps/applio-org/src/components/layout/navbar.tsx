@@ -18,11 +18,11 @@ export default function Navbar() {
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">Voice cloning</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/rvc">
-                                        <h1 className="font-bold text-lg">Applio RVC</h1>
+                                        <h1 className="font-bold text-lg">Applio</h1>
                                         <p className="text-xs">VITS-based Voice Conversion focused on simplicity, quality and performance</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/app">
-                                        <h1 className="font-bold text-lg">Applio APP</h1>
+                                        <h1 className="font-bold text-lg">Desktop App</h1>
                                         <p className="text-xs">Our next voice conversion client, designed for beginners.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/playground">
@@ -31,29 +31,29 @@ export default function Navbar() {
                                     </a>
                                 </div>
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
-                                    <p className="text-left text-white/70 px-1.5">Applio ecosystem</p>
+                                    <p className="text-left text-white/70 px-1.5">Our ecosystem</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="https://docs.applio.org" target="_blank">
-                                        <h1 className="font-bold text-lg">Applio Docs</h1>
+                                        <h1 className="font-bold text-lg">Documentation</h1>
                                         <p className="text-xs">Here you will learn how to use Applio.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/bot">
-                                        <h1 className="font-bold text-lg">Applio BOT</h1>
+                                        <h1 className="font-bold text-lg">Discord Bot</h1>
                                         <p className="text-xs">Applio-Bot is an all-in-one solution to simplify various tasks in Discord. Automate responses, moderate your chat or efficiently manage your community, with unique functions powered by AI.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="https://github.com/IAHispano/Applio-plugins" target="_blank">
-                                        <h1 className="font-bold text-lg">Applio Plugins</h1>
+                                        <h1 className="font-bold text-lg">Marketplace</h1>
                                         <p className="text-xs">Collection of the best Applio plugins.</p>
                                     </a>
                                 </div>
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">For developers</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/api">
-                                        <h1 className="font-bold text-lg">Applio API</h1>
+                                        <h1 className="font-bold text-lg">Free API</h1>
                                         <p className="text-xs">Robust functionality, focused on granting convenient access to AI models developed using the RVC technology.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="https://github.com/blaise-tk/rvc_cli" target="_blank">
-                                        <h1 className="font-bold text-lg">RVC CLI</h1>
-                                        <p className="text-xs">RVC CLI enables seamless interaction with Retrieval-based Voice Conversion through commands or HTTP requests.</p>
+                                        <h1 className="font-bold text-lg">CLI</h1>
+                                        <p className="text-xs">Our CLI enables seamless interaction with Retrieval-based Voice Conversion through commands or HTTP requests.</p>
                                     </a>
                                 </div>
                             </div>

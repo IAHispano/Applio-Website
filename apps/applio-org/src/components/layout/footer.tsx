@@ -1,12 +1,12 @@
 export default function Footer() {
   return (
     <footer id="footer" className="relative pt-3 bg-gradient-to-b from-transparent to-white/[0.05] mt-52 z-[1]">
-      <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 text-white sm:grid-cols-2 lg:grid-cols-7 z-[1]">
+      <div className="m-auto grid min-h-64 max-w-[100rem] relative grid-cols-2 gap-6 p-8 pb-20 pt-10 sm:grid-cols-2 lg:grid-cols-7 z-[1]">
         <div className="col-span-2 gap-4 flex flex-col">
           <h2 className="text-3xl font-bold truncate tracking-tight gtransition">
             Applio
           </h2>
-          <p className="text-sm max-w-xs tracking-wide">
+          <p className="text-base max-w-md tracking-wide text-neutral-400">
             Dive into a world of endless possibilities fueled by advanced AI audio technology.
           </p>
           <div className="flex gap-4">
@@ -26,7 +26,7 @@ export default function Footer() {
             </svg>
             </a>
           </div>
-          <p className="text-md text-neutral-200 mt-4">
+          <p className="text-md mt-4">
             Copyright © 2024 Applio. All Right Reserved.
           </p>
         </div>

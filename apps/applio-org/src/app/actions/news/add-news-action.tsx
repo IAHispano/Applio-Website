@@ -3,7 +3,9 @@
 import { supabase } from "@/utils/database"
 import { redirect } from "next/navigation"
 
-export const runtime = 'edge';
+export const config = {
+  runtime: 'edge',
+};
 
 export const addPost = async (formData: FormData, id: number, role: string) => {
   const title = formData.get("title")

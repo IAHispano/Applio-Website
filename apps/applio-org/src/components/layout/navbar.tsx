@@ -4,15 +4,15 @@ import NavbarMobile from "./navbarMobile";
 export default function Navbar() {
     return (
         <header className="sticky top-0 inset-x-0 z-50">
-            <div className="max-lg:hidden bg-white/[3%] backdrop-blur-lg md:w-[70%] md:h-[8svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
+            <div className="max-lg:hidden bg-white/[3%] backdrop-blur-lg md:w-[70%] md:h-[7svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
                 <div className="flex md:flex-cols-3 max-md:flex-col md:px-16 px-2 w-full">
-                <a className="text-3xl font-semibold tracking-tight my-0.5 hover:bg-white/10 slow px-4 rounded-xl" href="/">Applio</a>
+                <a className="text-3xl font-semibold tracking-tight mb-2 slow  rounded-xl flex justify-center items-center mx-auto" href="/">Applio</a>
                 <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
-                    <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
-                    <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
-                    <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
+                    <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
+                    <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
+                    <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
                     <div className="dropdown">
-                        <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">Products<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">Products<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                         <div className="dropdown-menu hidden absolute bg-[#2f2e31] backdrop-blur-lg border border-white/10 rounded-xl text-white w-[60svh] p-4 shadow-xl mt-0.5">
                             <div className="grid grid-cols-3 w-full divide-x divide-white/20 items-start text-left">
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
@@ -60,7 +60,7 @@ export default function Navbar() {
                         </div>
                     </div>
                     <div className="dropdown">
-                        <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">About us<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">About us<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
                         <div className="dropdown-menu hidden absolute bg-[#2f2e31] border border-white/10 rounded-xl text-white w-[60svh] p-4 shadow-xl mt-0.5">
                             <div className="grid grid-cols-2 w-full divide-x divide-white/20 items-start text-left">
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">

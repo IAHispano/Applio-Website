@@ -1,12 +1,11 @@
 export default function Branding() {
     return (
-        <main className="flex min-h-[500svh] md:min-h-[140svh] flex-col items-center max-md:mx-4 max-md:mt-24">
-            <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12  max-md:rounded-xl">
-                <div className="">
-                <h1 className="text-7xl">Our Brand</h1>
+        <main className="md:min-h-[80svh] max-md:mx-12 flex flex-col justify-center items-center mx-auto">
+                <div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
+                    <h1 className="text-7xl">Our Brand</h1>
                 </div>
-                <div>
-                    <h1 className="text-5xl">Logo</h1>
+                <div className="md:min-w-[100svh] mt-12">
+                    <h1 className="text-5xl max-md:mt-4">Logo</h1>
                     <p className="my-4 mx-1">There are two variants of the logo for the Workbench design agency: horizontal and vertical.</p>
                     <div className="flex max-md:flex-col gap-4">
                     <div className="w-full h-full">
@@ -55,7 +54,7 @@ export default function Branding() {
                     </div>
                     </div>
                 </div>
-                <div>
+                <div className="md:min-w-[100svh] mt-12">
                     <h1 className="text-5xl">Font</h1>
                     <p className="my-4 mx-1">We use two different fonts, one for headings and one to make the text legible.</p>
                     <div className="flex max-md:flex-col gap-4">
@@ -73,7 +72,7 @@ export default function Branding() {
                     </div>
                     </div>
                 </div>
-                <div>
+                <div className="md:min-w-[100svh] mt-12">
                     <h1 className="text-5xl">Main colors</h1>
                     <p className="my-4 mx-1">This page shows the main colors used in communications.</p>
                     <div className="flex max-md:flex-col gap-4">
@@ -94,7 +93,6 @@ export default function Branding() {
                     </div>  
                     </div>
                 </div>
-            </div>
         </main>
     )
 }

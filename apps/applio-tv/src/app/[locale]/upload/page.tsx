@@ -92,7 +92,7 @@ export default function Upload() {
                 <div className="bg-white/10 w-full h-[80svh] rounded-xl p-6 flex flex-col justify-start gap-4">
                     <h1 className="font-medium md:text-5xl text-4xl p-2 flex-wrap text-left">1. Add your video</h1>
                     <div className="bg-blue-500/10 w-full h-fit py-2 rounded-xl p-2 flex flex-cols-2 gap-4 justify-start items-center px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
                     <p className="md:font-medium md:text-xl text-xs">For copyright reasons you must upload the video to <a className="underline text-blue-400" href="https://www.youtube.com" target="_blank" rel="notarget">youtube</a>, then copy the URL and paste it here.</p>
                     </div>
                     <div className="md:bg-white/10 w-full md:h-[40svh] h-[30svh] rounded-xl md:px-36 md:py-8">
@@ -123,7 +123,7 @@ export default function Upload() {
                     <h1 className="font-medium md:text-5xl text-xl p-2 flex-wrap text-left">3. What is your video about?</h1>
                     <div className="hidden md:block">
                     <div className="bg-blue-500/10 w-full h-[8svh] rounded-xl p-2 flex flex-cols-2 gap-4 justify-start items-center px-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
                     <p className="md:font-medium md:text-xl text-xs">We will recommend your video according to what you mark, it is important that you do it well to get more views! (Select 3)</p>
                     </div>
                     </div>

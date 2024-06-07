@@ -93,8 +93,8 @@ export default function Navbar() {
                 </div>
             </div>
             <div className="lg:hidden">
-            <NavbarMobile />
+                <NavbarMobile />
             </div>
         </header>
-    )
+    );
 }

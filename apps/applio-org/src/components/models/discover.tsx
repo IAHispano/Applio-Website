@@ -134,8 +134,8 @@ export default function DiscoverModels() {
                 onClick={() => setSearchInput("")}
             >           
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.48535 13.5149L13.5151 2.48513" stroke="#E0E0E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M13.5156 13.5149L2.48586 2.48513" stroke="#E0E0E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M2.48535 13.5149L13.5151 2.48513" stroke="#E0E0E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M13.5156 13.5149L2.48586 2.48513" stroke="#E0E0E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             </button>
             )}
@@ -143,10 +143,10 @@ export default function DiscoverModels() {
             className="p-4 mt-8 rounded-xl bg-white/10 w-fit"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M1.74805 5.31714H3.5207M14.2527 5.31714H9.84492" stroke="#E0E0E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M1.74805 10.6492L6.29953 10.6492M14.2527 10.6492L12.5758 10.6492" stroke="#E0E0E0" stroke-width="1.5" stroke-linecap="round"/>
-              <ellipse cx="6.7317" cy="5.35084" rx="1.52467" ry="1.52467" stroke="#E0E0E0" stroke-width="1.5"/>
-              <ellipse cx="9.36549" cy="10.6492" rx="1.52467" ry="1.52467" stroke="#E0E0E0" stroke-width="1.5"/>
+              <path d="M1.74805 5.31714H3.5207M14.2527 5.31714H9.84492" stroke="#E0E0E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M1.74805 10.6492L6.29953 10.6492M14.2527 10.6492L12.5758 10.6492" stroke="#E0E0E0" strokeWidth="1.5" strokeLinecap="round"/>
+              <ellipse cx="6.7317" cy="5.35084" rx="1.52467" ry="1.52467" stroke="#E0E0E0" strokeWidth="1.5"/>
+              <ellipse cx="9.36549" cy="10.6492" rx="1.52467" ry="1.52467" stroke="#E0E0E0" strokeWidth="1.5"/>
               </svg>
             </button>
             </div>

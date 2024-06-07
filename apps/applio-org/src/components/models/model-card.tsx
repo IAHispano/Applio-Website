@@ -14,7 +14,7 @@ export default function ModelCard({ data }: { data: { name: string, author_usern
         </div>
         <div className="max-md:mt-4 max-md:flex max-md:flex-col max-md:text-center">
             <button className="text-black bg-white hover:bg-white/80 slow px-6 py-2 md:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl md:rounded-full shadow-lg shadow-white/50" onClick={handleDownload}>
-            <p className="md:hidden block font-semibold">Download</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="md:block hidden"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            <p className="md:hidden block font-semibold">Download</p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="md:block hidden"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
             </button>
         </div>
         </div>

@@ -111,7 +111,7 @@ export default function DiscoverModels() {
                 <a
                 key={index}
                 onClick={() => handleTagClick(tag)}
-                className={`cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/40' : 'bg-white/10'} hover:bg-white/20 rounded-lg border-white/10 border text-center select-none`}
+                className={`slow shadow-lg shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/40' : 'bg-white/10'} hover:bg-white/20 rounded-full border-white/10 border text-center select-none`}
             >
                 {tag}
                 </a>
@@ -154,7 +154,7 @@ export default function DiscoverModels() {
             {data && data.length === 0 && loading && (<h1 className="text-white/80 my-14 md:text-xl text-center">Loading...</h1>)}
             <div className="justify-between flex">
             {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">We have found <span className="text-white/80">{data.length}</span> results in less than <span className="text-white/80">{searchTime}s</span></p>)}
-            {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">😕 Don&apos;t find a voice? Create your own!</p>)}
+            {data && !loading && searchInput && (<p className="text-sm text-white/80 px-5 pt-2">😕 Don&apos;t find a voice? <span className="underline">Create your own!</span></p>)}
             </div>
             <article className="flex flex-col gap-4 w-full h-full p-4">
             {data && data.map((model: any, index: number) => (

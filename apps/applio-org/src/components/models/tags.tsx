@@ -6,15 +6,7 @@ const tags = [
     'Singer',
     'Fictional',
     'Anime',
-    'E-Celeb',
-    'Polity',
-    'Influencer',
-    'Comediant',
-    'Dub',
-    'Celebrity',
-    'TTS / Realtime',
-    'RVC',
-    'E-Girl'
+    'E-Celeb'
 ];
 
 export default tags;

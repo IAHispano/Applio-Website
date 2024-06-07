@@ -3,9 +3,9 @@
 import { supabase } from "@/utils/database"
 import { redirect } from "next/navigation"
 
-export const config = {
-    runtime: 'edge',
-  };
+// export const config = {
+//     runtime: 'edge',
+// };
   
 
 export async function removeNews(id: number) {

@@ -111,17 +111,17 @@ export default function DiscoverModels() {
                 <a
                 key={index}
                 onClick={() => handleTagClick(tag)}
-                className={`slow shadow-lg shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/40' : 'bg-white/10'} hover:bg-white/20 rounded-full border-white/10 border text-center select-none`}
+                className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/40' : 'bg-white/20'} hover:bg-white/20 rounded-full border-white/10 border text-center select-none`}
             >
                 {tag}
                 </a>
             ))}
             </article>
-            <div className="flex gap-2 mt-8 w-full px-4">
+            <div className="flex gap-2 mt-8 w-full px-4 relative">
             <input 
             type="text" 
-            className="p-4 mt-8 rounded-xl bg-white/10 w-full" 
-            placeholder="Write here..." 
+            className="p-4 mt-8 rounded-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full" 
+            placeholder="Write here to search..." 
             onChange={(e) => {
                 setSearchInput(e.target.value);
                 setLoading(true);
@@ -130,7 +130,7 @@ export default function DiscoverModels() {
             />
             {searchInput && (
             <button
-                className="p-4 mt-8 rounded-xl bg-white/10"
+                className="p-2 rounded-xl absolute right-16 hover:bg-white/10 bottom-3"
                 onClick={() => setSearchInput("")}
             >           
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +140,7 @@ export default function DiscoverModels() {
             </button>
             )}
             <button
-            className="p-4 mt-8 rounded-xl bg-white/10 w-fit"
+            className="p-2 rounded-xl absolute right-8 hover:bg-white/10 bottom-3"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path d="M1.74805 5.31714H3.5207M14.2527 5.31714H9.84492" stroke="#E0E0E0" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>

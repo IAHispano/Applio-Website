@@ -19,7 +19,7 @@ export default function Home() {
       </a>
       <h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8">Dive into a world of endless possibilities fueled by advanced AI audio technology</h1>
       <h2 className="read-font mt-6 text-white/80 max-w-lg mx-auto">Pioneering Open-Source Ecosystem Unveiling the Latest Breakthroughs in AI Voice Cloning Technologies</h2>
-      <div className="mt-[37svh]">
+      <div className="mt-[40svh]">
         <div className="px-8 rounded-2xl bg-white/10 w-fit text-white border border-white/20">
           Features
         </div>

@@ -12,17 +12,17 @@ export default function Navbar() {
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
                     <div className="dropdown">
-                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">Products<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">Products<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
                         <div className="dropdown-menu hidden absolute bg-[#2f2e31] backdrop-blur-lg border border-white/10 rounded-xl text-white w-[60svh] p-4 shadow-xl mt-0.5">
                             <div className="grid grid-cols-3 w-full divide-x divide-white/20 items-start text-left">
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">Voice cloning</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/rvc">
-                                        <h1 className="font-bold text-lg">Applio RVC</h1>
+                                        <h1 className="font-bold text-lg">Applio</h1>
                                         <p className="text-xs">VITS-based Voice Conversion focused on simplicity, quality and performance</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/app">
-                                        <h1 className="font-bold text-lg">Applio APP</h1>
+                                        <h1 className="font-bold text-lg">Desktop App</h1>
                                         <p className="text-xs">Our next voice conversion client, designed for beginners.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="/products/playground">
@@ -31,36 +31,36 @@ export default function Navbar() {
                                     </a>
                                 </div>
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
-                                    <p className="text-left text-white/70 px-1.5">Applio ecosystem</p>
+                                    <p className="text-left text-white/70 px-1.5">Our ecosystem</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="https://docs.applio.org" target="_blank">
-                                        <h1 className="font-bold text-lg">Applio Docs</h1>
+                                        <h1 className="font-bold text-lg">Documentation</h1>
                                         <p className="text-xs">Here you will learn how to use Applio.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/bot">
-                                        <h1 className="font-bold text-lg">Applio BOT</h1>
+                                        <h1 className="font-bold text-lg">Discord Bot</h1>
                                         <p className="text-xs">Applio-Bot is an all-in-one solution to simplify various tasks in Discord. Automate responses, moderate your chat or efficiently manage your community, with unique functions powered by AI.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg p-2 cursor-pointer" href="https://github.com/IAHispano/Applio-plugins" target="_blank">
-                                        <h1 className="font-bold text-lg">Applio Plugins</h1>
+                                        <h1 className="font-bold text-lg">Marketplace</h1>
                                         <p className="text-xs">Collection of the best Applio plugins.</p>
                                     </a>
                                 </div>
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">
                                     <p className="text-left text-white/70 px-1.5">For developers</p>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="/products/api">
-                                        <h1 className="font-bold text-lg">Applio API</h1>
+                                        <h1 className="font-bold text-lg">Free API</h1>
                                         <p className="text-xs">Robust functionality, focused on granting convenient access to AI models developed using the RVC technology.</p>
                                     </a>
                                     <a className="hover:bg-white/10 rounded-lg cursor-pointer p-2" href="https://github.com/blaise-tk/rvc_cli" target="_blank">
-                                        <h1 className="font-bold text-lg">RVC CLI</h1>
-                                        <p className="text-xs">RVC CLI enables seamless interaction with Retrieval-based Voice Conversion through commands or HTTP requests.</p>
+                                        <h1 className="font-bold text-lg">CLI</h1>
+                                        <p className="text-xs">Our CLI enables seamless interaction with Retrieval-based Voice Conversion through commands or HTTP requests.</p>
                                     </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="dropdown">
-                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">About Us<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+                        <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">About Us<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>
                         <div className="dropdown-menu hidden absolute bg-[#2f2e31] border border-white/10 rounded-xl text-white w-[60svh] p-4 shadow-xl mt-0.5">
                             <div className="grid grid-cols-2 w-full divide-x divide-white/20 items-start text-left">
                                 <div className="col-span-1 flex flex-col gap-2 w-full p-2">

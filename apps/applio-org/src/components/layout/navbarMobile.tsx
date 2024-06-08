@@ -2,52 +2,172 @@
 
 import { useState } from "react";
 import Avatar from "./avatar";
+import { motion } from "framer-motion";
 
 export default function NavbarMobile() {
     const [isOpen, setIsOpen] = useState<Boolean>(false)
+    const [dropdownOpen, setDropdownOpen] = useState(0)
+
+    function handleDropdown(dropdown: number) {
+        if (dropdown === dropdownOpen) {
+            setDropdownOpen(0)
+        } else {
+            setDropdownOpen(dropdown)
+        }
+    }
 
     return (
         <>
-        {!isOpen && (
-            <button onClick={() => setIsOpen(true)} className="fixed top-0 inset-x-0 z-50 m-4 p-3 w-fit bg-white/10 rounded-xl backdrop-blur-3xl">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
-            </button>
-        )}
-        {isOpen && (
-        <div className="overflow-auto bg-white/[3%] backdrop-blur-lg md:w-[80%] md:h-[8svh] max-md:h-svh rounded-b-xl border border-white/10 flex max-md:flex-col md:justify-center md:items-center mx-auto max-md:p-4 max-md:bg-neutral-800/80 max-md:rounded-t-3xl">
-            <div className="flex md:flex-cols-3 max-md:flex-col md:px-16 px-2 w-full">
+        <div>
+            <div className="flex md:flex-cols-3 max-md:flex-col w-full">
+            <div className="flex justify-between p-4 h-fit bg-[#110F0F]/80 backdrop-blur-3xl">
             <a className="text-3xl font-semibold tracking-tight py-0.5" href="/">Applio</a>
-            <button className="absolute top-0 right-0 mx-6 my-3 px-3 py-1 text-3xl bg-white/10 rounded-xl hover:bg-red-500/20 slow" onClick={() => setIsOpen(false)}>X</button>
-            <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
-                <a className="col-span-1 text-lg max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
-                <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
-                <h1 className="font-bold mb-4">Products</h1>
-                <div className="flex flex-col gap-4">
-                    <a className="bg-white/10 rounded-xl p-4" href="/products/rvc">Applio RVC</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/products/app">Applio APP</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="https://docs.applio.org" target="_blank">Applio Docs</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/products/bot">Applio Bot</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/IAHispano/Applio-plugins" target="_blank">Applio Plugins</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/products/api">Applio API</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="https://github.com/blaise-tk/rvc_cli" target="_blank">RVC CLI</a>
+            {isOpen && (
+            <motion.button
+            onClick={() => setIsOpen(false)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            >
+            <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                animate={{ rotate: 180 }}
+            >
+                <motion.path
+                d="M18 6 6 18"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                />
+                <motion.path
+                d="m6 6 12 12"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                />
+            </motion.svg>
+            </motion.button>
+        )}
+        {!isOpen && (
+            <motion.button
+            onClick={() => setIsOpen(true)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            >
+            <motion.svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                initial={{rotate: 180}}
+                transition={{rotate: 0}}
+                
+                exit={{rotate: 90}}
+            >
+                <motion.line
+                x1="4"
+                x2="20"
+                y1="12"
+                y2="12"
+                />
+                <motion.line
+                x1="4"
+                x2="20"
+                y1="6"
+                y2="6"
+                />
+                <motion.line
+                x1="4"
+                x2="20"
+                y1="18"
+                y2="18"
+                />
+            </motion.svg>
+            </motion.button>
+        )}
+            </div>
+            {isOpen && (
+            <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full min-h-[150svh] p-4 overflow-visible">
+            <Avatar />
+            <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
+                <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
+                <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
+                <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/news">News</a>
+                <div className="col-span-1 px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
+                <button className="flex justify-between w-full" onClick={() => handleDropdown(1)}>  
+                {dropdownOpen === 1 && (          
+                <svg className="absolute -left-1" width="2" height="40" viewBox="0 0 2 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="2" height="40" rx="1" fill="#A1A1A1"/>
+                </svg>
+                )}
+              <h1 className={`pt-2 ${dropdownOpen === 1 ? 'font-bold' : ''}`}>Products</h1>
+                {dropdownOpen === 1 && (
+                    <svg className="m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                )}
+                {dropdownOpen != 1 && (
+                    <svg className="rotate-180 m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                )}
+                </button>
+                {dropdownOpen === 1 && (
+                <div className="flex flex-col gap-4 mt-4">
+                    <a className="rounded-xl p-2" href="/products/rvc">Applio</a>
+                    <a className="rounded-xl p-2" href="/products/app">Desktop App</a>
+                    <a className="rounded-xl p-2" href="/playground">Playground</a>
+                    <a className="rounded-xl p-2" href="https://docs.applio.org" target="_blank">Documentation</a>
+                    <a className="rounded-xl p-2" href="/products/bot">Discord Bot</a>
+                    <a className="rounded-xl p-2" href="https://github.com/IAHispano/Applio-plugins" target="_blank">Marketplace</a>
+                    <a className="rounded-xl p-2" href="/products/api">Free API</a>
+                    <a className="rounded-xl p-2" href="https://github.com/blaise-tk/rvc_cli" target="_blank">RVC CLI</a>
                 </div>
+                )}
                 </div>
-                <div className="col-span-1 text-lg max-md:p-4 max-md:rounded-xl max-md:w-full max-md:bg-white/10">
-                <h1 className="font-bold mb-4">About Us</h1>
-                <div className="flex flex-col gap-4">
-                    <a className="bg-white/10 rounded-xl p-4" href="/team">Team</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/join-team">Join Us</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/history">History</a>
-                    <a className="bg-white/10 rounded-xl p-4" href="/branding">Brand</a>
+                <div className="col-span-1 px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
+                {dropdownOpen === 2 && (          
+                <svg className="absolute -left-1" width="2" height="40" viewBox="0 0 2 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="2" height="40" rx="1" fill="#A1A1A1"/>
+                </svg>
+                )}
+                <button className="flex justify-between w-full" onClick={() => handleDropdown(2)}>
+                <h1 className={`pt-2 ${dropdownOpen === 2 ? 'font-bold' : ''}`}>About Us</h1>
+                {dropdownOpen === 2 && (
+                    <svg className="m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                )}
+                {dropdownOpen != 2 && (
+                    <svg className="rotate-180 m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                )}
+                </button>
+                {dropdownOpen === 2 && (
+                <div className="flex flex-col gap-4 mt-4">
+                    <a className="rounded-xl p-2" href="/team">Team</a>
+                    <a className="rounded-xl p-2" href="/join-team">Join Us</a>
+                    <a className="rounded-xl p-2" href="/history">History</a>
+                    <a className="rounded-xl p-2" href="/branding">Brand</a>
                 </div>
+                )}
                 </div>
             </div>
-            <Avatar />
+            </section>
+        )}
             </div>
         </div>
-        )}
         </>
     )
 }

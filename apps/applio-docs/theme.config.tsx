@@ -31,9 +31,9 @@ const config: DocsThemeConfig = {
   themeSwitch: {
     useOptions() {
       return {
-        light: '☀️ Light',
-        dark: '🌑 Dark',
-        system: '💻 System'
+        light: 'Light',
+        dark: 'Dark',
+        system: 'System'
       }
     }
   },

@@ -3,7 +3,10 @@ import { DocsThemeConfig, useConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
 const config: DocsThemeConfig = {
-  logo: <span className="font-medium tracking-tight">Applio Docs</span>,
+  logo: 'Applio Docs',
+  search: {
+    placeholder: "Search in Applio Docs..."
+  },
   project: {
     link: "https://github.com/iahispano/applio",
   },
@@ -49,11 +52,6 @@ const config: DocsThemeConfig = {
   },
   primarySaturation: 100,
   primaryHue: 151,
-
-  i18n: [
-    { locale: "en-US", text: "English" },
-    { locale: "es-ES", text: "Spanish" },
-  ],
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter } = useConfig();

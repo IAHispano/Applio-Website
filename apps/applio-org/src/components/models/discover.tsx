@@ -111,7 +111,7 @@ export default function DiscoverModels() {
                 <a
                 key={index}
                 onClick={() => handleTagClick(tag)}
-                className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/40' : 'bg-white/20'} hover:bg-white/20 rounded-full border-white/10 border text-center select-none`}
+                className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-neutral-500' : 'bg-neutral-700'} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
             >
                 {tag}
                 </a>
@@ -130,7 +130,7 @@ export default function DiscoverModels() {
             />
             {searchInput && (
             <button
-                className="p-2 rounded-xl absolute right-16 hover:bg-white/10 bottom-3"
+                className="p-2 rounded-xl absolute right-16 hover:bg-white/10 bottom-3 slow"
                 onClick={() => setSearchInput("")}
             >           
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">

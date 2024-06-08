@@ -87,7 +87,7 @@ export default function ApiDashboard() {
                 </a>
                 <div className="flex md:justify-between w-full max-md:gap-6">
                 <h1 className="pl-0.5 md:text-5xl text-4xl font-bold">Dashboard</h1>
-                <button className={`rounded-full w-12 h-12 max-md:mx-4 max-md:px-2 max-md:mb-1 bg-white text-black text-3xl font-bold slow ${userTokens.length < 3 ? "hover:shadow-lg hover:shadow-white " : "opacity-50 cursor-not-allowed"}`} onClick={userTokens.length < 3 ? handleGenerateToken : undefined}>+</button>
+                <button className={`rounded-xl w-12 h-12 max-md:mx-4 max-md:px-2 max-md:mb-1 pb-0.5 bg-white text-black text-3xl font-bold slow ${userTokens.length < 3 ? "hover:shadow-lg hover:shadow-white " : "opacity-50 cursor-not-allowed"}`} onClick={userTokens.length < 3 ? handleGenerateToken : undefined}>+</button>
                 </div>
                 <p className="pl-1 text-[#9E9E9E]">Manage your API keys, if you have any questions please refer to the documentation.</p>
             </div>

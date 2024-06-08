@@ -53,7 +53,7 @@ export default function NewuserUI(){
     return (
       <main>
       <div className="flex items-center justify-center p-6 h-[80svh]">
-        <div className="w-full md:h-fit h-full mt-44 md:m-52 bg-white/10 backdrop-blur-3xl md:p-12 max-md:p-4 rounded-lg">
+        <div className="w-full max-w-2xl md:h-fit h-full mt-44 md:m-52 bg-white/10 backdrop-blur-3xl md:p-12 max-md:p-4 rounded-lg">
           <h1 className="text-4xl font-medium tracking-lighter mt-0.5 mb-2">Welcome to Applio Community</h1>
           <form>
           <input required type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="my-4 w-full p-3 rounded-md bg-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2" disabled={success}></input>

@@ -33,7 +33,7 @@ export default function FastlinkUI(){
     return (
       <main>
       <div className="flex items-center justify-center p-6 h-[80svh]">
-        <div className="w-full md:h-fit h-full max-md:mt-44 md:m-44 bg-white/10 backdrop-blur-3xl md:p-12 max-md:p-4 rounded-lg">
+        <div className="max-w-2xl w-full md:h-fit h-full max-md:mt-44 md:m-44 bg-white/10 backdrop-blur-3xl md:p-12 max-md:p-4 rounded-lg">
         <h1 className="text-4xl font-medium tracking-lighter mt-0.5 mb-2">Fast link</h1>
           <input required type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="my-4 mt-6 w-full p-3 rounded-md bg-white/10 border border-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2"></input>
           <p className="text-red-500 font-mono text-sm text-center pb-2">{error}</p>

@@ -1,5 +1,7 @@
 {
     "conventionalCommits.scopes": [
-        "org"
+        "org",
+        "docs",
+        "tv"
     ]
 }

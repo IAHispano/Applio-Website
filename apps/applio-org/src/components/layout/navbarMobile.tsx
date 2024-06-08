@@ -18,7 +18,7 @@ export default function NavbarMobile() {
 
     return (
         <>
-        <div>
+        <div >
             <div className="flex md:flex-cols-3 max-md:flex-col w-full">
             <div className="flex justify-between p-4 h-fit bg-[#110F0F]/80 backdrop-blur-3xl">
             <a className="text-3xl font-semibold tracking-tight py-0.5" href="/">Applio</a>
@@ -97,7 +97,7 @@ export default function NavbarMobile() {
         )}
             </div>
             {isOpen && (
-            <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full h-svh p-4">
+            <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full min-h-[100svh] p-4">
             <Avatar />
             <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>

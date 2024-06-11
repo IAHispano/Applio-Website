@@ -7,4 +7,9 @@ export type User = {
     bio: string;
     auth_id: string;
     links: string;
+    followers: string;
+    developer: boolean;
+    writer: boolean;
+    premium: boolean;
+    admin: boolean;
 };

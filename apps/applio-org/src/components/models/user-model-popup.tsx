@@ -27,18 +27,18 @@ const UserModelPopup = ({ id }: { id: string | null }) => {
   return (
     <article>
     {data && (
-        <div className='flex text-center w-full h-full border border-white/10 rounded-xl py-2 px-4'>
-        <div className='w-full h-full rounded-xl bg-neutral-700 flex'>
+        <a className='flex text-center w-full h-full border border-white/10 rounded-xl py-2 px-4' href={`/${data.full_name}`}>
+        <div className='w-full h-full rounded-xl bg-neutral-700 hover:bg-neutral-600 slow flex'>
         {data.avatar_url && (
             <img 
-                src={data.avatar_url} 
-                className='w-16 h-16 rounded-l-xl' 
+                src={data.avatar_url || ''} 
+                className='w-16 h-16 rounded-l-xl max-md:rounded-xl max-md:h-full max-md:w-full' 
                 onError={() => setData(null)}
             />
         )}
-        <p className='font-bold text-center justify-center m-auto items-center max-w-[120px] truncate'>By {data.full_name || '?'}</p> 
+        <p className='font-bold text-center justify-center m-auto items-center max-w-[120px] truncate max-md:hidden'>By {data.full_name || '?'}</p> 
         </div>
-        </div>
+        </a>
     )}
     {!data && (
         <div className='flex text-center w-full h-full border border-white/10 rounded-xl py-2 px-4'>

@@ -17,7 +17,7 @@ export default function OptionsModelMenu({ id }: { id: string }) {
         navigator.clipboard.writeText(`https://v2.applio.org/models?id=${id}`)
     }
     return (
-        <div className='md:absolute bottom-4 z-50 bg-neutral-700 p-2 drop-shadow-lg rounded-xl right-0 mx-4 max-md:mt-6 border-2 border-white/10'>
+        <div className='md:absolute bottom-4 z-50 bg-white/10 backdrop-blur-3xl p-2 drop-shadow-lg rounded-xl right-0 mx-4 max-md:mt-6 border-2 border-white/10'>
         {!open && (
             <button className="h-full p-2 w-full" onClick={handleOpen}>
                <svg className="text-center flex mx-auto justify-center " xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg>

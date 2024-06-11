@@ -112,17 +112,17 @@ export default function DiscoverModels() {
         if (id) {
           setPopupId(id as string);
           setShowPopup(true);
-          router.push(`/models?id=${id}`);
+          const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?id=${id}`;
+          window.history.replaceState({ path: newUrl }, '', newUrl);
           if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
             document.body.style.overflow = 'hidden';
-        }
+          }
         }
       }
 
       const handleClosePopup = () => {
         setShowPopup(false);
         setPopupId(null);
-        router.push(`/models`);
         document.body.style.overflow = 'unset';
       };
 
@@ -193,7 +193,7 @@ export default function DiscoverModels() {
             </div>
             <article className="flex flex-col gap-4 w-full h-full mt-8">
             {data && data.map((model: any, index: number) => (
-            <button className="w-full h-full flex cursor-pointer" key={index} onClick={() => handleOpenPopup(model.id)}><ModelCard key={index} data={model} /></button>
+            <button className="w-full h-full flex cursor-pointer" key={index} onClick={(e) => { e.preventDefault(); handleOpenPopup(model.id); }}><ModelCard key={index} data={model} /></button>
             ))}
             </article>
             </section>

@@ -90,3 +90,27 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
 };
 
 export default ModelPopup;
+
+export async function generateMetadata({ params }: { params: { id: number } }) {
+  const { data, error } = await supabase
+      .from("profiles")
+      .select("name, image_url, author_username, created_at")
+      .eq("id", params.id)
+      .single()
+  
+  if (error) {
+      return {
+      title: 'Applio',
+      }
+  }
+
+  return {
+      title: data.name,
+      description: `See this model by ${data.author_username} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })} in Applio.`,
+      openGraph: {
+          title: data.name,
+          images: data.image_url,
+          description: `See this model by ${data.author_username} at ${new Date(data.created_at).toLocaleDateString('en-EN', { year: 'numeric', month: 'long', day: 'numeric' })} in Applio.`,
+          }  
+  }
+  }

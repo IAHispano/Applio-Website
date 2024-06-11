@@ -6,8 +6,12 @@ import NumberTicker from "../magicui/number-ticker";
 import tags from './tags'; 
 import ModelCard from "./model-card";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { useSearchParams } from 'next/navigation';
+import ModelPopup from "./model-popup";
 
 export default function DiscoverModels() {
+    const searchParams = useSearchParams();
+
     const [count, setCount] = useState<number | null>(null);
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [data, setData] = useState<any>(null);
@@ -16,6 +20,8 @@ export default function DiscoverModels() {
     const [loading, setLoading] = useState<boolean>(true)
     const [hasMore, setHasMore] = useState<boolean>(true)
     const [searchTime, setSearchTime] = useState<string>()
+    const [showPopup, setShowPopup] = useState(false);
+    const [popupId, setPopupId] = useState<string | null>(null);
 
 
     const handleTagClick = (tag: string) => {
@@ -93,7 +99,29 @@ export default function DiscoverModels() {
         getModels();
       }, [end, selectedTag, searchInput]);
 
+      useEffect(() => {
+        const id = searchParams.get('id');
+    
+        if (id) {
+          handleOpenPopup(id);
+        }
+      }, [searchParams]);
+
+      const handleOpenPopup = (id: string) => {
+        if (id) {
+          setPopupId(id as string);
+          setShowPopup(true);
+        }
+      }
+
+      const handleClosePopup = () => {
+        setShowPopup(false);
+        setPopupId(null);
+      };
+
     return (
+      <>
+        {showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
         <section className="justify-center items-center flex flex-col mx-auto my-12 max-xl:mx-4 w-full">
           {data && (
             <InfiniteScroll
@@ -111,16 +139,16 @@ export default function DiscoverModels() {
                 <a
                 key={index}
                 onClick={() => handleTagClick(tag)}
-                className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-neutral-500' : 'bg-neutral-700'} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
+                className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? 'bg-white/20' : ''} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
             >
                 {tag}
                 </a>
             ))}
             </article>
-            <div className="flex gap-2 mt-8 w-full px-4 relative">
+            <div className="flex gap-2 mt-8 w-full relative">
             <input 
             type="text" 
-            className="p-4 mt-8 rounded-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full" 
+            className="p-4 mt-8 rounded-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full pr-24" 
             placeholder="Write here to search..." 
             onChange={(e) => {
                 setSearchInput(e.target.value);
@@ -156,14 +184,15 @@ export default function DiscoverModels() {
             {data && !loading && searchInput && (<p className="text-sm text-white/40 px-5 pt-2">We have found <span className="text-white/80">{data.length}</span> results in less than <span className="text-white/80">{searchTime}s</span></p>)}
             {data && !loading && searchInput && (<p className="text-sm text-white/80 px-5 pt-2">😕 Don&apos;t find a voice? <span className="underline">Create your own!</span></p>)}
             </div>
-            <article className="flex flex-col gap-4 w-full h-full p-4">
+            <article className="flex flex-col gap-4 w-full h-full mt-8">
             {data && data.map((model: any, index: number) => (
-            <ModelCard key={index} data={model} />
+            <button className="w-full h-full flex cursor-pointer" key={index} onClick={() => handleOpenPopup(model.id)}><ModelCard key={index} data={model} /></button>
             ))}
             </article>
             </section>
             </InfiniteScroll>
           )}
         </section>
+        </>
     )
 }

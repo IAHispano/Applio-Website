@@ -17,7 +17,7 @@ export default function NavbarMobile() {
     }
 
     return (
-        <header className="overflow-y-auto fixed inset-0 z-20 h-full">
+        <header>
         <div>
             <div className="flex md:flex-cols-3 max-md:flex-col w-full">
             <div className="flex justify-between p-4 h-fit bg-[#110F0F]/80 backdrop-blur-3xl">
@@ -97,6 +97,7 @@ export default function NavbarMobile() {
         )}
             </div>
             {isOpen && (
+            <div className="overflow-y-auto fixed inset-0 h-full mt-20">
             <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full min-h-[150svh] p-4">
             <Avatar />
             <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
@@ -165,6 +166,7 @@ export default function NavbarMobile() {
                 </div>
             </div>
             </section>
+            </div>
         )}
             </div>
         </div>

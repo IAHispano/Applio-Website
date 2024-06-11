@@ -2,6 +2,8 @@ import DiscoverModels from "@/components/models/discover";
 import { supabase } from "@/utils/database";
 import { Suspense } from "react";
 
+export const runtime = 'edge';
+
 export async function generateMetadata(params: { searchParams: { id: string } }) {
     const id = params.searchParams.id;
     if (id) {

@@ -1,6 +1,9 @@
 import UserCard from "@/components/profile/user-card";
 import { supabase } from "@/utils/database";
 
+// Remove for local development
+export const runtime = 'edge';
+
 export async function generateMetadata({ params }: { params: { id: string } }) {
     const id = params.id;
 

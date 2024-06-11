@@ -6,12 +6,13 @@ import NumberTicker from "../magicui/number-ticker";
 import tags from './tags'; 
 import ModelCard from "./model-card";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import ModelPopup from "./model-popup";
 
 export default function DiscoverModels() {
     const searchParams = useSearchParams();
-
+    const router = useRouter();
+    
     const [count, setCount] = useState<number | null>(null);
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [data, setData] = useState<any>(null);
@@ -111,18 +112,24 @@ export default function DiscoverModels() {
         if (id) {
           setPopupId(id as string);
           setShowPopup(true);
+          router.push(`/models?id=${id}`);
+          if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
+            document.body.style.overflow = 'hidden';
+        }
         }
       }
 
       const handleClosePopup = () => {
         setShowPopup(false);
         setPopupId(null);
+        router.push(`/models`);
+        document.body.style.overflow = 'unset';
       };
 
     return (
       <>
         {showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
-        <section className="justify-center items-center flex flex-col mx-auto my-12 max-xl:mx-4 w-full">
+        <section className="justify-center items-center flex flex-col mx-auto my-12 max-xl:mx-4 w-full ">
           {data && (
             <InfiniteScroll
             dataLength={data.length}

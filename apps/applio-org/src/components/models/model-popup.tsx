@@ -8,7 +8,7 @@ import OptionsModelMenu from './options-model-menu';
 const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void }) => {
     const [data, setData] = useState<Model | null>()
     const [image, setImage] = useState<string | null>(null)
-
+    const [error, setError] = useState(false)
 
     useEffect(() => {
         async function getModelInfo(id: string) {
@@ -22,6 +22,7 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
             if (error) {
                 setData(null)
                 console.log(error)
+                setError(true)
             }
         }
 
@@ -30,14 +31,20 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm bg-opacity-50 z-50 max-md:p-4 overflow-y-auto h-full">
-      <div className="bg-neutral-800 rounded-xl backdrop-blur-3xl p-6 shadow-xl md:w-4/6 md:h-4/6 max-md:w-full max-md:h-fit max-md:mt-24">
+      <div className="bg-neutral-800 rounded-xl backdrop-blur-3xl p-6 shadow-xl md:w-4/6 md:h-4/6 max-md:w-full max-md:h-fit max-md:mt-52">
         <button 
           className="absolute top-0 right-0 m-4 hover:text-red-500 slow" 
           onClick={onClose}
         >
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
         </button>
-        {data && (
+        {error && !data && (
+          <article className='flex flex-col justify-center items-center m-auto w-full h-full text-center p-4'>
+          <h1 className='text-2xl'>We have not found the model you are looking for</h1>
+          <p className='read-font text-[10px] my-4'>ID: {id}</p>
+          </article>
+        )}
+        {data && !error && (
         <article className=' w-full h-full'>
         <h1 className='text-3xl max-w-3xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-medium'>{data.name}</h1>
         <p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5">published {(() => { const t = Math.round((new Date().getTime() - new Date(data.created_at).getTime()) / (1000 * 60)); return t < 60 ? `${t} minutes` : t < 1440 ? `${Math.floor(t / 60)}h` : `${Math.floor(t / 1440)} days`; })()} ago.</p>

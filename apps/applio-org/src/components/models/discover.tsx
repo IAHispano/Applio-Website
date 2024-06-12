@@ -108,6 +108,19 @@ export default function DiscoverModels() {
         }
       }, [searchParams]);
 
+      async function sendView(id: string) {
+        const data2 = await supabase.auth.getUser();
+        if (data2 && data2.data.user) {
+            const userInfo = await supabase.from("profiles").select("full_name, id").eq("auth_id", data2.data.user.id).single()
+            if (userInfo.data) {
+            const views = await supabase.from("views").insert({ by: userInfo.data.full_name, model: id, by_id: userInfo.data.id })
+            } 
+          } else {
+            const views = await supabase.from("views").insert({ by: 'Unknown', model: id, by_id: 'Unknown' })
+          }
+
+      }
+
       const handleOpenPopup = (id: string) => {
         if (id) {
           setPopupId(id as string);
@@ -117,6 +130,11 @@ export default function DiscoverModels() {
           if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
             document.body.style.overflow = 'hidden';
           }
+
+          // send view to db
+          if (!popupId || popupId !== id) {
+            sendView(id);
+          }
         }
       }
 
@@ -124,6 +142,8 @@ export default function DiscoverModels() {
         setShowPopup(false);
         setPopupId(null);
         document.body.style.overflow = 'unset';
+        const originalUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
+        window.history.replaceState({ path: originalUrl }, '', originalUrl);
       };
 
     return (

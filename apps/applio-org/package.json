@@ -17,6 +17,7 @@
     "react-dom": "^18",
     "react-infinite-scroll-component": "^6.1.0",
     "react-markdown": "^9.0.1",
+    "recharts": "^2.12.7",
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {

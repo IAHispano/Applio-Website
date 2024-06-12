@@ -1,8 +1,12 @@
+import { supabase } from "@/utils/database";
 import { useRouter } from "next/navigation";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export default function OptionsModelMenu({ id }: { id: string }) {
     const [open, setOpen] = useState(false);
+    const [clicked, setClicked] = useState(false)
+    const [liked, setLiked] = useState(false)
+    const router = useRouter();
 
     function handleOpen() {
         setOpen(true);
@@ -16,6 +20,64 @@ export default function OptionsModelMenu({ id }: { id: string }) {
         // CHANGE THIS TO APPLIO.ORG!
         navigator.clipboard.writeText(`https://v2.applio.org/models?id=${id}`)
     }
+
+    async function handleLike() {
+        setClicked(true)
+        if (!liked) {
+            setLiked(true)
+            router.refresh();
+        }
+
+        if (liked) {
+            setLiked(false)
+            router.refresh();
+        }
+    }
+
+    async function sendLike() {
+        const auth = await supabase.auth.getUser();
+
+        if (auth.data && auth.data.user) {
+            const profile = await supabase.from("profiles").select("id, full_name").eq("auth_id", auth.data.user.id).single();
+
+            if (liked && profile.data && clicked) {
+                const { data, error } = await supabase.from("likes").insert({ by: profile.data.full_name, by_id: profile.data.id, model: id });
+                if (data) {
+                    
+                }
+                if (error) {
+                    console.log(error)
+                }
+            }
+            if (!liked && profile.data && clicked) {
+                const { data, error } = await supabase.from("likes").delete().eq("by_id", profile.data.id);
+                if (data) {
+                    
+                }
+                if (error) {
+                    console.log(error)
+                }
+            }
+
+            if (profile.data && !clicked && !liked) {
+                const {data, error} = await supabase.from("likes").select().eq("by_id", profile.data.id).eq("model", id);
+                if (data && data.length != 0) {
+                    setLiked(true) 
+                    console.log(`A ${data}`)
+                } else {
+                    setLiked(false)
+                }
+            }
+
+        } else {
+            router.push('/login');
+        }
+    }
+
+    useEffect(() => {
+        sendLike();
+    }, [id, liked]);
+
     return (
         <div className='md:absolute bottom-4 z-50 bg-white/10 backdrop-blur-3xl p-2 drop-shadow-lg rounded-xl right-0 mx-4 max-md:mt-6 border-2 border-white/10'>
         {!open && (
@@ -41,9 +103,9 @@ export default function OptionsModelMenu({ id }: { id: string }) {
             </a>
         </div>
         <div className="max-md:mt-4 max-md:flex max-md:flex-col max-md:text-center">
-            <a className="bg-black/20 border border-white/10 hover:bg-black/10 slow px-8 py-3 md:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl">
+            <button className={`${liked ? 'bg-white/10 hover:bg-white/20' : 'bg-black/20 hover:bg-black/10'} border border-white/10 slow px-8 py-3 md:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl`} onClick={handleLike}>
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>
-            </a>
+            </button>
         </div>
         <div className="max-md:mt-4 max-md:flex max-md:flex-col max-md:text-center">
             <a className="text-black bg-white hover:bg-white/80 slow px-8 py-3 md:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl">

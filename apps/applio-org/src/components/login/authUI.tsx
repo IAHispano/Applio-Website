@@ -74,7 +74,7 @@ export default function AuthUI(){
             opacity: 1
           }}
         ></div>
-        <div className="grid grid-rows-3 grid-flow-col h-[70svh] max-md:h-[80svh] w-full max-w-2xl mx-auto bg-white/10 mt-24 md:rounded-2xl backdrop-blur-3xl md:border border-white/10 drop-shadow-xl p-8 z-50">
+        <div className="grid grid-rows-3 grid-flow-col h-[70svh] max-md:h-fit w-full max-w-2xl mx-auto bg-white/10 mt-24 md:rounded-2xl backdrop-blur-3xl md:border border-white/10 drop-shadow-xl p-8 z-50">
           <div className="w-full">
             <h1 className="text-3xl mb-12">Login at Applio</h1>
             <p className="mb-2">Email</p>

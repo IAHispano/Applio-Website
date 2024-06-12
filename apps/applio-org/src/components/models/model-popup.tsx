@@ -33,7 +33,7 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
     }, [id]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-md:p-4 overflow-y-auto h-full max-md:pt-24">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-md:p-4 overflow-y-auto h-full max-md:pt-52">
       <div className="bg-white/10 backdrop-blur-3xl shadow-xl shadow-white/20 rounded-xl p-6 shadow-xl md:w-full md:max-w-[110svh] md:h-full md:max-h-[70svh] max-md:w-full max-md:h-fit max-md:mt-12">
         <button 
           className="absolute top-0 right-0 m-4 hover:text-red-500 slow" 

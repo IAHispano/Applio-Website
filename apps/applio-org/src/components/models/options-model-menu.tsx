@@ -70,7 +70,9 @@ export default function OptionsModelMenu({ id }: { id: string }) {
             }
 
         } else {
+            if (clicked) {
             router.push('/login');
+            }
         }
     }
 

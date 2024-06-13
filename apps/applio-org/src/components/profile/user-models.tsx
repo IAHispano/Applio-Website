@@ -46,15 +46,15 @@ export default function UserModels({ data }: { data: any[] }) {
       }
 
     return (
-        <section className="mt-44 w-full grid gap-4 md:grid-cols-4 z-30 flex justify-center items-center mx-auto">
+        <section className="mt-44 w-full grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-30">
             {showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
             {Array.isArray(data) && data.map((model: any, index: number) => {
                 return (
-                    <a className="w-full h-full flex cursor-pointer mx-4" key={index} onClick={(e) => { e.preventDefault(); handleOpenPopup(model.id); }}>
+                    <a className="w-full h-full flex cursor-pointer md:mx-4" key={index} onClick={(e) => { e.preventDefault(); handleOpenPopup(model.id); }}>
                               <div className="bg-neutral-700/30 border border-white/10 rounded-lg w-full h-full max-md:p-6 p-5 hover:shadow-sm hover:shadow-white/10 slow">
                                 <div className="md:justify-between flex max-md:flex-col">
                                 <div>
-                                <h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[500px] max-xl:max-w-[600px] max-w-5xl max-md:text-wrap truncate text-left font-semibold">{model.name}</h1>
+                                <h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[100px] max-xl:max-w-[200px] xl:max-w-[250px] max-w-5xl max-md:text-wrap truncate text-left font-semibold">{model.name}</h1>
                                 <h2 className="text-white/80 text-xl text-left">by {model.author_username}</h2>
                                 </div>
                                 </div>

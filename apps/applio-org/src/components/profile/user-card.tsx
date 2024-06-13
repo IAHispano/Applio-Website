@@ -7,6 +7,7 @@ import { User } from "@/types/userTypes";
 import Circles from "../svg/circles";
 import { Model } from "@/types/modelsTypes";
 import UserModels from "./user-models";
+import { Auth } from "@/types/authTypes";
 
 export default function UserCard({ id }: {  id: string  }) {
     const [data, setData] = useState<User | null>()
@@ -14,8 +15,12 @@ export default function UserCard({ id }: {  id: string  }) {
     const [modelsCount, setModelsCount] = useState<number>()
     const [guidesCount, setGuidesCount] = useState<number>()
     const [likesCount, setLikesCount] = useState<number>()
+    const [followsCount, setFollowsCount] = useState<number>()
     const [error, setError] = useState(false)
     const [loading, setLoading] = useState(true)
+    const [follow, setFollow] = useState(false)
+    const [authData, setAuthData] = useState<Auth | null>()
+    const [userData, setUserData] = useState<User | null>()
 
     useEffect(() => {
         async function getUserInfo() {
@@ -29,6 +34,7 @@ export default function UserCard({ id }: {  id: string  }) {
                 setData(data)
                 getUserModelsCount(data.id);
                 getUserLikes(data?.id as string)
+                getUserFollows(data.id);
             }
 
             if (error) {
@@ -98,12 +104,67 @@ export default function UserCard({ id }: {  id: string  }) {
             }
         }
         
-        
-    
+        async function getUserFollows(follow_id: string) {
+            if (follow_id) {
+                const { count } = await supabase.from("follows").select('', {count: 'exact', head: true}).eq("follow_id", follow_id)
+                if (count) {
+                    setFollowsCount(count)
+                } else {
+                    setFollowsCount(0)
+                }
+            }
+        }
+
         if (id) {
           getUserInfo();
         }
       }, [id]);
+
+      useEffect(() => {
+        async function getUserIsFollowing() {
+            const { data: authData, error: authError } = await supabase.auth.getUser();
+            if (authData && authData.user) {
+                setAuthData(authData as Auth)
+                const {data: profileData} = await supabase.from("profiles").select("id, full_name").eq("auth_id", authData.user.id).single();
+                setUserData(profileData as User)
+                if (profileData) {
+                    const { data: followsData, error: followsError } = await supabase.from("follows").select("*").eq("by_id", profileData.id).eq("follow_id", data?.id)
+                    if (followsData && followsData.length > 0) {
+                        console.log(followsData)
+                        setFollow(true)
+                    } else {
+                        setFollow(false)
+                    }
+                }
+            }
+        }
+        
+
+        getUserIsFollowing();
+      }, [data])
+
+
+      const handleFollow = async () => {
+        if (authData && authData.user) {
+            if (userData && data) {
+                if (follow) {
+                    setFollow(false)
+                    if (followsCount != null) {
+                        setFollowsCount(followsCount - 1)
+                    }
+                    const removeFollow = await supabase.from("follows").delete().eq("by_id", userData.id).eq("follow_id", data.id)
+                } else {
+                    setFollow(true)
+                    if (followsCount != null) {
+                        setFollowsCount(followsCount + 1);
+                    }
+                    const sendFollow = await supabase.from("follows").insert({by: userData.full_name, by_id: userData.id, follow: data.full_name, follow_id: data.id});
+                }
+            }
+      } else {
+        window.location.href = '/login'
+      }
+    }
 
     return (
         <section className="flex min-h-screen flex-col items-center md:-mt-24">
@@ -125,7 +186,7 @@ export default function UserCard({ id }: {  id: string  }) {
             <div className="md:w-[70svh] md:h-fit w-full h-fit p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-3xl flex flex-col md:mt-24 z-20">
                 {data.avatar_url && !error && (
                 <div className="justify-start flex z-50">
-                <img src={data?.avatar_url} className="md:rounded-full rounded-xl max-md:w-full" onError={() => setError(true)}/>
+                <img src={data?.avatar_url} className="md:rounded-full rounded-xl max-md:w-full" onError={() => setError(true)} alt="User Avatar" />
                 </div>
                 )}
                 {data.avatar_url && !error && (
@@ -162,8 +223,8 @@ export default function UserCard({ id }: {  id: string  }) {
                     )}
                     </div>
                     <div>
-                        <button className="border border-white/10 py-1 text-sm hover:bg-white/10 slow px-6 rounded-xl max-md:w-full">Follow</button>
-                        <p className="text-xs text-center text-white/60 mt-1"><span className="read-font">{data?.followers ?? 0}</span> Followers</p>
+                        {userData && userData.full_name !== id && (<button className={`${follow ? 'bg-white/20' : ''} border border-white/10 py-1 text-sm hover:bg-white/10 slow px-6 rounded-xl max-md:w-full`} onClick={handleFollow}>{follow ? 'Following' : 'Follow'}</button>)}
+                        <p className="text-xs text-center text-white/60 mt-1"><span className="read-font">{followsCount ?? 0}</span> Followers</p>
 
                     </div>
                 </div>

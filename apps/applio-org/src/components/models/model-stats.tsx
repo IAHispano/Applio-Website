@@ -84,12 +84,10 @@ export default function ModelStats({ id }: { id: string }) {
         getModelViews(id)
     }, [id]);
 
-    console.log(data)
-
     return (
-        <section className="z-50 grid grid-cols-3 gap-4">
+        <section className="z-50 grid grid-cols-3 gap-4 bg-white/10 p-4 rounded-xl">
         <div className="border bg-neutral-700/10 border-white/10 py-2 md:px-4 px-2 rounded-xl w-full flex flex-col">
-        <p className="text-white/70 text-left mb-2 text-sm">Views</p>
+        <p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">Views</p>
         <div className="flex gap-4 w-full">
         {views?.length === 0 ? (<h1 className="text-4xl font-bold read-font">0</h1>) : (<NumberTicker value={totalViews || 0} className="text-4xl font-bold read-font"/>)}
         {views && (
@@ -100,7 +98,7 @@ export default function ModelStats({ id }: { id: string }) {
         </div>
         </div>
         <div className="border bg-neutral-700/10 border-white/10 py-2 md:px-4 px-2 rounded-xl w-full flex flex-col">
-        <p className="text-white/70 text-left mb-2 text-sm">Downloads</p>
+        <p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">Downloads</p>
         <div className="flex gap-4 w-full">
         {data?.length === 0 ? (<h1 className="text-4xl font-bold read-font">0</h1>) : (<NumberTicker value={totalDownloads || 0} className="text-4xl font-bold read-font"/>)}
         {data && (
@@ -111,7 +109,7 @@ export default function ModelStats({ id }: { id: string }) {
         </div>
         </div>
         <div className="border bg-neutral-700/10 border-white/10 py-2 md:px-4 px-2 rounded-xl w-full flex flex-col">
-        <p className="text-white/70 text-left mb-2 text-sm">Likes</p>
+        <p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">Likes</p>
         <div className="flex gap-4 w-full">
         {likes?.length === 0 ? (<h1 className="text-4xl font-bold read-font">0</h1>) : (<NumberTicker value={totalLikes || 0} className="text-4xl font-bold read-font"/>)}
         {likes && (

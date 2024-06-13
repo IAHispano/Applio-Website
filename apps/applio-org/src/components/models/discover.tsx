@@ -127,9 +127,7 @@ export default function DiscoverModels() {
           setShowPopup(true);
           const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?id=${id}`;
           window.history.replaceState({ path: newUrl }, '', newUrl);
-          if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
-            document.body.style.overflow = 'hidden';
-          }
+
 
           // send view to db
           if (!popupId || popupId !== id) {
@@ -213,7 +211,9 @@ export default function DiscoverModels() {
             </div>
             <article className="flex flex-col gap-4 w-full h-full mt-8">
             {data && data.map((model: any, index: number) => (
+            <div key={index} className="max-h-96 overflow-y-auto">
             <button className="w-full h-full flex cursor-pointer" key={index} onClick={(e) => { e.preventDefault(); handleOpenPopup(model.id); }}><ModelCard key={index} data={model} /></button>
+            </div>
             ))}
             </article>
             </section>

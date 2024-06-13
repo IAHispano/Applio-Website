@@ -9,7 +9,7 @@ export default function ModelCard({ data }: { data: { name: string, author_usern
       <div className="bg-neutral-700/30 border border-white/10 rounded-lg w-full h-full max-md:p-6 p-5 hover:shadow-lg hover:shadow-white/10 slow">
         <div className="md:justify-between flex max-md:flex-col">
         <div>
-        <h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[500px] max-xl:max-w-[600px] max-w-5xl max-md:text-wrap truncate text-left">{data.name}</h1>
+        <h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[500px] max-xl:max-w-[600px] max-w-5xl max-md:text-wrap truncate text-left font-semibold">{data.name}</h1>
         <h2 className="text-white/80 text-xl text-left">by {data.author_username}</h2>
         </div>
         <div className="max-md:mt-4 max-md:flex max-md:flex-col max-md:text-center">

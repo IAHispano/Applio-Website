@@ -36,7 +36,6 @@ export default function OptionsModelMenu({ id }: { id: string }) {
             if (liked && profile.data && clicked) {
                 const { data, error } = await supabase.from("likes").insert({ by: profile.data.full_name, by_id: profile.data.id, model: id });
                 if (data) {
-                    console.log('hola')
                 }
                 if (error) {
                     console.log(error)
@@ -55,7 +54,6 @@ export default function OptionsModelMenu({ id }: { id: string }) {
             if (profile.data && !clicked && !liked) {
                 const {data, error} = await supabase.from("likes").select().eq("by_id", profile.data.id).eq("model", id);
                 if (data && data?.length  > 0) {
-                    console.log('hola2')
                     setLiked(true) 
                 } 
                 console.log(data)
@@ -64,7 +62,6 @@ export default function OptionsModelMenu({ id }: { id: string }) {
             if (profile.data && !clicked && !liked ) {
                 const {data, error} = await supabase.from("likes").select().eq("by_id", profile.data.id).eq("model", id);
                 if (data && data?.length  > 0) {
-                    console.log('hola2')
                     setLiked(true) 
                 }      
             }
@@ -81,7 +78,7 @@ export default function OptionsModelMenu({ id }: { id: string }) {
     }, [id, liked]);
 
     return (
-        <div className='flex gap-2 max-md:mb-6'>
+        <div className='flex max-md:flex-col gap-2 max-md:mb-6'>
             <button className={`bg-white/10 hover:bg-white/20 slow px-5 py-2 md:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl`} onClick={handleShare}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
             </button>

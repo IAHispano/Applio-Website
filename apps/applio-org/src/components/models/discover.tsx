@@ -127,7 +127,9 @@ export default function DiscoverModels() {
           setShowPopup(true);
           const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?id=${id}`;
           window.history.replaceState({ path: newUrl }, '', newUrl);
-
+          if (typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches) {
+            document.body.style.overflow = 'hidden';
+          }
 
           // send view to db
           if (!popupId || popupId !== id) {

@@ -33,10 +33,10 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
     }, [id]);
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-md:p-4 overflow-y-auto h-full max-md:pt-52">
+    <div className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-lg:p-4 overflow-y-auto h-full max-md:pt-52">
       <div className="bg-white/10 backdrop-blur-3xl shadow-xl shadow-white/20 rounded-xl p-6 md:pb-0 shadow-xl md:w-full md:max-w-[110svh] md:h-full md:max-h-[60svh] max-md:w-full max-md:h-fit max-md:mt-12">
         <button 
-          className="absolute top-0 right-0 m-4 mt-6 bg-white/10 hover:bg-red-500/10 p-2 rounded-xl slow" 
+          className="absolute top-0 right-0 m-4 lg:mt-6 mt-4 bg-white/10 hover:bg-red-500/10 p-2 rounded-xl slow" 
           onClick={onClose}
         >
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
@@ -55,9 +55,9 @@ const ModelPopup = ({ id, onClose }: { id: string | null, onClose: () => void })
         {data && !error && !loading && (
         <>
         <article className='w-full h-full z-50 flex flex-col'>
-        <div className='flex justify-between max-md:flex-col pr-12 pt-0'>
+        <div className='flex justify-between max-lg:flex-col lg:pr-12 pt-0'>
         <div className='flex flex-col'>
-        <h1 className='text-3xl max-w-3xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-semibold'>{data.name}</h1>
+        <h1 className='text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-semibold'>{data.name}</h1>
         <p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5 mt-1 mb-2">by <a href={`/${data.author_username || '?'}`} className='hover:underline text-white/80'>{data.author_username || '?'}</a> in {data.server_name || '?'} · <span className='read-font text-sm'>{(() => { const t = Math.round((new Date().getTime() - new Date(data.created_at).getTime()) / (1000 * 60)); return t < 60 ? `${t} minutes` : t < 1440 ? `${Math.floor(t / 60)}h` : `${Math.floor(t / 1440)} days`; })()}</span> ago.</p>
         </div>
         <OptionsModelMenu id={data.id} />

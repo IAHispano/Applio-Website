@@ -106,20 +106,36 @@ export default function DiscoverModels() {
         if (id) {
           handleOpenPopup(id);
         }
+
+        setTimeout(() => {
+          localStorage.removeItem(`viewed_${id}`);
+      }, 120000);
       }, [searchParams]);
 
       async function sendView(id: string) {
+        if (!hasViewed(id)) {
         const data2 = await supabase.auth.getUser();
         if (data2 && data2.data.user) {
             const userInfo = await supabase.from("profiles").select("full_name, id").eq("auth_id", data2.data.user.id).single()
             if (userInfo.data) {
             const views = await supabase.from("views").insert({ by: userInfo.data.full_name, model: id, by_id: userInfo.data.id })
+            setViewed(id);
             } 
           } else {
             const views = await supabase.from("views").insert({ by: 'Unknown', model: id, by_id: 'Unknown' })
+            setViewed(id);
           }
-
+        } 
       }
+
+      function hasViewed(id: string): boolean {
+        const viewed = localStorage.getItem(`viewed_${id}`);
+        return viewed === 'true';
+    }
+    
+    function setViewed(id: string): void {
+        localStorage.setItem(`viewed_${id}`, 'true');
+    }
 
       const handleOpenPopup = (id: string) => {
         if (id) {

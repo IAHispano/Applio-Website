@@ -46,7 +46,7 @@ export default function UserModels({ data }: { data: any[] }) {
       }
 
     return (
-        <section className="mt-44 w-full grid gap-4 md:grid-cols-4 z-30">
+        <section className="mt-44 w-full grid gap-4 md:grid-cols-4 z-30 flex justify-center items-center mx-auto">
             {showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
             {Array.isArray(data) && data.map((model: any, index: number) => {
                 return (

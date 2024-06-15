@@ -2,6 +2,7 @@ import NewsPostComponent from "@/components/news/NewsPost"
 import AdminDashboard from "@/components/news/admin-post"
 import { supabase } from "@/utils/database";
 
+// Remove for local development:
 export const runtime = 'edge';
 
 export default function NewsPost({ params }: { params: { id: number } }) {

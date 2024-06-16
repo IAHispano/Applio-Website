@@ -11,7 +11,7 @@ export default function Home() {
       <div className="absolute">
       <Background1 />
       </div>
-      <section className="z-30 md:mt-72 max-md:mt-44 text-center flex justify-center items-center flex-col">
+      <section className="z-30 md:mt-72 max-md:mt-24 text-center flex justify-center items-center flex-col">
       <a className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5" role="alert" href="/premium">
         <span className="flex rounded-full bg-white uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
         <span className="font-semibold mr-2 text-left flex-auto text-white">Introducing Applio Premium</span>

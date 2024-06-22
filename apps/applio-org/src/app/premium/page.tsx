@@ -2,6 +2,9 @@
 
 // todo
 
+// Remove for local development
+export const runtime = 'edge';
+
 import Faq from '@/components/premium/faq';
 import Background2 from '@/components/svg/background2';
 import { supabase } from '@/utils/database';

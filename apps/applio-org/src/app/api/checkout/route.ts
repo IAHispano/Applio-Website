@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { Stripe } from 'stripe';
 
+// Remove for local development
+export const runtime = 'edge';
+
 export async function POST(req: NextRequest) {
   const { priceId, userId, auth_id, type } = await req.json();
 

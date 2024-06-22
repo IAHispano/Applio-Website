@@ -1,6 +1,9 @@
 import DiscoverGuides from "@/components/learn/browse-more";
 import MoreLiked from "@/components/learn/more-liked";
 
+// Remove for local development
+export const runtime = 'edge';
+
 export default function LearnGuides() {
     return (
         <main className="md:min-h-[80svh] w-full h-full flex flex-col lg:px-72 items-center mx-auto mt-12 gap-10 max-md:px-4">

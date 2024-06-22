@@ -10,6 +10,7 @@ export default function Navbar() {
                 <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
+                    <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/learn">Learn</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>
                     <div className="dropdown">
                         <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full flex items-center transition">Products<svg className="ml-2 mt-0.5" width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.3333 1L5.66667 5.66667L1 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg></a>

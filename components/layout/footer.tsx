@@ -34,13 +34,6 @@ export default function Footer() {
           </h1>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/premium"
-            target="_blank"
-          >
-            Premium
-          </a>
-          <a
-            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/playground"
             target="_blank"
           >

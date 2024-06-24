@@ -18,7 +18,6 @@ export async function SiteHeader() {
             </div>
             <h1 className="text-2xl font-semibold truncate tracking-tight">Applio</h1>
         </a>
-        <a className="flex rounded-full bg-[#00AA68]/80 uppercase px-2 py-1 text-xs font-bold hover:shadow-xl hover:shadow-[#00AA68]/50 gtransition" href="/premium">Premium</a>
         <div className="w-full max-w-6xl justify-center items-center flex gap-2.5 h-full">
           <div className="flex-grow h-full flex items-center justify-center mx-auto">
             <MainNav items={siteConfig.mainNav} />

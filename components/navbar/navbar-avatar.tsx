@@ -65,10 +65,6 @@ export default function NavbarAvatar({
     window.location.href = `/admin/${user?.id}`
   }
 
-  const premium = () => {
-    window.location.href = `/premium`
-  }
-
   const handleSignOut = async () => {
     await supabase.auth.signOut()
     router.refresh()
@@ -95,12 +91,6 @@ export default function NavbarAvatar({
   const iconClasses =
     "text-sm text-default-500 pointer-events-none flex-shrink-0"
   const dropdownItems = [
-      <DropdownItem key="tour" onClick={premium} startContent={<HandHeart  className='text-sm text-white pointer-events-none flex-shrink-0' />} 
-      className="p-3 my-1 hover:opacity-95 gtransition border-2 border-white/10 rounded-xl">
-      <div style={{background: 'radial-gradient(100% 100% at 50% 100%,#222 0%,#000 100%)'}} className='w-full h-full absolute top-0 left-0 z-0 rounded-xl mb-2'>
-      <span className="z-50 flex justify-center text-center items-center p-4">Applio <span className="font-bold">Premium</span></span>
-      </div>
-    </DropdownItem>,
     <DropdownItem
       key="profile"
       onClick={handleProfileClick}

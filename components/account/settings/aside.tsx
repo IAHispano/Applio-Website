@@ -6,7 +6,6 @@ import { Bot, CalendarSearch, Sparkles, User2 } from "lucide-react"
 
 import Information from "./information"
 import ModelsAccount from "./models"
-import { PremiumSettings } from "./premium-settings"
 
 interface AsideSelectionProps {
   avatar_url: string
@@ -79,7 +78,6 @@ export function AsideSelection({
             {section === "models" && (
               <ModelsAccount userFullName={full_name as string} />
             )}
-            {section === "premium" && <PremiumSettings userFullName={full_name as string}/>}
           </div>
         </div>
       </div>

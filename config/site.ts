@@ -40,10 +40,6 @@ export const siteConfig = {
       href: "/",
     },
     {
-      label: "Premium",
-      href: "/premium",
-    },
-    {
       label: "Playground",
       href: "/playground",
     },

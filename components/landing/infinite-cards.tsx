@@ -121,7 +121,7 @@ export const InfiniteMovingCards = ({
         ) : (
         <div>
           <object>
-          <img className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-2xl gtransition" loading="lazy" decoding="async" data-nimg="fill"  src={item.image_url === null || item.image_url === "n/a" || imageError ? '/no_bg_applio_logo.png' : `https://cjtfqzjfdimgpvpwhzlv.supabase.co/storage/v1/object/public/Images/${item.id}.webp`}
+          <img className="absolute top-0 left-0 w-full h-full object-cover object-center rounded-2xl gtransition" loading="lazy" decoding="async" data-nimg="fill"  src={item.image_url === null || item.image_url === "n/a" || imageError ? '/no_bg_applio_logo.png' : item.image_url}
             onError={(event) => {
 
                 handleImageError(event);

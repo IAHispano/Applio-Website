@@ -22,11 +22,15 @@ Training is the process by which the program will be able to clone any voice or 
 
 The recommended duration to have a good dataset is 30 minutes, but if you have even less audio than recommended, pretraineds will be your solution to get a good model with low data.
 
+Upload your dataset using the **Dataset Maker (if it is a single audio)** or setup it manually (various audios) to `applio/assets/datasets` creating inside a folder for the program to read it.
 
+- [don't know how to create a dataset?, check the dataset section](/guides/create-datasets/create-datasets)
 
 ### Step 2: Dataset Processing
 
 Once you have the audio ready, be sure to select the correct frequency for your file `(32k, 40k, 48k)`, with that you can proceed to name your model and run the **Preprocess Dataset** Step.
+
+Adjust the number of CPU cores to utilize. The default setting are your cpu cores, which is recommended for most cases.
 
 ### Step 3: Feature Extraction
 Now you are in the second last step!, but... what is ***feature extraction***?
@@ -35,6 +39,10 @@ Extracting features is an essential step to train, this process will convert eac
 
 Several F0 models are available to choose from, but the best performer is **RVMPE.**
 - When you select your model, press **Extract Features** to start the process, remember to check your CMD until you see a message indicating that the process is complete.
+
+Adjust the number of CPU cores to use in the index extraction process. The default setting are your cpu cores, which is recommended for most cases.
+
+- [don't know how to check sample rate?, check the Audio Analizer section](/getting-started/audio-analizer)
 
 ### Final Step: Model & Index Training 
 
@@ -50,6 +58,8 @@ This is where the real work begins, to start training your model you will need t
 
 **ℹ️ Index Generation:** generating an index is a must, just click on the “train index” button to perform the process.
 
+Your trained model is located in the `logs/model folder`, and the .pth files are in the `logs/zips` folder. Also you can export your trained model directly from the Applio interface, go to the **Export Model** section in the **train** tab, click on the **Refresh** button and select the **pth and the added index** of the model to export.
+
 <FAQBox title="Other Options">
 - **Pitch Guidance:** Gives variation of pitch.
 - **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain.
@@ -59,9 +69,13 @@ This is where the real work begins, to start training your model you will need t
 - **GPU Settings:** Allows to choose GPUs (only for users who have more than one GPU).
 - **Overtraining Detector:** Mark it only if you will train for more than 200 epochs.
 - **Overtraining Threshold:** Set the maximum number of epochs you want your model to stop training if no improvement is detected.
+- **Sync Graph:** Synchronize the graph of the tensorbaord. Only enable this setting if you are training a new model.
+- **Cache Dataset in GPU:** Cache the dataset in GPU memory to speed up the training process.
+- **Embedder Model:** Select the Embedder model (contentvec, japanese-hubert-base, chinese-hubert-large or custom).
 
 </FAQBox>
 
+- [don't know how to use Tensorboard for correct training? Check out the Tensorboard section](/getting-started/tensorboard)
 
 </Steps>
 <Steps>

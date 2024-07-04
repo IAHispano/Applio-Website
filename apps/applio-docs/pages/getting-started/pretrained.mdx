@@ -1,3 +1,5 @@
+import { Callout, Steps, Tabs } from "nextra/components";
+
 # Pretrained
 
 ## What are pretraineds?
@@ -27,6 +29,10 @@ To embark on building a model from scratch, conduct standard training while disa
 In the training tab, check the **'Custom Pretrained'** box, upload the files, and select it in the **Pretrained G/D Path boxes**.
 
 ![](/Load-Pretrained.png)
+
+<Callout type="info" emoji="ℹ️">
+ Now you can download the custom pretrained models directly from the **Download** tab in Applio, just select the **Pretrained** model you want to download, choose the **Sample Rate**, and click on **Download**.
+</Callout>
 
 ## Where to find pretraineds?
 
@@ -60,16 +66,18 @@ Works well with Russian or Japanese language datasets and also helps models of o
 
 ### KLM v7 by SeoulStreamingStation
 
-Works well with Korean and some types of Japanese voices. Unlike typical pre-trained models, it has a very wide vocal range, which should be very helpful for those covering songs, it supports **all the sample rates**.
+Works well with Korean and some types of Japanese voices. Unlike typical pre-trained models, it has a very wide vocal range, which should be very helpful for those covering songs, this only **32k and 48k sample rate**.
 
-> https://huggingface.co/SeoulStreamingStation/KLMv7s/resolve/main/KLMv7s_Batch2.zip
+> https://huggingface.co/SeoulStreamingStation/KLM4.1/tree/main
 
 ### TITAN by blaise-tk
 
-It gives cleaner results compared to the original pretrained, also handles the accent better. Like Ov2 Super, it allows models to be trained with few epochs, it only supports **32K and 40k** sample rate.
+It gives cleaner results compared to the original pretrained, also handles the accent better. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
 
 > **32K**: https://huggingface.co/blaise-tk/TITAN/tree/main/models/medium/32k/pretrained
 
 > **40K**: https://huggingface.co/blaise-tk/TITAN/tree/main/models/medium/40k/pretrained
 
-Make sure to select the sample rate according to the [sample rate](https://docs.applio.org/guides/datasets/sample-rate/#what-is-sample-rate) of the custom pretraineds.
+> **48K**: https://huggingface.co/blaise-tk/TITAN/tree/main/models/medium/48k/pretrained
+
+Make sure to select the sample rate according to the [sample rate](/getting-started/audio-analizer) of the custom pretraineds.

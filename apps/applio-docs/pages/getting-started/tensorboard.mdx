@@ -22,24 +22,23 @@ Tensorboard is a series of graphs where we can monitor the progress of our model
 This image provides a visual guide for locating the "g/total" metric within the "Scalars" tab.
 
 <Callout type="info" emoji="ℹ️">
-  Settings - Set the **smoothing** to 0.950 or 0.987 for a better view of the
-  graph. - You can click on the :gear: to mark the option to **reload data**
-  every 30 seconds. - Below each graph, there will be 3 buttons. The first one
-  is to **put it in full size**, the second one is to **deactivate the Y-axis**
-  and the last one is to **adjust the data to the graph**. - Uncheck the option
-  to **ignore outliers in chart scaling**.
+  Settings: 
+  - Set the **smoothing** to 0.950 or 0.987 for a better view of the graph. 
+  - You can click on the :gear: to mark the option to **reload data** every 30 seconds. 
+  - Below each graph, there will be 3 buttons. The first one is to **put it in full size**, the second one is to **deactivate the Y-axis** and the last one is to **adjust the data to the graph**. 
+  - Uncheck the option to **ignore outliers in chart scaling**.
 </Callout>
 
 ## Lowest Point
 
-It’s when the graph goes to a point so low that it doesn’t happen again. During training, there will be several low points which you should test to find the indicated pth of your model and in this way prevent our model from being [overtrained](https://docs.applio.org/faq/rvc/#overtraining). To know which one to choose, we go to the lowest point and look at how many **steps** it has. Knowing this, we can search in the open cmd or colab notebook for the epochs with that step or the closest one from the save points.
+It’s when the graph goes to a point so low that it doesn’t happen again. During training, there will be several low points which you should test to find the indicated pth of your model and in this way prevent our model from being overtrained. To know which one to choose, we go to the lowest point and look at how many **steps** it has. Knowing this, we can search in the open cmd or colab notebook for the epochs with that step or the closest one from the save points.
 
 ![](/Point.png)
 
-Advanced Information
-Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates overtraining.
+## Advanced Information
+Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates overtraining, we will explain each of them to you below.
 
-## Loss Terms
+### Loss Terms
 
 Loss terms provide valuable feedback during the training process of GANs, helping to improve the quality and realism of the generated synthetic data.
 

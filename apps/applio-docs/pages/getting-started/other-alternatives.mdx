@@ -44,14 +44,14 @@ In this section, you will find the following options:
 - **Mount Drive:** Connects Colab to our Google Drive for performing backups.
 - **AutoBackup:** Saves our trained model to our drive. Drive needs to be mounted first.
 - **Load a Backup:** Used to load our model if we want to retrain it. Drive must be mounted.
-- **Download [Custom Pretrains](https://docs.applio.org/get-started/pretrained/):** Allows direct downloading of custom pretrains to Applio.
+- **Download [Custom Pretrains](/getting-started/pretrained.mdx):** Allows direct downloading of custom pretrains to Applio.
 ![](/Extra-Colab.png)
 
-Options inside UI
+### Options inside UI
 
 - **Dataset Maker:** Upload your audio directly to its proper path via the interface.
 
-- **Or manual audio upload:** Place your audio in a folder on your Google Drive, run the Mount Cell, enter collab's file explorer, copy the path to the folder (`Drive/content/drive/MyDrive/My_custom_folderd`)
+- **Or manual audio upload:** Place your audio in a folder on your Google Drive, run the Mount Cell, enter collab's file explorer 📁, copy the path to the folder (`Drive/content/drive/MyDrive/My_custom_folderd`)
 
 </FAQBox>
 
@@ -64,7 +64,7 @@ To save your model, there are three ways to do it:
 
 - **Model to continue training:** if you want to save all the archives of your model folder in your Drive, you just need to run the **Mount Drive** and **AutoBackup** cell before run **Start Applio** cell, your model folder will be found inside the **ApplioBackup** folder.
 
-- **Manual (NOT RECOMENDED):** click on folder icon in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
+- **Manual (NOT RECOMENDED):** click on 📁 in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
 
 ## How to resume training in Google Colab?
 
@@ -72,7 +72,7 @@ If the model still needs training, simply do the following:
 
 - Run the same cells as before, but now you’ll need to enter your **model name** in **Load a backup** and run it.
 
-- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
+- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/faq#terminology)**, **[pretrained](/getting-started/pretrained#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
 </Steps>
 ### Code to be afk
 
@@ -94,12 +94,21 @@ setInterval(ClickConnect, 6000);
 ```
 ## Alternative 2: Applio No UI colab (recommended)
 
-To use the CLI version, enter to the [Applio No UI Colab.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) Click on the installation cell. If everything runs correctly, you can proceed to the next step. In case a pop-up window appears asking you to restart the environment, select 'Restart'. Once the environment has restarted, run the cell above the installation cell and then run the installation cell again.
+To use the CLI version, enter to the [Applio No UI Colab.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) Click on the **installation** cell. If everything runs correctly, you can proceed to the next step. In case a pop-up window appears asking you to restart the environment, select **Restart**. Once the environment has restarted, run the cell above the installation cell and then run the installation cell again.
 
 The notebook is easy to understand, even more so when this notebook shares the same processes as the UI version!, so you can be guided by the existing explanations such as [Training](/getting-started/training) or [Inference.](/getting-started/download-models)
 
-Finally, for upload or download files in Google Colab, it is recommended to click on the folder located in the left sidebar. This will open the file explorer, which allows you to transfer documents almost instantly between Google Drive and Colab. This feature facilitates file management, allowing you to quickly access and move data without hassle.
+Finally, if you had the **auto_backup** option enabled, your model will be saved to your Google Drive in case it needs to [resume training](/getting-started/other-alternatives#how-to-resume-training-in-google-colab) or  upload or download files in Google Colab, click on the 📁 located in the left sidebar. This will open the file explorer, which allows you to transfer documents almost instantly between Google Drive and Colab. This feature facilitates file management, allowing you to quickly access and move data without hassle.
 
+### How to use custom pretrained in Applio No UI?
+
+- Download the [pretrained](/getting-started/pretrained#where-to-find-pretraineds) you want to use and upload the d.pth and g.pth files to your Google Drive.
+
+- Click on :file_folder: in Colab, and create a new folder named **pretrained_custom** inside the **pretraineds** folder located in **Applio/rvc/pretraineds**.
+
+- Locate your pretrained model on your Google Drive and drag it into the newly created folder.
+
+- Finally, copy the path of G.pth and paste it into **g_pretrained_path**, and do the same for D.pth into **d_pretrained_path**. It should look like this: `/content/Applio/rvc/pretraineds/pretraineds_custom/G48k.pth` and `/content/Applio/rvc/pretraineds/pretraineds_custom/D48k.pth`, make sure to select the sample rate according to the [sample rate](/getting-started/audio-analizer) of the custom pretraineds.
 
 ## Alternative 3: Hugging Face
 
@@ -109,14 +118,12 @@ Hugging Face is a artificial intelligence and machine learning community, where 
 <Steps>
 - Applio is available as a space, you can use it directly without registering via [Applio Web.](https://applio.org/playground)
 
-- Or you can go to the Hugging Face website and create an account. Then, enter to the [Applio space](https://huggingface.co/spaces/IAHispano/Applio), go to the top bar, click on the three-dot icon on the right and select “Duplicate this space”. This will duplicate the program in a private running environment for you.
+- Or you can go to the Hugging Face website and create an account. Then, enter to the [Applio space](https://huggingface.co/spaces/IAHispano/Applio), go to the top bar, click on the three-dot icon on the right and select **“Duplicate this space”**. This will duplicate the program in a private running environment for you.
 </Steps>
-
 
 ![](/Duplicate.png)
 
-
-Please note that the space is limited to inference only, as it runs on a free CPU. The processing time is not optimal, and the longer the uploaded audio, the longer it will take. You can use the 'split audio' option to help mitigate this.
+Please note that the space is limited to [Inference](/getting-started/download-models) and [TTS](/getting-started/tts) only, as it runs on a free CPU. The processing time is not optimal, and the longer the uploaded audio, the longer it will take. You can use the **split audio** option to help mitigate this.
 
 
 ## Alternative 4: Paperspace
@@ -163,7 +170,7 @@ make run-applio
 
 5. Finally, the link to access the **GUI** will appear.
 
-6. You can [train](/get-started/training.md/) models while checking [Tensorboard](/get-started/tensorboard.md), do [inference](/get-started/inferencing.md/), or use [TTS](/get-started/tts.md/)
+6. You can [train](/getting-started/training) models while checking [Tensorboard](/getting-started/tensorboard), do [inference](/getting-started/download-models), or use [TTS](/getting-started/tts).
 
 ## How to upload my dataset in Paperspace?
 
@@ -188,7 +195,7 @@ If the model still needs training, simply do the following:
 
 - Entering the last 3 commands from step 4.
 
-- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](https://docs.applio.org/faq/rvc/#batch-size)**, **[pretrained](https://docs.applio.org/get-started/pretrained/#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
+- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/faq#terminology)**, **[pretrained](/getting-started/pretrained#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
 </Steps>
 
 export function FAQBox({ title, children }) {

@@ -17,7 +17,7 @@ When running the installer, Windows may mistakenly detect it as malware due to t
 ### Download Models 
 When inside UVR, you first need to download separation models.
 
-- Click on the wrench icon.
+- Click on the 🔧 icon.
 - Go to “Download Center”.
 - Choose your preferred models.
 
@@ -29,8 +29,8 @@ In the section you will find models structures, these are one of the best known:
   
   The Rope Transformer method contains two pretrained models, **BS-RoFormer** and **Mel-Band RoFormer**, which contain similar but not same structures, currently the best versions of these models are:
 
- - **BS-Roformer-Viperx-1297**
- - **Mel-Roformer-Viperx-1143**
+ - **BS-Roformer-Viperx-1297:** The best to separate vocals and instrumental.
+ - **Mel-Roformer-Viperx-1143:** Separate vocals and instrumental.
 
   </Tabs.Tab>
   <Tabs.Tab>
@@ -51,9 +51,9 @@ In the section you will find models structures, these are one of the best known:
   </Tabs.Tab>
   <Tabs.Tab>
    **Demucs** is an all-in-one model capable of separating most objects from an audio between 4 to 6 stems. Being their best version of DemucsV4. 
-  - **Demucs:** Default Model, normal proccesing time and good results.
-  - **Demucs_FT:** Slow processing but better results.
-  - **Demucs_6s:** Capability of separing Guitar and Piano stems.
+  - **htdemucs:** Default Model, normal proccesing time and good results.
+  - **htdemucs_ft:** Slow processing but better results.
+  - **htdemucs_6s:** Capability of separing Guitar and Piano stems.
 </Tabs.Tab>
 </Tabs> 
 ### Make the Audio conversion
@@ -65,6 +65,8 @@ When the models have been downloaded, you can go back to the home screen to make
 - Select the output path for the results and click convert.
 
 <FAQBox title="Other Options">
+- **Segment Size:** Larger consumes more resources, but may give better results.
+- **Overlap:** Amount of overlap between prediction windows.
 - **Window Size:** Change the audio processing bucket, a lower number indicates a much slower processing but a better worked result, and vice versa with a higher number.
 - **Aggression Settings:** Change the aggressiveness with which the separation will be performed, a higher number can eat important frequencies of the audio.
 </FAQBox>
@@ -77,8 +79,10 @@ When the models have been downloaded, you can go back to the home screen to make
 
 MVSEP is a website belonging to the **UVR team** which offers a fast and direct way to use the software in the cloud with a free version and paid upgrades.
 
-To use mvsep, it is as easy as enter to their website (https://mvsep.com/) and registering.
+To use mvsep, it is as easy as enter to their website (https://mvsep.com/) and registering. Apart from the mentioned models, MVSEP has some exclusive models, which are:
 
+- **BSReformer (ver 2024,04):** The best to separate instrumental and vocals.
+- **BanditPlus:** Remove SFX, speech, music, effects.
 
 ## Alternative 3: Google Collab
 This is a list of currently functional uvr notebooks.

@@ -41,7 +41,7 @@ const config: DocsThemeConfig = {
     }
   },
   faviconGlyph: "favicon.ico",
-  logoLink: "favicon.ico",
+  logoLink: "/",
   banner: {
     key: "new-release",
     text: (

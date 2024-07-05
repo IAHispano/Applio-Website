@@ -1,9 +1,10 @@
-import { Callout } from "nextra/components";
+import { Callout, Steps } from "nextra/components";
 
 # KaraFan
 
 Here you will learn how to Separate the Vocals and the Instrumental of songs with KaraFan.
 
+<Steps>
 ## Local
 
 ### How To Install?
@@ -15,7 +16,7 @@ Here you will learn how to Separate the Vocals and the Instrumental of songs wit
 1. On your PC where you wish to store the **KaraFan project** and Go inside it.
 2. First, we have to download and install [Python](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe).
 
-3. Donwload:
+3. Download:
 
 - [Install.exe](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.exe) The easiest way! **(auto-extract the BAT)**.
 - [Intall.zip](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.zip) Bypass the Browser Security
@@ -74,31 +75,37 @@ After installation, you'll find new folders at the root of the folder you have c
 Simply **Run the Setup.py** file!
 
 For more information, visit the [GitHub repository](https://github.com/Captain-FLAM/KaraFan).
+</Steps>
 
+<Steps>
 ## Google Colab
 
-1. In our Google Drive, we created the folder **Music** where we will put our songs to separate, and **Vocals** where our already separated song will be stored
+### Enter the karafan interface
+
+In our Google Drive, we created the folder **Music** where we will put our songs to separate, and **Vocals** where our already separated song will be stored
 
 <Callout type="warning" emoji="⚠️">
   The Colab only lasts 30 minutes in execution. Additionally, it is possible
   that Colab may disconnect after a few hours due to Google’s limitations.
 </Callout>
 
-2. First, we go to the [Google Colab](https://colab.research.google.com/github/Eddycrack864/KaraFan/blob/master/KaraFan_Improved_Version.ipynb).
+First, we go to the [Google Colab](https://colab.research.google.com/github/Eddycrack864/KaraFan/blob/master/KaraFan_Improved_Version.ipynb).
 
-3. Run the cell by clicking on the white play icon button. So that the repository can start to be cloned.
+Run the cell by clicking on the white play icon button. So that the repository can start to be cloned.
 
-4. Then we click on the next cell **This is it!** to load the KaraFan interface.
+Then we click on the next cell **This is it!** to load the KaraFan interface.
 
-5. Now we have to copy **the path of your song** that you want to separate and the path of the **folder** where the separated song will be stored.
+### Process your audio
 
-6. Now place the settings you want to apply, try the ones you want the most, but if you want to effectively separate the instrumental or sounds from the vocals, I recommend the following settings:
+Now we have to copy **the path of your song** that you want to separate and the path of the **folder** where the separated song will be stored.
+
+Now place the settings you want to apply, try the ones you want the most, but if you want to effectively separate the instrumental or sounds from the vocals, I recommend the following settings:
 
 | To separate the instrumental from the vocals | To separate other typoe of audios |
 | :------------------------------------------- | --------------------------------: |
 | ![](/Karafan-Vocals.png)                     |           ![](/Karafan-Other.png) |
 
-7. We click on **Start** and it will begin to separate the chosen song. At the end of the process, the message **Processing DONE** will appear at the end of the interface.
+We click on **Start** and it will begin to separate the chosen song. At the end of the process, the message **Processing DONE** will appear at the end of the interface.
 
 <Callout type="info" emoji="ℹ️">
   The first time you use it, it will start downloading the models you have
@@ -106,7 +113,7 @@ For more information, visit the [GitHub repository](https://github.com/Captain-F
   for the next time you want to use it, you will not need to download it again.
 </Callout>
 
-8. Now we go to the **Vocals** folder and we will find a folder with the name of our song or audio. There we will find a list of audios, we download the audio with the name **Vocal Final**, in case you want the instrumental one that says **Music Final**.
+Now we go to the **Vocals** folder and we will find a folder with the name of our song or audio. There we will find a list of audios, we download the audio with the name **Vocal Final**, in case you want the instrumental one that says **Music Final**.
 
 ### Code to be afk
 
@@ -126,3 +133,4 @@ function ClickConnect() {
 }
 setInterval(ClickConnect, 6000);
 ```
+</Steps>

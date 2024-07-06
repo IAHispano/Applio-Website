@@ -16,11 +16,11 @@ When creating a pretrained model, you have two primary options to consider.
 
 Firstly, you can either initiate a fine-tuning process on another pretrained model, which could be one of the originals, or start building one from scratch.
 
-Should you opt for building from scratch, the ideal approach involves gathering a substantial amount of moderately clean data; it doesn't necessarily have to be perfectly pristine. Subsequently, fine-tune this model with high-quality data.
+Should you opt for building from scratch, the ideal approach involves gathering a substantial amount of moderately clean data (50 hours or more); it doesn't necessarily have to be perfectly pristine. Subsequently, fine-tune this model with high-quality data.
 
 An essential consideration is to construct datasets devoid of copyrighted material.
 
-Alternatively, if you choose to fine-tune a pretrained model, the crux lies in the quality of the audio inputs. You can tailor it to a specific language, incorporate diverse speakers, and even integrate various accents. The customization possibilities are vast. However, it's crucial to strike a balance; avoid overtraining the pretrained model. The more effectively you fine-tune it now, the less training it will necessitate later during usage.
+Alternatively, if you choose to fine-tune a pretrained model, the crux lies in the quality of the audio inputs. You can tailor it to a specific language, incorporate diverse speakers, and even integrate various accents (10 hours or more). The customization possibilities are vast. However, it's crucial to strike a balance; avoid overtraining the pretrained model. The more effectively you fine-tune it now, the less training it will necessitate later during usage.
 
 To embark on building a model from scratch, conduct standard training while disabling the Pretrained option. For fine-tuning, engage in ordinary training while loading the desired pretrained model to fine-tune it.
 
@@ -38,19 +38,19 @@ In the training tab, check the **'Custom Pretrained'** box, upload the files, an
 
 ### Ov2 Super by SimplCup
 
-Works well for small and English datasets. Additionally, it allows models to train with very few epochs compared to regular pretrains. This only supports **32k and 40k** sample rates.
+Ov2Super is a fine-tuned based on the original RVC V2 pretrained and made with 30 minutes dataset, works well for small datasets and English language, this pretrained was trained on a precisely chosen clean speech and singing dataset, with bright and emotional voices. Additionally, it allows models to train with very few epochs compared to regular pretrains. This only supports **32k and 40k** sample rates.
 
 > https://huggingface.co/ORVC/Ov2Super/tree/main
 
 ### RIN_E3 by MUSTAR
 
-RIN_E3 is a pretrain made from scratch, made with 140 hour dataset, works well with English language but it is advisable to use it with high quality datasets due to its sensitivity to noise. This only supports **40k** sample rate.
+RIN_E3 is a pretrain made from scratch with 140 hours dataset, works well with English language but it is advisable to use it with high quality datasets due to its sensitivity to noise. This only supports **40k** sample rate.
 
 > https://huggingface.co/MUSTAR/RIN_E3/tree/main
 
-### SnowieV3.1 by Mustar
+### SnowieV3.1 by MUSTAR
 
-SnowieV3.1 was made with 58 hours dataset, works well with Russian language and also helps models of other languages to pronounce Russian well. Supports **all the sample rates**.
+SnowieV3.1 is a fine-tuned based on Snowie base pretrained (not publicly available) and made with 58 hours dataset (Russian and Japanese), so it will work better with those languages and also helps models of other languages to pronounce them well. Supports **all the sample rates**.
 
 > **32k**: https://huggingface.co/MUSTAR/SnowieV3.1-32k/tree/main
 
@@ -58,33 +58,33 @@ SnowieV3.1 was made with 58 hours dataset, works well with Russian language and 
 
 > **48k**: https://huggingface.co/MUSTAR/SnowieV3.1-48k/tree/main
 
-### SnowieV3 X RIN_E3 by Mustar
+### SnowieV3 X RIN_E3 by MUSTAR
 
-Works well with Russian or Japanese language language and also helps models of other languages to pronounce Russian or Japanese well. This only supports **40k** sample rate.
+SnowieV3 X RIN_E3 continues the training with Snowie dataset and then finetuned with additional data, so it will work better with English, Russian and Japanese language and also helps models of other languages to pronounce them well. This only supports **40k** sample rate.
 
 > https://huggingface.co/MUSTAR/SnowieV3.1-X-RinE3-40K/tree/main
 
 ### DMR V1 by Razer112
 
-DMR V1 is a fine-tuned based on the original RVC V2 pretrained made with 11.3 hour dataset and specially only for e-girl, soft male/female and deep male/female voices. This model was trained with Mangio-Crepe/Crepe (Applio) therefore it is advisable to use this extraction algorithm with a 128 hop length or below and have a clean dataset due to the sensitivity to noise of this algorithm. This only supports **32k sample rate**.
+DMR V1 is a fine-tuned based on the original RVC V2 pretrained and made with 11.3 hours dataset and specially only for e-girl, soft male/female and deep male/female voices. This model was trained with Mangio-Crepe/Crepe (Applio) therefore it is advisable to use this extraction algorithm with a 128 hop length or below and have a clean dataset due to the sensitivity to noise of this algorithm. This only supports **32k sample rate**.
 
 > https://huggingface.co/Razer112/DMR_Pretrain/tree/main
 
 ### Nanashi V1 by shiromiya
 
-Nanashi V1 is a fine-tuned based on TITAN pretrained made with 9 hour of Brazilian music, so it will work better with this language but it can work with other languages without any problems, like TITAN, it allows models to be trained with few epochs and handles the noise better. This only supports **32k sample rate**.
+Nanashi V1 is a fine-tuned based on TITAN pretrained and made with 9 hours of Brazilian music, so it will work better with this language but it can work with other languages without any problems, like TITAN, it allows models to be trained with few epochs and handles the noise better. This only supports **32k sample rate**.
 
 > https://huggingface.co/shiromiya/nanashi-pretrain/tree/main/v1
 
 ### KLM 4.1 by SeoulStreamingStation
 
-KLM 4.1 is a fine-tuned based on KLM V7 pretrained made with made with around 100 hour dataset (Korean vocal/speech, Japanese vocal/speech and English speech), so it will work better with those languages. Unlike typical pretrained models it has a very wide vocal range since KLM is a pretrained model created to make vocal guides using short voice recordings from a studio, this means that even with short dataset high pitch information it is possible to implement high-pitched sounds. This only supports **32k and 48k sample rate**.
+KLM 4.1 is a fine-tuned based on KLM V7 pretrained and made with around 100 hours dataset (Korean vocal/speech, Japanese vocal/speech and English speech), so it will work better with those languages. Unlike typical pretrained models KLM is a pretrained model created to make vocal guides using short voice recordings from a studio, this means that even with short dataset high pitch information it is possible to implement high-pitched sounds but it is sensitive to noise so it is recommended to use it with high quality datasets. This only supports **32k and 48k sample rate**.
 
 > https://huggingface.co/SeoulStreamingStation/KLM4.1/tree/main
 
 ### TITAN by blaise-tk
 
-TITAN is a fine-tuned based on the original RVC V2 pretrained, leveraging an 11.15-hour dataset sourced from Expresso. It gives cleaner results compared to the original pretrained, also handles the accent and noise better due to its robustness, being able to generate high quality results. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
+TITAN is a fine-tuned based on the original RVC V2 pretrained, leveraging an 11.15-hours dataset sourced from Expresso. It gives cleaner results compared to the original pretrained, also handles the accent and noise better due to its robustness, being able to generate high quality results. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
 
 > **32K**: https://huggingface.co/blaise-tk/TITAN/tree/main/models/medium/32k/pretrained
 

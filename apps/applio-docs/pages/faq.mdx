@@ -2,7 +2,10 @@
 
 - **RVC (Retrieval-based Voice Conversion)**: A voice cloning technique that retrieves and combines audio segments from a source speaker to synthesize the voice of a target speaker, without requiring large parallel datasets.
 
-- **HuBERT**: A transformer-based model that extracts rich feature representations from raw audio, pre-trained on a masked prediction task.
+- **HuBERT**: A transformer-based model that extracts text from raw audio, previously trained on a masked prediction task, which RVC uses to train the voice models. There are several types of Hubert, some of which are:
+  - **ContentVec:** Essentially the default one used by RVC, which can be adaptable for different languages.
+  - **Japanese Hubert-Base:** As the name suggests, it assists in recognition for that language.
+  - **Chinese Hubert-Large:** As the name suggests, it assists in recognition for that language.
 
 - **Net_G**: The generator model in RVC that takes HuBERT features and speaker embeddings as input to generate the converted audio waveform.
 

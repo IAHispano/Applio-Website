@@ -42,15 +42,15 @@ Works well for small and English datasets. Additionally, it allows models to tra
 
 > https://huggingface.co/ORVC/Ov2Super/tree/main
 
-### RIN E3 by Mustar
+### RIN_E3 by MUSTAR
 
-Yields good results with clean and English datasets, but it is more sensitive to noise. This only supports **40k** sample rate.
+RIN_E3 is a pretrain made from scratch, made with 140 hour dataset, works well with English language but it is advisable to use it with high quality datasets due to its sensitivity to noise. This only supports **40k** sample rate.
 
 > https://huggingface.co/MUSTAR/RIN_E3/tree/main
 
-### SnowieV3 by Mustar
+### SnowieV3.1 by Mustar
 
-Works well with Russian datasets and also helps models of other languages to pronounce Russian well. Supports **all the sample rates**.
+SnowieV3.1 was made with 58 hours dataset, works well with Russian language and also helps models of other languages to pronounce Russian well. Supports **all the sample rates**.
 
 > **32k**: https://huggingface.co/MUSTAR/SnowieV3.1-32k/tree/main
 
@@ -60,19 +60,31 @@ Works well with Russian datasets and also helps models of other languages to pro
 
 ### SnowieV3 X RIN_E3 by Mustar
 
-Works well with Russian or Japanese language datasets and also helps models of other languages to pronounce Russian or Japanese well. This only supports **40k** sample rate.
+Works well with Russian or Japanese language language and also helps models of other languages to pronounce Russian or Japanese well. This only supports **40k** sample rate.
 
 > https://huggingface.co/MUSTAR/SnowieV3.1-X-RinE3-40K/tree/main
 
-### KLM v7 by SeoulStreamingStation
+### DMR V1 by Razer112
 
-Works well with Korean and some types of Japanese voices. Unlike typical pre-trained models, it has a very wide vocal range, which should be very helpful for those covering songs, this only **32k and 48k sample rate**.
+DMR V1 is a fine-tuned based on the original RVC V2 pretrained made with 11.3 hour dataset and specially only for e-girl, soft male/female and deep male/female voices. This model was trained with Mangio-Crepe/Crepe (Applio) therefore it is advisable to use this extraction algorithm with a 128 hop length or below and have a clean dataset due to the sensitivity to noise of this algorithm. This only supports **32k sample rate**.
+
+> https://huggingface.co/Razer112/DMR_Pretrain/tree/main
+
+### Nanashi V1 by shiromiya
+
+Nanashi V1 is a fine-tuned based on TITAN pretrained made with 9 hour of Brazilian music, so it will work better with this language but it can work with other languages without any problems, like TITAN, it allows models to be trained with few epochs and handles the noise better. This only supports **32k sample rate**.
+
+> https://huggingface.co/shiromiya/nanashi-pretrain/tree/main/v1
+
+### KLM 4.1 by SeoulStreamingStation
+
+KLM 4.1 is a fine-tuned based on KLM V7 pretrained made with made with around 100 hour dataset (Korean vocal/speech, Japanese vocal/speech and English speech), so it will work better with those languages. Unlike typical pretrained models it has a very wide vocal range since KLM is a pretrained model created to make vocal guides using short voice recordings from a studio, this means that even with short dataset high pitch information it is possible to implement high-pitched sounds. This only supports **32k and 48k sample rate**.
 
 > https://huggingface.co/SeoulStreamingStation/KLM4.1/tree/main
 
 ### TITAN by blaise-tk
 
-It gives cleaner results compared to the original pretrained, also handles the accent better. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
+TITAN is a fine-tuned based on the original RVC V2 pretrained, leveraging an 11.15-hour dataset sourced from Expresso. It gives cleaner results compared to the original pretrained, also handles the accent and noise better due to its robustness, being able to generate high quality results. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
 
 > **32K**: https://huggingface.co/blaise-tk/TITAN/tree/main/models/medium/32k/pretrained
 

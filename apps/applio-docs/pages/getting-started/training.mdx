@@ -1,4 +1,4 @@
-import { Callout, Steps, Tabs } from "nextra/components";
+import { Callout, Steps } from "nextra/components";
 
 
 # Training
@@ -10,6 +10,7 @@ Training is the process by which the program will be able to clone any voice or 
 <Callout type="warning" emoji="⚠️">
   - Training is only for **NVDIA GPUs**, if this is not available
   Training tab will be disabled.
+  - In case the training tab is available, training is only recommended in **Nvidia Series 2000 (RTX)** or **higher**.
   - If you don’t have an compatible GPU, we offer alternatives to [run Applio in the cloud.](/getting-started/other-alternatives)
 </Callout>
 
@@ -56,13 +57,13 @@ This is where the real work begins, to start training your model you will need t
 
 - **Batch Size:** Adjust based on your GPU's VRAM. For 8 GB VRAM, use a batch size between 6 and 8. Consider CUDA cores when experimenting with higher batch sizes.
 
-**ℹ️ Index Generation:** generating an index is a must, just click on the “train index” button to perform the process.
+**Index Generation:** generating an index is a must, just click on the “train index” button to perform the process.
 
 Your trained model is located in the `logs/model folder`, and the .pth files are in the `logs/zips` folder. Also you can export your trained model directly from the Applio interface, go to the **Export Model** section in the **train** tab, click on the **Refresh** button and select the **pth and the added index** of the model to export.
 
 <FAQBox title="Other Options">
 - **Pitch Guidance:** Gives variation of pitch.
-- **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain.
+- **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain. Learn how to use it [here](/getting-started/pretrained).
 - **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
 - **Save Every Weights:** Save the weights of the model when a cycle of 'Save Every Epoch' is completed.
 - **Custom Pretrained:** Uses the Custom Pretrained that are loaded.
@@ -76,6 +77,7 @@ Your trained model is located in the `logs/model folder`, and the .pth files are
 </FAQBox>
 
 - [Don't know how to use Tensorboard for correct training?, check out the Tensorboard section](/getting-started/tensorboard)
+- [Don't know how to use custom Pretrained like TITAN and Ov2?, check out the Pretrained section](/getting-started/pretrained)
 
 </Steps>
 <Steps>

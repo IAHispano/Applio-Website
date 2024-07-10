@@ -5,7 +5,7 @@
 	"tts": "TTS",
 	"pretrained": "Pretrained",
 	"tensorboard": "Tensorboard",
-	"audio-analizer": "Audio Analizer",
+	"audio-analizer": "Audio Analyzer",
 	"voice-blender": "Voice Blender",
 	"plugins": "Plugins",
 	"extra": "Extra",

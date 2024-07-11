@@ -61,22 +61,28 @@ const config: DocsThemeConfig = {
 
     return (
       <>
-        <meta property="og:url" content={url} />
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <meta
-          property="og:description"
-          content={
-            frontMatter.description || "Documentation for the Applio project."
-          }
-        />
-        <meta
-          property="og:title"
-          content={
-            frontMatter.title ? `${frontMatter.title} | Applio` : "Applio Docs"
-          }
-        />
-        <meta property="favicon" content="https://i.imgur.com/ZeuGiOR.png" />
-      </>
+      <meta name="msapplication-TileColor" content="#fff" />
+      <meta name="theme-color" content="#fff" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta httpEquiv="Content-Language" content="en" />
+      <meta
+        name="description"
+        content="Documentation for the VITS-based Voice Conversion project focused on simplicity, quality and performance."
+      />
+      <meta
+        name="og:description"
+        content="Documentation for the VITS-based Voice Conversion project focused on simplicity, quality and performance."
+      />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site:domain" content="docs.applio.org" />
+      <meta name="twitter:url" content="https://docs.applio.org" />
+      <meta
+        name="og:title"
+        content={title ? title + ' – Applio Docs' : 'Applio Docs'}
+      />
+      <meta name="apple-mobile-web-app-title" content="Applio Docs" />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+    </>
     );
   },
   useNextSeoProps() {

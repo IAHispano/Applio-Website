@@ -36,7 +36,7 @@ It’s when the graph goes to a point so low that it doesn’t happen again. Dur
 ![](/Point.png)
 
 ## Advanced Information
-Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates overtraining, we will explain each of them to you below.
+Besides checking the loss/g/total, it’s necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don’t decrease again, it indicates overtraining. At the beginning of training, it’s normal for d/total to go up and g/total to go down, but eventually, they stabilize and both start to decrease. During training, all metrics should descend or fluctuate around similar values, for example, if the mel graph starts to rise instead of fall, it indicates that the model is failing. The mel graph shows the accuracy of the model in reproducing the mel spectrogram from your dataset, reflecting the audio quality. Below we explain more about them:
 
 ### Loss Terms
 

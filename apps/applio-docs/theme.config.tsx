@@ -62,7 +62,7 @@ const config: DocsThemeConfig = {
     return (
       <>
       <meta name="msapplication-TileColor" content="#fff" />
-      <meta name="theme-color" content="#fff" />
+      <meta name="theme-color" content="#111" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
       <meta

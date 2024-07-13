@@ -78,7 +78,7 @@ const config: DocsThemeConfig = {
       <meta name="twitter:url" content="https://docs.applio.org" />
       <meta
         name="og:title"
-        content={title ? title + ' – Applio Docs' : 'Applio Docs'}
+        content={frontMatter.title || 'Applio Docs'}
       />
       <meta name="apple-mobile-web-app-title" content="Applio Docs" />
       <link rel="icon" href="/favicon.ico" sizes="any" />

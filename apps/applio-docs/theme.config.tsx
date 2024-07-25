@@ -45,7 +45,7 @@ const config: DocsThemeConfig = {
   banner: {
     key: "new-release",
     text: (
-      <a href="https://v2.docs.applio.org/" target="_blank">
+      <a href="https://docs.applio.org/" target="_blank">
         🎉 Applio Docs has been updated!
       </a>
     ),

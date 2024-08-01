@@ -9,7 +9,7 @@ export default function NumberTicker({
   delay = 0,
   className,
 }: {
-  value: number;
+  value: number | string;
   direction?: "up" | "down";
   className?: string;
   delay?: number; // delay in s

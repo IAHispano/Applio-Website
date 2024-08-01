@@ -9,13 +9,13 @@ export default function NumberTicker({
   delay = 0,
   className,
 }: {
-  value: number;
+  value: any;
   direction?: "up" | "down";
   className?: string;
   delay?: number; // delay in s
 }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(direction === "down" ? value : 0);
+  const motionValue = useMotionValue(direction === "down" ? value as number : 0);
   const springValue = useSpring(motionValue, {
     damping: 60,
     stiffness: 100,
@@ -25,7 +25,7 @@ export default function NumberTicker({
   useEffect(() => {
     isInView &&
       setTimeout(() => {
-        motionValue.set(direction === "down" ? 0 : value);
+        motionValue.set(direction === "down" ? 0 : value as number);
       }, delay * 1000);
   }, [motionValue, isInView, delay, value, direction]);
 

@@ -101,7 +101,6 @@ export default function NavbarMobile() {
             <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full min-h-[150svh] p-4">
             <Avatar />
             <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
-                <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/learn">Learn</a>
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/news">News</a>
@@ -128,7 +127,7 @@ export default function NavbarMobile() {
                 <div className="flex flex-col gap-4 mt-4 pb-6">
                     <a className="rounded-xl p-2" href="/products/rvc">Applio</a>
                     <a className="rounded-xl p-2" href="/products/app">Desktop App</a>
-                    <a className="rounded-xl p-2" href="/playground">Playground</a>
+                    <a className="rounded-xl p-2" href="/products/playground">Playground</a>
                     <a className="rounded-xl p-2" href="https://docs.applio.org" target="_blank">Documentation</a>
                     <a className="rounded-xl p-2" href="/products/bot">Discord Bot</a>
                     <a className="rounded-xl p-2" href="https://github.com/IAHispano/Applio-plugins" target="_blank">Marketplace</a>

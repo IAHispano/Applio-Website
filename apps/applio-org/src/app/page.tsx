@@ -12,11 +12,6 @@ export default function Home() {
       <Background1 />
       </div>
       <section className="z-30 md:mt-72 max-md:mt-24 text-center flex justify-center items-center flex-col">
-      <a className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5" role="alert" href="/premium">
-        <span className="flex rounded-full bg-white uppercase px-2 py-1 text-xs font-bold mr-3">New</span>
-        <span className="font-semibold mr-2 text-left flex-auto text-white">Introducing Applio Premium</span>
-        <svg className=" opacity-75 h-4 w-4 fill-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/></svg>
-      </a>
       <h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8">Dive into a world of endless possibilities fueled by advanced AI audio technology</h1>
       <h2 className="read-font mt-6 text-white/80 max-w-lg mx-auto">Pioneering Open-Source Ecosystem Unveiling the Latest Breakthroughs in AI Voice Cloning Technologies</h2>
       <div className="mt-[40svh]">

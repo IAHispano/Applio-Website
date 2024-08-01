@@ -8,7 +8,6 @@ export default function Navbar() {
                 <div className="flex md:flex-cols-3 max-md:flex-col md:px-16 px-2 w-full">
                 <a className="text-3xl font-semibold tracking-tight mb-2 slow  rounded-xl flex justify-center items-center mx-auto" href="/">Applio</a>
                 <div className="flex max-md:flex-col gap-6 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4">
-                    <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/premium">Pricing</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/learn">Learn</a>
                     <a className="col-span-1 max-md:bg-white/10 max-md:p-4 max-md:rounded-xl max-md:w-full" href="/news">News</a>

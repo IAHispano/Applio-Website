@@ -84,7 +84,7 @@ export default function AuthUI(){
             <a className="mt-2 text-xs cursor-pointer hover:underline" href="/login/forgot-password">Forgot password?</a>
             {error && (<p className="text-red-500 read-text text-sm text-center bg-neutral-700 border border-white/10 rounded-lg p-4 mt-4">{error}</p>)}
           </div>
-          <div className="row-span-2 mt-auto flex flex-col justify-center">
+          <div className="row-span-2 md:mt-auto flex flex-col justify-center">
           <button onClick={handleSignIn} className="slow w-full p-3 font-bold rounded-xl bg-white/10 text-white hover:bg-white/20 border border-white/10 gtransition focus:outline-none">Sign in</button>
             <a href="/login/fast-link" className="text-neutral-300 text-md hover:text-white gtransition mt-2 text-center">or use <strong>Fast Link</strong></a>
             <p className="text-xs mb-2 mt-3 text-neutral-300 text-center">or continue with</p>

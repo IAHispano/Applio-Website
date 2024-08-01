@@ -64,7 +64,7 @@ export default function Avatar() {
                         </div>
             </button>
         ) : 
-            <a className="flex gap-4 items-center max-md:justify-center w-full bg-white/20 max-md:bg-white max-md:text-black hover:bg-white/10 slow px-10 py-2 rounded-xl cursor-pointer" href="/login">
+            <a className="flex gap-4 items-center max-md:justify-center w-full bg-white/20 max-md:border max-md:border-white/20 max-md:bg-white max-md:text-black hover:bg-white/10 slow px-10 py-2 rounded-xl cursor-pointer" href="/login">
                 <p className="max-md:text-center">Login</p>
             </a>
         }

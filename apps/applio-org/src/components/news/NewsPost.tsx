@@ -62,7 +62,7 @@ export default function BlogPost({ id }: Readonly<{ id: number }>) {
             </div>
             <main className="w-full py-14 flex flex-col min-h-screen overflow-x-hidden relative">
             <div className="flex flex-col justify-start items-center text-left">
-            <h1 className="text-4xl max-md:max-w-sm text-wrap text-center">{item.title}</h1>
+            <h1 className="text-4xl max-md:max-w-xs text-wrap text-center">{item.title}</h1>
             <h2 className="text-xl pl-0.5 mt-2">by {item.by} at {formatDate(item.created_at)}.</h2>
             </div>
             <div>

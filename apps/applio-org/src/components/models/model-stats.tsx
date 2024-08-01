@@ -8,9 +8,9 @@ export default function ModelStats({ id }: { id: string }) {
     const [data, setData] = useState<Download[] | null>()
     const [views, setViews] = useState<any | null>()
     const [likes, setLikes] = useState<any | null>()
-    const [totalViews, setTotalViews] = useState<number | null>(null);
-    const [totalLikes, setTotalLikes] = useState<number | null>(null);
-    const [totalDownloads, setTotalDownloads] = useState<number | null>(null);
+    const [totalViews, setTotalViews] = useState<number>(0);
+    const [totalLikes, setTotalLikes] = useState<number>(0);
+    const [totalDownloads, setTotalDownloads] = useState<number>(0);
     
     useEffect(() => {
         async function getModelDownloads(id: string) {
@@ -25,12 +25,12 @@ export default function ModelStats({ id }: { id: string }) {
                 const formattedData = Object.keys(counts).map(date => ({ see_at: date, Downloads: counts[date] }));
                 console.log(formattedData);
                 setData(formattedData as Download[]);
-                setTotalDownloads(data.length); 
+                setTotalDownloads(data.length as number); 
             }
 
             if (error) {
                 setData(null);
-                setTotalDownloads(null); 
+                setTotalDownloads(0); 
                 console.log(error);
             }
         }
@@ -52,7 +52,7 @@ export default function ModelStats({ id }: { id: string }) {
 
             if (error) {
                 setViews(null);
-                setTotalViews(null); 
+                setTotalViews(0); 
                 console.log(error);
             }
         }
@@ -74,7 +74,7 @@ export default function ModelStats({ id }: { id: string }) {
 
             if (error) {
                 setLikes(null);
-                setTotalLikes(null); 
+                setTotalLikes(0); 
                 console.log(error);
             }
         }

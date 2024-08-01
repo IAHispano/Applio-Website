@@ -56,7 +56,7 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
                     {item.usage > 100 && (
                         <p className="justify-start md:items-end flex max-md:flex-col  text-[#9E9E9E]">You have reached the limit of use, try again later or <a className="underline md:mx-1 hover:text-white slow" href="/premium">become a Supporter</a> to reduce the rate limits.</p>
                     )}
-                    <NumberTicker value={item.usage}/>
+                    <NumberTicker value={item.usage as number}/>
                     </div>
                 </div>
             ))}

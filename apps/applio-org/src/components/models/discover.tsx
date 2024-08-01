@@ -13,7 +13,7 @@ export default function DiscoverModels() {
     const searchParams = useSearchParams();
     const router = useRouter();
     
-    const [count, setCount] = useState<number | null>(null);
+    const [count, setCount] = useState<number>(0);
     const [selectedTag, setSelectedTag] = useState<string | null>(null);
     const [data, setData] = useState<any>(null);
     const [end, setEnd] = useState<number>(4);

@@ -209,7 +209,9 @@ export default function Guide() {
                       <div className="flex justify-start w-full flex-wrap gap-2 items-center md:justify-end">
                         <div
                           className="flex gap-2 items-center justify-center bg-neutral-900 hover:bg-neutral-800 active:opacity-50 rounded-lg p-2 gtransition max-md:w-full max-md:mt-2 z-50"
-                          onClick={() => { window.location.href = `/user/${created_by}`; }}
+                          onClick={() => {
+                            window.location.href = `/user/${created_by}`
+                          }}
                         >
                           <p className="text-neutral-300 font-medium md:text-xs text-sm">
                             by{" "}

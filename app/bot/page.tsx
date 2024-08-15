@@ -1,9 +1,11 @@
 "use client"
 
-import { BentoGridThirdDemo } from "@/components/bot/features"
-import SparklesCore from "@/components/landing/particles"
 import { motion } from "framer-motion"
 
+import { BentoGridThirdDemo } from "@/components/bot/features"
+import SparklesCore from "@/components/landing/particles"
+
+export const runtime = "edge"
 
 export default function IndexPage() {
   return (
@@ -20,14 +22,26 @@ export default function IndexPage() {
       ></motion.div>
       <div className="flex flex-col w-full justify-start items-center text-center relative z-[1]">
         <div className="min-h-[30svh] flex flex-col justify-center items-center w-full p-10 relative">
-          <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-normal pt-6 text-white max-w-4xl">Discord integration</p>
-          <p className="font-mono max-w-2xl tracking-wide p-2">Access from anywhere on Discord to thousands of voice models thanks to Applio Bot</p>
+          <p className="text-3xl md:text-7xl font-bold tracking-tight md:tracking-normal pt-6 text-white max-w-4xl">
+            Discord integration
+          </p>
+          <p className="font-mono max-w-2xl tracking-wide p-2">
+            Access from anywhere on Discord to thousands of voice models thanks
+            to Applio Bot
+          </p>
         </div>
         <div className="px-12">
-        <BentoGridThirdDemo />
+          <BentoGridThirdDemo />
         </div>
         <div className="my-24 w-full ">
-          <a className="bg-[#27292c] hover:opacity-80 md:w-[300px] w-full text-xl md:text-6xl rounded-lg md:px-32 p-6 font-bold gtransition" href="https://bot.applio.org" rel="noreferrer" target="_blank">Try Applio BOT now!</a>
+          <a
+            className="bg-[#27292c] hover:opacity-80 md:w-[300px] w-full text-xl md:text-6xl rounded-lg md:px-32 p-6 font-bold gtransition"
+            href="https://bot.applio.org"
+            rel="noreferrer"
+            target="_blank"
+          >
+            Try Applio BOT now!
+          </a>
         </div>
       </div>
     </main>

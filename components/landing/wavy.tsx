@@ -62,9 +62,7 @@ export const WavyBackground = ({
     render()
   }
 
-  const waveColors = colors ?? [
-    "#00AA68",
-  ]
+  const waveColors = colors ?? ["#00AA68"]
   const drawWave = (n: number) => {
     nt += getSpeed()
     for (i = 0; i < n; i++) {
@@ -103,11 +101,7 @@ export const WavyBackground = ({
         containerClassName
       )}
     >
-      <canvas
-        className="flex  z-0"
-        ref={canvasRef}
-        id="canvas"
-      ></canvas>
+      <canvas className="flex  z-0" ref={canvasRef} id="canvas"></canvas>
       <div className={cn("relative z-10", className)} {...props}>
         {children}
       </div>

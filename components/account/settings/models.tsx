@@ -19,7 +19,7 @@ import {
   createClientComponentClient,
   createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs"
-import { PostgrestError, createClient } from "@supabase/supabase-js"
+import { createClient, PostgrestError } from "@supabase/supabase-js"
 
 import TestCard from "@/components/models/test-card"
 import { Database } from "@/app/types/database"
@@ -96,7 +96,6 @@ export function ModelsAccount({ userFullName }: ModelInfoProps) {
       </div>
     )
   }
-
 
   return (
     <div>

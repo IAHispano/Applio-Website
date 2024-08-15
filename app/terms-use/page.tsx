@@ -1,5 +1,8 @@
 "use client"
+
 import { Card, CardBody } from "@nextui-org/react"
+
+export const runtime = "edge"
 
 export default function IndexPage() {
   return (
@@ -15,11 +18,13 @@ export default function IndexPage() {
 
             <p className="text-pretty">
               <p className="mb-4">
-                These Terms of Use (&#34;Terms&#34;) govern your access to and use of
-                our website and services. By using our website or services, you
-                agree to be bound by these Terms.
+                These Terms of Use (&#34;Terms&#34;) govern your access to and
+                use of our website and services. By using our website or
+                services, you agree to be bound by these Terms.
               </p>
-              <h2 className="text-2xl font-bold mb-2">1. Acceptance of Terms</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                1. Acceptance of Terms
+              </h2>
               <p className="mb-4">
                 By using our website or services, you agree to be bound by these
                 Terms. If you do not agree to these Terms, you may not use our
@@ -38,21 +43,27 @@ export default function IndexPage() {
                 account information and for all activities that occur under your
                 account.
               </p>
-              <h2 className="text-2xl font-bold mb-2">4. Intellectual Property</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                4. Intellectual Property
+              </h2>
               <p className="mb-4">
                 Our website and services contain content that is protected by
                 copyright, trademark, and other intellectual property laws. You
                 may not use our content without our permission.
               </p>
-              <h2 className="text-2xl font-bold mb-2">5. Disclaimer of Warranties</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                5. Disclaimer of Warranties
+              </h2>
               <p className="mb-4">
-                Our website and services are provided &#34;as is&#34; and without
-                warranties of any kind. We disclaim all warranties, express or
-                implied, including, but not limited to, warranties of
+                Our website and services are provided &#34;as is&#34; and
+                without warranties of any kind. We disclaim all warranties,
+                express or implied, including, but not limited to, warranties of
                 merchantability, fitness for a particular purpose, and
                 non-infringement.
               </p>
-              <h2 className="text-2xl font-bold mb-2">6. Limitation of Liability</h2>
+              <h2 className="text-2xl font-bold mb-2">
+                6. Limitation of Liability
+              </h2>
               <p className="mb-4">
                 We will not be liable for any damages arising from your use of
                 our website or services, including, but not limited to, direct,

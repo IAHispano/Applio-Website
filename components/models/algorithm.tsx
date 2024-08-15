@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
-type SelectCallback = (value: string | null) => void;
+type SelectCallback = (value: string | null) => void
 
 interface SortByProps {
-  onSelect: SelectCallback;
+  onSelect: SelectCallback
 }
 
 export default function SortByAlgorithm({ onSelect }: SortByProps) {
@@ -13,25 +13,33 @@ export default function SortByAlgorithm({ onSelect }: SortByProps) {
     { value: "crepe", label: "Crepe" },
     { value: "mangio-crepe", label: "Mangio-crepe" },
     { value: "fcpe", label: "Fcpe" },
-  ];
+  ]
 
-  const [selectedAnimal, setSelectedAnimal] = useState<string | null>(null);
+  const [selectedAnimal, setSelectedAnimal] = useState<string | null>(null)
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = event.target.value;
-    setSelectedAnimal(value);
-    onSelect(value);
-  };
+    const value = event.target.value
+    setSelectedAnimal(value)
+    onSelect(value)
+  }
 
   return (
     <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-      <select className="max-w-xs bg-white/20 rounded-full border border-white/20 w-fit px-4 h-10" onChange={handleSelect} value={selectedAnimal || "Rmvpe"} >
+      <select
+        className="max-w-xs bg-white/20 rounded-full border border-white/20 w-fit px-4 h-10"
+        onChange={handleSelect}
+        value={selectedAnimal || "Rmvpe"}
+      >
         {by.map((animal) => (
-          <option key={animal.value} value={animal.value} className="text-black">
+          <option
+            key={animal.value}
+            value={animal.value}
+            className="text-black"
+          >
             {animal.label}
           </option>
         ))}
       </select>
     </div>
-  );
+  )
 }

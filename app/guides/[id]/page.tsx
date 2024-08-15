@@ -1,5 +1,7 @@
 import GuidePost from "@/components/guides/guide-post"
 
+export const runtime = "edge"
+
 export default async function PostGuide({
   params,
 }: {
@@ -8,7 +10,7 @@ export default async function PostGuide({
   const { id } = params
   return (
     <section>
-     <GuidePost id={id} /> 
+      <GuidePost id={id} />
     </section>
   )
 }

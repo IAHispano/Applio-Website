@@ -6,6 +6,8 @@ import ApiDashboard from "@/components/api/dashboard"
 import ApiDocs from "@/components/api/docs/docs"
 import { Database } from "@/app/types/database"
 
+export const runtime = "edge"
+
 export default async function User() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const {

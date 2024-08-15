@@ -4,7 +4,10 @@ import { motion } from "framer-motion"
 
 export default function Footer() {
   return (
-    <footer id="footer" className="relative pt-3 bg-background overflow-visible">
+    <footer
+      id="footer"
+      className="relative pt-3 bg-background overflow-visible"
+    >
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

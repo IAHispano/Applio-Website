@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
+
 type Props = {
   id: string
 }
@@ -40,9 +41,9 @@ export default function UserInfo({ id }: Readonly<Props>) {
       }
 
       const { data: userGuides, error: userGuidesError } = await supabase
-      .from("guides")
-      .select("*")
-      .eq("created_by", id)
+        .from("guides")
+        .select("*")
+        .eq("created_by", id)
 
       if (userError) {
         setError(userError)
@@ -109,7 +110,9 @@ export default function UserInfo({ id }: Readonly<Props>) {
         (user === undefined && (
           <div className="justify-center items-center flex flex-col ">
             <h1 className="font-black text-white text-6xl md:text-9xl tracking-tighter z-[2] drop-shadow-3xl">
-              {id.length > 15 ? `${id.slice(0, 15)}...` : decodeURIComponent(id)}
+              {id.length > 15
+                ? `${id.slice(0, 15)}...`
+                : decodeURIComponent(id)}
             </h1>
             <p className="sm:text-xl max-w-3xl z-[2] drop-shadow-3xl text-white md:pt-2 text-center">
               This user does not have an account at this web, but we still have
@@ -152,22 +155,28 @@ export default function UserInfo({ id }: Readonly<Props>) {
                     </h2>
                     <p className="text-neutral-300 truncate">Models</p>
                   </article>
-                  {(user.role === 'writer' || user.role === 'user') && (
-                  <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
-                    <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize">
-                      {user.role}
-                    </h2>
-                    <p className="text-neutral-300 truncate">Role</p>
-                  </article>
+                  {(user.role === "writer" || user.role === "user") && (
+                    <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
+                      <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize">
+                        {user.role}
+                      </h2>
+                      <p className="text-neutral-300 truncate">Role</p>
+                    </article>
                   )}
-                {(user.role === 'premium' || user.role === 'admin') && (
-                  <article className="undefined flex flex-col rounded-2xl p-4 justify-center items-center text-center truncate relative">
-                    <div className="w-full h-full absolute top-0 left-0" style={{background: 'radial-gradient(100% 100% at 50% 100%,#00AA6B 0%,#000 100%)'}}></div>
-                    <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize z-10">
-                      {user.role}
-                    </h2>
-                    <p className="text-neutral-300 truncate z-10">Role</p>
-                  </article>
+                  {(user.role === "premium" || user.role === "admin") && (
+                    <article className="undefined flex flex-col rounded-2xl p-4 justify-center items-center text-center truncate relative">
+                      <div
+                        className="w-full h-full absolute top-0 left-0"
+                        style={{
+                          background:
+                            "radial-gradient(100% 100% at 50% 100%,#00AA6B 0%,#000 100%)",
+                        }}
+                      ></div>
+                      <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white capitalize z-10">
+                        {user.role}
+                      </h2>
+                      <p className="text-neutral-300 truncate z-10">Role</p>
+                    </article>
                   )}
                   <article className="undefined flex flex-col bg-white/20 rounded-2xl p-4 justify-center items-center text-center truncate">
                     <h2 className=" undefined tracking-tight text-4xl font-bold w-full truncate text-white">
@@ -182,18 +191,49 @@ export default function UserInfo({ id }: Readonly<Props>) {
                   Links
                 </h2>
                 <div className="flex flex-col gap-2 w-full">
-                    {user.links && user.links.length > 0  ? (
-                      <>
+                  {user.links && user.links.length > 0 ? (
+                    <>
+                      <a
+                        key={id + "_1"}
+                        href={user.links[0]}
+                        rel="noreferrer"
+                        target="_blank"
+                        className="bg-white/10 hover:bg-white/20 active:opacity-50 flex gap-2 gtransition w-full py-2 px-3 rounded-xl"
+                      >
+                        <div className="h-full flex justify-center items-start flex-col flex-grow text-left truncate">
+                          <p className="text-xl truncate w-full text-white">
+                            {user.links[0].replace(/^https:\/\//, "")}
+                          </p>
+                        </div>
+                        <span className="h-full flex justify-center items-center text-white">
+                          <svg
+                            stroke="currentColor"
+                            fill="none"
+                            strokeWidth="2"
+                            viewBox="0 0 24 24"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            height="1em"
+                            width="1em"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                            <polyline points="15 3 21 3 21 9"></polyline>
+                            <line x1="10" y1="14" x2="21" y2="3"></line>
+                          </svg>
+                        </span>
+                      </a>
+                      {user.links[1] && (
                         <a
-                          key={id + "_1"}
-                          href={user.links[0]} 
+                          key={id + "_2"}
+                          href={user.links[1]}
                           rel="noreferrer"
                           target="_blank"
                           className="bg-white/10 hover:bg-white/20 active:opacity-50 flex gap-2 gtransition w-full py-2 px-3 rounded-xl"
                         >
                           <div className="h-full flex justify-center items-start flex-col flex-grow text-left truncate">
                             <p className="text-xl truncate w-full text-white">
-                              {user.links[0].replace(/^https:\/\//, "")}
+                              {user.links[1].replace(/^https:\/\//, "")}
                             </p>
                           </div>
                           <span className="h-full flex justify-center items-center text-white">
@@ -214,75 +254,58 @@ export default function UserInfo({ id }: Readonly<Props>) {
                             </svg>
                           </span>
                         </a>
-                        {user.links[1] && (
-                          <a
-                            key={id + "_2"}
-                            href={user.links[1]} 
-                            rel="noreferrer"
-                            target="_blank"
-                            className="bg-white/10 hover:bg-white/20 active:opacity-50 flex gap-2 gtransition w-full py-2 px-3 rounded-xl"
-                          >
-                            <div className="h-full flex justify-center items-start flex-col flex-grow text-left truncate">
-                              <p className="text-xl truncate w-full text-white">
-                                {user.links[1].replace(/^https:\/\//, "")}
-                              </p>
-                            </div>
-                            <span className="h-full flex justify-center items-center text-white">
-                              <svg
-                                stroke="currentColor"
-                                fill="none"
-                                strokeWidth="2"
-                                viewBox="0 0 24 24"
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                height="1em"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                <polyline points="15 3 21 3 21 9"></polyline>
-                                <line x1="10" y1="14" x2="21" y2="3"></line>
-                              </svg>
-                            </span>
-                          </a>
-                        )}  
-                      </>
-                    ) : (
-                      <p className="text-neutral-300 pt-6">
-                        This user does not have any links to share.
-                      </p>
-                    )}
-                  </div>
-
+                      )}
+                    </>
+                  ) : (
+                    <p className="text-neutral-300 pt-6">
+                      This user does not have any links to share.
+                    </p>
+                  )}
+                </div>
               </article>
               <article className="md:col-span-8 overflow-hidden md:h-fit relative transition w-full h-full p-5 gap-4 flex flex-col rounded-3xl bg-black justify-start items-start relative border-2 border-white/20">
-              <h2 className="font-semibold text-2xl z-10 text-white text-center w-full">
+                <h2 className="font-semibold text-2xl z-10 text-white text-center w-full">
                   Guides
                 </h2>
-              {(!guides || guides.length === 0) && (
-              <p className="text-neutral-300 text-center flex justify-center items-center h-full w-full py-6">
-                  This user does not have any guides.
-                </p>
-              )}
-              <div className="grid md:grid-cols-4 gap-4">
-                {guides && guides.map((guide: any, index: number) => (
-                  <a key={index} className="overflow-hidden md:overflow-y-auto transition flex-col gap-5 w-full md:min-w-[300px] md:w-[300px] items-center hover:bg-opacity-70 justify-start flex bg-neutral-700 p-5 rounded-[15px] cursor-pointer border-2 border-white/10" href={`/guides/${guide.id}`}>
-                    <div className="flex justify-start items-start flex-col gap-3 px-4 pb-2">
-                      <p className="text-white text-left font-bold text-xl tracking-wider rounded-full truncate max-w-[280px]  min-w-[280px] w-full">
-                        {guide.title}
-                      </p>
-                      <p className="text-white text-left text-xs rounded-full">
-                        {new Date(guide.created_at).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' })}
-                      </p>
-                      <div className="border border-white/10 w-full h-0  w-full"/>
-                      <p className="text-neutral-100 text-left text-sm rounded-full truncate min-w-[280px] w-full max-w-[280px]">
-                        {guide.description}
-                      </p>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </article>
+                {(!guides || guides.length === 0) && (
+                  <p className="text-neutral-300 text-center flex justify-center items-center h-full w-full py-6">
+                    This user does not have any guides.
+                  </p>
+                )}
+                <div className="grid md:grid-cols-4 gap-4">
+                  {guides &&
+                    guides.map((guide: any, index: number) => (
+                      <a
+                        key={index}
+                        className="overflow-hidden md:overflow-y-auto transition flex-col gap-5 w-full md:min-w-[300px] md:w-[300px] items-center hover:bg-opacity-70 justify-start flex bg-neutral-700 p-5 rounded-[15px] cursor-pointer border-2 border-white/10"
+                        href={`/guides/${guide.id}`}
+                      >
+                        <div className="flex justify-start items-start flex-col gap-3 px-4 pb-2">
+                          <p className="text-white text-left font-bold text-xl tracking-wider rounded-full truncate max-w-[280px]  min-w-[280px] w-full">
+                            {guide.title}
+                          </p>
+                          <p className="text-white text-left text-xs rounded-full">
+                            {new Date(guide.created_at).toLocaleDateString(
+                              "en-US",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                                hour: "numeric",
+                                minute: "numeric",
+                                second: "numeric",
+                              }
+                            )}
+                          </p>
+                          <div className="border border-white/10 w-full h-0  w-full" />
+                          <p className="text-neutral-100 text-left text-sm rounded-full truncate min-w-[280px] w-full max-w-[280px]">
+                            {guide.description}
+                          </p>
+                        </div>
+                      </a>
+                    ))}
+                </div>
+              </article>
             </section>
           </>
         ))}

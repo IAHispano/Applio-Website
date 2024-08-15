@@ -1,12 +1,12 @@
-import { CloseIcon } from '@mantine/core';
-import * as Dialog from '@radix-ui/react-dialog';
+import { CloseIcon } from "@mantine/core"
+import * as Dialog from "@radix-ui/react-dialog"
 
 interface ModalProps {
-  isOpen: boolean;
-  onChange: (open: boolean) => void;
-  title: string;
-  description: string;
-  children: React.ReactNode;
+  isOpen: boolean
+  onChange: (open: boolean) => void
+  title: string
+  description: string
+  children: React.ReactNode
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -14,18 +14,18 @@ const Modal: React.FC<ModalProps> = ({
   onChange,
   title,
   description,
-  children
+  children,
 }) => {
-  return ( 
+  return (
     <Dialog.Root open={isOpen} defaultOpen={isOpen} onOpenChange={onChange}>
       <Dialog.Portal>
-        <Dialog.Overlay 
+        <Dialog.Overlay
           className="
             bg-neutral-900/90 
             backdrop-blur-sm 
             fixed 
             inset-0
-          " 
+          "
         />
         <Dialog.Content
           className="
@@ -48,8 +48,9 @@ const Modal: React.FC<ModalProps> = ({
             bg-neutral-800 
             p-[25px] 
             focus:outline-none
-          ">
-          <Dialog.Title 
+          "
+        >
+          <Dialog.Title
             className="
               text-xl 
               text-center 
@@ -59,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({
           >
             {title}
           </Dialog.Title>
-          <Dialog.Description 
+          <Dialog.Description
             className="
               mb-5 
               text-sm 
@@ -69,9 +70,7 @@ const Modal: React.FC<ModalProps> = ({
           >
             {description}
           </Dialog.Description>
-          <div>
-            {children}
-          </div>
+          <div>{children}</div>
           <Dialog.Close asChild>
             <button
               className="
@@ -97,7 +96,7 @@ const Modal: React.FC<ModalProps> = ({
         </Dialog.Content>
       </Dialog.Portal>
     </Dialog.Root>
-  );
+  )
 }
- 
-export default Modal;
+
+export default Modal

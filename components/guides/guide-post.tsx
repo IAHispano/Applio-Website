@@ -20,48 +20,53 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
         const { data: userData, error: userError } = await supabase
           .from("guides")
           .select("*")
-          .eq("id", id);
-  
-        const { data: { session }, error: sessionError }: { data: any, error: any } = await supabase.auth.getSession();
-  
+          .eq("id", id)
+
+        const {
+          data: { session },
+          error: sessionError,
+        }: { data: any; error: any } = await supabase.auth.getSession()
+
         if (userError) {
-          setError(userError);
-          return;
+          setError(userError)
+          return
         }
-  
-        setData(userData);
-  
+
+        setData(userData)
+
         if (session) {
-          const{ data: roleData, error: roleError }: { data: any, error: any } = await supabase
+          const {
+            data: roleData,
+            error: roleError,
+          }: { data: any; error: any } = await supabase
             .from("profiles")
             .select("role, full_name")
-            .eq("auth_id", session.user.id);
-  
+            .eq("auth_id", session.user.id)
+
           if (roleError) {
-            setError(roleError);
-            return;
+            setError(roleError)
+            return
           }
-  
+
           if (roleData[0].role === "admin") {
-            setIsOwner(true);
+            setIsOwner(true)
           }
 
           if (userData[0].created_by === roleData[0].full_name) {
-            setIsOwner(true);
+            setIsOwner(true)
           }
-
         }
-  
-        setLoading(false);
+
+        setLoading(false)
       } catch (error) {
-        console.error("error:", (error as Error).message);
-        setError(error as PostgrestError);
-        setLoading(false);
+        console.error("error:", (error as Error).message)
+        setError(error as PostgrestError)
+        setLoading(false)
       }
     }
-  
-    fetchData();
-  }, [id, userData]);
+
+    fetchData()
+  }, [id, userData])
 
   const formatDate = (dateStr: string | number | Date) => {
     const options: Intl.DateTimeFormatOptions = {
@@ -83,18 +88,14 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
   }
 
   const handleDelete = async () => {
-    const { error } = await supabase
-      .from('guides')
-      .delete()
-      .eq('id', id);
-  
+    const { error } = await supabase.from("guides").delete().eq("id", id)
+
     if (error) {
-      console.error(error);
+      console.error(error)
     } else {
-      window.location.href = '/guides';
+      window.location.href = "/guides"
     }
-  };
-  
+  }
 
   return (
     <div className="text-black dark:text-white">
@@ -107,8 +108,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
         data?.map((item) => (
           <div key={id}>
             <div className="h-[48rem] absolute w-full pointer-events-none overflow-hidden">
-              <div className="h-96 top-0 absolute w-full scale-125 rounded-2xl blur-3xl backdrop-blur-sm pointer-events-none">
-              </div>
+              <div className="h-96 top-0 absolute w-full scale-125 rounded-2xl blur-3xl backdrop-blur-sm pointer-events-none"></div>
             </div>
             <main className="w-full py-14 flex flex-col top-0 justify-start items-center text-center min-h-screen overflow-x-hidden relative">
               <div className="px-5 w-full flex justify-center items-center">

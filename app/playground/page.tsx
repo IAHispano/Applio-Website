@@ -1,3 +1,5 @@
+export const runtime = "edge"
+
 export default function IndexPage() {
   return (
     <main className="w-full h-screen flex items-center mt-10">

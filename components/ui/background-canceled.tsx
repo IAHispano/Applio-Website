@@ -1,9 +1,12 @@
-"use client";
-import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
-import SparklesCore from "../landing/particles";
-import { motion } from "framer-motion";
-import { Rocket } from "lucide-react";
+"use client"
+
+import { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import { Rocket } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+import SparklesCore from "../landing/particles"
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(9, 9, 9)",
@@ -21,68 +24,68 @@ export const BackgroundGradientAnimation = ({
   interactive = true,
   containerClassName,
 }: {
-  gradientBackgroundStart?: string;
-  gradientBackgroundEnd?: string;
-  firstColor?: string;
-  secondColor?: string;
-  thirdColor?: string;
-  fourthColor?: string;
-  fifthColor?: string;
-  pointerColor?: string;
-  size?: string;
-  blendingValue?: string;
-  children?: React.ReactNode;
-  className?: string;
-  interactive?: boolean;
-  containerClassName?: string;
+  gradientBackgroundStart?: string
+  gradientBackgroundEnd?: string
+  firstColor?: string
+  secondColor?: string
+  thirdColor?: string
+  fourthColor?: string
+  fifthColor?: string
+  pointerColor?: string
+  size?: string
+  blendingValue?: string
+  children?: React.ReactNode
+  className?: string
+  interactive?: boolean
+  containerClassName?: string
 }) => {
-  const interactiveRef = useRef<HTMLDivElement>(null);
+  const interactiveRef = useRef<HTMLDivElement>(null)
 
-  const [curX, setCurX] = useState(0);
-  const [curY, setCurY] = useState(0);
-  const [tgX, setTgX] = useState(0);
-  const [tgY, setTgY] = useState(0);
+  const [curX, setCurX] = useState(0)
+  const [curY, setCurY] = useState(0)
+  const [tgX, setTgX] = useState(0)
+  const [tgY, setTgY] = useState(0)
   useEffect(() => {
     document.body.style.setProperty(
       "--gradient-background-start",
       gradientBackgroundStart
-    );
+    )
     document.body.style.setProperty(
       "--gradient-background-end",
       gradientBackgroundEnd
-    );
-    document.body.style.setProperty("--first-color", firstColor);
-    document.body.style.setProperty("--second-color", secondColor);
-    document.body.style.setProperty("--third-color", thirdColor);
-    document.body.style.setProperty("--fourth-color", fourthColor);
-    document.body.style.setProperty("--fifth-color", fifthColor);
-    document.body.style.setProperty("--pointer-color", pointerColor);
-    document.body.style.setProperty("--size", size);
-    document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+    )
+    document.body.style.setProperty("--first-color", firstColor)
+    document.body.style.setProperty("--second-color", secondColor)
+    document.body.style.setProperty("--third-color", thirdColor)
+    document.body.style.setProperty("--fourth-color", fourthColor)
+    document.body.style.setProperty("--fifth-color", fifthColor)
+    document.body.style.setProperty("--pointer-color", pointerColor)
+    document.body.style.setProperty("--size", size)
+    document.body.style.setProperty("--blending-value", blendingValue)
+  }, [])
 
   useEffect(() => {
     function move() {
       if (!interactiveRef.current) {
-        return;
+        return
       }
-      setCurX(curX + (tgX - curX) / 20);
-      setCurY(curY + (tgY - curY) / 20);
+      setCurX(curX + (tgX - curX) / 20)
+      setCurY(curY + (tgY - curY) / 20)
       interactiveRef.current.style.transform = `translate(${Math.round(
         curX
-      )}px, ${Math.round(curY)}px)`;
+      )}px, ${Math.round(curY)}px)`
     }
 
-    move();
-  }, [tgX, tgY]);
+    move()
+  }, [tgX, tgY])
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {
-      const rect = interactiveRef.current.getBoundingClientRect();
-      setTgX(event.clientX - rect.left);
-      setTgY(event.clientY - rect.top);
+      const rect = interactiveRef.current.getBoundingClientRect()
+      setTgX(event.clientX - rect.left)
+      setTgY(event.clientY - rect.top)
     }
-  };
+  }
 
   return (
     <div
@@ -91,7 +94,12 @@ export const BackgroundGradientAnimation = ({
         containerClassName
       )}
     >
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 2, delay: 1 }} className="gradients-container [filter:url(#blurMe)_blur(40px)] h-full w-full">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 2, delay: 1 }}
+        className="gradients-container [filter:url(#blurMe)_blur(40px)] h-full w-full"
+      >
         {interactive && (
           <div
             ref={interactiveRef}
@@ -105,7 +113,7 @@ export const BackgroundGradientAnimation = ({
         )}
       </motion.div>
       <div className="absolute top-0 h-full min-w-full">
-      <SparklesCore
+        <SparklesCore
           id="tsparticlesfullpage"
           background="transparent"
           minSize={0.6}
@@ -113,14 +121,52 @@ export const BackgroundGradientAnimation = ({
           particleDensity={30}
           className="size-full"
           particleColor="#FFFFFF"
-        /> 
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 2.6 }} className="absolute inset-0 mt-72 text-center">
-        <span className="text-center items-center flex justify-center rotate-180"><svg xmlns="http://www.w3.org/2000/svg" width="18rem" height="18rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-rocket"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" fill="#00AA68" className="text-[#00AA68]"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></span>
-        <h1 className="md:text-6xl text-4xl font-semibold text-white">You have unsubscribed</h1>
-        <p className="mt-2 max-w-3xl text-center mx-auto flex justify-center items-center">Thank you for being part of applio.org, we hope your time as Premium has been enjoyable, you can come back anytime, we will be waiting for you here.</p>
-        <button className="mt-4 px-4 py-2 rounded bg-primary text-black hover:bg-white/80 gtransition" onClick={() => (window.location.href = '/')}>Return</button>
+        />
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 2.6 }}
+          className="absolute inset-0 mt-72 text-center"
+        >
+          <span className="text-center items-center flex justify-center rotate-180">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18rem"
+              height="18rem"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-rocket"
+            >
+              <path
+                d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"
+                fill="#00AA68"
+                className="text-[#00AA68]"
+              />
+              <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+              <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+              <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+            </svg>
+          </span>
+          <h1 className="md:text-6xl text-4xl font-semibold text-white">
+            You have unsubscribed
+          </h1>
+          <p className="mt-2 max-w-3xl text-center mx-auto flex justify-center items-center">
+            Thank you for being part of applio.org, we hope your time as Premium
+            has been enjoyable, you can come back anytime, we will be waiting
+            for you here.
+          </p>
+          <button
+            className="mt-4 px-4 py-2 rounded bg-primary text-black hover:bg-white/80 gtransition"
+            onClick={() => (window.location.href = "/")}
+          >
+            Return
+          </button>
         </motion.div>
-      </div> 
+      </div>
     </div>
-  );
-};
+  )
+}

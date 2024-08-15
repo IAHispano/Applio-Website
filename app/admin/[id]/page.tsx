@@ -8,6 +8,8 @@ import UsersTable from "@/components/admin/tables/users-table"
 import Tabs from "@/components/admin/tabs"
 import { Database } from "@/app/types/database"
 
+export const runtime = "edge"
+
 export default async function User({ params }: { params: { id: string } }) {
   const { id } = params
   const supabase = createServerComponentClient<Database>({ cookies })

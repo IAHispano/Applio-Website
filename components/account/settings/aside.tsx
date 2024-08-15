@@ -57,20 +57,22 @@ export function AsideSelection({
                 <span>Models</span>
               </a>
             </div>
-            {role === 'premium' && (
-            <div className="flex flex-col gap-3 max-md:mt-2 overflow-y-auto rounded-2xl">
-              <a
-                className={`flex gap-3 items-center justify-start p-3 hover:bg-neutral-600 active:opacity-50 rounded-2xl ${
-                  section === "premium" ? "bg-neutral-600" : "bg-neutral-700/50"
-                } gtransition`}
-                onClick={() => setSection("premium")}
-              >
-                <span className="text-xl">
-                  <Sparkles />
-                </span>
-                <span>Premium</span>
-              </a>
-            </div>
+            {role === "premium" && (
+              <div className="flex flex-col gap-3 max-md:mt-2 overflow-y-auto rounded-2xl">
+                <a
+                  className={`flex gap-3 items-center justify-start p-3 hover:bg-neutral-600 active:opacity-50 rounded-2xl ${
+                    section === "premium"
+                      ? "bg-neutral-600"
+                      : "bg-neutral-700/50"
+                  } gtransition`}
+                  onClick={() => setSection("premium")}
+                >
+                  <span className="text-xl">
+                    <Sparkles />
+                  </span>
+                  <span>Premium</span>
+                </a>
+              </div>
             )}
           </aside>
           <div className="grow bg-neutral-900 h-4/5 p-5 gap-5 flex flex-col rounded-3xl overflow-y-auto">

@@ -4,7 +4,8 @@ import React from "react"
 import { NextUIProvider } from "@nextui-org/react"
 
 import "@mantine/core/styles.css"
-import { MantineProvider, createTheme } from "@mantine/core"
+
+import { createTheme, MantineProvider } from "@mantine/core"
 
 const theme = createTheme({})
 

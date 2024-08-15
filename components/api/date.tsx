@@ -7,6 +7,7 @@ import {
 } from "@supabase/auth-helpers-nextjs"
 
 import "@/styles/text-animation.css"
+
 import { Progress, Select, SelectItem } from "@nextui-org/react"
 
 interface ModelInfoProps {

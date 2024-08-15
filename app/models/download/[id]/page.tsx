@@ -9,12 +9,14 @@ import { motion } from "framer-motion"
 
 import { Database } from "@/app/types/database"
 
+export const runtime = "edge"
+
 export default function DownloadModel({ params }: { params: { id: string } }) {
   const { id } = params
   const [data, setData] = useState<any | null>(null)
   const [error, setError] = useState<PostgrestError | null>(null)
   const [user, setUser] = useState<any | null>(null)
-  const [loading, setLoading] =useState<boolean>(true)
+  const [loading, setLoading] = useState<boolean>(true)
   const supabase = createClientComponentClient<Database>()
 
   const fetchData = async () => {
@@ -62,49 +64,50 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
 
   async function getUserAndUpdateHistory() {
     try {
-        const { data: userData, error: userError } = await supabase.auth.getUser();
+      const { data: userData, error: userError } = await supabase.auth.getUser()
 
-        if (userError) {
-            console.error("Error fetching user data:", userError);
-            return;
-        }
+      if (userError) {
+        console.error("Error fetching user data:", userError)
+        return
+      }
 
-        const { data: userProfile, error: profileError } = await supabase
-            .from("profiles").select("full_name").eq("auth_id", userData.user.id).single();
+      const { data: userProfile, error: profileError } = await supabase
+        .from("profiles")
+        .select("full_name")
+        .eq("auth_id", userData.user.id)
+        .single()
 
-        if (profileError) {
-            console.error("Error fetching user profile:", profileError);
-            return;
-        }
+      if (profileError) {
+        console.error("Error fetching user profile:", profileError)
+        return
+      }
 
-        const historyInsert = {
-            see_by: userProfile.full_name, 
-            model: id
-        };
+      const historyInsert = {
+        see_by: userProfile.full_name,
+        model: id,
+      }
 
-        const { error: historyError } = await supabase
-            .from('downloads')
-            .insert(historyInsert);
-        
-        if (historyError) {
-            console.error("Error inserting into history:", historyError);
-        }
+      const { error: historyError } = await supabase
+        .from("downloads")
+        .insert(historyInsert)
 
+      if (historyError) {
+        console.error("Error inserting into history:", historyError)
+      }
     } catch (error) {
-        console.log(error)
+      console.log(error)
     }
-}
-  
+  }
+
   useEffect(() => {
-      fetchData();
-  }, [id]);
-  
+    fetchData()
+  }, [id])
+
   useEffect(() => {
     if (loading === false) {
-    getUserAndUpdateHistory();
+      getUserAndUpdateHistory()
     }
-  }, [loading]);
-  
+  }, [loading])
 
   if (error) {
     return (
@@ -178,9 +181,21 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
         </div>
         <Divider className="w-full my-1" />
         <div className="grid grid-cols-4 gap-4 mt-12">
-        <div className="col-span-2 p-3 w-full rounded-xl bg-white/10 text-center text-xs max-w-xl select-text">{data.link}</div>
-        <button className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer" onClick={() => copyUrl(data.link)}>Copy Link</button>
-        <a href={data.link} className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer">Download</a>
+          <div className="col-span-2 p-3 w-full rounded-xl bg-white/10 text-center text-xs max-w-xl select-text">
+            {data.link}
+          </div>
+          <button
+            className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer"
+            onClick={() => copyUrl(data.link)}
+          >
+            Copy Link
+          </button>
+          <a
+            href={data.link}
+            className="col-span-1 p-3 w-full rounded-xl bg-white/10 hover:bg-white/30 gtransition text-center text-2xl z-50 cursor-pointer"
+          >
+            Download
+          </a>
         </div>
       </div>
     </main>

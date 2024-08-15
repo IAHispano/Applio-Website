@@ -14,6 +14,7 @@ import {
 } from "@nextui-org/react"
 
 import { siteConfig } from "@/config/site"
+
 import { AvatarMobile } from "./navbar-avatar-mobile"
 
 export default function HeaderMobile() {
@@ -26,12 +27,12 @@ export default function HeaderMobile() {
       isBlurred
       className="z-50 fixed"
     >
-    <NavbarContent className="sm:hidden">
-      <NavbarMenuToggle
-        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-      />
-    </NavbarContent>
-        <AvatarMobile />
+      <NavbarContent className="sm:hidden">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
+      </NavbarContent>
+      <AvatarMobile />
       <NavbarMenu className="flex justify-start items-center w-full flex-wrap gap-4 h-full z-20 text-center">
         {siteConfig.navMenuItems.map((item, index) => (
           <NavbarMenuItem

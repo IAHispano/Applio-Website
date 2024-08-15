@@ -5,6 +5,8 @@ import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import MarkdownInput from "@/components/guides/create/text-input"
 import { Database } from "@/app/types/database"
 
+export const runtime = "edge"
+
 export default async function CreateGuide() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const {
@@ -34,7 +36,7 @@ export default async function CreateGuide() {
 
   return (
     <main className="absolute inset-0 py-32">
-      <MarkdownInput /> 
+      <MarkdownInput />
     </main>
   )
 }

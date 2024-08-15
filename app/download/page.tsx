@@ -2,10 +2,11 @@
 
 import { useEffect } from "react"
 
+export const runtime = "edge"
+
 export default function IndexPage() {
   useEffect(() => {
-    window.location.href =
-      "https://github.com/IAHispano/Applio-RVC-Fork/releases"
+    window.location.href = "https://github.com/IAHispano/Applio/releases"
   }, [])
 
   return (

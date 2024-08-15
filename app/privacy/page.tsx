@@ -1,5 +1,8 @@
 "use client"
+
 import { Card, CardBody } from "@nextui-org/react"
+
+export const runtime = "edge"
 
 export default function PrivacyPage() {
   return (

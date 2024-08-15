@@ -7,6 +7,8 @@ import { ComposeModel } from "@/components/compose/compose-model"
 
 import { Database } from "../types/database"
 
+export const runtime = "edge"
+
 export default async function Home() {
   const supabase = createServerComponentClient<Database>({ cookies })
 

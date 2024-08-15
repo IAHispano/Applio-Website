@@ -18,6 +18,7 @@ import {
 } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
 import { IconBrandDiscord } from "@tabler/icons-react"
+import { motion } from "framer-motion"
 import {
   Bell,
   Bug,
@@ -31,7 +32,6 @@ import {
 } from "lucide-react"
 
 import { Icons } from "../icons/icons"
-import { motion } from "framer-motion"
 
 export default function NavbarAvatar({
   userFullName,
@@ -147,10 +147,17 @@ export default function NavbarAvatar({
               cursor: "pointer",
             }}
           >
-            <Avatar src={user?.avatar_url} color="primary" radius="sm" className="hover:opacity-50 gtransition w-12 h-12 border-2 border-neutral-600"/>
+            <Avatar
+              src={user?.avatar_url}
+              color="primary"
+              radius="sm"
+              className="hover:opacity-50 gtransition w-12 h-12 border-2 border-neutral-600"
+            />
           </div>
         </DropdownTrigger>
-        <DropdownMenu aria-label="Static Actions" className="font-mono">{dropdownItems}</DropdownMenu>
+        <DropdownMenu aria-label="Static Actions" className="font-mono">
+          {dropdownItems}
+        </DropdownMenu>
       </Dropdown>
     </div>
   )

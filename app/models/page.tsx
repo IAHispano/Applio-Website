@@ -9,6 +9,8 @@ import SparklesCore from "@/components/landing/particles"
 import Counter from "@/components/models/counter"
 import ModelsData from "@/components/models/models"
 
+export const runtime = "edge"
+
 export default function Models() {
   const [count, setCount] = useState<number>(0)
   const [data, setData] = useState<any[]>([])

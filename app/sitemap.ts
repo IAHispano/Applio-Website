@@ -86,6 +86,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "always",
       priority: 0.5,
     },
-    
   ]
 }

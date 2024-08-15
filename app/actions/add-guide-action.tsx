@@ -18,7 +18,7 @@ export const addPost = async (formData: FormData) => {
   } = await supabase.auth.getUser()
 
   const {
-    data: { session }
+    data: { session },
   } = await supabase.auth.getSession()
 
   if (user === null) return

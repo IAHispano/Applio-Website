@@ -3,6 +3,8 @@
 import { Card, CardBody } from "@nextui-org/react"
 import { Apple, Bot, Search } from "lucide-react"
 
+export const runtime = "edge"
+
 export default function BotPage() {
   return (
     <section className="container flex flex-col justify-center items-center pb-8 pt-6 md:py-10 mx-auto text-center max-w-7xl">

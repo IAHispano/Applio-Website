@@ -6,9 +6,9 @@ import { Divider } from "@nextui-org/react"
 import Markdown from "react-markdown"
 import remarkGfm from "remark-gfm"
 
-import { SendButton } from "./blog-send"
 import { addPost } from "@/app/actions/add-blog-action"
 
+import { SendButton } from "./blog-send"
 
 export default function MarkdownInput() {
   const [markdownText, setMarkdownText] = useState("")
@@ -20,11 +20,11 @@ export default function MarkdownInput() {
 
   useEffect(() => {
     if (markdownText.length > 20) {
-      setDisabled(false);
+      setDisabled(false)
     } else {
-      setDisabled(true);
+      setDisabled(true)
     }
-  }, [markdownText]);
+  }, [markdownText])
 
   return (
     <form
@@ -42,7 +42,7 @@ export default function MarkdownInput() {
           >
             Return
           </button>
-          <SendButton isDisabled={disabled}/>
+          <SendButton isDisabled={disabled} />
         </div>
         <div className=" grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1  gtransition">
           <textarea
@@ -65,109 +65,115 @@ export default function MarkdownInput() {
           ></textarea>
         </div>
         <div className="md:flex ">
-              <textarea
-                  className="md:flex-1 h-[600px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 font-mono"
-                  placeholder={
-                    "Here you can start writing your blog, before we start, and we will show you how it works.\n\n" +
-                    "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
-                    "# This is a title \n\n" +
-                    "## This is a subtitle \n\n" +
-                    "[This is a link](https://applio.org)\n\n" +
-                    "**This is bold text**\n\n" +
-                    "*This is italic text*\n\n" +
-                    "- This is a dot\n\n" +
-                    "`This is code`\n\n"  +
-                    "![This is an image](Link_Image)"
-                  }
-                  value={markdownText}
-                  onChange={(e) => setMarkdownText(e.target.value)}
-                  key="content"
-                  name="content"
-                  required
-                  
-              >
-              </textarea>
-              <div className="flex-1 md:ml-4 border rounded-xl" suppressHydrationWarning>
-              <p className='text-3xl font-bold px-4 pt-4 truncate max-w-2xl'>{title || 'Untitled'}</p>
-              <p className='text-sm px-4 mt-1 truncate max-w-3xl'>{description || 'Here you will see the description of your guide.'}</p>
-              <Divider className='mt-4'/>
-                  <Markdown
-                      className="text-neutral-200 text-wrap max-w-4xl break-all text-lg z-50 h-[480px] overflow-auto  p-4 hide-scrollbar"
-                      remarkPlugins={[remarkGfm]}
-                      components={{
-                          a: ({ node, children, ...props }) => (
-                              <a {...props} className="text-green-500 hover:underline break-words">
-                                  {children}
-                              </a>
-                          ),
-                          p: ({ node, children, ...props }) => (
-                              <p {...props} className="mb-4 font-mono">
-                                  {children}
-                              </p>
-                          ),
-                          img: ({ node, alt, src, ...props }) => (
-                              <div className="w-full h-full overflow-hidden rounded-2xl">
-                                  <img
-                                      {...props}
-                                      className="w-full h-full object-cover"
-                                      alt={alt}
-                                      src={src} />
-                              </div>
-                          ),
-                          h1: ({ node, children, ...props }) => (
-                              <h1
-                                  {...props}
-                                  className="text-4xl font-bold mb-8 dark:text-white"
-                              >
-                                  {children}
-                              </h1>
-                          ),
-                          h2: ({ node, children, ...props }) => (
-                              <h2
-                                  {...props}
-                                  className="text-3xl font-bold mb-4 dark:text-white"
-                              >
-                                  {children}
-                              </h2>
-                          ),
-                          ul: ({ node, children, ...props }) => (
-                              <ul {...props} className="list-disc ml-5 mb-4">
-                                  {children}
-                              </ul>
-                          ),
-                          strong: ({ node, children, ...props }) => (
-                              <strong
-                                  {...props}
-                                  className="font-bold dark:text-white"
-                              >
-                                  {children}
-                              </strong>
-                          ),
-                          code: ({ node, children, ...props }) => (
-                            <code
-                                {...props}
-                                className="select-all bg-white/80 text-black font-bold rounded-lg p-1"
-                            >
-                                {children}
-                            </code>
-                        ),
-                      }}
+          <textarea
+            className="md:flex-1 h-[600px] w-full p-4 border rounded-xl bg-white/10 resize-none overflow-auto focus:outline-none hide-scrollbar max-md:mt-4 font-mono"
+            placeholder={
+              "Here you can start writing your blog, before we start, and we will show you how it works.\n\n" +
+              "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
+              "# This is a title \n\n" +
+              "## This is a subtitle \n\n" +
+              "[This is a link](https://applio.org)\n\n" +
+              "**This is bold text**\n\n" +
+              "*This is italic text*\n\n" +
+              "- This is a dot\n\n" +
+              "`This is code`\n\n" +
+              "![This is an image](Link_Image)"
+            }
+            value={markdownText}
+            onChange={(e) => setMarkdownText(e.target.value)}
+            key="content"
+            name="content"
+            required
+          ></textarea>
+          <div
+            className="flex-1 md:ml-4 border rounded-xl"
+            suppressHydrationWarning
+          >
+            <p className="text-3xl font-bold px-4 pt-4 truncate max-w-2xl">
+              {title || "Untitled"}
+            </p>
+            <p className="text-sm px-4 mt-1 truncate max-w-3xl">
+              {description ||
+                "Here you will see the description of your guide."}
+            </p>
+            <Divider className="mt-4" />
+            <Markdown
+              className="text-neutral-200 text-wrap max-w-4xl break-all text-lg z-50 h-[480px] overflow-auto  p-4 hide-scrollbar"
+              remarkPlugins={[remarkGfm]}
+              components={{
+                a: ({ node, children, ...props }) => (
+                  <a
+                    {...props}
+                    className="text-green-500 hover:underline break-words"
                   >
-                    {markdownText || 
-                    "Here you will see a preview of your blog, before we start, and we will show you how it works.\n\n" +
-                    "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
-                    "# This is a title \n\n" +
-                    "## This is a subtitle \n\n" +
-                    "[This is a link](https://applio.org)\n\n" +
-                    "**This is bold text**\n\n" +
-                    "*This is italic text*\n\n" +
-                    "- This is a dot\n\n" +
-                    "`This is code`\n\n" 
-                    }
-                  </Markdown>
-              </div>
+                    {children}
+                  </a>
+                ),
+                p: ({ node, children, ...props }) => (
+                  <p {...props} className="mb-4 font-mono">
+                    {children}
+                  </p>
+                ),
+                img: ({ node, alt, src, ...props }) => (
+                  <div className="w-full h-full overflow-hidden rounded-2xl">
+                    <img
+                      {...props}
+                      className="w-full h-full object-cover"
+                      alt={alt}
+                      src={src}
+                    />
+                  </div>
+                ),
+                h1: ({ node, children, ...props }) => (
+                  <h1
+                    {...props}
+                    className="text-4xl font-bold mb-8 dark:text-white"
+                  >
+                    {children}
+                  </h1>
+                ),
+                h2: ({ node, children, ...props }) => (
+                  <h2
+                    {...props}
+                    className="text-3xl font-bold mb-4 dark:text-white"
+                  >
+                    {children}
+                  </h2>
+                ),
+                ul: ({ node, children, ...props }) => (
+                  <ul {...props} className="list-disc ml-5 mb-4">
+                    {children}
+                  </ul>
+                ),
+                strong: ({ node, children, ...props }) => (
+                  <strong {...props} className="font-bold dark:text-white">
+                    {children}
+                  </strong>
+                ),
+                code: ({ node, children, ...props }) => (
+                  <code
+                    {...props}
+                    className="select-all bg-white/80 text-black font-bold rounded-lg p-1"
+                  >
+                    {children}
+                  </code>
+                ),
+              }}
+            >
+              {markdownText ||
+                "Here you will see a preview of your blog, before we start, and we will show you how it works.\n\n" +
+                  "The guides are made in Markdown, so you may already know how to use it. Here are some examples:\n\n" +
+                  "# This is a title \n\n" +
+                  "## This is a subtitle \n\n" +
+                  "[This is a link](https://applio.org)\n\n" +
+                  "**This is bold text**\n\n" +
+                  "*This is italic text*\n\n" +
+                  "- This is a dot\n\n" +
+                  "`This is code`\n\n"}
+            </Markdown>
           </div>
-        </main>
-        </ form>
-  );
+        </div>
+      </main>
+    </form>
+  )
 }

@@ -1,5 +1,7 @@
 import SparklesCore from "@/components/landing/particles"
 
+export const runtime = "edge"
+
 export default function writer() {
   return (
     <main className="w-full flex flex-col justify-start items-center min-h-screen  px-5 relative overflow-visible">
@@ -21,14 +23,17 @@ export default function writer() {
             className="size-full"
             particleColor="#FFFFFF"
           />
-        </div> 
+        </div>
         <h1 className="md:text-7xl text-3xl lg:text-6xl font-bold text-center text-white relative z-20">
-        We want to hear you
+          We want to hear you
         </h1>
         <div className="w-full">
           <div className="flex flex-col gap-5 w-full justify-center items-center max-w-4xl mx-auto">
             <p className="text-lg max-w-[780px] text-balance w-full">
-            We have created a form where you can tell us about new ideas, new projects, new features, anything you can think of! We want to improve in every possible way and without you this would be impossible.
+              We have created a form where you can tell us about new ideas, new
+              projects, new features, anything you can think of! We want to
+              improve in every possible way and without you this would be
+              impossible.
             </p>
             <a
               className="px-4 py-2 font-bold uppercase text-sm text-black bg-white rounded-full hover:scale-110 active:scale-90 gtransition cursor-pointer z-[3] w-[500px] mb-12 mt-4"

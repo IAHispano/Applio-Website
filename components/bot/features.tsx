@@ -1,6 +1,8 @@
-"use client";
-import { cn } from "@/utils/cn";
-import React from "react";
+"use client"
+
+import React from "react"
+import Image from "next/image"
+import { cn } from "@/utils/cn"
 import {
   IconBoxAlignRightFilled,
   IconChartArrows,
@@ -10,11 +12,11 @@ import {
   IconSlash,
   IconSparkles,
   IconTableColumn,
-} from "@tabler/icons-react";
-import { motion } from "framer-motion";
-import Image from "next/image";
-import { BentoGrid, BentoGridItem } from "@/components/landing/bento-gride";
-import { Ban, BarChart4, Search } from "lucide-react";
+} from "@tabler/icons-react"
+import { motion } from "framer-motion"
+import { Ban, BarChart4, Search } from "lucide-react"
+
+import { BentoGrid, BentoGridItem } from "@/components/landing/bento-gride"
 
 export function BentoGridThirdDemo() {
   return (
@@ -30,11 +32,11 @@ export function BentoGridThirdDemo() {
         />
       ))}
     </BentoGrid>
-  );
+  )
 }
 const Skeleton = () => (
   <div className="flex flex-1 w-full h-full min-h-[6rem] rounded-xl   dark:bg-dot-white/[0.2] bg-dot-black/[0.2] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]  border border-transparent dark:border-white/[0.2] bg-neutral-100 dark:bg-black"></div>
-);
+)
 
 const SkeletonOne = () => {
   const variants = {
@@ -48,7 +50,7 @@ const SkeletonOne = () => {
         duration: 0.2,
       },
     },
-  };
+  }
   const variantsSecond = {
     initial: {
       x: 0,
@@ -60,7 +62,7 @@ const SkeletonOne = () => {
         duration: 0.2,
       },
     },
-  };
+  }
 
   return (
     <motion.div
@@ -80,7 +82,9 @@ const SkeletonOne = () => {
         className="flex flex-row rounded-lg border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-fit ml-auto bg-white dark:bg-black"
       >
         <div className="w-full h-4 bg-gray-100 rounded-md dark:bg-neutral-900 flex items-center p-2">
-        <p className="text-[8px] font-mono">Sanction applied to anthonydiazjorges.</p>
+          <p className="text-[8px] font-mono">
+            Sanction applied to anthonydiazjorges.
+          </p>
         </div>
         <div className="h-6 w-6 rounded-full bg-green-500 flex-shrink-0" />
       </motion.div>
@@ -92,8 +96,8 @@ const SkeletonOne = () => {
         <div className="w-full bg-gray-100 h-4 rounded-md dark:bg-neutral-900" />
       </motion.div>
     </motion.div>
-  );
-};
+  )
+}
 const SkeletonTwo = () => {
   const variants = {
     initial: {
@@ -111,22 +115,25 @@ const SkeletonTwo = () => {
         duration: 2,
       },
     },
-  };
-  const arr = new Array(6).fill(0);
+  }
+  const arr = new Array(6).fill(0)
   return (
     <motion.div
       initial="initial"
       animate="animate"
       whileHover="hover"
-      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2 relative" 
+      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-col space-y-2 relative"
     >
       <motion.div
-        initial={{rotate: 0}}
-        whileHover={{rotate: 6}}
-        className="flex flex-row rounded-lg border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-full ml-auto bg-white dark:bg-black flex relative" 
+        initial={{ rotate: 0 }}
+        whileHover={{ rotate: 6 }}
+        className="flex flex-row rounded-lg border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-full ml-auto bg-white dark:bg-black flex relative"
       >
-        <div className="w-full h-36 bg-gray-100  rounded-lg dark:bg-neutral-900 flex items-center p-1 relative"> 
-          <div className="h-6 w-6 rounded-full bg-green-500 flex-shrink-0 absolute top-0 right-0 mt-2 mr-2" id="avatar"/> 
+        <div className="w-full h-36 bg-gray-100  rounded-lg dark:bg-neutral-900 flex items-center p-1 relative">
+          <div
+            className="h-6 w-6 rounded-full bg-green-500 flex-shrink-0 absolute top-0 right-0 mt-2 mr-2"
+            id="avatar"
+          />
           <div className="p-2 absolute top-0 left-0 flex-col text-left">
             <p className="text-md font-mono">Messi</p>
             <p className="text-xs font-mono mt-3">150 Epochs</p>
@@ -138,8 +145,8 @@ const SkeletonTwo = () => {
         </div>
       </motion.div>
     </motion.div>
-  );
-};
+  )
+}
 const SkeletonThree = () => {
   const variants = {
     initial: {
@@ -148,15 +155,13 @@ const SkeletonThree = () => {
     animate: {
       backgroundPosition: ["0, 50%", "100% 50%", "0 50%"],
     },
-  };
+  }
   return (
-    <motion.div
-      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2 flex items-center justify-center hover:scale-90 gtransition"
-    >
-      <BarChart4 className="w-44 h-44 text-center text-white"/>
+    <motion.div className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2 flex items-center justify-center hover:scale-90 gtransition">
+      <BarChart4 className="w-44 h-44 text-center text-white" />
     </motion.div>
-  );
-};
+  )
+}
 const SkeletonFour = () => {
   const first = {
     initial: {
@@ -167,7 +172,7 @@ const SkeletonFour = () => {
       x: 0,
       rotate: 0,
     },
-  };
+  }
   const second = {
     initial: {
       x: -20,
@@ -177,7 +182,7 @@ const SkeletonFour = () => {
       x: 0,
       rotate: 0,
     },
-  };
+  }
   return (
     <motion.div
       initial="initial"
@@ -185,19 +190,26 @@ const SkeletonFour = () => {
       whileHover="hover"
       className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] bg-dot-black/[0.2] flex-row space-x-2"
     >
-    <motion.div
-      className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2"
-      style={{
-        background:
-        "radial-gradient(ellipse 100% 100% at 50% 100%, #00AA68, transparent)",
-        backgroundSize: "400% 400%",
-      }}
-    >
-      <motion.div initial={{opacity: 0}} whileInView={{opacity: 1}} transition={{duration: 1}} className="h-full w-full rounded-lg text-white z-50 text-8xl flex justify-center items-center"><IconSparkles className="h-44 w-44 text-white" /></motion.div>
+      <motion.div
+        className="flex flex-1 w-full h-full min-h-[6rem] dark:bg-dot-white/[0.2] rounded-lg bg-dot-black/[0.2] flex-col space-y-2"
+        style={{
+          background:
+            "radial-gradient(ellipse 100% 100% at 50% 100%, #00AA68, transparent)",
+          backgroundSize: "400% 400%",
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="h-full w-full rounded-lg text-white z-50 text-8xl flex justify-center items-center"
+        >
+          <IconSparkles className="h-44 w-44 text-white" />
+        </motion.div>
+      </motion.div>
     </motion.div>
-    </motion.div>
-  );
-};
+  )
+}
 const SkeletonFive = () => {
   const variants = {
     initial: {
@@ -210,7 +222,7 @@ const SkeletonFive = () => {
         duration: 0.2,
       },
     },
-  };
+  }
   const variantsSecond = {
     initial: {
       x: 0,
@@ -222,7 +234,7 @@ const SkeletonFive = () => {
         duration: 0.2,
       },
     },
-  };
+  }
 
   return (
     <motion.div
@@ -234,34 +246,36 @@ const SkeletonFive = () => {
         variants={variants}
         className="flex flex-row rounded-2xl border border-neutral-100 dark:border-white/[0.2] p-2  items-start space-x-2 bg-white dark:bg-black"
       >
-        <div
-          className="rounded-full h-10 w-10 bg-white/30 flex-shrink-0"
-        />
+        <div className="rounded-full h-10 w-10 bg-white/30 flex-shrink-0" />
         <p className="text-xs text-neutral-500 bg-neutral-900 rounded-md">
-          <span className="p-2">Translates &quot;hello&quot; into Chinese.</span>
+          <span className="p-2">
+            Translates &quot;hello&quot; into Chinese.
+          </span>
         </p>
       </motion.div>
       <motion.div
         variants={variantsSecond}
-        className="flex flex-row rounded-lg border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-full ml-auto bg-white dark:bg-black flex relative" 
+        className="flex flex-row rounded-lg border border-neutral-100 dark:border-white/[0.2] p-2 items-center space-x-2 w-full ml-auto bg-white dark:bg-black flex relative"
       >
-        <div className="w-full h-16 bg-gray-100  rounded-lg dark:bg-neutral-900 flex items-center p-1 relative"> 
-          <div className="h-6 w-6 rounded-full bg-green-500 flex-shrink-0 absolute top-0 right-0 mt-2 mr-2" id="avatar"/> 
+        <div className="w-full h-16 bg-gray-100  rounded-lg dark:bg-neutral-900 flex items-center p-1 relative">
+          <div
+            className="h-6 w-6 rounded-full bg-green-500 flex-shrink-0 absolute top-0 right-0 mt-2 mr-2"
+            id="avatar"
+          />
           <div className="p-2 absolute top-0 left-0 flex-col text-left">
             <p className="text-xs text-white">
-                Translated to zh-cn:
-                &quot;hello&quot;
+              Translated to zh-cn: &quot;hello&quot;
             </p>
             <p className="mt-4 text-xs text-white">
-                Translated message:
-                <span className="font-bold ml-1">你好</span>
-              </p>
+              Translated message:
+              <span className="font-bold ml-1">你好</span>
+            </p>
           </div>
         </div>
       </motion.div>
     </motion.div>
-  );
-};
+  )
+}
 const items = [
   {
     title: "Moderation",
@@ -300,7 +314,8 @@ const items = [
     title: "Artificial Inteligence",
     description: (
       <span className="text-sm">
-        In the decade of artificial intelligence, our bot was not going to be left behind.
+        In the decade of artificial intelligence, our bot was not going to be
+        left behind.
       </span>
     ),
     header: <SkeletonFour />,
@@ -312,11 +327,12 @@ const items = [
     title: "Utility",
     description: (
       <span className="text-sm">
-        Because a bot must be useful, it uses commands such as translator, afk, eval or user info among others. 
+        Because a bot must be useful, it uses commands such as translator, afk,
+        eval or user info among others.
       </span>
     ),
     header: <SkeletonFive />,
     className: "md:col-span-1",
     icon: <IconSlash className="h-4 w-4 text-neutral-500" />,
   },
-];
+]

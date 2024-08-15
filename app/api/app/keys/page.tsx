@@ -9,6 +9,8 @@ import ApiDashboard from "@/components/api/dashboard"
 import ActualKeys from "@/components/api/keys/actual_keys"
 import { Database } from "@/app/types/database"
 
+export const runtime = "edge"
+
 export default async function User() {
   const supabase = createServerComponentClient<Database>({ cookies })
   const {

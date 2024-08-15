@@ -3,8 +3,6 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
-import { ComposeModel } from "@/components/compose/compose-model"
-
 import { Database } from "../types/database"
 
 export const runtime = "edge"

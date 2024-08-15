@@ -4,8 +4,6 @@ import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import {
   Avatar,
-  Chip,
-  Divider,
   Dropdown,
   DropdownItem,
   DropdownMenu,
@@ -14,24 +12,15 @@ import {
 } from "@nextui-org/react"
 import {
   createClientComponentClient,
-  type Session,
 } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
-import { IconBrandDiscord } from "@tabler/icons-react"
-import { motion } from "framer-motion"
 import {
-  Bell,
   Bug,
-  HandHeart,
   LogOut,
   Settings,
   Shield,
-  Sparkles,
-  Upload,
   UserCircle,
 } from "lucide-react"
-
-import { Icons } from "../icons/icons"
 
 export default function NavbarAvatar({
   userFullName,

@@ -1,9 +1,6 @@
 "use client"
-
-import { useRouter } from "next/navigation"
 import { Button } from "@nextui-org/button"
 import {
-  createClientComponentClient,
   type Session,
 } from "@supabase/auth-helpers-nextjs"
 

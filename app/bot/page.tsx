@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 
 import { BentoGridThirdDemo } from "@/components/bot/features"
-import SparklesCore from "@/components/landing/particles"
 
 export const runtime = "edge"
 

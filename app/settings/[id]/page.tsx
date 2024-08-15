@@ -1,8 +1,7 @@
-import Head from "next/head"
-import { cookies, cookies as requestCookies } from "next/headers"
+
+import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import Cookies from "js-cookie"
 
 import { AsideSelection } from "@/components/account/settings/aside"
 

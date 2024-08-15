@@ -1,28 +1,22 @@
-import React, { useEffect, useState } from "react"
-import { redirect, useRouter } from "next/navigation"
+
+import { useRouter } from "next/navigation"
 import {
   Button,
   Card,
   CardBody,
   CardFooter,
-  CardHeader,
-  Checkbox,
-  Chip,
-  Divider,
   Dropdown,
   DropdownItem,
   DropdownMenu,
   DropdownTrigger,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Tooltip,
   useDisclosure,
 } from "@nextui-org/react"
-import { Delete, MoreVertical, Trash2 } from "lucide-react"
+import { MoreVertical } from "lucide-react"
 
 import { addPost } from "@/app/actions/delete-post-action"
 

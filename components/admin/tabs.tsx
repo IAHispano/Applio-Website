@@ -1,8 +1,8 @@
 "use client"
 
 import React from "react"
-import { Button, Tab, Tabs } from "@nextui-org/react"
-import { Bot, KeyRound, Text, User } from "lucide-react"
+import { Tab, Tabs } from "@nextui-org/react"
+import { KeyRound, User } from "lucide-react"
 
 import KeysTable from "./tables/keys-table"
 import UsersTable from "./tables/users-table"

@@ -1,7 +1,6 @@
 "use client"
 
 import { Card, CardBody } from "@nextui-org/react"
-import { Apple, Bot, Search } from "lucide-react"
 
 export const runtime = "edge"
 

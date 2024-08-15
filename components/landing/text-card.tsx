@@ -3,7 +3,6 @@
 import React, { memo, useEffect, useRef, useState } from "react"
 import { cn } from "@/utils/cn"
 import { motion } from "framer-motion"
-import { twMerge } from "tailwind-merge"
 
 export const TextRevealCard = ({
   text,

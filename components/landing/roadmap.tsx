@@ -7,7 +7,6 @@ import {
   useScroll,
   useSpring,
   useTransform,
-  useVelocity,
 } from "framer-motion"
 
 export const TracingBeam = ({

@@ -1,10 +1,6 @@
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { PostgrestError } from "@supabase/supabase-js"
-
-import ModelsTable from "@/components/admin/tables/keys-table"
-import UsersTable from "@/components/admin/tables/users-table"
 import Tabs from "@/components/admin/tabs"
 import { Database } from "@/app/types/database"
 

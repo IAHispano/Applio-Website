@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { useRouter } from "next/navigation"
-import { Bot, CalendarSearch, Sparkles, User2 } from "lucide-react"
+import { Bot, Sparkles, User2 } from "lucide-react"
 
 import Information from "./information"
 import ModelsAccount from "./models"

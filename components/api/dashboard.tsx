@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import { cookies } from "next/headers"
 import {
   BreadcrumbItem,
   Breadcrumbs,
@@ -10,15 +9,12 @@ import {
 } from "@nextui-org/react"
 import {
   createClientComponentClient,
-  createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs"
-import { createClient, PostgrestError } from "@supabase/supabase-js"
+import { PostgrestError } from "@supabase/supabase-js"
 
 import { Database } from "@/app/types/database"
 
 import "@/styles/text-animation.css"
-
-import { Home, KeySquare } from "lucide-react"
 
 const supabase = createClientComponentClient<Database>()
 

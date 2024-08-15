@@ -3,7 +3,6 @@
 import React, { useEffect, useState } from "react"
 import {
   createClientComponentClient,
-  createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs"
 
 import "@/styles/text-animation.css"

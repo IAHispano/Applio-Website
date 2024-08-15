@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { motion } from "framer-motion"
 
-import password from "@/app/login/forgot-password/page"
-
 export default function Updatepassword() {
   const [password, setPassword] = useState("")
   const [success, setSuccess] = useState(false)

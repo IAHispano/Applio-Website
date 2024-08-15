@@ -1,7 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
-
 import { TracingBeam } from "@/components/landing/roadmap"
 
 export const runtime = "edge"

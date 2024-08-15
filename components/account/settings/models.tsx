@@ -1,27 +1,14 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { cookies } from "next/headers"
 import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardHeader,
   Divider,
-  Image,
-  Link,
-  Spacer,
   Spinner,
-  User,
 } from "@nextui-org/react"
 import {
   createClientComponentClient,
-  createServerComponentClient,
 } from "@supabase/auth-helpers-nextjs"
-import { createClient, PostgrestError } from "@supabase/supabase-js"
-
-import TestCard from "@/components/models/test-card"
+import { PostgrestError } from "@supabase/supabase-js"
 import { Database } from "@/app/types/database"
 
 import AccountModelCard from "./model-card-account"

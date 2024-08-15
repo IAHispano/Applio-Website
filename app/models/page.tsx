@@ -1,11 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Spinner } from "@nextui-org/react"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
-
-import { InfiniteMovingCards } from "@/components/landing/infinite-cards"
-import SparklesCore from "@/components/landing/particles"
 import Counter from "@/components/models/counter"
 import ModelsData from "@/components/models/models"
 

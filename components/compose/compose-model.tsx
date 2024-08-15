@@ -2,13 +2,9 @@
 
 import React, { useRef, useState } from "react"
 import {
-  Avatar,
-  Button,
   Input,
   Select,
   SelectItem,
-  Textarea,
-  User,
 } from "@nextui-org/react"
 
 import { addPost } from "@/app/actions/add-post-action"

@@ -1,11 +1,8 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import { Spinner } from "@nextui-org/react"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
-import { ArrowRight } from "lucide-react"
-import InfiniteScroll from "react-infinite-scroll-component"
 
 import TestCard from "@/components/models/test-card"
 

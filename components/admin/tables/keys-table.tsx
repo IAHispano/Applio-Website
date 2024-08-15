@@ -1,12 +1,9 @@
 import { useCallback, useEffect, useState } from "react"
 import {
   Button,
-  Checkbox,
   Chip,
   ChipProps,
-  getKeyValue,
   Input,
-  Link,
   Modal,
   ModalBody,
   ModalContent,
@@ -26,7 +23,6 @@ import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
 import {
   Activity,
-  LockIcon,
   Pencil,
   SearchIcon,
   Shield,

@@ -1,35 +1,12 @@
 import React, { useEffect, useState } from "react"
-import Image from "next/image"
-import { useClipboard } from "@mantine/hooks"
 import {
-  Button,
-  Checkbox,
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-  Link,
   Skeleton,
-  Spinner,
-  Tooltip,
 } from "@nextui-org/react"
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { PostgrestError } from "@supabase/supabase-js"
-import { Bot, Box, Copy, Heart, Share, Star, ThumbsUp } from "lucide-react"
-
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { ThumbsUp } from "lucide-react"
 import { useToast } from "@/components/ui/use-toast"
-import { addPost } from "@/app/actions/like-model-action"
 import { Database } from "@/app/types/database"
-
-import { Toaster } from "../ui/toaster"
 
 interface TestCardProps {
   imageUrl: string

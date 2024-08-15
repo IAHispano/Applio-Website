@@ -1,9 +1,8 @@
 "use client"
 
 import React, { useEffect, useState } from "react"
-import type { NextPage } from "next"
 import { cn } from "@/utils/cn"
-import type { Container, Engine } from "@tsparticles/engine"
+import type { Container } from "@tsparticles/engine"
 import Particles, { initParticlesEngine } from "@tsparticles/react"
 import { loadSlim } from "@tsparticles/slim"
 import { motion, useAnimation } from "framer-motion"

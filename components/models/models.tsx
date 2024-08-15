@@ -7,8 +7,6 @@ import { Search } from "lucide-react"
 import InfiniteScroll from "react-infinite-scroll-component"
 
 import getModelsByTitle from "@/app/actions/search-model"
-
-import SortByAlgorithm from "./algorithm"
 import SortBy from "./sort-by"
 import TestCard from "./test-card"
 

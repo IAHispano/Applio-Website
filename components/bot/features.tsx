@@ -1,17 +1,11 @@
 "use client"
 
 import React from "react"
-import Image from "next/image"
 import { cn } from "@/utils/cn"
 import {
-  IconBoxAlignRightFilled,
   IconChartArrows,
-  IconClipboardCopy,
-  IconFileBroken,
-  IconSignature,
   IconSlash,
   IconSparkles,
-  IconTableColumn,
 } from "@tabler/icons-react"
 import { motion } from "framer-motion"
 import { Ban, BarChart4, Search } from "lucide-react"

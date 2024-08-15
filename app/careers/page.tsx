@@ -1,7 +1,5 @@
 "use client"
 
-import { motion } from "framer-motion"
-
 export const runtime = "edge"
 
 export default function CareersPage() {

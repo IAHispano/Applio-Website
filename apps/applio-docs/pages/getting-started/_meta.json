@@ -4,6 +4,7 @@
 	"training": "Training",
 	"tts": "TTS",
 	"pretrained": "Pretrained",
+	"embedder": "Embedder",
 	"tensorboard": "Tensorboard",
 	"audio-analizer": "Audio Analyzer",
 	"voice-blender": "Voice Blender",

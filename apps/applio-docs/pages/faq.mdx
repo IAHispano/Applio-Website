@@ -3,6 +3,7 @@
 - **RVC (Retrieval-based Voice Conversion)**: A voice cloning technique that retrieves and combines audio segments from a source speaker to synthesize the voice of a target speaker, without requiring large parallel datasets.
 
 - **HuBERT**: A transformer-based model that extracts text from raw audio, previously trained on a masked prediction task, which RVC uses to train the voice models. There are several types of Hubert, some of which are:
+
   - **ContentVec:** Essentially the default one used by RVC, which can be adaptable for different languages.
   - **Japanese Hubert-Base:** As the name suggests, it assists in recognition for that language.
   - **Chinese Hubert-Large:** As the name suggests, it assists in recognition for that language.
@@ -19,7 +20,7 @@
 
 - **Epoch**: The number of iterations performed to complete one full cycle of the dataset during training.
 
-- **F0 Extraction Methods**: Techniques like PM, Harvest, Dio, Crepe (full-tiny), Rmvpe, and Fcpe used for extracting fundamental frequency (pitch) information from audio.
+- **F0 Extraction Methods**: Techniques like Crepe (full-tiny), RMVPE, and FCPE used for extracting fundamental frequency (pitch) information from audio.
 
 - **Batch Size**: The amount of GPU used to train the model, with larger batch sizes generally leading to shorter training duration.
 
@@ -67,4 +68,4 @@
 
 - **Pitch Guidance**: RVC supports leveraging the fundamental frequency (f0) of the input voice during synthesis, better maintaining the original pitch, intonation, and melody.
 
-- **RVC Process**: The RVC process involves vocals/accompaniment separation, feature extraction techniques like PM, Harvest, Dio, RMVPE, pre-trained models like f0G40k, Generator (G) and Discriminator (D) models (core components of the GAN architecture), indexing using libraries like Faiss, and several loss terms like discriminator, generator, feature matching, mel spectrogram, and KL divergence to guide model training.
+- **RVC Process**: The RVC process involves vocals/accompaniment separation, feature extraction techniques like RMVPE, pre-trained models like f0G40k, Generator (G) and Discriminator (D) models (core components of the GAN architecture), indexing using libraries like Faiss, and several loss terms like discriminator, generator, feature matching, mel spectrogram, and KL divergence to guide model training.

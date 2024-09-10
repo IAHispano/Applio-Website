@@ -42,23 +42,11 @@ const config: DocsThemeConfig = {
   },
   faviconGlyph: "favicon.ico",
   logoLink: "/",
-  banner: {
-    key: "new-release",
-    text: (
-      <a href="https://docs.applio.org/" target="_blank">
-        🎉 Applio Docs has been updated!
-      </a>
-    ),
-  },
   primarySaturation: 100,
   primaryHue: 151,
   head: () => {
     const { asPath, defaultLocale, locale } = useRouter();
     const { frontMatter } = useConfig();
-    const url =
-      "https://docs.applio.org" +
-      (defaultLocale === locale ? asPath : `/${locale}${asPath}`);
-
     return (
       <>
       <meta name="msapplication-TileColor" content="#fff" />
@@ -67,11 +55,11 @@ const config: DocsThemeConfig = {
       <meta httpEquiv="Content-Language" content="en" />
       <meta
         name="description"
-        content="Documentation for the VITS-based Voice Conversion project focused on simplicity, quality and performance."
+        content="Documentation for a high-quality, open-source speech conversion ecosystem designed for simplicity and optimized performance."
       />
       <meta
         name="og:description"
-        content="Documentation for the VITS-based Voice Conversion project focused on simplicity, quality and performance."
+        content="Documentation for a high-quality, open-source speech conversion ecosystem designed for simplicity and optimized performance"
       />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site:domain" content="docs.applio.org" />

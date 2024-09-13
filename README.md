@@ -29,7 +29,7 @@ Welcome to the Applio websites official monorepo! This README outlines the rules
      ```
 
 2. **Scope**
-   - Clearly specify the project you are contributing to by using the project identifier (e.g., `applio-docs`, `applio-org`, `applio-tv`).
+   - Clearly specify the project you are contributing to by using the project identifier (e.g., `applio-docs`, `applio-org`, etc).
    - If the change affects multiple projects, list all relevant project identifiers.
 
 3. **Message Content**

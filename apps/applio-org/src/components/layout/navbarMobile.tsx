@@ -103,7 +103,6 @@ export default function NavbarMobile() {
             <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/learn">Learn</a>
-                <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/news">News</a>
                 <div className="col-span-1 px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
                 <button className="flex justify-between w-full" onClick={() => handleDropdown(1)}>  
                 {dropdownOpen === 1 && (          

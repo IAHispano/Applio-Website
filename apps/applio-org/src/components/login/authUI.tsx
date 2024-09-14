@@ -1,100 +1,97 @@
 "use client"
 
 import { supabase } from "@/utils/database"
+import { AuthError, Provider } from "@supabase/supabase-js"
 import { useRouter } from "next/navigation"
-import { useEffect, useState } from "react"
-
+import { useState } from "react"
 
 export default function AuthUI(){
-    const [email, setEmail] = useState('')
-    const [error, setError] = useState('')
-    const [password, setPassword] = useState('')
-    const router = useRouter()
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [error, setError] = useState<AuthError>()
+  const router = useRouter()
 
-    const handleSignIn = async () => {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-    
-      if (error) {
-        if (error.message.includes('credentials')) {
-          setError('Wrong email or password.');
-        } else {
-          setError('Login error.');
-        }
-        return;
+  async function loginWithProvider(provider: Provider) {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider: provider,
+      options: {
+        redirectTo: `${location.origin}/auth/callback`
       }
-    
-      router.refresh();
-    };
-    
-    
+    })
+  }
 
-    const handleOAuthDiscord = async () => {
-      await supabase.auth.signInWithOAuth({
-        provider: 'discord',
-        options: {
-          redirectTo: `${location.origin}/auth/callback`
-        }
-      })
+  async function loginWithEmail(email: string, password: string) {
+    setError(undefined)
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    })
+
+    if (error) {
+      setError(error)
+      console.log(error)
+    } else {
+      router.replace("/")
     }
 
-    const handleOAuthGithub = async () => {
-      await supabase.auth.signInWithOAuth({
-        provider: 'github',
-        options: {
-          redirectTo: `${location.origin}/auth/callback`
-        }
-      })
-    }
-
-    useEffect(() => {
-        const tryGetSession = async () => {
-          const { data, error } = await supabase.auth.getUser();
-          if (data.user != null) {
-            window.history.back()
-          }
-
-          if (error) {
-            console.log(error)
-          }
-        }
-        
-        tryGetSession();
-    }, [])
-
+  }
 
     return (
-      <main>
-        <div 
-          className="absolute top-0 h-full min-w-full overflow-hidden blur-3xl z-0" 
-          style={{
-            backgroundImage: 'radial-gradient(10% 20% at 50% 50%, #ffffffaa, transparent)',
-            opacity: 1
-          }}
-        ></div>
-        <div className="grid grid-rows-3 grid-flow-col h-[70svh] max-md:h-fit w-full max-w-2xl mx-auto bg-white/10 mt-24 md:rounded-2xl backdrop-blur-3xl md:border border-white/10 drop-shadow-xl p-8 z-50">
-          <div className="w-full">
-            <h1 className="text-3xl mb-12">Login at Applio</h1>
-            <p className="mb-2">Email</p>
-            <input required type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="username@gmail.com" className="mb-4 w-full p-3 rounded-md bg-white/10 border border-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2"></input>
-            <p className="mb-2">Password</p>
-            <input required type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full p-3 rounded-md bg-white/10 border border-white/10 text-white placeholder-white/80 focus:outline-none focus:border-white/40 focus:border-2"></input>
-            <a className="mt-2 text-xs cursor-pointer hover:underline" href="/login/forgot-password">Forgot password?</a>
-            {error && (<p className="text-red-500 read-text text-sm text-center bg-neutral-700 border border-white/10 rounded-lg p-4 mt-4">{error}</p>)}
-          </div>
-          <div className="row-span-2 md:mt-auto flex flex-col justify-center">
-          <button onClick={handleSignIn} className="slow w-full p-3 font-bold rounded-xl bg-white/10 text-white hover:bg-white/20 border border-white/10 gtransition focus:outline-none">Sign in</button>
-            <a href="/login/fast-link" className="text-neutral-300 text-md hover:text-white gtransition mt-2 text-center">or use <strong>Fast Link</strong></a>
-            <p className="text-xs mb-2 mt-3 text-neutral-300 text-center">or continue with</p>
-            <div className=" grid grid-cols-1 md:grid-cols-8 w-full grid-rows-1 gap-4 gtransition pb-4 z-[2] mb-4 mt-2">
-            <button onClick={handleOAuthDiscord} className="slow md:col-span-4 w-full h-full p-3 gap-4 flex flex-col rounded-xl bg-neutral-700/80 hover:bg-white/20 gtransition justify-center items-center text-center relative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 127.14 96.36" width={'2rem'} height={'2rem'}><path fill="#fff" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg></button>
-            <button onClick={handleOAuthGithub} className="slow md:col-span-4 w-full h-full p-3 gap-4 flex flex-col rounded-xl bg-neutral-700/80 hover:bg-white/20 gtransition justify-center items-center text-center relative"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512" width={'2rem'} height={'2rem'}><path fill="#fff" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3 .3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5 .3-6.2 2.3zm44.2-1.7c-2.9 .7-4.9 2.6-4.6 4.9 .3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3 .7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3 .3 2.9 2.3 3.9 1.6 1 3.6 .7 4.3-.7 .7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3 .7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3 .7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg></button>       
+      <main className="w-full h-full absolute top-0 bg-gradient-to-b from-[#333333] to-[#110f0f] z-50">
+        <section className="flex justify-center items-center m-auto w-full h-full p-8">
+          <div className="bg-[#4d4c4c] w-full h-full rounded-xl p-8 xl:max-w-[30%] md:max-w-[60%] md:max-h-[70%] flex flex-col gap-4">
+            <div className="flex flex-col items-center gap-0.5">
+            <h1 className="text-4xl font-medium">Welcome back</h1>
+            <h2 className="text-sm">Continue to login to Applio.</h2>
             </div>
-            <a href="/login/new-user" className="text-center text-sm">Don&apos;t have an account yet? <span className="underline">Register for free</span></a>
+            <div className="flex flex-col w-full h-full gap-4 mt-10">
+              <input required value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl bg-black/20 border border-white/20 p-3 focus:outline-none focus:border focus:border-white/40" placeholder="Email address"/>
+              <input
+                required
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  if (e.target.value === '') {
+                    setError(undefined);
+                  }
+                }}
+                type="password"
+                className="rounded-xl bg-black/20 border border-white/20 p-3 focus:outline-none focus:border focus:border-white/40"
+                placeholder="Password"
+              />
+              <a href="/login/forgot-password" className="text-xs w-fit px-1 -mt-2 text-neutral-300 hover:text-white slow hover:underline cursor-pointer mb-6">Forgot your password?</a>
+              {error && <p className="flex justify-center text-xs p-3 bg-red-500/40 text-white rounded-xl font-medium">{error.message}</p>}
+              <button onClick={() => loginWithEmail(email, password)} className="w-full bg-[#666666] border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow p-2 rounded-2xl font-semibold">Login</button>
+              <a href="/login/new-user" className="w-full bg-white text-black border border-white hover:bg-opacity-80 hover:border-white/20 slow p-2 rounded-2xl font-semibold text-center">Sign up</a>
+            </div>
+            <div className="flex flex-col gap-1">
+            <p className="text-sm flex justify-center">or continue with</p>
+            <div className="flex justify-center gap-2">
+              <button 
+                className="border border-white/20 px-4 py-1 rounded-xl flex items-center gap-2 hover:bg-neutral-700/40 slow" 
+                onClick={() => loginWithProvider("google")}
+              >
+                <svg className="w-4 h-4" viewBox="-3 0 262 262" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid"><path d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027" fill="#4285F4"/><path d="M130.55 261.1c35.248 0 64.839-11.605 86.453-31.622l-41.196-31.913c-11.024 7.688-25.82 13.055-45.257 13.055-34.523 0-63.824-22.773-74.269-54.25l-1.531.13-40.298 31.187-.527 1.465C35.393 231.798 79.49 261.1 130.55 261.1" fill="#34A853"/><path d="M56.281 156.37c-2.756-8.123-4.351-16.827-4.351-25.82 0-8.994 1.595-17.697 4.206-25.82l-.073-1.73L15.26 71.312l-1.335.635C5.077 89.644 0 109.517 0 130.55s5.077 40.905 13.925 58.602l42.356-32.782" fill="#FBBC05"/><path d="M130.55 50.479c24.514 0 41.05 10.589 50.479 19.438l36.844-35.974C195.245 12.91 165.798 0 130.55 0 79.49 0 35.393 29.301 13.925 71.947l42.211 32.783c10.59-31.477 39.891-54.251 74.414-54.251" fill="#EB4335"/></svg>
+                Google
+              </button>
+              <button 
+                className="border border-white/20 px-4 py-1 rounded-xl flex items-center gap-2 hover:bg-neutral-700/40 slow" 
+                onClick={() => loginWithProvider("discord")}
+              >
+                <svg className="w-4 h-4" viewBox="0 -28.5 256 256" version="1.1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <path d="M216.856339,16.5966031 C200.285002,8.84328665 182.566144,3.2084988 164.041564,0 C161.766523,4.11318106 159.108624,9.64549908 157.276099,14.0464379 C137.583995,11.0849896 118.072967,11.0849896 98.7430163,14.0464379 C96.9108417,9.64549908 94.1925838,4.11318106 91.8971895,0 C73.3526068,3.2084988 55.6133949,8.86399117 39.0420583,16.6376612 C5.61752293,67.146514 -3.4433191,116.400813 1.08711069,164.955721 C23.2560196,181.510915 44.7403634,191.567697 65.8621325,198.148576 C71.0772151,190.971126 75.7283628,183.341335 79.7352139,175.300261 C72.104019,172.400575 64.7949724,168.822202 57.8887866,164.667963 C59.7209612,163.310589 61.5131304,161.891452 63.2445898,160.431257 C105.36741,180.133187 151.134928,180.133187 192.754523,160.431257 C194.506336,161.891452 196.298154,163.310589 198.110326,164.667963 C191.183787,168.842556 183.854737,172.420929 176.223542,175.320965 C180.230393,183.341335 184.861538,190.991831 190.096624,198.16893 C211.238746,191.588051 232.743023,181.531619 254.911949,164.955721 C260.227747,108.668201 245.831087,59.8662432 216.856339,16.5966031 Z M85.4738752,135.09489 C72.8290281,135.09489 62.4592217,123.290155 62.4592217,108.914901 C62.4592217,94.5396472 72.607595,82.7145587 85.4738752,82.7145587 C98.3405064,82.7145587 108.709962,94.5189427 108.488529,108.914901 C108.508531,123.290155 98.3405064,135.09489 85.4738752,135.09489 Z M170.525237,135.09489 C157.88039,135.09489 147.510584,123.290155 147.510584,108.914901 C147.510584,94.5396472 157.658606,82.7145587 170.525237,82.7145587 C183.391518,82.7145587 193.761324,94.5189427 193.539891,108.914901 C193.539891,123.290155 183.391518,135.09489 170.525237,135.09489 Z" fill="#5865F2" fill-rule="nonzero"> </path> </g> </g></svg>
+                Discord
+              </button>
+              <button 
+                className="border border-white/20 px-4 py-1 rounded-xl flex items-center gap-2 hover:bg-neutral-700/40 slow" 
+                onClick={() => loginWithProvider("github")}
+              >
+                <svg className="w-4 h-4" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <title>github [#142]</title> <desc>Created with Sketch.</desc> <defs> </defs> <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="Dribbble-Light-Preview" transform="translate(-140.000000, -7559.000000)" fill="#000000"> <g id="icons" transform="translate(56.000000, 160.000000)"> <path d="M94,7399 C99.523,7399 104,7403.59 104,7409.253 C104,7413.782 101.138,7417.624 97.167,7418.981 C96.66,7419.082 96.48,7418.762 96.48,7418.489 C96.48,7418.151 96.492,7417.047 96.492,7415.675 C96.492,7414.719 96.172,7414.095 95.813,7413.777 C98.04,7413.523 100.38,7412.656 100.38,7408.718 C100.38,7407.598 99.992,7406.684 99.35,7405.966 C99.454,7405.707 99.797,7404.664 99.252,7403.252 C99.252,7403.252 98.414,7402.977 96.505,7404.303 C95.706,7404.076 94.85,7403.962 94,7403.958 C93.15,7403.962 92.295,7404.076 91.497,7404.303 C89.586,7402.977 88.746,7403.252 88.746,7403.252 C88.203,7404.664 88.546,7405.707 88.649,7405.966 C88.01,7406.684 87.619,7407.598 87.619,7408.718 C87.619,7412.646 89.954,7413.526 92.175,7413.785 C91.889,7414.041 91.63,7414.493 91.54,7415.156 C90.97,7415.418 89.522,7415.871 88.63,7414.304 C88.63,7414.304 88.101,7413.319 87.097,7413.247 C87.097,7413.247 86.122,7413.234 87.029,7413.87 C87.029,7413.87 87.684,7414.185 88.139,7415.37 C88.139,7415.37 88.726,7417.2 91.508,7416.58 C91.513,7417.437 91.522,7418.245 91.522,7418.489 C91.522,7418.76 91.338,7419.077 90.839,7418.982 C86.865,7417.627 84,7413.783 84,7409.253 C84,7403.59 88.478,7399 94,7399" id="github-[#142]"> </path> </g> </g> </g> </g></svg>
+                Github
+              </button>
+            </div>
+            </div>
           </div>
-        </div>
+        </section>
       </main>
     )
 }

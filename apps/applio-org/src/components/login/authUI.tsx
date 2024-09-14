@@ -64,9 +64,9 @@ export default function AuthUI(){
               <button onClick={() => loginWithEmail(email, password)} className="w-full bg-[#666666] border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow p-2 rounded-2xl font-semibold">Login</button>
               <a href="/login/new-user" className="w-full bg-white text-black border border-white hover:bg-opacity-80 hover:border-white/20 slow p-2 rounded-2xl font-semibold text-center">Sign up</a>
             </div>
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-1 max-md:w-full">
             <p className="text-sm flex justify-center">or continue with</p>
-            <div className="flex justify-center gap-2">
+            <div className="flex max-md:flex-col max-md:mx-auto max-md:mt-2 justify-center gap-2">
               <button 
                 className="border border-white/20 px-4 py-1 rounded-xl flex items-center gap-2 hover:bg-neutral-700/40 slow" 
                 onClick={() => loginWithProvider("google")}

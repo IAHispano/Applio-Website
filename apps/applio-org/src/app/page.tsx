@@ -5,7 +5,7 @@ import Background2 from "@/components/svg/background2";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center max-md:mx-12 md:-mt-28 w-full">
+    <main className="flex min-h-screen flex-col items-center max-md:px-12 md:-mt-28 w-full">
       <div className="absolute">
       <Background1 />
       </div>

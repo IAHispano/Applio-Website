@@ -3,13 +3,13 @@ export default function Features() {
         <section>
             <div className="grid md:grid-cols-3 gap-5 w-full mt-4">
                 {features.map((feature, index) => (
-                    <div key={index} className="rounded-2xl bg-gradient-to-b from-white/[.03] to-[#110F0F] w-80 h-full flex flex-col p-4 text-left border border-white/10">{feature.icon}
+                    <div key={index} className="rounded-2xl bg-white/[0.03] backdrop-blur-3xl w-80 h-full flex flex-col p-4 text-left border border-white/10">{feature.icon}
                         <h3 className="text-xl font-bold mt-4">{feature.title}</h3>
                         <p className="text-sm mt-2">{feature.description}</p>
                     </div>
                 ))}
             </div>
-            <p className="text-center mt-8">🕵️‍♂️ Want to know more? <a className="underline hover:text-white/90 cursor-pointer" href="https://github.com/iahispano/applio" target="_blank">Try Applio now!</a></p>
+            <p className="text-center mt-8">🕵️‍♂️ Want to know more? <a className="underline hover:text-white/90 cursor-pointer" href="products/rvc">Try Applio now!</a></p>
         </section>
     );
 }

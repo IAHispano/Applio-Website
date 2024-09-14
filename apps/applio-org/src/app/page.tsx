@@ -12,14 +12,14 @@ export default function Home() {
       <section className="z-30 md:mt-72 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
       <h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8">Dive into a world of endless possibilities fueled by advanced AI audio technology</h1>
       <h2 className="read-font mt-6 text-white/80 max-w-lg mx-auto">Pioneering Open-Source Ecosystem Unveiling the Latest Breakthroughs in AI Voice Cloning Technologies</h2>
-      <div className="mt-[40svh]">
+      <div className="mt-[40svh] z-50">
         <div className="px-8 rounded-2xl bg-white/10 w-fit text-white border border-white/20">
           Features
         </div>
         <h3 className="text-left text-3xl font-bold mt-6">Better productivity, less costs</h3>
         <Features />
       </div>
-      <div className="absolute mb-[800px]">
+      <div className="absolute mb-[800px] z-10">
       <Background2 />
       </div>
       <div className="md:mt-[35svh] max-md:mt-[10svh] mb-4 py-8 md:h-[95svh] w-full bg-gradient-to-b from-[#110F0F] to-white/[0.1] max-md:p-4">

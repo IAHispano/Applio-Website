@@ -36,7 +36,7 @@ export default function RvcProduct() {
                     <a href="https://docs.applio.org/getting-started/installation#download-applio" className="md:px-8 text-center py-2 bg-white hover:shadow-lg hover:shadow-white slow border border-white/10 rounded-xl text-black font-medium">Download for Windows</a>
                     <a href="https://docs.applio.org/getting-started/installation#download-applio-1" className="md:px-8 text-center py-2 bg-neutral-600/30 hover:shadow-lg hover:shadow-neutral-600/30 slow border border-white/20 rounded-xl font-medium">Download for MacOS/Linux</a>
                     </div>
-                    <p className="text-xs text-neutral-300">This project is <a className="underline hover:text-white slow" target="blank" href="https://github.com/iahispano/Applio">open source on github</a>, you can participate too!</p>
+                    <p className="text-xs text-neutral-300 text-center">This project is <a className="underline hover:text-white slow" target="blank" href="https://github.com/iahispano/Applio">open source on github</a>, you can participate too!</p>
                 </article>
             </div>
         </main>

@@ -73,6 +73,55 @@ export interface Database {
         }
         Relationships: []
       }
+      downloads: {
+        Row: {
+          id: number
+          see_at: string | null
+          see_by: string | null
+          model: string | null
+        }
+        Insert: {
+          id?: number
+          see_at?: string | null
+          see_by?: string | null
+          model?: string | null
+        }
+        Update: {
+          id?: number
+          see_at?: string | null
+          see_by?: string | null
+          model?: string | null
+        }
+        Relationships: []
+      }  
+      tokens: {
+        Row: {
+          token: string
+          user: string
+          role: string | null
+          created_at: string | null
+          usage: number | null
+          status: string | null
+        }
+        Insert: {
+          token?: string
+          user: string
+          role?: string | null
+          created_at?: string | null
+          usage?: number | null
+          status?: string | null
+        }
+        Update: {
+          token?: string
+          user?: string
+          role?: string | null
+          created_at?: string | null
+          usage?: number | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      
       profiles: {
         Row: {
           auth_id: string | null

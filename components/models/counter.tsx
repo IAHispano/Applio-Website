@@ -32,11 +32,10 @@ export default function Counter({
       springValue.on("change", (latest) => {
         if (ref.current) {
           ref.current.textContent = Intl.NumberFormat("en-US").format(
-            latest.toFixed(0)
+            Math.round(latest)
           )
         }
       }),
-    [springValue]
   )
 
   return <span className="font-[750]" ref={ref || 0} />

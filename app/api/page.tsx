@@ -3,7 +3,6 @@
 import { Button, Link } from "@nextui-org/react"
 import { motion } from "framer-motion"
 
-export const runtime = "edge"
 
 export default function api() {
   return (

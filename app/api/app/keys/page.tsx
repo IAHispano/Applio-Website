@@ -1,19 +1,15 @@
 "use client"
 
-import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
-import {
-  createServerComponentClient,
-} from "@supabase/auth-helpers-nextjs"
 
 import ApiDashboard from "@/components/api/dashboard"
 import ActualKeys from "@/components/api/keys/actual_keys"
 import { Database } from "@/app/types/database"
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 
-export const runtime = "edge"
 
 export default async function User() {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = createClientComponentClient<Database>()
   const {
     data: { session },
   } = await supabase.auth.getSession()

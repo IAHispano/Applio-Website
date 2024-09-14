@@ -1,5 +1,5 @@
 "use client"
-import { Button } from "@nextui-org/button"
+import { Button } from "@nextui-org/react"
 import {
   type Session,
 } from "@supabase/auth-helpers-nextjs"

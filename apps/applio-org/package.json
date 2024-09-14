@@ -1,7 +1,6 @@
 {
   "name": "applio-org",
   "version": "2.0.0",
-  "packageManager": "pnpm@9.10.0",
   "private": true,
   "scripts": {
     "dev": "next dev",

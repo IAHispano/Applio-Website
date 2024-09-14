@@ -16,6 +16,7 @@ import { Providers } from "./providers"
 
 export const dynamic = "force-dynamic"
 export const fetchCache = "force-no-store"
+export const runtime = "edge"
 
 export const metadata: Metadata = {
   title: {

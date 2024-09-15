@@ -7,7 +7,7 @@ export default function MarkdownForGuides({ content }: { content: string }) {
 			remarkPlugins={[remarkGfm]}
 			components={{
 				a: ({ node, children, ...props }) => (
-					<a {...props} className="text-green-500 hover:underline break-words">
+					<a {...props} className="text-white/80 hover:underline break-words">
 						{children}
 					</a>
 				),

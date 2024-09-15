@@ -1,7 +1,7 @@
 const TestimonialsShowcase= () => {
 
     return (
-      <div className="gap-4 md:p-4 mt-12 w-full flex flex-col justify-center items-center">
+      <div className="gap-4 md:p-4 mt-12 w-full flex flex-col justify-center items-center px-12">
         <div className="grid md:grid-cols-3 md:grid-rows-4 gap-4 md:w-[100svh] md:h-[50svh]">
           <div className="md:row-span-1 bg-white/10 rounded-xl w-full h-full border border-white/10 flex justify-center items-center mx-auto p-2">
             <p className="p-2">&quot;Fastest and easiest way to demo with any voice.&quot;</p>

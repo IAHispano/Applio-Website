@@ -57,20 +57,38 @@ Applio is easy to install. We recommend the precompiled version for new users as
 
 ### Precompiled Zip Version
 
-If you encounter issues with the above method:
+<Tabs items={['Windows', 'Linux/Mac']}>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest precompiled zip file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows).
+      2. Extract the zip file into a folder.
 
-1. Download the zip from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows).
-2. Extract it.
-3. Run `run-applio.bat`.
+      ### Run Applio
+      1. Run `run-applio.bat` to start Applio.
+    </Steps>
+  </Tab>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest precompiled zip file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Linux). 
+      2. Extract the zip file into a folder.
 
-Follow the same preparation steps as mentioned in the Windows installation.
+      ### Prepare Applio (Only required the first time)
+      1. Make sure you have Python 3.10.12 installed. You can check your Python version with `python --version`.
+      2. Open a terminal in the Applio directory.
+      3. Run the following commands:
+         ```sh
+         apt install python3.10-venv -y
+         python -m venv .venv
+         find ".venv" -type f -exec sed -i -e 's/\r$//' -e "s|/home/runner/work/Applio/Applio|$(pwd)|g" -e "s|/.venv/bin/python|/.venv/bin/$(basename $(which python))|g" {} + 
+         ```
 
-<Callout type="info">
-  The precompiled zip version for Linux is currently under development. We are
-  working diligently to provide this option for Linux users in the near future.
-  In the meantime, please use the script installation method described above for
-  Linux systems.
-</Callout>
+      ### Run Applio
+      1. Run `run-applio.bat` to start Applio.
+    </Steps>
+  </Tab>
+</Tabs>
 
 ## AMD GPU Support (Windows)
 

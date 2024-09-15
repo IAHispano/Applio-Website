@@ -12,6 +12,7 @@ export default function Home() {
       <section className="z-30 md:mt-72 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
       <h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8">Dive into a world of endless possibilities fueled by advanced AI audio technology</h1>
       <h2 className="read-font mt-6 text-white/80 max-w-lg mx-auto">Pioneering Open-Source Ecosystem Unveiling the Latest Breakthroughs in AI Voice Cloning Technologies</h2>
+      <a className="bg-white rounded-xl mt-8 text-black px-8 py-1 font-semibold shadow-lg shadow-white/40 hover:shadow-white/80 hover:shadow-xl slow cursor-pointer z-50" href="/products/rvc">See more</a>
       <div className="mt-[40svh] z-50">
         <div className="px-8 rounded-2xl bg-white/10 w-fit text-white border border-white/20">
           Features
@@ -22,7 +23,7 @@ export default function Home() {
       <div className="absolute mb-[800px] z-10">
       <Background2 />
       </div>
-      <div className="md:mt-[35svh] max-md:mt-[10svh] mb-4 py-8 md:h-[95svh] w-full bg-gradient-to-b from-[#110F0F] to-white/[0.1] max-md:p-4">
+      <div className="md:mt-[35svh] max-md:mt-[10svh] mb-4 py-8 md:h-[98svh] w-full bg-gradient-to-b from-[#110F0F] to-white/[0.1] max-md:p-4">
       <h1 className="text-4xl font-bold">Testimonials</h1>
       <p className="font-light text-white/90 mt-2">See what users are saying about Applio.</p>
       <TestimonialsShowcase />

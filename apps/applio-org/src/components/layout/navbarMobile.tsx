@@ -19,8 +19,8 @@ export default function NavbarMobile() {
     return (
         <header>
         <div>
-            <div className="flex md:flex-cols-3 max-md:flex-col w-full">
-            <div className="flex justify-between p-4 h-fit bg-[#110F0F]/80 backdrop-blur-3xl">
+            <div className="flex xl:flex-cols-3 max-xl:flex-col w-full">
+            <div className="flex justify-between p-4 h-fit bg-gradient-to-b from-[#110F0F] to-transparent backdrop-filter backdrop-blur-lg w-full">
             <a className="text-3xl font-semibold tracking-tight py-0.5" href="/">Applio</a>
             {isOpen && (
             <motion.button
@@ -98,12 +98,11 @@ export default function NavbarMobile() {
             </div>
             {isOpen && (
             <div className="overflow-y-auto fixed inset-0 h-full mt-12">
-            <section className="bg-[#110F0F]/80 backdrop-blur-3xl w-full min-h-[150svh] p-4">
-            <Avatar />
-            <div className="flex max-md:flex-col gap-4 w-full py-2 items-center justify-start md:ml-12 mb-1 max-md:mt-4 text-white/80">
+            <section className="backdrop-filter backdrop-blur-xl mt-1 p-4 h-screen">
+            <div className="flex max-xl:flex-col gap-4 w-full py-2 items-start justify-start xl:ml-12 mb-1 max-xl:mt-4 text-white/80">
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/learn">Learn</a>
-                <div className="col-span-1 px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
+                <div className="col-span-1 max-md:px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
                 <button className="flex justify-between w-full" onClick={() => handleDropdown(1)}>  
                 {dropdownOpen === 1 && (          
                 <svg className="absolute -left-1" width="2" height="40" viewBox="0 0 2 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -135,7 +134,7 @@ export default function NavbarMobile() {
                 </div>
                 )}
                 </div>
-                <div className="col-span-1 px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
+                <div className="col-span-1 max-md:px-1 max-md:rounded-xl max-md:w-full text-white/80 relative">
                 {dropdownOpen === 2 && (          
                 <svg className="absolute -left-1" width="2" height="40" viewBox="0 0 2 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="2" height="40" rx="1" fill="#A1A1A1"/>
@@ -156,13 +155,13 @@ export default function NavbarMobile() {
                 </button>
                 {dropdownOpen === 2 && (
                 <div className="flex flex-col gap-4 mt-4">
-                    <a className="rounded-xl p-2" href="/team">Team</a>
-                    <a className="rounded-xl p-2" href="/join-team">Join Us</a>
-                    <a className="rounded-xl p-2" href="/history">History</a>
-                    <a className="rounded-xl p-2" href="/branding">Brand</a>
+                    <a className="rounded-xl p-2" href="/about/team">Team</a>
+                    <a className="rounded-xl p-2" href="/about/mission">Mission</a>
+                    <a className="rounded-xl p-2" href="https://discord.gg/iahispano" target="_blank">Contact Us</a>
                 </div>
                 )}
                 </div>
+                <Avatar />
             </div>
             </section>
             </div>

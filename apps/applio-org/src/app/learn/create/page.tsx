@@ -8,7 +8,8 @@ import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 // Remove for local development
-export const runtime = "edge";
+export const runtime = process.env.NODE_ENV === "production" ? "edge" : undefined;
+
 
 export default function CreateGuide() {
 	const [page, setPage] = useState(1);

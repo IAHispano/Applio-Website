@@ -2,7 +2,7 @@ import DiscoverGuides from "@/components/learn/browse-more";
 import MoreLiked from "@/components/learn/more-liked";
 
 // Remove for local development
-export const runtime = "edge";
+export const runtime = process.env.NODE_ENV === "production" ? "edge" : undefined;
 
 export default function LearnGuides() {
 	return (

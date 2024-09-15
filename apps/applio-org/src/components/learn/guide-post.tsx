@@ -62,7 +62,7 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
 						<div className="h-full top-0 absolute w-full pointer-events-none overflow-hidden"></div>
 						<main className="w-full py-14 flex flex-col min-h-screen overflow-x-hidden relative">
 							<div className="flex flex-col justify-start items-center text-left">
-								<h1 className="text-4xl max-md:max-w-xs md:max-w-6xl text-wrap text-center truncate">
+								<h1 className="text-4xl font-bold max-md:max-w-xs md:max-w-6xl text-wrap text-center truncate">
 									{item.title}
 								</h1>
 								<h2 className="text-xl pl-0.5 mt-2 text-white/80">

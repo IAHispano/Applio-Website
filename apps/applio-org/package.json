@@ -6,7 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
-		"biome:format": "pnpm biome format --write ."
+		"biome:format": "biome format --write ."
 	},
 	"dependencies": {
 		"@supabase/supabase-js": "2.45.4",

@@ -84,7 +84,7 @@ const ModelPopup = ({
 									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-semibold">
 										{data.name}
 									</h1>
-									<p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5 mt-1 mb-2">
+									<p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5 mt-1 mb-2 read-font text-sm">
 										by{" "}
 										<a
 											href={`/${data.author_username || "?"}`}
@@ -93,7 +93,7 @@ const ModelPopup = ({
 											{data.author_username || "?"}
 										</a>{" "}
 										in {data.server_name || "?"} ·{" "}
-										<span className="read-font text-sm">
+										<span>
 											{(() => {
 												const t = Math.round(
 													(new Date().getTime() -

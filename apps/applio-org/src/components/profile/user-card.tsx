@@ -188,13 +188,14 @@ export default function UserCard({ id }: { id: string }) {
 	};
 
 	return (
-		<section className="flex min-h-screen flex-col items-center md:-mt-24">
+		<section className="flex min-h-screen flex-col items-center -mt-52">
 			<div className="absolute">
 				<Background1 />
 			</div>
 			{data === null && error && (
-				<div className="justify-center items-center flex mx-auto mt-36 z-30 text-white/80">
-					<h1 className="text-xl">User not found</h1>
+				<div className="justify-center items-center flex flex-col mx-auto mt-64 z-30 text-white/80">
+					<h1 className="text-xl text-neutral-300">User not found.</h1>
+					<a className="text-xs hover:underline text-neutral-400 mt-2" href="/">Return</a>
 				</div>
 			)}
 			{!data && loading && (

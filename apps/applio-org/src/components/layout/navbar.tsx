@@ -238,7 +238,7 @@ export default function Navbar() {
                 </div>
                 </div>
             </div>
-            <div className="xl:hidden overflow-hidden fixed inset-0 no-scroll">
+            <div className="xl:hidden overflow-hidden no-scroll">
                 <NavbarMobile />
             </div>
         </motion.header>

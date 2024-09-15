@@ -126,7 +126,7 @@ export default function ModelStats({ id }: { id: string }) {
 							className="text-4xl max-md:text-2xl font-bold read-font"
 						/>
 					)}
-					{views && (
+					{views && views.length > 1 && (
 						<div className="flex items-end justify-end mt-1 h-0">
 						<LineChart width={200} height={20} data={views} className="h-full w-full">
 							<Line type='monotone' dataKey='Views' stroke='white' strokeWidth={1} dot={false} />
@@ -148,7 +148,7 @@ export default function ModelStats({ id }: { id: string }) {
 							className="text-4xl max-md:text-2xl font-bold read-font"
 						/>
 					)}
-					{data && (
+					{data && data.length > 1 && (
 						<div className="flex items-end justify-end mt-1 h-0">
 						<LineChart width={200} height={20} data={data} className="h-full w-full">
 							<Line type='monotone' dataKey='Downloads' stroke='white' strokeWidth={1} dot={false} />

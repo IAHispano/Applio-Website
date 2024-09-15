@@ -1,7 +1,7 @@
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 import { Download } from "@/types/downloadsTypes";
-import { Bar, BarChart } from "recharts";
+import { AreaChart, Bar, BarChart, Line, LineChart } from "recharts";
 import NumberTicker from "../magicui/number-ticker";
 
 export default function ModelStats({ id }: { id: string }) {
@@ -117,7 +117,7 @@ export default function ModelStats({ id }: { id: string }) {
 				<p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">
 					Views
 				</p>
-				<div className="flex gap-4 w-full">
+				<div className="flex flex-col w-full">
 					{views?.length === 0 ? (
 						<h1 className="text-4xl max-md:text-2xl font-bold read-font">0</h1>
 					) : (
@@ -127,14 +127,11 @@ export default function ModelStats({ id }: { id: string }) {
 						/>
 					)}
 					{views && (
-						<BarChart
-							width={200}
-							height={40}
-							data={views}
-							className="flex items-end m-auto max-md:hidden"
-						>
-							<Bar dataKey="Views" fill="#ffffffaa" />
-						</BarChart>
+						<div className="flex items-end justify-end mt-1 h-0">
+						<LineChart width={200} height={20} data={views} className="h-full w-full">
+							<Line type='monotone' dataKey='Views' stroke='white' strokeWidth={1} dot={false} />
+						</LineChart>
+					</div>
 					)}
 				</div>
 			</div>
@@ -142,7 +139,7 @@ export default function ModelStats({ id }: { id: string }) {
 				<p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">
 					Downloads
 				</p>
-				<div className="flex gap-4 w-full">
+				<div className="flex flex-col w-full">
 					{data?.length === 0 ? (
 						<h1 className="text-4xl max-md:text-2xl font-bold read-font">0</h1>
 					) : (
@@ -152,14 +149,11 @@ export default function ModelStats({ id }: { id: string }) {
 						/>
 					)}
 					{data && (
-						<BarChart
-							width={200}
-							height={40}
-							data={data}
-							className="flex items-end m-auto max-md:hidden"
-						>
-							<Bar dataKey="Downloads" fill="#ffffffaa" />
-						</BarChart>
+						<div className="flex items-end justify-end mt-1 h-0">
+						<LineChart width={200} height={20} data={data} className="h-full w-full">
+							<Line type='monotone' dataKey='Downloads' stroke='white' strokeWidth={1} dot={false} />
+						</LineChart>
+					</div>
 					)}
 				</div>
 			</div>
@@ -167,7 +161,7 @@ export default function ModelStats({ id }: { id: string }) {
 				<p className="text-white/70 text-left mb-2 text-sm max-md:text-xs">
 					Likes
 				</p>
-				<div className="flex gap-4 w-full">
+				<div className="flex flex-col w-full">
 					{likes?.length === 0 ? (
 						<h1 className="text-4xl max-md:text-2xl font-bold read-font">0</h1>
 					) : (
@@ -176,15 +170,12 @@ export default function ModelStats({ id }: { id: string }) {
 							className="text-4xl max-md:text-2xl font-bold read-font"
 						/>
 					)}
-					{likes && (
-						<BarChart
-							width={200}
-							height={40}
-							data={likes}
-							className="flex items-end m-auto max-md:hidden"
-						>
-							<Bar dataKey="Views" fill="#ffffffaa" />
-						</BarChart>
+					{likes && likes.length > 1 && (
+						<div className="flex items-end justify-end mt-1 h-0">
+							<LineChart width={200} height={20} data={likes} className="h-full w-full">
+								<Line type='monotone' dataKey='Views' stroke='white' strokeWidth={1} dot={false} />
+							</LineChart>
+						</div>
 					)}
 				</div>
 			</div>

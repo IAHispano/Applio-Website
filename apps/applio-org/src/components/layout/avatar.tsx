@@ -64,7 +64,7 @@ export default function Avatar() {
         <header className="max-md:w-full relative">
         {data ? (
             <button className="flex max-xl:bg-neutral-600/80 max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:border max-xl:border-white/10 max-xl:w-full max-xl:p-2 gap-4 max-xl:mt-12 max-xl:rounded-xl" onClick={openDropdown}>
-                        <img className="w-12 h-12 rounded-full z-50 border border-white/20" src={data.avatar_url || "/favicon.ico"}  onError={(e) => (e.target as HTMLImageElement).src = "/favicon.ico"}  />
+                        <img className="w-12 h-12 rounded-full z-50 border border-white/20 shadow-xl shadow-white/20 " src={data.avatar_url || "/favicon.ico"}  onError={(e) => (e.target as HTMLImageElement).src = "/favicon.ico"}  />
                         <div className="flex flex-col">
                         <p className="xl:hidden capitalize max-w-[120px] truncate">{data.full_name}</p>
                         <p className="xl:hidden text-xs max-w-[100px] truncate">@{data.full_name}</p>

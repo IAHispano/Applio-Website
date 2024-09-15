@@ -29,7 +29,7 @@ export default function Home() {
       <p className="font-light text-white/90 mt-2">See what users are saying about Applio.</p>
       <TestimonialsShowcase />
       <div className="mt-12">
-      <a className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer" href="https://discord.gg/iahispano" target="_blank">Join Discord</a>
+      <a className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow" href="https://discord.gg/iahispano" target="_blank">Join Discord</a>
       <p className="text-xs font-light mt-4">🤔 Ask our community about Applio!</p>
       </div>
       </div>

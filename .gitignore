@@ -40,3 +40,6 @@ dist/
 
 # output
 /output
+
+# TODO
+.todo

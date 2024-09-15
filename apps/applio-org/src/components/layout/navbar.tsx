@@ -65,7 +65,7 @@ export default function Navbar() {
                 <div className="dropdown"
                 onMouseEnter={handleMouseEnterProducts}
                 onMouseLeave={handleMouseLeaveProducts}>
-                        <a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow">
+                        <a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow cursor-pointer">
                             <p>Products</p>
                             <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.3333 1L5.66667 5.66667L1 1" stroke="rgb(212 212 212)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -79,7 +79,7 @@ export default function Navbar() {
                         >   
                         <div className="flex gap-2">
                             <div className="items-start flex flex-col text-left gap-2">
-                            <h2 className="text-neutral-300 p-2">Voice cloning</h2>
+                            <h2 className="text-xs p-2 font-bold uppercase">Voice cloning</h2>
                             <a className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18" href="/products/rvc">
                                 <div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
                                     <svg className="w-5 h-5" viewBox="0 0 74 84" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -116,7 +116,7 @@ export default function Navbar() {
                             </a>
                             </div>
                             <div className="items-start flex flex-col text-left gap-2">
-                            <h2 className="text-neutral-300 p-2">Our ecosystem</h2>
+                            <h2 className="text-xs p-2 font-bold uppercase">Our ecosystem</h2>
                             <a className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18" href="https://docs.applio.org" target="_blank">
                                 <div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
                                     <svg className="w-10 h-10" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +152,7 @@ export default function Navbar() {
                             </a>
                             </div>
                             <div className="items-start flex flex-col text-left gap-2">
-                            <h2 className="text-neutral-300 p-2">For developers</h2>
+                            <h2 className="text-xs p-2 font-bold uppercase">For developers</h2>
                             <a className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18" href="/products/api">
                                 <div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
                                     <svg className="w-5 h-5" viewBox="0 0 226 226" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -182,7 +182,7 @@ export default function Navbar() {
                 <div className="dropdown"
                 onMouseEnter={handleMouseEnterAbout}
                 onMouseLeave={handleMouseLeaveAbout}>
-                        <a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow">
+                        <a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow cursor-pointer">
                             <p>About Us</p>
                             <svg width="12" height="7" viewBox="0 0 12 7" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M10.3333 1L5.66667 5.66667L1 1" stroke="rgb(212 212 212)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -196,7 +196,7 @@ export default function Navbar() {
                         >   
                         <div className="flex gap-2">
                             <div className="items-start flex flex-col text-left gap-2">
-                            <h2 className="text-neutral-300 p-2">Team</h2>
+                            <h2 className="text-xs p-2 font-bold uppercase">Team</h2>
                             <a className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18" href="/about/team">
                                 <div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
                                     <svg className="w-5 h-5" viewBox="0 0 236 263" fill="none" xmlns="http://www.w3.org/2000/svg">

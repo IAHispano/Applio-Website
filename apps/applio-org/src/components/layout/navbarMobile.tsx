@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Avatar from "./avatar";
 import { motion } from "framer-motion";
 
@@ -15,6 +15,17 @@ export default function NavbarMobile() {
             setDropdownOpen(dropdown)
         }
     }
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, [isOpen]);
 
     return (
         <header>
@@ -97,7 +108,7 @@ export default function NavbarMobile() {
         )}
             </div>
             {isOpen && (
-            <div className="overflow-y-auto fixed inset-0 h-full mt-12">
+            <div className="overflow-hidden fixed top-0 h-screen w-full mt-12 no-scroll">
             <section className="backdrop-filter backdrop-blur-xl mt-1 p-4 h-screen">
             <div className="flex max-xl:flex-col gap-4 w-full py-2 items-start justify-start xl:ml-12 mb-1 max-xl:mt-4 text-white/80">
                 <a className="col-span-1 max-md:p-1 max-md:rounded-xl max-md:w-full" href="/models">Explore</a>
@@ -109,7 +120,7 @@ export default function NavbarMobile() {
                 <rect width="2" height="40" rx="1" fill="#A1A1A1"/>
                 </svg>
                 )}
-              <h1 className={`pt-2 ${dropdownOpen === 1 ? 'font-bold' : ''}`}>Products</h1>
+              <h1 className={`pt-2 ${dropdownOpen === 1 ? 'font-bold pl-2' : ''}`}>Products</h1>
                 {dropdownOpen === 1 && (
                     <svg className="m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -141,7 +152,7 @@ export default function NavbarMobile() {
                 </svg>
                 )}
                 <button className="flex justify-between w-full" onClick={() => handleDropdown(2)}>
-                <h1 className={`pt-2 ${dropdownOpen === 2 ? 'font-bold' : ''}`}>About Us</h1>
+                <h1 className={`pt-2 ${dropdownOpen === 2 ? 'font-bold pl-2' : ''}`}>About Us</h1>
                 {dropdownOpen === 2 && (
                     <svg className="m-3" width="14" height="8" viewBox="0 0 14 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M13 7L7 1L1 7" stroke="#A1A1A1" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>

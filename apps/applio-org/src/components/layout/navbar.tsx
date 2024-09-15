@@ -52,7 +52,7 @@ export default function Navbar() {
             <div className="max-xl:hidden flex items- justify-center mx-auto h-16 bg-gradient-to-b from-[#110F0F] to-transparent backdrop-filter backdrop-blur-lg p-2 px-12">
             <div className="flex items-center justify-center mx-24">
             <a href="/"><BlurIn word="Applio" className="text-3xl font-bold"/></a>
-            <div className="grid grid-cols-2 w-full items-center my-auto">
+            <div className="grid grid-cols-2 w-full items-center m-auto">
                 <div className="flex mx-12 gap-8 pt-1">
                 <a href="/models">
                     <p className="text-neutral-300 hover:text-white slow">Explore</p>
@@ -234,13 +234,11 @@ export default function Navbar() {
                         </div>
                 </div>
                 </div>
-                <div className="flex justify-end items-center">
-                    <Avatar />
-                </div>
+                <Avatar />
                 </div>
                 </div>
             </div>
-            <div className="xl:hidden">
+            <div className="xl:hidden overflow-hidden fixed inset-0 no-scroll">
                 <NavbarMobile />
             </div>
         </motion.header>

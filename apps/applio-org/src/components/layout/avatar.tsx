@@ -53,7 +53,7 @@ export default function Avatar() {
     }
     
     return (
-        <section>
+        <section className="max-xl:w-full">
         {loading && (     
             <svg aria-hidden="true" className="w-10 h-10 flex items-center m-auto animate-spin text-neutral-800 fill-white" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
@@ -61,7 +61,7 @@ export default function Avatar() {
             </svg>
         )}
         {!loading && (
-        <header>
+        <header className="max-xl:grid max-md:grid-cols-1 max-xl:grid-cols-8 max-xl:w-full flex justify-end items-center mx-auto">
         {data ? (
             <button className="max-xl:bg-neutral-600/80 max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:border max-xl:border-white/10 max-xl:w-[30svh] max-xl:p-2 flex gap-4 items-center max-xl:mt-12 max-xl:rounded-xl" onClick={openDropdown}>
                         <img className="relative w-12 h-12 rounded-full z-50 border border-white/20" src={data.avatar_url || "/favicon.ico"}  onError={(e) => (e.target as HTMLImageElement).src = "/favicon.ico"}  />
@@ -71,8 +71,8 @@ export default function Avatar() {
                         </div>
             </button>
         ) : 
-            <a className="flex gap-4 items-center max-xl:justify-center max-xl:mt-4 max-md:w-[35svh] max-xl:w-[10svh] text-center w-full bg-white/20 max-xl:border max-xl:border-white/20 max-xl:bg-white max-xl:text-black max-xl:hover:opacity-80 xl:hover:bg-white/10 px-6 xl:text-neutral-200 max-xl:font-medium slow xl:px-10 py-1 rounded-lg cursor-pointer" href="/login">
-                <p className="max-xl::text-center">Login</p>
+            <a className="w-full max-xl:mt-4 bg-neutral-600/40 rounded-lg xl:rounded-xl flex px-4 py-1.5 xl:w-36 items-center justify-center text-neutral-300 hover:bg-neutral-600/80 slow font-medium" href="/login">
+                <p className="max-xl:text-center">Login</p>
             </a>
         }
         </header>

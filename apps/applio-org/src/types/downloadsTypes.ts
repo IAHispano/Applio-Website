@@ -1,3 +1,3 @@
 export type Download = {
-    see_at: string;
-}
+	see_at: string;
+};

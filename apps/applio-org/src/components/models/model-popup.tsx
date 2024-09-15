@@ -41,7 +41,7 @@ const ModelPopup = ({
 
 	return (
 		<div className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-lg:p-4 overflow-y-auto h-full max-md:pt-52">
-			<div className="bg-white/10 max-md:border max-md:border-white/20 backdrop-blur-3xl shadow-xl shadow-white/20 rounded-xl p-6 md:pb-0 shadow-xl md:w-full md:max-w-[110svh] md:h-full md:max-h-[60svh] max-md:w-full max-md:h-fit max-md:mt-12">
+			<div className="bg-white/10 max-md:border max-md:border-white/20 backdrop-blur-3xl shadow-white/20 rounded-xl p-6 md:pb-0 shadow-xl md:w-full md:max-w-[110svh] md:h-full md:max-h-[60svh] max-md:w-full max-md:h-fit max-md:mt-12">
 				<button
 					className="absolute top-0 right-0 m-4 lg:mt-6 mt-4 bg-white/10 hover:bg-red-500/10 p-2 rounded-xl slow"
 					onClick={onClose}

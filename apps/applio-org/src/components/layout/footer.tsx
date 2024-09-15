@@ -57,13 +57,6 @@ export default function Footer() {
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/pricing"
-            target="_blank"
-          >
-            Pricing
-          </a>
-          <a
-            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
             href="/models"
             target="_blank"
           >
@@ -131,30 +124,23 @@ export default function Footer() {
           </h1>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/branding"
+            href="/about/branding"
           >
             Brand
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/team"
+            href="/about/team"
             target="_blank"
           >
             Team
           </a>
           <a
             className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/history"
+            href="https://discord.gg/iahispano"
             target="_blank"
           >
-            History
-          </a>
-          <a
-            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/careers"
-            target="_blank"
-          >
-            Careers
+            Contact Us
           </a>
         </div>
       </div>

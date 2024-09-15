@@ -7,8 +7,7 @@
     "dev": "dotenv -- turbo dev",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
-    "clean": "turbo clean",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "clean": "turbo clean"
   },
   "devDependencies": {
     "turbo": "^2.1.2"

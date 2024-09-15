@@ -1,5 +1,5 @@
 export type Auth = {
-    user: {
-        id: string,
-    }
+	user: {
+		id: string;
+	};
 };

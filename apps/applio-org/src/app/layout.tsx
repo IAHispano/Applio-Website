@@ -6,33 +6,31 @@ import Footer from "@/components/layout/footer";
 
 const inter = Syne({ subsets: ["latin"] });
 
-
 export const metadata: Metadata = {
-  metadataBase: new URL('https://v2.applio.org'),
-  title: "Applio",
-  description: "At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
-  openGraph: {
-    title: "Applio",
-    description: "At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
-    images: "/opengraph-image.png"
-  }  
+	metadataBase: new URL("https://v2.applio.org"),
+	title: "Applio",
+	description:
+		"At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
+	openGraph: {
+		title: "Applio",
+		description:
+			"At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
+		images: "/opengraph-image.png",
+	},
 };
 
 export default function RootLayout({
-  children,
+	children,
 }: Readonly<{
-  children: React.ReactNode;
+	children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={inter.className}>
-        <Navbar />
-        <div className="min-h-screen">
-        {children}
-        </div>
-        <Footer />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en">
+			<body className={inter.className}>
+				<Navbar />
+				<div className="min-h-screen">{children}</div>
+				<Footer />
+			</body>
+		</html>
+	);
 }
-

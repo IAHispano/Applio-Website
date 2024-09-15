@@ -23,7 +23,7 @@ export default function Home() {
       <div className="absolute mb-[800px] z-10">
       <Background2 />
       </div>
-      <div className="w-full bg-gradient-to-b from-[#110F0F] to-white/[0.1]">
+      <div className="w-full bg-gradient-to-b from-[#110f0f] via-white/[0.1] to-[#110f0f]">
       <div className="md:mt-[35svh] max-md:mt-[10svh] mb-4 py-8 md:h-[98svh] max-md:p-4 px-12">
       <h1 className="text-4xl font-bold">Testimonials</h1>
       <p className="font-light text-white/90 mt-2">See what users are saying about Applio.</p>

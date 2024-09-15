@@ -16,6 +16,7 @@ export default function Navbar() {
     const handleMouseEnterProducts = () => {
         if (closeTimeout) clearTimeout(closeTimeout); 
         setIsOpenProducts(true);
+        setIsOpenAbout(false);
     };
 
     const handleMouseLeaveProducts = () => {
@@ -25,6 +26,7 @@ export default function Navbar() {
     const handleMouseEnterAbout = () => {
         if (closeTimeout) clearTimeout(closeTimeout); 
         setIsOpenAbout(true);
+        setIsOpenProducts(false);
     };
 
     const handleMouseLeaveAbout = () => {

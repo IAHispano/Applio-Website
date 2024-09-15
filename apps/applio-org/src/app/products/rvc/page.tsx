@@ -23,7 +23,7 @@ export default function RvcProduct() {
                 </article>
                 <article className="flex max-md:flex-col w-full h-screen justify-center items-center">
                     <div className="flex justify-center items-center md:w-[40%] md:h-[80%] max-md:mb-8">
-                    <img src="https://i.imgur.com/LHvgEuv.png" className="rounded-xl"/>
+                    <img src="https://i.imgur.com/KupCnDb.png" className="rounded-xl"/>
                     </div>
                     <div className="flex flex-col justify-right items-end text-right md:w-[40%] h-[80%]]">
                         <h2 className="text-4xl font-semibold">With a lot of features.</h2>

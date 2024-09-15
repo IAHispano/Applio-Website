@@ -79,7 +79,7 @@ export default function Avatar() {
         )}
         {isOpen && (
             <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.2 }} className="xl:absolute xl:mt-16 mt-4">
-                <div className="w-full xl:w-fit h-fit bg-white/10 md:bg-neutral-600/80 backdrop-filter backdrop-blur-lg rounded-lg flex flex-col p-2 gap-1 text-white md:border border-white/10">
+                <div className="px-4 w-full xl:w-fit h-fit bg-white/10 md:bg-neutral-800 backdrop-filter backdrop-blur-lg rounded-lg flex flex-col p-2 gap-1 text-white md:border border-white/10">
                 <div className="flex flex-col gap-2">
                     <a className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow" href={`/${data.full_name}`}>        
                     <svg fill="#d4d4d4" viewBox="0 0 24 24" className="w-5 h-5"> 
@@ -115,7 +115,7 @@ export default function Avatar() {
                     </svg>
                         <p className="text-sm text-neutral-300 font-medium">Settings</p>
                     </a>
-                    <a className="flex items-center gap-2 hover:bg-red-500/20 p-2 rounded-xl slow" onClick={logout}>        
+                    <a className="flex items-center gap-2 hover:bg-red-500/20 p-2 rounded-xl slow cursor-pointer" onClick={logout}>        
                     <svg
                     viewBox="0 0 24 24"
                     fill="#d4d4d4"

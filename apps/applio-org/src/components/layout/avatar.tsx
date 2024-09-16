@@ -102,11 +102,12 @@ export default function Avatar() {
 						>
 							<img
 								alt="Profile Avatar"
-								className="w-12 h-12 rounded-full z-50 border border-white/20 shadow-xl shadow-white/20 "
-								src={data.avatar_url || "/favicon.ico"}
+								className="w-12 h-12 rounded-full z-50 border border-white/20 shadow-xl shadow-white/20 backdrop-filter backdrop-blur-xl"
+								src={data.avatar_url || "/logo_no_bg.png"}
 								onError={(e) => {
 									const target = e.currentTarget as HTMLImageElement;
-									target.src = "/favicon.ico";
+									target.src = "/logo_no_bg.png";
+									target.style.padding = "8px";
 									console.log(e);
 								}}
 							/>

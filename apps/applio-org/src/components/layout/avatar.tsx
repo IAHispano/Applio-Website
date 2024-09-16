@@ -103,10 +103,10 @@ export default function Avatar() {
 						</button>
 					) : (
 						<a
-							className="w-full max-xl:mt-4 border-white/10 border bg-neutral-600/40 rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1.5 xl:w-36 items-center justify-center text-neutral-300 hover:bg-neutral-600/80 slow font-medium"
+							className="w-full max-xl:mt-4 border-white/10 border bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1.5 xl:w-34 items-center justify-center text-neutral-300 hover:bg-white/80 slow font-medium"
 							href="/login"
 						>
-							<p className="max-xl:text-center">Login</p>
+							<p className="max-xl:text-center text-black">Log In</p>
 						</a>
 					)}
 				</header>

@@ -3,8 +3,8 @@ export default function Background1() {
     <svg
       width="1372"
       height="1250"
-      className="max-md:max-w-xs max-xl:max-w-xl"
-      viewBox="0 0 1867 1369"
+      className="max-md:max-w-xs max-xl:max-w-xl max-md:-mt-[155px]"
+      viewBox="0 0 1867 1080"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >

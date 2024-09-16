@@ -23,7 +23,8 @@ export default function DiscoverModels() {
 	const [searchTime, setSearchTime] = useState<string>();
 	const [showPopup, setShowPopup] = useState(false);
 	const [popupId, setPopupId] = useState<string | null>(null);
-
+	const [showSettings, setShowSettings] = useState(false);
+	const [date, setDate] = useState<string>("Latest");
 	const handleTagClick = (tag: string) => {
 		if (selectedTag === tag) {
 			setSelectedTag(null);
@@ -62,8 +63,9 @@ export default function DiscoverModels() {
 			let query = supabase
 				.from("models")
 				.select("*")
-				.order("created_at", { ascending: false })
-				.range(0, end);
+				.order("created_at", { ascending: date === "oldest", nullsFirst: false })
+
+			query = query.range(0, end);
 
 			if (selectedTag) {
 				query = query.eq("tags", selectedTag);
@@ -71,7 +73,7 @@ export default function DiscoverModels() {
 
 			if (searchInput) {
 				query = query.or(
-					`name.ilike.%${searchInput}%,tags.ilike.%${searchInput}%`,
+					`name.ilike.%${searchInput}%,tags.ilike.%${searchInput}%,`,
 				);
 			}
 
@@ -99,7 +101,7 @@ export default function DiscoverModels() {
 		}
 
 		getModels();
-	}, [end, selectedTag, searchInput]);
+	}, [end, selectedTag, searchInput, date]);
 
 	useEffect(() => {
 		const id = searchParams.get("id");
@@ -116,7 +118,7 @@ export default function DiscoverModels() {
 	async function sendView(id: string) {
 		if (!hasViewed(id)) {
 			const data2 = await supabase.auth.getUser();
-			if (data2 && data2.data.user) {
+			if (data2?.data.user) {
 				const userInfo = await supabase
 					.from("profiles")
 					.select("full_name, id")
@@ -176,6 +178,14 @@ export default function DiscoverModels() {
 		window.history.replaceState({ path: originalUrl }, "", originalUrl);
 	};
 
+	function openSettings() {
+		if (showSettings) {
+			setShowSettings(false);
+		} else {
+			setShowSettings(true);
+		}
+	}
+
 	return (
 		<>
 			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
@@ -215,7 +225,7 @@ export default function DiscoverModels() {
 							<div className="flex gap-2 mt-8 w-full relative">
 								<input
 									type="text"
-									className="p-4 mt-8 rounded-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full pr-24"
+									className="p-4 mt-8 rounded-t-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full pr-24"
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);
@@ -225,6 +235,7 @@ export default function DiscoverModels() {
 								/>
 								{searchInput && (
 									<button
+										type="button"
 										className="p-2 rounded-xl absolute right-16 hover:bg-white/10 bottom-3 slow"
 										onClick={() => setSearchInput("")}
 									>
@@ -252,8 +263,10 @@ export default function DiscoverModels() {
 										</svg>
 									</button>
 								)}
-								<button className="p-2 rounded-xl absolute right-8 hover:bg-white/10 bottom-3">
+								<button className="p-2 rounded-xl absolute right-5 hover:bg-white/10 bottom-3" onClick={openSettings} type="button">
 									<svg
+									    aria-label="Settings"
+										role="img"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
 										height="16"
@@ -292,6 +305,22 @@ export default function DiscoverModels() {
 									</svg>
 								</button>
 							</div>
+							{showSettings && ( 
+								<div className="h-fit border border-white/10 rounded-b-xl p-4">  
+									<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
+										<div className="w-fit">
+											<p className="px-1">Date</p>
+											<select 
+												className="w-fit bg-neutral-600/40 rounded-lg text-sm p-2 focus:outline-none my-2"
+												onChange={(e) => setDate(e.target.value)}
+											>
+												<option className="bg-neutral-700" value="latest">Latest</option>
+												<option className="bg-neutral-700" value="oldest">Oldest</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							)}
 							{data && data.length === 0 && !loading && (
 								<h1 className="text-white/80 my-14 md:text-xl text-center">
 									We have not found any voice models

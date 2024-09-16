@@ -9,7 +9,7 @@ export default function Home() {
 			<div className="absolute overflow-visible">
 				<Background1 />
 			</div>
-			<section className="z-30 md:mt-72 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
+			<section className="z-30 md:mt-96 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
 				<h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8 max-xl:px-12">
 					Dive into a world of endless possibilities fueled by advanced AI audio
 					technology

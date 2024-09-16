@@ -3,7 +3,7 @@ import { supabase } from "@/utils/database";
 import { notFound, redirect } from "next/navigation";
 
 // Remove for local development
-export const runtime = process.env.NEXT_PUBLIC_LOCAL === "true" ? undefined : "edge";
+export const runtime = process.env.NEXT_PUBLIC_LOCAL ? undefined : "edge";
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
 	let id = params.id;

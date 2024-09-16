@@ -2,6 +2,9 @@ import { createClient } from '@/utils/server-database'
 import { NextResponse } from 'next/server'
 // The client you created from the Server-Side Auth instructions
 
+// Remove for local development
+export const runtime = "edge";
+
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')

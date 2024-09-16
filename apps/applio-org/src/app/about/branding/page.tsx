@@ -1,14 +1,20 @@
+"use client"
+
 export default function Branding() {
+	const copyToClipboard = (color: string) => {
+		navigator.clipboard.writeText(color);
+		alert(`Copied ${color} to clipboard!`); // TODO: This should be replaced with a toast or notification component
+	};
+
 	return (
 		<main className="md:min-h-[80svh] max-md:mx-12 flex flex-col justify-center items-center mx-auto">
-			<div className="bg-gradient-to-b from-[#00AA68]/20 to-transparent w-full h-[40svh] md:-mt-[10svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
-				<h1 className="text-7xl">Our Brand</h1>
+			<div className="bg-gradient-to-b from-[#FFFFFF]/20 to-transparent w-full h-[20svh] md:-mt-[5svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
+				<h1 className="text-7xl text-center font-bold">Our Brand</h1>
 			</div>
 			<div className="md:min-w-[100svh] mt-12">
-				<h1 className="text-5xl max-md:mt-4">Logo</h1>
+				<h1 className="text-5xl max-md:mt-4 font-bold">Logo</h1>
 				<p className="my-4 mx-1">
-					There are two variants of the logo for the Workbench design agency:
-					horizontal and vertical.
+					We offer two logo formats: horizontal and vertical. Use them accordingly to best suit your layout and context.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
 					<div className="w-full h-full">
@@ -65,10 +71,7 @@ export default function Branding() {
 								</defs>
 							</svg>
 						</div>
-						<p className="text-xs text-center my-2">
-							There are two variants of the logo for the Workbench design
-							agency: horizontal and vertical.
-						</p>
+						<p className="text-xs text-center my-2">Horizontal and vertical logo options.</p>
 					</div>
 					<div className="w-full h-full">
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl border border-white/10">
@@ -125,57 +128,50 @@ export default function Branding() {
 							</svg>
 						</div>
 						<p className="text-xs text-center my-2">
-							In the version with a dark background, the logo color is always
-							white.
+							For dark backgrounds, always use the white logo variant.
 						</p>
 					</div>
 				</div>
 			</div>
 			<div className="md:min-w-[100svh] mt-12">
-				<h1 className="text-5xl">Font</h1>
+				<h1 className="text-5xl font-bold">Typography</h1>
 				<p className="my-4 mx-1">
-					We use two different fonts, one for headings and one to make the text
-					legible.
+					We use two fonts: one for impactful headlines and another for clear, readable body text.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
 					<div className="w-full h-full">
 						<div className="bg-white p-4 flex justify-center items-center mx-auto rounded-xl">
 							<h2 className="text-6xl text-black font-bold">Applio</h2>
 						</div>
-						<p className="text-xs text-center my-2">
-							Syne - Used in large, short titles.
-						</p>
+						<p className="text-xs text-center my-2">Syne - Bold titles for maximum impact.</p>
 					</div>
 					<div className="w-full h-full">
 						<div className="bg-white p-4 flex justify-center items-center mx-auto rounded-xl">
-							<h2 className="text-6xl text-black font-bold read-font">
-								Applio
-							</h2>
+							<h2 className="text-6xl text-black font-bold read-font">Applio</h2>
 						</div>
 						<p className="text-xs text-center my-2">
-							Poppins - Used in the clarifying subheadings, for text in 2-3
-							lines.
+							Poppins - Clear and readable font for subheadings and body text.
 						</p>
 					</div>
 				</div>
 			</div>
 			<div className="md:min-w-[100svh] mt-12">
-				<h1 className="text-5xl">Main colors</h1>
+				<h1 className="text-5xl font-bold">Primary Colors</h1>
 				<p className="my-4 mx-1">
-					This page shows the main colors used in communications.
+					Here are the primary colors we use across our brand identity.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
-					<div className="w-full h-full">
+					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#00AA68')}>
 						<div className="bg-[#00AA68] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
-						<p className="text-xs text-center my-2">HEX - 00AA68</p>
+						<p className="text-xs text-center my-2">HEX - #00AA68</p>
 					</div>
-					<div className="w-full h-full">
+					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#FFFFFF')}>
 						<div className="bg-[#FFFFFF] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
-						<p className="text-xs text-center my-2">HEX - ffffff</p>
+						<p className="text-xs text-center my-2">HEX - #FFFFFF</p>
 					</div>
-					<div className="w-full h-full">
+					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#110F0F')}>
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10"></div>
-						<p className="text-xs text-center my-2">HEX - 110F0F</p>
+						<p className="text-xs text-center my-2">HEX - #110F0F</p>
 					</div>
 				</div>
 			</div>

@@ -20,6 +20,9 @@ export default function Branding() {
 					<div className="w-full h-full">
 						<div className="bg-white p-4 flex justify-center items-center mx-auto rounded-xl">
 							<svg
+								aria-label="Logo"
+								aria-labelledby="logo-icon"
+								role="img"
 								xmlns="http://www.w3.org/2000/svg"
 								width="204"
 								height="333"
@@ -76,6 +79,9 @@ export default function Branding() {
 					<div className="w-full h-full">
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl border border-white/10">
 							<svg
+								aria-label="Logo"
+								aria-labelledby="logo-icon"
+								role="img"
 								xmlns="http://www.w3.org/2000/svg"
 								width="204"
 								height="333"

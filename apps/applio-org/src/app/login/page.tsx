@@ -1,18 +1,17 @@
 import AuthUI from "@/components/login/authUI";
-import { supabase } from "@/utils/database";
+import { createClient } from "@/utils/server-database";
+import { redirect } from "next/navigation";
 
 export default async function Login() {
-	const {
-		data: { session },
-	} = await supabase.auth.getSession();
+	const supabase = createClient();
+	const { data: session, error } = await supabase.auth.getSession();
+	console.log(session);
+	if (session.session) {
+		redirect("/");
+	}
 
-	if (session) {
-		return {
-			redirect: {
-				destination: "/",
-				permanent: false,
-			},
-		};
+	if (error) {
+		console.error(error);
 	}
 
 	return (

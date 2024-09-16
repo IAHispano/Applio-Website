@@ -9,6 +9,7 @@
 		"biome:format": "biome format --write ."
 	},
 	"dependencies": {
+		"@supabase/ssr": "^0.5.1",
 		"@supabase/supabase-js": "2.45.4",
 		"clsx": "^2.1.1",
 		"framer-motion": "^11.5.4",

@@ -34,7 +34,7 @@ export default function Home() {
 					<Features />
 				</div>
 
-				<div className="w-full">
+				<div className="w-full bg-gradient-to-b from-transparent via-white/[0.1] to-transparent">
 					<div className="md:mt-[25svh] max-md:mt-[10svh] mb-4 py-8 md:h-[90svh] max-md:p-4 px-12">
 						<h1 className="text-4xl font-bold">Testimonials</h1>
 						<p className="font-light text-white/90 mt-2">
@@ -46,6 +46,7 @@ export default function Home() {
 								className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow"
 								href="https://discord.gg/iahispano"
 								target="_blank"
+								rel="noreferrer"
 							>
 								Join Discord
 							</a>

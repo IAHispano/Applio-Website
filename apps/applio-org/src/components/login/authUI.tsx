@@ -36,15 +36,16 @@ export default function AuthUI() {
   }
 
   return (
-    <main className="w-full h-full absolute top-0 bg-gradient-to-b from-[#FFFFFF]/10 via-[#FFFFFF]/10 to-transparent z-50">
+    <main className="w-full h-full absolute top-0 bg-gradient-to-b from-[#FFFFFF]/10 via-[#FFFFFF]/10 to-transparent">
       <section className="flex justify-center items-center m-auto w-full h-full p-8">
-        <div className="w-full h-full rounded-xl p-8 xl:max-w-[17%] md:max-w-[60%] md:max-h-[60%] flex flex-col gap-4">
+        <div className="w-full h-fit mb-16 rounded-xl p-8 max-w-md flex flex-col gap-4">
           <h1 className="text-2xl font-bold text-center">Log In to Applio</h1>
 
           <div className="flex flex-col w-full h-full gap-4 mt-4">
             <div className="flex flex-col gap-1 max-md:w-full">
-              <div className="flex flex-col max-md:mx-auto max-md:mt-2 justify-center gap-2">
+              <div className="flex flex-col max-md:mt-2 justify-center gap-2">
                 <button
+                  type="button"
                   className="px-2 py-3 text-white font-semibold text-sm rounded-xl flex justify-center items-center gap-2 bg-[#252525] border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow"
                   onClick={() => loginWithProvider("google")}
                 >
@@ -53,6 +54,9 @@ export default function AuthUI() {
                     viewBox="-3 0 262 262"
                     xmlns="http://www.w3.org/2000/svg"
                     preserveAspectRatio="xMidYMid"
+                    aria-labelledby="discord-icon"
+                    role="img"
+                    aria-label="Discord icon"
                   >
                     <path
                       d="M255.878 133.451c0-10.734-.871-18.567-2.756-26.69H130.55v48.448h71.947c-1.45 12.04-9.283 30.172-26.69 42.356l-.244 1.622 38.755 30.023 2.685.268c24.659-22.774 38.875-56.282 38.875-96.027"
@@ -74,6 +78,7 @@ export default function AuthUI() {
                   Continue with Google
                 </button>
                 <button
+                  type="button"
                   className="px-2 py-3 text-white font-semibold text-sm rounded-xl flex justify-center items-center gap-2 bg-[#252525] border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow"
                   onClick={() => loginWithProvider("discord")}
                 >
@@ -83,13 +88,16 @@ export default function AuthUI() {
                     xmlns="http://www.w3.org/2000/svg"
                     preserveAspectRatio="xMidYMid"
                     fill="#000000"
+                    aria-labelledby="discord-icon"
+                    role="img"
+                    aria-label="Discord icon"
                   >
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0"/>
                     <g
                       id="SVGRepo_tracerCarrier"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    ></g>
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
                     <g id="SVGRepo_iconCarrier">
                       {" "}
                       <g>
@@ -107,6 +115,7 @@ export default function AuthUI() {
                   Continue with Discord
                 </button>
                 <button
+                  type="button"
                   className="px-2 py-3 text-white font-semibold text-sm rounded-xl flex justify-center items-center gap-2 bg-[#252525] border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow"
                   onClick={() => loginWithProvider("github")}
                 >
@@ -116,12 +125,12 @@ export default function AuthUI() {
                     xmlns="http://www.w3.org/2000/svg"
                     fill="#000000"
                   >
-                    <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                    <g id="SVGRepo_bgCarrier" strokeWidth="0" />
                     <g
                       id="SVGRepo_tracerCarrier"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                    ></g>
+                    />
                     <g id="SVGRepo_iconCarrier">
                       {" "}
                       <title>github [#142]</title>{" "}
@@ -161,57 +170,6 @@ export default function AuthUI() {
                 </button>
               </div>
             </div>
-
-            <div className="my-6 border-t border-white/20"></div>
-
-            <h2 className="text-md flex font-bold justify-center">
-              Continue with email
-            </h2>
-            <input
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="rounded-xl bg-black/20 border border-white/20 p-3 focus:outline-none focus:border focus:border-white/40"
-              placeholder="Email address"
-            />
-            <input
-              required
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-                if (e.target.value === "") {
-                  setError(undefined);
-                }
-              }}
-              type="password"
-              className="rounded-xl bg-black/20 border border-white/20 p-3 focus:outline-none focus:border focus:border-white/40"
-              placeholder="Password"
-            />
-            <a
-              href="/login/forgot-password"
-              className="text-xs w-fit px-1 -mt-2 text-neutral-300 hover:text-white slow hover:underline cursor-pointer mb-6"
-            >
-              Forgot your password?
-            </a>
-            {error && (
-              <p className="flex justify-center text-xs p-3 bg-red-500/40 text-white rounded-xl font-medium">
-                {error.message}
-              </p>
-            )}
-            <div className="flex justify-between items-center gap-2 mt-4">
-              <button
-                onClick={() => loginWithEmail(email, password)}
-                className="w-full  border border-white/20 hover:bg-opacity-80 hover:border-white/10 slow p-2 text-sm rounded-2xl font-semibold"
-              >
-                Log In
-              </button>
-            </div>
-            <a
-              href="/login/new-user"
-              className="w-full bg-white text-black border border-white hover:bg-opacity-80 hover:border-white/20 slow p-2 text-sm rounded-2xl font-semibold text-center"
-            >
-              Sign Up
-            </a>
           </div>
         </div>
       </section>

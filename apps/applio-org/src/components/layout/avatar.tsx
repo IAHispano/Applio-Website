@@ -11,7 +11,7 @@ export default function Avatar() {
 
 	async function getUser() {
 		const { data, error } = await supabase.auth.getUser();
-		if (data && data.user) {
+		if (data?.user) {
 			const userInfo = await supabase
 				.from("profiles")
 				.select("*")
@@ -39,11 +39,25 @@ export default function Avatar() {
 	}
 
 	useEffect(() => {
+		const getUser = async () => {
+			const { data } = await supabase.auth.getUser();
+			if (data?.user) {
+				const userInfo = await supabase
+					.from("profiles")
+					.select("*")
+					.eq("auth_id", data.user.id)
+					.single();
+				setData(userInfo.data);
+				setLoading(false);
+			} else {
+				setData(null);
+				setLoading(false);
+			}
+		};
+
 		getUser();
 
-		const {
-			data: { subscription },
-		} = supabase.auth.onAuthStateChange((event, session) => {
+		const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
 			if (event === "SIGNED_IN" || event === "SIGNED_OUT") {
 				getUser();
 			}
@@ -82,28 +96,32 @@ export default function Avatar() {
 				<header className="max-md:w-full relative">
 					{data ? (
 						<button
+							type="button"
 							className="flex max-xl:bg-neutral-600/80 max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:border max-xl:border-white/10 max-xl:w-full max-xl:p-2 gap-4 max-xl:mt-12 max-xl:rounded-xl"
 							onClick={openDropdown}
 						>
 							<img
+								alt="Profile Avatar"
 								className="w-12 h-12 rounded-full z-50 border border-white/20 shadow-xl shadow-white/20 "
 								src={data.avatar_url || "/favicon.ico"}
-								onError={(e) =>
-									((e.target as HTMLImageElement).src = "/favicon.ico")
-								}
+								onError={(e) => {
+									const target = e.currentTarget as HTMLImageElement;
+									target.src = "/favicon.ico";
+									console.log(e);
+								}}
 							/>
 							<div className="flex flex-col">
 								<p className="xl:hidden capitalize max-w-[120px] truncate">
-									{data.full_name}
+									{data?.full_name || "User"}
 								</p>
 								<p className="xl:hidden text-xs max-w-[100px] truncate">
-									@{data.full_name}
+									@{data?.full_name || "User"}
 								</p>
 							</div>
 						</button>
 					) : (
 						<a
-							className="w-full max-xl:mt-4 border-white/10 border bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1.5 xl:w-34 items-center justify-center text-neutral-300 hover:bg-white/80 slow font-medium"
+							className="w-full max-xl:mt-4 border-white/10 border bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1 xl:w-32 items-center justify-center text-neutral-300 hover:bg-white/80 slow font-medium"
 							href="/login"
 						>
 							<p className="max-xl:text-center text-black">Log In</p>
@@ -123,9 +141,9 @@ export default function Avatar() {
 						<div className="flex flex-col gap-2">
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"
-								href={`/${data.full_name}`}
+								href={`/@${data?.full_name || "@"}`}
 							>
-								<svg fill="#d4d4d4" viewBox="0 0 24 24" className="w-5 h-5">
+								<svg fill="#d4d4d4" viewBox="0 0 24 24" className="w-5 h-5" aria-labelledby="profile-icon" aria-label="Profile icon"role="img">
 									<path
 										fill="#d4d4d4"
 										fillRule="evenodd"
@@ -143,9 +161,9 @@ export default function Avatar() {
 							</a>
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"
-								href={`/settings`}
+								href='/settings'
 							>
-								<svg viewBox="0 0 512 512" fill="#d4d4d4" className="w-5 h-5">
+								<svg viewBox="0 0 512 512" fill="#d4d4d4" className="w-5 h-5" aria-labelledby="settings-icon" aria-label="Settings icon" role="img">
 									<path
 										fill="none"
 										stroke="#d4d4d4"
@@ -157,15 +175,16 @@ export default function Avatar() {
 								</svg>
 								<p className="text-sm text-neutral-300 font-medium">Settings</p>
 							</a>
-							<a
+							<button
 								className="flex items-center gap-2 hover:bg-red-500/20 p-2 rounded-xl slow cursor-pointer"
 								onClick={logout}
+								type="button"
 							>
-								<svg viewBox="0 0 24 24" fill="#d4d4d4" className="w-5 h-5">
+								<svg viewBox="0 0 24 24" fill="#d4d4d4" className="w-5 h-5" aria-labelledby="logout-icon" aria-label="Logout icon" role="img">
 									<path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012 2v2h-2V4H5v16h9v-2h2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2h9z" />
 								</svg>
 								<p className="text-sm text-neutral-300 font-medium">Logout</p>
-							</a>
+							</button>
 						</div>
 					</div>
 				</motion.div>

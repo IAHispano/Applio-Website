@@ -129,7 +129,7 @@ export default function UserCard({ id }: { id: string }) {
 		async function getUserIsFollowing() {
 			const { data: authData, error: authError } =
 				await supabase.auth.getUser();
-			if (authData && authData.user) {
+			if (authData?.user) {
 				setAuthData(authData as Auth);
 				const { data: profileData } = await supabase
 					.from("profiles")
@@ -157,7 +157,7 @@ export default function UserCard({ id }: { id: string }) {
 	}, [data]);
 
 	const handleFollow = async () => {
-		if (authData && authData.user) {
+		if (authData?.user) {
 			if (userData && data) {
 				if (follow) {
 					setFollow(false);
@@ -188,8 +188,8 @@ export default function UserCard({ id }: { id: string }) {
 	};
 
 	return (
-		<section className="flex min-h-screen flex-col items-center -mt-52">
-			<div className="absolute">
+		<section className="flex min-h-screen flex-col items-center">
+			<div className="absolute -mt-36">
 				<Background1 />
 			</div>
 			{data === null && error && (

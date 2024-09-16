@@ -8,7 +8,7 @@ import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 // Remove for local development
-export const runtime = process.env.NODE_ENV === "production" ? "edge" : undefined;
+export const runtime = process.env.NEXT_PUBLIC_LOCAL === "true" ? undefined : "edge";
 
 
 export default function CreateGuide() {

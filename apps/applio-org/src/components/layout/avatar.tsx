@@ -73,7 +73,7 @@ export default function Avatar() {
 	};
 
 	return (
-		<section className="flex max-xl:flex-col xl:justify-end w-full">
+		<section className="flex max-xl:flex-col xl:justify-end w-full justify-center max-xl:items-center">
 			{loading && (
 				<svg
 					aria-hidden="true"
@@ -97,28 +97,23 @@ export default function Avatar() {
 					{data ? (
 						<button
 							type="button"
-							className="flex max-xl:bg-neutral-600/80 max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:border max-xl:border-white/10 max-xl:w-full max-xl:p-2 gap-4 max-xl:mt-12 max-xl:rounded-xl"
+							className="flex max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:w-full justify-between items-center m-auto w-full max-xl:p-1"
 							onClick={openDropdown}
 						>
+							<div className="flex flex-col">
+								<p className="xl:hidden capitalize max-w-[180px] truncate font-medium">
+									{data?.full_name || "User"}
+								</p>
+							</div>
 							<img
 								alt="Profile Avatar"
-								className="w-12 h-12 rounded-full z-50 border border-white/20 shadow-xl shadow-white/20 backdrop-filter backdrop-blur-xl"
+								className="xl:w-12 xl:h-12 h-8 w-8 rounded-full z-50 border border-white/20 shadow-xl xl:shadow-white/20 backdrop-filter backdrop-blur-xl"
 								src={data.avatar_url || "/logo_no_bg.png"}
 								onError={(e) => {
 									const target = e.currentTarget as HTMLImageElement;
 									target.src = "/logo_no_bg.png";
-									target.style.padding = "8px";
-									console.log(e);
 								}}
 							/>
-							<div className="flex flex-col">
-								<p className="xl:hidden capitalize max-w-[120px] truncate">
-									{data?.full_name || "User"}
-								</p>
-								<p className="xl:hidden text-xs max-w-[100px] truncate">
-									@{data?.full_name || "User"}
-								</p>
-							</div>
 						</button>
 					) : (
 						<a
@@ -138,7 +133,7 @@ export default function Avatar() {
 					transition={{ duration: 0.2 }}
 					className="xl:absolute xl:mt-16 mt-4"
 				>
-					<div className="px-4 w-full xl:w-fit h-fit bg-white/10 md:bg-neutral-800 backdrop-filter backdrop-blur-lg rounded-lg flex flex-col p-2 gap-1 text-white md:border border-white/10">
+					<div className="w-full xl:w-fit h-fit bg-neutral-600/60 md:bg-neutral-800 backdrop-filter backdrop-blur-lg rounded-lg flex flex-col p-4 gap-1 text-white md:border border-white/10">
 						<div className="flex flex-col gap-2">
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"

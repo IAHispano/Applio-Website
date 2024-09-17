@@ -77,6 +77,7 @@ export default function Navbar() {
 								<a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow cursor-pointer">
 									<p>Products</p>
 									<svg
+										aria-hidden="true"
 										width="12"
 										height="7"
 										viewBox="0 0 12 7"
@@ -111,6 +112,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 74 84"
 														fill="none"
@@ -135,6 +137,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 243 268"
 														fill="none"
@@ -168,6 +171,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 235 235"
 														fill="none"
@@ -195,9 +199,11 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="https://docs.applio.org"
 												target="_blank"
+												rel="noreferrer"
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-10 h-10"
 														viewBox="0 0 512 512"
 														fill="none"
@@ -224,6 +230,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 245 244"
 														fill="none"
@@ -246,9 +253,11 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="https://github.com/iahispano/Applio-Plugins"
 												target="_blank"
+												rel="noreferrer"
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 242 231"
 														fill="none"
@@ -278,6 +287,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 226 226"
 														fill="none"
@@ -300,9 +310,11 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="https://github.com/blaisewf/rvc-cli"
 												target="_blank"
+												rel="noreferrer"
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 198 240"
 														fill="none"
@@ -333,6 +345,7 @@ export default function Navbar() {
 								<a className="relative flex gap-2 items-center text-neutral-300 hover:text-white slow cursor-pointer">
 									<p>About Us</p>
 									<svg
+										aria-hidden="true"
 										width="12"
 										height="7"
 										viewBox="0 0 12 7"
@@ -363,6 +376,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 236 263"
 														fill="none"
@@ -387,6 +401,7 @@ export default function Navbar() {
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 264 242"
 														fill="none"
@@ -409,9 +424,11 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="https://discord.gg/iahispano"
 												target="_blank"
+												rel="noreferrer"
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg
+														aria-hidden="true"
 														className="w-5 h-5"
 														viewBox="0 0 202 242"
 														fill="none"

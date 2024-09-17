@@ -73,7 +73,7 @@ export default function Avatar() {
 	};
 
 	return (
-		<section className="flex max-xl:flex-col xl:justify-end w-full justify-center max-xl:items-center">
+		<section className="flex max-xl:flex-col xl:justify-end w-full"> 
 			{loading && (
 				<svg
 					aria-hidden="true"

@@ -63,7 +63,7 @@ export default function DiscoverModels() {
 			let query = supabase
 				.from("models")
 				.select("*")
-				.order("created_at", { ascending: date === "oldest", nullsFirst: false })
+				.order("created_at", { ascending: date === "oldest"});
 
 			query = query.range(0, end);
 
@@ -73,7 +73,7 @@ export default function DiscoverModels() {
 
 			if (searchInput) {
 				query = query.or(
-					`name.ilike.%${searchInput}%,tags.ilike.%${searchInput}%,`,
+					`name.ilike.%${searchInput}%,tags.ilike.%${searchInput}%`,
 				);
 			}
 

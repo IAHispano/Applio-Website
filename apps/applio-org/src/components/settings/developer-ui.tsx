@@ -65,7 +65,7 @@ export default function DeveloperUi() {
 
 			const { error: tokenError } = await supabase
 				.from("tokens")
-				.upsert([{ user: user.data.user?.id, role: publicData?.premium ? 'premium' : 'user' }]);
+				.upsert([{ user: user.user.id, role: publicData?.premium ? 'premium' : 'user' }]);
 
 			if (tokenError) {
 				console.error("Error at saving token:", tokenError.message);

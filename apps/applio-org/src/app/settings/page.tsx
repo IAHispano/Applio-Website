@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
 // Remove for local development
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default function Settings() {
 	const searchParams = useSearchParams();

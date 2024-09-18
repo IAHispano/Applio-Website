@@ -46,7 +46,7 @@ export default function DeveloperUi() {
 			return;
 		}
 
-		if (user.data.user?.id) {
+		if (user.user.id) {
 			if (userTokens.length >= 3) {
 				console.error("Error: You cannot create more than 3 keys.");
 				return;
@@ -55,7 +55,7 @@ export default function DeveloperUi() {
 			const { data: publicData, error: profileError } = await supabase
 				.from("profiles")
 				.select("premium")
-				.eq("auth_id", user.data.user?.id)
+				.eq("auth_id", user.user.id)
 				.single();
 
 			if (profileError) {

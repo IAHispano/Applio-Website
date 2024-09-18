@@ -4,6 +4,7 @@ import ApiDashboard from "@/components/settings/developer-ui";
 import SettingsUI from "@/components/settings/settings-ui";
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import { supabase } from "@/utils/database";
 
 export default function Settings() {
 	return (
@@ -23,6 +24,22 @@ function SettingsContent() {
 			setPage(2);
 		}
 	}, [searchParams]);
+
+	useEffect(() => {
+		async function fetchUser() {
+			const { data, error } = await supabase.auth.getSession();
+			if (error) {
+				console.error("Error fetching user:", error);
+				return;
+			}
+
+			if (data.session === null) {
+				window.location.href = "/login";
+			}
+		}
+
+		fetchUser();
+	}, []);
 
 	return (
 		<main className="w-full min-h-screen max-w-5xl flex flex-col items-center mx-auto p-8 max-lg:mt-12">

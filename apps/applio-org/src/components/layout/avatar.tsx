@@ -30,6 +30,7 @@ export default function Avatar() {
 	}
 
 	async function logout() {
+		setIsOpen(false);
 		const { error } = await supabase.auth.signOut();
 		window.location.reload();
 

@@ -12,7 +12,7 @@ export default function SettingsUI() {
 	useEffect(() => {
 		async function getUser() {
 			const { data, error } = await supabase.auth.getUser();
-			if (data && data.user) {
+			if (data?.user) {
 				const userInfo = await supabase
 					.from("profiles")
 					.select("*")
@@ -51,6 +51,7 @@ export default function SettingsUI() {
 
 	return (
 		<section className="flex flex-col justify-start items-start mx-auto max-w-5xl w-full">
+			{loading && <p className="text-xs w-full text-center">Loading...</p>}
 			{!loading && data && (
 				<div className="flex flex-col w-full h-full gap-4">
 					<h1 className="text-3xl font-medium">

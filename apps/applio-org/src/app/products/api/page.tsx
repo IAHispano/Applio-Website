@@ -10,7 +10,6 @@ export default function ApiHome() {
 				</div>
 				<div
 					className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5"
-					role="alert"
 				>
 					<span className="font-semibold mx-2 text-left flex-auto text-white">
 						Developers
@@ -23,7 +22,7 @@ export default function ApiHome() {
 				<div className="md:mt-12 z-50">
 					<a
 						className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow"
-						href="/products/api/dashboard"
+						href="/settings?p=developer"
 					>
 						Get Started
 					</a>

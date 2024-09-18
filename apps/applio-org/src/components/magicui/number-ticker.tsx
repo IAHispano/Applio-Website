@@ -9,7 +9,7 @@ export default function NumberTicker({
 	delay = 0,
 	className,
 }: {
-	value: any;
+	value: number;
 	direction?: "up" | "down";
 	className?: string;
 	delay?: number; // delay in s
@@ -46,7 +46,7 @@ export default function NumberTicker({
 
 	return (
 		<span
-			className={`inline-block tabular-nums text-black dark:text-white ${className}`}
+			className={`inline-block tabular-nums ${className}`}
 			ref={ref}
 		/>
 	);

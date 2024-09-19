@@ -1,34 +1,42 @@
 import { supabase } from "@/utils/database";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useToast } from "./use-toast";
 
 export default function OptionsModelMenu({ id }: { id: string }) {
   const [clicked, setClicked] = useState(false);
   const [liked, setLiked] = useState(false);
   const router = useRouter();
+  const { showToast } = useToast();
 
   function handleShare() {
-    // CHANGE THIS TO APPLIO.ORG!
+    showToast("Copied to clipboard!", "success");
     navigator.clipboard.writeText(`https://v2.applio.org/models?id=${id}`);
   }
 
   async function handleDownload() {}
 
   async function handleLike() {
-    setClicked(true);
-    if (!liked) {
-      setLiked(true);
-    }
+    const auth = await supabase.auth.getSession();
 
-    if (liked) {
-      setLiked(false);
+    if (auth.data.session) {
+      setClicked(true);
+      if (!liked) {
+        setLiked(true);
+      }
+  
+      if (liked) {
+        setLiked(false);
+      }
+    } else {
+      router.push("/login");
     }
   }
 
   async function sendLike() {
     const auth = await supabase.auth.getUser();
 
-    if (auth.data && auth.data.user) {
+    if (auth.data?.user) {
       const profile = await supabase
         .from("profiles")
         .select("id, full_name")

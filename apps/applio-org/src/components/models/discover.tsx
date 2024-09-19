@@ -187,9 +187,9 @@ export default function DiscoverModels() {
 	}
 
 	return (
-		<>
+		<main className="w-full p-6 md:max-w-5xl md:flex justify-center items-center mx-auto">
 			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
-			<section className="justify-center items-center flex flex-col mx-auto my-12 max-md:px-12 w-full">
+			<section className="my-12">
 				{data && (
 					<InfiniteScroll
 						dataLength={data.length}
@@ -213,19 +213,20 @@ export default function DiscoverModels() {
 							</h1>
 							<article className="grid grid-cols-4 max-md:grid-cols-2  gap-4 px-4">
 								{tags.map((tag, index) => (
-									<a
-										key={index}
+									<button
+										type="button"
+										key={tag} 
 										onClick={() => handleTagClick(tag)}
 										className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
 									>
 										{tag}
-									</a>
+									</button>
 								))}
 							</article>
 							<div className="flex gap-2 mt-8 w-full relative">
 								<input
 									type="text"
-									className="p-4 mt-8 rounded-t-xl border border-white/10 focus:outline-none bg-transparent placeholder-white/80 w-full pr-24"
+									className={`p-4 mt-8 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 slow mx-1 ${showSettings ? 'rounded-t-xl border-b-transparent' : 'shadow-white/[.03] shadow-lg rounded-xl'}`}
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);
@@ -236,10 +237,11 @@ export default function DiscoverModels() {
 								{searchInput && (
 									<button
 										type="button"
-										className="p-2 rounded-xl absolute right-16 hover:bg-white/10 bottom-3 slow"
+										className="p-2 rounded-xl absolute right-14 hover:bg-white/10 bottom-3 slow"
 										onClick={() => setSearchInput("")}
 									>
 										<svg
+											aria-hidden="true"
 											width="16"
 											height="16"
 											viewBox="0 0 16 16"
@@ -306,7 +308,7 @@ export default function DiscoverModels() {
 								</button>
 							</div>
 							{showSettings && ( 
-								<div className="h-fit border border-white/10 rounded-b-xl p-4">  
+								<div className="h-fit border bg-neutral-800/20  border-white/10 rounded-b-xl p-4 mx-1">  
 									<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
 										<div className="w-fit">
 											<p className="px-1">Date</p>
@@ -347,27 +349,27 @@ export default function DiscoverModels() {
 									</p>
 								)}
 							</div>
-							<article className="flex flex-col gap-4 w-full h-full mt-8 mx-auto">
-								{data &&
-									data.map((model: any, index: number) => (
-										<div key={index} className="h-fit h-full overflow-y-auto">
-											<button
-												className="w-full h-full flex cursor-pointer"
-												key={index}
-												onClick={(e) => {
-													e.preventDefault();
-													handleOpenPopup(model.id);
-												}}
-											>
-												<ModelCard key={index} data={model} />
-											</button>
-										</div>
-									))}
+							<article className="flex flex-col justify-center items-center mx-auto w-full gap-4 my-10">
+								{data?.map((model: any, index: number) => (
+									<div key={model.id} className="max-h-96 overflow-y-auto w-full">
+										<button
+											type="button"
+											className="w-full h-full flex cursor-pointer"
+											key={model.id}
+											onClick={(e) => {
+												e.preventDefault();
+												handleOpenPopup(model.id);
+											}}
+										>
+											<ModelCard key={model.id} data={model} />
+										</button>
+									</div>
+								))}
 							</article>
 						</section>
 					</InfiniteScroll>
 				)}
 			</section>
-		</>
+		</main>
 	);
 }

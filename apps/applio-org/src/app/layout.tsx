@@ -3,6 +3,7 @@ import { Syne, Poppins } from "next/font/google";
 import "../styles/globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import { ToastProvider } from "@/components/models/use-toast";
 
 const inter = Syne({ subsets: ["latin"] });
 
@@ -28,7 +29,9 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={inter.className}>
 				<Navbar />
+				<ToastProvider>
 				<div className="min-h-screen max-md:mt-6">{children}</div>
+				</ToastProvider>
 				<Footer />
 			</body>
 		</html>

@@ -5,7 +5,7 @@ import { PostgrestError } from "@supabase/supabase-js";
 import { supabase } from "@/utils/database";
 import MarkdownForGuides from "./markdown";
 
-export default function 	GuidePost({ id }: Readonly<{ id: string }>) {
+export default function GuidePost({ id }: Readonly<{ id: string }>) {
 	const [data, setData] = useState<any[] | null>(null);
 	const [_error, setError] = useState<PostgrestError | null>(null);
 	const [loading, setLoading] = useState(true);

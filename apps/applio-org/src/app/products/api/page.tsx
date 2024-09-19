@@ -8,9 +8,7 @@ export default function ApiHome() {
 				<div className="absolute -z-1">
 					<Background2 />
 				</div>
-				<div
-					className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5"
-				>
+				<div className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5">
 					<span className="font-semibold mx-2 text-left flex-auto text-white">
 						Developers
 					</span>

@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import { useToast } from "@/components/models/use-toast";
 
 export default function Branding() {
 	const { showToast } = useToast();
-	
+
 	const copyToClipboard = (color: string) => {
 		showToast("Copied to clipboard!", "success");
 		navigator.clipboard.writeText(color);
@@ -18,7 +18,8 @@ export default function Branding() {
 			<div className="md:min-w-[100svh] mt-12">
 				<h1 className="text-5xl max-md:mt-4 font-bold">Logo</h1>
 				<p className="my-4 mx-1">
-					We offer two logo formats: horizontal and vertical. Use them accordingly to best suit your layout and context.
+					We offer two logo formats: horizontal and vertical. Use them
+					accordingly to best suit your layout and context.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
 					<div className="w-full h-full">
@@ -78,7 +79,9 @@ export default function Branding() {
 								</defs>
 							</svg>
 						</div>
-						<p className="text-xs text-center my-2">Horizontal and vertical logo options.</p>
+						<p className="text-xs text-center my-2">
+							Horizontal and vertical logo options.
+						</p>
 					</div>
 					<div className="w-full h-full">
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl border border-white/10">
@@ -146,18 +149,23 @@ export default function Branding() {
 			<div className="md:min-w-[100svh] mt-12">
 				<h1 className="text-5xl font-bold">Typography</h1>
 				<p className="my-4 mx-1">
-					We use two fonts: one for impactful headlines and another for clear, readable body text.
+					We use two fonts: one for impactful headlines and another for clear,
+					readable body text.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
 					<div className="w-full h-full">
 						<div className="bg-white p-4 flex justify-center items-center mx-auto rounded-xl">
 							<h2 className="text-6xl text-black font-bold">Applio</h2>
 						</div>
-						<p className="text-xs text-center my-2">Syne - Bold titles for maximum impact.</p>
+						<p className="text-xs text-center my-2">
+							Syne - Bold titles for maximum impact.
+						</p>
 					</div>
 					<div className="w-full h-full">
 						<div className="bg-white p-4 flex justify-center items-center mx-auto rounded-xl">
-							<h2 className="text-6xl text-black font-bold read-font">Applio</h2>
+							<h2 className="text-6xl text-black font-bold read-font">
+								Applio
+							</h2>
 						</div>
 						<p className="text-xs text-center my-2">
 							Poppins - Clear and readable font for subheadings and body text.
@@ -171,15 +179,24 @@ export default function Branding() {
 					Here are the primary colors we use across our brand identity.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
-					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#00AA68')}>
+					<div
+						className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl"
+						onClick={() => copyToClipboard("#00AA68")}
+					>
 						<div className="bg-[#00AA68] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
 						<p className="text-xs text-center my-2">HEX - #00AA68</p>
 					</div>
-					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#FFFFFF')}>
+					<div
+						className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl"
+						onClick={() => copyToClipboard("#FFFFFF")}
+					>
 						<div className="bg-[#FFFFFF] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
 						<p className="text-xs text-center my-2">HEX - #FFFFFF</p>
 					</div>
-					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#110F0F')}>
+					<div
+						className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl"
+						onClick={() => copyToClipboard("#110F0F")}
+					>
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10"></div>
 						<p className="text-xs text-center my-2">HEX - #110F0F</p>
 					</div>

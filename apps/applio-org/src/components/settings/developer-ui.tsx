@@ -7,12 +7,22 @@ import { useEffect, useState } from "react";
 
 export default function DeveloperUi() {
 	const [authId, setAuthId] = useState<string>("");
-	const [userTokens, setUserTokens] = useState<Array<{ token: string; created_at: string; usage: number; role: 'user' | 'premium' }>>([]);
+	const [userTokens, setUserTokens] = useState<
+		Array<{
+			token: string;
+			created_at: string;
+			usage: number;
+			role: "user" | "premium";
+		}>
+	>([]);
 	const [loading, setLoading] = useState(true);
 	const [end, setEnd] = useState(3);
 
 	const fetchUserTokens = async () => {
-		const { data: { session }, error } = await supabase.auth.getSession();
+		const {
+			data: { session },
+			error,
+		} = await supabase.auth.getSession();
 
 		if (error) {
 			console.error("Error fetching session:", error);
@@ -65,7 +75,12 @@ export default function DeveloperUi() {
 
 			const { error: tokenError } = await supabase
 				.from("tokens")
-				.upsert([{ user: user.user.id, role: publicData?.premium ? 'premium' : 'user' }]);
+				.upsert([
+					{
+						user: user.user.id,
+						role: publicData?.premium ? "premium" : "user",
+					},
+				]);
 
 			if (tokenError) {
 				console.error("Error at saving token:", tokenError.message);
@@ -106,9 +121,11 @@ export default function DeveloperUi() {
 			</div>
 			<div className="justify-between items-start flex flex-col mb-12 w-full relative">
 				<div className="flex md:justify-between w-full max-md:gap-6">
-					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold">API Dashboard</h1>
+					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold">
+						API Dashboard
+					</h1>
 					<button
-                        type="button"
+						type="button"
 						className={`max-md:rounded-full rounded-xl w-12 md:h-12 max-md:mx-4 max-md:px-2 max-md:mb-1 xl:pb-0.5 bg-white text-black text-3xl font-bold slow ${userTokens.length < 3 ? "hover:shadow-lg hover:shadow-white " : "opacity-50 cursor-not-allowed"}`}
 						onClick={userTokens.length < 3 ? handleGenerateToken : undefined}
 					>

@@ -45,9 +45,6 @@ export default function NumberTicker({
 	);
 
 	return (
-		<span
-			className={`inline-block tabular-nums ${className}`}
-			ref={ref}
-		/>
+		<span className={`inline-block tabular-nums ${className}`} ref={ref} />
 	);
 }

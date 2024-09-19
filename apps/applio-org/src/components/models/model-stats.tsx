@@ -128,10 +128,21 @@ export default function ModelStats({ id }: { id: string }) {
 					)}
 					{views && views.length > 1 && (
 						<div className="flex items-end justify-end mt-1 h-0">
-						<LineChart width={200} height={20} data={views} className="h-full w-full">
-							<Line type='monotone' dataKey='Views' stroke='white' strokeWidth={1} dot={false} />
-						</LineChart>
-					</div>
+							<LineChart
+								width={200}
+								height={20}
+								data={views}
+								className="h-full w-full"
+							>
+								<Line
+									type="monotone"
+									dataKey="Views"
+									stroke="white"
+									strokeWidth={1}
+									dot={false}
+								/>
+							</LineChart>
+						</div>
 					)}
 				</div>
 			</div>
@@ -150,10 +161,21 @@ export default function ModelStats({ id }: { id: string }) {
 					)}
 					{data && data.length > 1 && (
 						<div className="flex items-end justify-end mt-1 h-0">
-						<LineChart width={200} height={20} data={data} className="h-full w-full">
-							<Line type='monotone' dataKey='Downloads' stroke='white' strokeWidth={1} dot={false} />
-						</LineChart>
-					</div>
+							<LineChart
+								width={200}
+								height={20}
+								data={data}
+								className="h-full w-full"
+							>
+								<Line
+									type="monotone"
+									dataKey="Downloads"
+									stroke="white"
+									strokeWidth={1}
+									dot={false}
+								/>
+							</LineChart>
+						</div>
 					)}
 				</div>
 			</div>
@@ -172,8 +194,19 @@ export default function ModelStats({ id }: { id: string }) {
 					)}
 					{likes && likes.length > 1 && (
 						<div className="flex items-end justify-end mt-1 h-0">
-							<LineChart width={200} height={20} data={likes} className="h-full w-full">
-								<Line type='monotone' dataKey='Views' stroke='white' strokeWidth={1} dot={false} />
+							<LineChart
+								width={200}
+								height={20}
+								data={likes}
+								className="h-full w-full"
+							>
+								<Line
+									type="monotone"
+									dataKey="Views"
+									stroke="white"
+									strokeWidth={1}
+									dot={false}
+								/>
 							</LineChart>
 						</div>
 					)}

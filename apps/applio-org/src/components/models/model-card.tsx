@@ -10,7 +10,7 @@ export default function ModelCard({
 	};
 }) {
 	return (
-		<div className="bg-neutral-700/30 border border-white/10 rounded-lg w-full h-full max-md:p-6 p-5 hover:shadow-lg hover:shadow-white/10 slow">
+		<div className="p-4 bg-neutral-800 rounded-xl w-full border border-white/10">
 			<div className="md:justify-between flex max-md:flex-col">
 				<div>
 					<h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[500px] max-xl:max-w-[600px] max-w-5xl max-md:text-wrap truncate text-left font-semibold">

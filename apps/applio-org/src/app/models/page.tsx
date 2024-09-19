@@ -3,7 +3,7 @@ import { supabase } from "@/utils/database";
 import { Suspense } from "react";
 
 // Remove for local development
-// export const runtime = "edge";
+export const runtime = "edge";
 
 export async function generateMetadata(params: {
 	searchParams: { id: string };
@@ -42,7 +42,7 @@ export async function generateMetadata(params: {
 
 export default function Models() {
 	return (
-		<main className="md:min-h-[80svh] flex justify-center items-center mx-auto">
+		<main className="md:min-h-screen flex justify-center items-center mx-auto">
 			<Suspense>
 				<DiscoverModels />
 			</Suspense>

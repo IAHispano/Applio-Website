@@ -189,7 +189,7 @@ export default function DiscoverModels() {
 	return (
 		<>
 			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
-			<section className="justify-center items-center flex flex-col mx-auto my-12 max-xl:mx-4 w-full ">
+			<section className="justify-center items-center flex flex-col mx-auto my-12 max-md:px-12 w-full">
 				{data && (
 					<InfiniteScroll
 						dataLength={data.length}
@@ -347,10 +347,10 @@ export default function DiscoverModels() {
 									</p>
 								)}
 							</div>
-							<article className="flex flex-col gap-4 w-full h-full mt-8">
+							<article className="flex flex-col gap-4 w-full h-full mt-8 mx-auto">
 								{data &&
 									data.map((model: any, index: number) => (
-										<div key={index} className="max-h-96 overflow-y-auto">
+										<div key={index} className="h-fit h-full overflow-y-auto">
 											<button
 												className="w-full h-full flex cursor-pointer"
 												key={index}

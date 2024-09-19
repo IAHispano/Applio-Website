@@ -26,10 +26,10 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 		}
 		if (data) {
 			return {
-				title: `${data.full_name} in Applio.`,
+				title: `@${data.full_name} - Applio`,
 				description: `See ${data.full_name} profile.`,
 				openGraph: {
-					title: `${data.full_name} in Applio.`,
+					title: `@${data.full_name} in Applio`,
 					images: data.avatar_url,
 					description: `See ${data.full_name} profile.`,
 				},

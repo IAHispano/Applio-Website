@@ -100,7 +100,7 @@ export default function Avatar() {
 					{data ? (
 						<button
 							type="button"
-							className="flex backdrop-blur-xl backdrop-filter slow max-xl:w-full justify-start items-center m-auto w-full max-xl:p-1 rounded-xl border border-white/20"
+							className="flex backdrop-blur-xl backdrop-filter slow max-xl:w-full justify-start items-center m-auto w-full max-xl:p-1 rounded-xl border-white/20"
 							onClick={openDropdown}
 						>
 							<img

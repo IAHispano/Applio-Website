@@ -30,7 +30,7 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Navbar />
 				<ToastProvider>
-				<div className="min-h-screen max-md:mt-6">{children}</div>
+					<div className="min-h-screen max-md:mt-6">{children}</div>
 				</ToastProvider>
 				<Footer />
 			</body>

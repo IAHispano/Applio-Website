@@ -150,15 +150,15 @@ export default function DiscoverGuides() {
 							)}
 							<article className="grid md:grid-cols-3 md:grid-rows-3 gap-4 w-full h-full mt-8">
 								{data.map((model: any, index: number) => (
-										<a
-											href={`/learn/${model.id}`}
-											key={model.id}
-											className="h-full w-full bg-neutral-400/10 rounded-xl p-4 pb-6 border border-white/[5%] relative hover:bg-neutral-400/20 slow hover:shadow-xl hover:shadow-white/[5%]"
-										>
-											<p className="font-semibold text-2xl max-w-3xl truncate text-balance text-left h-full w-full">
-												{model.title}
-											</p>
-											<div className="justify-end flex w-full ml-auto">
+									<a
+										href={`/learn/${model.id}`}
+										key={model.id}
+										className="h-full w-full bg-neutral-400/10 rounded-xl p-4 pb-6 border border-white/[5%] relative hover:bg-neutral-400/20 slow hover:shadow-xl hover:shadow-white/[5%]"
+									>
+										<p className="font-semibold text-2xl max-w-3xl truncate text-balance text-left h-full w-full">
+											{model.title}
+										</p>
+										<div className="justify-end flex w-full ml-auto">
 											<p className="flex text-white/60 text-xs">
 												{model.type || "AI"} ·{" "}
 												{model.created_at
@@ -172,9 +172,9 @@ export default function DiscoverGuides() {
 														)
 													: "May 13, 2024"}
 											</p>
-											</div>
-										</a>
-									))}
+										</div>
+									</a>
+								))}
 							</article>
 						</section>
 					</InfiniteScroll>

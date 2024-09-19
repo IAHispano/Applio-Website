@@ -7,7 +7,6 @@ import { supabase } from "@/utils/database";
 import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-
 export default function CreateGuide() {
 	const [page, setPage] = useState(1);
 	const [title, setTitle] = useState("");
@@ -150,7 +149,7 @@ export default function CreateGuide() {
 									"*This is italic text*\n\n" +
 									"- This is a dot\n\n" +
 									"`This is code`\n\n" +
-									"![This is an image](Link_Image)\n\n"+
+									"![This is an image](Link_Image)\n\n" +
 									"%color{#00AA68} This is a colored text %%\n\n"
 								}
 								value={markdownText}

@@ -58,7 +58,9 @@ export default function Avatar() {
 
 		getUser();
 
-		const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+		const {
+			data: { subscription },
+		} = supabase.auth.onAuthStateChange((event) => {
 			if (event === "SIGNED_IN" || event === "SIGNED_OUT") {
 				getUser();
 			}
@@ -74,7 +76,7 @@ export default function Avatar() {
 	};
 
 	return (
-		<section className="flex max-xl:flex-col xl:justify-end w-full"> 
+		<section className="flex max-xl:flex-col xl:justify-end w-full">
 			{loading && (
 				<svg
 					aria-hidden="true"
@@ -98,23 +100,23 @@ export default function Avatar() {
 					{data ? (
 						<button
 							type="button"
-							className="flex max-xl:backdrop-blur-xl max-xl:backdrop-filter max-xl:w-full justify-between items-center m-auto w-full max-xl:p-1"
+							className="flex backdrop-blur-xl backdrop-filter slow max-xl:w-full justify-start items-center m-auto w-full max-xl:p-1 rounded-xl border-white/20"
 							onClick={openDropdown}
 						>
-							<div className="flex flex-col">
-								<p className="xl:hidden capitalize max-w-[180px] truncate font-medium">
-									{data?.full_name || "User"}
-								</p>
-							</div>
 							<img
 								alt="Profile Avatar"
-								className="xl:w-12 xl:h-12 h-8 w-8 rounded-full z-50 border border-white/20 shadow-xl xl:shadow-white/20 backdrop-filter backdrop-blur-xl"
+								className="w-10 h-10 rounded-full z-50 border border-white/20 shadow-xl xl:shadow-white/20 backdrop-filter backdrop-blur-xl"
 								src={data.avatar_url || "/logo_no_bg.png"}
 								onError={(e) => {
 									const target = e.currentTarget as HTMLImageElement;
 									target.src = "/logo_no_bg.png";
 								}}
 							/>
+							<div className="flex flex-col pl-2">
+								<p className="xl:hidden max-w-[180px] truncate font-medium">
+									@{data?.full_name || "User"}
+								</p>
+							</div>
 						</button>
 					) : (
 						<a
@@ -134,13 +136,20 @@ export default function Avatar() {
 					transition={{ duration: 0.2 }}
 					className="xl:absolute xl:mt-16 mt-4"
 				>
-					<div className="w-full xl:w-fit h-fit bg-neutral-600/60 md:bg-neutral-800 backdrop-filter backdrop-blur-lg rounded-lg flex flex-col p-4 gap-1 text-white md:border border-white/10">
+					<div className="w-full xl:w-fit h-fit max-xl:backdrop-filter rounded-xl flex flex-col p-2 gap-1 text-white border border-white/20">
 						<div className="flex flex-col gap-2">
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"
 								href={`/@${data?.full_name || "@"}`}
 							>
-								<svg fill="#d4d4d4" viewBox="0 0 24 24" className="w-5 h-5" aria-labelledby="profile-icon" aria-label="Profile icon"role="img">
+								<svg
+									fill="#d4d4d4"
+									viewBox="0 0 24 24"
+									className="w-5 h-5"
+									aria-labelledby="profile-icon"
+									aria-label="Profile icon"
+									role="img"
+								>
 									<path
 										fill="#d4d4d4"
 										fillRule="evenodd"
@@ -158,9 +167,16 @@ export default function Avatar() {
 							</a>
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"
-								href='/settings'
+								href="/settings"
 							>
-								<svg viewBox="0 0 512 512" fill="#d4d4d4" className="w-5 h-5" aria-labelledby="settings-icon" aria-label="Settings icon" role="img">
+								<svg
+									viewBox="0 0 512 512"
+									fill="#d4d4d4"
+									className="w-5 h-5"
+									aria-labelledby="settings-icon"
+									aria-label="Settings icon"
+									role="img"
+								>
 									<path
 										fill="none"
 										stroke="#d4d4d4"
@@ -177,7 +193,14 @@ export default function Avatar() {
 								onClick={logout}
 								type="button"
 							>
-								<svg viewBox="0 0 24 24" fill="#d4d4d4" className="w-5 h-5" aria-labelledby="logout-icon" aria-label="Logout icon" role="img">
+								<svg
+									viewBox="0 0 24 24"
+									fill="#d4d4d4"
+									className="w-5 h-5"
+									aria-labelledby="logout-icon"
+									aria-label="Logout icon"
+									role="img"
+								>
 									<path d="M16 17v-3H9v-4h7V7l5 5-5 5M14 2a2 2 0 012 2v2h-2V4H5v16h9v-2h2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2h9z" />
 								</svg>
 								<p className="text-sm text-neutral-300 font-medium">Logout</p>

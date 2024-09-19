@@ -3,7 +3,10 @@ import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
 function transformColoredText(content: string) {
-	return content.replace(/%color\{(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3})\}(.*?)%%/g, '<span style="color: $1;">$2</span>');
+	return content.replace(
+		/%color\{(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3})\}(.*?)%%/g,
+		'<span style="color: $1;">$2</span>',
+	);
 }
 
 export default function MarkdownForGuides({ content }: { content: string }) {

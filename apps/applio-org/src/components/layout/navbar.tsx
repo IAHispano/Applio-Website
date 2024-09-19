@@ -53,10 +53,13 @@ export default function Navbar() {
 		>
 			<div className="max-xl:hidden flex items- justify-center mx-auto h-16 bg-gradient-to-b from-[#110F0F] to-transparent backdrop-filter backdrop-blur-lg p-2 px-12">
 				<div className="flex items-center justify-center mx-24">
-					<a href="/" onContextMenu={(e) => {
-						e.preventDefault();
-						window.open('/about/branding', '_blank');
-					}}>
+					<a
+						href="/"
+						onContextMenu={(e) => {
+							e.preventDefault();
+							window.open("/about/branding", "_blank");
+						}}
+					>
 						<BlurIn word="Applio" className="text-3xl font-bold" />
 					</a>
 					<div className="grid grid-cols-2 w-full items-center m-auto">
@@ -95,7 +98,7 @@ export default function Navbar() {
 								</a>
 								{/* dropdown products */}
 								<div
-									className={`dropdown-menu absolute mt-6 bg-neutral-800 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-lg transition-opacity duration-300 ease-in-out ${
+									className={`dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenProducts
 											? "opacity-100 visible"
 											: "opacity-0 invisible"
@@ -363,7 +366,7 @@ export default function Navbar() {
 								</a>
 								{/* dropdown about us */}
 								<div
-									className={`dropdown-menu absolute mt-6 bg-neutral-800 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-lg transition-opacity duration-300 ease-in-out ${
+									className={`dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenAbout ? "opacity-100 visible" : "opacity-0 invisible"
 									}`}
 								>

@@ -19,7 +19,7 @@ export default function LearnGuides() {
 					</h1>
 					<a
 						href="/learn/create"
-						className="mt-2 px-4 rounded-full h-10 bg-white hover:bg-white/80 slow text-black font-semibold flex justify-center items-center gap-2 max-md:mt-6"
+						className="mt-2 px-4 rounded-xl h-10 bg-white hover:bg-white/80 slow text-black font-semibold flex justify-center items-center gap-2 max-md:mt-6"
 					>
 						<span>
 							<svg

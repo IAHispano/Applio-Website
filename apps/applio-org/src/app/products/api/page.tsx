@@ -3,14 +3,12 @@ import CodeSample from "@/components/svg/code-sample";
 
 export default function ApiHome() {
 	return (
-		<main className="flex min-h-screen flex-col items-center max-md:mx-4 md:-mt-28">
+		<main className="flex min-h-screen flex-col items-center max-md:mx-4 md:mt-28">
 			<section className="z-30 md:mt-44 max-md:mt-24 text-center flex justify-center items-center flex-col">
 				<div className="absolute -z-1">
 					<Background2 />
 				</div>
-				<div
-					className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5"
-				>
+				<div className="p-2 bg-white/10 border border-white/20 items-center text-black leading-none rounded-full flex lg:inline-flex hover:shadow-xl hover:shadow-white/50 slow mb-5">
 					<span className="font-semibold mx-2 text-left flex-auto text-white">
 						Developers
 					</span>

@@ -356,7 +356,8 @@ export default function UserCard({ id }: { id: string }) {
 									</button>
 								)}
 								<p className="text-xs text-center text-white/60 mt-1">
-									<span className="read-font">{followsCount ?? 0}</span> Followers
+									<span className="read-font">{followsCount ?? 0}</span>{" "}
+									Followers
 								</p>
 							</div>
 						</div>
@@ -383,8 +384,7 @@ export default function UserCard({ id }: { id: string }) {
 							</div>
 						</div>
 					</div>
-				
-				
+
 					{badgeHovered && (
 						<div className="absolute border border-white/20 bg-white/10 backdrop-blur-3xl text-white p-2 rounded-md mt-20 z-50">
 							{getBadgeDescription(badgeHovered)}

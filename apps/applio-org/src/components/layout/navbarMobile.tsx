@@ -6,33 +6,33 @@ import Avatar from "./avatar";
 import BlurIn from "../magicui/blur-text";
 
 export default function NavbarMobile() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
-  const [dropdownOpen, setDropdownOpen] = useState(0);
+	const [isOpen, setIsOpen] = useState<boolean>(false);
+	const [scrolled, setScrolled] = useState(false);
+	const { scrollY } = useScroll();
+	const [dropdownOpen, setDropdownOpen] = useState(0);
 
-  function handleDropdown(dropdown: number) {
-    if (dropdown === dropdownOpen) {
-      setDropdownOpen(0);
-    } else {
-      setDropdownOpen(dropdown);
-    }
-  }	
-  
-  useEffect(() => {
+	function handleDropdown(dropdown: number) {
+		if (dropdown === dropdownOpen) {
+			setDropdownOpen(0);
+		} else {
+			setDropdownOpen(dropdown);
+		}
+	}
+
+	useEffect(() => {
 		const unsubscribe = scrollY.onChange((latest) => {
 			setScrolled(latest > 50);
 		});
 		return () => unsubscribe();
 	}, [scrollY]);
 
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, [isOpen]);
+	useEffect(() => {
+		if (isOpen) {
+			document.body.style.overflow = "hidden";
+		} else {
+			document.body.style.overflow = "auto";
+		}
+	}, [isOpen]);
 
   return (
 <header className="fixed w-full">

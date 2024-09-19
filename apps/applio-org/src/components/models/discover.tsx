@@ -63,7 +63,7 @@ export default function DiscoverModels() {
 			let query = supabase
 				.from("models")
 				.select("*")
-				.order("created_at", { ascending: date === "oldest"});
+				.order("created_at", { ascending: date === "oldest" });
 
 			query = query.range(0, end);
 
@@ -215,7 +215,7 @@ export default function DiscoverModels() {
 								{tags.map((tag, index) => (
 									<button
 										type="button"
-										key={tag} 
+										key={tag}
 										onClick={() => handleTagClick(tag)}
 										className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
 									>
@@ -226,7 +226,7 @@ export default function DiscoverModels() {
 							<div className="flex gap-2 mt-8 w-full relative">
 								<input
 									type="text"
-									className={`p-4 mt-8 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 slow mx-1 ${showSettings ? 'rounded-t-xl border-b-transparent' : 'shadow-white/[.03] shadow-lg rounded-xl'}`}
+									className={`p-4 mt-8 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 slow mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "shadow-white/[.03] shadow-lg rounded-xl"}`}
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);
@@ -265,9 +265,13 @@ export default function DiscoverModels() {
 										</svg>
 									</button>
 								)}
-								<button className="p-2 rounded-xl absolute right-5 hover:bg-white/10 bottom-3" onClick={openSettings} type="button">
+								<button
+									className="p-2 rounded-xl absolute right-5 hover:bg-white/10 bottom-3"
+									onClick={openSettings}
+									type="button"
+								>
 									<svg
-									    aria-label="Settings"
+										aria-label="Settings"
 										role="img"
 										xmlns="http://www.w3.org/2000/svg"
 										width="16"
@@ -307,17 +311,21 @@ export default function DiscoverModels() {
 									</svg>
 								</button>
 							</div>
-							{showSettings && ( 
-								<div className="h-fit border bg-neutral-800/20  border-white/10 rounded-b-xl p-4 mx-1">  
+							{showSettings && (
+								<div className="h-fit border bg-neutral-800/20  border-white/10 rounded-b-xl p-4 mx-1">
 									<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
 										<div className="w-fit">
 											<p className="px-1">Date</p>
-											<select 
+											<select
 												className="w-fit bg-neutral-600/40 rounded-lg text-sm p-2 focus:outline-none my-2"
 												onChange={(e) => setDate(e.target.value)}
 											>
-												<option className="bg-neutral-700" value="latest">Latest</option>
-												<option className="bg-neutral-700" value="oldest">Oldest</option>
+												<option className="bg-neutral-700" value="latest">
+													Latest
+												</option>
+												<option className="bg-neutral-700" value="oldest">
+													Oldest
+												</option>
 											</select>
 										</div>
 									</div>
@@ -351,7 +359,10 @@ export default function DiscoverModels() {
 							</div>
 							<article className="flex flex-col justify-center items-center mx-auto w-full gap-4 my-10">
 								{data?.map((model: any, index: number) => (
-									<div key={model.id} className="max-h-96 overflow-y-auto w-full">
+									<div
+										key={model.id}
+										className="max-h-96 overflow-y-auto w-full"
+									>
 										<button
 											type="button"
 											className="w-full h-full flex cursor-pointer"

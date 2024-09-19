@@ -84,20 +84,19 @@ export default function DeveloperUi() {
             const { error: tokenError } = await supabase.from("tokens").upsert([
                 {
                     user: user.user.id,
-                    role: publicData?.premium ? "premium" : "user",
+                    role: publicData?.premium ? "premium" : "user", // make it possible for the user to choose
                 },
             ]);
 
             if (tokenError) {
                 console.error("Error at saving token:", tokenError.message);
             } else {
-                fetchUserTokens();
-                window.location.reload(); // TODO: It it's better to use state updates.
+                window.location.href = "/settings?p=developer";
             }
         } else {
             console.error("Error: User ID is undefined.");
         }
-        setGenerating(false); // End generating
+        setGenerating(false); 
     };
 
     useEffect(() => {
@@ -123,41 +122,37 @@ export default function DeveloperUi() {
 
     return (
         <main className="h-full w-full items-center flex flex-col mx-auto">
-            <div className="absolute">
-                <Background2 />
-            </div>
             <div className="justify-between items-start flex flex-col mb-12 w-full relative">
-                <div className="flex md:justify-between w-full max-md:gap-6">
-                    <h1 className="pl-0.5 md:text-5xl text-4xl font-bold">
+                <div className="flex max-md:flex-col md:justify-between w-full">
+                    <h1 className="pl-0.5 md:text-5xl text-4xl font-bold text-center">
                         API Dashboard
                     </h1>
                     <button
-                        className={`mt-2 px-4 rounded-xl h-10 bg-white hover:bg-white/80 slow text-black font-semibold flex justify-center items-center gap-2 max-md:mt-6 ${userTokens.length >= 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        type="button"
+                        className={`mt-2 px-4 max-md:mb-4 rounded-xl h-10 bg-white hover:bg-white/80 slow text-black font-semibold flex justify-center items-center gap-2 max-md:mt-6 ${userTokens.length >= 3 ? 'opacity-50 cursor-not-allowed' : ''}`}
                         onClick={userTokens.length < 3 ? handleGenerateToken : undefined}
                         disabled={userTokens.length >= 3 || generating}
                     >
+                     <svg
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            width="20"
+                            height="20"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                        >
+                            <path d="M12 5v14M5 12h14" />
+                        </svg>
                         {generating ? (
                             <span>Generating...</span>
                         ) : (
-                            <>
-                                <span>
-                                    <svg
-                                        aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        viewBox="0 0 24 24"
-                                        width="20"
-                                        height="20"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        strokeWidth="2"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                    >
-                                        <path d="M12 5v14M5 12h14" />
-                                    </svg>
-                                </span>
+                            <span>
                                 Create an API key
-                            </>
+                            </span>
                         )}
                     </button>
                 </div>

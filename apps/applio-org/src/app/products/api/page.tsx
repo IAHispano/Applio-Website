@@ -3,7 +3,7 @@ import CodeSample from "@/components/svg/code-sample";
 
 export default function ApiHome() {
 	return (
-		<main className="flex min-h-screen flex-col items-center max-md:mx-4 md:-mt-28">
+		<main className="flex min-h-screen flex-col items-center max-md:mx-4 md:mt-28">
 			<section className="z-30 md:mt-44 max-md:mt-24 text-center flex justify-center items-center flex-col">
 				<div className="absolute -z-1">
 					<Background2 />

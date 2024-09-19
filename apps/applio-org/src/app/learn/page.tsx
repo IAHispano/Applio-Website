@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 export default function LearnGuides() {
 	return (
-		<main className="md:min-h-[80svh] w-full h-full flex flex-col lg:px-72 items-center mx-auto mt-12 gap-10 max-md:px-4">
+		<main className="md:min-h-screen w-full h-full flex flex-col mt-24 max-w-5xl items-center mx-auto gap-10 max-md:px-4">
 			<section className="flex flex-col w-full">
 				<a className="p-2 w-fit bg-white/10 border border-white/20 items-center max-md:justify-center max-md:mx-auto text-black leading-none rounded-full flex lg:inline-flex slow mb-5">
 					<span className="font-semibold mx-2 md:text-left max-md:text-center md:flex-auto text-white">
@@ -14,7 +14,7 @@ export default function LearnGuides() {
 					</span>
 				</a>
 				<div className="flex max-md:flex-col md:justify-between w-full">
-					<h1 className="md:text-6xl lg:max-w-5xl text-4xl font-bold leading-8 max-md:text-center">
+					<h1 className="md:text-5xl lg:max-w-5xl text-4xl font-bold leading-8 max-md:text-center">
 						Learn with Applio
 					</h1>
 					<a
@@ -23,6 +23,7 @@ export default function LearnGuides() {
 					>
 						<span>
 							<svg
+								aria-hidden="true"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
 								width={20}

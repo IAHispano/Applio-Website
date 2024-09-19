@@ -3,15 +3,13 @@
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useRouter, useSearchParams } from "next/navigation";
-import Card from "./card";
 import { Guide } from "@/types/guidesTypes";
 import tags from "./tags";
 
 export default function DiscoverGuides() {
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
 	const [data, setData] = useState<Guide[] | null>(null);
-	const [end, setEnd] = useState<number>(5);
+	const [end, setEnd] = useState<number>(8);
 	const [searchInput, setSearchInput] = useState<string>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [hasMore, setHasMore] = useState<boolean>(true);
@@ -78,7 +76,7 @@ export default function DiscoverGuides() {
 						hasMore={hasMore}
 						next={loadmore}
 						loader={
-							<h1 className="text-white/80 my-14 md:text-xl text-center">
+							<h1 className="text-white/80 my-6 text-xs text-center">
 								Loading...
 							</h1>
 						}
@@ -98,10 +96,12 @@ export default function DiscoverGuides() {
 								/>
 								{searchInput && (
 									<button
+										type="submit"
 										className="p-2 rounded-xl absolute right-4 hover:bg-white/10 top-3 slow"
 										onClick={() => setSearchInput("")}
 									>
 										<svg
+											aria-hidden="true"
 											width="16"
 											height="16"
 											viewBox="0 0 16 16"
@@ -127,13 +127,14 @@ export default function DiscoverGuides() {
 								)}
 								<div className="flex max-md:flex-col gap-4 mt-2">
 									{tags.map((tag, index) => (
-										<a
-											key={index}
+										<button
+											type="button"
+											key={tag}
 											onClick={() => handleTagClick(tag)}
 											className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
 										>
 											{tag}
-										</a>
+										</button>
 									))}
 								</div>
 							</div>
@@ -147,18 +148,18 @@ export default function DiscoverGuides() {
 									Loading...
 								</h1>
 							)}
-							<article className="grid md:grid-cols-3 gap-4 w-full h-full mt-8">
-								{data &&
-									data.map((model: any, index: number) => (
+							<article className="grid md:grid-cols-3 md:grid-rows-3 gap-4 w-full h-full mt-8">
+								{data.map((model: any, index: number) => (
 										<a
 											href={`/learn/${model.id}`}
-											key={index}
-											className="h-[42svh] w-full bg-neutral-400/10 rounded-xl p-6 border border-white/[5%] relative hover:bg-neutral-400/20 slow hover:shadow-xl hover:shadow-white/[5%]"
+											key={model.id}
+											className="h-full w-full bg-neutral-400/10 rounded-xl p-4 pb-6 border border-white/[5%] relative hover:bg-neutral-400/20 slow hover:shadow-xl hover:shadow-white/[5%]"
 										>
-											<p className="font-semibold text-3xl max-w-3xl truncate text-wrap text-balance text-left h-full w-full">
+											<p className="font-semibold text-2xl max-w-3xl truncate text-balance text-left h-full w-full">
 												{model.title}
 											</p>
-											<p className="absolute bottom-6 right-6 text-white/60 text-xs">
+											<div className="justify-end flex w-full ml-auto">
+											<p className="flex text-white/60 text-xs">
 												{model.type || "AI"} ·{" "}
 												{model.created_at
 													? new Date(model.created_at).toLocaleDateString(
@@ -171,6 +172,7 @@ export default function DiscoverGuides() {
 														)
 													: "May 13, 2024"}
 											</p>
+											</div>
 										</a>
 									))}
 							</article>

@@ -7,9 +7,6 @@ import { supabase } from "@/utils/database";
 import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-// Remove for local development
-export const runtime = process.env.NEXT_PUBLIC_LOCAL ? undefined : "edge";
-
 
 export default function CreateGuide() {
 	const [page, setPage] = useState(1);
@@ -23,7 +20,7 @@ export default function CreateGuide() {
 	useEffect(() => {
 		async function getUser() {
 			const { data, error } = await supabase.auth.getUser();
-			if (data && data.user) {
+			if (data?.user) {
 				const userInfo = await supabase
 					.from("profiles")
 					.select("full_name")
@@ -68,10 +65,10 @@ export default function CreateGuide() {
 	};
 
 	return (
-		<main className="flex flex-col gap-4 mx-auto items-center mt-24 min-h-[80svh] max-md:mx-4">
+		<main className="flex flex-col gap-4 mx-auto items-center mt-24 min-h-screen max-md:mx-4">
 			<form ref={formRef} onSubmit={handleSubmit}>
 				{page === 1 && (
-					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto flex justify-center">
+					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto justify-center">
 						<h1 className="font-semibold text-4xl">
 							1. Write a title for your guide
 						</h1>
@@ -94,6 +91,7 @@ export default function CreateGuide() {
 							</a>
 							{title && (
 								<button
+									type="button"
 									className="bg-white text-black font-semibold rounded-xl py-1.5 w-fit px-8 hover:bg-white/80 slow"
 									onClick={() => setPage(2)}
 								>
@@ -104,7 +102,7 @@ export default function CreateGuide() {
 					</div>
 				)}
 				{page === 2 && (
-					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto flex justify-center">
+					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto justify-center">
 						<h1 className="font-semibold text-4xl">2. Set a description</h1>
 						<input
 							className="mt-4 focus:outline-none rounded-xl w-full px-4 py-2 md:w-[70svh] bg-white/10 focus:border focus:border-white/10"
@@ -117,6 +115,7 @@ export default function CreateGuide() {
 						/>
 						<div className="flex justify-between w-full">
 							<button
+								type="button"
 								className="bg-white/20 text-white rounded-xl py-1.5 w-fit px-8 hover:bg-white/10 slow justify-start mr-auto flex"
 								onClick={() => setPage(1)}
 							>
@@ -124,6 +123,7 @@ export default function CreateGuide() {
 							</button>
 							{description && (
 								<button
+									type="button"
 									className="bg-white text-black font-semibold rounded-xl py-1.5 w-fit px-8 hover:bg-white/80 slow"
 									onClick={() => setPage(3)}
 								>
@@ -150,19 +150,21 @@ export default function CreateGuide() {
 									"*This is italic text*\n\n" +
 									"- This is a dot\n\n" +
 									"`This is code`\n\n" +
-									"![This is an image](Link_Image)"
+									"![This is an image](Link_Image)\n\n"+
+									"%color{#00AA68} This is a colored text %%\n\n"
 								}
 								value={markdownText}
 								onChange={(e) => setMarkdownText(e.target.value)}
 								name="content"
 								required
-							></textarea>
+							/>
 							<div className="flex-1 h-full w-full p-4 border border-white/10 rounded-xl bg-white/10 resize-none overflow-none">
 								<MarkdownForGuides content={markdownText} />
 							</div>
 						</div>
 						<div className="flex justify-between w-full">
 							<button
+								type="button"
 								className="bg-white/20 text-white rounded-xl py-1.5 w-fit px-8 hover:bg-white/10 slow"
 								onClick={() => setPage(2)}
 							>
@@ -170,6 +172,7 @@ export default function CreateGuide() {
 							</button>
 							{markdownText && (
 								<button
+									type="button"
 									className="bg-white text-black font-semibold rounded-xl py-1.5 w-fit px-8 hover:bg-white/80 slow"
 									onClick={() => setPage(4)}
 								>
@@ -205,6 +208,7 @@ export default function CreateGuide() {
 						</select>
 						<div className="flex justify-between w-full">
 							<button
+								type="button"
 								className="bg-white/20 text-white rounded-xl py-1.5 w-fit px-8 hover:bg-white/10 slow"
 								onClick={() => setPage(4)}
 							>
@@ -212,6 +216,7 @@ export default function CreateGuide() {
 							</button>
 							{description && (
 								<button
+									type="button"
 									className="bg-white text-black font-semibold rounded-xl py-1.5 w-fit px-8 hover:bg-white/80 slow"
 									onClick={() => setPage(5)}
 								>
@@ -254,6 +259,7 @@ export default function CreateGuide() {
 						</div>
 						<div className="flex justify-between w-full mt-6">
 							<button
+								type="button"
 								className="bg-white/20 text-white rounded-xl py-1.5 w-fit px-8 hover:bg-white/10 slow"
 								onClick={() => setPage(4)}
 							>

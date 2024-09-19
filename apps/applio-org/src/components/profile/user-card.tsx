@@ -381,10 +381,6 @@ export default function UserCard({ id }: { id: string }) {
 								<h1 className="font-bold text-xl">{likesCount || 0}</h1>
 								<h2 className="text-sm text-white/60">Likes</h2>
 							</div>
-							<div className="w-full h-full border border-white/10 rounded-xl flex-col justify-center items-center flex">
-								<h1 className="font-bold text-xl">0</h1>
-								<h2 className="text-sm text-white/60">Videos</h2>
-							</div>
 						</div>
 					</div>
 				

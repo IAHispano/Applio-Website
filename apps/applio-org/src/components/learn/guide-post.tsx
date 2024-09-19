@@ -46,10 +46,9 @@ export default function 	GuidePost({ id }: Readonly<{ id: string }>) {
 			)}
 			{loading ? (
 				<div className="justify-center items-center flex flex-col h-[40svh]">
-					<div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-success motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+					<div className="h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-success motion-reduce:animate-[spin_1.5s_linear_infinite]" />
 				</div>
 			) : (
-				data &&
 				data?.map((item) => (
 					<article key={item.id} className="w-full h-full max-md:mt-12">
 						<div

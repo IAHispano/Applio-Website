@@ -1,9 +1,13 @@
 "use client"
 
+import { useToast } from "@/components/models/use-toast";
+
 export default function Branding() {
+	const { showToast } = useToast();
+	
 	const copyToClipboard = (color: string) => {
+		showToast("Copied to clipboard!", "success");
 		navigator.clipboard.writeText(color);
-		alert(`Copied ${color} to clipboard!`); // TODO: This should be replaced with a toast or notification component
 	};
 
 	return (
@@ -167,15 +171,15 @@ export default function Branding() {
 					Here are the primary colors we use across our brand identity.
 				</p>
 				<div className="flex max-md:flex-col gap-4">
-					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#00AA68')}>
+					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#00AA68')}>
 						<div className="bg-[#00AA68] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
 						<p className="text-xs text-center my-2">HEX - #00AA68</p>
 					</div>
-					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#FFFFFF')}>
+					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#FFFFFF')}>
 						<div className="bg-[#FFFFFF] p-4 flex justify-center items-center mx-auto rounded-xl h-44"></div>
 						<p className="text-xs text-center my-2">HEX - #FFFFFF</p>
 					</div>
-					<div className="w-full h-full cursor-pointer hover:bg-white/30 rounded-xl" onClick={() => copyToClipboard('#110F0F')}>
+					<div className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl" onClick={() => copyToClipboard('#110F0F')}>
 						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10"></div>
 						<p className="text-xs text-center my-2">HEX - #110F0F</p>
 					</div>

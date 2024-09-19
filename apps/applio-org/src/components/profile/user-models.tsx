@@ -58,7 +58,7 @@ export default function UserModels({ data }: { data: any[] }) {
 	};
 
 	return (
-		<section className="mt-44 w-full grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-30">
+		<section className="mt-12 w-full grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-30">
 			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
 			{Array.isArray(data) &&
 				data.map((model: any, index: number) => {

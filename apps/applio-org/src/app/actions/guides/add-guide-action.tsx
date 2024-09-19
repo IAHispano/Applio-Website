@@ -1,6 +1,4 @@
-"use server";
-
-import { supabase } from "@/utils/database";
+import { createClient } from "@/utils/server-database";
 import { redirect } from "next/navigation";
 
 // Remove for local development
@@ -9,6 +7,7 @@ const runtimeConfig = {
 };
 
 export const addPost = async (formData: FormData, created_by: string) => {
+	const supabase = createClient();
 	const title = formData.get("title");
 	const description = formData.get("description");
 	const content = formData.get("content");

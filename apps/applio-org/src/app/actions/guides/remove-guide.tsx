@@ -3,6 +3,7 @@
 import { supabase } from "@/utils/database";
 import { redirect } from "next/navigation";
 
+// Remove for local development
 const runtimeConfig = {
 	runtime: "edge",
 };

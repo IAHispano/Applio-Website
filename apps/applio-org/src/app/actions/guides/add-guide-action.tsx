@@ -4,7 +4,9 @@ import { supabase } from "@/utils/database";
 import { redirect } from "next/navigation";
 
 // Remove for local development
-export const runtime = "edge";
+const runtimeConfig = {
+	runtime: "edge",
+};
 
 export const addPost = async (formData: FormData, created_by: string) => {
 	const title = formData.get("title");
@@ -26,7 +28,7 @@ export const addPost = async (formData: FormData, created_by: string) => {
 		title: title,
 		description: description,
 		content: content,
-		type: type,
+		type: type || "AI",
 		created_by: created_by,
 	});
 

@@ -33,10 +33,12 @@ export default function AdminGuidesTool({ id }: Readonly<{ id: string }>) {
 			{role === "admin" && (
 				<div className="flex flex-col gap-2">
 					<button
+						type="button"
 						className="bg-red-500/20 w-fit h-full rounded-xl hover:bg-red-500/30 slow text-sm px-4 py-2 font-medium items-center justify-center mx-auto text-center"
 						onClick={() => removeGuides(id)}
 					>
 						<svg
+							aria-hidden="true"
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"
 							height="24"

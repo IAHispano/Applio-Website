@@ -1,10 +1,19 @@
 import Markdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+
+function transformColoredText(content: string) {
+	return content.replace(/%color\{(#[0-9A-Fa-f]{6}|#[0-9A-Fa-f]{3})\}(.*?)%%/g, '<span style="color: $1;">$2</span>');
+}
+
 export default function MarkdownForGuides({ content }: { content: string }) {
+	const transformedContent = transformColoredText(content);
+
 	return (
 		<Markdown
 			className="text-neutral-300 md:max-w-3xl max-md:max-w-xs text-wrap flex flex-col justify-start items-start w-full h-full overflow-y-auto text-left"
 			remarkPlugins={[remarkGfm]}
+			rehypePlugins={[rehypeRaw]}
 			components={{
 				a: ({ node, children, ...props }) => (
 					<a {...props} className="text-white/80 hover:underline break-words">
@@ -74,7 +83,7 @@ export default function MarkdownForGuides({ content }: { content: string }) {
 				),
 			}}
 		>
-			{content}
+			{transformedContent}
 		</Markdown>
 	);
 }

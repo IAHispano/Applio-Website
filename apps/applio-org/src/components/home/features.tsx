@@ -33,6 +33,7 @@ const features = [
 			"Applio&apos;s modular codebase improves readability, maintenance, and organization.",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"
@@ -53,6 +54,7 @@ const features = [
 		description: "Easily discover and explore models within the application.",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"
@@ -74,6 +76,7 @@ const features = [
 			"Supports translations in 30+ languages for global accessibility.",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"
@@ -99,6 +102,7 @@ const features = [
 			"Works consistently across desktop, tablet, and mobile devices.",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"
@@ -119,6 +123,7 @@ const features = [
 			"Supports downloading models from various sources like Google Drive, Yandex, Pixeldrain, Discord, Hugging Face and Applio!",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"
@@ -140,6 +145,7 @@ const features = [
 		description: "An intuitive and easy-to-use interface for all users.",
 		icon: (
 			<svg
+				aria-hidden="true"
 				xmlns="http://www.w3.org/2000/svg"
 				width="24"
 				height="22"

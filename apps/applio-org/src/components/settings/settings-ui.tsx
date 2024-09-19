@@ -53,23 +53,27 @@ export default function SettingsUI() {
 		<section className="flex flex-col justify-start items-start mx-auto max-w-5xl w-full">
 			{loading && <p className="text-xs w-full text-center">Loading...</p>}
 			{!loading && data && (
-				<div className="flex flex-col w-full h-full gap-4">
-					<h1 className="text-3xl font-medium">
-						Welcome back,
-						<span className="pl-2 capitalize">{data.full_name}</span>.
+				<>
+					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold">
+						{data.full_name}
 					</h1>
-					<div className="bg-neutral-800 border border-white/10 rounded-lg w-full h-[60svh] p-4">
+					<p className="pl-1 pb-4 text-[#9E9E9E]">
+						Welcome to your settings page, here you can update your profile
+					</p>
+					<div className="bg-neutral-800 border border-white/10 rounded-lg w-full pt-8 h-30% p-4">
 						<div className="h-full flex flex-col gap-4">
+							<h2 className="text-xs p-2 font-bold uppercase">Username</h2>
 							<input
 								className="w-full rounded-xl h-12 p-2 border border-white/10 bg-white/20 focus:bg-white/30 slow focus:outline-none focus:border-white/20 text-neutral-300"
-								type="username"
+								type="text"
 								placeholder="Username"
 								value={full_name}
 								onChange={(e) => setFullName(e.target.value)}
 							/>
+							<h2 className="text-xs p-2 font-bold uppercase">Biography</h2>
 							<input
 								className="w-full rounded-xl h-12 p-2 border border-white/10 bg-white/20 focus:bg-white/30 slow focus:outline-none focus:border-white/20 text-neutral-300"
-								type="bio"
+								type="text"
 								placeholder="Biography"
 								value={bio}
 								onChange={(e) => setBio(e.target.value)}
@@ -77,14 +81,14 @@ export default function SettingsUI() {
 							<div className="flex justify-end items-end mt-auto">
 								<button
 									onClick={updateData}
-									className="bg-white text-black px-6 py-1.5 rounded-md font-semibold hover:bg-white/80 slow text-sm"
+									className="bg-white text-black px-6 py-1.5 rounded-xl font-semibold hover:bg-white/80 slow text-sm"
 								>
 									Save
 								</button>
 							</div>
 						</div>
 					</div>
-				</div>
+				</>
 			)}
 		</section>
 	);

@@ -127,7 +127,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Applio</h3>
 													<p className="text-xs text-neutral-200">
-														A powerful AI voice cloning tool.
+														AI voice cloning tool.
 													</p>
 												</div>
 											</a>
@@ -161,7 +161,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Desktop APP</h3>
 													<p className="text-xs text-neutral-200">
-														Our next project.
+														Upcoming desktop application.
 													</p>
 												</div>
 											</a>
@@ -186,7 +186,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Playground</h3>
 													<p className="text-xs text-neutral-200">
-														Test what Applio can do.
+														Experiment with Applio.
 													</p>
 												</div>
 											</a>
@@ -220,7 +220,7 @@ export default function Navbar() {
 														Documentation
 													</h3>
 													<p className="text-xs text-neutral-200">
-														Learn how use Applio.
+														Guide to using Applio.
 													</p>
 												</div>
 											</a>
@@ -245,7 +245,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Discord Bot</h3>
 													<p className="text-xs text-neutral-200">
-														All-in-one Discord bot.
+														All-in-one bot for Discord.
 													</p>
 												</div>
 											</a>
@@ -272,7 +272,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Marketplace</h3>
 													<p className="text-xs text-neutral-200">
-														Collection of Applio Plugins.
+														Collection of plugins.
 													</p>
 												</div>
 											</a>
@@ -302,7 +302,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">Free API</h3>
 													<p className="text-xs text-neutral-200">
-														An fast api with more than 20k models.
+														Fast API with 20k+ models.
 													</p>
 												</div>
 											</a>
@@ -329,7 +329,7 @@ export default function Navbar() {
 												<div className="flex flex-col">
 													<h3 className="text-lg font-semibold">CLI</h3>
 													<p className="text-xs text-neutral-200">
-														Interact with RVC via commands or HTTP.
+														Command-line interface for RVC.
 													</p>
 												</div>
 											</a>

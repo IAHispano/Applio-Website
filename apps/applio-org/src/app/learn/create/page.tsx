@@ -68,7 +68,7 @@ export default function CreateGuide() {
 		<main className="flex flex-col gap-4 mx-auto items-center mt-24 min-h-screen max-md:mx-4">
 			<form ref={formRef} onSubmit={handleSubmit}>
 				{page === 1 && (
-					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto flex justify-center">
+					<div className="flex flex-col gap-6 w-full max-w-3xl text-center items-center mx-auto justify-center">
 						<h1 className="font-semibold text-4xl">
 							1. Write a title for your guide
 						</h1>

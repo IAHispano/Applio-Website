@@ -78,7 +78,7 @@ export default function Avatar() {
 			{loading && (
 				<svg
 					aria-hidden="true"
-					className="w-8 h-8 animate-spin text-neutral-800 fill-white"
+					className="w-8 h-8 animate-spin text-neutral-800 fill-white max-md:flex max-md:justify-center max-md:mx-auto max-md:items-center max-xl:p-1"
 					viewBox="0 0 100 101"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"

@@ -42,7 +42,7 @@ export default function Navbar() {
 
 	return (
 		<motion.header
-			className="sticky top-0 z-50 w-full"
+			className="fixed top-0 z-50 w-full"
 			initial={{ borderBottom: "0px solid rgba(255, 255, 255, 0)" }}
 			animate={{
 				borderBottom: scrolled

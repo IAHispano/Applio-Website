@@ -3,6 +3,9 @@
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
+// Remove for local development
+export const runtime = "edge";
+
 export default function ModelPage({ params }: Readonly<{ params: { id: string } }>) {
     const { id } = params
 

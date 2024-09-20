@@ -68,6 +68,10 @@ function SettingsContent() {
 			</div>
 			{page === 1 && <SettingsUI />}
 			{page === 2 && <ApiDashboard />}
+			{page === 3 &&
+			<div className="mt-12 flex justify-center items-center m-auto text-sm text-neutral-300 max-w-3xl">
+				Donating money to a non-profit organization is really complicated. Due to recent events we have had to withdraw this section. We are working to reinstate Applio Premium.
+			</div>}
 		</main>
 	);
 }

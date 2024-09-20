@@ -153,7 +153,7 @@ export default function Footer() {
 					</a>
 					<a
 						className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-						href="/legal/termsuse"
+						href="/legal/terms-use"
 						rel="noreferrer"
 						target="_blank"
 					>

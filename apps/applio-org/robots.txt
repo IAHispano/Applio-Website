@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /$
+Disallow: /_next/
+Disallow: /api/
+Disallow: /public/
+Sitemap: https://applio.org/sitemap.xml

@@ -31,12 +31,13 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     }, [params.id])
 
     useEffect(() => {
-        if (model?.link) {
-            getUserAndUpdateHistory();
-            const downloadWindow = window.open(model.link, "_blank");
-            if (downloadWindow) {
-                window.location.href = "/models/downloaded";
+        async function redirectUser() {
+            await getUserAndUpdateHistory();
+            window.location.href = `${model.link}`;
             }
+
+        if (model?.link) {
+            redirectUser();
         }
     }, [model]);
 

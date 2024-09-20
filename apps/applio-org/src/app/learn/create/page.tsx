@@ -237,13 +237,13 @@ export default function CreateGuide() {
 						<div className="grid grid-cols-4 text-lg font-medium mt-20 gap-4">
 							<p className="col-span-4 flex flex-col gap-2 w-full">
 								1. Title
-								<span className="w-full bg-white/10 p-4 rounded-xl w-full font-normal">
+								<span className="w-full bg-white/10 p-4 rounded-xl font-normal">
 									{title}
 								</span>
 							</p>
 							<p className="col-span-4 flex flex-col gap-2 w-full">
 								2. Description
-								<span className="w-full bg-white/10 p-4 rounded-xl w-full font-normal">
+								<span className="w-full bg-white/10 p-4 rounded-xl font-normal">
 									{description}
 								</span>
 								<p className="col-span-4 flex flex-col gap-2 w-full">
@@ -254,7 +254,7 @@ export default function CreateGuide() {
 								</p>
 								<p className="col-span-4 flex flex-col gap-2 w-full">
 									4. Type
-									<span className="w-full bg-white/10 p-4 rounded-xl w-full font-normal">
+									<span className="w-full bg-white/10 p-4 rounded-xl font-normal">
 										{type || "AI"}
 									</span>
 								</p>

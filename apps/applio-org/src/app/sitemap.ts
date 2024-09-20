@@ -1,81 +1,84 @@
-export const sitemap = [
+import type { MetadataRoute } from 'next'
+ 
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
     {
-      loc: 'https://applio.org/',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 1.00
     },
     {
-      loc: 'https://applio.org/models',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/models',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/learn',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/learn',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/products/rvc',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/products/rvc',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/products/app',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/products/app',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/products/playground',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/products/playground',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/products/api',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/products/api',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/about/team',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/about/team',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/@guides',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/@',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/about/branding',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/about/branding',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.80
     },
     {
-      loc: 'https://applio.org/learn/create',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/learn/create',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.64
     },
     {
-      loc: 'https://applio.org/products/rvc/changelog',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/products/rvc/changelog',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.64
     },
     {
-      loc: 'https://applio.org/settings?p=developer',
-      lastmod: '2024-09-20T14:58:04+00:00',
-      changefreq: 'weekly',
+      url: 'https://applio.org/settings?p=developer',
+      lastModified: new Date('2024-09-20T14:58:04+00:00'),
+      changeFrequency: 'weekly',
       priority: 0.64
-    }
-  ];
-  
+    },
+  ]
+}

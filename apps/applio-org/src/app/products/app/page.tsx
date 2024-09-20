@@ -18,6 +18,7 @@ export default function AppProduct() {
 			</section>
 			<p className="justify-center items-center mx-auto flex animate-bounce">
 				<svg
+					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
 					height="24"
@@ -33,7 +34,7 @@ export default function AppProduct() {
 				</svg>
 			</p>
 			<div className="flex flex-col justify-center items-center my-20">
-				<img className="rounded-2xl" src="https://i.imgur.com/3aTHht2.png" />
+				<img className="rounded-2xl" src="https://i.imgur.com/3aTHht2.png" alt="app-screenshot" />
 				<h2 className="text-4xl font-semibold mt-12">
 					Exclusively designed to be simple, beautiful and fast.
 				</h2>

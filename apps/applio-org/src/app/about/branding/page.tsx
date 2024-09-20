@@ -197,7 +197,7 @@ export default function Branding() {
 						className="w-full h-full cursor-pointer hover:bg-neutral-700/30 rounded-xl"
 						onClick={() => copyToClipboard("#110F0F")}
 					>
-						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10"></div>
+						<div className="bg-[#110F0F] p-4 flex justify-center items-center mx-auto rounded-xl h-44 border border-white/10" />
 						<p className="text-xs text-center my-2">HEX - #110F0F</p>
 					</div>
 				</div>

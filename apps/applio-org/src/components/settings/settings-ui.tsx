@@ -2,39 +2,41 @@
 
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
+import { useToast } from "../models/use-toast";
 
 export default function SettingsUI() {
 	const [data, setData] = useState<any>(null);
 	const [loading, setLoading] = useState(true);
 	const [full_name, setFullName] = useState("");
 	const [bio, setBio] = useState("");
+	const {showToast} = useToast();
 
 	useEffect(() => {
-		async function getUser() {
-			const { data, error } = await supabase.auth.getUser();
-			if (data?.user) {
-				const userInfo = await supabase
-					.from("profiles")
-					.select("*")
-					.eq("auth_id", data.user.id)
-					.single();
-				setData(userInfo.data);
-				setLoading(false);
-				console.log(userInfo.data);
-				setFullName(userInfo.data.full_name);
-				setBio(userInfo.data.bio);
-			} else {
-				setData(null);
-			}
-
-			if (error) {
-				console.log(error);
-				setLoading(false);
-			}
-		}
-
 		getUser();
 	}, []);
+
+	async function getUser() {
+		const { data, error } = await supabase.auth.getUser();
+		if (data?.user) {
+			const userInfo = await supabase
+				.from("profiles")
+				.select("*")
+				.eq("auth_id", data.user.id)
+				.single();
+			setData(userInfo.data);
+			setLoading(false);
+			console.log(userInfo.data);
+			setFullName(userInfo.data.full_name);
+			setBio(userInfo.data.bio);
+		} else {
+			setData(null);
+		}
+
+		if (error) {
+			console.log(error);
+			setLoading(false);
+		}
+	}
 
 	async function updateData() {
 		const { data: updatedData, error } = await supabase
@@ -46,6 +48,8 @@ export default function SettingsUI() {
 			console.error("Error updating data:", error);
 		} else {
 			console.log("Updated data:", updatedData);
+			showToast("Profile updated successfully!", "success");
+			getUser();
 		}
 	}
 
@@ -54,7 +58,7 @@ export default function SettingsUI() {
 			{loading && <p className="text-xs w-full text-center">Loading...</p>}
 			{!loading && data && (
 				<>
-					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold">
+					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold max-md:max-w-[100%] break-words">
 						{data.full_name}
 					</h1>
 					<p className="pl-1 pb-4 text-[#9E9E9E]">

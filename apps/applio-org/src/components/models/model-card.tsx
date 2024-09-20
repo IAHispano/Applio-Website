@@ -22,9 +22,9 @@ export default function ModelCard({
 				</div>
 			</div>
 			<div className="md:justify-between max-md:flex md:items-center max-md:flex-col flex md:mt-4 mt-2">
-				<div className="grid max-md:grid-cols-3 grid-cols-5 gap-2 max-md:mt-4 h-full max-md:w-full">
+				<div className="flex max-md:grid-cols-3 grid-cols-5 gap-2 max-md:mt-4 h-full max-md:w-full">
 					{data.tags && (
-						<div>
+						<>
 							{data.tags.split(",").map((tag, index) => (
 								<div
 									key={tag}
@@ -35,7 +35,7 @@ export default function ModelCard({
 									</p>
 								</div>
 							))}
-						</div>
+						</>
 					)}
 				</div>
 				<div>

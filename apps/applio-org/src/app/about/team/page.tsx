@@ -4,7 +4,7 @@ export default function About() {
 	return (
 		<>
 			<div className="flex flex-col justify-center items-start mx-auto w-full max-w-4xl">
-				<h1 className="text-4xl font-semibold mt-12 text-left">Team</h1>
+				<h1 className="text-4xl font-semibold mt-24 text-left">Team</h1>
 				<p className="text-sm text-neutral-200 text-left pl-1.5">
 					Meet the people why make Applio happen.
 				</p>

@@ -33,8 +33,10 @@ export default function DownloadModel({ params }: { params: { id: string } }) {
     useEffect(() => {
         if (model?.link) {
             getUserAndUpdateHistory();
-            window.open(model.link, "_blank");
-            window.location.href = "/models/downloaded";
+            const downloadWindow = window.open(model.link, "_blank");
+            if (downloadWindow) {
+                window.location.href = "/models/downloaded";
+            }
         }
     }, [model]);
 

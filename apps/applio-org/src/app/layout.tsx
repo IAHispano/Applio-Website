@@ -8,7 +8,7 @@ import { ToastProvider } from "@/components/models/use-toast";
 const inter = Syne({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://v2.applio.org"), // change to applio.org
+	metadataBase: new URL("https:/applio.org"),
 	title: "Applio",
 	description:
 		"At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",

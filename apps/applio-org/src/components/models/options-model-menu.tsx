@@ -11,7 +11,7 @@ export default function OptionsModelMenu({ id }: { id: string }) {
 
 	function handleShare() {
 		showToast("Copied to clipboard!", "success");
-		navigator.clipboard.writeText(`https://v2.applio.org/models?id=${id}`);
+		navigator.clipboard.writeText(`https://applio.org/models?id=${id}`);
 	}
 
 	async function handleDownload() {

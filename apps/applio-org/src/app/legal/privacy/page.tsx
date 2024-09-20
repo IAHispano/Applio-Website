@@ -3,7 +3,7 @@ export const runtime = "edge"
 
 export default function PrivacyPage() {
   return (
-    <div className="flex flex-col items-start min-h-screen mt-24 max-w-5xl mx-auto">
+    <div className="flex flex-col items-start min-h-screen mt-24 max-w-5xl mx-auto p-4">
                   <h1 className="mb-4 text-xl md:text-3xl font-bold">
               Privacy Policy
             </h1>

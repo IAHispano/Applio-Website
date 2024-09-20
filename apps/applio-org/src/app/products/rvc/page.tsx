@@ -12,13 +12,11 @@ export default function RvcProduct() {
 			.then((data) => {
 				setVersion(data.tag_name);
 			});
-
-			// todo: maybe do a full changelog with github api
 	}, []);
 
 	return (
 		<main className="w-full min-h-screen p-8">
-			<section className="w-full h-[80svh] rounded-xl flex flex-col justify-center items-center p-4 max-md:mt-12 relative">
+			<section className="w-full h-[80svh] rounded-xl flex flex-col justify-center items-center p-4 relative">
 				<h1 className="md:text-[40svh] text-green-300/10 text-[20svh] text-center font-bold">
 					V3
 				</h1>

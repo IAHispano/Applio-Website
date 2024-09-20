@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/database";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useToast } from "./use-toast";
 
@@ -14,7 +14,9 @@ export default function OptionsModelMenu({ id }: { id: string }) {
 		navigator.clipboard.writeText(`https://v2.applio.org/models?id=${id}`);
 	}
 
-	async function handleDownload() {}
+	async function handleDownload() {
+		window.location.href = `/models/download/${id}`;
+	}
 
 	async function handleLike() {
 		const auth = await supabase.auth.getSession();

@@ -187,7 +187,7 @@ export default function DiscoverModels() {
 	}
 
 	return (
-		<main className="w-full p-6 md:max-w-5xl md:flex justify-center items-center mx-auto">
+		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen">
 			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
 			<section className="my-12">
 				{data && (
@@ -201,7 +201,7 @@ export default function DiscoverModels() {
 							</h1>
 						}
 					>
-						<section className="flex flex-col xl:min-w-[100svh]">
+						<section className="flex flex-col w-full">
 							<h1 className="text-5xl font-semibold mb-12 text-center">
 								Discover{" "}
 								{count ? (
@@ -211,7 +211,7 @@ export default function DiscoverModels() {
 								)}{" "}
 								voices
 							</h1>
-							<article className="grid grid-cols-4 max-md:grid-cols-2  gap-4 px-4">
+							<article className="grid grid-cols-4 max-md:grid-cols-2 gap-4 px-4">
 								{tags.map((tag, index) => (
 									<button
 										type="button"

@@ -10,10 +10,10 @@ export default function ModelCard({
 	};
 }) {
 	return (
-		<div className="p-4 bg-neutral-800 hover:bg-neutral-700/40 slow rounded-xl w-full border border-white/10">
+		<div className="p-4 bg-neutral-800 hover:bg-neutral-700/40 slow rounded-xl w-[100svh] border border-white/10">
 			<div className="md:justify-between flex max-md:flex-col">
 				<div>
-					<h1 className="text-2xl max-xs:max-w-[50px] max-lg:max-w-[500px] max-xl:max-w-[600px] max-w-5xl max-md:text-wrap truncate text-left font-semibold">
+					<h1 className="text-2xl max-w-5xl max-md:text-wrap truncate text-left font-semibold">
 						{data.name}
 					</h1>
 					<h2 className="text-white/80 text-xl text-left">
@@ -24,18 +24,18 @@ export default function ModelCard({
 			<div className="md:justify-between max-md:flex md:items-center max-md:flex-col flex md:mt-4 mt-2">
 				<div className="grid max-md:grid-cols-3 grid-cols-5 gap-2 max-md:mt-4 h-full max-md:w-full">
 					{data.tags && (
-						<>
+						<div>
 							{data.tags.split(",").map((tag, index) => (
 								<div
-									key={index}
+									key={tag}
 									className="border border-white/10 rounded-xl py-2 w-full text-center text-sm md:px-4"
 								>
-									<p className="" key={index}>
+									<p className="" key={tag}>
 										{tag}
 									</p>
 								</div>
 							))}
-						</>
+						</div>
 					)}
 				</div>
 				<div>

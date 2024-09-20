@@ -136,7 +136,7 @@ export default function Avatar() {
 					transition={{ duration: 0.2 }}
 					className="xl:absolute xl:mt-16 mt-4"
 				>
-					<div className="w-full xl:w-fit h-fit max-xl:backdrop-filter rounded-xl flex flex-col p-2 gap-1 text-white border border-white/20">
+					<div className="w-full xl:w-fit h-fit backdrop-filter backdrop-blur-3xl rounded-xl flex flex-col p-2 gap-1 text-white border border-white/20">
 						<div className="flex flex-col gap-2">
 							<a
 								className="flex items-center gap-2 hover:bg-white/10 p-2 rounded-xl slow"

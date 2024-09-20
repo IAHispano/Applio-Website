@@ -53,7 +53,11 @@ export default function CreateGuide() {
 			formData.append("content", markdownText);
 			formData.append("type", type);
 
-			await addPost(formData, userID);
+			const response = await addPost(formData, userID);
+
+			if (response) {
+				window.location.href = "/learn";
+			}
 
 			if (formRef.current) {
 				formRef.current.reset();

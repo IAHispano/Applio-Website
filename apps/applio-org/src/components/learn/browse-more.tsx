@@ -9,7 +9,7 @@ import tags from "./tags";
 export default function DiscoverGuides() {
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
 	const [data, setData] = useState<Guide[] | null>(null);
-	const [end, setEnd] = useState<number>(8);
+	const [end, setEnd] = useState<number>(11);
 	const [searchInput, setSearchInput] = useState<string>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [hasMore, setHasMore] = useState<boolean>(true);
@@ -69,7 +69,7 @@ export default function DiscoverGuides() {
 
 	return (
 		<>
-			<section className="flex flex-col max-xl:mx-4 w-full mt-6">
+			<section className="flex flex-col max-xl:mx-4 w-full mt-6 justify-center items-center mx-auto">
 				{data && (
 					<InfiniteScroll
 						dataLength={data.length}

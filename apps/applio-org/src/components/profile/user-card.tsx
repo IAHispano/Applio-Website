@@ -234,12 +234,10 @@ export default function UserCard({ id }: { id: string }) {
 				<>
 					<div className="md:w-[70svh] md:h-fit w-full h-fit p-4 rounded-xl border border-white/20 bg-white/10 backdrop-blur-3xl flex flex-col md:mt-24 z-20">
 						{data.avatar_url && !error && (
-							<div className="flex justify-start mt-6 ml-5 mr-auto z-50">
+							<div className="flex justify-start mt-6 max-md:md-auto md:ml-5 md:mr-auto z-50">
 								<img
 									src={data?.avatar_url}
-									className="md:rounded-full rounded-xl"
-									width={82}
-									height={82}
+									className="md:rounded-full rounded-xl max-md:w-full max-md:h-full h-[82px] w-[82px]"
 									onError={() => setError(true)}
 									alt="User Avatar"
 								/>

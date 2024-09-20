@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 export default function LearnGuides() {
 	return (
-		<main className="md:min-h-screen w-full h-full flex flex-col mt-24 max-w-5xl items-center mx-auto gap-10 max-md:px-4">
+		<main className="md:min-h-screen w-full h-full flex flex-col mt-24 max-w-6xl items-center mx-auto gap-10 max-md:px-4">
 			<section className="flex flex-col w-full">
 				<a className="p-2 w-fit bg-white/10 border border-white/20 items-center max-md:justify-center max-md:mx-auto text-black leading-none rounded-full flex lg:inline-flex slow mb-5">
 					<span className="font-semibold mx-2 md:text-left max-md:text-center md:flex-auto text-white">

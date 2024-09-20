@@ -1,5 +1,5 @@
 import { supabase } from "@/utils/database";
-import { redirect } from "next/navigation";
+import { NextResponse } from "next/server";
 
 // Remove for local development
 const runtimeConfig = {
@@ -12,29 +12,24 @@ export const addPost = async (formData: FormData, created_by: string) => {
 	const content = formData.get("content");
 	const type = formData.get("type");
 
-	if (
-		title === null ||
-		content === null ||
-		type === null ||
-		description === null
-	) {
+	if (!title || !content || !description) {
 		console.error("Missing required fields");
-		return;
+		return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
 	}
-
+	
 	const { data, error } = await supabase.from("guides").insert({
 		title: title,
 		description: description,
 		content: content,
-		type: type || "AI",
+		type: type || "AI", 
 		created_by: created_by,
-	});
+	}).select();
 
 	if (error) {
 		console.error("Error inserting guide:", error);
-		return;
+		return NextResponse.json({ error: "Error inserting guide" }, { status: 500 });
 	}
-
-	console.log(data);
-	redirect("/learn");
-};
+	if (data) {
+		return NextResponse.json({ success: true, data: data });
+	}
+}

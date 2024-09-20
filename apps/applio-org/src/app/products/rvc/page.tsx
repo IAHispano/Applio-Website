@@ -1,7 +1,24 @@
+"use client";
+
+import { useState } from "react";
+import { useEffect } from "react";
+
 export default function RvcProduct() {
+	const [version, setVersion] = useState<string>("");
+
+	useEffect(() => {
+		fetch("https://api.github.com/repos/iahispano/Applio/releases/latest")
+			.then((res) => res.json())
+			.then((data) => {
+				setVersion(data.tag_name);
+			});
+
+			// todo: maybe do a full changelog with github api
+	}, []);
+
 	return (
 		<main className="w-full min-h-screen p-8">
-			<section className="w-full h-[70svh] rounded-xl flex flex-col justify-center items-center p-4 max-md:mt-12 relative">
+			<section className="w-full h-[80svh] rounded-xl flex flex-col justify-center items-center p-4 max-md:mt-12 relative">
 				<h1 className="md:text-[40svh] text-green-300/10 text-[20svh] text-center font-bold">
 					V3
 				</h1>
@@ -12,6 +29,7 @@ export default function RvcProduct() {
 			</section>
 			<p className="justify-center items-center mx-auto flex animate-bounce">
 				<svg
+					aria-hidden="true"
 					xmlns="http://www.w3.org/2000/svg"
 					width="24"
 					height="24"
@@ -38,12 +56,12 @@ export default function RvcProduct() {
 						</h3>
 					</div>
 					<div className="flex justify-center items-center md:w-[40%] h-[80%] max-md:mt-8">
-						<img src="https://i.imgur.com/LHvgEuv.png" className="rounded-xl" />
+						<img src="https://i.imgur.com/LHvgEuv.png" className="rounded-xl" alt="screenshot" />
 					</div>
 				</article>
 				<article className="flex max-md:flex-col w-full h-screen justify-center items-center">
 					<div className="flex justify-center items-center md:w-[40%] md:h-[80%] max-md:mb-8">
-						<img src="https://i.imgur.com/KupCnDb.png" className="rounded-xl" />
+						<img src="https://i.imgur.com/KupCnDb.png" className="rounded-xl" alt="screenshot" />
 					</div>
 					<div className="flex flex-col justify-right items-end text-right md:w-[40%] h-[80%]]">
 						<h2 className="text-4xl font-semibold">With a lot of features.</h2>
@@ -72,6 +90,8 @@ export default function RvcProduct() {
 							Download for MacOS/Linux
 						</a>
 					</div>
+					<div className="flex flex-col text-center">
+					<p className="text-xs text-neutral-300">Last stable version: <a className="hover:text-white slow read-font underline" href="/products/rvc/changelog">{version}</a>.</p> 
 					<p className="text-xs text-neutral-300 text-center">
 						This project is{" "}
 						<a
@@ -83,6 +103,7 @@ export default function RvcProduct() {
 						</a>
 						, you can participate too!
 					</p>
+					</div>
 				</article>
 			</div>
 		</main>

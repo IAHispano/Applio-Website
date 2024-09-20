@@ -1,3 +1,5 @@
+import NumberTicker from "../magicui/number-ticker";
+
 const TestimonialsShowcase = () => {
 	return (
 		<div className="gap-4 md:p-4 mt-12 w-full flex flex-col justify-center items-center max-md:px-12">
@@ -43,11 +45,11 @@ const TestimonialsShowcase = () => {
 			</div>
 			<div className="md:flex gap-12 md:mt-12">
 				<div className="flex flex-col">
-					<h1 className="text-4xl font-bold">50,000+</h1>
+					<p className="flex gap-1 items-center text-4xl font-bold"><NumberTicker value={50000} className="text-4xl font-bold" />+</p>
 					<h2>downloads /month</h2>
 				</div>
 				<div className="flex flex-col">
-					<h1 className="text-4xl font-bold">600,000+</h1>
+				<p className="flex gap-1 items-center text-4xl font-bold"><NumberTicker value={928553} className="text-4xl font-bold" />+</p>
 					<h2>supported by users</h2>
 				</div>
 			</div>

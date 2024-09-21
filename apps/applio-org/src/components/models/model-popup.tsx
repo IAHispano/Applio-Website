@@ -15,6 +15,7 @@ const ModelPopup = ({
 	const [image, setImage] = useState<string | null>(null);
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(true);
+	const [isModelMaker, setIsModelMaker] = useState(false);
 
 	useEffect(() => {
 		async function getModelInfo(id: string) {
@@ -28,6 +29,24 @@ const ModelPopup = ({
 				setData(data);
 				setImage(data.image_url);
 				setLoading(false);
+				try {
+					const { data: profile, error: profileError } = await supabase
+					  .from("profiles")
+					  .select("model-maker")
+					  .eq("full_name", data.author_username)
+					  .single();
+				  
+					if (profileError) {
+					  throw new Error(profileError.message);
+					}
+				  
+					if (profile) {
+					  console.log(profile);
+					  setIsModelMaker(profile["model-maker"]); 
+					}
+				  } catch (error: any) {
+					console.error("Error fetching profile:", error.message);
+				}
 			}
 
 			if (error) {
@@ -131,16 +150,23 @@ const ModelPopup = ({
 								</div>
 								<OptionsModelMenu id={data.id} />
 							</div>
-							<section className="flex max-md:flex-col gap-2">
-								{data.tags &&
-									data.tags.split(",").map((tag, index) => (
+							<section className="flex justify-between max-md:flex-col gap-2">
+								<div className="flex gap-2 max-md:flex-col h-full justify-center items-center">
+								{data.tags?.split(",").map((tag, index) => (
 										<div
 											key={index}
-											className="rounded-xl bg-white/10 border border-white/10 px-4 max-md:text-center max-md:py-2 text-sm"
+											className="rounded-xl bg-white/10 border border-white/10 px-4 my-auto flex items-center justify-start max-md:py-2 text-sm max-md:w-full"
 										>
 											{tag}
 										</div>
 									))}
+								</div>
+								{isModelMaker && (
+								<div className="w-60 max-md:w-full bg-white rounded-xl text-black text-center font-semibold flex gap-1 items-center justify-center py-1 shadow-xl shadow-white/20">
+								Verified model
+								<svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+								</div>
+								)}
 							</section>
 							<div className="flex flex-col gap-4 w-full h-full mt-6">
 								<ModelStats id={data.id} />

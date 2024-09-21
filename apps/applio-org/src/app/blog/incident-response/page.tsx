@@ -1,10 +1,10 @@
 export default function incidentResponsePage() {
   return (
-    <main className="min-h-screen max-w-3xl flex justify-start mx-auto mt-28 px-2 max-md:p-6">
-    <div className="flex flex-col w-full gap-2">
+    <main className="min-h-screen max-w-5xl flex justify-start items-start mx-auto mt-28 max-md:p-6">
+    <div className="flex flex-col w-full gap-2 max-w-3xl">
       <h1 className="md:text-3xl text-2xl text-neutral-200">Incident <span className="read-font">09-21-2024</span></h1>
       <div className="h-0.5 bg-neutral-600 rounded-xl w-full"/>
-      <div className="prose text-neutral-300 text-balance gap-2">
+      <div className="prose text-neutral-300 text-balance gap-2 mt-4">
         <p>
           We regret to inform you that in the early hours of September 21, <span className="text-white underline">the Discord account of Blaise</span>, the owner of Applio and AI Hispano, was hacked.
         </p>

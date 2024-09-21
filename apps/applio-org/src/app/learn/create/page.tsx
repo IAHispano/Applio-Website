@@ -22,12 +22,15 @@ export default function CreateGuide() {
 			if (data?.user) {
 				const userInfo = await supabase
 					.from("profiles")
-					.select("full_name")
+					.select("full_name, writer")
 					.eq("auth_id", data.user.id)
 					.single();
 				if (userInfo) {
 					setUserID(userInfo.data?.full_name);
 					console.log(userInfo.data?.full_name);
+					if (userInfo.data?.writer === false) {
+						redirect("/");
+					}
 				} else {
 					redirect("/login");
 				}

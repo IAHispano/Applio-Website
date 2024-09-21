@@ -98,7 +98,7 @@ export default function Navbar() {
 								</a>
 								{/* dropdown products */}
 								<div
-									className={`bg-neutral-800/50 dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
+									className={`z-50 bg-[#1c1c1c]/90 dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenProducts
 											? "opacity-100 visible"
 											: "opacity-0 invisible"
@@ -366,7 +366,7 @@ export default function Navbar() {
 								</a>
 								{/* dropdown about us */}
 								<div
-									className={`bg-neutral-800/50 dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
+									className={`z-50 bg-[#1c1c1c]/90  dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenAbout ? "opacity-100 visible" : "opacity-0 invisible"
 									}`}
 								>

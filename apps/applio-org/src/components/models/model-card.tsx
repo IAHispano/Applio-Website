@@ -21,14 +21,14 @@ export default function ModelCard({
 					</h2>
 				</div>
 			</div>
-			<div className="md:justify-between max-md:flex md:items-center max-md:flex-col flex md:mt-4 mt-2">
-				<div className="flex max-md:grid-cols-3 grid-cols-5 gap-2 max-md:mt-4 h-full max-md:w-full">
+			<div className="md:justify-between max-md:flex md:items-center max-md:flex-col flex md:mt-4 mt-2 gap-8">
+				<div className="flex max-md:flex-col gap-2 md:w-[60%]">
 					{data.tags && (
 						<>
 							{data.tags.split(",").map((tag, index) => (
 								<div
 									key={tag}
-									className="border border-white/10 rounded-xl py-2 w-full text-center text-sm md:px-4"
+									className="border border-white/10 rounded-xl py-1 w-full text-center text-sm md:px-4"
 								>
 									<p className="" key={tag}>
 										{tag}

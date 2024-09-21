@@ -223,7 +223,7 @@ export default function DiscoverModels() {
 									</button>
 								))}
 							</article>
-							<div className="flex gap-2 mt-8 w-full relative">
+							<div className="flex gap-2 mt-8 w-full lg:min-w-[100svh] relative">
 								<input
 									type="text"
 									className={`p-4 mt-8 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 slow mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "shadow-white/[.03] shadow-lg rounded-xl"}`}

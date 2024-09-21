@@ -7,6 +7,11 @@ import ModelStats from "./model-stats";
 import MoreModels from "./more-models";
 import { motion } from "framer-motion";
 
+type Profile = {
+	'model-maker': boolean; 
+  };
+  
+
 const ModelPopup = ({
 	id,
 	onClose,
@@ -34,7 +39,7 @@ const ModelPopup = ({
 					  .from("profiles")
 					  .select("model-maker")
 					  .eq("full_name", data.author_username)
-					  .single();
+					  .single<Profile>();
 				  
 					if (profileError) {
 					  throw new Error(profileError.message);

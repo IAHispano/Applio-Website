@@ -6,6 +6,7 @@ import OptionsModelMenu from "./options-model-menu";
 import ModelStats from "./model-stats";
 import MoreModels from "./more-models";
 import { motion } from "framer-motion";
+import ApplioAI from "./applio-ai";
 
 type Profile = {
 	'model-maker': boolean; 
@@ -69,9 +70,9 @@ const ModelPopup = ({
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3 }}
-			className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-lg:p-4 overflow-y-auto h-full flex justify-center items-center m-auto backdrop-filter backdrop-blur-xl"
+			className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-xl:p-4 overflow-y-auto h-full m-auto backdrop-filter backdrop-blur-xl"
 		>
-			<div className="bg-white/10 max-md:border max-md:border-white/20 backdrop-blur-3xl xl:rounded-xl max-lg:rounded-xl p-6 md:pb-0 md:w-full xl:max-w-[110svh] md:h-full xl:max-h-[60svh] max-md:w-full h-fit max-md:mt-12">
+			<div className="bg-white/10 max-md:border max-md:border-white/20 backdrop-blur-3xl xl:rounded-xl max-xl:rounded-xl p-6 md:pb-0 md:w-full xl:max-w-[110svh] md:h-fit xl:max-h-full md:min-h-[60svh] max-md:w-full h-fit max-md:mt-12">
 				<button
 					className="absolute top-0 right-0 m-4 lg:mt-6 mt-4 bg-white/10 hover:bg-red-500/10 p-2 rounded-xl slow"
 					onClick={onClose}
@@ -120,8 +121,7 @@ const ModelPopup = ({
 					</article>
 				)}
 				{data && !error && !loading && (
-					<>
-						<article className="w-full h-full z-50 flex flex-col">
+						<article className="w-full h-full xl:h-[60svh] z-50 flex flex-col">
 							<div className="flex justify-between max-lg:flex-col lg:pr-12 pt-0">
 								<div className="flex flex-col">
 									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-semibold">
@@ -175,19 +175,20 @@ const ModelPopup = ({
 							</section>
 							<div className="flex flex-col gap-4 w-full h-full mt-6">
 								<ModelStats id={data.id} />
-								<div className="flex items-start mt-auto w-full md:max-h-[25svh] md:h-fit h-fit p-4 bg-white/10 max-md:rounded-xl md:rounded-t-xl ">
+								<ApplioAI modelName={data.name} tags={data.tags}/>
+								<div className="flex bg-white/10 max-md:rounded-xl rounded-t-xl px-4 pt-2 justify-end mt-auto">
 									{data.tags && data.author_username && data.author_id && (
 										<MoreModels
 											tags={data.tags}
 											full_name={data.author_username}
 											id={data.author_id}
+											model_id={data.id}
 											model_name={data.name}
 										/>
 									)}
 								</div>
 							</div>
 						</article>
-					</>
 				)}
 			</div>
 		</motion.div>

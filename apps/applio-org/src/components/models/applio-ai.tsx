@@ -1,16 +1,37 @@
 import Groq from "groq-sdk";
 import { useEffect, useState } from "react"
 import LoadingIndicator from "./loading";
+import { supabase } from "@/utils/database";
 
-export default function ApplioAI({modelName, tags}: {modelName: string, tags: string}) {  
+type ModelAIDescription = {
+    description: string;
+}
+
+export default function ApplioAI({modelName, tags, id}: {modelName: string, tags: string, id: string}) {  
     const groq = new Groq({ apiKey: process.env.NEXT_PUBLIC_GROQ, dangerouslyAllowBrowser: true });
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<ModelAIDescription>();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function getAIDescription() {
             setLoading(true);
+            try {
+                const {data: dbdata, error} = await supabase.from("models").select("description").eq("id", id).single(); 
+                if (dbdata?.description) {
+                    setData(dbdata);
+                    setLoading(false);
+                } else {
+                    console.log('error', error);
+                    sendAIDescription();
+                }
+            } catch (error) {
+                console.log(error);
+                sendAIDescription();
+            }
+        }
 
+        async function sendAIDescription() {
+            try {
             const tagsArray = tags.split(",").map(tag => tag.trim());
 
             const countryMap: { [key: string]: string } = {
@@ -55,14 +76,28 @@ export default function ApplioAI({modelName, tags}: {modelName: string, tags: st
                         max_tokens: 100,
                         model: "llama3-8b-8192",
                     });
-
                     if ((await response).choices) {
                         const content = (await response).choices[0].message.content;
 
                         if (content?.includes("not found") || content?.includes("No relevant match") || content?.includes("Not found")) {
-                            setData("We have not found any information on this model.");
+                           const contentToData: ModelAIDescription = {
+                                description: "We have not found any information on this model.",
+                            };
+                            setData(contentToData);
                         } else {
-                            setData(content);
+                            if (content) {
+                            const contentToData: ModelAIDescription = {
+                                description: content,
+                            };
+                            setData(contentToData);
+                            const {data: dbdata, error} = await supabase.from("models").update({description: content}).eq("name", modelName);
+                            if (dbdata) {
+                                console.log(dbdata);
+                            } else {
+                                console.log(error);
+                            }
+                            setLoading(false);  
+                        }
                         }
 
                         setLoading(false);
@@ -72,8 +107,14 @@ export default function ApplioAI({modelName, tags}: {modelName: string, tags: st
                     setLoading(false);
                 }
             } else {
-                setData("Model name too long");
+                const contentToData: ModelAIDescription = {
+                    description: "model name too long",
+                };
+                setData(contentToData);
                 setLoading(false);
+            }
+            } catch (error) {
+                console.log(error);
             }
         }
 
@@ -83,14 +124,14 @@ export default function ApplioAI({modelName, tags}: {modelName: string, tags: st
 
 	return (
         <div className="relative">
-            {data !== "model name too long" && (
+            {data?.description !== "model name too long" && (
             <div>
             <button type="button" className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2">
                 Applio AI
                 <span className="bg-green-400/50 text-xs px-4 py-0.5 rounded-md font-medium">BETA</span>
             </button>
             {!loading && data ? (
-                <p className="read-font text-sm text-neutral-300 p-2">{data}</p>
+                <p className="read-font text-sm text-neutral-300 p-2">{data.description}</p>
             ): (
                 <div className="flex justify-start m-auto items-center w-full">
                 <LoadingIndicator />

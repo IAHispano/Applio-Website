@@ -156,12 +156,6 @@ export default function DiscoverModels() {
 			setShowPopup(true);
 			const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?id=${id}`;
 			window.history.replaceState({ path: newUrl }, "", newUrl);
-			if (
-				typeof window !== "undefined" &&
-				window.matchMedia("(min-width: 768px)").matches
-			) {
-				document.body.style.overflow = "hidden";
-			}
 
 			// send view to db
 			if (!popupId || popupId !== id) {
@@ -173,7 +167,6 @@ export default function DiscoverModels() {
 	const handleClosePopup = () => {
 		setShowPopup(false);
 		setPopupId(null);
-		document.body.style.overflow = "unset";
 		const originalUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
 		window.history.replaceState({ path: originalUrl }, "", originalUrl);
 	};
@@ -188,7 +181,7 @@ export default function DiscoverModels() {
 
 	return (
 		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen">
-			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
+			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
 			<section className="my-12">
 				{data && (
 					<InfiniteScroll

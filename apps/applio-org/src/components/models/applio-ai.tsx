@@ -64,13 +64,25 @@ export default function ApplioAI({modelName, tags, id}: {modelName: string, tags
 
             tagDescription = tagDescription.trim().replace(/,$/, "");
 
-            if (modelName.length < 20) {
+            if (modelName.length < 30) {
+                const jinaDescription = await getDescription(modelName || "", tagDescription || "", locationDescription || "");
+
+                if (!jinaDescription) {
+                    console.error("Jina search failed");
+                    const contentToData: ModelAIDescription = {
+                        description: "We have not found any information on this model.",
+                    };
+                    setData(contentToData);
+                    setLoading(false);
+                    return;
+                }
+
                 try {
                     const response = groq.chat.completions.create({
                         messages: [
                             {
                                 role: "system",
-                                content: `Your task is to provide a concise description of the famous person named ${modelName}${locationDescription} ${tagDescription}. Focus on key facts about their life, career, and achievements. Do not include any introductory phrases like "According to my research" or similar. Give a direct description in no more than 500 characters. If you don't have enough information about the person, simply respond with "not found" and nothing else.`,
+                                content: `Improve the following description, keeping key facts about the person's life, career, and major achievements. Keep specific examples of their work and avoid reducing it to just a list of roles. The description is: "${jinaDescription}". Respond with only the improved text, no introductions or extra commentary. Limit to 500 characters.`
                             },
                         ],
                         max_tokens: 100,
@@ -120,6 +132,32 @@ export default function ApplioAI({modelName, tags, id}: {modelName: string, tags
 
         getAIDescription();
     }, [modelName, tags]);
+
+    const getDescription = async (modelName: string, tags: string, locationDescription: string) => {
+        try {
+          const query = `who%20is%20${modelName}%20${tags}%20${locationDescription}`;
+          
+          const response = await fetch(`https://s.jina.ai/${query}`);
+      
+          if (!response.ok) {
+            throw new Error(`fetch error: ${response.statusText}`);
+          }
+
+          const data = await response.text();  
+      
+          const regex = /Description:\s*(.*?)(?=\[1\] (Markdown Content|Published Time|Title|URL Source):|\.\.\.|$)/is;
+          const match = data.match(regex);
+      
+          if (match && match[1]) {
+            const description = match[1].trim();
+            return description;
+          } else {
+            throw new Error("Not found");
+          }
+        } catch (error) {
+          console.error("Error fetching AI description:", error);
+        }
+      };
 
 
 	return (

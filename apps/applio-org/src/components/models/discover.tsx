@@ -1,7 +1,7 @@
 "use client";
 
 import { supabase } from "@/utils/database";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NumberTicker from "../magicui/number-ticker";
 import tags from "./tags";
 import ModelCard from "./model-card";
@@ -25,6 +25,7 @@ export default function DiscoverModels() {
 	const [popupId, setPopupId] = useState<string | null>(null);
 	const [showSettings, setShowSettings] = useState(false);
 	const [date, setDate] = useState<string>("Latest");
+	const popupRef = useRef<HTMLDivElement>(null)
 	const handleTagClick = (tag: string) => {
 		if (selectedTag === tag) {
 			setSelectedTag(null);
@@ -171,6 +172,40 @@ export default function DiscoverModels() {
 		window.history.replaceState({ path: originalUrl }, "", originalUrl);
 	};
 
+	useEffect(() => {
+		const handleScroll = (e: WheelEvent) => {
+		  if (showPopup && popupRef.current) {
+			const { scrollTop, scrollHeight, clientHeight } = popupRef.current
+			const isScrollingUp = e.deltaY < 0
+			const isScrollingDown = e.deltaY > 0
+	
+			if (
+			  (isScrollingUp && scrollTop > 0) ||
+			  (isScrollingDown && scrollTop < scrollHeight - clientHeight)
+			) {
+			  e.preventDefault()
+			  popupRef.current.scrollTop += e.deltaY
+			}
+		  }
+		}
+	
+		window.addEventListener('wheel', handleScroll, { passive: false })
+		return () => window.removeEventListener('wheel', handleScroll)
+	  }, [showPopup])
+	
+	  useEffect(() => {
+		if (showPopup) {
+		  document.body.style.overflow = 'hidden'
+		} else {
+		  document.body.style.overflow = 'auto'
+		}
+	
+		return () => {
+		  document.body.style.overflow = 'auto'
+		}
+	  }, [showPopup])
+	
+
 	function openSettings() {
 		if (showSettings) {
 			setShowSettings(false);
@@ -180,7 +215,7 @@ export default function DiscoverModels() {
 	}
 
 	return (
-		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen">
+		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen overscroll-contain">
 			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
 			<section className="my-12">
 				{data && (

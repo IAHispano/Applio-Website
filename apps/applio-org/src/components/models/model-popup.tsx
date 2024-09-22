@@ -1,7 +1,7 @@
 "use client";
 import { Model } from "@/types/modelsTypes";
 import { supabase } from "@/utils/database";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import OptionsModelMenu from "./options-model-menu";
 import ModelStats from "./model-stats";
 import MoreModels from "./more-models";
@@ -71,9 +71,9 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3 }}
-			className="z-50 bg-overlay/50 backdrop-opacity-disabled backdrop-filter backdrop-blur-lg w-screen h-screen fixed inset-0"
+			className="z-50 bg-overlay/50 backdrop-opacity-disabled backdrop-filter backdrop-blur-xl w-screen h-screen fixed inset-0"
 		>
-			<div className="md:flex justify-center h-screen w-full m-auto items-center max-w-5xl max-md:overflow-auto lg:p-4 md:p-4 sm:p-0">
+			<div className="md:flex justify-center h-screen w-full m-auto items-center max-w-6xl max-md:overflow-auto lg:p-4 md:p-4 sm:p-0">
 				<div className="bg-neutral-800 p-4 md:rounded-xl pb-0 w-full max-md:h-fit max-md:min-h-screen max-md:py-4">
 				{error && !data && (
 					<article className="flex flex-col justify-center items-center m-auto w-full h-full text-center p-4">
@@ -104,7 +104,7 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 					</article>
 				)}
 				{data && !error && !loading && (
-						<article className="w-full h-full xl:min-h-[60svh] z-50 flex flex-col">
+						<article className="w-full h-full xl:min-h-fit overflow-y-auto z-50 flex flex-col">
 							<div className="flex justify-between max-lg:flex-col pt-0">
 								<div className="flex flex-col">
 									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty  font-semibold">
@@ -159,7 +159,7 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 								</div>
 								)}
 							</section>
-							<div className="flex flex-col gap-4 w-full h-full mt-6">
+							<div className="flex flex-col gap-6 w-full h-full mt-6">
 								<ModelStats id={data.id}/>
 								<ApplioAI modelName={data.name} tags={data.tags} id={data.id}/>
 								<div className="flex bg-white/10 max-md:rounded-xl rounded-t-xl px-4 pt-2 justify-end mt-auto">

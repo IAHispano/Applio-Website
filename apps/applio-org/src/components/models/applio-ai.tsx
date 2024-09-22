@@ -164,7 +164,7 @@ export default function ApplioAI({modelName, tags, id}: {modelName: string, tags
         <div className="relative">
             {data?.description !== "model name too long" && (
             <div>
-            <button type="button" className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2">
+            <button type="button" className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2 shadow-xl shadow-green-300/10">
                 Applio AI
                 <span className="bg-green-400/50 text-xs px-4 py-0.5 rounded-md font-medium">BETA</span>
             </button>

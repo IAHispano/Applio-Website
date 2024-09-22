@@ -104,7 +104,7 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 					</article>
 				)}
 				{data && !error && !loading && (
-						<article className="w-full h-full xl:h-[60svh] z-50 flex flex-col">
+						<article className="w-full h-full xl:min-h-[60svh] z-50 flex flex-col">
 							<div className="flex justify-between max-lg:flex-col pt-0">
 								<div className="flex flex-col">
 									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty  font-semibold">

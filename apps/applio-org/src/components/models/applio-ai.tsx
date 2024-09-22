@@ -82,7 +82,7 @@ export default function ApplioAI({modelName, tags, id}: {modelName: string, tags
                         messages: [
                             {
                                 role: "system",
-                                content: `Improve the following description, keeping key facts about the person's life, career, and major achievements. Keep specific examples of their work and avoid reducing it to just a list of roles. The description is: "${jinaDescription}". Respond with only the improved text, no introductions or extra commentary. Limit to 500 characters.`
+                                content: `Improve the following description, keeping key facts about the person's life, career, and major achievements. Keep specific examples of their work and avoid reducing it to just a list of roles. The description is: "${jinaDescription}". Respond with only the improved text, no introductions or extra commentary. Limit to 500 characters. Don't use markdown.`
                             },
                         ],
                         max_tokens: 100,

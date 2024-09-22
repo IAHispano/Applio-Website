@@ -145,9 +145,9 @@ export default function ApplioAI({modelName, tags, id}: {modelName: string, tags
 
           const data = await response.text();  
       
-          const regex = /Description:\s*(.*?)(?=\[1\] (Markdown Content|Published Time|Title|URL Source):|\.\.\.|$)/is;
+          const regex = /Description:\s*([^]*?)(?=\[1\] (Markdown Content|Published Time|Title|URL Source):|\.\.\.|$)/i;
           const match = data.match(regex);
-      
+          console.log('jira', match);
           if (match && match[1]) {
             const description = match[1].trim();
             return description;

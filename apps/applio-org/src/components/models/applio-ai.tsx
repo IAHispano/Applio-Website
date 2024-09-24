@@ -1,16 +1,37 @@
 import Groq from "groq-sdk";
 import { useEffect, useState } from "react"
 import LoadingIndicator from "./loading";
+import { supabase } from "@/utils/database";
 
-export default function ApplioAI({modelName, tags}: {modelName: string, tags: string}) {  
+type ModelAIDescription = {
+    description: string;
+}
+
+export default function ApplioAI({modelName, tags, id}: {modelName: string, tags: string, id: string}) {  
     const groq = new Groq({ apiKey: process.env.NEXT_PUBLIC_GROQ, dangerouslyAllowBrowser: true });
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<ModelAIDescription>();
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         async function getAIDescription() {
             setLoading(true);
+            try {
+                const {data: dbdata, error} = await supabase.from("models").select("description").eq("id", id).single(); 
+                if (dbdata?.description) {
+                    setData(dbdata);
+                    setLoading(false);
+                } else {
+                    console.log('error', error);
+                    sendAIDescription();
+                }
+            } catch (error) {
+                console.log(error);
+                sendAIDescription();
+            }
+        }
 
+        async function sendAIDescription() {
+            try {
             const tagsArray = tags.split(",").map(tag => tag.trim());
 
             const countryMap: { [key: string]: string } = {
@@ -43,26 +64,52 @@ export default function ApplioAI({modelName, tags}: {modelName: string, tags: st
 
             tagDescription = tagDescription.trim().replace(/,$/, "");
 
-            if (modelName.length < 20) {
+            if (modelName.length < 30) {
+                const jinaDescription = await getDescription(modelName || "", tagDescription || "", locationDescription || "");
+
+                if (!jinaDescription) {
+                    console.error("Jina search failed");
+                    const contentToData: ModelAIDescription = {
+                        description: "We have not found any information on this model.",
+                    };
+                    setData(contentToData);
+                    setLoading(false);
+                    return;
+                }
+
                 try {
                     const response = groq.chat.completions.create({
                         messages: [
                             {
                                 role: "system",
-                                content: `Your task is to provide a concise description of the famous person named ${modelName}${locationDescription} ${tagDescription}. Focus on key facts about their life, career, and achievements. Do not include any introductory phrases like "According to my research" or similar. Give a direct description in no more than 500 characters. If you don't have enough information about the person, simply respond with "not found" and nothing else.`,
+                                content: `Improve the following description, keeping key facts about the person's life, career, and major achievements. Keep specific examples of their work and avoid reducing it to just a list of roles. The description is: "${jinaDescription}". Respond with only the improved text, no introductions or extra commentary. Limit to 500 characters. Don't use markdown.`
                             },
                         ],
                         max_tokens: 100,
                         model: "llama3-8b-8192",
                     });
-
                     if ((await response).choices) {
                         const content = (await response).choices[0].message.content;
 
                         if (content?.includes("not found") || content?.includes("No relevant match") || content?.includes("Not found")) {
-                            setData("We have not found any information on this model.");
+                           const contentToData: ModelAIDescription = {
+                                description: "We have not found any information on this model.",
+                            };
+                            setData(contentToData);
                         } else {
-                            setData(content);
+                            if (content) {
+                            const contentToData: ModelAIDescription = {
+                                description: content,
+                            };
+                            setData(contentToData);
+                            const {data: dbdata, error} = await supabase.from("models").update({description: content}).eq("name", modelName);
+                            if (dbdata) {
+                                console.log(dbdata);
+                            } else {
+                                console.log(error);
+                            }
+                            setLoading(false);  
+                        }
                         }
 
                         setLoading(false);
@@ -72,25 +119,57 @@ export default function ApplioAI({modelName, tags}: {modelName: string, tags: st
                     setLoading(false);
                 }
             } else {
-                setData("Model name too long");
+                const contentToData: ModelAIDescription = {
+                    description: "model name too long",
+                };
+                setData(contentToData);
                 setLoading(false);
+            }
+            } catch (error) {
+                console.log(error);
             }
         }
 
         getAIDescription();
     }, [modelName, tags]);
 
+    const getDescription = async (modelName: string, tags: string, locationDescription: string) => {
+        try {
+          const query = `who%20is%20${modelName}%20${tags}%20${locationDescription}`;
+          
+          const response = await fetch(`https://s.jina.ai/${query}`);
+      
+          if (!response.ok) {
+            throw new Error(`fetch error: ${response.statusText}`);
+          }
+
+          const data = await response.text();  
+      
+          const regex = /Description:\s*([^]*?)(?=\[1\] (Markdown Content|Published Time|Title|URL Source):|\.\.\.|$)/i;
+          const match = data.match(regex);
+          console.log('jira', match);
+          if (match && match[1]) {
+            const description = match[1].trim();
+            return description;
+          } else {
+            throw new Error("Not found");
+          }
+        } catch (error) {
+          console.error("Error fetching AI description:", error);
+        }
+      };
+
 
 	return (
         <div className="relative">
-            {data !== "model name too long" && (
+            {data?.description !== "model name too long" && (
             <div>
-            <button type="button" className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2">
+            <button type="button" className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2 shadow-xl shadow-green-300/10">
                 Applio AI
                 <span className="bg-green-400/50 text-xs px-4 py-0.5 rounded-md font-medium">BETA</span>
             </button>
             {!loading && data ? (
-                <p className="read-font text-sm text-neutral-300 p-2">{data}</p>
+                <p className="read-font text-sm text-neutral-300 p-2">{data.description}</p>
             ): (
                 <div className="flex justify-start m-auto items-center w-full">
                 <LoadingIndicator />

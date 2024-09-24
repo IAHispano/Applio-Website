@@ -9,7 +9,7 @@ export default function MoreModels({
 	id,
 	model_name,
 	model_id,
-}: { tags: any; full_name: string; id: string; model_name: string; model_id: string }) {
+}: { tags: string; full_name: string; id: string; model_name: string; model_id: string }) {
 	const [data, setData] = useState<Model[] | null>();
 
 	useEffect(() => {
@@ -20,9 +20,26 @@ export default function MoreModels({
 				.filter("name", "ilike", `%${model_name}%`)
 				.filter("id", "neq", model_id)
 				.limit(6);
+
 			if (data) {
 				setData(data);
 				console.log(data);
+			}
+			if (data?.length === 0) {
+				const tagsArray = tags.split(',').map(tag => tag.trim());
+				const { data: dbdata, error } = await supabase
+					.from("models")
+					.select("*")
+					.filter("tags", "ilike", tagsArray[0])
+					.filter("id", "neq", model_id)
+					.limit(6);
+
+				if (dbdata) {
+					console.log('data', dbdata);
+					setData(dbdata);
+				} else {
+					console.log('error', error);
+				}
 			}
 			if (error) {
 				console.log(error);

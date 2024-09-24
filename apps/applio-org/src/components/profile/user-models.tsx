@@ -9,7 +9,7 @@ export default function UserModels({ data }: { data: any[] }) {
 
 	async function sendView(id: string) {
 		const data2 = await supabase.auth.getUser();
-		if (data2 && data2.data.user) {
+		if (data2?.data.user) {
 			const userInfo = await supabase
 				.from("profiles")
 				.select("full_name, id")
@@ -32,7 +32,6 @@ export default function UserModels({ data }: { data: any[] }) {
 	const handleClosePopup = () => {
 		setShowPopup(false);
 		setPopupId(null);
-		document.body.style.overflow = "unset";
 		const originalUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}`;
 		window.history.replaceState({ path: originalUrl }, "", originalUrl);
 	};
@@ -43,13 +42,6 @@ export default function UserModels({ data }: { data: any[] }) {
 			setShowPopup(true);
 			const newUrl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?id=${id}`;
 			window.history.replaceState({ path: newUrl }, "", newUrl);
-			if (
-				typeof window !== "undefined" &&
-				window.matchMedia("(min-width: 768px)").matches
-			) {
-				document.body.style.overflow = "hidden";
-			}
-
 			// send view to db
 			if (!popupId || popupId !== id) {
 				sendView(id);
@@ -59,7 +51,7 @@ export default function UserModels({ data }: { data: any[] }) {
 
 	return (
 		<section className="mt-12 w-full grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 z-30">
-			{showPopup && <ModelPopup id={popupId} onClose={handleClosePopup} />}
+			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
 			{Array.isArray(data) &&
 				data.map((model: any, index: number) => {
 					return (

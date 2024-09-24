@@ -5,6 +5,7 @@ import SettingsUI from "@/components/settings/settings-ui";
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/utils/database";
+import ModelsUI from "@/components/settings/models-ui";
 
 export default function Settings() {
 	return (
@@ -16,13 +17,17 @@ export default function Settings() {
 
 function SettingsContent() {
 	const searchParams = useSearchParams();
-	const initialPage = searchParams.get("p") === "developer" ? 2 : 1;
+	const initialPage = 
+    searchParams.get("p") === "developer" ? 3 :
+    searchParams.get("p") === "models" ? 2 :
+    1;
 	const [page, setPage] = useState<number>(initialPage);
 
 	useEffect(() => {
 		if (searchParams.get("api") === "developer") {
-			setPage(2);
+			setPage(3);
 		}
+		
 	}, [searchParams]);
 
 	useEffect(() => {
@@ -56,21 +61,31 @@ function SettingsContent() {
 					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 2 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(2)}
 				>
-					Developer
+					Models
 				</button>
 				<button
 					type="button"
 					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 3 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(3)}
 				>
+					Developer
+				</button>
+				<button
+					type="button"
+					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 4 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
+					onClick={() => setPage(4)}
+				>
 					Premium
 				</button>
 			</div>
 			{page === 1 && <SettingsUI />}
-			{page === 2 && <ApiDashboard />}
-			{page === 3 &&
-			<div className="mt-12 flex justify-center items-center m-auto text-sm text-neutral-300 max-w-3xl">
-				Donating money to a non-profit organization is really complicated. Due to recent events we have had to withdraw this section. We are working to reinstate Applio Premium.
+			{page === 2 && <ModelsUI />}
+			{page === 3 && <ApiDashboard />}
+			{page === 4 &&
+			<div className="mt-6 flex flex-col justify-center items-start prose text-left max-w-sm m-auto text-sm text-neutral-300 gap-2">
+				<p>Donating money to a non-profit organization is really complicated.</p>
+				<p>Due to recent events we have had to withdraw this section. We are working to reinstate Applio Premium.</p>
+				<p>Read more about Applio Premium Incident <a className="underline text-neutral-200 hover:text-white slow" href="/blog/incident-response">here</a></p>
 			</div>}
 		</main>
 	);

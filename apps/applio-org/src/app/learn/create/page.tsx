@@ -29,10 +29,10 @@ export default function CreateGuide() {
 					setUserID(userInfo.data?.full_name);
 					console.log(userInfo.data?.full_name);
 					if (userInfo.data?.writer === false) {
-						redirect("/");
+						window.location.href = "/learn";
 					}
 				} else {
-					redirect("/login");
+					window.location.href = "/login";
 				}
 				if (error) {
 					console.error("Error fetching user data:", error);

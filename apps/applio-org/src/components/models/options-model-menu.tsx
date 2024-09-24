@@ -3,7 +3,12 @@ import { redirect, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useToast } from "./use-toast";
 
-export default function OptionsModelMenu({ id }: { id: string }) {
+type ModelPopupProps = {
+	id: string | null;
+	handleClose: () => void;
+};
+
+export default function OptionsModelMenu({ id, handleClose }: ModelPopupProps) {
 	const [clicked, setClicked] = useState(false);
 	const [liked, setLiked] = useState(false);
 	const router = useRouter();
@@ -169,6 +174,25 @@ export default function OptionsModelMenu({ id }: { id: string }) {
 					<line x1="12" x2="12" y1="15" y2="3" />
 				</svg>
 			</button>
+			<button
+				className={`max-md:border max-md:border-white/20 bg-white/10 hover:bg-red-500/20 slow px-2 py-2 lg:w-fit w-full justify-center items-center mx-auto flex h-fit rounded-xl`}
+				onClick={handleClose}
+			>
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						width="20"
+						height="20"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						strokeWidth="2"
+						strokeLinecap="round"
+						strokeLinejoin="round"
+					>
+						<path d="M18 6 6 18" />
+						<path d="m6 6 12 12" />
+					</svg>
+				</button>
 		</div>
 	);
 }

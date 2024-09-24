@@ -1,7 +1,7 @@
 "use client";
 import { Model } from "@/types/modelsTypes";
 import { supabase } from "@/utils/database";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import OptionsModelMenu from "./options-model-menu";
 import ModelStats from "./model-stats";
 import MoreModels from "./more-models";
@@ -10,13 +10,14 @@ import ApplioAI from "./applio-ai";
 
 type Profile = {
 	'model-maker': boolean; 
-  };
-  
+};
 
-const ModelPopup = ({
-	id,
-	onClose,
-}: { id: string | null; onClose: () => void }) => {
+type ModelPopupProps = {
+	id: string | null;
+	handleClose: () => void;
+};
+
+const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 	const [data, setData] = useState<Model | null>();
 	const [image, setImage] = useState<string | null>(null);
 	const [error, setError] = useState(false);
@@ -70,28 +71,10 @@ const ModelPopup = ({
 			initial={{ opacity: 0 }}
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3 }}
-			className="fixed inset-0 flex items-center justify-center bg-black/40 bg-opacity-50 z-50 max-xl:p-4 overflow-y-auto h-full m-auto backdrop-filter backdrop-blur-xl"
+			className="z-50 bg-overlay/50 backdrop-opacity-disabled backdrop-filter backdrop-blur-xl w-screen h-screen fixed inset-0"
 		>
-			<div className="bg-white/10 max-md:border max-md:border-white/20 backdrop-blur-3xl xl:rounded-xl max-xl:rounded-xl p-6 md:pb-0 md:w-full xl:max-w-[110svh] md:h-fit xl:max-h-full md:min-h-[60svh] max-md:w-full h-fit max-md:mt-12">
-				<button
-					className="absolute top-0 right-0 m-4 lg:mt-6 mt-4 bg-white/10 hover:bg-red-500/10 p-2 rounded-xl slow"
-					onClick={onClose}
-				>
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="20"
-						height="20"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						strokeWidth="2"
-						strokeLinecap="round"
-						strokeLinejoin="round"
-					>
-						<path d="M18 6 6 18" />
-						<path d="m6 6 12 12" />
-					</svg>
-				</button>
+			<div className="md:flex justify-center h-screen w-full m-auto items-center max-w-6xl max-md:overflow-auto lg:p-4 md:p-4 sm:p-0">
+				<div className="bg-neutral-800 p-4 md:rounded-xl pb-0 w-full max-md:h-fit max-md:min-h-screen max-md:py-4">
 				{error && !data && (
 					<article className="flex flex-col justify-center items-center m-auto w-full h-full text-center p-4">
 						<h1 className="text-2xl">
@@ -101,7 +84,7 @@ const ModelPopup = ({
 					</article>
 				)}
 				{loading && (
-					<article className="w-full h-full z-50 flex flex-col justify-center items-center mx-auto">
+					<article className="w-full h-[30svh] z-50 flex flex-col justify-center items-center mx-auto">
 						<svg
 							aria-hidden="true"
 							className="w-8 h-8 animate-spin text-neutral-800 fill-white"
@@ -121,10 +104,10 @@ const ModelPopup = ({
 					</article>
 				)}
 				{data && !error && !loading && (
-						<article className="w-full h-full xl:h-[60svh] z-50 flex flex-col">
-							<div className="flex justify-between max-lg:flex-col lg:pr-12 pt-0">
+						<article className="w-full h-full xl:min-h-fit overflow-y-auto z-50 flex flex-col">
+							<div className="flex justify-between max-lg:flex-col pt-0">
 								<div className="flex flex-col">
-									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty truncate font-semibold">
+									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty  font-semibold">
 										{data.name}
 									</h1>
 									<p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5 mt-1 mb-2 read-font text-sm">
@@ -153,7 +136,7 @@ const ModelPopup = ({
 										ago.
 									</p>
 								</div>
-								<OptionsModelMenu id={data.id} />
+								<OptionsModelMenu id={data.id} handleClose={handleClose} />
 							</div>
 							<section className="flex justify-between max-md:flex-col gap-2">
 								<div className="flex gap-2 max-md:flex-col h-full justify-center items-center">
@@ -167,22 +150,25 @@ const ModelPopup = ({
 									))}
 								</div>
 								{isModelMaker && (
-								<div className="w-60 max-md:w-full bg-white rounded-xl text-black text-center font-semibold flex gap-1 items-center justify-center py-1 shadow-xl shadow-white/20">
-								Verified model
+								<div className="text-sm w-fit max-md:w-full rounded-xl text-black text-center font-semibold flex gap-1 items-center justify-center py-1 md:[&_span]:hover:ml-0 md:[&_span]:hover:scale-100 md:[&_span]:hover:blur-none md:[&_span]:hover:opacity-100">
+								<span className="md:opacity-0 md:blur slow md:mr-4 md:scale-75 text-white max-md:hidden">Verified model</span>
+								<div className="bg-white px-4 py-1 max-md:py-2 rounded-xl shadow-xl shadow-white/20 max-md:w-full max-md:h-full flex justify-center items-center mx-auto gap-2">
 								<svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.6111L8.92308 17.5L20 6.5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+								<span className="md:hidden">Verfied Model</span>
+								</div>
 								</div>
 								)}
 							</section>
-							<div className="flex flex-col gap-4 w-full h-full mt-6">
-								<ModelStats id={data.id} />
-								<ApplioAI modelName={data.name} tags={data.tags}/>
+							<div className="flex flex-col gap-6 w-full h-full mt-6">
+								<ModelStats id={data.id}/>
+								<ApplioAI modelName={data.name} tags={data.tags} id={data.id}/>
 								<div className="flex bg-white/10 max-md:rounded-xl rounded-t-xl px-4 pt-2 justify-end mt-auto">
-									{data.tags && data.author_username && data.author_id && (
+									{data.tags && data.author_username && data.author_id && id && (
 										<MoreModels
 											tags={data.tags}
 											full_name={data.author_username}
 											id={data.author_id}
-											model_id={data.id}
+											model_id={id}
 											model_name={data.name}
 										/>
 									)}
@@ -190,6 +176,7 @@ const ModelPopup = ({
 							</div>
 						</article>
 				)}
+				</div>
 			</div>
 		</motion.div>
 	);

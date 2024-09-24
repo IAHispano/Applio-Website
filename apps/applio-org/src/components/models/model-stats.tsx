@@ -127,7 +127,7 @@ export default function ModelStats({ id }: { id: string }) {
 						/>
 					)}
 					{views && views.length > 1 && (
-						<div className="flex items-end justify-end mt-1 h-0">
+						<div className="flex items-end justify-end mt-1 h-0 max-md:hidden">
 							<LineChart
 								width={200}
 								height={20}
@@ -160,7 +160,7 @@ export default function ModelStats({ id }: { id: string }) {
 						/>
 					)}
 					{data && data.length > 1 && (
-						<div className="flex items-end justify-end mt-1 h-0">
+						<div className="flex items-end justify-end mt-1 h-0 max-md:hidden">
 							<LineChart
 								width={200}
 								height={20}
@@ -193,7 +193,7 @@ export default function ModelStats({ id }: { id: string }) {
 						/>
 					)}
 					{likes && likes.length > 1 && (
-						<div className="flex items-end justify-end mt-1 h-0">
+						<div className="flex items-end justify-end mt-1 h-0 max-md:hidden">
 							<LineChart
 								width={200}
 								height={20}

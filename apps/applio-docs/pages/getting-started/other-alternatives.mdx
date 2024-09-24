@@ -114,7 +114,32 @@ Finally, if you had the **auto_backup** option enabled, your model will be saved
 
 - Finally, copy the path of G.pth and paste it into **g_pretrained_path**, and do the same for D.pth into **d_pretrained_path**. It should look like this: `/content/Applio/rvc/pretraineds/pretraineds_custom/G48k.pth` and `/content/Applio/rvc/pretraineds/pretraineds_custom/D48k.pth`, make sure to select the sample rate according to the [sample rate](/getting-started/audio-analizer) of the custom pretraineds.
 
-## Alternative 3: Hugging Face
+## Alternative 3: Kaggle
+<Steps>
+### Create your Kaggle and Ngrok account
+- Create an account on [Kaggle](https://www.kaggle.com/)
+- You will then need to verify your phone number in order to activate Kaggle's **Internet** option.
+- Create an account on [Ngrok](https://ngrok.com/)
+
+### Set the environment
+- Enter [Applio Kaggke](https://www.kaggle.com/code/deiant/applio/notebook) and click on **Copy and edit** and it will clone the notebook to your account.
+- In the session options in the sidebar, you must enable the **Internet** option to access the Kaggle GPU. Make sure that in Persistence the **Variables and Files** option is enabled.
+- Turn on the 2 T4 GPUs in the accelerator.
+- Enable Headless mode to run the GPU in all sessions and save your progress in case you leave the page. Note that the GPU session will continue and may consume usage. 
+
+### Running Applio
+- Run the **Install** cell to install everything necessary.
+- Get your ngrok token in https://dashboard.ngrok.com/get-started/your-authtoken and replace the word **token** with your Ngrok token.
+- Run the **Start** cell and click on **Applio URL** and then on **Visit Site** button.
+</Steps>
+
+### How to upload your dataset to ImJoy elFinder
+- Click on **File Url** and then on **Visit Site**.
+- Create a folder with the name of your model inside the datasets folder located in `/kaggle/working/program_ml/assets/datasets` and upload the audios
+- Finally go to the Training section.
+
+For more information read this [guide](https://applio.org/learn/58)
+## Alternative 4: Hugging Face
 
 Hugging Face is a artificial intelligence and machine learning community, where you can collaborate on models, datasets, and applications. HugginFace has a section called “Spaces”, which allows to build applications and run them using CPUs or GPUs. 
 
@@ -130,7 +155,7 @@ Hugging Face is a artificial intelligence and machine learning community, where 
 Please note that the space is limited to [Inference](/getting-started/download-models) and [TTS](/getting-started/tts) only, as it runs on a free CPU. The processing time is not optimal, and the longer the uploaded audio, the longer it will take. You can use the **split audio** option to help mitigate this.
 
 
-## Alternative 4: Paperspace
+## Alternative 5: Paperspace
 
 Paperspace is a cloud platform that provides access to powerful virtual machines with dedicated GPU for software development, machine learning, artificial intelligence, and other applications that require substantial processing power. This has made it one of the most competent **paid** alternatives to Colab.
 <Steps>

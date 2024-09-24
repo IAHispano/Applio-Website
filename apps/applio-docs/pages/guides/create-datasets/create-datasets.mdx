@@ -8,11 +8,10 @@ A Dataset is a set of audio files placed in a folder used by RVC for voice train
 
 1. First, we need to search for or download the audios of the person or character you want to create the model for
 
-<Callout type="info" emoji="ℹ️">
-  Some tips - The audio must be in **WAV or FLAC** format and must be of good
-  quality - The dataset should have **a minimum duration of 10 minutes or a
-  maximum of 30 minutes** for better results - Make sure your dataset has the
-  greatest variety of tones so that the model does not struggle when imitating
+<Callout type="info" emoji="ℹ️"> 
+  - The audio must be in **WAV or FLAC** format and must be of good quality 
+  - The dataset should have **a minimum duration of 10 minutes or a maximum of 30 minutes** for better results 
+  - Make sure your dataset has the greatest variety of tones so that the model does not struggle when imitating
   certain tones.
 </Callout>
 
@@ -34,9 +33,22 @@ This tool is used to remove silences from our dataset, now go back to the effect
 </Callout>
 
 4. Finally, we export our already processed audio and it’s ready for [training](/get-started/training.md/).
-   ![](/Guardar.png)
+   
+   |        WAV          | FLAC              |
+   | :-------------------| ----------------: |
+   | ![](/Guardar.png)   | ![](/flac.png)    |
 
 <Callout type="info" emoji="ℹ️">
   Make sure to export your dataset as a single audio file, or if you split it,
   ensure that each audio segment has a duration of 10 to 15 seconds per audio.
 </Callout>
+
+## Plugins
+Here are some plugins for your dataset creation. Note that these plugins work in Audacity, FL Studio, and RX11.
+
+- [T de Esser](https://techivation.com/t-de-esser/?srsltid=AfmBOopFizOEU71N2cCJhJcgPlZo-rWjU4T1X1EvM2L5fMCkaCio13qO) - To eliminate the hissing sound produced by the ‘s’.                                                                                                                                                                                                              
+- [Noise Gate Renegate](https://www.auburnsounds.com/products/Renegate.html) - A better noise gate.
+
+
+
+

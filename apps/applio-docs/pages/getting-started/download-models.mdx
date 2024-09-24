@@ -77,6 +77,18 @@ Applio has an “advanced options” section which allows you to modify several 
 - **Hop Length**: Denotes the duration it takes for the system to transition to a significant pitch change. Smaller hop lengths require more time for inference and training but tend to yield higher pitch accuracy.
 - **Pitch extraction algorithm**: Select between rvmpe, crepe or other.
 - **Embedder Model**: select the Embedder model (contentvec, japanese-hubert-base, chinese-hubert-large or custom).
+- **Formant Shifting:** used for male to female and vice-versa convertions. Here you can adjust the **Quefrency for formant shifting** and the **Timbre for formant shifting**.
+- **Post-Process:** post-process the audio to apply effects to the output. Here you can modify the following:
+   - **Reverb:** you can set the Reverb Room Size, Reverb Damping, Reverb Wet Gain, Reverb Dry Gain, Reverb Width and the Reverb Freeze Mode.
+   - **Pitch Shift:** Set the pitch shift semitones.
+   - **Limiter:** you can set the Limiter Threshold dB and the Limiter Release Time.
+   - **Gain:** Set the gain dB.
+   - **Distortion:** Set the distortion gain.
+   - **Chorus:** you can set the Chorus Rate Hz, chorus Depth, chorus Center Delay ms, chorus Feedback and the Chorus Mix.
+   - **Bitcrush:** apply bitcrush to the audio.
+   - **Clipping:** Set the clipping threshold.
+   - **Compressor:** you can set the Compressor Threshold dB, Compressor Ratio, Compressor Attack ms and the Compressor Release ms.
+   - **Delay:** you can set the Delay Seconds, Delay Feedback and the Delay Mix.
 </FAQBox>
 
 <Steps>

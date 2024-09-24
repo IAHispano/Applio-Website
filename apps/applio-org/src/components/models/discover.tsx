@@ -215,7 +215,7 @@ export default function DiscoverModels() {
 	}
 
 	return (
-		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen overscroll-contain">
+		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen overflow-hidden">
 			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
 			<section className="my-12">
 				{data && (

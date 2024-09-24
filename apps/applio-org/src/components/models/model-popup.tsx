@@ -73,7 +73,7 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 			transition={{ duration: 0.3 }}
 			className="z-50 bg-overlay/50 backdrop-opacity-disabled backdrop-filter backdrop-blur-xl w-screen h-screen fixed inset-0"
 		>
-			<div className="md:flex justify-center h-screen w-full m-auto items-center max-w-6xl max-md:overflow-auto lg:p-4 md:p-4 sm:p-0">
+			<div className="md:flex justify-center h-screen w-full m-auto items-center max-w-6xl lg:p-4 md:p-4 sm:p-0 max-md:overflow-hidden">
 				<div className="bg-neutral-800 p-4 md:rounded-xl pb-0 w-full max-md:h-fit max-md:min-h-screen max-md:py-4">
 				{error && !data && (
 					<article className="flex flex-col justify-center items-center m-auto w-full h-full text-center p-4">

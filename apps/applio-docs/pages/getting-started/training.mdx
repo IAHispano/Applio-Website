@@ -58,9 +58,11 @@ If you want to train a multispeaker model, you need to create a folder for the m
 
 ### Step 2: Dataset Processing
 
-Once you have the audio ready, be sure to select the correct frequency for your file `(32k, 40k, 48k)`, with that you can proceed to name your model and run the **Preprocess Dataset** Step.
+Once you have the audio ready, give your model a name and be sure to select the correct frequency for your file `(32k, 40k, 48k)`, before running the "Preprocess dataset", consider the following options:
 
-Adjust the number of CPU cores to utilize. The default setting are your cpu cores, which is recommended for most cases.
+- **CPU cores:** The default setting are your cpu cores, which is recommended for most cases.
+- **Audio cutting:** It's recommended to deactivate this option if your dataset has already been processed.
+- **Process effects:** It's recommended to deactivate this option if your dataset has already been processed.
 
 ### Step 3: Feature Extraction
 Now you are in the second last step!, but... what is ***feature extraction***?
@@ -68,9 +70,12 @@ Now you are in the second last step!, but... what is ***feature extraction***?
 Extracting features is an essential step to train, this process will convert each audio fragment divided by the post-processing step to a file readable by the F0 (Fundamental frequency).
 
 Several F0 models are available to choose from, but the best performer is **RMVPE**, besides **CREPE (MANGIO-CREPE)** is good too but it requires very clean audio and you need a hop length of 128 or lower.
-- When you select your model, press **Extract Features** to start the process, remember to check your CMD until you see a message indicating that the process is complete.
+- **CPU cores:** adjust it to use in the index extraction process. The default setting are your cpu cores, which is recommended for most cases.
+- **Embedder Model:** Select the model used for learning speaker embedding.
+- **Pitch Guidance:** it becomes feasible to mirror the intonation of the original voice, including its pitch. This feature is particularly valuable for singing and other scenarios where preserving the original melody or pitch pattern is essential.
+- **GPU Number:** Specify the number of GPUs you wish to utilize for extracting by entering them separated by hyphens (-).
 
-Adjust the number of CPU cores to use in the index extraction process. The default setting are your cpu cores, which is recommended for most cases.
+When you select your model, press **Extract Features** to start the process, remember to check your CMD until you see a message indicating that the process is complete.
 
 - [Don't know how to check sample rate?, check the Audio Analizer section](/getting-started/audio-analizer)
 
@@ -90,7 +95,7 @@ This is where the real work begins, to start training your model you will need t
 
 Your trained model is located in the `logs/model folder`, and the .pth files are in the `logs/zips` folder. Also you can export your trained model directly from the Applio interface, go to the **Export Model** section in the **train** tab, click on the **Refresh** button and select the **pth and the added index** of the model to export.
 
-<FAQBox title="Other Options">
+<FAQBox title="Advanced Settings">
 - **Pitch Guidance:** Gives variation of pitch.
 - **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain. Learn how to use it [here](/getting-started/pretrained).
 - **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
@@ -102,8 +107,12 @@ Your trained model is located in the `logs/model folder`, and the .pth files are
 - **Sync Graph:** Synchronize the graph of the tensorbaord. Only enable this setting if you are training a new model.
 - **Cache Dataset in GPU:** Cache the dataset in GPU memory to speed up the training process.
 - **Embedder Model:** Select the Embedder model (contentvec, japanese-hubert-base, chinese-hubert-large or custom).
+- **Index Algorithm:** KMeans is a clustering algorithm that divides the dataset into K clusters. This setting is particularly useful for large datasets, the other option are auto or Faiss.
 
 </FAQBox>
+<Callout type="info" emoji="ℹ️">
+You can select the **Precision** you want to use for training and inference (fp16 or fp32) in Applio Settings tab.
+</Callout>
 
 - [Don't know how to use Tensorboard for correct training?, check out the Tensorboard section](/getting-started/tensorboard)
 - [Don't know how to use custom Pretrained like TITAN and Ov2?, check out the Pretrained section](/getting-started/pretrained)

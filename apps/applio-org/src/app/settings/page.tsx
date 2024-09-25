@@ -17,17 +17,18 @@ export default function Settings() {
 
 function SettingsContent() {
 	const searchParams = useSearchParams();
-	const initialPage = 
-    searchParams.get("p") === "developer" ? 3 :
-    searchParams.get("p") === "models" ? 2 :
-    1;
+	const initialPage =
+		searchParams.get("p") === "developer"
+			? 3
+			: searchParams.get("p") === "models"
+				? 2
+				: 1;
 	const [page, setPage] = useState<number>(initialPage);
 
 	useEffect(() => {
 		if (searchParams.get("api") === "developer") {
 			setPage(3);
 		}
-		
 	}, [searchParams]);
 
 	useEffect(() => {
@@ -81,12 +82,26 @@ function SettingsContent() {
 			{page === 1 && <SettingsUI />}
 			{page === 2 && <ModelsUI />}
 			{page === 3 && <ApiDashboard />}
-			{page === 4 &&
-			<div className="mt-6 flex flex-col justify-center items-start prose text-left max-w-sm m-auto text-sm text-neutral-300 gap-2">
-				<p>Donating money to a non-profit organization is really complicated.</p>
-				<p>Due to recent events we have had to withdraw this section. We are working to reinstate Applio Premium.</p>
-				<p>Read more about Applio Premium Incident <a className="underline text-neutral-200 hover:text-white slow" href="/blog/incident-response">here</a></p>
-			</div>}
+			{page === 4 && (
+				<div className="mt-6 flex flex-col justify-center items-start prose text-left max-w-sm m-auto text-sm text-neutral-300 gap-2">
+					<p>
+						Donating money to a non-profit organization is really complicated.
+					</p>
+					<p>
+						Due to recent events we have had to withdraw this section. We are
+						working to reinstate Applio Premium.
+					</p>
+					<p>
+						Read more about Applio Premium Incident{" "}
+						<a
+							className="underline text-neutral-200 hover:text-white slow"
+							href="/blog/incident-response"
+						>
+							here
+						</a>
+					</p>
+				</div>
+			)}
 		</main>
 	);
 }

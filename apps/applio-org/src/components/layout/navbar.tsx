@@ -1,10 +1,10 @@
 "use client";
 
 import { motion, useScroll } from "framer-motion";
-import Avatar from "./avatar";
-import NavbarMobile from "./navbarMobile";
 import { useEffect, useState } from "react";
 import BlurIn from "../magicui/blur-text";
+import Avatar from "./avatar";
+import NavbarMobile from "./navbarMobile";
 
 export default function Navbar() {
 	const { scrollY } = useScroll();
@@ -111,7 +111,7 @@ export default function Navbar() {
 											</h2>
 											<a
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
-												href="/products/rvc"
+												href="/products/applio"
 											>
 												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
 													<svg

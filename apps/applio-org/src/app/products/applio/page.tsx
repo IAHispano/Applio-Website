@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function RvcProduct() {
 	const [version, setVersion] = useState<string>("");
@@ -54,12 +53,20 @@ export default function RvcProduct() {
 						</h3>
 					</div>
 					<div className="flex justify-center items-center md:w-[40%] h-[80%] max-md:mt-8">
-						<img src="https://i.imgur.com/LHvgEuv.png" className="rounded-xl" alt="screenshot" />
+						<img
+							src="https://i.imgur.com/LHvgEuv.png"
+							className="rounded-xl"
+							alt="screenshot"
+						/>
 					</div>
 				</article>
 				<article className="flex max-md:flex-col w-full h-screen justify-center items-center">
 					<div className="flex justify-center items-center md:w-[40%] md:h-[80%] max-md:mb-8">
-						<img src="https://i.imgur.com/KupCnDb.png" className="rounded-xl" alt="screenshot" />
+						<img
+							src="https://i.imgur.com/KupCnDb.png"
+							className="rounded-xl"
+							alt="screenshot"
+						/>
 					</div>
 					<div className="flex flex-col justify-right items-end text-right md:w-[40%] h-[80%]]">
 						<h2 className="text-4xl font-semibold">With a lot of features.</h2>
@@ -89,18 +96,27 @@ export default function RvcProduct() {
 						</a>
 					</div>
 					<div className="flex flex-col text-center">
-					<p className="text-xs text-neutral-300">Last stable version: <a className="hover:text-white slow read-font underline" href="/products/rvc/changelog">{version}</a>.</p> 
-					<p className="text-xs text-neutral-300 text-center">
-						This project is{" "}
-						<a
-							className="underline hover:text-white slow"
-							target="blank"
-							href="https://github.com/iahispano/Applio"
-						>
-							open source on github
-						</a>
-						, you can participate too!
-					</p>
+						<p className="text-xs text-neutral-300">
+							Last stable version:{" "}
+							<a
+								className="hover:text-white slow read-font underline"
+								href="/products/applio/changelog"
+							>
+								{version}
+							</a>
+							.
+						</p>
+						<p className="text-xs text-neutral-300 text-center">
+							This project is{" "}
+							<a
+								className="underline hover:text-white slow"
+								target="blank"
+								href="https://github.com/iahispano/Applio"
+							>
+								open source on github
+							</a>
+							, you can participate too!
+						</p>
 					</div>
 				</article>
 			</div>

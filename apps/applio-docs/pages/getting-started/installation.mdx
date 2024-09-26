@@ -1,0 +1,170 @@
+import { Callout, Steps, Tabs, Tab } from "nextra/components";
+
+# Installation
+
+Applio is easy to install. We recommend the precompiled version for new users as it's ready to use.
+
+<Tabs items={['Windows', 'Linux/Mac']}>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest `.bat` file from the [GitHub releases](https://github.com/IAHispano/Applio/releases).
+      2. Extract the zip file.
+
+      ### Prepare for Installation
+      - Place Applio in a folder on the C drive.
+      - Avoid folders with privileged access.
+      - Don't run as administrator.
+      - Ensure the path has no spaces or special characters.
+      - Temporarily disable antivirus and firewall.
+
+      ### Install and Run
+      1. Run `run-install.bat` and wait for it to complete.
+      2. Run `run-applio.bat` to start Applio.
+    </Steps>
+
+  </Tab>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest `.sh` file from the [GitHub releases](https://github.com/IAHispano/Applio/releases).
+      2. Extract the zip file.
+
+      ### Install and Run
+      1. Open a terminal in the Applio directory.
+      2. Run:
+         ```sh
+         chmod +x run-install.sh
+         ./run-install.sh
+         ```
+      3. After installation, run:
+         ```sh
+         chmod +x run-applio.sh
+         ./run-applio.sh
+         ```
+
+      Alternatively, if you have Make installed:
+      ```sh
+      make run-install
+      make run-applio
+      ```
+    </Steps>
+
+  </Tab>
+</Tabs>
+
+## Alternative Installation Methods
+
+### Precompiled Zip Version
+
+<Tabs items={['Windows', 'Linux/Mac']}>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest precompiled zip file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows).
+      2. Extract the zip file into a folder.
+
+      ### Run Applio
+      1. Run `run-applio.bat` to start Applio.
+    </Steps>
+  </Tab>
+  <Tab>
+    <Steps>
+      ### Download Applio
+      1. Get the latest precompiled zip file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Linux). 
+      2. Extract the zip file into a folder.
+
+      ### Prepare Applio (Only required the first time)
+      1. Make sure you have Python 3.10.12 installed. You can check your Python version with `python --version`.
+      2. Open a terminal in the Applio directory.
+      3. Run the following commands:
+         ```sh
+         apt install python3.10-venv -y
+         python -m venv .venv
+         find ".venv" -type f -exec sed -i -e 's/\r$//' -e "s|/home/runner/work/Applio/Applio|$(pwd)|g" -e "s|/.venv/bin/python|/.venv/bin/$(basename $(which python))|g" {} + 
+         ```
+
+      ### Run Applio
+      1. Run:
+         ```sh
+         chmod +x run-applio.sh
+         ./run-applio.sh
+         ```
+    </Steps>
+  </Tab>
+</Tabs>
+
+## AMD GPU Support (Windows)
+
+For AMD GPU users, follow these steps to set up Applio using Zluda:
+
+<Steps>
+
+### Install VC++ Runtime
+
+1. Download and install the [VC++ Runtime](https://aka.ms/vs/17/release/vc_redist.x64.exe).
+
+### Install HIP SDK
+
+1. Check the [System Requirements](https://rocm.docs.amd.com/projects/install-on-windows/en/develop/reference/system-requirements.html).
+2. In the "Windows-supported GPUs" section, determine your installation steps:
+
+   a. If your GPU has a green checkbox in the HIP SDK column:
+
+   - Install either v6.1.2 or v5.7.1 HIP SDK from [AMD ROCm Hub](https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html).
+
+   b. If your GPU is RX 6600, 6600XT, 6650XT, 6700, 6700XT, 6750XT:
+
+   - Install v5.7.1 HIP SDK from [AMD ROCm Hub](https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html).
+   - For 6700, 6700XT, 6750XT, download [gfx1031 archive](https://github.com/brknsoul/ROCmLibs/raw/main/Optimised_ROCmLibs_gfx1031.7z).
+   - For 6600, 6600XT, 6650XT, download [gfx1032 archive](https://github.com/brknsoul/ROCmLibs/raw/main/Optimised_ROCmLibs_gfx1032.7z).
+   - Rename `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\library` to `library.old`.
+   - Create a new folder named `library`.
+   - Unzip the content of the archive into that folder.
+
+   c. For all other AMD GPUs:
+
+   - Find your gfxNNNN value by searching "techpowerup your_gpu" (listed under "Shader ISA" on the page).
+   - For `gfx803, gfx900, gfx906, gfx1010, gfx1011, gfx1012, gfx1030, gfx1100, gfx1101, gfx1102` GPUs:
+     - Install v5.7.1 HIP SDK from [AMD ROCm Hub](https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html).
+     - Download [this archive](https://github.com/brknsoul/ROCmLibs/raw/main/ROCmLibs.7z).
+     - Rename `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\library` to `library.old`.
+     - Unzip the content of the archive into `C:\Program Files\AMD\ROCm\5.7\bin\rocblas\`.
+   - For other GPUs:
+     - Visit [this repository](https://github.com/likelovewant/ROCmLibs-for-gfx1103-AMD780M-APU) and follow the instructions there.
+
+### Install Applio
+
+1. Install [Python 3.10.11](https://www.python.org/ftp/python/3.10.11/python-3.10.11-amd64.exe) (check "Add Python to Path").
+2. Download Applio v3.2.5 or higher source code zip from the [release page](https://github.com/IAHispano/Applio/releases).
+3. Edit `run-install.bat` and update the Torch URL from `cu121` to `cu118`:
+   ```
+   pip install torch==2.1.1 torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+   ```
+4. Run `run-install.bat` to install the required Python libraries.
+
+### Set up Zluda and Patch Torch Libraries
+
+1. Move all .bat files from `assets\zluda` to the root Applio folder.
+2. For HIP SDK 5.7:
+   - Run `patch_zluda_hip57.bat`.
+   - Add `C:\Program Files\AMD\ROCm\5.7\bin` to your system's Path environment variable.
+3. For HIP SDK 6.1:
+   - Run `patch_zluda_hip61.bat`.
+   - Add `C:\Program Files\AMD\ROCm\6.1\bin` to your system's Path environment variable.
+
+### Start Applio
+
+1. It's assumed your primary AMD GPU has index 0. If your iGPU is listed first under 'Display Adapters' in Device Manager, edit the `run-applio-amd.bat` file and change the value from "0" to "1".
+2. Run `run-applio-amd.bat` to start Applio.
+
+### Initial Compilation
+
+Note that the first time Zluda encounters a new computational task, it compiles the kernel code. During this time, there's no output and Applio may appear frozen. Initial compilation can take 15-20 minutes.
+
+</Steps>
+
+## Updating and Uninstalling
+
+- **To update:** Delete the current Applio folder and reinstall. Save your audios and models first.
+- **To uninstall:** Simply delete the Applio folder.

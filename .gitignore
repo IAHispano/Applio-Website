@@ -12,16 +12,17 @@ coverage
 .next/
 out/
 build
+.swc/
 
 # misc
 .DS_Store
 *.pem
+*.env
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
 # local env files
 .env.local
@@ -32,14 +33,13 @@ yarn-error.log*
 # turbo
 .turbo
 
-.contentlayer
-.env
-/.vscode/
+# ui
+dist/
+.vercel
 
-# Auto Generated PWA files
-**/public/sw.js
-**/public/workbox-*.js
-**/public/worker-*.js
-**/public/sw.js.map
-**/public/workbox-*.js.map
-**/public/worker-*.js.map
+
+# output
+/output
+
+# TODO
+.todo

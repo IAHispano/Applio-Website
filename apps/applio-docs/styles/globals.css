@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.slow {
+  transition: 0.3s cubic-bezier(0, 0.7, 0.4, 1);
+}
+
+body {
+  font-family: "Syne", sans-serif;
+}

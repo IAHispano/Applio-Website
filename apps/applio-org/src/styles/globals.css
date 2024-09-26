@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+	color: #ffff;
+	background-color: #110f0f;
+	overflow-x: hidden;
+}
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+.read-font {
+	font-family: "Poppins", sans-serif;
+}
+
+.slow {
+	transition: .3s cubic-bezier(0, 0.7, 0.4, 1);
+}
+
+.dropdown:hover .dropdown-menu {
+	display: block;
+	z-index: 100;
+}
+
+.embla {
+	overflow: hidden;
+}
+.embla__container {
+	display: flex;
+}
+.embla__slide {
+	flex: 0 0 200px;
+	height: 300px;
+	min-width: 0px;
+}
+
+@media screen and (max-width: 768px) {
+	.embla__slide {
+		flex: 0 0 120px;
+		height: 100px;
+		max-width: 200px;
+	}
+	.embla__container {
+		max-width: 30svh;
+	}
+	.embla {
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.no-scroll {
+	overflow: hidden;
+}

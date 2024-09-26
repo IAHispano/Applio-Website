@@ -1,0 +1,71 @@
+## Terminology
+
+- **RVC (Retrieval-based Voice Conversion)**: A voice cloning technique that retrieves and combines audio segments from a source speaker to synthesize the voice of a target speaker, without requiring large parallel datasets.
+
+- **HuBERT**: A transformer-based model that extracts text from raw audio, previously trained on a masked prediction task, which RVC uses to train the voice models. There are several types of Hubert, some of which are:
+
+  - **ContentVec:** Essentially the default one used by RVC, which can be adaptable for different languages.
+  - **Japanese Hubert-Base:** As the name suggests, it assists in recognition for that language.
+  - **Chinese Hubert-Large:** As the name suggests, it assists in recognition for that language.
+
+- **Net_G**: The generator model in RVC that takes HuBERT features and speaker embeddings as input to generate the converted audio waveform.
+
+- **Pitch Guidance**: Leveraging the fundamental frequency (f0) of the input voice during synthesis to better maintain the original pitch, intonation, and melody.
+
+- **Faiss**: A library that enables efficient approximate nearest neighbor search, used in RVC to retrieve training audio segments with closest embeddings.
+
+- **Dataset**: A set of audio files compressed into a .zip file, used by RVC for voice training.
+
+- **Model**: The result of training on a dataset.
+
+- **Epoch**: The number of iterations performed to complete one full cycle of the dataset during training.
+
+- **F0 Extraction Methods**: Techniques like Crepe (full-tiny), RMVPE, and FCPE used for extracting fundamental frequency (pitch) information from audio.
+
+- **Batch Size**: The amount of GPU used to train the model, with larger batch sizes generally leading to shorter training duration.
+
+- **Inference**: The process where an audio is transformed by the voice model.
+
+- **Artifacting**: When the inference output sounds robotic, distorted, with background noise, and fails to modulate words properly.
+
+- **Pretrained**: A model trained on several sets of long-duration audios, used as a starting point for training in RVC.
+
+- **Overtraining**: When the TensorBoard graph starts rising and never comes back down, leading to robotic, muffled output with poor articulation.
+
+- **G and D**: Generative and Discriminator models, respectively, that store the training data, with the Generative model learning to replicate results similar to the original, and the Discriminator trying to distinguish real data from generated data.
+
+## Common FAQs
+
+1. **What is RVC?**
+   RVC (Retrieval-based Voice Conversion) is a voice cloning technique that uses a pre-trained model to retrieve and combine audio segments from a source speaker to synthesize the voice of a target speaker, without requiring large parallel datasets of the source and target speakers.
+
+2. **How does RVC work?**
+   RVC works by extracting acoustic features and speaker embeddings from the source and target voices, and then retrieving and combining the most similar audio segments from the target speaker based on these features and embeddings.
+
+3. **What are the advantages of RVC?**
+   RVC requires less training data from the target speaker (typically 10 mins), is efficient and versatile for converting a wide range of voices, produces high-quality voice conversions very similar to the target speaker, is more robust to noise in the source voice, and can transfer speaking styles like emotions and intonation.
+
+4. **What are the requirements for Applio?**
+   For local training, an Nvidia RTX series 20XX graphics card with 8GB of VRAM is required. For inference, a decent CPU and at least 4GB of VRAM is needed.
+
+5. **Does it run on macOS?**
+   Yes, but only for inference. The installation should be done as if it were on Linux.
+
+6. **Is a Dataset the same as a Model?**
+   No, a Dataset is the set of audio used for training, while a Model is the result of that training.
+
+7. **How to train and infer without the UI?**
+   You can use the RVC_CLI repository (https://github.com/blaise-tk/RVC_CLI) for training and inference without the UI.
+
+8. **How can I continue training with more data?**
+   Add data to a new path, process the dataset, extract features, copy the G and D files from the previous experiment, and continue training. When increasing the number of audio files, it's recommended to retrain the model to avoid mixing datasets.
+
+## Additional Details
+
+- **Model Architecture**: The core models involved in RVC are HuBERT (for feature extraction) and Net_G (the generator model).
+
+- **Faiss Integration (.index file)**: The Faiss library enables efficient approximate nearest neighbor search in RVC during inference, retrieving and combining training audio segments with closest embeddings.
+
+- **Pitch Guidance**: RVC supports leveraging the fundamental frequency (f0) of the input voice during synthesis, better maintaining the original pitch, intonation, and melody.
+
+- **RVC Process**: The RVC process involves vocals/accompaniment separation, feature extraction techniques like RMVPE, pre-trained models like f0G40k, Generator (G) and Discriminator (D) models (core components of the GAN architecture), indexing using libraries like Faiss, and several loss terms like discriminator, generator, feature matching, mel spectrogram, and KL divergence to guide model training.

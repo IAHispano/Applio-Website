@@ -25,7 +25,7 @@ export default function DiscoverModels() {
 	const [popupId, setPopupId] = useState<string | null>(null);
 	const [showSettings, setShowSettings] = useState(false);
 	const [date, setDate] = useState<string>("Latest");
-	const popupRef = useRef<HTMLDivElement>(null)
+	const popupRef = useRef<HTMLDivElement>(null);
 	const handleTagClick = (tag: string) => {
 		if (selectedTag === tag) {
 			setSelectedTag(null);
@@ -174,37 +174,36 @@ export default function DiscoverModels() {
 
 	useEffect(() => {
 		const handleScroll = (e: WheelEvent) => {
-		  if (showPopup && popupRef.current) {
-			const { scrollTop, scrollHeight, clientHeight } = popupRef.current
-			const isScrollingUp = e.deltaY < 0
-			const isScrollingDown = e.deltaY > 0
-	
-			if (
-			  (isScrollingUp && scrollTop > 0) ||
-			  (isScrollingDown && scrollTop < scrollHeight - clientHeight)
-			) {
-			  e.preventDefault()
-			  popupRef.current.scrollTop += e.deltaY
+			if (showPopup && popupRef.current) {
+				const { scrollTop, scrollHeight, clientHeight } = popupRef.current;
+				const isScrollingUp = e.deltaY < 0;
+				const isScrollingDown = e.deltaY > 0;
+
+				if (
+					(isScrollingUp && scrollTop > 0) ||
+					(isScrollingDown && scrollTop < scrollHeight - clientHeight)
+				) {
+					e.preventDefault();
+					popupRef.current.scrollTop += e.deltaY;
+				}
 			}
-		  }
-		}
-	
-		window.addEventListener('wheel', handleScroll, { passive: false })
-		return () => window.removeEventListener('wheel', handleScroll)
-	  }, [showPopup])
-	
-	  useEffect(() => {
+		};
+
+		window.addEventListener("wheel", handleScroll, { passive: false });
+		return () => window.removeEventListener("wheel", handleScroll);
+	}, [showPopup]);
+
+	useEffect(() => {
 		if (showPopup) {
-		  document.body.style.overflow = 'hidden'
+			document.body.style.overflow = "hidden";
 		} else {
-		  document.body.style.overflow = 'auto'
+			document.body.style.overflow = "auto";
 		}
-	
+
 		return () => {
-		  document.body.style.overflow = 'auto'
-		}
-	  }, [showPopup])
-	
+			document.body.style.overflow = "auto";
+		};
+	}, [showPopup]);
 
 	function openSettings() {
 		if (showSettings) {

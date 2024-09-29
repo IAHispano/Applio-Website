@@ -45,11 +45,15 @@ const TestimonialsShowcase = () => {
 			</div>
 			<div className="md:flex gap-12 md:mt-12">
 				<div className="flex flex-col">
-					<p className="flex gap-1 items-center text-4xl font-bold"><NumberTicker value={50000} className="text-4xl font-bold" />+</p>
+					<p className="flex gap-1 items-center text-4xl font-bold">
+						<NumberTicker value={50000} className="text-4xl font-bold" />+
+					</p>
 					<h2>downloads /month</h2>
 				</div>
 				<div className="flex flex-col">
-				<p className="flex gap-1 items-center text-4xl font-bold"><NumberTicker value={928553} className="text-4xl font-bold" />+</p>
+					<p className="flex gap-1 items-center text-4xl font-bold">
+						<NumberTicker value={928553} className="text-4xl font-bold" />+
+					</p>
 					<h2>supported by users</h2>
 				</div>
 			</div>

@@ -145,7 +145,7 @@ export default function Footer() {
 					<h1 className="mb-1 text-xs font-bold uppercase">Legal</h1>
 					<a
 						className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-						href="/legal/terms-service" 
+						href="/legal/terms-service"
 						rel="noreferrer"
 						target="_blank"
 					>

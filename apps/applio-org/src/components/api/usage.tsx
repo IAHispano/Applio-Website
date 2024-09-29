@@ -37,7 +37,6 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 		} else {
 			window.location.href = "/settings?p=developer";
 		}
-		
 	}
 
 	return (
@@ -78,21 +77,46 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 												})}
 											</h2>
 											{item.role === "premium" && (
-												<div className="flex h-full items-center m-auto gap-2"> 
-												<p className="md:px-4 md:py-1 p-2 bg-white/80 text-black font-semibold rounded-xl max-md:text-xs">
-													<span className="max-md:hidden">Premium</span><span className="md:hidden">P</span>
-												</p>
+												<div className="flex h-full items-center m-auto gap-2">
+													<p className="md:px-4 md:py-1 p-2 bg-white/80 text-black font-semibold rounded-xl max-md:text-xs">
+														<span className="max-md:hidden">Premium</span>
+														<span className="md:hidden">P</span>
+													</p>
 												</div>
 											)}
-											<button onClick={() => deleteToken(item.token)} type="button" className="bg-neutral-600/40 rounded-xl p-2 flex items-center m-auto h-full hover:bg-red-500/50 slow">
-												<svg role="img" aria-label="delete-icon" className="md:w-[20px] w-4 h-4 md:h-[20px]" fill="#ffffff" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" strokeWidth="0" /><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" /><g id="SVGRepo_iconCarrier"><path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z" /></g></svg>
+											<button
+												onClick={() => deleteToken(item.token)}
+												type="button"
+												className="bg-neutral-600/40 rounded-xl p-2 flex items-center m-auto h-full hover:bg-red-500/50 slow"
+											>
+												<svg
+													role="img"
+													aria-label="delete-icon"
+													className="md:w-[20px] w-4 h-4 md:h-[20px]"
+													fill="#ffffff"
+													viewBox="0 0 24 24"
+													xmlns="http://www.w3.org/2000/svg"
+													stroke="#ffffff"
+												>
+													<g id="SVGRepo_bgCarrier" strokeWidth="0" />
+													<g
+														id="SVGRepo_tracerCarrier"
+														strokeLinecap="round"
+														strokeLinejoin="round"
+													/>
+													<g id="SVGRepo_iconCarrier">
+														<path d="M5.755,20.283,4,8H20L18.245,20.283A2,2,0,0,1,16.265,22H7.735A2,2,0,0,1,5.755,20.283ZM21,4H16V3a1,1,0,0,0-1-1H9A1,1,0,0,0,8,3V4H3A1,1,0,0,0,3,6H21a1,1,0,0,0,0-2Z" />
+													</g>
+												</svg>
 											</button>
 										</div>
 										<p className="md:text-3xl text-xl max-md:max-w-[200px] read-font font-medium hover:text-neutral-300 select-all max-md:my-4 blur-md hover:blur-none slow w-fit">
 											{item.token}
 										</p>
 									</div>
-									<p className="text-sm text-neutral-300 mt-2 max-md:mb-2">Usage</p>
+									<p className="text-sm text-neutral-300 mt-2 max-md:mb-2">
+										Usage
+									</p>
 									{item.usage < maxUsage && (
 										<div className="bg-neutral-800/20 border border-white/20 rounded-full h-4 shadow-xl shadow-white/10 overflow-hidden mt-1">
 											<div

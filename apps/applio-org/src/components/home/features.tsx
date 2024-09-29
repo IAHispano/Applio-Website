@@ -17,7 +17,7 @@ export default function Features() {
 				🕵️‍♂️ Want to know more?{" "}
 				<a
 					className="underline hover:text-white/90 cursor-pointer"
-					href="products/rvc"
+					href="products/applio"
 				>
 					Try Applio now!
 				</a>

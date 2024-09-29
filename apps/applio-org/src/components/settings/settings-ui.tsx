@@ -9,7 +9,7 @@ export default function SettingsUI() {
 	const [loading, setLoading] = useState(true);
 	const [full_name, setFullName] = useState("");
 	const [bio, setBio] = useState("");
-	const {showToast} = useToast();
+	const { showToast } = useToast();
 
 	useEffect(() => {
 		getUser();

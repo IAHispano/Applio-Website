@@ -1,4 +1,4 @@
-import { Callout, Steps } from "nextra/components";
+import { Callout, Steps, FileTree } from "nextra/components";
 
 
 # Training
@@ -26,6 +26,35 @@ The recommended duration to have a good dataset is 30 minutes, but if you have e
 Upload your dataset using the **Dataset Maker (if it is a single audio)** or setup it manually (various audios) to `applio/assets/datasets` creating inside a folder for the program to read it.
 
 - [Don't know how to create a dataset?, check the dataset section](/guides/create-datasets/create-datasets)
+
+#### For multispeaker models (Optional)
+If you want to train a multispeaker model, you need to create a folder for the model, and inside that folder create a folder for each speaker.
+
+- Speaker folders should be named **with numbers starting from 0**
+
+- It is recommended that each speaker has a similar amount of audio time
+
+<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+  <FileTree>
+    <FileTree.Folder name="dataset" defaultOpen>
+      <FileTree.Folder name="0" defaultOpen>
+        <FileTree.File name="speaker0-audio1.flac" />
+        <FileTree.File name="speaker0-audio2.flac" />
+        <FileTree.File name="speaker0-audio3.flac" />
+      </FileTree.Folder>
+      <FileTree.Folder name="1" defaultOpen>
+        <FileTree.File name="speaker1-audio1.flac" />
+        <FileTree.File name="speaker1-audio2.flac" />
+        <FileTree.File name="speaker1-audio3.flac" />
+      </FileTree.Folder>
+      <FileTree.Folder name="2" defaultOpen>
+        <FileTree.File name="speaker2-audio1.flac" />
+        <FileTree.File name="speaker2-audio2.flac" />
+        <FileTree.File name="speaker2-audio3.flac" />
+      </FileTree.Folder>
+    </FileTree.Folder>
+  </FileTree>
+</div>
 
 ### Step 2: Dataset Processing
 

@@ -1,7 +1,6 @@
 import Features from "@/components/home/features";
-import Background1 from "../components/svg/background1";
 import TestimonialsShowcase from "@/components/home/testimonialsShowcase";
-import Background2 from "@/components/svg/background2";
+import Background1 from "../components/svg/background1";
 
 export default function Home() {
 	return (
@@ -20,7 +19,7 @@ export default function Home() {
 				</h2>
 				<a
 					className="bg-white rounded-xl mt-8 text-black px-8 py-1 font-semibold shadow-lg shadow-white/40 hover:shadow-white/80 hover:shadow-xl slow cursor-pointer z-50"
-					href="/products/rvc"
+					href="/products/applio"
 				>
 					See more
 				</a>

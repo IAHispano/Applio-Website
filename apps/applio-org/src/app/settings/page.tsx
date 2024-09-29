@@ -78,7 +78,7 @@ function SettingsContent() {
 					Premium
 				</button>
 			</div>
-			{page === 1 && <SettingsUI />}
+			{page === 1 && <div className="flex flex-col gap-4 w-full"><SettingsUI /></div>}
 			{page === 2 && <ModelsUI />}
 			{page === 3 && <ApiDashboard />}
 			{page === 4 &&

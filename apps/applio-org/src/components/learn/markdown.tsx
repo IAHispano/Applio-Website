@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
@@ -12,6 +13,14 @@ function transformColoredText(content: string) {
 export default function MarkdownForGuides({ content }: { content: string }) {
 	const transformedContent = transformColoredText(content);
 
+	function Tip({ children }: { children: ReactNode }) {
+		return (
+			<div className="bg-white/90 text-black border-l-8 border-green-500 p-4 rounded-xl rounded-l-none my-4">
+				<strong>TIP:</strong> {children}
+			</div>
+		);
+	}
+
 	return (
 		<Markdown
 			className="text-neutral-300 md:max-w-3xl max-md:max-w-xs text-wrap flex flex-col justify-start items-start w-full h-full overflow-y-auto text-left"
@@ -23,11 +32,16 @@ export default function MarkdownForGuides({ content }: { content: string }) {
 						{children}
 					</a>
 				),
-				p: ({ node, children, ...props }) => (
-					<p {...props} className="mb-4">
-						{children}
-					</p>
-				),
+				p: ({ node, children, ...props }) => {
+					const isTip = String(children).startsWith("[!TIP]");
+
+					if (isTip) {
+						const tipContent = String(children).replace("[!TIP]", "").trim();
+						return <Tip>{tipContent}</Tip>;
+					}
+
+					return <p {...props} className="mb-4">{children}</p>;
+				},
 				img: ({ node, alt, src, ...props }) => (
 					<div className="w-full h-full overflow-hidden rounded-2xl">
 						<img

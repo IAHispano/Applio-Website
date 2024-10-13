@@ -149,6 +149,7 @@ For AMD GPU users, follow these steps to set up Applio using Zluda:
 1. Download a compiled version of Applio v3.2.5 or higher, unzip to the desired folder.
 2. Using command line from the Applio folder run
    ```
+   env\python -m pip uninstall torch torchvision torchaudio
    env\python -m pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --upgrade --index-url https://download.pytorch.org/whl/cu118
    ```
 

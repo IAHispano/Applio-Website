@@ -77,13 +77,24 @@ Applio is easy to install. We recommend the precompiled version for new users as
       ### Prepare Applio (Only required the first time)
       1. Make sure you have Python 3.10.12 installed. You can check your Python version with `python --version`.
       2. Open a terminal in the Applio directory.
-      3. Run the following commands:
+      3. For Debian/Ubuntu run the following commands:
          ```sh
          apt install python3.10-venv -y
          python -m venv .venv
          find ".venv" -type f -exec sed -i -e 's/\r$//' -e "s|/home/runner/work/Applio/Applio|$(pwd)|g" -e "s|/.venv/bin/python|/.venv/bin/$(basename $(which python))|g" {} + 
          ```
-
+         For Arch users run the following comands:
+         ```sh
+         sudo pacman -S python-virtualenv --noconfirm
+         python -m venv .venv
+         find ".venv" -type f -exec sed -i -e 's/\r$//' -e "s|/home/runner/work/Applio/Applio|$(pwd)|g" -e "s|/.venv/bin/python|/.venv/bin/$(basename $(which python))|g" {} + 
+         ```
+         For Fedora users run the following comands:
+         ```sh
+         sudo dnf install python3-virtualenv -y
+         python -m venv .venv
+         find ".venv" -type f -exec sed -i -e 's/\r$//' -e "s|/home/runner/work/Applio/Applio|$(pwd)|g" -e "s|/.venv/bin/python|/.venv/bin/$(basename $(which python))|g" {} + 
+         ```
       ### Run Applio
       1. Run:
          ```sh

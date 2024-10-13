@@ -4,6 +4,7 @@ import "../styles/globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { ToastProvider } from "@/components/models/use-toast";
+import GoogleAnalytics from "@/components/stats/google";
 
 const inter = Syne({ subsets: ["latin"] });
 
@@ -34,6 +35,9 @@ export default function RootLayout({
 				</ToastProvider>
 				<Footer />
 			</body>
+			{process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS ? (
+				<GoogleAnalytics ga_id={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS} />
+			) : null}
 		</html>
 	);
 }

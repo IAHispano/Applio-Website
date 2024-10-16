@@ -42,8 +42,8 @@ Welcome to the Applio websites official monorepo! This README outlines the rules
    - Use Turborepo to run tasks across projects efficiently.
    - Common tasks include:
      - `pnpm run build` to build all projects.
-     - `pnpm run lint` to lint all projects.
-     - `pnpm run test` to test all projects.
+     - `pnpm run dev` to start all projects in development mode.
+     - `pnpm run biome:format` to format all code.
 
 2. **Project-specific Commands**
    - You can run tasks for specific projects by using the project identifier:
@@ -72,7 +72,7 @@ Welcome to the Applio websites official monorepo! This README outlines the rules
      ```
 
 4. **Making Changes**
-   - Make your changes in the appropriate project directory (`apps/applio-docs`, `apps/applio-org`, `apps/applio-tv`).
+   - Make your changes in the appropriate project directory (`apps/applio-docs`, `apps/applio-org`).
    - Commit your changes following the commit message guidelines.
 
 5. **Pushing Changes and Creating a PR**

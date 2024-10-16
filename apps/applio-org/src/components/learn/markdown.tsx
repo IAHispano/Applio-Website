@@ -93,7 +93,7 @@ export default function MarkdownForGuides({ content }: { content: string }) {
 				code: ({ node, children, ...props }) => (
 					<code
 						{...props}
-						className="select-all bg-white/80 text-black font-semibold text-sm rounded-lg py-0.5 px-2 m-1"
+						className="px-2 py-1 rounded bg-white/90 text-black text-sm font-medium select-all text-wrap"
 					>
 						{children}
 					</code>

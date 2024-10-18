@@ -2,6 +2,31 @@ import { Steps } from 'nextra/components'
 import { Cards } from 'nextra/components'
 import { Tabs } from 'nextra/components'
 
+# Download models
+
+<Steps>
+
+### Automatic Download
+
+To download a voice model, go to the **“download”** section and enter the link to the file. Now you can search for models from Applio by simply entering the character name to search in the **"Search Model"** section, then copy the model link or download it.
+
+Applio support links from the following platforms:
+
+- ✅ **Google Drive**
+- ✅ **Hugging Face**
+- ✅ **Discord**
+- ✅ **Applio Web**
+- ✅ **Yandex**
+- ✅ **Pixeldrain**
+- ✅ **Mediafire**
+- ❌ **Mega**
+ 
+### Manual Upload
+
+In the same download section, you can see a box to upload files, simply unzip your `.zip` file and drop file by file.
+</Steps>
+
+
 # Inferencing
 
 Inference is a **simple** process that you can do in **three easy steps**, where the program takes an input audio and transforms it into the voice it has been trained on. Replicating the vocal characteristics, intonation, and style of the original voice.
@@ -11,7 +36,7 @@ Inference is a **simple** process that you can do in **three easy steps**, where
 <Tabs items={['Single', 'Batch']} defaultIndex="0">
   <Tabs.Tab>
   <Steps>
-  ## Making a single Inference
+  ## Making a single inference
   ### Step 1: Select your model
 
 Simply select in the boxes the `.pth` and `.index` file of the downloaded/trained model. If not displayed refresh the model list.
@@ -28,7 +53,7 @@ now you are ready to perform your inference, just click convert and you will get
 - **if you have any error, check that the audio you upload *does not* contain special characters or spaces in its name**
 </Tabs.Tab>
   <Tabs.Tab> <Steps>
-   ## Making a Batch Inference
+   ## Making a batch inference
   ### Step 1: Place your audio files in a folder
 
 Copy and paste the path into the Input Folder, if you’d like, you can also specify the output path for the converted audios in the Output Folder.
@@ -91,30 +116,8 @@ Applio has an “advanced options” section which allows you to modify several 
    - **Delay:** you can set the Delay Seconds, Delay Feedback and the Delay Mix.
 </FAQBox>
 
-<Steps>
-## Download models
 
-### Automatic Download
-
-To download a voice model, go to the **“download”** section and enter the link to the file. Now you can search for models from Applio by simply entering the character name to search in the **"Search Model"** section, then copy the model link or download it.
-
-Applio support links from the following platforms:
-
-- ✅ **Google Drive**
-- ✅ **Hugging Face**
-- ✅ **Discord**
-- ✅ **Applio Web**
-- ✅ **Yandex**
-- ✅ **Pixeldrain**
-- ✅ **Mediafire**
-- ❌ **Mega**
- 
- ### Manual Upload
-
-In the same download section, you can see a box to upload files, simply unzip your `.zip` file and drop file by file.
-</Steps>
-
-<FAQBox title="FAQ about making inferences">
+<FAQBox title="Tips for making inferences">
 What should I do if my output audio sounds robotic?
 
 
@@ -124,3 +127,4 @@ What should I do if my output audio sounds robotic?
 - **The dataset of your model contained noise, you need to [clean the dataset](/guides/create-datasets/create-datasets).**
 - **Try advanced settings.**
 </FAQBox>
+

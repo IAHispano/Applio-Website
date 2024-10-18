@@ -92,7 +92,7 @@ export default function RvcProduct() {
 							href="https://docs.applio.org/getting-started/installation#download-applio-1"
 							className="md:px-8 text-center py-2 bg-neutral-600/30 hover:shadow-lg hover:shadow-neutral-600/30 slow border border-white/20 rounded-xl font-medium"
 						>
-							Download for MacOS/Linux
+							Download for macOS/Linux
 						</a>
 					</div>
 					<div className="flex flex-col text-center">

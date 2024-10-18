@@ -4,7 +4,6 @@ import { addPost } from "@/app/actions/guides/add-guide-action";
 import MarkdownForGuides from "@/components/learn/markdown";
 import tags from "@/components/learn/tags";
 import { supabase } from "@/utils/database";
-import { redirect } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function CreateGuide() {
@@ -19,31 +18,31 @@ export default function CreateGuide() {
 	useEffect(() => {
 		async function getUser() {
 			const { data, error } = await supabase.auth.getUser();
+			if (error) {
+				console.error("Error fetching user data:", error);
+				return window.location.href = "/login";
+			}
+	
 			if (data?.user) {
-				const userInfo = await supabase
+				const { data: userInfo } = await supabase
 					.from("profiles")
 					.select("full_name, writer")
 					.eq("auth_id", data.user.id)
 					.single();
-				if (userInfo) {
-					setUserID(userInfo.data?.full_name);
-					console.log(userInfo.data?.full_name);
-					if (userInfo.data?.writer === false) {
-						window.location.href = "/learn";
-					}
+	
+				if (!userInfo || userInfo.writer === false) {
+					window.location.href = "/learn";
 				} else {
-					window.location.href = "/login";
-				}
-				if (error) {
-					console.error("Error fetching user data:", error);
+					setUserID(userInfo.full_name);
 				}
 			} else {
-				redirect("/login");
+				window.location.href = "/login";
 			}
 		}
-
+	
 		getUser();
 	}, []);
+	
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

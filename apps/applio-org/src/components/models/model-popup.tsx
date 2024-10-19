@@ -116,7 +116,7 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 											href={`/@${data.author_username || "?"}`}
 											className="hover:underline text-white/80"
 										>
-											{data.author_username || "?"}
+											@{data.author_username || "?"}
 										</a>{" "}
 										in {data.server_name || "?"} ·{" "}
 										<span>
@@ -129,11 +129,13 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 												return t < 60
 													? `${t} minutes`
 													: t < 1440
-														? `${Math.floor(t / 60)}h`
-														: `${Math.floor(t / 1440)} days`;
-											})()}
+													? `${Math.floor(t / 60)}h`
+													: Math.floor(t / 1440) === 1
+													? `1 day`
+													: `${Math.floor(t / 1440)} days`;
+												})()}
 										</span>{" "}
-										ago.
+										ago
 									</p>
 								</div>
 								<OptionsModelMenu id={data.id} handleClose={handleClose} />

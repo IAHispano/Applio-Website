@@ -20,16 +20,16 @@ export default function CreateGuide() {
 			const { data, error } = await supabase.auth.getUser();
 			if (error) {
 				console.error("Error fetching user data:", error);
-				return window.location.href = "/login";
+				return (window.location.href = "/login");
 			}
-	
+
 			if (data?.user) {
 				const { data: userInfo } = await supabase
 					.from("profiles")
 					.select("full_name, writer")
 					.eq("auth_id", data.user.id)
 					.single();
-	
+
 				if (!userInfo || userInfo.writer === false) {
 					window.location.href = "/learn";
 				} else {
@@ -39,10 +39,9 @@ export default function CreateGuide() {
 				window.location.href = "/login";
 			}
 		}
-	
+
 		getUser();
 	}, []);
-	
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();

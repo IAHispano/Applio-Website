@@ -216,152 +216,153 @@ export default function DiscoverModels() {
 	return (
 		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen overflow-hidden">
 			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
-			
-				<section className="my-12">
-					{data && (
-						<InfiniteScroll
-							dataLength={data.length}
-							hasMore={hasMore}
-							next={loadmore}
-							loader={
-								<h1 className="text-white/80 my-14 md:text-xl text-center">
-									Loading...
-								</h1>
-							}
-						>
-							<section className="flex flex-col w-full ">
-								<h1 className="text-4xl font-semibold mt-12 mb-6">
-									Explore{" "}
-									{count ? (
-										<NumberTicker value={count} className="font-bold text-5xl" />
-									) : (
-										<span className="font-bold text-5xl">26,000</span>
-									)}{" "}
-									voice models
-								</h1>
-									
-							
-								<div className="flex gap-2 w-full lg:min-w-[100svh] relative">
-									<input
-										type="text"
-										className={`p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "rounded-xl"}`}
-										placeholder="Write here to search..."
-										onChange={(e) => {
-											setSearchInput(e.target.value);
-											setLoading(true);
-										}}
-										value={searchInput}
-									/>
-									{searchInput && (
-										<button
-											type="button"
-											className="p-2 rounded-xl absolute right-14  bottom-3"
-											onClick={() => setSearchInput("")}
-										>
-											<svg
-												aria-hidden="true"
-												width="16"
-												height="16"
-												viewBox="0 0 16 16"
-												fill="none"
-												xmlns="http://www.w3.org/2000/svg"
-											>
-												<path
-													d="M2.48535 13.5149L13.5151 2.48513"
-													stroke="#E0E0E0"
-													strokeWidth="1.5"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-												/>
-												<path
-													d="M13.5156 13.5149L2.48586 2.48513"
-													stroke="#E0E0E0"
-													strokeWidth="1.5"
-													strokeLinecap="round"
-													strokeLinejoin="round"
-												/>
-											</svg>
-										</button>
-									)}
+
+			<section className="my-12">
+				{data && (
+					<InfiniteScroll
+						dataLength={data.length}
+						hasMore={hasMore}
+						next={loadmore}
+						loader={
+							<h1 className="text-white/80 my-14 md:text-xl text-center">
+								Loading...
+							</h1>
+						}
+					>
+						<section className="flex flex-col w-full ">
+							<h1 className="text-4xl font-semibold mt-12 mb-6">
+								Explore{" "}
+								{count ? (
+									<NumberTicker value={count} className="font-bold text-5xl" />
+								) : (
+									<span className="font-bold text-5xl">26,000</span>
+								)}{" "}
+								voice models
+							</h1>
+
+							<div className="flex gap-2 w-full lg:min-w-[100svh] relative">
+								<input
+									type="text"
+									className={`p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "rounded-xl"}`}
+									placeholder="Write here to search..."
+									onChange={(e) => {
+										setSearchInput(e.target.value);
+										setLoading(true);
+									}}
+									value={searchInput}
+								/>
+								{searchInput && (
 									<button
-										className="p-2 rounded-xl absolute right-5 hover:bg-white/10 bottom-3"
-										onClick={openSettings}
 										type="button"
+										className="p-2 rounded-xl absolute right-14  bottom-3"
+										onClick={() => setSearchInput("")}
 									>
 										<svg
-											aria-label="Settings"
-											role="img"
-											xmlns="http://www.w3.org/2000/svg"
+											aria-hidden="true"
 											width="16"
 											height="16"
 											viewBox="0 0 16 16"
 											fill="none"
+											xmlns="http://www.w3.org/2000/svg"
 										>
 											<path
-												d="M1.74805 5.31714H3.5207M14.2527 5.31714H9.84492"
+												d="M2.48535 13.5149L13.5151 2.48513"
 												stroke="#E0E0E0"
 												strokeWidth="1.5"
 												strokeLinecap="round"
 												strokeLinejoin="round"
 											/>
 											<path
-												d="M1.74805 10.6492L6.29953 10.6492M14.2527 10.6492L12.5758 10.6492"
+												d="M13.5156 13.5149L2.48586 2.48513"
 												stroke="#E0E0E0"
 												strokeWidth="1.5"
 												strokeLinecap="round"
-											/>
-											<ellipse
-												cx="6.7317"
-												cy="5.35084"
-												rx="1.52467"
-												ry="1.52467"
-												stroke="#E0E0E0"
-												strokeWidth="1.5"
-											/>
-											<ellipse
-												cx="9.36549"
-												cy="10.6492"
-												rx="1.52467"
-												ry="1.52467"
-												stroke="#E0E0E0"
-												strokeWidth="1.5"
+												strokeLinejoin="round"
 											/>
 										</svg>
 									</button>
-								</div>
-								{showSettings && (
-									<div className="h-fit border bg-neutral-800/20 border-white/10 rounded-b-xl p-4 mx-1">
-										<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
-											<div className="w-fit">
-												<p className="px-1">Date</p>
-												<select
-													className="w-fit bg-neutral-600/40 rounded-lg text-sm p-2 focus:outline-none my-2"
-													onChange={(e) => setDate(e.target.value)}
-												>
-													<option className="bg-neutral-700" value="latest">
-														Latest
-													</option>
-													<option className="bg-neutral-700" value="oldest">
-														Oldest
-													</option>
-												</select>
-											</div>
+								)}
+								<button
+									className="p-2 rounded-xl absolute right-5 hover:bg-white/10 bottom-3"
+									onClick={openSettings}
+									type="button"
+								>
+									<svg
+										aria-label="Settings"
+										role="img"
+										xmlns="http://www.w3.org/2000/svg"
+										width="16"
+										height="16"
+										viewBox="0 0 16 16"
+										fill="none"
+									>
+										<path
+											d="M1.74805 5.31714H3.5207M14.2527 5.31714H9.84492"
+											stroke="#E0E0E0"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+											strokeLinejoin="round"
+										/>
+										<path
+											d="M1.74805 10.6492L6.29953 10.6492M14.2527 10.6492L12.5758 10.6492"
+											stroke="#E0E0E0"
+											strokeWidth="1.5"
+											strokeLinecap="round"
+										/>
+										<ellipse
+											cx="6.7317"
+											cy="5.35084"
+											rx="1.52467"
+											ry="1.52467"
+											stroke="#E0E0E0"
+											strokeWidth="1.5"
+										/>
+										<ellipse
+											cx="9.36549"
+											cy="10.6492"
+											rx="1.52467"
+											ry="1.52467"
+											stroke="#E0E0E0"
+											strokeWidth="1.5"
+										/>
+									</svg>
+								</button>
+							</div>
+							{showSettings && (
+								<div className="h-fit border bg-neutral-800/20 border-white/10 rounded-b-xl p-4 mx-1">
+									<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
+										<div className="w-fit">
+											<p className="px-1">Date</p>
+											<select
+												className="w-fit bg-neutral-600/40 rounded-lg text-sm p-2 focus:outline-none my-2"
+												onChange={(e) => setDate(e.target.value)}
+											>
+												<option className="bg-neutral-700" value="latest">
+													Latest
+												</option>
+												<option className="bg-neutral-700" value="oldest">
+													Oldest
+												</option>
+											</select>
 										</div>
 									</div>
-								)}
-								<h2 className="text-xs p-2 mt-4 font-bold uppercase">Filter by tags</h2>
-								<article className="grid grid-cols-8 max-md:grid-cols-2 gap-2 px-2">
-									{tags.map((tag, index) => (
-										<button
+								</div>
+							)}
+							<h2 className="text-xs p-2 mt-4 font-bold uppercase">
+								Filter by tags
+							</h2>
+							<article className="grid grid-cols-8 max-md:grid-cols-2 gap-2 px-2">
+								{tags.map((tag, index) => (
+									<button
 										type="button"
 										key={tag}
 										onClick={() => handleTagClick(tag)}
 										className={`cursor-pointer w-full px-2 py-1.5 text-sm ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
-										>
+									>
 										{tag}
-										</button>
-									))}
-									</article>
+									</button>
+								))}
+							</article>
 							{data && data.length === 0 && !loading && (
 								<h1 className="text-white/80 my-14 md:text-xl text-center">
 									We have not found any voice models
@@ -388,7 +389,7 @@ export default function DiscoverModels() {
 									</p>
 								)}
 							</div>
-							
+
 							<article className="flex flex-col justify-center items-center mx-auto w-full gap-4 my-10">
 								{data?.map((model: any, index: number) => (
 									<div

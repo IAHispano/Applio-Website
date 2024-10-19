@@ -48,13 +48,17 @@ const TestimonialsShowcase = () => {
 					<p className="flex gap-1 items-center text-4xl font-bold">
 						<NumberTicker value={50000} className="text-4xl font-bold" />+
 					</p>
-					<h2 className="text-xs p-2 font-bold uppercase text-white/60">downloads</h2>
+					<h2 className="text-xs p-2 font-bold uppercase text-white/60">
+						downloads
+					</h2>
 				</div>
 				<div className="flex flex-col">
 					<p className="flex gap-1 items-center text-4xl font-bold">
 						<NumberTicker value={950000} className="text-4xl font-bold" />+
 					</p>
-					<h2 className="text-xs p-2 font-bold uppercase text-white/60">users</h2>
+					<h2 className="text-xs p-2 font-bold uppercase text-white/60">
+						users
+					</h2>
 				</div>
 			</div>
 		</div>

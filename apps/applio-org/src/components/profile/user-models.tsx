@@ -104,11 +104,11 @@ export default function UserModels({ data }: { data: any[] }) {
 												return t < 60
 													? `${t} minutes`
 													: t < 1440
-													? `${Math.floor(t / 60)}h`
-													: Math.floor(t / 1440) === 1
-													? `1 day`
-													: `${Math.floor(t / 1440)} days`;
-												})()} ago
+														? `${Math.floor(t / 60)}h`
+														: Math.floor(t / 1440) === 1
+															? `1 day`
+															: `${Math.floor(t / 1440)} days`;
+											})()} ago
 										</p>
 									</div>
 								</div>

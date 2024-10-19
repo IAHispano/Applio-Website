@@ -40,7 +40,11 @@ export default function MarkdownForGuides({ content }: { content: string }) {
 						return <Tip>{tipContent}</Tip>;
 					}
 
-					return <p {...props} className="mb-4">{children}</p>;
+					return (
+						<p {...props} className="mb-4">
+							{children}
+						</p>
+					);
 				},
 				img: ({ node, alt, src, ...props }) => (
 					<div className="w-full h-full overflow-hidden rounded-2xl">

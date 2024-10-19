@@ -220,5 +220,4 @@ export default function ApplioAI({
 			)}
 		</div>
 	);
-	}
-	
+}

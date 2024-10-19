@@ -61,7 +61,8 @@ export default function MoreModels({
 			{data && data.length > 0 && (
 				<>
 					<p className="max-w-sm truncate">
-						More models like <span className="font-semibold text-white">{model_name}...</span>
+						More models like{" "}
+						<span className="font-semibold text-white">{model_name}...</span>
 					</p>
 					<div className="grid md:grid-cols-3 mt-2 w-full gap-4">
 						{data.map((model: Model) => (

@@ -129,11 +129,11 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 												return t < 60
 													? `${t} minutes`
 													: t < 1440
-													? `${Math.floor(t / 60)}h`
-													: Math.floor(t / 1440) === 1
-													? `1 day`
-													: `${Math.floor(t / 1440)} days`;
-												})()}
+														? `${Math.floor(t / 60)}h`
+														: Math.floor(t / 1440) === 1
+															? `1 day`
+															: `${Math.floor(t / 1440)} days`;
+											})()}
 										</span>{" "}
 										ago
 									</p>

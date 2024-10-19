@@ -18,7 +18,7 @@ export default function Home() {
 					AI Voice Cloning Technologies
 				</h2>
 				<a
-					className="bg-white rounded-xl mt-8 text-black px-8 py-1 font-semibold shadow-lg shadow-white/40 hover:shadow-white/80 hover:shadow-xl slow cursor-pointer z-50"
+					className="border-white/10 border mt-8 bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1 xl:w-32 items-center justify-center text-black hover:bg-white/80 shadow-md shadow-white/40 slow font-medium"
 					href="/products/applio"
 				>
 					See more

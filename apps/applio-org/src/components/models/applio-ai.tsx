@@ -198,17 +198,19 @@ export default function ApplioAI({
 				<div>
 					<button
 						type="button"
-						className="rounded-xl px-3 py-1 text-sm font-semibold bg-green-500/30 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2 shadow-xl shadow-green-300/10"
+						className="rounded-xl px-3 py-1 text-sm font-semibold border border-white/10 bg-white/10 backdrop-filter backdrop-blur-3xl relative z-10 flex items-center gap-2 shadow-white"
 					>
-						Applio AI
-						<span className="bg-green-400/50 text-xs px-4 py-0.5 rounded-md font-medium">
-							BETA
-						</span>
+						Description
 					</button>
 					{!loading && data ? (
-						<p className="read-font text-sm text-neutral-300 p-2">
-							{data.description}
-						</p>
+						<>
+							<p className="read-font text-sm text-neutral-300 p-2">
+								{data.description}
+							</p>
+							<p className="text-xs text-neutral-400 italic p-2 mt-1">
+								AI-generated description may be incorrect
+							</p>
+						</>
 					) : (
 						<div className="flex justify-start m-auto items-center w-full">
 							<LoadingIndicator />
@@ -218,4 +220,5 @@ export default function ApplioAI({
 			)}
 		</div>
 	);
-}
+	}
+	

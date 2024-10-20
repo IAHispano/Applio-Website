@@ -9,26 +9,6 @@ export default function Avatar() {
 	const [loading, setLoading] = useState(true);
 	const [isOpen, setIsOpen] = useState(false);
 
-	async function getUser() {
-		const { data, error } = await supabase.auth.getUser();
-		if (data?.user) {
-			const userInfo = await supabase
-				.from("profiles")
-				.select("*")
-				.eq("auth_id", data.user.id)
-				.single();
-			setData(userInfo.data);
-			setLoading(false);
-		} else {
-			setData(null);
-		}
-
-		if (error) {
-			console.log(error);
-			setLoading(false);
-		}
-	}
-
 	async function logout() {
 		setIsOpen(false);
 		const { error } = await supabase.auth.signOut();
@@ -41,6 +21,11 @@ export default function Avatar() {
 
 	useEffect(() => {
 		const getUser = async () => {
+			const storedAvatar = localStorage.getItem('avatar_url');
+			if (storedAvatar) {
+				setData({ ...data, avatar_url: storedAvatar });
+				setLoading(false);
+			} else {
 			const { data } = await supabase.auth.getUser();
 			if (data?.user) {
 				const userInfo = await supabase
@@ -49,11 +34,13 @@ export default function Avatar() {
 					.eq("auth_id", data.user.id)
 					.single();
 				setData(userInfo.data);
+				localStorage.setItem('avatar_url', userInfo.data?.avatar_url || '/logo_no_bg.png');
 				setLoading(false);
 			} else {
 				setData(null);
 				setLoading(false);
 			}
+		}
 		};
 
 		getUser();

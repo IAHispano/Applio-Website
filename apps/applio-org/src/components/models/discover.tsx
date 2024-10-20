@@ -8,6 +8,7 @@ import ModelCard from "./model-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useRouter, useSearchParams } from "next/navigation";
 import ModelPopup from "./model-popup";
+import Spinner from "@/components/layout/spinner";
 
 export default function DiscoverModels() {
 	const searchParams = useSearchParams();
@@ -222,11 +223,7 @@ export default function DiscoverModels() {
 						dataLength={data.length}
 						hasMore={hasMore}
 						next={loadmore}
-						loader={
-							<h1 className="text-white/80 my-14 md:text-xl text-center">
-								Loading...
-							</h1>
-						}
+						loader="Loading..."
 					>
 						<section className="flex flex-col w-full ">
 							<h1 className="text-4xl font-semibold mt-12 mb-6">
@@ -367,11 +364,7 @@ export default function DiscoverModels() {
 									We have not found any voice models
 								</h1>
 							)}
-							{data && data.length === 0 && loading && (
-								<h1 className="text-white/80 my-14 md:text-xl text-center">
-									Loading...
-								</h1>
-							)}
+
 							<div className="justify-between flex">
 								{data && !loading && searchInput && (
 									<p className="text-sm text-white/40 px-5 pt-2">

@@ -3,6 +3,7 @@
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 import { useToast } from "../models/use-toast";
+import Spinner from "@/components/layout/spinner";
 
 export default function SettingsUI() {
 	const [data, setData] = useState<any>(null);
@@ -55,7 +56,7 @@ export default function SettingsUI() {
 
 	return (
 		<section className="flex flex-col justify-start items-start mx-auto max-w-5xl w-full">
-			{loading && <p className="text-xs w-full text-center">Loading...</p>}
+			{loading && <Spinner />}
 			{!loading && data && (
 				<>
 					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold max-md:max-w-[100%] break-words">

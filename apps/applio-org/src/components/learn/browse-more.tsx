@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Guide } from "@/types/guidesTypes";
 import tags from "./tags";
+import Spinner from "@/components/layout/spinner";
 
 export default function DiscoverGuides() {
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -75,11 +76,7 @@ export default function DiscoverGuides() {
 						dataLength={data.length}
 						hasMore={hasMore}
 						next={loadmore}
-						loader={
-							<h1 className="text-white/80 my-6 text-xs text-center">
-								Loading...
-							</h1>
-						}
+						loader="Loading..."
 					>
 						<section className="flex flex-col xl:min-w-[100svh]">
 							<h2 className="text-2xl mb-4 font-bold">Browse more</h2>
@@ -146,11 +143,7 @@ export default function DiscoverGuides() {
 									We have not found any guides
 								</h1>
 							)}
-							{data && data.length === 0 && loading && (
-								<h1 className="text-white/80 my-14 md:text-xl text-center">
-									Loading...
-								</h1>
-							)}
+
 							<article className="grid md:grid-cols-3 md:grid-rows-3 gap-4 w-full h-full my-10">
 								{data.map((model: any, index: number) => (
 									<a

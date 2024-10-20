@@ -49,31 +49,31 @@ function SettingsContent() {
 
 	return (
 		<main className="w-full min-h-screen max-w-5xl flex flex-col items-center mx-auto p-8 mt-16">
-			<div className="w-full flex max-md:flex-col justify-start items-center gap-4 mb-12 bg-neutral-800 rounded-lg p-2">
+			<div className="w-full flex max-md:flex-col justify-start items-center gap-4 mb-12 rounded-lg p-2 bg-neutral-700/20">
 				<button
 					type="button"
-					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 1 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
+					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 1 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(1)}
 				>
 					Profile
 				</button>
 				<button
 					type="button"
-					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 2 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
+					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 2 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(2)}
 				>
 					Models
 				</button>
 				<button
 					type="button"
-					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 3 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
+					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 3 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(3)}
 				>
 					Developer
 				</button>
 				<button
 					type="button"
-					className={`rounded-full border max-md:w-full border-white/20 px-4 py-1 ${page === 4 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
+					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 4 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(4)}
 				>
 					Premium

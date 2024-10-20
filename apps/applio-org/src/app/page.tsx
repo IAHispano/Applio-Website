@@ -18,12 +18,12 @@ export default function Home() {
 					AI Voice Cloning Technologies
 				</h2>
 				<a
-					className="bg-white rounded-xl mt-8 text-black px-8 py-1 font-semibold shadow-lg shadow-white/40 hover:shadow-white/80 hover:shadow-xl slow cursor-pointer z-50"
+					className="border-white/10 border mt-8 bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1 xl:w-32 items-center justify-center text-black hover:bg-white/80 shadow-md shadow-white/40 slow font-medium"
 					href="/products/applio"
 				>
 					See more
 				</a>
-				<div className="mt-[40svh] z-50 px-12 ">
+				<div className="mt-[32svh] z-50 px-12 ">
 					<div className="px-8 rounded-2xl bg-white/10 w-fit text-white border border-white/20">
 						Features
 					</div>
@@ -34,13 +34,13 @@ export default function Home() {
 				</div>
 
 				<div className="w-full bg-gradient-to-b from-transparent via-white/[0.1] to-transparent">
-					<div className="md:mt-[25svh] max-md:mt-[10svh] mb-4 py-8 md:h-[90svh] max-md:p-4 px-12">
+					<div className="md:mt-[20svh] max-md:mt-[10svh] mb-4 py-8 md:h-[90svh] max-md:p-4 px-12">
 						<h1 className="text-4xl font-bold">Testimonials</h1>
 						<p className="font-light text-white/90 mt-2">
 							See what users are saying about Applio.
 						</p>
 						<TestimonialsShowcase />
-						<div className="mt-12">
+						<div className="mt-8">
 							<a
 								className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow"
 								href="https://discord.gg/iahispano"

@@ -4,6 +4,7 @@ import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 import Card from "./card";
 import { Guide } from "@/types/guidesTypes";
+import Spinner from "@/components/layout/spinner";
 
 export default function MoreLiked() {
 	const [data, setData] = useState<Guide[] | null>(null);
@@ -27,8 +28,12 @@ export default function MoreLiked() {
 	return (
 		<section className="w-full h-fit">
 			<div className="flex flex-col gap-4">
-				<h2 className="text-3xl font-medium">More liked</h2>
-				{!data && <p className="text-white/60 text-left">Loading...</p>}
+				<h2 className="text-2xl font-bold">Featured</h2>
+				{!data && (
+					<div className="flex justify-center items-center">
+						<Spinner />
+					</div>
+				)}
 				{data && data.map((guide: Guide) => <Card key={guide.id} {...guide} />)}
 			</div>
 		</section>

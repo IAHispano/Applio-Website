@@ -9,6 +9,7 @@ import { Model } from "@/types/modelsTypes";
 import UserModels from "./user-models";
 import { Auth } from "@/types/authTypes";
 import { motion } from "framer-motion";
+import Spinner from "@/components/layout/spinner";
 
 export default function UserCard({ id }: { id: string }) {
 	const [data, setData] = useState<User | null>();
@@ -227,7 +228,7 @@ export default function UserCard({ id }: { id: string }) {
 			)}
 			{!data && loading && (
 				<div className="justify-center items-center flex mx-auto mt-36 z-30 text-white/80">
-					<h1 className="text-xl">Loading...</h1>
+					<Spinner />
 				</div>
 			)}
 			{data && !loading && (

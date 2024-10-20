@@ -8,10 +8,10 @@ import ModelCard from "./model-card";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useRouter, useSearchParams } from "next/navigation";
 import ModelPopup from "./model-popup";
+import Spinner from "@/components/layout/spinner";
 
 export default function DiscoverModels() {
 	const searchParams = useSearchParams();
-	const router = useRouter();
 
 	const [count, setCount] = useState<number>(0);
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -216,44 +216,30 @@ export default function DiscoverModels() {
 	return (
 		<main className="w-full p-6 md:max-w-5xl min-w-full md:flex justify-center mx-auto min-h-screen overflow-hidden">
 			{showPopup && <ModelPopup id={popupId} handleClose={handleClosePopup} />}
+
 			<section className="my-12">
 				{data && (
 					<InfiniteScroll
 						dataLength={data.length}
 						hasMore={hasMore}
 						next={loadmore}
-						loader={
-							<h1 className="text-white/80 my-14 md:text-xl text-center">
-								Loading...
-							</h1>
-						}
+						loader="Loading..."
 					>
-						<section className="flex flex-col w-full">
-							<h1 className="text-5xl font-semibold mb-12 text-center">
-								Discover{" "}
+						<section className="flex flex-col w-full ">
+							<h1 className="text-4xl font-semibold mt-12 mb-6">
+								Explore{" "}
 								{count ? (
-									<NumberTicker value={count} className="font-bold text-6xl" />
+									<NumberTicker value={count} className="font-bold text-5xl" />
 								) : (
-									<span className="font-bold text-6xl">23k</span>
+									<span className="font-bold text-5xl">26,000</span>
 								)}{" "}
-								voices
+								voice models
 							</h1>
-							<article className="grid grid-cols-4 max-md:grid-cols-2 gap-4 px-4">
-								{tags.map((tag, index) => (
-									<button
-										type="button"
-										key={tag}
-										onClick={() => handleTagClick(tag)}
-										className={`slow hover:shadow-lg hover:shadow-white/10 cursor-pointer w-full px-4 py-1.5 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
-									>
-										{tag}
-									</button>
-								))}
-							</article>
-							<div className="flex gap-2 mt-8 w-full lg:min-w-[100svh] relative">
+
+							<div className="flex gap-2 w-full lg:min-w-[100svh] relative">
 								<input
 									type="text"
-									className={`p-4 mt-8 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 slow mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "shadow-white/[.03] shadow-lg rounded-xl"}`}
+									className={`p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 w-full pr-24 mx-1 ${showSettings ? "rounded-t-xl border-b-transparent" : "rounded-xl"}`}
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);
@@ -264,7 +250,7 @@ export default function DiscoverModels() {
 								{searchInput && (
 									<button
 										type="button"
-										className="p-2 rounded-xl absolute right-14 hover:bg-white/10 bottom-3 slow"
+										className="p-2 rounded-xl absolute right-14  bottom-3"
 										onClick={() => setSearchInput("")}
 									>
 										<svg
@@ -339,7 +325,7 @@ export default function DiscoverModels() {
 								</button>
 							</div>
 							{showSettings && (
-								<div className="h-fit border bg-neutral-800/20  border-white/10 rounded-b-xl p-4 mx-1">
+								<div className="h-fit border bg-neutral-800/20 border-white/10 rounded-b-xl p-4 mx-1">
 									<div className="flex max-md:flex-col gap-4 mx-auto justify-left w-full h-full text-neutral-300">
 										<div className="w-fit">
 											<p className="px-1">Date</p>
@@ -358,16 +344,27 @@ export default function DiscoverModels() {
 									</div>
 								</div>
 							)}
+							<h2 className="text-xs p-2 mt-4 font-bold uppercase">
+								Filter by tags
+							</h2>
+							<article className="grid grid-cols-8 max-md:grid-cols-2 gap-2 px-2">
+								{tags.map((tag, index) => (
+									<button
+										type="button"
+										key={tag}
+										onClick={() => handleTagClick(tag)}
+										className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
+									>
+										{tag}
+									</button>
+								))}
+							</article>
 							{data && data.length === 0 && !loading && (
 								<h1 className="text-white/80 my-14 md:text-xl text-center">
 									We have not found any voice models
 								</h1>
 							)}
-							{data && data.length === 0 && loading && (
-								<h1 className="text-white/80 my-14 md:text-xl text-center">
-									Loading...
-								</h1>
-							)}
+
 							<div className="justify-between flex">
 								{data && !loading && searchInput && (
 									<p className="text-sm text-white/40 px-5 pt-2">
@@ -384,6 +381,7 @@ export default function DiscoverModels() {
 									</p>
 								)}
 							</div>
+
 							<article className="flex flex-col justify-center items-center mx-auto w-full gap-4 my-10">
 								{data?.map((model: any, index: number) => (
 									<div

@@ -2,6 +2,7 @@
 
 import MarkdownForGuides from "@/components/learn/markdown";
 import { useEffect, useState } from "react";
+import Spinner from "@/components/layout/spinner";
 
 export default function Changelog() {
 	const [data, setData] = useState<any[]>([]);
@@ -26,7 +27,7 @@ export default function Changelog() {
 				<h2 className="text-neutral-200">Check out the new Applio updates.</h2>
 			</div>
 			<div className="flex flex-col gap-4">
-				{loading && <p className="text-xs text-center">Loading...</p>}
+				{loading && <Spinner />}
 				{!loading &&
 					Array.isArray(data) &&
 					data.map((tag) => (

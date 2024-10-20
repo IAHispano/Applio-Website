@@ -1,6 +1,7 @@
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 import NumberTicker from "../magicui/number-ticker";
+import Spinner from "@/components/layout/spinner";
 
 export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 	const [data, setData] = useState<any>();
@@ -41,7 +42,7 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 
 	return (
 		<section className="grid gap-4 w-full h-full">
-			{loading && <p className="my-40 text-xs text-center">Loading...</p>}
+			{loading && <Spinner />}
 			{!loading && (
 				<section className="gap-4 flex flex-col">
 					{data?.map(

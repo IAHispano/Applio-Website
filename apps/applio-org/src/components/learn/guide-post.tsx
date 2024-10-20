@@ -58,16 +58,23 @@ export default function GuidePost({ id }: Readonly<{ id: string }>) {
 									"radial-gradient(100% 30% at 50% 0%, rgb(255, 255, 255), transparent)",
 							}}
 						/>
-						<main className="w-full py-14 flex flex-col min-h-screen overflow-x-hidden relative">
-							<div className="flex flex-col justify-start items-center text-left">
-								<h1 className="text-4xl font-bold max-md:max-w-xs md:max-w-6xl text-wrap text-center truncate">
+						<main className="w-full mt-28 flex flex-col min-h-screen overflow-x-hidden relative">
+							<div className="flex flex-col justify-start items-center">
+								<h1 className="text-4xl font-bold max-md:max-w-xs md:max-w-6xl text-wrap truncate">
 									{item.title}
 								</h1>
 								<h2 className="text-xl pl-0.5 mt-2 text-white/80">
-									by {item.created_by} at {formatDate(item.created_at)}.
+									by{" "}
+									<a
+										href={`/@${item.created_by || "?"}`}
+										className="text-white hover:underline"
+									>
+										@{item.created_by}
+									</a>{" "}
+									at {formatDate(item.created_at)}
 								</h2>
 							</div>
-							<div className="mt-28">
+							<div className="mt-20">
 								<MarkdownForGuides content={item.content} />
 							</div>
 						</main>

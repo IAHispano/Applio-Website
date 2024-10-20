@@ -28,7 +28,7 @@ export async function generateMetadata(params: {
 			);
 
 			return {
-				title: `${data.name} in Applio.`,
+				title: `${data.name} - Applio`,
 				description: `See this model by ${data.author_username} at ${formattedDate} in Applio.`,
 				openGraph: {
 					title: data.name,

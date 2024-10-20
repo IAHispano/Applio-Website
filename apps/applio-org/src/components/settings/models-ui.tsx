@@ -2,6 +2,7 @@
 
 import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
+import Spinner from "@/components/layout/spinner";
 
 interface Model {
 	id: string;
@@ -104,7 +105,7 @@ export default function ModelsUI() {
 		}
 	}
 
-	if (loading) return <p className="text-xs text-neutral-400">Loading...</p>;
+	if (loading) return <Spinner />;
 
 	return (
 		<section className="flex flex-col items-start justify-start w-full">

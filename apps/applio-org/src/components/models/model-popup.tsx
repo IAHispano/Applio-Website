@@ -110,11 +110,11 @@ const ModelPopup = ({ id, handleClose }: ModelPopupProps) => {
 									<h1 className="text-3xl max-w-2xl max-md:text-left max-md:mt-4 max-md:text-pretty  font-semibold">
 										{data.name}
 									</h1>
-									<p className="text-white/70 max-md:mt-2 max-md:text-left pl-0.5 mt-1 mb-2 read-font text-sm">
+									<p className="text-sm pl-0.5 mb-2 text-white/80">
 										by{" "}
 										<a
 											href={`/@${data.author_username || "?"}`}
-											className="hover:underline text-white/80"
+											className="text-white hover:underline"
 										>
 											@{data.author_username || "?"}
 										</a>{" "}

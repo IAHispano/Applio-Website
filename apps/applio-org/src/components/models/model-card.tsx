@@ -18,9 +18,13 @@ export default function ModelCard({
 					<h1 className="text-xl max-w-5xl max-md:text-wrap truncate text-left font-semibold">
 						{data.name}
 					</h1>
-					<h2 className="text-white/80 text-sm text-left">
-						by @{data.author_username} in {data.server_name}
-					</h2>
+					<p className="text-sm text-left mb-2 text-white/80">
+						by{" "}
+						<a href={`/@${data.author_username || "?"}`} className="text-white">
+							@{data.author_username || "?"}
+						</a>{" "}
+						in {data.server_name || "?"}
+					</p>
 					<p className="text-white/80 text-sm mt-2 text-left italic">
 						{data.description}
 					</p>

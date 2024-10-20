@@ -70,7 +70,7 @@ export default function AppProduct() {
 					src="https://i.imgur.com/lpROW4u.png"
 					alt="app-screenshot"
 				/>
-				<h3 className="mt-2 text-neutral-300 italic">
+				<h3 className="mt-2 text-neutral-300 italic text-xs">
 					*Pre-release images. Final product may vary.
 				</h3>
 			</div>
@@ -83,8 +83,8 @@ export default function AppProduct() {
 				<div className="mt-4 w-full flex items-center mx-auto">
 					<div className="grid md:grid-cols-3 md:grid-rows-2 gap-4 justify-center items-start m-auto">
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(0) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(0) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(0)}
 						>
@@ -98,8 +98,8 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(1) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(1) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(1)}
 						>
@@ -113,8 +113,8 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(2) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(2) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(2)}
 						>
@@ -128,8 +128,8 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(3) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(3) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(3)}
 						>
@@ -143,8 +143,8 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(4) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(4) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(4)}
 						>
@@ -158,8 +158,8 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/10 transition-all ${
-								clickedCards.includes(5) ? "bg-green-500" : ""
+							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
+								clickedCards.includes(5) ? "bg-green-500/50 hover:bg-green-500/50" : ""
 							}`}
 							onClick={() => handleCardClick(5)}
 						>
@@ -220,7 +220,7 @@ export default function AppProduct() {
 						</div>
 						<div className="flex flex-col mt-auto h-full justify-center max-md:mt-12">
 							<button
-								className="bg-white slow enabled:hover:shadow-lg enabled:hover:shadow-white disabled:opacity-40 text-black rounded-xl px-6 py-2 w-full max-w-md"
+								className="bg-white slow enabled:hover:shadow-lg disabled:bg-white/80 enabled:hover:shadow-white disabled:bg-opacity-40 text-black rounded-xl px-6 py-2 w-full max-w-md"
 								type="button"
 								disabled
 							>

@@ -98,26 +98,25 @@ export default function Avatar() {
 			{!loading && (
 				<header className="max-md:w-full relative">
 					{data ? (
-						<button
-							type="button"
-							className="flex backdrop-blur-xl backdrop-filter slow max-xl:w-full justify-start items-center m-auto w-full max-xl:p-1 rounded-xl border-white/20"
-							onClick={openDropdown}
-						>
-							<img
-								alt="Profile Avatar"
-								className="w-10 h-10 rounded-full z-50 border border-white/20 shadow-xl xl:shadow-white/20 backdrop-filter backdrop-blur-xl"
-								src={data.avatar_url || "/logo_no_bg.png"}
-								onError={(e) => {
-									const target = e.currentTarget as HTMLImageElement;
-									target.src = "/logo_no_bg.png";
-								}}
-							/>
-							<div className="flex flex-col pl-2">
-								<p className="xl:hidden max-w-[180px] truncate font-medium">
-									@{data?.full_name || "User"}
-								</p>
-							</div>
-						</button>
+					<button
+						type="button"
+						className="flex slow max-xl:w-full justify-start items-center m-auto w-full max-xl:p-1 rounded-xl border-white/20"
+						onClick={openDropdown}
+					>
+						<img
+							alt="Profile Avatar"
+							className="w-10 h-10 rounded-full z-50 border border-white/20 shadow-xl xl:shadow-white/20 backdrop-filter backdrop-blur-xl"
+							src={data.avatar_url || "/logo_no_bg.png"}
+							onError={(e) => {
+								const target = e.currentTarget as HTMLImageElement;
+								target.src = "/logo_no_bg.png";
+							}}
+						/>
+						<div className="flex flex-col pl-2 ml-1">
+							<p className="text-md">@{data.full_name}</p>
+							
+						</div>
+					</button>
 					) : (
 						<a
 							className="w-full max-xl:mt-4 border-white/10 border bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1 xl:w-32 items-center justify-center text-neutral-300 hover:bg-white/80 slow font-medium"
@@ -134,7 +133,7 @@ export default function Avatar() {
 					animate={{ opacity: 1, scale: 1 }}
 					exit={{ opacity: 0, scale: 0.95 }}
 					transition={{ duration: 0.2 }}
-					className="xl:absolute xl:mt-16 mt-4"
+					className="xl:absolute xl:mt-14 mt-2"
 				>
 					<div className="w-full xl:w-fit h-fit backdrop-filter backdrop-blur-3xl rounded-xl flex flex-col p-2 gap-1 text-white border border-white/20">
 						<div className="flex flex-col gap-2">

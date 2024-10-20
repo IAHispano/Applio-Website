@@ -27,7 +27,7 @@ export default function MoreLiked() {
 	return (
 		<section className="w-full h-fit">
 			<div className="flex flex-col gap-4">
-				<h2 className="text-3xl font-medium">More liked</h2>
+				<h2 className="text-2xl font-bold">Featured</h2>
 				{!data && <p className="text-white/60 text-left">Loading...</p>}
 				{data && data.map((guide: Guide) => <Card key={guide.id} {...guide} />)}
 			</div>

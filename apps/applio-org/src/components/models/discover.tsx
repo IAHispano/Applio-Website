@@ -11,7 +11,6 @@ import ModelPopup from "./model-popup";
 
 export default function DiscoverModels() {
 	const searchParams = useSearchParams();
-	const router = useRouter();
 
 	const [count, setCount] = useState<number>(0);
 	const [selectedTag, setSelectedTag] = useState<string | null>(null);
@@ -357,7 +356,7 @@ export default function DiscoverModels() {
 										type="button"
 										key={tag}
 										onClick={() => handleTagClick(tag)}
-										className={`cursor-pointer w-full px-2 py-1.5 text-sm ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
+										className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${tag === selectedTag ? "bg-white/20" : ""} hover:bg-white/20 rounded-xl border-white/10 border text-center select-none`}
 									>
 										{tag}
 									</button>

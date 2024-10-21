@@ -32,9 +32,9 @@ export default function AppProduct() {
 							"radial-gradient(ellipse 120% 80% at 50% 110%, #FFFFFF, transparent)",
 					}}
 				/>
-				<div className="absolute text-center md:text-[3svh]">
+				<div className="absolute text-center">
 					<h1 className="text-5xl font-bold">Applio App</h1>
-					<p className="text-sm text-white/80 mt-2">
+					<p className="text-sm text-white/80 mt-2 mb-4">
 						The easiest voice cloning tool, now in app.
 					</p>
 					<a

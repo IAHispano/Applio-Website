@@ -39,7 +39,7 @@ export default function AppProduct() {
 					</p>
 					<a
 						href="#join-beta"
-						className="text-sm px-6 py-2 bg-white text-black rounded-xl font-semibold"
+						className="text-sm px-6 py-2 bg-white text-black rounded-xl font-semibold cursor-pointer hover:bg-white/30 hover:text-white slow"
 					>
 						Join beta
 					</a>
@@ -214,15 +214,15 @@ export default function AppProduct() {
 								Join the beta
 							</h1>
 							<h2 className="text-neutral-200 text-sm max-md:text-center max-md:text-balance">
-								When the beta starts, you will be able to test the application
-								by clicking the button.
+								Access to the beta isn't available yet. Join our Discord server to stay updated and never miss an announcement!
 							</h2>
 						</div>
 						<div className="flex flex-col mt-auto h-full justify-center max-md:mt-12">
 							<button
-								className="bg-white slow enabled:hover:shadow-lg disabled:bg-white/80 enabled:hover:shadow-white disabled:bg-opacity-40 text-black rounded-xl px-6 py-2 w-full max-w-md"
+								className="bg-white slow enabled:hover:shadow-lg disabled:bg-white/30 enabled:hover:shadow-white disabled:bg-opacity-40 enabled:text-black disabled:text-white rounded-xl px-6 py-2 w-full max-w-md"
 								type="button"
 								disabled
+								
 							>
 								<p className="text-sm font-medium">Stay tuned!</p>
 							</button>

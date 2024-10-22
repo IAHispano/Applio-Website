@@ -9,16 +9,16 @@ export default function Home() {
 				<Background1 />
 			</div>
 			<section className="z-30 md:mt-96 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
-				<h1 className="md:text-6xl lg:max-w-5xl max-w-xl text-3xl font-bold leading-8 max-xl:px-12">
+				<h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl lg:max-w-5xl max-w-xl font-bold leading-tight sm:leading-snug md:leading-normal max-xl:px-12">
 					Dive into a world of endless possibilities fueled by advanced AI audio
 					technology
 				</h1>
-				<h2 className="read-font mt-6 text-white/80 max-w-lg mx-auto px-12">
+				<h2 className="mt-5 text-white/80 max-w-lg mx-auto px-12">
 					Pioneering Open-Source Ecosystem Unveiling the Latest Breakthroughs in
 					AI Voice Cloning Technologies
 				</h2>
 				<a
-					className="border-white/10 border mt-8 bg-white rounded-lg xl:rounded-xl flex px-4 max-xl:px-12 py-1 xl:w-32 items-center justify-center text-black hover:bg-white/80 shadow-md shadow-white/40 slow font-medium"
+					className="bg-white rounded-xl px-14 py-2 mt-5 text-black font-medium cursor-pointer hover:bg-white/80 slow"
 					href="/products/applio"
 				>
 					See more

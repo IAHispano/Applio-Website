@@ -51,7 +51,7 @@ export default function Navbar() {
 			}}
 			transition={{ duration: 0.3 }}
 		>
-			<div className="max-xl:hidden flex items- justify-center mx-auto h-16 bg-gradient-to-b from-[#110F0F] to-transparent backdrop-filter backdrop-blur-lg p-2 px-12">
+			<div className="max-xl:hidden flex justify-center mx-auto h-16 bg-gradient-to-b from-[#110F0F] to-transparent backdrop-filter backdrop-blur-lg p-2 px-12">
 				<div className="flex items-center justify-center mx-24">
 					<a
 						href="/"
@@ -98,22 +98,22 @@ export default function Navbar() {
 								</a>
 								{/* dropdown products */}
 								<div
-									className={`z-50 bg-[#1c1c1c]/90 dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
+									className={`z-50 bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenProducts
 											? "opacity-100 visible"
 											: "opacity-0 invisible"
 									}`}
 								>
 									<div className="flex gap-2">
-										<div className="items-start flex flex-col text-left gap-2">
-											<h2 className="text-xs p-2 font-bold uppercase">
+										<div className="items-start flex flex-col text-left gap-1">
+											<h2 className="text-xs p-2 font-bold uppercase text-white/50">
 												Voice cloning
 											</h2>
 											<a
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/products/applio"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -128,9 +128,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Applio</h3>
+													<h3 className="text-md font-semibold">Applio</h3>
 													<p className="text-xs text-neutral-200">
-														AI voice cloning tool.
+														Open source AI voice cloning tool
 													</p>
 												</div>
 											</a>
@@ -138,7 +138,7 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/products/app"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -162,9 +162,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Desktop APP</h3>
+													<h3 className="text-md font-semibold">Desktop APP</h3>
 													<p className="text-xs text-neutral-200">
-														Upcoming desktop application.
+														Our next step, a desktop application
 													</p>
 												</div>
 											</a>
@@ -172,7 +172,7 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/products/playground"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -187,15 +187,15 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Playground</h3>
+													<h3 className="text-md font-semibold">Playground</h3>
 													<p className="text-xs text-neutral-200">
-														Experiment with Applio.
+														A free and simple way to try out Applio
 													</p>
 												</div>
 											</a>
 										</div>
-										<div className="items-start flex flex-col text-left gap-2">
-											<h2 className="text-xs p-2 font-bold uppercase">
+										<div className="items-start flex flex-col text-left gap-1">
+											<h2 className="text-xs p-2 font-bold uppercase text-white/50">
 												Our ecosystem
 											</h2>
 											<a
@@ -204,7 +204,7 @@ export default function Navbar() {
 												target="_blank"
 												rel="noreferrer"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-10 h-10"
@@ -219,11 +219,11 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">
+													<h3 className="text-md font-semibold">
 														Documentation
 													</h3>
 													<p className="text-xs text-neutral-200">
-														Guide to using Applio.
+														All you need to know about Applio
 													</p>
 												</div>
 											</a>
@@ -231,7 +231,7 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/products/bot"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -246,9 +246,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Discord Bot</h3>
+													<h3 className="text-md font-semibold">Discord Bot</h3>
 													<p className="text-xs text-neutral-200">
-														All-in-one bot for Discord.
+														All-in-one bot for Discord
 													</p>
 												</div>
 											</a>
@@ -258,7 +258,7 @@ export default function Navbar() {
 												target="_blank"
 												rel="noreferrer"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -273,22 +273,22 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Marketplace</h3>
+													<h3 className="text-md font-semibold">Marketplace</h3>
 													<p className="text-xs text-neutral-200">
-														Collection of plugins.
+														Collection of Applio plugins
 													</p>
 												</div>
 											</a>
 										</div>
-										<div className="items-start flex flex-col text-left gap-2">
-											<h2 className="text-xs p-2 font-bold uppercase">
+										<div className="items-start flex flex-col text-left gap-1">
+											<h2 className="text-xs p-2 font-bold uppercase text-white/50">
 												For developers
 											</h2>
 											<a
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/products/api"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -303,9 +303,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Free API</h3>
+													<h3 className="text-md font-semibold">Free API</h3>
 													<p className="text-xs text-neutral-200">
-														Fast API with 20k+ models.
+														More than +26k voice cloning models
 													</p>
 												</div>
 											</a>
@@ -315,7 +315,7 @@ export default function Navbar() {
 												target="_blank"
 												rel="noreferrer"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -330,9 +330,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">CLI</h3>
+													<h3 className="text-md font-semibold">CLI</h3>
 													<p className="text-xs text-neutral-200">
-														Command-line interface for RVC.
+														Command-line interface for Applio
 													</p>
 												</div>
 											</a>
@@ -366,18 +366,20 @@ export default function Navbar() {
 								</a>
 								{/* dropdown about us */}
 								<div
-									className={`z-50 bg-[#1c1c1c]/90  dropdown-menu absolute mt-6 rounded-lg p-4 px-6 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
+									className={`z-50 bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
 										isOpenAbout ? "opacity-100 visible" : "opacity-0 invisible"
 									}`}
 								>
 									<div className="flex gap-2">
-										<div className="items-start flex flex-col text-left gap-2">
-											<h2 className="text-xs p-2 font-bold uppercase">Team</h2>
+										<div className="items-start flex flex-col text-left gap-1">
+											<h2 className="text-xs p-2 font-bold uppercase text-white/50">
+												Team
+											</h2>
 											<a
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/about/team"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -392,9 +394,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Our Team</h3>
+													<h3 className="text-md font-semibold">Our Team</h3>
 													<p className="text-xs text-neutral-200">
-														Meet the people behind Applio.
+														Meet the people behind Applio
 													</p>
 												</div>
 											</a>
@@ -402,7 +404,7 @@ export default function Navbar() {
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
 												href="/about/mission"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -417,9 +419,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Our Mission</h3>
+													<h3 className="text-md font-semibold">Our Mission</h3>
 													<p className="text-xs text-neutral-200">
-														What drives us at Applio.
+														What drives us at Applio
 													</p>
 												</div>
 											</a>
@@ -429,7 +431,7 @@ export default function Navbar() {
 												target="_blank"
 												rel="noreferrer"
 											>
-												<div className="flex border border-white/20 rounded-md justify-center items-center w-12 h-12">
+												<div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
 													<svg
 														aria-hidden="true"
 														className="w-5 h-5"
@@ -444,9 +446,9 @@ export default function Navbar() {
 													</svg>
 												</div>
 												<div className="flex flex-col">
-													<h3 className="text-lg font-semibold">Contact Us</h3>
+													<h3 className="text-md font-semibold">Contact Us</h3>
 													<p className="text-xs text-neutral-200">
-														Get in touch with us.
+														Get in touch with us!
 													</p>
 												</div>
 											</a>

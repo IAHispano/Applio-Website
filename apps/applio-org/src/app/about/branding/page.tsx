@@ -11,11 +11,11 @@ export default function Branding() {
 	};
 
 	return (
-		<main className="md:min-h-[80svh] max-md:mx-12 flex flex-col justify-center items-center mx-auto">
-			<div className="bg-gradient-to-b from-[#FFFFFF]/20 to-transparent w-full h-[20svh] md:-mt-[5svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
+		<main className="md:min-h-[80svh] flex flex-col justify-center items-center mx-auto">
+			<div className="bg-gradient-to-b from-[#FFFFFF]/20 to-transparent max-md:mx-full w-full h-[20svh] md:-mt-[5svh] md:px-[25svh] py-[15svh] flex flex-col gap-24 max-md:px-12">
 				<h1 className="text-7xl text-center font-bold">Our Brand</h1>
 			</div>
-			<div className="md:min-w-[100svh] mt-12">
+			<div className="md:min-w-[100svh] mt-12 max-md:px-12">
 				<h1 className="text-5xl max-md:mt-4 font-bold">Logo</h1>
 				<p className="my-4 mx-1">
 					We offer two logo formats: horizontal and vertical. Use them
@@ -146,7 +146,7 @@ export default function Branding() {
 					</div>
 				</div>
 			</div>
-			<div className="md:min-w-[100svh] mt-12">
+			<div className="md:min-w-[100svh] mt-12 max-md:px-12">
 				<h1 className="text-5xl font-bold">Typography</h1>
 				<p className="my-4 mx-1">
 					We use two fonts: one for impactful headlines and another for clear,
@@ -173,7 +173,7 @@ export default function Branding() {
 					</div>
 				</div>
 			</div>
-			<div className="md:min-w-[100svh] mt-12">
+			<div className="md:min-w-[100svh] mt-12 max-md:px-12">
 				<h1 className="text-5xl font-bold">Primary Colors</h1>
 				<p className="my-4 mx-1">
 					Here are the primary colors we use across our brand identity.

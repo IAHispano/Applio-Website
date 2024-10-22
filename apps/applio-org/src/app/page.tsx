@@ -9,7 +9,7 @@ export default function Home() {
 				<Background1 />
 			</div>
 			<section className="z-30 md:mt-96 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
-				<h1 className="text-3xl sm:text-3xl md:text-5xl lg:text-6xl lg:max-w-5xl max-w-xl font-bold leading-tight sm:leading-snug md:leading-normal max-xl:px-12">
+				<h1 className="text-3xl sm:text-3xl lg:text-6xl lg:max-w-5xl max-w-xl font-bold leading-tight sm:leading-snug md:leading-normal max-xl:px-12">
 					Dive into a world of endless possibilities fueled by advanced AI audio
 					technology
 				</h1>

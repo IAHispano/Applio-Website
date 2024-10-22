@@ -47,7 +47,9 @@ export default function NavbarMobile() {
 				}}
 				transition={{ duration: 0.3 }}
 			>
-				<BlurIn word="Applio" className="text-3xl" />
+				<a href="/">
+					<BlurIn word="Applio" className="text-3xl" />
+				</a>
 				<button
 					className="p-2 rounded-full"
 					onClick={() => setIsOpen(!isOpen)}

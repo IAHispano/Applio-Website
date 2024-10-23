@@ -6,7 +6,7 @@ export const runtime = "edge";
 
 export default function LearnGuides() {
 	return (
-		<main className="md:min-h-screen w-full h-full flex flex-col mt-24 max-w-6xl items-center mx-auto gap-10 max-md:px-4">
+		<main className="md:min-h-screen w-full h-full flex flex-col mt-24 max-w-6xl items-center mx-auto gap-10 px-4">
 			<section className="flex flex-col w-full">
 				<a
 					href="/learn"

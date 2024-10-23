@@ -83,7 +83,7 @@ export default function DiscoverGuides() {
 							<div className="flex flex-col gap-2 w-full relative">
 								<input
 									type="text"
-									className={`p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 pr-24 mx-1 rounded-xl`}
+									className='p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 rounded-xl'
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);
@@ -149,7 +149,7 @@ export default function DiscoverGuides() {
 									<a
 										href={`/learn/${model.id}`}
 										key={model.id}
-										className="h-full w-full bg-neutral-800 hover:bg-neutral-700/40 rounded-xl p-4 pb-6 border border-white/10 relative  transition-all "
+										className="h-full md:w-full bg-neutral-800 hover:bg-neutral-700/40 rounded-xl p-4 pb-6 border border-white/10 relative transition-all"
 									>
 										<div className="flex flex-col h-full justify-between">
 											<div>
@@ -167,10 +167,10 @@ export default function DiscoverGuides() {
 														: "May 13, 2024"}{" "}
 													by @{model.created_by || "?"}
 												</p>
-												<h3 className="font-semibold text-2xl my-2 text-white truncate">
+												<h3 className="font-semibold text-2xl my-2 text-white md:truncate text-wrap">
 													{model.title}
 												</h3>
-												<p className="mt-2 text-sm text-white/70 truncate max-w-md">
+												<p className="mt-2 text-sm text-white/70 text-wrap md:truncate max-w-md">
 													{model.description}
 												</p>
 											</div>

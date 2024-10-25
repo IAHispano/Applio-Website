@@ -55,10 +55,9 @@ export default function Navbar() {
 				<div className="flex items-center justify-center mx-24">
 					<a
 						href="/"
-						className="text-3xl font-bold"
 						onContextMenu={(e) => {
 							e.preventDefault();
-							window.open("/about/branding");
+							window.open("/about/branding", "_blank");
 						}}
 					>
 						Applio

@@ -84,7 +84,9 @@ export default function AppProduct() {
 					<div className="grid md:grid-cols-3 md:grid-rows-2 gap-4 justify-center items-start m-auto">
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(0) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(0)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(0)}
 						>
@@ -99,7 +101,9 @@ export default function AppProduct() {
 
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(1) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(1)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(1)}
 						>
@@ -114,7 +118,9 @@ export default function AppProduct() {
 
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(2) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(2)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(2)}
 						>
@@ -129,7 +135,9 @@ export default function AppProduct() {
 
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(3) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(3)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(3)}
 						>
@@ -144,7 +152,9 @@ export default function AppProduct() {
 
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(4) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(4)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(4)}
 						>
@@ -159,7 +169,9 @@ export default function AppProduct() {
 
 						<div
 							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(5) ? "bg-green-500/50 hover:bg-green-500/50" : ""
+								clickedCards.includes(5)
+									? "bg-green-500/50 hover:bg-green-500/50"
+									: ""
 							}`}
 							onClick={() => handleCardClick(5)}
 						>
@@ -214,7 +226,8 @@ export default function AppProduct() {
 								Join the beta
 							</h1>
 							<h2 className="text-neutral-200 text-sm max-md:text-center max-md:text-balance">
-								Access to the beta isn't available yet. Join our Discord server to stay updated and never miss an announcement!
+								Access to the beta isn't available yet. Join our Discord server
+								to stay updated and never miss an announcement!
 							</h2>
 						</div>
 						<div className="flex flex-col mt-auto h-full justify-center max-md:mt-12">
@@ -222,7 +235,6 @@ export default function AppProduct() {
 								className="bg-white slow enabled:hover:shadow-lg disabled:bg-white/30 enabled:hover:shadow-white disabled:bg-opacity-40 enabled:text-black disabled:text-white rounded-xl px-6 py-2 w-full max-w-md"
 								type="button"
 								disabled
-								
 							>
 								<p className="text-sm font-medium">Stay tuned!</p>
 							</button>

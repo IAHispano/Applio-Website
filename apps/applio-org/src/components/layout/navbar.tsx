@@ -62,7 +62,7 @@ export default function Navbar() {
 						}}
 					>
 						Applio
-						</a>
+					</a>
 					<div className="grid grid-cols-2 w-full items-center m-auto">
 						<div className="flex mx-12 gap-8 pt-1">
 							<a href="/models">

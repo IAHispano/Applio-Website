@@ -13,8 +13,8 @@ export default function Avatar() {
 	async function logout() {
 		setIsOpen(false);
 		const { error } = await supabase.auth.signOut();
-		localStorage.removeItem('avatar_url');
-		localStorage.removeItem('full_name');
+		localStorage.removeItem("avatar_url");
+		localStorage.removeItem("full_name");
 		window.location.reload();
 
 		if (error) {
@@ -24,28 +24,31 @@ export default function Avatar() {
 
 	useEffect(() => {
 		const getUser = async () => {
-			const storedAvatar = localStorage.getItem('avatar_url');
-			const storedName = localStorage.getItem('full_name');
+			const storedAvatar = localStorage.getItem("avatar_url");
+			const storedName = localStorage.getItem("full_name");
 			if (storedAvatar) {
 				setData({ ...data, avatar_url: storedAvatar, full_name: storedName });
 				setLoading(false);
 			} else {
-			const { data } = await supabase.auth.getUser();
-			if (data?.user) {
-				const userInfo = await supabase
-					.from("profiles")
-					.select("*")
-					.eq("auth_id", data.user.id)
-					.single();
-				setData(userInfo.data);
-				localStorage.setItem('avatar_url', userInfo.data?.avatar_url || '/logo_no_bg.png');
-				localStorage.setItem('full_name', userInfo.data?.full_name);
-				setLoading(false);
-			} else {
-				setData(null);
-				setLoading(false);
+				const { data } = await supabase.auth.getUser();
+				if (data?.user) {
+					const userInfo = await supabase
+						.from("profiles")
+						.select("*")
+						.eq("auth_id", data.user.id)
+						.single();
+					setData(userInfo.data);
+					localStorage.setItem(
+						"avatar_url",
+						userInfo.data?.avatar_url || "/logo_no_bg.png",
+					);
+					localStorage.setItem("full_name", userInfo.data?.full_name);
+					setLoading(false);
+				} else {
+					setData(null);
+					setLoading(false);
+				}
 			}
-		}
 		};
 
 		getUser();
@@ -87,10 +90,11 @@ export default function Avatar() {
 									target.src = "/logo_no_bg.png";
 								}}
 							/>
-							{data.full_name && 
-							<div className="flex flex-col pl-2 ml-1">
-								<p className="text-md">@{data.full_name}</p>
-							</div>}
+							{data.full_name && (
+								<div className="flex flex-col pl-2 ml-1">
+									<p className="text-md">@{data.full_name}</p>
+								</div>
+							)}
 						</button>
 					) : (
 						<a

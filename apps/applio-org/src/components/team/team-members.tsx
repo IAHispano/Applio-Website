@@ -42,7 +42,7 @@ export default function Team() {
 	if (loading || !data || data.length === 0) {
 		return (
 			<div>
-				<Spinner/>
+				<Spinner />
 			</div>
 		);
 	}

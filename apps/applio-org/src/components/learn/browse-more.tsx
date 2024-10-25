@@ -83,7 +83,7 @@ export default function DiscoverGuides() {
 							<div className="flex flex-col gap-2 w-full relative">
 								<input
 									type="text"
-									className='p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 rounded-xl'
+									className="p-4 bg-neutral-800/20 border border-white/10 focus:border-white/20 focus:outline-none placeholder-white/80 rounded-xl"
 									placeholder="Write here to search..."
 									onChange={(e) => {
 										setSearchInput(e.target.value);

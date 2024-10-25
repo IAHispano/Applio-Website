@@ -13,6 +13,8 @@ export default function Avatar() {
 	async function logout() {
 		setIsOpen(false);
 		const { error } = await supabase.auth.signOut();
+		localStorage.removeItem('avatar_url');
+		localStorage.removeItem('full_name');
 		window.location.reload();
 
 		if (error) {

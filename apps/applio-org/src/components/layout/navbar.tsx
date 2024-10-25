@@ -55,13 +55,14 @@ export default function Navbar() {
 				<div className="flex items-center justify-center mx-24">
 					<a
 						href="/"
+						className="text-3xl font-bold"
 						onContextMenu={(e) => {
 							e.preventDefault();
-							window.open("/about/branding", "_blank");
+							window.open("/about/branding");
 						}}
 					>
-						<BlurIn word="Applio" className="text-3xl font-bold" />
-					</a>
+						Applio
+						</a>
 					<div className="grid grid-cols-2 w-full items-center m-auto">
 						<div className="flex mx-12 gap-8 pt-1">
 							<a href="/models">

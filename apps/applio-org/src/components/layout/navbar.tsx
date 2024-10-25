@@ -58,6 +58,7 @@ export default function Navbar() {
 						onContextMenu={(e) => {
 							e.preventDefault();
 							window.open("/about/branding", "_blank");
+							window.open("/about/branding", "_blank");
 						}}
 					>
 						Applio

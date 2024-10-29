@@ -192,7 +192,7 @@ export default function NavbarMobile() {
 					{/* dropdown products */}
 					{dropdownOpen === 1 && (
 						<div className="relative flex flex-col gap-4 mt-6 pb-6 px-4">
-							<div className="absolute rounded-md h-[100%] w-1 bg-neutral-500/40 left-1 -mt-3" />
+							<div className="absolute rounded-md h-[100%]" />
 							<a
 								className="rounded-xl text-neutral-200 hover:text-white p-2 flex justify-between items-center gap-2"
 								href="/products/applio"
@@ -200,7 +200,7 @@ export default function NavbarMobile() {
 								<p>Applio</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 74 84"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -218,7 +218,7 @@ export default function NavbarMobile() {
 								<p>Desktop APP</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 243 268"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +245,7 @@ export default function NavbarMobile() {
 								<p>Playground</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 235 235"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -265,14 +265,14 @@ export default function NavbarMobile() {
 								<p>Documentation</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1 rounded-xl"
-									viewBox="0 0 512 512"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
+									viewBox="0 -960 960 960"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
 								>
-									<path
-										d="M359.523 197.054C364.159 192.418 364.159 184.691 359.523 180.293L331.707 152.477C327.309 147.841 319.582 147.841 314.946 152.477L293.073 174.231L337.65 218.808M149 318.423V363H193.577L325.05 231.408L280.473 186.831L149 318.423Z"
-										fill="white"
+									<path 
+									d="M260-320q47 0 91.5 10.5T440-278v-394q-41-24-87-36t-93-12q-36 0-71.5 7T120-692v396q35-12 69.5-18t70.5-6Zm260 42q44-21 88.5-31.5T700-320q36 0 70.5 6t69.5 18v-396q-33-14-68.5-21t-71.5-7q-47 0-93 12t-87 36v394Zm-40 118q-48-38-104-59t-116-21q-42 0-82.5 11T100-198q-21 11-40.5-1T40-234v-482q0-11 5.5-21T62-752q46-24 96-36t102-12q58 0 113.5 15T480-740q51-30 106.5-45T700-800q52 0 102 12t96 36q11 5 16.5 15t5.5 21v482q0 23-19.5 35t-40.5 1q-37-20-77.5-31T700-240q-60 0-116 21t-104 59ZM280-494Z"
+									fill="white"
 									/>
 								</svg>
 							</a>
@@ -283,7 +283,7 @@ export default function NavbarMobile() {
 								<p>Discord Bot</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 245 244"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -303,7 +303,7 @@ export default function NavbarMobile() {
 								<p>Marketplace</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 242 231"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -321,7 +321,7 @@ export default function NavbarMobile() {
 								<p>Free API</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 226 226"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -341,7 +341,7 @@ export default function NavbarMobile() {
 								<p>RVC CLI</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 198 240"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -380,7 +380,7 @@ export default function NavbarMobile() {
 					{/* dropdown about us */}
 					{dropdownOpen === 2 && (
 						<div className="relative flex flex-col gap-4 mt-6 pb-6 px-4">
-							<div className="absolute rounded-md h-[100%] w-1 bg-neutral-500/40 left-1 -mt-3" />
+							<div className="absolute rounded-md h-[100%]" />
 							<a
 								className="rounded-xl text-neutral-200 hover:text-white p-2 flex justify-between items-center gap-2"
 								href="/about/team"
@@ -388,7 +388,7 @@ export default function NavbarMobile() {
 								<p>Team</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 236 263"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -406,7 +406,7 @@ export default function NavbarMobile() {
 								<p>Mission</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 264 242"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"
@@ -426,7 +426,7 @@ export default function NavbarMobile() {
 								<p>Contact Us</p>
 								<svg
 									aria-hidden="true"
-									className="w-6 h-6 border border-white/20 p-1.5 rounded-xl"
+									className="w-8 h-8 border border-white/20 p-2 rounded-full"
 									viewBox="0 0 202 242"
 									fill="none"
 									xmlns="http://www.w3.org/2000/svg"

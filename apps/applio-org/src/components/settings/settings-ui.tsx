@@ -62,10 +62,10 @@ export default function SettingsUI() {
 					<h1 className="pl-0.5 md:text-5xl text-4xl font-bold max-md:max-w-[100%] break-words">
 						{data.full_name}
 					</h1>
-					<p className="pl-1 pb-4 text-[#9E9E9E]">
+					<h2 className="text-neutral-400 text-md mx-0.5">
 						Welcome to your settings page, here you can update your profile
-					</p>
-					<div className="bg-neutral-800 border border-white/10 rounded-lg w-full pt-8 h-30% p-4">
+					</h2>
+					<div className="bg-neutral-800 border border-white/10 rounded-lg w-full pt-8 h-30% p-4 mt-4">
 						<div className="h-full flex flex-col gap-4">
 							<h2 className="text-xs p-2 font-bold uppercase">Username</h2>
 							<input

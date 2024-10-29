@@ -1,9 +1,5 @@
 # Applio Websites (Monorepo)
 
-Welcome to the Applio websites official monorepo! This README outlines the rules and guidelines for contributing to the monorepo, which is managed using Turborepo. Please read through this document carefully to ensure a smooth and efficient development process.
-
-## General Rules
-
 1. **Monorepo Structure**
    - The monorepo contains multiple projects. Each project is located in its respective directory under the `apps` directory.
 

@@ -2,6 +2,6 @@
     "conventionalCommits.scopes": [
         "org",
         "docs",
-        "applio-api"
+        "api"
     ]
 }

@@ -2,6 +2,7 @@
   "name": "applio-docs",
   "version": "1.0.0",
   "description": "Documentation for the Applio project.",
+  "type": "commonjs",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

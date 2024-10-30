@@ -5,6 +5,8 @@
   "scripts": {
     "build": "dotenv -- turbo build",
     "dev": "dotenv -- turbo dev",
+    "api": "pnpm --filter applio-api --",
+    "deploy:api": "pnpm api run deploy",
     "lint": "turbo lint",
     "type-check": "turbo type-check",
     "clean": "turbo clean"

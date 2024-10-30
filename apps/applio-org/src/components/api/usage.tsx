@@ -52,8 +52,8 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 							usage: number;
 							role: "user" | "premium";
 						}) => {
-							const getMaxUsage = (role: "user" | "premium") => {
-								return role === "premium" ? 500 : 100;
+							const getMaxUsage = (role: "user" | "premium" | "commercial") => {
+								return role === "premium" ? 500 : role === "commercial" ? 1000 : 100;
 							};
 							const maxUsage = getMaxUsage(item.role);
 							const progressPercentage = Math.min(
@@ -82,6 +82,14 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 													<p className="md:px-4 md:py-1 p-2 bg-white/80 text-black font-semibold rounded-xl max-md:text-xs">
 														<span className="max-md:hidden">Premium</span>
 														<span className="md:hidden">P</span>
+													</p>
+												</div>
+											)}
+											{item.role === "premium" && (
+												<div className="flex h-full items-center m-auto gap-2">
+													<p className="md:px-4 md:py-1 p-2 bg-white/80 text-black font-semibold rounded-xl max-md:text-xs">
+														<span className="max-md:hidden">Commercial</span>
+														<span className="md:hidden">C</span>
 													</p>
 												</div>
 											)}

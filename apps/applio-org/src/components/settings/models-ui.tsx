@@ -109,9 +109,9 @@ export default function ModelsUI() {
 
 	return (
 		<section className="flex flex-col items-start justify-start w-full">
-			<h1 className="text-5xl font-bold">Models</h1>
-			<h2 className="text-neutral-400 text-sm mx-0.5">
-				Edit or delete your models.
+			<h1 className="text-5xl text-white font-bold">Models</h1>
+			<h2 className="text-neutral-400 text-md mx-0.5">
+				Manage your models, edit or delete them.
 			</h2>
 			<div className="grid md:grid-cols-3 mt-6 gap-4">
 				{models.map((model) => (

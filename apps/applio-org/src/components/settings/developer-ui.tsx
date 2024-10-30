@@ -154,18 +154,18 @@ export default function DeveloperUi() {
 						)}
 					</button>
 				</div>
-				<p className="pl-1 text-[#9E9E9E]">
+				<h2 className="text-neutral-400 text-md mx-0.5">
 					Manage your API keys, if you have any questions please refer to the
 					documentation.
-				</p>
+				</h2>
 			</div>
 			<ApiUsage auth_id={authId} />
 			{!loading && userTokens.length === 0 && (
-				<p className="md:h-[40svh] text-[#9E9E9E] md:mt-40 text-xl max-md:mb-12 md:text-3xl">
-					Not find api keys, generate one.
+				<p className="md:h-[40svh] text-[#9E9E9E] md:mt-40 text-md max-md:mb-12 italic">
+					You don't have any API keys, generate one.
 				</p>
 			)}
-			{!loading && userTokens && (
+			{!loading && userTokens && userTokens.length > 0 && (
 				<p className="md:justify-start md:items-end flex max-md:flex-col max-md:text-center max-md:w-full text-[#9E9E9E] mt-4">
 					You have{" "}
 					<span className="read-font md:mx-1 text-white/80">

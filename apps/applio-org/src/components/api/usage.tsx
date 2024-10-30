@@ -50,7 +50,7 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 							token: string;
 							created_at: string;
 							usage: number;
-							role: "user" | "premium";
+							role: "user" | "premium" | "commercial";
 						}) => {
 							const getMaxUsage = (role: "user" | "premium" | "commercial") => {
 								return role === "premium" ? 500 : role === "commercial" ? 1000 : 100;
@@ -85,7 +85,7 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 													</p>
 												</div>
 											)}
-											{item.role === "premium" && (
+											{item.role === "commercial" && (
 												<div className="flex h-full items-center m-auto gap-2">
 													<p className="md:px-4 md:py-1 p-2 bg-white/80 text-black font-semibold rounded-xl max-md:text-xs">
 														<span className="max-md:hidden">Commercial</span>

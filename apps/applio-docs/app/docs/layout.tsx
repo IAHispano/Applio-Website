@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     sidebar={{
       banner: (
         <RootToggle
-        className='border px-4 py-2 mb-3 noise relative bg-gradient-to-t from-[#111111] to-green-500/30'
+        className='border px-4 py-2 mb-3 noise relative bg-gradient-to-t dark:from-[#111111] from-white to-green-500/40 dark:to-green-500/30'
         options={[
           {
             title: 'Applio',

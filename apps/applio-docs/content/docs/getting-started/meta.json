@@ -1,4 +1,4 @@
 {
     "title": "Getting Started",
-    "pages": ["installation", "download-models", "inference", "training"]  
+    "pages": ["installation", "download-models", "inference", "training", "tts"]  
 }

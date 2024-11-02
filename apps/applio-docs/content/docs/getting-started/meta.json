@@ -1,4 +1,4 @@
 {
     "title": "Getting Started",
-    "pages": ["installation", "download-models", "inference", "training", "tts", "pretrained", "embedder", "tensorboard"]  
+    "pages": ["installation", "download-models", "inference", "training", "tts", "pretrained", "embedder", "tensorboard", "audio-analyzer"]  
 }

@@ -1,0 +1,19 @@
+---
+title: Voice Blender
+description: Go to the **Voice Blender** section, place the Model Name of your new model, drag or upload the pth A and B files below, adjust the **Audio Blend** if desired, and click the **Fusion** button.
+---
+
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import {Folder, File, Files} from 'fumadocs-ui/components/files';
+
+<ImageZoom src="/images/voice-blender.png" alt="Voice Blender"  width={1000} height={500}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10"/>
+
+Your new pth file can be found in `Applio/logs`, ready for use in [inference](/getting-started/download-models). Please note that being a mixed model, it won’t have an index.
+
+<Files>
+<Folder name="Applio" defaultOpen>
+<Folder name="logs" defaultOpen>
+<File name="model.pth" />
+</Folder>
+</Folder>
+</Files>

@@ -1,4 +1,3 @@
 {
-    "title": "Introduction",
-    "pages": ["index", "beginners", "getting-started"]
+    "pages": ["applio", "api"]
 }

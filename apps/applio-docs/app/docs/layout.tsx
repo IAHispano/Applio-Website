@@ -1,37 +1,50 @@
+"use client"
+
 import { DocsLayout } from 'fumadocs-ui/layouts/docs';
 import type { ReactNode } from 'react';
 import { baseOptions } from '@/app/layout.config';
 import { source } from '@/lib/source';
-import { RootToggle } from 'fumadocs-ui/layouts/docs.client';
+import { RootToggle } from 'fumadocs-ui/components/layout/root-toggle';
+import { usePathname } from 'next/navigation';
 
 export default function Layout({ children }: { children: ReactNode }) {
+  const path = usePathname();
+
   return (
-    <DocsLayout tree={source.pageTree} {...baseOptions}
-    sidebar={{
-      banner: (
-        <RootToggle
-        className='border px-4 py-2 mb-3 noise relative bg-gradient-to-t dark:from-[#111111] from-white to-green-500/40 dark:to-green-500/30'
-        options={[
-          {
-            title: 'Applio',
-            description: 'Documentation for Applio',
-            url: '/docs',
-            props: {
-              className: 'px-4'
-            }
-          },
-          {
-            title: 'Applio API',
-            description: 'Documentation for Applio API',
-            url: '/docs/api',
-            props: {
-              className: 'px-4'
-            }
-          },
-        ]}
-      />
-      )
-    }}>
+    <DocsLayout tree={source.pageTree} {...baseOptions} 
+    sidebar={
+      {
+        tabs: false,
+        banner: (
+          <RootToggle
+          className={`border px-4 py-2 mb-3 noise relative ${path.includes('applio') && 'bg-gradient-to-t from-white to-black/30 dark:from-[#111111] dark:to-white/30' || path.includes('api') && 'bg-gradient-to-t from-white to-green-500/30 dark:from-[#222222] dark:to-green-500/30'}`}
+          options={[
+            {
+              title: 'Applio',
+              description: 'Documentation for Applio',
+              url: '/docs/applio',
+              props: {
+                className: 'px-4'
+              }
+            },
+            {
+              title: 'API',
+              description: 'Documentation for Applio API',
+              url: '/docs/api',
+              props: {
+                className: 'px-4'
+              }
+            },
+          ]}
+        />
+        )
+      }
+    }>
+      {path.includes('api') && (
+        <div className='fixed h-fit w-full backdrop-filter backdrop-blur-lg border border-white/10 py-2' style={{zIndex: 1}}> 
+          <p className='text-xs flex justify-center items-center m-auto dark:text-neutral-400'>Contact us to receive the new version of Applio API if it is for commercial use!</p>
+        </div>
+      )}
       {children}
     </DocsLayout>
   );

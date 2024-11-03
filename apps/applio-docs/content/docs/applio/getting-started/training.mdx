@@ -13,7 +13,7 @@ import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
 <Callout type="warn" className="shadow-xl shadow-orange-500/10">
 - Training is only for NVDIA GPUs, if this is not available Training tab will be disabled.
 - In case the training tab is available, training is only recommended in Nvidia Series 2000 (RTX) or higher.
-- If you don’t have an compatible GPU, we offer alternatives to [run Applio in the cloud.](/docs/getting-started/other-alternatives)
+- If you don’t have an compatible GPU, we offer alternatives to [run Applio in the cloud.](/docs/applio/getting-started/other-alternatives)
 </Callout>
 
 ## Training a model
@@ -29,7 +29,7 @@ The recommended duration to have a good dataset is 30 minutes, but if you have e
 
 Upload your dataset using the **Dataset Maker (if it is a single audio)** or setup it manually (various audios) to `applio/assets/datasets` creating inside a folder for the program to read it.
 
-- [Don't know how to create a dataset?, check the dataset section](/docs/guides/create-datasets/create-datasets)
+- [Don't know how to create a dataset?, check the dataset section](/docs/applio/guides/create-datasets/create-datasets)
 
 #### For multispeaker models (Optional)
 If you want to train a multispeaker model, you need to create a folder for the model, and inside that folder create a folder for each speaker.
@@ -81,7 +81,7 @@ Several F0 models are available to choose from, but the best performer is **RMVP
 
 When you select your model, press **Extract Features** to start the process, remember to check your CMD until you see a message indicating that the process is complete.
 
-- [Don't know how to check sample rate?, check the Audio Analizer section](/docs/getting-started/audio-analizer)
+- [Don't know how to check sample rate?, check the Audio Analizer section](/docs/applio/getting-started/audio-analizer)
 </Step>
 <Step>
 #### Model & Index training
@@ -102,7 +102,7 @@ Your trained model is located in the `logs/model folder`, and the .pth files are
 <Accordions>
 <Accordion title="Advanced Settings">
 - **Pitch Guidance:** Gives variation of pitch.
-- **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain. Learn how to use it [here](/docs/getting-started/pretrained).
+- **Pretrained:** Uses the RVC pretrained, used for training common models, uncheck if you want to make a pretrain. Learn how to use it [here](/docs/applio/getting-started/pretrained).
 - **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
 - **Save Every Weights:** Save the weights of the model when a cycle of 'Save Every Epoch' is completed.
 - **Custom Pretrained:** Uses the Custom Pretrained that are loaded.

@@ -40,11 +40,6 @@ export default function Layout({ children }: { children: ReactNode }) {
         )
       }
     }>
-      {path.includes('api') && (
-        <div className='fixed h-fit w-full backdrop-filter backdrop-blur-lg border border-white/10 py-2' style={{zIndex: 1}}> 
-          <p className='text-xs flex justify-center items-center m-auto dark:text-neutral-400'>Contact us to receive the new version of Applio API if it is for commercial use!</p>
-        </div>
-      )}
       {children}
     </DocsLayout>
   );

@@ -82,6 +82,7 @@ export function generate({
             style={{
               fontSize: '56px',
               fontWeight: 600,
+              color: primaryTextColor || 'white',
             }}
           >
             {props.site}

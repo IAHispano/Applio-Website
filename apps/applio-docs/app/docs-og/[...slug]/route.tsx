@@ -6,7 +6,8 @@ export const GET = metadataImage.createAPI((page): ImageResponse => {
   return generateOGImage({
     title: page.data.title,
     description: page.data.description || 'Applio Documentation',
-    site: 'Applio Documentation'
+    site: 'Applio Documentation',
+    primaryTextColor: 'rgb(255,255,255)',
   });
 });
 

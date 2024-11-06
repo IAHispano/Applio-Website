@@ -43,7 +43,7 @@ export function generateOGImage(
 
 export function generate({
   primaryColor = 'rgba(0,170,140,0.5)',
-  primaryTextColor = 'rgb(255,150,255)',
+  primaryTextColor = 'rgb(255,255,255)',
   ...props
 }: GenerateProps): ReactElement {
   return (
@@ -68,17 +68,19 @@ export function generate({
         }}
       >
         <div
+        className='text-white'
           style={{
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
             gap: '16px',
             marginBottom: '12px',
-            color: primaryTextColor,
+            color: primaryTextColor || 'white',
           }}
         >
           {props.icon}
           <p
+          className='text-white'
             style={{
               fontSize: '56px',
               fontWeight: 600,
@@ -107,75 +109,5 @@ export function generate({
         </p>
       </div>
     </div>
-  );
-}
-
-interface GridPatternProps {
-  width?: number;
-  height?: number;
-  x?: number;
-  y?: number;
-  squares?: [x: number, y: number][];
-  strokeDasharray?: number;
-  className?: string;
-}
-
-export function GridPattern({
-  width = 100,
-  height = 100,
-  x = -1,
-  y = -1,
-  squares,
-  strokeDasharray,
-  ...props
-}: GridPatternProps): ReactElement {
-  return (
-    <svg
-      fill="rgba(156, 163, 175, 0.2)"
-      stroke="rgba(156, 163, 175, 0.2)"
-      style={{
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        top: 0,
-        maskImage: 'radial-gradient(circle at 0% 100%, white, transparent)',
-      }}
-      viewBox="0 0 600 400"
-      {...props}
-    >
-      <defs>
-        <pattern
-          id="og-pattern"
-          width={width}
-          height={height}
-          patternUnits="userSpaceOnUse"
-        >
-          <path
-            d={`M.5 ${height.toString()}V.5H${width.toString()}`}
-            fill="none"
-            strokeWidth={1}
-            strokeDasharray={strokeDasharray}
-          />
-        </pattern>
-      </defs>
-      <rect
-        width="600"
-        height="600"
-        strokeWidth={0}
-        fill="url(#og-pattern)"
-        x={x}
-        y={y}
-      />
-      {squares?.map(([itemX, itemY]) => (
-        <rect
-          strokeWidth="0"
-          key={`${itemX.toString()}-${itemY.toString()}`}
-          width={width - 1}
-          height={height}
-          x={itemX * width + 1}
-          y={itemY * (height + 1)}
-        />
-      ))}
-    </svg>
   );
 }

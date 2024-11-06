@@ -7,6 +7,8 @@ export const GET = metadataImage.createAPI((page): ImageResponse => {
     title: page.data.title,
     description: page.data.description || 'Applio Documentation',
     site: 'Applio Documentation',
+    primaryColor: '#00AA68',
+    primaryTextColor: '#ffffff',
   });
 });
 

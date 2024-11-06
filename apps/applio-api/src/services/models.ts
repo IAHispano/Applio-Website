@@ -80,7 +80,7 @@ export const getFilteredEntriesByName = async (name: string, page: number, pageS
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
 
-    let query = supabase.from('models').select('*').textSearch('name', name).range(startIndex, endIndex - 1);
+    let query = supabase.from('models').select('*').filter('name', 'ilike', `%${name}%`).range(startIndex, endIndex - 1);
 
     if (filters.algorithm) {
         query = query.filter('algorithm', 'ilike', `%${filters.algorithm}%`);

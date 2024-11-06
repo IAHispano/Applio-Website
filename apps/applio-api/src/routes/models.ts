@@ -33,7 +33,8 @@ modelsRouter.get('/', async (c) => {
 });
 
 modelsRouter.get('/search', async (c) => {
-    const name = c.req.header('name');
+    const nameHeader = c.req.header('name');
+    const nameQuery = c.req.query('name');
 
     const page = Number(c.req.header('page')) || 1;
     const perPage = Number(c.req.header('perPage')) || 10;
@@ -45,6 +46,8 @@ modelsRouter.get('/search', async (c) => {
         algorithm,
         tags
     };
+
+    let name = nameHeader || nameQuery;
 
     if (!name) {
         return c.json({

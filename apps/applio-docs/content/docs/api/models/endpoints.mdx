@@ -60,6 +60,9 @@ Fetches a list of entries filtered by `name`, with additional filters for `algor
 GET /models/search/
 ```
 
+<Callout type="warn" className="shadow-xl shadow-orange-500/10">
+  If you need to use non-ISO characters, **avoid using headers** and instead **use** the `?name=` **query** string **parameter**. 
+</Callout>
 
 **Headers:**
 - **Authorization**: [Token](/docs/api/authorization) (required)

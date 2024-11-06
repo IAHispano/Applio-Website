@@ -43,7 +43,6 @@ export function generateOGImage(
 
 export function generate({
   primaryColor = 'rgba(0,170,140,0.5)',
-  primaryTextColor = 'rgb(255,255,255)',
   ...props
 }: GenerateProps): ReactElement {
   return (
@@ -75,7 +74,7 @@ export function generate({
             alignItems: 'center',
             gap: '16px',
             marginBottom: '12px',
-            color: primaryTextColor || 'white',
+            color: '#ffffff',
           }}
         >
           {props.icon}
@@ -84,7 +83,7 @@ export function generate({
             style={{
               fontSize: '56px',
               fontWeight: 600,
-              color: primaryTextColor || 'white',
+              color: '#ffffff'
             }}
           >
             {props.site}

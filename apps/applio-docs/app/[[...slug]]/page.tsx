@@ -3,7 +3,7 @@ import { DocsPage, DocsBody, DocsDescription, DocsTitle } from 'fumadocs-ui/page
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 
-export const runtime = process.env.CF_PAGES_URL ? 'edge' : undefined;
+export const runtime = 'edge';
 
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;

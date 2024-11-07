@@ -2,6 +2,8 @@ import { ImageResponse } from 'next/og';
 import type { ReactElement, ReactNode } from 'react';
 import type { ImageResponseOptions } from 'next/dist/compiled/@vercel/og/types';
 
+export const runtime = 'edge';
+
 interface GenerateProps {
   title: ReactNode;
   description?: ReactNode;

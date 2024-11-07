@@ -29,7 +29,3 @@ export default async function Page(props: {
     </DocsPage>
   );
 }
-
-export function generateStaticParams(): { slug: string[] }[] {
-  return source.generateParams();
-}

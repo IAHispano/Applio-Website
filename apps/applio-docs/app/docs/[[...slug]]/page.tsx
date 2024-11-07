@@ -10,6 +10,33 @@ import defaultMdxComponents from 'fumadocs-ui/mdx';
 
 export const runtime = 'edge';
 
+export async function generateMetadata({ params }: { params: { slug: string[] } }) {
+  const page = source.getPage(params.slug);
+  if (!page) return { notFound: true };
+
+  const title = page.data.title || 'Applio Documentation';
+  const description = page.data.description || 'Documentation for the most used voice cloning tool in world.';
+  const image = '/banner.png';
+
+  return {
+    title, 
+    description,
+    openGraph: {
+      title, 
+      description,
+      images: [image], 
+      url: `https://docs.applio.org/${params.slug?.join('/')}`,  
+      type: 'website', 
+    },
+    twitter: {
+      card: 'summary_large_image', 
+      title, 
+      description,  
+      image,  
+    },
+  };
+}
+
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {

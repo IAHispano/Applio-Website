@@ -5,7 +5,7 @@ title: Endpoints
 import { Callout } from 'fumadocs-ui/components/callout'
 
 <Callout type="warn" className="shadow-xl shadow-orange-500/10">
-All requests require a token included in the `Authorization` header for authentication. Visit the [Authorization](/docs/api/authorization) page for more information.
+All requests require a token included in the `Authorization` header for authentication. Visit the [Authorization](/api/authorization) page for more information.
 </Callout>
 
 
@@ -18,7 +18,7 @@ GET /models/
 ```
 
 **Headers:**
-- **Authorization**: [Token](/docs/api/authorization) (required)
+- **Authorization**: [Token](/api/authorization) (required)
 - **Parameters:**
   - `page` *(optional)*: Integer indicating the page number. Default: `1`.
   - `perPage` *(optional)*: Integer indicating the number of items per page. Default: `10`.
@@ -66,7 +66,7 @@ GET /models/search/
 </Callout>
 
 **Headers:**
-- **Authorization**: [Token](/docs/api/authorization) (required)
+- **Authorization**: [Token](/api/authorization) (required)
 - **Parameters:**
   - `name` *(required)*: String to search by entry name.
   - `page` *(optional)*: Integer indicating the page number. Default: `1`.

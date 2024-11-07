@@ -8,6 +8,8 @@ const inter = Syne({
   weight: ['400', '500', '600', '700', '800'],
 });
 
+export const runtime = 'edge';
+
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={inter.className} suppressHydrationWarning>

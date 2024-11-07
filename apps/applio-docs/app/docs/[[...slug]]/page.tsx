@@ -1,10 +1,5 @@
 import { source } from '@/lib/source';
-import {
-  DocsPage,
-  DocsBody,
-  DocsDescription,
-  DocsTitle,
-} from 'fumadocs-ui/page';
+import { DocsPage, DocsBody, DocsDescription, DocsTitle } from 'fumadocs-ui/page';
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 
@@ -12,10 +7,12 @@ export const runtime = 'edge';
 
 export async function generateMetadata({ params }: { params: { slug: string[] } }) {
   const page = source.getPage(params.slug);
-  if (!page) return { notFound: true };
+  if (!page) {
+    return { notFound: true };
+  }
 
   const title = page.data.title || 'Applio Documentation';
-  const description = page.data.description || 'Documentation for the most used voice cloning tool in world.';
+  const description = page.data.description || 'Documentation for the most used voice cloning tool in the world.';
   const image = '/banner.png';
 
   return {
@@ -37,10 +34,7 @@ export async function generateMetadata({ params }: { params: { slug: string[] } 
   };
 }
 
-export default async function Page(props: {
-  params: Promise<{ slug?: string[] }>;
-}) {
-  const params = await props.params;
+export default async function Page({ params }: { params: { slug: string[] } }) {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 

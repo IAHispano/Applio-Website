@@ -10,9 +10,12 @@ modelsRouter.get('/', async (c) => {
 
     const algorithm = c.req.header('algorithm');
     const tags = c.req.header('tags');
+    const order = c.req.header('order')
+
     const filters = {
         algorithm,
-        tags
+        tags,
+        order
     };
 
     const entries = await getFilteredEntries(page, perPage, c, filters);
@@ -41,10 +44,12 @@ modelsRouter.get('/search', async (c) => {
 
     const algorithm = c.req.header('algorithm');
     const tags = c.req.header('tags');
+    const order = c.req.header('order')
 
     const filters = {
         algorithm,
-        tags
+        tags,
+        order
     };
 
     let name = nameHeader || nameQuery;

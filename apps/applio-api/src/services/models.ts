@@ -1,7 +1,7 @@
 import type { Context } from 'hono';
 import { initializeSupabase } from '../utils/database';
 
-export const getFilteredEntries = async (page: number, pageSize: number, c: Context, filters: { algorithm?: string; tags?: string }) => {
+export const getFilteredEntries = async (page: number, pageSize: number, c: Context, filters: { algorithm?: string; tags?: string, order?: string }) => {
     const supabase = initializeSupabase(c);
     
     const minPageSize = 1; 
@@ -33,6 +33,10 @@ export const getFilteredEntries = async (page: number, pageSize: number, c: Cont
         query = query.filter('tags', 'ilike', `%${filters.tags}%`);
     }
 
+    if (filters.order === 'recent') {
+        query = query.order('created_at', { ascending: false });
+    }
+
     const { data, error } = await query;
 
     if (error) {
@@ -49,7 +53,7 @@ export const getFilteredEntries = async (page: number, pageSize: number, c: Cont
     };
 };
 
-export const getFilteredEntriesByName = async (name: string, page: number, pageSize: number, c: Context, filters: { algorithm?: string; tags?: string }) => {
+export const getFilteredEntriesByName = async (name: string, page: number, pageSize: number, c: Context, filters: { algorithm?: string; tags?: string, order?: string }) => {
     const supabase = initializeSupabase(c);
 
     const minNameLength = 3;
@@ -88,6 +92,10 @@ export const getFilteredEntriesByName = async (name: string, page: number, pageS
 
     if (filters.tags) {
         query = query.filter('tags', 'ilike', `%${filters.tags}%`);
+    }
+
+    if (filters.order === 'recent') {
+        query = query.order('created_at', { ascending: false });
     }
 
     const { data, error } = await query;

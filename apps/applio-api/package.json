@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "deploy": "wrangler deploy --minify",
+    "deploy": "wrangler deploy --minify --dry-run",
     "dev": "wrangler dev",
     "start": "wrangler dev",
     "test": "vitest",

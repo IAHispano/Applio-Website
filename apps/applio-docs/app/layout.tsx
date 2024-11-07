@@ -9,7 +9,7 @@ const inter = Syne({
   weight: ['400', '500', '600', '700', '800'],
 });
 
-export const runtime = 'edge';
+export const runtime = process.env.CF_PAGES_URL ? 'edge' : undefined;
 
 export default function Layout({ children }: { children: ReactNode }) {
   

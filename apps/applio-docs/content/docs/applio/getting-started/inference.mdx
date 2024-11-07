@@ -1,0 +1,98 @@
+---
+title: Inferencing
+---
+
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom';
+import { Tabs, Tab } from 'fumadocs-ui/components/tabs';
+import { Steps, Step } from 'fumadocs-ui/components/steps';
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion';
+
+Inference is a **simple** process that you can do in **three easy steps**, where the program takes an input audio and transforms it into the voice it has been trained on. Replicating the vocal characteristics, intonation, and style of the original voice.
+
+<ImageZoom src="/images/inference.png" alt="Inference" width={1000} height={500}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10" />
+
+<Tabs items={['Single', 'Batch']}>
+    <Tab value="Single">
+    ### Making a single inference
+        <Steps>
+            <Step>
+            #### Select your model
+            Simply select in the boxes the `.pth` and `.index` file of the downloaded/trained model. If not displayed refresh the model list.
+            </Step>
+            <Step>
+            #### Load your audio
+            As the first step, select and upload the audio file in the corresponding box.
+            </Step>
+            <Step>
+            #### Make the inference! 🎉
+            Now you are ready to perform your inference, just click convert and you will get your result. The processing time will depend on the speed of your CPU/GPU.
+            </Step>
+        </Steps>
+        <Callout type="warn" className="shadow-xl shadow-orange-500/10">
+        **If you have any error, check that the audio you upload *does not* contain special characters or spaces in its name**
+        </Callout>
+    </Tab>
+    <Tab value="Batch">
+    ### Making a batch inference
+        <Steps>
+            <Step>
+            #### Place your audio files in a folder
+            Copy and paste the path into the Input Folder, if you’d like, you can also specify the output path for the converted audios in the Output Folder.
+            </Step>
+            <Step>
+            #### Select the models
+            Click the Refresh button at the top right and select the downloaded/uploaded files in the Voice model and index file box.
+            </Step>
+            <Step>
+            #### Make the inference! 🎉
+            Again you are ready to perform your inference, just click convert and you will get your result. The processing time will depend on the speed of your CPU/GPU.
+            </Step>
+        </Steps>
+        <Callout type="warn" className="shadow-xl shadow-orange-500/10">
+        **If you have any error, check that the audio you upload *does not* contain special characters or spaces in its name**
+        </Callout>
+    </Tab>
+</Tabs>
+
+<Accordions>
+<Accordion title="Advanced Settings">
+Applio has an “advanced options” section which allows you to modify several settings for your result, this box focuses on describe each one of them:
+
+- **Export Format**: Select the format to export the audio.
+- **Split Audio**: Basically cuts the audio into parts to make the inference by parts and then joins them together.
+- **Autotune**: Apply a soft autotune to your inferences, recommended for singing conversions.
+- **Clean Audio**: Clean your audio output using noise detection algorithms, recommended for speaking audios.
+- **Upscale Audio**: Upscale the audio to a higher quality, recommended for low-quality audios.
+- **Clean Strenght**: The more you increase it the more it will clean up, but it will be more compressed.
+- **Pitch**: Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12.
+- **Filter Radius**: Applies respiration filtering to the results, the value represents the filter radius and respiration reduction to avoid artifacts.
+- **Search Feature Ratio**: It is the one in charge of controlling the index, the larger the ratio, the more single the dataset but it can result in artifacts, so it is better to leave it as it is by default.
+- **Volume Envelope**: Substitute or blend with the volume envelope of the output.
+- **Protec Voiceless Consonants**: Safeguard distinct consonants and breathing sounds to prevent electro-acoustic tearing and other artifacts.
+- **Hop Length**: Denotes the duration it takes for the system to transition to a significant pitch change. Smaller hop lengths require more time for inference and training but tend to yield higher pitch accuracy.
+- **Pitch extraction algorithm**: Select between rvmpe, crepe or other.
+- **Embedder Model**: select the Embedder model (contentvec, japanese-hubert-base, chinese-hubert-large or custom).
+- **Formant Shifting:** used for male to female and vice-versa convertions. Here you can adjust the **Quefrency for formant shifting** and the **Timbre for formant shifting**.
+- **Post-Process:** post-process the audio to apply effects to the output. Here you can modify the following:
+   - **Reverb:** you can set the Reverb Room Size, Reverb Damping, Reverb Wet Gain, Reverb Dry Gain, Reverb Width and the Reverb Freeze Mode.
+   - **Pitch Shift:** Set the pitch shift semitones.
+   - **Limiter:** you can set the Limiter Threshold dB and the Limiter Release Time.
+   - **Gain:** Set the gain dB.
+   - **Distortion:** Set the distortion gain.
+   - **Chorus:** you can set the Chorus Rate Hz, chorus Depth, chorus Center Delay ms, chorus Feedback and the Chorus Mix.
+   - **Bitcrush:** apply bitcrush to the audio.
+   - **Clipping:** Set the clipping threshold.
+   - **Compressor:** you can set the Compressor Threshold dB, Compressor Ratio, Compressor Attack ms and the Compressor Release ms.
+   - **Delay:** you can set the Delay Seconds, Delay Feedback and the Delay Mix.
+</Accordion>
+<Accordion title="Tips for better results">
+What should I do if my output audio sounds robotic?
+
+
+- **Look for better quality audio.**
+- **In case of training, your voice model needs more [training](/docs/applio/getting-started/training) or is overtraining.**
+- **Remove the reverb, double vocals and noise from your acapella, you can check the [UVR 5 or MVSEP guide](/docs/applio/guides/audio-isolating/uvr).**
+- **The dataset of your model contained noise, you need to [clean the dataset](/docs/applio/guides/create-datasets/create-datasets).**
+- **Try advanced settings.**
+</Accordion>
+</Accordions>

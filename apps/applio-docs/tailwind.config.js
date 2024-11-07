@@ -1,15 +1,13 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-	darkMode: "class",
-	content: [
-		"./pages/**/*.{js,jsx,ts,tsx,md,mdx}",
-		"./components/**/*.{js,jsx,ts,tsx,md,mdx}",
+import { createPreset } from 'fumadocs-ui/tailwind-plugin';
 
-		// Or if using `src` directory:
-		"./src/**/*.{js,jsx,ts,tsx,md,mdx}",
-	],
-	theme: {
-		extend: {},
-	},
-	plugins: [],
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    './components/**/*.{ts,tsx}',
+    './app/**/*.{ts,tsx}',
+    './content/**/*.{md,mdx}',
+    './mdx-components.{ts,tsx}',
+    './node_modules/fumadocs-ui/dist/**/*.js',
+  ],
+  presets: [createPreset()],
 };

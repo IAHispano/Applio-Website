@@ -1,0 +1,40 @@
+---
+title: Introduction
+---
+
+import { Callout } from 'fumadocs-ui/components/callout' 
+import { TypeTable } from 'fumadocs-ui/components/type-table'
+
+## What is Applio API and where can I use it?
+
+Applio API **is the link between your project and our database**. **Our vision is** that your project can **interact with our database with minimal latency**, **making it the fastest API** on RVC models. We offer security, speed and several advanced filtering options.
+
+<Callout type="warn" className="shadow-xl shadow-orange-500/10">
+  Applio **API V2** is **currently in closed beta**. We are working hard to make it the best API on RVC models. **If you need it for commercial use**, please contact us at <a href="mailto:support@applio.org">support@applio.org</a>.  
+</Callout>
+
+## Pricing
+**Applio API is free**, but we use a [rate limit method](/docs/api#what-is-the-rate-limit) so that it works properly and we can afford to have a free plan.
+
+### What is the rate limit?
+To ensure the proper functioning of **Applio API** and to keep it **completely free**, we limit the number of requests allowed every 24 hours. 
+
+See the list below to see how this might affect you: 
+
+<TypeTable type={{
+    user: {
+        description: 'The number of requests allowed per 24 hours for normal users.',
+        type: 'free',
+        default: 100
+    },
+    premium: {
+        description: 'The number of requests allowed per 24 hours for premium users.',
+        type: 'paying',
+        default: 500
+    },
+    commercial: {
+        description: 'The number of requests allowed per 24 hours for commercial users.',
+        type: 'paying',
+        default: 1000,
+    }
+}}/>

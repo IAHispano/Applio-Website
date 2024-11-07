@@ -14,12 +14,12 @@ export const baseOptions: BaseLayoutProps = {
   links: [
     {
       text: 'Documentation',
-      url: '/docs/applio',
+      url: '/applio',
       active: 'nested-url',
     },
     {
       text: 'API',
-      url: '/docs/api',
+      url: '/api',
       active: 'nested-url',
     }
   ],

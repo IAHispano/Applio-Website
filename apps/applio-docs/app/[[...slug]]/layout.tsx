@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             {
               title: 'Applio',
               description: 'Documentation for Applio',
-              url: '/docs/applio',
+              url: '/applio',
               props: {
                 className: 'px-4'
               }
@@ -30,7 +30,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             {
               title: 'API',
               description: 'Documentation for Applio API',
-              url: '/docs/api',
+              url: '/api',
               props: {
                 className: 'px-4'
               }

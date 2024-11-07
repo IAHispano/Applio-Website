@@ -24,7 +24,7 @@ export async function generateMetadata(props: {
     openGraph: {
       title, 
       description,
-      images: [image], 
+      image,
       url: `https://docs.applio.org/${params.slug?.join('/')}`,  
       type: 'website', 
     },

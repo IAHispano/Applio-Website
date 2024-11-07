@@ -55,6 +55,6 @@ export async function generateMetadata(props: {
   );
 }
 
-export function generateStaticParams(): { slug: string[] }[] {
-  return source.generateParams();
-}
+// export function generateStaticParams(): { slug: string[] }[] {
+//   return source.generateParams();
+// }

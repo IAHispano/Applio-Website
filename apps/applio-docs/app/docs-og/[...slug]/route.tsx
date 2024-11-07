@@ -1,6 +1,8 @@
 import { metadataImage } from '@/utils/metadata-image';
-import { type ImageResponse } from 'next/og';
+import type { ImageResponse } from 'next/og';
 import { generateOGImage } from './og';
+
+export const runtime = 'edge';
 
 export const GET = metadataImage.createAPI((page): ImageResponse => {
   return generateOGImage({
@@ -10,8 +12,8 @@ export const GET = metadataImage.createAPI((page): ImageResponse => {
   });
 });
 
-export function generateStaticParams(): {
-  slug: string[];
-}[] {
-  return metadataImage.generateParams();
-}
+// export function generateStaticParams(): {
+//   slug: string[];
+// }[] {
+//   return metadataImage.generateParams();
+// }

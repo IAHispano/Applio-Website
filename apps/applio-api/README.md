@@ -17,6 +17,7 @@ Fetches a paginated list of entries, with optional filters by `algorithm` and `t
   - `perPage` *(optional)*: Integer indicating the number of items per page. Default: `10`.
   - `algorithm` *(optional)*: String to filter by a specific algorithm.
   - `tags` *(optional)*: String to filter by specific tags.
+  - `order` *(optional)*: String to order the results by.
 
 **Response:**
 - **200 OK**
@@ -59,6 +60,7 @@ Fetches a list of entries filtered by `name`, with additional filters for `algor
   - `perPage` *(optional)*: Integer indicating the number of items per page. Default: `10`.
   - `algorithm` *(optional)*: String to filter by a specific algorithm.
   - `tags` *(optional)*: String to filter by specific tags.
+  - `order` *(optional)*: String to order the results by.
 
 **Response:**
 - **200 OK**

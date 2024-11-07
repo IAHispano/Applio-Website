@@ -27,8 +27,8 @@ export function generateOGImage(
       primaryColor,
     }),
     {
-      width: 1200,
-      height: 630,
+      width: 800,
+      height: 400,
       ...rest,
     },
   );

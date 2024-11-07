@@ -11,9 +11,3 @@ export const GET = metadataImage.createAPI((page): ImageResponse => {
     site: 'Applio Documentation'
   });
 });
-
-// export function generateStaticParams(): {
-//   slug: string[];
-// }[] {
-//   return metadataImage.generateParams();
-// }

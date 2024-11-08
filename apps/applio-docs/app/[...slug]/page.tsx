@@ -16,7 +16,7 @@ export async function generateMetadata(props: {
 
   const title = page.data.title || 'Applio Documentation';
   const description = page.data.description || 'Documentation for the most used voice cloning tool in the world.';
-  const image = '/banner.png';
+  const image = 'https://docs.applio.org/banner.png';
 
   return {
     title, 
@@ -24,9 +24,15 @@ export async function generateMetadata(props: {
     openGraph: {
       title, 
       description,
-      image,
+      icons: [
+        {
+          url: '/favicon.ico',
+          type: 'image/x-icon',
+        },
+      ],
       url: `https://docs.applio.org/${params.slug?.join('/')}`,  
       type: 'website', 
+      images: [image], 
     },
     twitter: {
       card: 'summary_large_image', 

@@ -15,7 +15,7 @@ export function generateMetadata() {
     openGraph: {
       title: 'Applio Documentation',
       description: 'Documentation for the most used voice cloning tool in the world.',
-      images: ['/banner.png'],
+      images: ['https://docs.applio.org/banner.png'],
       url: 'https://docs.applio.org/applio',
       type: 'website',
     },
@@ -23,7 +23,7 @@ export function generateMetadata() {
       card: 'summary_large_image',
       title: 'Applio Documentation',
       description: 'Documentation for the most used voice cloning tool in the world.',
-      image: '/banner.png',
+      image: 'https://docs.applio.org/banner.png',
     },
   };
 }

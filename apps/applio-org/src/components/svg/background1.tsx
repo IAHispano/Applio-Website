@@ -7,6 +7,7 @@ export default function Background1() {
 			viewBox="0 0 1867 1080"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
+			aria-hidden="true"
 		>
 			<g filter="url(#filter0_f_201_196)">
 				<circle cx="1485" cy="542" r="48" fill="url(#paint0_radial_201_196)" />
@@ -16,16 +17,6 @@ export default function Background1() {
 			</g>
 			<g filter="url(#filter2_f_201_196)">
 				<circle cx="399" cy="542" r="65" fill="url(#paint2_radial_201_196)" />
-			</g>
-			<g filter="url(#filter3_f_201_196)">
-				<ellipse
-					cx="933.5"
-					cy="355.195"
-					rx="424.5"
-					ry="504.364"
-					fill="white"
-					fillOpacity="0.2"
-				/>
 			</g>
 			<defs>
 				<filter
@@ -88,27 +79,6 @@ export default function Background1() {
 					/>
 					<feGaussianBlur
 						stdDeviation="15"
-						result="effect1_foregroundBlur_201_196"
-					/>
-				</filter>
-				<filter
-					id="filter3_f_201_196"
-					x="0"
-					y="-658.169"
-					width="1867"
-					height="2026.73"
-					filterUnits="userSpaceOnUse"
-					colorInterpolationFilters="sRGB"
-				>
-					<feFlood floodOpacity="0" result="BackgroundImageFix" />
-					<feBlend
-						mode="normal"
-						in="SourceGraphic"
-						in2="BackgroundImageFix"
-						result="shape"
-					/>
-					<feGaussianBlur
-						stdDeviation="254.5"
 						result="effect1_foregroundBlur_201_196"
 					/>
 				</filter>

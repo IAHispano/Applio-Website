@@ -2,7 +2,6 @@
 
 import { motion, useScroll } from "framer-motion";
 import { useEffect, useState } from "react";
-import BlurIn from "../magicui/blur-text";
 import Avatar from "./avatar";
 import NavbarMobile from "./navbarMobile";
 
@@ -59,7 +58,6 @@ export default function Navbar() {
 						onContextMenu={(e) => {
 							e.preventDefault();
 							window.open("/about/branding", "_blank");
-							window.open("/about/branding", "_blank");
 						}}
 					>
 						Applio
@@ -99,12 +97,11 @@ export default function Navbar() {
 									</svg>
 								</a>
 								{/* dropdown products */}
-								<div
-									className={`z-50 bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl transition-opacity duration-300 ease-in-out ${
-										isOpenProducts
-											? "opacity-100 visible"
-											: "opacity-0 invisible"
-									}`}
+								<motion.div
+									initial={{ opacity: 0, visibility: "hidden" }}
+									animate={{ opacity: isOpenProducts ? 1 : 0, visibility: isOpenProducts ? "visible" : "hidden" }}
+									transition={{ duration: 0.2, ease: "easeInOut" }}
+									className='z-50 bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl'
 								>
 									<div className="flex gap-2">
 										<div className="items-start flex flex-col text-left gap-1">
@@ -340,7 +337,7 @@ export default function Navbar() {
 											</a>
 										</div>
 									</div>
-								</div>
+								</motion.div>
 							</div>
 							<div
 								className="dropdown"

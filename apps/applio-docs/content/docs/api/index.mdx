@@ -14,13 +14,10 @@ Applio API **is the link between your project and our database**. **Our vision i
 </Callout>
 
 ## Pricing
-**Applio API is free**, but we use a [rate limit method](/api#what-is-the-rate-limit) so that it works properly and we can afford to have a free plan.
+**Applio API is free**, but we use a [rate limit method](/api#rate-limit) so that it works properly and we can afford to have a free plan.
 
-### What is the rate limit?
+### Rate limit
 To ensure the proper functioning of **Applio API** and to keep it **completely free**, we limit the number of requests allowed every 24 hours. 
-
-See the list below to see how this might affect you: 
-
 <TypeTable type={{
     user: {
         description: 'The number of requests allowed per 24 hours for normal users.',
@@ -29,12 +26,12 @@ See the list below to see how this might affect you:
     },
     premium: {
         description: 'The number of requests allowed per 24 hours for premium users.',
-        type: 'paying',
+        type: 'paid',
         default: 500
     },
     commercial: {
         description: 'The number of requests allowed per 24 hours for commercial users.',
-        type: 'paying',
+        type: 'paid',
         default: 1000,
     }
 }}/>

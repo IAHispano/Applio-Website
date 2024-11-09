@@ -21,7 +21,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           options={[
             {
               title: 'Applio',
-              description: 'Documentation for Applio',
+              description: 'A Complete Guide to Applio',
               url: '/applio',
               props: {
                 className: 'px-4'
@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             },
             {
               title: 'API',
-              description: 'Documentation for Applio API',
+              description: 'API Documentation and Resources for Developers',
               url: '/api',
               props: {
                 className: 'px-4'

@@ -14,8 +14,8 @@ export async function generateMetadata(props: {
     return { notFound: true };
   }
 
-  const title = page.data.title || 'Applio Documentation';
-  const description = page.data.description || 'Documentation for the most used voice cloning tool in the world.';
+  const title = `Applio - ${page.data.title}` || 'Applio Documentation';
+  const description = page.data.description || 'Documentation for a simple, high-quality voice conversion tool focused on ease of use and performance.';
   const image = 'https://docs.applio.org/banner.png';
 
   return {

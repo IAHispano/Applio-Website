@@ -29,7 +29,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             },
             {
               title: 'API',
-              description: 'API Documentation and Resources for Developers',
+              description: 'Documentation and Resources for Developers',
               url: '/api',
               props: {
                 className: 'px-4'

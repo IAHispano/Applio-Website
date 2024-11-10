@@ -56,7 +56,7 @@ export default function Footer() {
 							</svg>
 						</a>
 						<a
-							href="https://discord.gg/iahispano"
+							href="https://discord.gg/ai-hispano-1096877223765606521"
 							target="_blank"
 							rel="noreferrer"
 						>
@@ -127,7 +127,7 @@ export default function Footer() {
 					</a>
 					<a
 						className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-						href="https://discord.gg/iahispano"
+						href="https://discord.gg/ai-hispano-1096877223765606521"
 						target="_blank"
 						rel="noreferrer"
 					>
@@ -187,7 +187,7 @@ export default function Footer() {
 					</a>
 					<a
 						className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-						href="https://discord.gg/iahispano"
+						href="https://discord.gg/ai-hispano-1096877223765606521"
 						target="_blank"
 						rel="noreferrer"
 					>

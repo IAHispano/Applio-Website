@@ -58,7 +58,7 @@ export default function TermsServicePage() {
 				<h2 className="text-2xl font-bold mb-2">8. Contact Us</h2>
 				<p className="mb-4">
 					If you have any questions about these Terms, please contact us at
-					support@applio.org or https://discord.gg/iahispano.
+					support@applio.org or https://discord.gg/ai-hispano-1096877223765606521.
 				</p>
 			</div>
 		</div>

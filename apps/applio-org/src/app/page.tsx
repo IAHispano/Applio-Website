@@ -43,7 +43,7 @@ export default function Home() {
 						<div className="mt-8">
 							<a
 								className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow"
-								href="https://discord.gg/iahispano"
+								href="https://discord.gg/ai-hispano-1096877223765606521"
 								target="_blank"
 								rel="noreferrer"
 							>

@@ -426,7 +426,7 @@ export default function Navbar() {
 											</a>
 											<a
 												className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
-												href="https://discord.gg/iahispano"
+												href="https://discord.gg/ai-hispano-1096877223765606521"
 												target="_blank"
 												rel="noreferrer"
 											>

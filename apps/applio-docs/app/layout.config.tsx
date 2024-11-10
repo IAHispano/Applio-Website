@@ -51,7 +51,7 @@ export const baseOptions: BaseLayoutProps = {
     },
     {
       text: 'Discord',
-      url: 'https://discord.gg/iahispano',
+      url: 'https://discord.gg/ai-hispano-1096877223765606521',
       external: true,
       active: 'url',
       icon: <DiscordIcon />

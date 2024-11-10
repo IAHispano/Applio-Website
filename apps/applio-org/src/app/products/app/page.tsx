@@ -25,24 +25,25 @@ export default function AppProduct() {
 	return (
 		<main className="w-full min-h-screen">
 			<section className="w-full h-[70svh] rounded-xl flex flex-col justify-center items-center p-4 relative mb-14">
-				<div
-					className="w-full h-full rounded-xl"
-					style={{
-						backgroundImage:
-							"radial-gradient(ellipse 120% 80% at 50% 110%, #FFFFFF, transparent)",
-					}}
-				/>
-				<div className="absolute text-center">
-					<h1 className="text-5xl font-bold">Applio App</h1>
-					<p className="text-sm text-white/80 mt-2 mb-4">
-						The easiest voice cloning tool, now in app.
-					</p>
-					<a
-						href="#join-beta"
-						className="text-sm px-6 py-2 bg-white text-black rounded-xl font-semibold cursor-pointer hover:bg-white/30 hover:text-white slow"
-					>
-						Join beta
-					</a>
+			<div className="grid grid-cols-3 md:grid-cols-3 gap-4 w-full h-full p-4">
+					<div className='col-span-3 row-span-2 rounded-xl bg-[#111111]/50 w-full h-full shadow-2xl shadow-[#00AA68]/20'>
+						<div
+							className="pt-6 flex flex-col w-full h-full rounded-xl justify-center items-center noise relative overflow-visible"
+							style={{
+								background:
+									'radial-gradient(150% 150% at 50% 10%, #111111A3 40%, #00AA68 100%)',
+							}}
+						>
+							<h1 className="text-[100px] font-bold title max-md:text-6xl">Applio</h1>
+							<h2 className="text-sm text-neutral-300 mb-4 max-md:text-xs mt-2">The easiest voice cloning tool, now in app.</h2>
+							<a
+								href="#join-beta"
+								className="z-50 text-sm px-6 py-1 bg-white text-black rounded-xl font-semibold cursor-pointer hover:shadow-xl hover:shadow-[#111111] slow"
+							>
+								Join beta
+							</a>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -83,12 +84,7 @@ export default function AppProduct() {
 				<div className="mt-4 w-full flex items-center mx-auto">
 					<div className="grid md:grid-cols-3 md:grid-rows-2 gap-4 justify-center items-start m-auto">
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(0)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(0)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Simple installation
@@ -100,12 +96,7 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(1)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(1)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Applio's ecosystem
@@ -117,12 +108,7 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(2)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(2)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Auto Update
@@ -132,14 +118,8 @@ export default function AppProduct() {
 								a new update and apply it without you doing anything!
 							</p>
 						</div>
-
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(3)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(3)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Share with friends
@@ -151,12 +131,7 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(4)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(4)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Your data is yours
@@ -168,12 +143,7 @@ export default function AppProduct() {
 						</div>
 
 						<div
-							className={`flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full cursor-pointer hover:bg-white/[0.03] transition-all ${
-								clickedCards.includes(5)
-									? "bg-green-500/50 hover:bg-green-500/50"
-									: ""
-							}`}
-							onClick={() => handleCardClick(5)}
+							className='flex flex-col gap-2 items-start justify-center border border-white/20 rounded-xl p-4 w-full transition-all'
 						>
 							<h3 className="text-xl font-semibold text-neutral-200">
 								Customize to your liking
@@ -187,7 +157,7 @@ export default function AppProduct() {
 				</div>
 			</div>
 
-			<div className="flex h-fit items-center justify-center p-4">
+			<div className="flex h-fit items-center justify-center p-4 mt-24">
 				<div className="relative w-full max-w-4xl">
 					<div className="relative h-24">
 						<div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gray-700" />
@@ -222,22 +192,23 @@ export default function AppProduct() {
 				<div className="max-w-5xl w-full h-full flex justify-center items-center m-auto max-md:px-4">
 					<div className="flex max-md:flex-col md:justify-between max-md:justify-center w-full items-center mx-auto">
 						<div className="flex flex-col mt-auto h-full justify-center">
-							<h1 className="text-4xl font-semibold max-md:text-center">
-								Join the beta
-							</h1>
-							<h2 className="text-neutral-200 text-sm max-md:text-center max-md:text-balance">
-								Access to the beta isn't available yet. Join our Discord server
-								to stay updated and never miss an announcement!
-							</h2>
+						<h1 className="text-4xl font-semibold max-md:text-center">
+						Join the Alpha Waitlist
+						</h1>
+						<h2 className="text-neutral-300 text-xs">
+						We're currently accepting sign-ups for our exclusive alpha. Click the button to join the waitlist.
+						</h2>
 						</div>
 						<div className="flex flex-col mt-auto h-full justify-center max-md:mt-12">
-							<button
+							<a
 								className="bg-white slow enabled:hover:shadow-lg disabled:bg-white/30 enabled:hover:shadow-white disabled:bg-opacity-40 enabled:text-black disabled:text-white rounded-xl px-6 py-2 w-full max-w-md"
 								type="button"
-								disabled
+								href="https://tally.so/r/312aLQ"
+								target="_blank"
+								rel="noreferrer"
 							>
-								<p className="text-sm font-medium">Stay tuned!</p>
-							</button>
+								<p className="text-sm font-medium text-black hover:shadow-xl hover:shadow-white slow">Reserve your spot</p>
+							</a>
 						</div>
 					</div>
 				</div>

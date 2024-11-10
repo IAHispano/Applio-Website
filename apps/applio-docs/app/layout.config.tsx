@@ -36,20 +36,6 @@ export const baseOptions: BaseLayoutProps = {
   },
   links: [
     {
-      text: 'Documentation',
-      url: '/applio',
-      active: 'nested-url',
-      description: 'Applio project documentation',
-      icon: <DocsIcon />
-    },
-    {
-      text: 'API',
-      url: '/api',
-      active: 'nested-url',
-      description: 'Applio API project documentation',
-      icon: <ApiIcon />
-    },
-    {
       text: 'Discord',
       url: 'https://discord.gg/ai-hispano-1096877223765606521',
       external: true,

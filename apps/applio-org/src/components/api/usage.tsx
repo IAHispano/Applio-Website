@@ -53,7 +53,7 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 							role: "user" | "premium" | "commercial";
 						}) => {
 							const getMaxUsage = (role: "user" | "premium" | "commercial") => {
-								return role === "premium" ? 500 : role === "commercial" ? 1000 : 100;
+								return role === "premium" ? 10 : role === "commercial" ? 1000 : 100;
 							};
 							const maxUsage = getMaxUsage(item.role);
 							const progressPercentage = Math.min(
@@ -134,6 +134,8 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 											/>
 										</div>
 									)}
+									{item.usage <= maxUsage && (
+									<>
 									{item.usage > maxUsage ||
 										(item.usage === maxUsage && (
 											<div className="bg-neutral-800/20 border border-white/20 rounded-full h-4 shadow-xl shadow-white/20 overflow-hidden mt-1">
@@ -144,18 +146,6 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 											</div>
 										))}
 									<div className="justify-between flex read-font font-medium mt-2">
-										{item.usage > 100 && (
-											<p className="justify-start md:items-end flex max-md:flex-col text-[#9E9E9E]">
-												You have reached the limit of use, try again later or{" "}
-												<a
-													className="underline md:mx-1 hover:text-white slow"
-													href="/premium"
-												>
-													become a Supporter
-												</a>{" "}
-												to reduce the rate limits.
-											</p>
-										)}
 										{item.usage > 0 ? (
 											<div className="flex justify-between w-full items-center">
 												<NumberTicker
@@ -177,6 +167,13 @@ export default function ApiUsage({ auth_id }: { auth_id: string | undefined }) {
 											</div>
 										)}
 									</div>
+									</>
+									)}
+									{item.usage >= maxUsage && (
+										<p className=" text-red-400">
+											You have reached the limit of use, try again later or <a className="underline text-neutral-300 hover:text-white slow" href="https://ko-fi.com/iahispano/tiers" target="_blank" rel="noreferrer">upgrade to a better plan</a> to reduce the rate limits.
+										</p>
+									)}
 								</div>
 							);
 						},

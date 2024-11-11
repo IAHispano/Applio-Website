@@ -3,7 +3,7 @@ import { createClient } from "@/utils/server-database";
 import { redirect } from "next/navigation";
 
 // Remove for local development
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export default async function Login() {
 	const supabase = createClient();

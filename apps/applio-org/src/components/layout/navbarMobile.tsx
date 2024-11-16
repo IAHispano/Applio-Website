@@ -419,7 +419,7 @@ export default function NavbarMobile() {
 							</a>
 							<a
 								className="rounded-xl text-neutral-200 hover:text-white p-2 flex justify-between items-center gap-2"
-								href="https://discord.gg/ai-hispano-1096877223765606521"
+								href="https://discord.gg/WxfMrF6S"
 								target="_blank"
 								rel="noreferrer"
 							>

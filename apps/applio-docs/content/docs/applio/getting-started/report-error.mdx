@@ -3,8 +3,8 @@ title: Reporting an Error
 description: Learn how to report an error or issue with Applio.
 ---
 
-import { ImageZoom } from 'fumadocs-ui/components/image-zoom'
-import { Steps, Step } from 'fumadocs-ui/components/steps'
+import { ImageZoom } from "fumadocs-ui/components/image-zoom";
+import { Step, Steps } from "fumadocs-ui/components/steps";
 
 ## Report an Error
 
@@ -12,16 +12,20 @@ import { Steps, Step } from 'fumadocs-ui/components/steps'
 
 Yes, you can report a bug by going to the [issues section](https://github.com/IAHispano/Applio/issues), click on "new issues", send an image / full text of the Applio CMD and comment how you get the error (in which part, what action perform when getting the message).
 
-You can also go to the **report a bug** section in Applio to easily record what is happening. 
+You can also go to the **report a bug** section in Applio to easily record what is happening.
 
-<ImageZoom src="/images/report-bug.png" alt="Report a bug" width={800} height={400} />
+<ImageZoom
+  src="/images/report-bug.png"
+  alt="Report a bug"
+  width={800}
+  height={400}
+/>
 
 <Callout type="info" className="shadow-xl shadow-blue-500/10">
-  Remember to check the [FAQ section](/applio/faq), there are some bugs
-  that are still present in the current version of applio and can be found in
-  this section. You can also go to the [Discord
-  Server](https://discord.gg/ai-hispano-1096877223765606521) and share your problem in the help
-  channels to get a direct answer!
+  Remember to check the [FAQ section](/applio/faq), there are some bugs that are
+  still present in the current version of applio and can be found in this
+  section. You can also go to the [Discord Server](https://discord.gg/WxfMrF6S)
+  and share your problem in the help channels to get a direct answer!
 </Callout>
 
 ---
@@ -51,16 +55,19 @@ If an error related to Tensorboard occurs, it's likely that no dependencies were
 ## Did you install applio in a directory with spaces or non ASCII characters in the path?
 
 If you did, please reinstall applio in a directory without spaces or non ASCII characters in the path. (For example your C: drive root)
+
 </Step>
 <Step>
 ## Did you have the antivirus/firewall enabled during the installation?
 
 If you did, please reinstall applio with the antivirus disabled.
+
 </Step>
 <Step>
 ## Did you open the run-applio.bat file with administrator privileges?
 
 If you did, please open it without administrator privileges.
+
 </Step>
 </Steps>
 

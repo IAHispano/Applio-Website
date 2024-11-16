@@ -113,7 +113,7 @@ export const baseOptions: BaseLayoutProps = {
   links: [
     {
       text: "Discord",
-      url: "https://discord.gg/WxfMrF6S",
+      url: "https://discord.gg/urxFjYmYYh",
       external: true,
       active: "url",
       icon: <DiscordIcon />,

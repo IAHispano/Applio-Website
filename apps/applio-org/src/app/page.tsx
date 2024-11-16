@@ -43,7 +43,7 @@ export default function Home() {
             <div className="mt-8">
               <a
                 className="bg-white rounded-xl px-14 py-3 text-black font-medium cursor-pointer hover:bg-white/80 slow"
-                href="https://discord.gg/WxfMrF6S"
+                href="https://discord.gg/urxFjYmYYh"
                 target="_blank"
                 rel="noreferrer"
               >

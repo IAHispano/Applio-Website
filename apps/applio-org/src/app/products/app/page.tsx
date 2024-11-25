@@ -1,70 +1,32 @@
 "use client";
-
-import { useState } from "react";
-import { useToast } from "@/components/models/use-toast";
-
 export default function AppProduct() {
-	const { showToast } = useToast();
-	const [clickedCards, setClickedCards] = useState<number[]>([]);
-
-	const handleCardClick = (cardIndex: number) => {
-		if (clickedCards.length === cardIndex) {
-			setClickedCards([...clickedCards, cardIndex]);
-		}
-	};
-
-	if (clickedCards.length === 6) {
-		showToast("You've unlocked the secret code: ACAT69", "success");
-		showToast(
-			"Contact us at support@applio.org for more information",
-			"success",
-		);
-		setClickedCards([]);
-	}
-
 	return (
-		<main className="w-full min-h-screen">
-			<section className="w-full h-[70svh] rounded-xl flex flex-col justify-center items-center p-4 relative mb-14">
-			<div className="grid grid-cols-3 md:grid-cols-3 gap-4 w-full h-full p-4">
-					<div className='col-span-3 row-span-2 rounded-xl bg-[#111111]/50 w-full h-full shadow-2xl shadow-[#00AA68]/20'>
+		<main className="w-full min-h-screen bg-gradient-to-b from-[#ffffffA3]/[30%] to-transparent">
+			<section className="w-full h-[70svh] rounded-xl flex flex-col justify-center items-center relative mb-14">
+			<div className="grid grid-cols-3 md:grid-cols-3 gap-4 w-full h-full">
+					<div className='col-span-3 row-span-2 rounded-xl w-full h-full'>
 						<div
-							className="pt-6 flex flex-col w-full h-full rounded-xl justify-center items-center noise relative overflow-visible"
+							className="pt-6 flex flex-col w-full h-full justify-center items-center relative overflow-visible"
 							style={{
 								background:
-									'radial-gradient(150% 150% at 50% 10%, #111111A3 40%, #00AA68 100%)',
+									'radial-gradient(180% 130% at 50% 10%, #110F0F 40%, rgba(0,0,0,0), rgba(0, 0, 0, 0) 100%)', 
 							}}
 						>
-							<h1 className="text-[100px] font-bold title max-md:text-6xl">Applio</h1>
-							<h2 className="text-sm text-neutral-300 mb-4 max-md:text-xs mt-2">The easiest voice cloning tool, now in app.</h2>
+							<h1 className="text-[100px] font-bold title max-md:text-6xl">Applio App</h1>
+							<div className="flex flex-col gap-0">
+							<h2 className="text-sm text-neutral-300 max-md:text-xs text-center max-w-xs">The easiest voice cloning tool, now in app.</h2>
+							<h2 className="text-sm text-neutral-300 mb-4 max-md:text-xs text-center max-w-xs">Made to be simple, fast, and light. </h2>
+							</div>
 							<a
 								href="#join-beta"
 								className="z-50 text-sm px-6 py-1 bg-white text-black rounded-xl font-semibold cursor-pointer hover:shadow-xl hover:shadow-[#111111] slow"
 							>
-								Join beta
+								Join Alpha
 							</a>
 						</div>
 					</div>
 				</div>
 			</section>
-
-			<p className="justify-center items-center mx-auto flex animate-bounce">
-				<svg
-					aria-hidden="true"
-					xmlns="http://www.w3.org/2000/svg"
-					width="24"
-					height="24"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					strokeWidth="2"
-					strokeLinecap="round"
-					strokeLinejoin="round"
-				>
-					<path d="M8 18L12 22L16 18" />
-					<path d="M12 2V22" />
-				</svg>
-			</p>
-
 			<div className="flex flex-col justify-center items-center my-16">
 				<img
 					className="rounded-2xl"
@@ -160,33 +122,36 @@ export default function AppProduct() {
 			<div className="flex h-fit items-center justify-center p-4 mt-24">
 				<div className="relative w-full max-w-4xl">
 					<div className="relative h-24">
-						<div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-gray-700" />
-						<div className="absolute left-0 top-1/2 h-6 w-6 -translate-y-1/2 transform rounded-full bg-white">
-							<div className="absolute inset-0 animate-pulse rounded-full bg-white opacity-75 blur-sm" />
-							<div className="absolute inset-0 animate-pulse rounded-full bg-white opacity-50 blur-md" />
-						</div>
-						<p className="text-neutral-400 text-[10px]">18 Oct 2024</p>
-						<div className="absolute left-0 top-24 text-white">
-							<h3 className="text-sm font-semibold">Pre-Alpha</h3>
-							<p className="text-xs text-neutral-300">
-								Pre-Alpha version. Available only for internal team, not
-								accessible to the public.
-							</p>
-						</div>
-						{[1, 2, 3, 4].map((_, index) => (
-							<div
-								key={index}
-								className="absolute top-1/2 h-3 w-3 -translate-y-1/2 transform rounded-full bg-gray-500"
-								style={{ left: `calc(${25 * (index + 1)}% - 6px)` }}
-								aria-hidden="true"
-							/>
-						))}
+					<div className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-neutral-700" />
+					<div
+						className="absolute left-0 top-1/2 h-3 w-3 -translate-y-1/2 transform rounded-full bg-neutral-600"
+						aria-hidden="true"
+					/>
+					<div className="absolute left-1/4 top-1/2 h-6 w-6 -translate-y-1/2 transform rounded-full bg-white">
+						<div className="absolute inset-0 animate-pulse rounded-full bg-white opacity-75 blur-sm" />
+						<div className="absolute inset-0 animate-pulse rounded-full bg-white opacity-50 blur-md" />
+					</div>
+					<p className="absolute left-1/4 top-16 mt-2.5 text-neutral-400 text-[10px] transform -translate-x-1/4">25 Nov 2024</p>
+					<div className="absolute left-1/4 top-24 text-white transform -translate-x-1/2 pl-32">
+						<h3 className="text-sm font-semibold text-start">Alpha Release</h3>
+						<p className="text-xs text-neutral-300 text-start max-w-[150px]">
+						First public version. Available for <a className="underline text-neutral-200 cursor-pointer hover:text-white slow" href="https://ko-fi.com/iahispano/tiers" target="_blank" rel="noreferrer">supporters</a> and selected users.
+						</p>
+					</div>
+					{[2, 3, 4].map((_, index) => (
+						<div
+						key={index}
+						className="absolute top-1/2 h-3 w-3 -translate-y-1/2 transform rounded-full bg-neutral-600"
+						style={{ left: `calc(${25 * (index + 2)}% - 6px)` }}
+						aria-hidden="true"
+						/>
+					))}
 					</div>
 				</div>
 			</div>
 
 			<div
-				className="bg-gradient-to-t from-transparent via-white/20 to-transparent w-full h-[30svh] mt-20"
+				className="bg-gradient-to-t from-transparent via-white/20 to-transparent w-full h-[30svh] mt-44"
 				id="join-beta"
 			>
 				<div className="max-w-5xl w-full h-full flex justify-center items-center m-auto max-md:px-4">

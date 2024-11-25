@@ -83,13 +83,13 @@ export default function RvcProduct() {
 					</h1>
 					<div className="md:gap-12 gap-4 w-full h-full flex max-md:flex-col justify-center">
 						<a
-							href="https://docs.applio.org/getting-started/installation#download-applio"
+							href="https://docs.applio.org/applio/getting-started/installation#download-applio"
 							className="md:px-8 text-center py-2 bg-white hover:shadow-lg hover:shadow-white slow border border-white/10 rounded-xl text-black font-medium"
 						>
 							Download for Windows
 						</a>
 						<a
-							href="https://docs.applio.org/getting-started/installation#download-applio-1"
+							href="https://docs.applio.org/applio/getting-started/installation#download-applio-1"
 							className="md:px-8 text-center py-2 bg-neutral-600/30 hover:shadow-lg hover:shadow-neutral-600/30 slow border border-white/20 rounded-xl font-medium"
 						>
 							Download for macOS/Linux

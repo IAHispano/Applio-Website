@@ -104,7 +104,8 @@ export default function Navbar() {
                     visibility: isOpenProducts ? "visible" : "hidden",
                   }}
                   transition={{ duration: 0.2, ease: "easeInOut" }}
-                  className="z-50 bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl"
+                  style={{ zIndex: 99999 }}
+                  className=" bg-[#110F0F] dropdown-menu absolute mt-6 rounded-lg p-4 px-4 border border-white/20 backdrop-filter backdrop-blur-xl"
                 >
                   <div className="flex gap-2">
                     <div className="items-start flex flex-col text-left gap-1">

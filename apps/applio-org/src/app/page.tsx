@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center md:-mt-28 w-full">
-			<div className="fixed md:mt-48 text-center justify-center items-center w-full backdrop-filter backdrop-blur-3xl z-50">
+			<div className="fixed md:mt-48 text-center justify-center items-center w-full backdrop-filter backdrop-blur-3xl" style={{ zIndex: 40 }}>
 			<Link href="/products/app" className="py-2 w-full flex justify-center items-center m-auto max-w-5xl bg-gradient-to-b from-white/10 to-white/20 hover:bg-white/20 slow rounded-xl backdrop-filter backdrop-blur-3xl z-50"> 
 					<h1 className="text-neutral-300 title font-medium"><span className="text-neutral-200 font-semibold">Applio App</span> is now in Alpha!</h1>
 			</Link>  

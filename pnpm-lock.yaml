@@ -165,6 +165,9 @@ importers:
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
+      vercel:
+        specifier: 39.1.1
+        version: 39.1.1
 
 packages:
 
@@ -6536,7 +6539,7 @@ snapshots:
 
   execa@3.2.0:
     dependencies:
-      cross-spawn: 7.0.3
+      cross-spawn: 7.0.6
       get-stream: 5.2.0
       human-signals: 1.1.1
       is-stream: 2.0.1

@@ -2,6 +2,9 @@
 
 import { useEffect } from "react"
 
+// remove for local development
+export const runtime = "edge"
+
 export default function Discord() {
     useEffect(() => {
         window.location.href = "https://discord.gg/urxFjYmYYh"

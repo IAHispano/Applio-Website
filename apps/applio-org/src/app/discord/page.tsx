@@ -1,14 +1,10 @@
 "use client"
 
-import { redirect } from "next/navigation"
 import { useEffect } from "react"
-
-// Remove for local development
-export const runtime = "edge";
 
 export default function Discord() {
     useEffect(() => {
-        redirect("https://discord.gg/urxFjYmYYh")
+        window.location.href = "https://discord.gg/urxFjYmYYh"
     }, [])
     
     return (

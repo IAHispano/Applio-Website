@@ -2,7 +2,7 @@ import DiscoverGuides from "@/components/learn/browse-more";
 import MoreLiked from "@/components/learn/more-liked";
 
 // Remove for local development
-export const runtime = "edge";
+
 
 export default function LearnGuides() {
 	return (

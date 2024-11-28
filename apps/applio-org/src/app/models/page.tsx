@@ -3,7 +3,7 @@ import { supabase } from "@/utils/database";
 import { Suspense } from "react";
 
 // Remove for local development
-export const runtime = "edge";
+
 
 export async function generateMetadata(params: {
 	searchParams: { id: string };

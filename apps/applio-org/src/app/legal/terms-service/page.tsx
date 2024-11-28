@@ -1,5 +1,5 @@
 // Remove for local development
-export const runtime = "edge";
+
 
 export default function TermsServicePage() {
   return (

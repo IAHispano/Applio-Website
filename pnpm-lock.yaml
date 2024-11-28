@@ -165,9 +165,6 @@ importers:
       typescript:
         specifier: ^5.7.2
         version: 5.7.2
-      vercel:
-        specifier: 39.1.1
-        version: 39.1.1
 
 packages:
 

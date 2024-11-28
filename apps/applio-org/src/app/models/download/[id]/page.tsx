@@ -4,7 +4,7 @@ import { supabase } from "@/utils/database";
 import { useEffect, useState } from "react";
 
 // Remove for local development
-
+export const runtime = "edge";
 
 export default function DownloadModel({ params }: { params: { id: string } }) {
 	const [model, setModel] = useState<any>();

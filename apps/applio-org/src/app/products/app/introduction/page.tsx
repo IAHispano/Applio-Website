@@ -62,7 +62,7 @@ export default function AppIntroduction() {
                         Please take note of the following key dates for accessing the Alpha version:
                     </p>
                     <ul className="list-disc list-inside mt-4 space-y-2">
-                        <li><strong>Supporters:</strong> Access begins on <em className="text-white font-sans font-semibold">November 29 at 00:00 CET</em>.</li>
+                        <li><strong>Supporters:</strong> Available <em className="text-white font-sans font-semibold">Now</em>!</li>
                         <li><strong>Waitlisted Users:</strong> Access will be granted starting <em className="text-white font-sans font-semibold">November 30 at 00:00 CET</em>.</li>
                     </ul>
                     <p className="mt-4">

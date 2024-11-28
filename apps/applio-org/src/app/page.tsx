@@ -6,15 +6,15 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center md:-mt-28 w-full">
-			<div className="fixed md:mt-48 text-center justify-center items-center w-full backdrop-filter backdrop-blur-3xl" style={{ zIndex: 40 }}>
-			<Link href="/products/app" className="py-2 w-full flex justify-center items-center m-auto max-w-5xl bg-gradient-to-b from-white/10 to-white/20 hover:bg-white/20 slow rounded-xl backdrop-filter backdrop-blur-3xl z-50"> 
+			<div className="fixed md:mt-48 max-md:mt-14 max-md:mx-24 text-center justify-center items-center w-full backdrop-filter backdrop-blur-3xl" style={{ zIndex: 40 }}>
+			<Link href="/products/app" className="py-2 w-full flex justify-center items-center m-auto max-md:max-w-lg md:max-w-5xl bg-gradient-to-b from-white/10 to-white/20 hover:bg-white/20 slow rounded-xl backdrop-filter backdrop-blur-3xl z-50"> 
 					<h1 className="text-neutral-300 title font-medium"><span className="text-neutral-200 font-semibold">Applio App</span> is now in Alpha!</h1>
 			</Link>  
 			</div>
       <div className="absolute overflow-visible">
         <Background1 />
       </div>
-      <section className="z-30 md:mt-96 max-md:mt-24 text-center flex justify-center items-center flex-col w-full">
+      <section className="z-30 md:mt-96 max-md:mt-28 text-center flex justify-center items-center flex-col w-full">
         <h1 className="text-3xl sm:text-3xl lg:text-6xl lg:max-w-5xl max-w-xl font-bold leading-tight sm:leading-snug md:leading-normal max-xl:px-12">
           Dive into a world of endless possibilities fueled by advanced AI audio
           technology

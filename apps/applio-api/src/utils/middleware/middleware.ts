@@ -20,5 +20,9 @@ export const authenticate = async (c: Context, next: () => Promise<void>) => {
 		return c.json({ error: 'Unauthorized: Invalid token' }, 401);
 	}	
 
+	if (data.role !== 'commercial') {
+		return c.json({ error: 'Unauthorized: Invalid token' }, 401);
+	}
+
 	await next();
 };

@@ -1,6 +1,6 @@
 {
     "title": "Applio",
     "description": "Documentation for Applio",
-    "pages": ["index", "beginners", "getting-started", "guides", "voice-models", "faq", "license"],
+    "pages": ["index", "beginners", "getting-started", "guides", "faq", "license"],
     "root": true
 }

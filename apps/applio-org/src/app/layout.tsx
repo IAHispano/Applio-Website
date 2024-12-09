@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 	metadataBase: new URL("https:/applio.org"),
 	title: "Applio",
 	description:
-		"At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
+		"At the forefront of innovation as an open source ecosystem hosting cutting-edge AI audio technologies.",
 	openGraph: {
 		title: "Applio",
 		description:
-			"At the forefront of innovation as an open-source ecosystem that hosts cutting-edge AI voice cloning technologies.",
+			"At the forefront of innovation as an open source ecosystem hosting cutting-edge AI audio technologies.",
 		images: "/opengraph-image.png",
 	},
 };

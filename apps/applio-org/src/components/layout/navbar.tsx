@@ -105,7 +105,7 @@ export default function Navbar() {
                   <div className="flex gap-2">
                     <div className="items-start flex flex-col text-left gap-1">
                       <h2 className="text-xs p-2 font-bold uppercase text-white/50">
-                        Voice cloning
+                        AI Audio Technology
                       </h2>
                       <a
                         className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
@@ -128,7 +128,7 @@ export default function Navbar() {
                         <div className="flex flex-col">
                           <h3 className="text-md font-semibold">Applio</h3>
                           <p className="text-xs text-neutral-200">
-                            Open source AI voice cloning tool
+                          A simple, high-quality voice conversion tool focused on ease of use and performance. 
                           </p>
                         </div>
                       </a>

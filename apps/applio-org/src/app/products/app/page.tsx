@@ -14,7 +14,7 @@ export default function AppProduct() {
 						>
 							<h1 className="text-[100px] font-bold title max-md:text-6xl">Applio App</h1>
 							<div className="flex flex-col gap-0">
-							<h2 className="text-sm text-neutral-300 max-md:text-xs text-center max-w-xs">The easiest voice cloning tool, now in app.</h2>
+							<h2 className="text-sm text-neutral-300 max-md:text-xs text-center max-w-xs">The advanced audio technology tool with AI, now in app.</h2>
 							<h2 className="text-sm text-neutral-300 mb-4 max-md:text-xs text-center max-w-xs">Made to be simple, fast, and light. </h2>
 							</div>
 							<a

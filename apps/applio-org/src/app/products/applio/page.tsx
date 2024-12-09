@@ -79,7 +79,7 @@ export default function RvcProduct() {
 				</article>
 				<article className="flex flex-col justify-center items-center mx-auto w-full h-full gap-8">
 					<h1 className="text-5xl font-semibold mt-28 max-w-3xl text-center">
-						Download the world's most widely used voice cloning tool
+					Download the world's most widely used AI-enabled advanced audio tool
 					</h1>
 					<div className="md:gap-12 gap-4 w-full h-full flex max-md:flex-col justify-center">
 						<a

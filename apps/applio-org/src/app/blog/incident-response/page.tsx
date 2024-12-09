@@ -2,6 +2,29 @@ export default function IncidentResponsePage() {
     return (
         <main className="min-h-screen max-w-5xl flex justify-center items-start mx-auto mt-28 p-6">
             <div className="flex flex-col w-full gap-24">
+                <section >
+                    <h1 className="text-2xl md:text-3xl text-neutral-200 font-bold">Important update about our models.</h1>
+                    <div className="my-2 h-0.5 bg-neutral-600 rounded-xl" />
+                    <div className="prose text-neutral-300 mt-4 gap-2">
+                        <p>
+                        Due to some recent reports of misuse, <span className="text-white font-semibold underline">we’ve decided to remove any direct access to models through Applio</span>. While the models were never hosted by us, we feel that providing access could lead to uses we don’t support, so we’ve chosen to take this step.
+                        </p>
+                        <p className="mt-2">
+                        <span className="text-white font-semibold underline">You can still use Applio as usual and look for models online, but we encourage you to do so responsibly</span>. To help with that, we’ve added a note to the README that we’d love for you to check out. It’s a small reminder to help keep our community safe and respectful.
+                        </p>
+                        <p className="mt-4">
+                        Here’s the link to the updated README:
+                        </p>
+                        <a className="underline text-neutral-200 hover:text-white slow mt-2" href="https://github.com/IAHispano/Applio?tab=readme-ov-file#terms-of-use">Applio README - Terms of use</a>
+                        <p className="mt-6">
+                        Thanks for understanding, and let’s keep building great things together!
+                        </p>
+                        <p className="mt-4">
+                            Cheers,
+                        </p>
+                        <p>The Applio Team</p>
+                    </div>
+                </section>
                 <section>
                     <h1 className="text-2xl md:text-3xl text-neutral-200 font-bold">
                         Incident: 21 October 2024

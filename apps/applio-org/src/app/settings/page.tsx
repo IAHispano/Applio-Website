@@ -5,7 +5,6 @@ import SettingsUI from "@/components/settings/settings-ui";
 import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/utils/database";
-import ModelsUI from "@/components/settings/models-ui";
 
 export default function Settings() {
 	return (
@@ -59,24 +58,10 @@ function SettingsContent() {
 				</button>
 				<button
 					type="button"
-					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 2 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
-					onClick={() => setPage(2)}
-				>
-					Models
-				</button>
-				<button
-					type="button"
 					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 3 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
 					onClick={() => setPage(3)}
 				>
 					Developer
-				</button>
-				<button
-					type="button"
-					className={`max-md:w-full hover:bg-white/20 rounded-xl border-white/10 border px-4 py-1 ${page === 4 ? "bg-neutral-600" : "bg-neutral-700/20"}`}
-					onClick={() => setPage(4)}
-				>
-					Premium
 				</button>
 			</div>
 			{page === 1 && (
@@ -84,28 +69,7 @@ function SettingsContent() {
 					<SettingsUI />
 				</div>
 			)}
-			{page === 2 && <ModelsUI />}
 			{page === 3 && <ApiDashboard />}
-			{page === 4 && (
-				<div className="mt-6 flex flex-col justify-center items-start prose text-left max-w-sm m-auto text-sm text-neutral-300 gap-2">
-					<p>
-						Donating money to a non-profit organization is really complicated.
-					</p>
-					<p>
-						Due to recent events we have had to withdraw this section. We are
-						working to reinstate Applio Premium.
-					</p>
-					<p>
-						Read more about Applio Premium Incident{" "}
-						<a
-							className="underline text-neutral-200 hover:text-white slow"
-							href="/blog/incident-response"
-						>
-							here
-						</a>
-					</p>
-				</div>
-			)}
 		</main>
 	);
 }

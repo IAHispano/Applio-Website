@@ -64,11 +64,6 @@ export default function Navbar() {
           </a>
           <div className="grid grid-cols-2 w-full items-center m-auto">
             <div className="flex mx-12 gap-8 pt-1">
-              <a href="/models">
-                <p className="text-neutral-300 hover:text-white slow">
-                  Explore
-                </p>
-              </a>
               <a href="/learn">
                 <p className="text-neutral-300 hover:text-white slow">Learn</p>
               </a>
@@ -287,31 +282,6 @@ export default function Navbar() {
                       <h2 className="text-xs p-2 font-bold uppercase text-white/50">
                         For developers
                       </h2>
-                      <a
-                        className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
-                        href="/products/api"
-                      >
-                        <div className="flex border border-white/20 rounded-md justify-center items-center w-10 h-10">
-                          <svg
-                            aria-hidden="true"
-                            className="w-5 h-5"
-                            viewBox="0 0 226 226"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M216.96 0H9.04C4.03975 0 0 4.03975 0 9.04V216.96C0 221.96 4.03975 226 9.04 226H216.96C221.96 226 226 221.96 226 216.96V9.04C226 4.03975 221.96 0 216.96 0ZM113.311 114.723L59.0708 160.206C57.6017 161.449 55.37 160.404 55.37 158.482V140.77C55.37 140.12 55.6807 139.47 56.1892 139.047L87.2078 113L56.1892 86.9535C55.9296 86.7484 55.7206 86.4863 55.5786 86.1875C55.4365 85.8886 55.3651 85.5611 55.37 85.2303V67.5175C55.37 65.5965 57.6017 64.5513 59.0708 65.7943L113.311 111.248C114.412 112.152 114.412 113.819 113.311 114.723ZM170.63 158.482C170.63 159.725 169.669 160.742 168.511 160.742H116.249C115.09 160.742 114.13 159.725 114.13 158.482V144.923C114.13 143.68 115.09 142.663 116.249 142.663H168.511C169.669 142.663 170.63 143.68 170.63 144.923V158.482Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </div>
-                        <div className="flex flex-col">
-                          <h3 className="text-md font-semibold">Free API</h3>
-                          <p className="text-xs text-neutral-200">
-                            More than +26k voice cloning models
-                          </p>
-                        </div>
-                      </a>
                       <a
                         className="flex gap-2 cursor-pointer hover:bg-white/20 rounded-md w-full p-2 slow h-18"
                         href="https://github.com/blaisewf/rvc-cli"

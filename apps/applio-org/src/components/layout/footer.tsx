@@ -105,14 +105,6 @@ export default function Footer() {
           >
             Playground
           </a>
-          <a
-            className="text-gray-300 duration-300 hover:text-white hover:underline z-[1]"
-            href="/models"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Explore
-          </a>
         </div>
         <div className="col-span-1 flex flex-col space-y-2">
           <h1 className="mb-1 text-xs font-bold uppercase">Resources</h1>

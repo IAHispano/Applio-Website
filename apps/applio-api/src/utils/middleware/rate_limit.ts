@@ -7,8 +7,8 @@ interface TokenData {
 }
 
 const RATE_LIMITS: Record<string, number> = {
-	user: 100,      
-	premium: 500,     
+	user: 0,      
+	premium: 0,     
 	commercial: 1000,  
 };
 

@@ -1,4 +1,4 @@
 {
     "title": "Getting Started",
-    "pages": ["installation", "download-models", "inference", "training", "tts", "pretrained", "embedder", "tensorboard", "audio-analyzer", "voice-blender", "plugins", "extra", "other-alternatives", "report-error"]  
+    "pages": ["installation", "download-models", "inference", "training", "tts", "pretrained", "embedder", "tensorboard", "audio-analyzer", "voice-blender", "plugins", "other-alternatives", "report-error"]  
 }

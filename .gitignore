@@ -41,6 +41,7 @@ dist/
 # output
 /output
 /production
+/.astro
 
 # TODO
 .todo

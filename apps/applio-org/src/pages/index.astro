@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <div class="absolute top-8 left-0 right-0 flex justify-center items-center gap-2 text-xs px-4">
+        <a href="/blog/1" class="hover:bg-white/10 rounded-xl cursor-pointer hover:px-4 hover:py-3 transition-all duration-200 select-none text-center">Our next project is now in closed alpha for Windows! Read more clicking here.</a>
+    </div>
+    <div class="absolute inset-0 flex justify-center items-center left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+        <div class="bg-white/10 h-full w-full rounded-full blur-3xl" />
+    </div>
+	<div class="flex flex-col items-center justify-center h-screen px-4" style="z-index: 200;">
+        <h1 class="xl:text-8xl lg:text-7xl max-md:text-6xl font-bold text-white">Applio</h1>
+        <h2 class="my-4 max-w-xl text-center px-4">A simple, high-quality voice conversion tool focused on ease of use and performance.</h2>
+        <div class="flex gap-4 w-full items-center justify-center">
+            <a href="https://ko-fi.com/iahispano" target="_blank" class="w-16 max-md:w-14 items-center flex justify-center h-10 shadow-xl shadow-white/30 rounded-full bg-white text-black font-semibold cursor-pointer hover:opacity-80 transition-all duration-200">
+                <svg class="w-6 h-6" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M9.52545 4.69992e-05C7.29182 -0.0114129 5.11727 2.07428 6.11 4.66421H2.36364C1.73676 4.66421 1.13556 4.90569 0.692293 5.33552C0.249025 5.76534 0 6.34832 0 6.95619V9.24816C0 9.55209 0.124513 9.84358 0.346146 10.0585C0.56778 10.2734 0.86838 10.3941 1.18182 10.3941H11.8182V6.95619H14.1818V10.3941H24.8182C25.1316 10.3941 25.4322 10.2734 25.6539 10.0585C25.8755 9.84358 26 9.55209 26 9.24816V6.95619C26 6.34832 25.751 5.76534 25.3077 5.33552C24.8644 4.90569 24.2632 4.66421 23.6364 4.66421H19.89C21.2727 0.916837 16.0727 -1.73039 13.6736 1.50129L13 2.37224L12.3264 1.47837C11.5818 0.458442 10.5536 0.0115069 9.52545 4.69992e-05ZM9.45455 2.37224C10.5064 2.37224 11.0382 3.60991 10.2936 4.33188C9.54909 5.05385 8.27273 4.53815 8.27273 3.51823C8.27273 3.21429 8.39724 2.92281 8.61887 2.70789C8.84051 2.49298 9.14111 2.37224 9.45455 2.37224ZM16.5455 2.37224C17.5973 2.37224 18.1291 3.60991 17.3845 4.33188C16.64 5.05385 15.3636 4.53815 15.3636 3.51823C15.3636 3.21429 15.4881 2.92281 15.7098 2.70789C15.9314 2.49298 16.232 2.37224 16.5455 2.37224ZM1.18182 11.5401V20.708C1.18182 21.3159 1.43084 21.8989 1.87411 22.3287C2.31738 22.7585 2.91858 23 3.54545 23H22.4545C23.0814 23 23.6826 22.7585 24.1259 22.3287C24.5692 21.8989 24.8182 21.3159 24.8182 20.708V11.5401H14.1818V20.708H11.8182V11.5401H1.18182Z" fill="#110F0F"/>
+                </svg>    
+            </a>
+            <a href="https://docs.applio.org/applio/getting-started/installation" target="_blank" class="text-center flex justify-center items-center xl:w-44 w-36 h-10 shadow-xl shadow-white/50 rounded-full bg-white text-black font-semibold cursor-pointer hover:shadow-white/10 transition-all duration-500">Download</a>
+            <a href="/discord" target="_blank" class="w-16 max-md:w-14 items-center flex justify-center h-10 shadow-xl shadow-white/30 rounded-full bg-white text-black font-semibold hover:opacity-80 transition-all duration-200 cursor-pointer">
+                <svg class="w-6 h-6" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25.1716 1.88417C23.2874 1.00583 21.2474 0.368333 19.1224 0C19.085 0.000532248 19.0494 0.0158083 19.0232 0.0425003C18.7682 0.51 18.4707 1.11917 18.2724 1.58667C16.0185 1.24688 13.7263 1.24688 11.4724 1.58667C11.2741 1.105 10.9766 0.51 10.7074 0.0425003C10.6932 0.014167 10.6507 0 10.6082 0C8.48323 0.368333 6.4574 1.00583 4.55907 1.88417C4.5449 1.88417 4.53073 1.89833 4.51657 1.9125C0.663233 7.67833 -0.399268 13.2883 0.124899 18.8417C0.124899 18.87 0.139066 18.8983 0.167399 18.9125C2.7174 20.7825 5.16823 21.9158 7.59073 22.6667C7.63323 22.6808 7.67573 22.6667 7.6899 22.6383C8.25657 21.8592 8.76657 21.0375 9.20573 20.1733C9.23407 20.1167 9.20573 20.06 9.14907 20.0458C8.34157 19.7342 7.57657 19.3658 6.82573 18.9408C6.76907 18.9125 6.76907 18.8275 6.81157 18.785C6.9674 18.6717 7.12323 18.5442 7.27907 18.4308C7.3074 18.4025 7.3499 18.4025 7.37823 18.4167C12.2516 20.6408 17.5074 20.6408 22.3241 18.4167C22.3524 18.4025 22.3949 18.4025 22.4232 18.4308C22.5791 18.5583 22.7349 18.6717 22.8907 18.7992C22.9474 18.8417 22.9474 18.9267 22.8766 18.955C22.1399 19.3942 21.3607 19.7483 20.5532 20.06C20.4966 20.0742 20.4824 20.145 20.4966 20.1875C20.9499 21.0517 21.4599 21.8733 22.0124 22.6525C22.0549 22.6667 22.0974 22.6808 22.1399 22.6667C24.5766 21.9158 27.0274 20.7825 29.5774 18.9125C29.6057 18.8983 29.6199 18.87 29.6199 18.8417C30.2432 12.4242 28.5857 6.85667 25.2282 1.9125C25.2141 1.89833 25.1999 1.88417 25.1716 1.88417ZM9.9424 15.4558C8.48323 15.4558 7.2649 14.11 7.2649 12.4525C7.2649 10.795 8.4549 9.44917 9.9424 9.44917C11.4441 9.44917 12.6341 10.8092 12.6199 12.4525C12.6199 14.11 11.4299 15.4558 9.9424 15.4558ZM19.8166 15.4558C18.3574 15.4558 17.1391 14.11 17.1391 12.4525C17.1391 10.795 18.3291 9.44917 19.8166 9.44917C21.3182 9.44917 22.5082 10.8092 22.4941 12.4525C22.4941 14.11 21.3182 15.4558 19.8166 15.4558Z" fill="#110F0F"/>
+                </svg>
+            </a>
+        </div>
+        <p class="text-xs mt-2">Available on Windows, Mac, & Linux.</p>
+    </div>
+    <div class="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-2 text-xs">
+        <a href="/terms-use" class="hover:underline transition-all duration-200 cursor-pointer">Terms Of Use</a>
+        <p class="text-lg">·</p>
+        <a href="https://docs.applio.org" target="_blank" class="hover:underline transition-all duration-200 cursor-pointer">Documentation</a>
+        <p class="text-lg">·</p>
+        <a href="/playground" class="hover:underline transition-all duration-200 cursor-pointer">Playground</a>
+    </div>
+</Layout>

@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+    <main class="w-full h-[96svh] flex p-8 flex-col gap-2">
+        <div class="w-full h-full">
+            <iframe
+                title="Applio Playground"
+                src="https://iahispano-applio.hf.space"
+                class="w-full h-full rounded-xl"
+            />
+            <div class="flex gap-1 justify-center items-center">
+            <a class="text-sm text-start w-fit hover:underline transition-all duration-200 cursor-pointer" href="/">Go back</a>
+            <a
+                href="https://huggingface.co/spaces/IAHispano/Applio"
+                target="_blank"
+                rel="noreferrer"
+                class="p-4"
+            >
+                <p class="text-center text-sm hover:underline transition-all duration-200 cursor-pointer">
+                    This is a sandbox for experimenting with Applio. To avoid long wait
+                    times, please duplicate the playground and use your own copy.
+                </p>
+            </a>
+            </div>
+        </div>
+    </main>
+</Layout>

@@ -1,0 +1,250 @@
+---
+title: Alternatives on the Cloud
+---
+
+import { Accordion, Accordions } from 'fumadocs-ui/components/accordion'
+import { Callout } from 'fumadocs-ui/components/callout'
+import { ImageZoom } from 'fumadocs-ui/components/image-zoom'
+import { Step, Steps } from 'fumadocs-ui/components/steps'
+
+<Callout type="warn" className="shadow-xl shadow-orange-500/10">
+Before starting. Note that launching any external interfaces (UIs) through Google Colaboratory is against the ToS of the platform. Running these can cause **limitations to your Google Account**, if you understand the risks you can continue to use the following alternative.
+ 
+ 
+ Otherwise you can choose to use others such as [Applio No UI.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb)
+</Callout>
+
+<Steps>
+<Step>
+## Applio UI Colab
+<Steps>
+<Step>
+### Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb)
+
+When inside execute the following **two cells**
+    
+    <ImageZoom src="/images/colab.png" alt="Applio Colab"  width={1000} height={500}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10"/>
+</Step>
+
+<Step>
+### Access the interface
+You will find that when the first **“Install Applio”** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to activate the **“Share tunnel”** checkbox and follow the following simple procedure
+
+- Open the given URL.
+- Paste the IP given on Collab.
+    
+    <ImageZoom src="/images/tunel.png" alt="Applio Colab Tunel"  width={1000} height={500}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10"/>
+
+and yap, that's all, have fun using the Applio UI version!
+</Step>
+</Steps>
+<Callout type="info">
+In case you want to train in the UI version, it is advisable to use the advanced options in order not to lose progress in case of disconnection.
+
+</Callout>
+<Accordions>
+<Accordion title="Extra cells (only for training)">
+
+In this section, you will find the following options:
+
+- **Mount Drive:** Connects Colab to our Google Drive for performing backups.
+- **AutoBackup:** Saves our trained model to our drive. Drive needs to be mounted first.
+- **Load a Backup:** Used to load our model if we want to retrain it. Drive must be mounted.
+- **Download all [custom pretrains](/applio/getting-started/pretrained.mdx):** Allows direct downloading of custom pretrains to Applio.
+<ImageZoom src="/images/extra-colab.png" alt="Applio Colab Custom Pretrained"  width={1000} height={500}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10"/>
+
+### Options inside UI
+
+- **Dataset Maker:** Upload your audio directly to its proper path via the interface.
+
+- **Or manual audio upload:** Place your audio in a folder on your Google Drive, run the Mount Cell, enter collab's file explorer 📁, copy the path to the folder (`Drive/content/drive/MyDrive/My_custom_folderd`)
+
+- **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
+
+- **Download Pretrained Models:** Download the custom pretrained models directly from the Download tab in Applio in case of **Download all custom pretrains** cell is not working.
+
+</Accordion>
+</Accordions>
+## How to export my model to my Google Drive?
+
+To save your model, there are three ways to do it:
+
+- **Finished Model:** Go to the **Export Model** section in the **Train** tab, click on the **Refresh** button and select the pth and the added index of the model to export. Finally, click on the **Upload** button, your model will be found in the **ApplioExported** folder ready to be used.
+
+- **Model to continue training:** If you want to save all the archives of your model folder in your Drive, you just need to run the **Mount Drive** and **AutoBackup** cell before run **Start Applio** cell, your model folder will be found inside the **ApplioBackup** folder.
+
+- **Manual (NOT RECOMENDED):** Click on 📁 in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
+
+## How to resume training in Google Colab?
+
+If the model still needs training, simply do the following:
+
+- Run the same cells as before, but now you’ll need to enter your **model name** in **Load a backup** and run it.
+
+- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/faq#terminology)**, **[pretrained](/applio/getting-started/pretrained#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
+
+### Code to be afk
+
+If you want to remain inactive without fear of being disconnected from your environment run this Java Script on your browser console, press the keys **Ctrl + Shift + i** to open the **developer tools** option and the following window will open. In case another window is displayed, we can locate it by selecting the **Console** option, so in this way Colab will not disconnect during the separation process. First, we put **Allow pasting**, then we press enter and only then it will let us enter the code.
+
+```js
+function ClickConnect() {
+  var iconElement = document.getElementById("toggle-header-button");
+  if (iconElement) {
+    var clickEvent = new MouseEvent("click", {
+      bubbles: true,
+      cancelable: true,
+      view: window,
+    });
+    iconElement.dispatchEvent(clickEvent);
+  }
+}
+setInterval(ClickConnect, 6000);
+```
+</Step>
+<Step>
+## Applio no UI colab (recommended)
+
+
+To use the CLI version, enter to the [Applio No UI Colab.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb) Click on the **installation** cell. If everything runs correctly, you can proceed to the next step. In case a pop-up window appears asking you to restart the environment, select **Restart**. Once the environment has restarted, run the cell above the installation cell and then run the installation cell again.
+
+The notebook is easy to understand, even more so when this notebook shares the same processes as the UI version!, so you can be guided by the existing explanations such as [Training](/applio/getting-started/training) or [Inference.](/applio/getting-started/download-models)
+
+Finally, if you had the **auto_backup** option enabled, your model will be saved to your Google Drive in case it needs to [resume training](/applio/getting-started/other-alternatives#how-to-resume-training-in-google-colab) or  upload or download files in Google Colab, click on the 📁 located in the left sidebar. This will open the file explorer, which allows you to transfer documents almost instantly between Google Drive and Colab. This feature facilitates file management, allowing you to quickly access and move data without hassle.
+
+### How to use custom pretrained in Applio No UI?
+
+- Download the [pretrained](/applio/getting-started/pretrained#where-to-find-pretraineds) you want to use and upload the d.pth and g.pth files to your Google Drive.
+
+- Click on 📁 in Colab, and create a new folder named **pretrained_custom** inside the **pretraineds** folder located in **Applio/rvc/pretraineds**.
+
+- Locate your pretrained model on your Google Drive and drag it into the newly created folder.
+
+- Finally, copy the path of G.pth and paste it into **g_pretrained_path**, and do the same for D.pth into **d_pretrained_path**. It should look like this: `/content/Applio/rvc/pretraineds/pretraineds_custom/G48k.pth` and `/content/Applio/rvc/pretraineds/pretraineds_custom/D48k.pth`, make sure to select the sample rate according to the [sample rate](/applio/getting-started/audio-analyzer) of the custom pretraineds.
+</Step>
+<Step>
+## Kaggle
+<Steps>
+<Step>
+### Create your Kaggle and Ngrok account
+- Create an account on [Kaggle](https://www.kaggle.com/)
+- You will then need to verify your phone number in order to activate Kaggle's **Internet** option.
+- Create an account on [Ngrok](https://ngrok.com/)
+</Step>
+<Step>
+### Set the environment
+- Enter [Applio Kaggle](https://www.kaggle.com/code/deiant/applio/notebook) and click on **Copy and edit** and it will clone the notebook to your account.
+- In the session options in the sidebar, you must enable the **Internet** option to access the Kaggle GPU. Make sure that in Persistence the **Variables and Files** option is enabled.
+- Turn on the 2 T4 GPUs in the accelerator.
+- Enable Headless mode to run the GPU in all sessions and save your progress in case you leave the page. Note that the GPU session will continue and may consume usage. 
+</Step>
+<Step>
+### Running Applio
+- Run the **Install** cell to install everything necessary.
+- Get your ngrok token in https://dashboard.ngrok.com/get-started/your-authtoken and replace the word **token** with your Ngrok token.
+- Run the **Start** cell and click on **Applio URL** and then on **Visit Site** button.
+</Step>
+</Steps>
+### How to upload your dataset to ImJoy elFinder
+- Click on **File Url** and then on **Visit Site**.
+- Create a folder with the name of your model inside the datasets folder located in `/kaggle/working/program_ml/assets/datasets` and upload the audios
+- Finally go to the Training section.
+
+</Step>
+<Step>
+## Hugging Face
+Hugging Face is a artificial intelligence and machine learning community, where you can collaborate on models, datasets, and applications. HugginFace has a section called “Spaces”, which allows to build applications and run them using CPUs or GPUs.
+
+- Applio is available as a space, you can use it directly without registering via [Applio Web](https://applio.org/playground).
+
+- Or you can go to the Hugging Face website and create an account. Then, enter to the [Applio space](https://huggingface.co/spaces/IAHispano/Applio), go to the top bar, click on the three-dot icon on the right and select **“Duplicate this space”**. This will duplicate the program in a private running environment for you.
+
+<ImageZoom src="/images/duplicate.png" alt="Duplicate HF Space"  width={200} height={200}  className="rounded shadow-xl shadow-black/10 dark:shadow-white/10 border border-white/10"/>
+
+
+Please note that the space is limited to [Inference](/applio/getting-started/download-models) and [TTS](/applio/getting-started/tts) only, as it runs on a free CPU. The processing time is not optimal, and the longer the uploaded audio, the longer it will take. You can use the **split audio** option to help mitigate this.
+</Step>
+<Step>
+## Paperspace
+Paperspace is a cloud platform that provides access to powerful virtual machines with dedicated GPU for software development, machine learning, artificial intelligence, and other applications that require substantial processing power. This has made it one of the most competent **paid** alternatives to Colab.
+<Steps>
+<Step>
+### Create an account
+First you should create an account on [Paperspace](https://console.paperspace.com/signup)
+
+<Callout type="info" className="shadow-xl shadow-blue-500/10">
+During the account creation
+
+- You will be asked for account verification, so you will need to enter a phone number and input the received verification code.
+- You should know that Paperspace’s **free** plan is quite poor, and there’s nothing you can do about it. So, you should consider paying for a **Pro** or **Growth** plan.
+- Paperspace has joined **DigitalOcean**, so you can also pay with PayPal or Google Pay!.
+- You can pay by the hour for a [dedicated GPU](https://www.paperspace.com/pricing) instead of using the default free ones or the paid plan.
+- You will need to clarify some additional account details before starting to use Paperspace.
+</Callout>
+</Step>
+<Step>
+### Buy a Paperspace plan
+Once the account is created, you will need to choose a Paperspace plan. To do this, click on **Upgrade** and select the one that suits your preference. The best option is the **Pro** plan.
+</Step>
+<Step>
+### Set up your Paperpsace environment
+Go to the **Gradient** tab and click on the **Create** button:
+
+- Select the template: **Start from Scratch**
+- Select a avaible **GPU**
+- Select the number of hours your computer will remain active.
+  Then click on **Start Notebook**.
+</Step>
+<Step>
+### Install Applio in your environment
+Now type the following commands one at a time in the terminal; this is only for the first time:
+
+```bash
+git clone https://github.com/IAHispano/Applio.git
+cd /notebooks/Applio
+make run-install
+export LD_LIBRARY_PATH=/usr/local/lib/python3.11/dist-packages/nvidia/nvjitlink/lib:$LD_LIBRARY_PATH
+make run-applio
+```
+
+**Next time, you will only enter the last 3 commands**.
+
+</Step>
+<Step>
+Finally, the link to access the **GUI** will appear.
+</Step>
+<Step>
+You can [train](/applio/getting-started/training) models while checking [Tensorboard](/applio/getting-started/tensorboard), do [inference](/applio/getting-started/download-models), or use [TTS](/applio/getting-started/tts).
+
+<Callout type="info" className="shadow-xl shadow-blue-500/10">
+  Mark the **Save Only Latest** option before training to prevent it from filling up your storage.
+</Callout>
+</Step>
+<Step>
+Run tensorboard in another terminal, click on the terminal icon and enter the following commands:
+
+```bash
+cd /notebooks/Applio
+make run-tensorboard
+```
+</Step>
+<Step>
+Click on folder icon and locate your trained model in the `Applio/logs/model` folder, and the .pth files are in the `Applio/logs/zips` folder.
+</Step>
+</Steps>
+
+## How to upload my dataset in Paperspace?
+
+Upload your audio in .wav format using the **Dataset Maker** or click on folder icon and setup it manually to `Applio/assets/datasets` creating inside a folder for the program to read it.
+
+
+## How to resume training in Paperspace?
+
+If the model still needs training, simply do the following:
+
+- Entering the last 3 commands from step 4.
+
+- Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/applio/faq#terminology)**, **[pretrained](/applio/getting-started/pretrained#how-to-use-pretraineds) (if you used)** and increase the number of epochs you want to train.
+
+</Step>
+</Steps>

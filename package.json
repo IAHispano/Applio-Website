@@ -1,0 +1,29 @@
+{
+	"name": "applio-monorepo",
+	"private": true,
+	"packageManager": "pnpm@9.1.1",
+	"scripts": {
+		"build": "dotenv -- turbo build",
+		"dev": "dotenv -- turbo dev",
+		"api": "pnpm --filter applio-api --",
+		"deploy:api": "pnpm api run deploy",
+		"lint": "turbo lint",
+		"type-check": "turbo type-check",
+		"clean": "turbo clean",
+		"biome:format": "pnpm exec biome format --write .",
+		"biome:format:api": "pnpm exec biome format apps/applio-api --write",
+		"biome:format:org": "pnpm exec biome format apps/applio-org --write",
+		"biome:format:docs": "pnpm exec biome format apps/applio-docs --write"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"turbo": "^2.1.2"
+	},
+	"engines": {
+		"node": ">=18"
+	},
+	"dependencies": {
+		"dotenv": "^16.4.5",
+		"dotenv-cli": "^7.4.2"
+	}
+}

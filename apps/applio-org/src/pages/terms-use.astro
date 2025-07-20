@@ -1,0 +1,185 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div
+    class="flex flex-col items-start justify-center max-w-4xl mx-auto p-8 md:p-12 pt-6 text-sm"
+  >
+  <a
+  href="/"
+  class="group inline-flex px-4 py-2 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-all items-center gap-2 mb-8 text-sm"
+>
+  <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="group-hover:-translate-x-1 transition-transform"
+  >
+      <path d="M19 12H5M12 19l-7-7 7-7"></path>
+  </svg>
+  Back to home
+</a>
+
+    <h1 class="text-4xl font-bold text-neutral-100 mb-8">Terms of Use</h1>
+
+    <div class="space-y-8 w-full">
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">
+          Responsibilities of the User
+        </h2>
+        <p class="mb-4">
+          By using Applio, you agree to the following responsibilities:
+        </p>
+        <ol class="list-decimal list-outside ml-4 space-y-4">
+          <li>
+            <strong class="text-neutral-100 block mb-2"
+              >Respect Intellectual Property and Privacy Rights</strong
+            >
+            <ul class="list-disc list-outside ml-4 space-y-2">
+              <li>
+                Ensure that any audio or material processed through Applio is
+                either owned by you or used with explicit permission from the
+                rightful owner.
+              </li>
+              <li>
+                Respect copyrights, intellectual property rights, and privacy
+                rights of all individuals and entities.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong class="text-neutral-100 block mb-2"
+              >Avoid Harmful or Unethical Use</strong
+            >
+            <ul class="list-disc list-outside ml-4 space-y-2">
+              <li>
+                Do not use Applio to create or distribute content that harms,
+                defames, or infringes upon the rights of others.
+              </li>
+              <li>
+                Avoid any activities that may violate ethical standards, promote
+                hate speech, or facilitate illegal conduct.
+              </li>
+            </ul>
+          </li>
+          <li>
+            <strong class="text-neutral-100 block mb-2"
+              >Adhere to Local Laws and Regulations</strong
+            >
+            <p>
+              Familiarize yourself with and comply with the laws and regulations
+              governing the use of AI, voice transformation tools, and generated
+              content in your jurisdiction.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">
+          Disclaimer of Liability
+        </h2>
+        <p class="mb-4">
+          Applio and its contributors disclaim all liability for any misuse or
+          unintended consequences arising from the use of this tool.
+        </p>
+        <ul class="list-disc list-outside ml-4 space-y-2">
+          <li>
+            <strong>No Warranty</strong>: Applio is provided "as is" without any
+            warranty, express or implied.
+          </li>
+          <li>
+            <strong>User Responsibility</strong>: You bear full responsibility
+            for how you choose to use Applio and any outcomes resulting from
+            that use.
+          </li>
+          <li>
+            <strong>No Endorsement</strong>: Applio does not endorse or support
+            any activities or content created with this tool that result in
+            harm, illegal activity, or unethical practices.
+          </li>
+        </ul>
+      </section>
+
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">
+          Permitted Use Cases
+        </h2>
+        <p class="mb-4">Applio is designed for:</p>
+        <ul class="list-disc list-outside ml-4 space-y-2">
+          <li>
+            <strong>Personal Projects</strong>: Experimentation and creative
+            endeavors for personal enrichment.
+          </li>
+          <li>
+            <strong>Academic Research</strong>: Advancing scientific
+            understanding and education.
+          </li>
+          <li>
+            <strong>Investigative Purposes</strong>: Analyzing data in lawful
+            and ethical contexts.
+          </li>
+          <li>
+            <strong>Commercial Use</strong>: Creating content for commercial
+            purposes, provided that appropriate rights and permissions are
+            obtained and all legal and ethical standards are adhered to.
+          </li>
+        </ul>
+      </section>
+
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">
+          Prohibited Activities
+        </h2>
+        <p class="mb-4">The following uses are explicitly prohibited:</p>
+        <ul class="list-disc list-outside ml-4 space-y-2">
+          <li>
+            <strong>Harmful Applications</strong>: Generating audio to defame,
+            harm, or manipulate others.
+          </li>
+          <li>
+            <strong>Unauthorized Distribution</strong>: Sharing content that
+            violates copyrights or the rights of others.
+          </li>
+          <li>
+            <strong>Deceptive Practices</strong>: Creating content intended to
+            deceive or defraud others.
+          </li>
+        </ul>
+      </section>
+
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">
+          Training Data
+        </h2>
+        <p class="mb-4">
+          All official models distributed by Applio have been trained under
+          publicly available datasets such as <a
+            href="https://huggingface.co/datasets/IAHispano/Applio-Dataset"
+            class="text-blue-400 hover:text-blue-300 underline transition-colors"
+            >VCTK</a
+          >.
+        </p>
+        <p>
+          We strive to maintain transparency and ethical practices in the
+          development and distribution of our tools.
+        </p>
+      </section>
+
+      <section class="prose prose-invert max-w-none text-neutral-300">
+        <h2 class="text-2xl font-semibold text-neutral-100 mb-4">Amendments</h2>
+        <p>
+          Applio reserves the right to modify these terms at any time. Continued
+          use of the tool signifies your acceptance of any updated terms.
+        </p>
+      </section>
+    </div>
+  </div>
+</Layout>

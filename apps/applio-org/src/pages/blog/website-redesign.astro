@@ -1,0 +1,96 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export const frontmatter = {
+	title: "Introducing Our New Website",
+	description:
+		"We've rebuilt Applio's website from the ground up using Astro, focusing on performance, simplicity, and user experience.",
+	date: "January 05, 2025",
+	tag: "Update",
+};
+---
+
+<BlogLayout frontmatter={frontmatter}>
+  <section class="space-y-8 text-neutral-300">
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        A Fresh Start
+      </h2>
+      <p class="leading-relaxed">
+        Today, we're excited to unveil our completely redesigned website. Built
+        with Astro, our new platform delivers lightning-fast performance while
+        maintaining the sleek, modern aesthetic you've come to expect from
+        Applio.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        Why the Change?
+      </h2>
+      <p class="leading-relaxed">
+        Our previous website served us well, but as Applio grew, we needed a
+        platform that could scale with us. The new design focuses on what
+        matters most: getting you to the information you need quickly and
+        efficiently.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-neutral-800/50 p-6 rounded-xl">
+          <h3 class="text-xl font-semibold text-neutral-100 mb-3">
+            ⚡ Blazing Fast
+          </h3>
+          <p class="text-neutral-400">
+            Built with Astro for optimal performance and near-instant page
+            loads. Your experience matters.
+          </p>
+        </div>
+        <div class="bg-neutral-800/50 p-6 rounded-xl">
+          <h3 class="text-xl font-semibold text-neutral-100 mb-3">
+            🎯 Focused Design
+          </h3>
+          <p class="text-neutral-400">
+            Clean, intuitive interface that puts the focus on what matters -
+            getting you started with Applio.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        Key Improvements
+      </h2>
+      <ul class="space-y-2 list-disc ml-4">
+        <li class="pl-2">
+          Streamlined navigation and improved content organization
+        </li>
+        <li class="pl-2">
+          Enhanced mobile responsiveness for a better experience on all devices
+        </li>
+        <li class="pl-2">
+          Integrated blog platform for keeping you updated on latest
+          developments
+        </li>
+        <li class="pl-2">Direct access to documentation and resources</li>
+        <li class="pl-2">Improved performance with static site generation</li>
+      </ul>
+    </div>
+
+    <div class="space-y-4 bg-neutral-800/50 p-6 rounded-xl">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        What's Next?
+      </h2>
+      <p class="leading-relaxed">
+        This redesign is just the beginning. We're committed to continuously
+        improving your experience with Applio, both on our website and in our
+        applications. Stay tuned for more updates, and don't forget to join our
+        <a
+          href="/discord"
+          class="text-blue-400 hover:text-blue-300 transition-all duration-200 underline font-semibold"
+          >Discord community</a
+        >
+        to stay connected!
+      </p>
+    </div>
+  </section>
+</BlogLayout>

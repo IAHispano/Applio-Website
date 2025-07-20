@@ -1,0 +1,50 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main class="w-full h-[96svh] flex p-8 flex-col gap-2">
+        <div class="flex w-full mb-2">
+            <a
+                href="/"
+                class="group inline-flex px-4 py-2 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-all items-center gap-2 mb-8 text-sm"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="group-hover:-translate-x-1 transition-transform"
+                >
+                    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+                </svg>
+                Back to home
+            </a>
+        </div>
+        <div class="w-full h-full">
+            <iframe
+                title="Applio Playground"
+                src="https://iahispano-applio.hf.space"
+                class="w-full h-full rounded-xl overflow-hidden"
+            ></iframe>
+            <div class="flex gap-1 justify-center items-center">
+                <a
+                    href="https://huggingface.co/spaces/IAHispano/Applio"
+                    target="_blank"
+                    rel="noreferrer"
+                    class="p-4"
+                >
+                    <p class="text-center text-sm hover:underline transition-all duration-200 cursor-pointer">
+                        This is a sandbox for experimenting with Applio. To avoid long wait
+                        times, please duplicate the playground and use your own copy.
+                    </p>
+                </a>
+            </div>
+        </div>
+    </main>
+</Layout>

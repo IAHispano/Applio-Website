@@ -1,0 +1,107 @@
+---
+import BlogLayout from "../../layouts/BlogLayout.astro";
+
+export const frontmatter = {
+	title: "Changes to Model Access",
+	description:
+		"An important announcement regarding changes to model access in Applio to ensure responsible usage and community safety.",
+	date: "December 9, 2024",
+	tag: "Update",
+};
+---
+
+<BlogLayout frontmatter={frontmatter}>
+  <section class="space-y-8 text-neutral-300">
+    <div class="space-y-4">
+      <p class="leading-relaxed">
+        We wanted to inform our community about an important update regarding
+        model access in Applio. Based on recent feedback and our commitment to
+        responsible AI usage, we've made some changes to how model access works
+        within our platform.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        What's Changing?
+      </h2>
+      <p class="leading-relaxed">
+        We've decided to remove direct access to models through Applio. While
+        these models were never hosted by us, we believe this change better
+        aligns with our commitment to preventing potential misuse and
+        maintaining community standards.
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        What This Means For You
+      </h2>
+      <ul class="space-y-2 list-disc ml-4">
+        <li class="pl-2">
+          Applio continues to function normally for all other features
+        </li>
+        <li class="pl-2">
+          You can still find models through other online sources
+        </li>
+        <li class="pl-2">
+          We've updated our Terms of Use to reflect these changes
+        </li>
+      </ul>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        Frequently Asked Questions
+      </h2>
+      <div class="space-y-6">
+        <div>
+          <h3 class="text-xl font-semibold text-neutral-100 mb-2">
+            Why was direct access to models removed?
+          </h3>
+          <p class="text-neutral-400">
+            This decision was made to prevent potential misuse and to align with
+            our commitment to fostering a safe and respectful community.
+          </p>
+        </div>
+        <div>
+          <h3 class="text-xl font-semibold text-neutral-100 mb-2 mt-4">
+            Can I still find models online?
+          </h3>
+          <p class="text-neutral-400">
+            Yes, models can be found on the internet. However, we do not
+            recommend any specific websites or platforms. Please ensure that you
+            adhere to the terms and conditions of the sources you use.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4 bg-neutral-800/50 p-6 rounded-xl">
+      <h2 class="text-2xl md:text-3xl font-semibold text-neutral-100">
+        Moving Forward
+      </h2>
+      <p class="leading-relaxed">
+        We appreciate your understanding as we make these changes. Our goal
+        remains the same: to provide a powerful tool while ensuring responsible
+        usage. For more details, please review our updated
+        <a
+          href="https://github.com/IAHispano/Applio/blob/main/TERMS_OF_USE.md"
+          class="text-blue-400 hover:text-blue-300 transition-all duration-200 underline font-semibold"
+          target="_blank"
+          rel="noopener noreferrer">Terms of Use</a
+        >.
+      </p>
+      <p class="leading-relaxed mt-4">
+        If you have any questions, feel free to reach out through our support
+        channels or join our
+        <a
+          href="/discord"
+          class="text-blue-400 hover:text-blue-300 transition-all duration-200 underline font-semibold"
+          >Discord community</a
+        >.
+      </p>
+    </div>
+  </section>
+</BlogLayout>
+

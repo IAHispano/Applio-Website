@@ -1,11 +1,13 @@
 ---
 title: KaraFan
-description: Here you will learn how to Separate the Vocals and the Instrumental of songs with KaraFan.
+description: Learn how to use KaraFan for audio separation
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Steps } from '@astrojs/starlight/components';
 
-## Local
+## What is KaraFan?
+
+KaraFan is a powerful audio separation tool that can extract vocals from instrumentals and separate different audio components. It's particularly useful for creating clean datasets for voice training.
 
 ### How to install?
 
@@ -13,14 +15,17 @@ import { Aside } from '@astrojs/starlight/components';
   Important: it is only for NVIDIA GPUs
 </Aside>
 
+<Steps>
 1. On your PC where you wish to store the **KaraFan project** and Go inside it.
 2. First, we have to download and install [Python](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe).
-
 3. Download:
-
-- [Install.exe](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.exe) The easiest way! **(auto-extract the BAT)**.
-- [Install.zip](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.zip) Bypass the Browser Security
-- [Install.bat](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.bat) Click to show, save it and rename to **Install.bat**.
+   - [Install.exe](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.exe) The easiest way! **(auto-extract the BAT)**.
+   - [Install.zip](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.zip) Bypass the Browser Security
+   - [Install.bat](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.bat) Click to show, save it and rename to **Install.bat**.
+4. You must execute it with **Administrator Rights**.
+5. Run **Setup.py** by double-clicking on it.
+6. Now, you can launch **KaraFan.pyw** by double-clicking on it.
+</Steps>
 
 <Aside type="note">
 If you have installed Python 3.11 before WITHOUT using this Install.bat, you must uninstall it before! Even those installed with the Microsoft Store!
@@ -35,16 +40,10 @@ Important: On Windows 11, you must allow first the execution of the **BAT file**
 - Click on the « OK » button
 </Aside>
 
-4. You must execute it with **Administrator Rights**.
-
-5. Run **Setup.py** by double-clicking on it.
-
-6. Now, you can launch **KaraFan.pyw** by double-clicking on it.
-
 ### How to use?
 
+<Steps>
 1. Place your audio in the **Music folder** and copy the **path of your song** that you want to separate and the path of the **folder** where the separated song will be stored.
-
 2. Now place the settings you want to apply, try the ones you want the most, but if you want to effectively separate the instrumental or sounds from the vocals, I recommend the following settings:
 
 | To separate the instrumental from the vocals | To separate other types of audios |
@@ -52,8 +51,8 @@ Important: On Windows 11, you must allow first the execution of the **BAT file**
 | ![Karafan Vocals Settings](/images/karafan-vocals.png) | ![Karafan Other Settings](/images/karafan-other.png) |
 
 3. We click on **Start** and it will begin to separate the chosen song. At the end of the process, the message **Processing DONE** will appear at the end of the interface.
-
 4. Now we go to the **Results** folder and we will find a folder with the name of our song or audio. There we will find a list of audios, we download the audio with the name **Vocal Final**, in case you want the instrumental one that says **Music Final**.
+</Steps>
 
 ### How to update?
 

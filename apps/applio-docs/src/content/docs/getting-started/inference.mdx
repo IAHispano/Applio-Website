@@ -1,86 +1,86 @@
 ---
-title: Inferencing
+title: Inference
 description: Learn how to perform voice conversion inference with Applio
 ---
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-Inference is a **simple** process that you can do in **three easy steps**, where the program takes an input audio and transforms it into the voice it has been trained on. Replicating the vocal characteristics, intonation, and style of the original voice.
+Inference is a **simple** process that you can complete in **three easy steps**. The program takes an input audio file and transforms it to match the voice characteristics of the trained model, replicating the vocal characteristics, intonation, and style of the original voice.
 
 ![Inference Interface](/images/inference.png)
 
 <Tabs>
   <TabItem label="Single Inference">
     <Steps>
-      1. **Select your model**: Simply select in the boxes the `.pth` and `.index` file of the downloaded/trained model. If not displayed refresh the model list.
-      2. **Load your audio**: As the first step, select and upload the audio file in the corresponding box.
-      3. **Run the inference**: Now you are ready to perform your inference, just click convert and you will get your result. The processing time will depend on the speed of your CPU/GPU.
+      1. **Select your model**: Choose the `.pth` and `.index` files of your downloaded or trained model from the selection boxes. If models aren't displayed, refresh the model list.
+      2. **Load your audio**: Select and upload your audio file in the corresponding input box.
+      3. **Run the inference**: Click the convert button to start the process. Processing time depends on your CPU/GPU speed.
     </Steps>
   </TabItem>
   <TabItem label="Batch Inference">
     <Steps>
-      1. **Place your audio files in a folder**: Copy and paste the path into the Input Folder, if you'd like, you can also specify the output path for the converted audios in the Output Folder.
-      2. **Select the models**: Click the Refresh button at the top right and select the downloaded/uploaded files in the Voice model and index file box.
-      3. **Run the inference**: Again you are ready to perform your inference, just click convert and you will get your result. The processing time will depend on the speed of your CPU/GPU.
+      1. **Prepare your audio files**: Place all your audio files in a folder and copy the folder path into the Input Folder field. Optionally, specify an output path for the converted audios in the Output Folder field.
+      2. **Select the models**: Click the Refresh button at the top right and select your downloaded or uploaded files in the Voice model and index file boxes.
+      3. **Run the inference**: Click convert to process all files. Processing time depends on your CPU/GPU speed and the number of files.
     </Steps>
   </TabItem>
 </Tabs>
 
 <Aside type="caution">
-  If you have any error, check that the audio you upload *does not* contain special characters or spaces in its name
+  If you encounter any errors, check that your audio file names do not contain special characters or spaces.
 </Aside>
 
 ## Advanced Settings
 
-Applio has an "advanced options" section which allows you to modify several settings for your result, this section focuses on describing each one of them:
+Applio includes an "Advanced Options" section that allows you to modify various settings for optimal results. Here's a detailed explanation of each setting:
 
 <Tabs>
   <TabItem label="Basic Settings">
-    - **Export Format**: Select the format to export the audio.
-    - **Split Audio**: Basically cuts the audio into parts to make the inference by parts and then joins them together.
-    - **Autotune**: Apply a soft autotune to your inferences, recommended for singing conversions.
-    - **Clean Audio**: Clean your audio output using noise detection algorithms, recommended for speaking audios.
-    - **Upscale Audio**: Upscale the audio to a higher quality, recommended for low-quality audios.
-    - **Clean Strength**: The more you increase it the more it will clean up, but it will be more compressed.
+    - **Export Format**: Select the desired audio format for export.
+    - **Split Audio**: Cuts the audio into segments for processing, then rejoins them. Useful for long audio files.
+    - **Autotune**: Applies a soft autotune effect, recommended for singing conversions.
+    - **Clean Audio**: Cleans your audio output using noise detection algorithms, recommended for speech audio.
+    - **Upscale Audio**: Enhances audio quality, recommended for low-quality input files.
+    - **Clean Strength**: Controls the intensity of audio cleaning. Higher values provide more cleaning but may result in compression artifacts.
   </TabItem>
   <TabItem label="Pitch & Voice Settings">
-    - **Pitch**: Adjust the tone of the model, for male it is - and female it is +. For male to female is -12 and female to male is +12.
-    - **Filter Radius**: Applies respiration filtering to the results, the value represents the filter radius and respiration reduction to avoid artifacts.
-    - **Search Feature Ratio**: It is the one in charge of controlling the index, the larger the ratio, the more single the dataset but it can result in artifacts, so it is better to leave it as it is by default.
-    - **Volume Envelope**: Substitute or blend with the volume envelope of the output.
-    - **Protect Voiceless Consonants**: Safeguard distinct consonants and breathing sounds to prevent electro-acoustic tearing and other artifacts.
-    - **Hop Length**: Denotes the duration it takes for the system to transition to a significant pitch change. Smaller hop lengths require more time for inference and training but tend to yield higher pitch accuracy.
+    - **Pitch**: Adjusts the tone of the model. Use negative values for male voices and positive values for female voices. For male-to-female conversion, try -12; for female-to-male, try +12.
+    - **Filter Radius**: Applies respiration filtering to reduce artifacts. The value represents the filter radius and respiration reduction.
+    - **Search Feature Ratio**: Controls the index search behavior. Higher ratios provide more precise matching but may result in artifacts. Recommended to leave at default.
+    - **Volume Envelope**: Substitutes or blends with the volume envelope of the output.
+    - **Protect Voiceless Consonants**: Safeguards distinct consonants and breathing sounds to prevent electro-acoustic tearing and other artifacts.
+    - **Hop Length**: Determines the duration for the system to transition to significant pitch changes. Smaller hop lengths require more processing time but provide higher pitch accuracy.
   </TabItem>
   <TabItem label="Models & Algorithms">
-    - **Pitch extraction algorithm**: Select between rvmpe, crepe or other.
-    - **Embedder Model**: select the Embedder model (contentvec, japanese-hubert-base, chinese-hubert-large or custom).
-    - **Formant Shifting:** used for male to female and vice-versa conversions. Here you can adjust the **Quefrency for formant shifting** and the **Timbre for formant shifting**.
+    - **Pitch Extraction Algorithm**: Choose between rvmpe, crepe, or other algorithms.
+    - **Embedder Model**: Select the embedder model (contentvec, japanese-hubert-base, chinese-hubert-large, or custom).
+    - **Formant Shifting**: Used for male-to-female and female-to-male conversions. Adjust the **Quefrency for formant shifting** and **Timbre for formant shifting** parameters.
   </TabItem>
   <TabItem label="Post-Processing">
-    **Post-Process:** post-process the audio to apply effects to the output. Here you can modify the following:
-    - **Reverb:** you can set the Reverb Room Size, Reverb Damping, Reverb Wet Gain, Reverb Dry Gain, Reverb Width and the Reverb Freeze Mode.
-    - **Pitch Shift:** Set the pitch shift semitones.
-    - **Limiter:** you can set the Limiter Threshold dB and the Limiter Release Time.
-    - **Gain:** Set the gain dB.
-    - **Distortion:** Set the distortion gain.
-    - **Chorus:** you can set the Chorus Rate Hz, chorus Depth, chorus Center Delay ms, chorus Feedback and the Chorus Mix.
-    - **Bitcrush:** apply bitcrush to the audio.
-    - **Clipping:** Set the clipping threshold.
-    - **Compressor:** you can set the Compressor Threshold dB, Compressor Ratio, Compressor Attack ms and the Compressor Release ms.
-    - **Delay:** you can set the Delay Seconds, Delay Feedback and the Delay Mix.
+    **Post-Process**: Apply various effects to the output audio. Available options include:
+    - **Reverb**: Set Reverb Room Size, Damping, Wet Gain, Dry Gain, Width, and Freeze Mode.
+    - **Pitch Shift**: Adjust pitch shift in semitones.
+    - **Limiter**: Set Limiter Threshold dB and Release Time.
+    - **Gain**: Adjust gain in dB.
+    - **Distortion**: Set distortion gain.
+    - **Chorus**: Configure Chorus Rate Hz, Depth, Center Delay ms, Feedback, and Mix.
+    - **Bitcrush**: Apply bitcrush effect to the audio.
+    - **Clipping**: Set clipping threshold.
+    - **Compressor**: Configure Compressor Threshold dB, Ratio, Attack ms, and Release ms.
+    - **Delay**: Set Delay Seconds, Feedback, and Mix.
   </TabItem>
 </Tabs>
 
-## Tips for better results
+## Tips for Better Results
 
 <Aside type="tip">
   What should I do if my output audio sounds robotic?
 </Aside>
 
 <Steps>
-1. Look for better quality audio.
-2. In case of training, your voice model needs more [training](/getting-started/training/) or is overtraining.
-3. Remove the reverb, double vocals and noise from your acapella, you can check the [UVR 5 or MVSEP guide](/guides/uvr/).
-4. The dataset of your model contained noise, you need to [clean the dataset](/guides/how-create-datasets/).
-5. Try advanced settings.
+1. **Improve input quality**: Use higher quality audio files for better results.
+2. **Check training quality**: If using a custom model, it may need more [training](/getting-started/training/) or could be overtrained.
+3. **Clean your audio**: Remove reverb, double vocals, and noise from your acapella using [UVR 5 or MVSEP](/guides/uvr/).
+4. **Verify dataset quality**: If your model's dataset contained noise, you need to [clean the dataset](/guides/how-create-datasets/).
+5. **Experiment with settings**: Try different advanced settings to find the optimal configuration for your audio.
 </Steps>

@@ -1,52 +1,78 @@
 ---
-title: How to create datasets
+title: How to Create Datasets
 description: Learn how to create high-quality datasets for voice training in Applio
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Steps } from '@astrojs/starlight/components';
 
-## What is a dataset?
+## What is a Dataset?
 
-A Dataset is a set of audio files placed in a folder used by Applio for voice training.
+A dataset is a collection of audio files organized in a folder that Applio uses for voice training. Creating a high-quality dataset is crucial for achieving good training results.
 
-1. First, we need to search for or download the audios of the person or character you want to create the model for
+## Dataset Creation Process
+
+### Step 1: Source Your Audio Files
+
+First, you need to find or download audio files of the person or character you want to create a model for.
 
 <Aside type="note">
-- The audio must be in **WAV or FLAC** format and must be of good quality 
-- The dataset should have **a minimum duration of 10 minutes or a maximum of 30 minutes** for better results 
-- Make sure your dataset has the greatest variety of tones so that the model does not struggle when imitating certain tones.
+- Audio files must be in **WAV or FLAC** format and of good quality
+- The dataset should have **a minimum duration of 10 minutes or a maximum of 30 minutes** for optimal results
+- Ensure your dataset includes a variety of tones and speech patterns so the model can handle different vocal characteristics effectively
 </Aside>
 
-2. Now we just need to separate the vocals from the instrumental. If you don't know how to isolate audios, [check the audio isolation guide.](/images/guides/audio-isolating/uvr/)
+### Step 2: Separate Vocals from Instrumental
 
-3. After separating our audios, we open [Audacity](https://www.audacityteam.org/download/) to edit them and do the following:
+After collecting your audio files, you need to isolate the vocals from any background music or instrumental tracks. If you're unsure how to do this, [check our audio isolation guide](/guides/uvr/).
 
-### Noise Gate
-Is a tool that helps reduce background noise in an audio recording, first select your audio and go to the effect section under the Steve Daulton option and select noise gate. Then set the following parameters
+### Step 3: Edit and Process Your Audio
+
+Once you've separated the vocals, open [Audacity](https://www.audacityteam.org/download/) to edit and process your audio files.
+
+#### Noise Gate Processing
+
+The noise gate helps reduce background noise in audio recordings. To apply it:
+
+<Steps>
+1. Select your audio in Audacity
+2. Go to the Effect menu
+3. Under the Steve Daulton option, select "Noise Gate"
+4. Apply the following parameters:
+</Steps>
 
 ![Noise Gate Settings](/images/noise-gate.png)
 
-### Truncating silence
-This tool is used to remove silences from our dataset, now go back to the effect section under the special option and select truncate silence. Then set the following parameters:
+#### Truncate Silence
+
+This tool removes unnecessary silences from your dataset:
+
+<Steps>
+1. Go to the Effect menu
+2. Under the Special option, select "Truncate Silence"
+3. Apply the following parameters:
+</Steps>
 
 ![Truncate Silence Settings](/images/truncate-silence.png)
 
 <Aside type="caution">
-  Before truncate silence The dataset should only contain speech; any other type of sound should be removed or reduced, such as hisses, screams or breathing.
+  Before truncating silence, ensure your dataset contains only speech. Remove or reduce any other sounds such as hisses, screams, or breathing noises.
 </Aside>
 
-4. Finally, we export our already processed audio and it's ready for [training](/getting-started/training/).
-   
-   |        WAV          | FLAC              |
-   | :-------------------| ----------------: |
-   | ![WAV Export Settings](/images/wav.png) | ![FLAC Export Settings](/images/flac.png) |
+### Step 4: Export Your Processed Audio
+
+Finally, export your processed audio files. Your dataset is now ready for [training](/getting-started/training/).
+
+| WAV Format | FLAC Format |
+| :--------- | ----------: |
+| ![WAV Export Settings](/images/wav.png) | ![FLAC Export Settings](/images/flac.png) |
 
 <Aside type="note">
-Make sure to export your dataset as a single audio file, or if you split it, ensure that each audio segment has a duration of 10 to 15 seconds per audio.
+Export your dataset as a single audio file, or if you split it into multiple files, ensure each segment has a duration of 10 to 15 seconds per audio file.
 </Aside>
 
-## Plugins
-Here are some plugins for your dataset creation. Note that these plugins work in Audacity, FL Studio, and RX11.
+## Recommended Plugins
 
-- [T de Esser](https://techivation.com/t-de-esser/?srsltid=AfmBOopFizOEU71N2cCJhJcgPlZo-rWjU4T1X1EvM2L5fMCkaCio13qO) - To eliminate the hissing sound produced by the 's'.                                                                                                                                                                                                              
-- [Noise Gate Renegate](https://www.auburnsounds.com/products/Renegate.html) - A better noise gate.
+Here are some useful plugins for dataset creation. These plugins work with Audacity, FL Studio, and RX11:
+
+- **[T de Esser](https://techivation.com/t-de-esser/?srsltid=AfmBOopFizOEU71N2cCJhJcgPlZo-rWjU4T1X1EvM2L5fMCkaCio13qO)** - Eliminates the hissing sound produced by 's' consonants
+- **[Noise Gate Renegate](https://www.auburnsounds.com/products/Renegate.html)** - An improved noise gate with better control and performance

@@ -1,31 +1,18 @@
 {
-	"name": "applio-docs",
-	"version": "0.0.0",
-	"private": true,
-	"scripts": {
-		"build": "next build",
-		"dev": "next dev",
-		"start": "next start",
-		"postinstall": "fumadocs-mdx"
-	},
-	"dependencies": {
-		"fumadocs-core": "14.5.4",
-		"fumadocs-mdx": "11.1.2",
-		"fumadocs-ui": "14.5.4",
-		"next": "15.0.2",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1"
-	},
-	"devDependencies": {
-		"@fumadocs/cli": "^0.0.4",
-		"@types/mdx": "^2.0.13",
-		"@types/node": "22.8.1",
-		"@types/react": "^18.3.12",
-		"@types/react-dom": "^18.3.1",
-		"autoprefixer": "^10.4.20",
-		"postcss": "^8.4.47",
-		"tailwindcss": "^3.4.14",
-		"typescript": "^5.6.3",
-		"vercel": "39.1.1"
-	}
+  "name": "applio-docs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.35.2",
+    "astro": "^5.6.1",
+    "sharp": "^0.34.2",
+    "starlight-theme-next": "^0.3.2"
+  }
 }

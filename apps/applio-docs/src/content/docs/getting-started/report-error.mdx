@@ -1,0 +1,159 @@
+---
+title: Reporting an Error
+description: Learn how to report an error or issue with Applio and find solutions to common problems.
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## How to Report an Error
+
+If you encounter an error while using Applio, there are several ways to report it and find solutions:
+
+### Method 1: GitHub Issues
+
+<Steps>
+1. Go to the [GitHub issues section](https://github.com/IAHispano/Applio/issues)
+2. Click on "New Issue"
+3. Include a screenshot or full text of the Applio CMD output
+4. Describe how you encountered the error (which part, what action you were performing)
+</Steps>
+
+### Method 2: Applio's Built-in Bug Reporter
+
+You can also use Applio's built-in bug reporting feature for easier error reporting.
+
+![Report a bug](/images/report-bug.png)
+
+<Aside type="note">
+Before reporting, check the FAQ section for known issues that are still present in the current version of Applio. You can also join the [Discord Server](https://discord.gg/urxFjYmYYh) and share your problem in the help channels for direct assistance!
+</Aside>
+
+---
+
+## Common Errors and Solutions
+
+### Installation & Dependencies
+
+#### Conda Environment Issues
+
+<Aside type="tip">
+Applio is installed in a conda environment that contains all necessary dependencies. You don't need to install anything else.
+</Aside>
+
+#### Miniconda Download Issues
+
+If you encounter problems with automatic Miniconda download:
+
+<Steps>
+1. Download Miniconda [manually](https://repo.anaconda.com/miniconda/Miniconda3-py39_23.9.0-0-Windows-x86_64.exe)
+2. Install it following the standard installation process
+</Steps>
+
+#### Conda Wheel Building Errors
+
+If Conda shows errors related to "Wheels" dependency:
+
+<Aside type="caution">
+Ensure Visual Studio Build Tools are installed. This requirement should be installed semi-automatically by the installer.
+</Aside>
+
+#### Tensorboard or Dependency Errors
+
+If you encounter Tensorboard-related errors, it likely means dependencies weren't installed correctly.
+
+<Steps>
+1. [Review if you have the latest installer version](/images/getting-started/installation/)
+2. Check the installation requirements below
+</Steps>
+
+### Installation Requirements Check
+
+<Tabs>
+  <TabItem label="Path Issues">
+    <Aside type="caution">
+      **Did you install Applio in a directory with spaces or non-ASCII characters in the path?**
+    </Aside>
+    
+    If yes, please reinstall Applio in a directory without spaces or non-ASCII characters in the path. For example, use your C: drive root.
+  </TabItem>
+  
+  <TabItem label="Antivirus/Firewall">
+    <Aside type="caution">
+      **Did you have the antivirus/firewall enabled during installation?**
+    </Aside>
+    
+    If yes, please reinstall Applio with the antivirus disabled.
+  </TabItem>
+  
+  <TabItem label="Administrator Privileges">
+    <Aside type="caution">
+      **Did you open the run-applio.bat file with administrator privileges?**
+    </Aside>
+    
+    If yes, please open it without administrator privileges.
+  </TabItem>
+</Tabs>
+
+---
+
+### Runtime Errors
+
+#### Google Colab Issues
+
+<Aside type="note">
+Unfortunately, Google Colab is currently unavailable as Google has taken measures to restrict access to Colab services, including Applio. Thanks to our team, we have been able to bring Applio back. [More information here](/images/getting-started/other-alternatives/).
+</Aside>
+
+#### FFmpeg and UTF-8 Errors
+
+<Steps>
+1. Ensure all file paths are free of special characters
+2. Check that your audio files don't contain non-ASCII characters in their names
+</Steps>
+
+#### Connection Errors
+
+<Steps>
+1. Ensure the console (black command line window) is open
+2. Check that no firewall is blocking the connection
+3. Verify your internet connection is stable
+</Steps>
+
+#### WebUI Errors
+
+**Error: 'Expecting value: line 1 column 1 (char 0)'**
+
+<Steps>
+1. Disable system LAN proxy/global proxy
+2. Refresh the WebUI
+3. Try accessing the interface again
+</Steps>
+
+#### CUDA Errors
+
+**CUDA out of memory or CUDA errors**
+
+<Steps>
+1. **For training:** Reduce the batch size
+2. **For inference:** Modify settings in config.py
+3. **Consider upgrading your GPU** if the problem persists
+</Steps>
+
+#### File/Memory Errors During Training
+
+<Steps>
+1. Reduce "Number of CPU threads" in the training settings
+2. Pre-cut your training set to shorter audio files
+3. Ensure you have sufficient disk space available
+</Steps>
+
+---
+
+## Getting Additional Help
+
+<Aside type="tip">
+If you're still experiencing issues after trying these solutions, consider:
+- Checking the [Discord Server](https://discord.gg/urxFjYmYYh) for community support
+- Reviewing the [FAQ section](/docs/getting-started/) for known issues
+- Searching existing GitHub issues for similar problems
+</Aside>

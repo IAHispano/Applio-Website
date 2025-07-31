@@ -1,6 +1,0 @@
-{
-	"title": "Applio",
-	"description": "Documentation for Applio",
-	"pages": ["index", "beginners", "getting-started", "guides", "tos"],
-	"root": true
-}

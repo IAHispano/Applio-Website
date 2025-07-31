@@ -1,0 +1,28 @@
+---
+title: Text-to-Speech
+description: The TTS (Text-To-Speech) option in Applio will allow us to convert any voice to a text base without the need to use external software.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+![TTS Interface](/images/tts.png)
+
+## To start performing a text inference, go to the TTS section.
+
+- Select the **Model with its respective index**.
+- Select the **TTS Model** depending on the language you want and enter the text or add a **txt file** in the box below to convert.
+- Select the **TTS Speed** (increase or decrease TTS speed).
+- Finally we click on **convert** and wait for the result
+
+<Aside type="note">
+Applio is a speech-to-speech conversion software, utilizing **EdgeTTS** as middleware for running the Text-to-Speech (TTS) component. Please note the following:
+
+- **EdgeTTS** requires an **internet connection** to function.
+- We do not plan to add more TTS systems to Applio at this time.
+- You **cannot add additional voices** to EdgeTTS beyond what is already provided.
+- If you'd like to experiment with other TTS systems, you can use the **ElevenLabs plugin**, or run TTS through another platform and then convert it using Applio.
+- This should be considered a **demonstration of Applio's capabilities**.
+- **Maximum audio length is limited to 10 minutes per request**, but this could change due to Azure free tier restrictions. For more details, see the [Azure Speech service quotas and limits](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-services-quotas-and-limits).
+</Aside>
+
+Applio also features ElevenLabs TTS extension. Check the [Plugins section](/images/getting-started/plugins/) for more information.

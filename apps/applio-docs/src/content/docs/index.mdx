@@ -1,0 +1,74 @@
+---
+title: Introduction
+description: Welcome to Applio - AI-driven voice conversion tool
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+Applio is a powerful, AI-driven voice conversion tool that enables you to create personalized voices or make use of a variety of pre-existing voices. Whether you prefer local installation or cloud-based usage through Google Colab, Applio is designed to be efficient and user-friendly.
+
+## What is Applio and Where Can I Use It?
+
+Applio allows you to easily perform voice conversion tasks, whether by creating custom voices or utilizing existing ones. With a flexible design, it supports both local installation for users with sufficient hardware resources and cloud access via Google Colab for those with limited computing power.
+
+### Hardware Requirements for Local Installation:
+
+- **Voice Training:** For performing voice conversion locally, your system should be equipped with a **Nvidia RTX 2000 series** graphics card or higher to ensure optimal performance.
+  
+- **Voice Inferring:** If your goal is to use pre-existing voices, Applio will run efficiently on most standard hardware configurations.
+
+## Get Started
+
+### Local Installation:
+
+To install Applio on your PC, follow the detailed steps outlined in our comprehensive [Installation Guide](/getting-started/installation/).
+
+### Google Colab Access:
+
+If you prefer a cloud-based solution or have limited hardware resources, you can access Applio through our [Google Colab Notebook](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb). 
+
+If you're new to Google Colab or need additional help, be sure to check out our [Alternative Methods Section](/getting-started/other-alternatives/) for more guidance.
+
+## Next Steps
+
+Once you have Applio installed, here are the main things you can do:
+
+  <Card title="Explore the Interface" icon="rocket">
+    One of the main features of Applio is its simple and easy-to-understand interface. Here you will find the main things you can do:
+
+    - **Make an inference/use voices**: [Inference section](/getting-started/inference/)
+    - **Make a Dataset, train a Voice Model**: [Training Guide](/images/getting-started/training/) / [Create a Dataset](/guides/create-datasets/how-create-datasets/)
+    - **Use custom Pretrained (like TITAN and Ov2)**: [Load custom Pretrained](/getting-started/pretrained/)
+    - **Use text-to-speech conversion for your Models**: [TTS Guide](/getting-started/tts/)
+    - **How to use and understand the Tensorboard**: [Tensorboard Guide](/getting-started/tensorboard/)
+    - **Use the Audio Analyzer Tool for your datasets**: [Audio Analyzer Guide](/getting-started/audio-analyzer/)
+    - **Combine models to create a new one**: [Voice Blender Guide](/getting-started/voice-blender/)
+  </Card>
+
+  <Card title="Make AI Cover" icon="star">
+    Learn how to create your first AI cover in just a few steps:
+
+    1. **Separate the vocals from the instrumental**: [Audio Isolating Guides](/guides/uvr/)
+    2. **Search or download the model you want to use**
+    3. **Open Applio and make the cover**: [Inference Guide](/getting-started/inference/) / [Other Alternatives](/getting-started/other-alternatives/)
+    4. **Combine it with the instrumental and you're done**
+  </Card>
+
+  <Card title="Make Your First Model" icon="puzzle">
+    Ready to train your own voice model? Follow these steps:
+
+    1. **Learn the basics of Applio**: [How to use Applio](/getting-started/inference/)
+    2. **Create your dataset**: [Guide on creating a dataset](/guides/how-create-datasets/)
+    3. **Learn how to easily extract vocals or audio**: [Audio Isolating Guides](/guides/uvr/)
+    4. **Verify the sample rate of your dataset**: [Learn how to check it](/getting-started/audio-analyzer/)
+    5. **Train your model while monitoring TensorBoard**: [Training Guide](/getting-started/training/) / [Tensorboard Guide](/getting-started/tensorboard/)
+    6. **Finally, test it**: [Inference Guide](/getting-started/inference/)
+  </Card>
+
+Now that you have an overview of what Applio can do, choose your path:
+
+- **Want to make a cover right away?** Start with the [Inference Guide](/getting-started/inference/)
+- **Ready to train your own model?** Follow the [Training Guide](/getting-started/training/)
+- **Need to understand the interface better?** Explore the [Getting Started](/getting-started/) section
+
+Each section provides detailed step-by-step instructions to help you succeed with Applio!

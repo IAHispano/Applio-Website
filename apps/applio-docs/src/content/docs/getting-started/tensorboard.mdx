@@ -1,0 +1,87 @@
+---
+title: Tensorboard
+description: Tensorboard is a series of graphs where we can monitor the progress of our model during training, but there are many graphs. We are only interested in the graph called 'g/total'. You can find this by clicking on 'inactive' and selecting 'scalars'. Then, go to the last page, where you will find it in the last graph.
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## How to use it?
+
+**1.** Open TensorBoard by running the `run-tensorboard.bat` file or type the following command in your terminal:
+
+   ```
+   tensorboard --logdir=replace/with/your/logs/folder/path
+   ```
+
+**2.** Once TensorBoard is running, open your web browser and navigate to `http://localhost:6006` (or the address indicated in your terminal).
+
+**3.** Click on the "Scalars" tab in TensorBoard.
+
+**4.** Look for the "g/total" metric at the top to monitor the progress of your training.
+
+![Tensorboard Interface](/images/tensorboard.png)
+
+This image provides a visual guide for locating the "g/total" metric within the "Scalars" tab.
+
+<Aside type="note">
+Settings: 
+- Set the **smoothing** to 0.950 or 0.987 for a better view of the graph. 
+- You can click on the :gear: to mark the option to **reload data** every 30 seconds. 
+- Below each graph, there will be 3 buttons. The first one is to **put it in full size**, the second one is to **deactivate the Y-axis** and the last one is to **adjust the data to the graph**. 
+- Uncheck the option to **ignore outliers in chart scaling**.
+</Aside>
+
+## Lowest Point
+
+It's when the graph goes to a point so low that it doesn't happen again. During training, there will be several low points which you should test to find the indicated pth of your model and in this way prevent our model from being overtrained. To know which one to choose, we go to the lowest point and look at how many **steps** it has. Knowing this, we can search in the open cmd or colab notebook for the epochs with that step or the closest one from the save points.
+
+![Lowest Point](/images/point.png)
+
+## Advanced Information
+Besides checking the loss/g/total, it's necessary to monitor the loss/g/mel, loss/g/kl and loss/d/total graphs. If any of these values increase and don't decrease again, it indicates overtraining. At the beginning of training, it's normal for d/total to go up and g/total to go down, but eventually, they stabilize and both start to decrease. During training, all metrics should descend or fluctuate around similar values, for example, if the mel graph starts to rise instead of fall, it indicates that the model is failing. The mel graph shows the accuracy of the model in reproducing the mel spectrogram from your dataset, reflecting the audio quality. Below we explain more about them:
+
+### Loss Terms
+
+Loss terms provide valuable feedback during the training process of GANs, helping to improve the quality and realism of the generated synthetic data.
+
+Monitoring these loss terms together provides a comprehensive picture of the training progress. A successful training run would typically exhibit a balance between decreasing generator and discriminator losses, along with decreasing feature matching, mel spectrogram, and KL divergence losses. This indicates that the generator is producing increasingly realistic synthetic data while maintaining a similar underlying structure and distribution to real data.
+
+The optimal values will vary depending on the specific task and dataset. However, by monitoring the trends in these loss terms, you can gain valuable insights into the progress of the training and identify any potential issues that may arise.
+
+### (D) Discriminator Loss (loss_disc):
+
+The discriminator loss measures the discriminator's ability to distinguish between real and synthetic data samples. It is typically formulated as a cross-entropy loss, where the discriminator is penalized for misclassifying real and synthetic samples.
+
+A decreasing discriminator loss indicates that the discriminator is becoming better at distinguishing between real and synthetic data. This is generally a good sign, as it suggests that the generator is producing increasingly realistic synthetic data. However, if the discriminator loss becomes too low, it may indicate that the generator is simply memorizing real data samples rather than learning to capture the underlying patterns in the data.
+
+### (G) Generator Loss (loss_gen):
+
+The generator loss measures the generator's ability to produce synthetic data samples that are indistinguishable from real data. It is typically formulated as an adversarial loss, where the generator is penalized for producing data that is easily classified as synthetic by the discriminator.
+
+A decreasing generator loss indicates that the generator is successful learning to producing realistic synthetic data.
+
+### Feature Matching Loss (loss_fm):
+
+The feature matching loss encourage the generator to produce synthetic data that has similar intermediate feature representations to those of real data. This is achieved by comparing the intermediate activations of a feature extractor applied to both real and synthetic data.
+
+A decreasing feature matching loss indicates that the generator is producing synthetic data with similar intermediate feature representations to those of real data. This suggests that the generator is learning to capture the underlying structure of real data, which contributes to the realism of the synthetic data.
+
+### Mel Spectrogram Loss (loss_mel):
+
+The mel spectrogram loss compares the mel spectrograms of real and synthetic data samples. Mel spectrograms are a way of representing the frequency content of an audio signal, and this loss encourage the generator to produce synthetic data that sound similar to real data.
+
+A decreasing mel spectrogram loss indicates that the generator is producing synthetic data with a similar spectral distribution to real data. This is particularly important for audio generation tasks, as it ensures that the synthetic audio sound similar to real audio.
+
+### KL Divergence Loss (loss_kl):
+
+The KL divergence loss encourages the generator to produce synthetic data that has a similar distribution of latest variables to real data. Latent variables are a representation of the underlying factors that generate the data, and this loss ensures that the generator is not simply memorizing real data samples but is learning to capture the underlying patterns in the data.
+
+A decreasing KL divergence loss indicates that the generator is producing synthetic data with a similar distribution of latent variables to real data. This suggests that the generator is not simply memorizing real data samples but is learning to capture the underlying patterns in the data, which leads to more generalizable synthetic data.
+
+## Extra information
+
+Next, we will explain more things about TensorBoard that you need to know:
+
+### Scalars:
+- **`loss/g/total`**: The total generator loss. This measures how well the generator is able to fool the discriminator and produce realistic-sounding audio. A lower value is generally better.
+- **`loss/d/total`**: The total discriminator loss. This loss reflects how well the discriminator can differentiate between real and generated audio. A higher value usually indicates a well-performing discriminator.

@@ -1,0 +1,40 @@
+---
+title: Embedders
+description: Learn about embedders and how to use them in voice conversion
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## What are embedders?
+
+Embedders are neural network models that convert raw audio input into high-dimensional vector representations. These representations capture essential acoustic and linguistic features of the audio, making them crucial for various audio processing tasks, including voice conversion.
+
+## How to use embedders?
+
+Embedders are used in two main stages of the voice conversion process:
+
+- **Training:** Select the embedder in the extraction settings.
+- **Inference:** Choose the same embedder in the advanced settings.
+
+<Aside type="caution">
+  It is critical to use the same embedder for both training and inference. The embedder used to train the pretrained model must be consistent throughout the entire process.
+</Aside>
+
+## Where to find embedders?
+
+You can find a variety of embedders on [Hugging Face](https://huggingface.co/models?pipeline_tag=feature-extraction&sort=trending&search=Hubert). To narrow down your search:
+
+1. Visit the Hugging Face model hub.
+2. Apply the "Feature Extraction" filter.
+3. Search for specific embedder types (e.g., "HuBERT", "Contentvec").
+4. Sort by trending or other relevant metrics to find popular and well-maintained models.
+
+<Aside type="note">
+When choosing an embedder, consider factors such as model size, supported languages, and community adoption.
+</Aside>
+
+## Best practices
+
+- Experiment with different embedders to find the best fit for your specific voice conversion task.
+- Keep track of which embedder you use for each model to ensure consistency.
+- Stay updated with the latest developments in audio embedders, as new models may offer improved performance.

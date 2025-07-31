@@ -1,11 +1,11 @@
 ---
-title: Reporting an Error
-description: Learn how to report an error or issue with Applio and find solutions to common problems.
+title: Report an Error
+description: Learn how to report errors and find solutions for common issues
 ---
 
-import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-## How to Report an Error
+## How to Report Errors
 
 If you encounter an error while using Applio, there are several ways to report it and find solutions:
 
@@ -62,7 +62,7 @@ Ensure Visual Studio Build Tools are installed. This requirement should be insta
 If you encounter Tensorboard-related errors, it likely means dependencies weren't installed correctly.
 
 <Steps>
-1. [Review if you have the latest installer version](/images/getting-started/installation/)
+1. [Review if you have the latest installer version](/getting-started/installation/)
 2. Check the installation requirements below
 </Steps>
 
@@ -101,7 +101,7 @@ If you encounter Tensorboard-related errors, it likely means dependencies weren'
 #### Google Colab Issues
 
 <Aside type="note">
-Unfortunately, Google Colab is currently unavailable as Google has taken measures to restrict access to Colab services, including Applio. Thanks to our team, we have been able to bring Applio back. [More information here](/images/getting-started/other-alternatives/).
+Unfortunately, Google Colab is currently unavailable as Google has taken measures to restrict access to Colab services, including Applio. Thanks to our team, we have been able to bring Applio back. [More information here](/getting-started/other-alternatives/).
 </Aside>
 
 #### FFmpeg and UTF-8 Errors
@@ -111,7 +111,7 @@ Unfortunately, Google Colab is currently unavailable as Google has taken measure
 2. Check that your audio files don't contain non-ASCII characters in their names
 </Steps>
 
-#### Connection Errors
+#### Connection Issues
 
 <Steps>
 1. Ensure the console (black command line window) is open
@@ -119,9 +119,7 @@ Unfortunately, Google Colab is currently unavailable as Google has taken measure
 3. Verify your internet connection is stable
 </Steps>
 
-#### WebUI Errors
-
-**Error: 'Expecting value: line 1 column 1 (char 0)'**
+#### Proxy Issues
 
 <Steps>
 1. Disable system LAN proxy/global proxy
@@ -129,9 +127,7 @@ Unfortunately, Google Colab is currently unavailable as Google has taken measure
 3. Try accessing the interface again
 </Steps>
 
-#### CUDA Errors
-
-**CUDA out of memory or CUDA errors**
+#### GPU Memory Issues
 
 <Steps>
 1. **For training:** Reduce the batch size
@@ -139,21 +135,10 @@ Unfortunately, Google Colab is currently unavailable as Google has taken measure
 3. **Consider upgrading your GPU** if the problem persists
 </Steps>
 
-#### File/Memory Errors During Training
+#### CPU/Processing Issues
 
 <Steps>
 1. Reduce "Number of CPU threads" in the training settings
 2. Pre-cut your training set to shorter audio files
 3. Ensure you have sufficient disk space available
 </Steps>
-
----
-
-## Getting Additional Help
-
-<Aside type="tip">
-If you're still experiencing issues after trying these solutions, consider:
-- Checking the [Discord Server](https://discord.gg/urxFjYmYYh) for community support
-- Reviewing the [FAQ section](/docs/getting-started/) for known issues
-- Searching existing GitHub issues for similar problems
-</Aside>

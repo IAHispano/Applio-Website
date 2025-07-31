@@ -3,7 +3,7 @@ title: Embedders
 description: Learn about embedders and how to use them in voice conversion
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Steps } from '@astrojs/starlight/components';
 
 ## What are embedders?
 
@@ -24,10 +24,12 @@ Embedders are used in two main stages of the voice conversion process:
 
 You can find a variety of embedders on [Hugging Face](https://huggingface.co/models?pipeline_tag=feature-extraction&sort=trending&search=Hubert). To narrow down your search:
 
+<Steps>
 1. Visit the Hugging Face model hub.
 2. Apply the "Feature Extraction" filter.
 3. Search for specific embedder types (e.g., "HuBERT", "Contentvec").
 4. Sort by trending or other relevant metrics to find popular and well-maintained models.
+</Steps>
 
 <Aside type="note">
 When choosing an embedder, consider factors such as model size, supported languages, and community adoption.

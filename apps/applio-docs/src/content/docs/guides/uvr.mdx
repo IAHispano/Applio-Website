@@ -1,121 +1,121 @@
 ---
-title: Audio Isolation with UVR5
-description: Ultimate Vocal Remover (UVR) is a free and open-source AI audio editing tool that can remove stems and other objects from base audio. This guide explains how to use UVR5 for audio separation.
+title: "Audio Isolation with UVR5"
+description: "Learn how to use Ultimate Vocal Remover (UVR) to separate audio sources and create clean datasets."
 ---
 
-import { Aside, FileTree, Steps } from '@astrojs/starlight/components';
+import { Aside, FileTree, Steps, Card, CardGrid } from '@astrojs/starlight/components';
 
-## What is UVR5?
+**Ultimate Vocal Remover (UVR)** is a powerful, free, and open-source tool for separating audio sources. It's an essential tool for creating the clean, isolated vocal tracks needed for high-quality voice model training.
 
-Ultimate Vocal Remover (UVR) is a powerful AI audio editing tool that can separate vocals from instrumentals, remove background noise, and isolate different audio components. It's essential for creating clean datasets for voice training.
+## How to Install UVR
 
-## Installation Methods
-
-### Method 1: Local Installation
-
-#### Download UVR5
-To use UVR locally, download and install the program from [https://ultimatevocalremover.com/](https://ultimatevocalremover.com/)
-
-<Aside type="note">
-When running the installer, Windows may mistakenly detect it as malware due to the lack of a license. If you have concerns, you can review the program's source code or use alternative installation methods.
-</Aside>
-
-#### Download Models
-After installing UVR, you need to download separation models:
+To use UVR, you'll need to install it on your local machine.
 
 <Steps>
-1. Click on the 🔧 icon in UVR
-2. Go to "Download Center"
-3. Choose your preferred models
+1.  Download the installer from the [UVR website](https://ultimatevocalremover.com/).
+2.  Run the installer to set up UVR on your computer.
+3.  Once installed, launch UVR and click the **wrench icon** (🔧) to open the settings.
+4.  Go to the **Download Center** and download the separation models you want to use.
 </Steps>
 
-### UVR Directory Structure
-After installation, UVR creates the following directory structure:
+<Aside type="note">
+  When you run the installer, Windows may flag it as potential malware. This is a false positive due to the installer not being signed with a commercial license. You can review the source code on their GitHub repository if you have any concerns.
+</Aside>
 
-<FileTree>
-- Ultimate Vocal Remover/
-  - models/
-    - MDX_Net_Models/
-      - model.ckpt
-      - model_data/
-        - mdx_c_configs/
-          - config.yaml
-    - VR_Arch_Models/
-      - model.ckpt
-    - Demucs_Models/
-      - model.ckpt
-  - logs/
-  - temp/
-  - settings.json
-  - UVR.exe
-</FileTree>
+## How to Use UVR
+
+<Steps>
+1.  **Select Your Audio File:** Choose the audio file you want to process.
+2.  **Choose an Output Path:** Select a folder where the separated audio files will be saved.
+3.  **Select a Model:** Choose the separation model you want to use. Different models are optimized for different tasks.
+4.  **Click Convert:** Click the **Convert** button to start the separation process.
+</Steps>
 
 ## Available Models
 
+UVR has a wide variety of models available for different tasks. Here are some of the most popular ones.
+
+<details>
+<summary>Click to expand the list of recommended models</summary>
+
 ### RoFormer Models
-**RoFormer** utilizes a Band-Split module to convert the input complex spectrogram into representations at the subband level *(currently the best performing)*.
+These models are currently the best-performing models for most tasks.
 
-The RoFormer method contains two pretrained models, **BS-RoFormer** and **Mel-Band RoFormer**, which have similar but not identical structures.
-
-| Model Name | Best For | Description |
-|------------|----------|-------------|
-| **BS-Roformer-Viperx-1297** | Vocals & Instrumentals | Best for separating vocals and instrumentals |
-| **Mel-Roformer-Viperx-1143** | Vocals & Instrumentals | Separates vocals and instrumentals |
-
-**For higher quality results, use custom models**
-
-#### Custom RoFormer Models
-
-| Model Name | Best For | Description |
-|------------|----------|-------------|
-| **[Kim Mel Roformer](https://huggingface.co/shiromiya/audio-separation-models/tree/main/Kim-MelRoformer)** | Vocals & Instrumentals | Best local model for separating vocals and instrumentals |
-| **[Aufr33 and Viperx Mel Roformer Karaoke](https://huggingface.co/shiromiya/audio-separation-models/tree/main/mel_band_roformer_karaoke_aufr33_viperx)** | Main vs Backing Vocals | Best model for separating main vocals from backing vocals |
-| **[anvuew Mel Roformer dereverb](https://huggingface.co/anvuew/dereverb_mel_band_roformer/tree/main)** | Reverb Removal | Best model for removing reverb from audios *(only removes stereo reverb)* |
-| **[Aufr33 Mel Roformer Denoise](https://huggingface.co/jarredou/aufr33_MelBand_Denoise/tree/main)** | Noise Removal | Best model for removing noise from audios |
-
-<Aside type="note">
-To use these custom models, you need to download the following [patch](https://github.com/TRvlvr/model_repo/releases/download/uvr_update_patches/UVR_Patch_4_14_24_18_7_BETA_full_Roformer.exe).
-</Aside>
+<CardGrid>
+<Card title="BS-Roformer-Viperx-1297">
+**Best For:** Vocals & Instrumentals
+<br/>The best all-around model for separating vocals and instrumentals.
+</Card>
+<Card title="Kim Mel Roformer">
+**Best For:** Vocals & Instrumentals
+<br/>Another excellent model for separating vocals and instrumentals.
+<br/>[Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/Kim-MelRoformer)
+</Card>
+<Card title="Aufr33 and Viperx Mel Roformer Karaoke">
+**Best For:** Main vs. Backing Vocals
+<br/>The best model for separating main vocals from backing vocals.
+<br/>[Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/mel_band_roformer_karaoke_aufr33_viperx)
+</Card>
+<Card title="anvuew Mel Roformer dereverb">
+**Best For:** Reverb Removal
+<br/>The best model for removing stereo reverb from audio.
+<br/>[Download](https://huggingface.co/anvuew/dereverb_mel_band_roformer/tree/main)
+</Card>
+<Card title="Aufr33 Mel Roformer Denoise">
+**Best For:** Noise Removal
+<br/>The best model for removing background noise from audio.
+<br/>[Download](https://huggingface.co/jarredou/aufr33_MelBand_Denoise/tree/main)
+</Card>
+</CardGrid>
 
 ### MDX-Net Models
-**MDX-Net** is a prize-winning model framework from an ML enthusiasts contest, designed for audio source separation and enabling improvements from a base model.
+A prize-winning model framework that is great for a variety of tasks.
 
-| Model Name | Best For | Description |
-|------------|----------|-------------|
-| **MDX23C-InstVoc HQ** | Multiple Tasks | A set of different models that work together to deliver a single result |
-| **UVR-MDX-NET Voc FT** | Vocals | Model focused mainly on separating vocals |
-| **UVR-MDX-NET Crowd HQ 1** | Background Vocals | Separates background vocals from main vocals |
+<CardGrid>
+<Card title="MDX23C-InstVoc HQ">
+**Best For:** Multiple Tasks
+<br/>A set of models that work together to deliver high-quality results.
+</Card>
+<Card title="UVR-MDX-NET Voc FT">
+**Best For:** Vocals
+<br/>A model focused specifically on separating vocals.
+</Card>
+<Card title="UVR-MDX-NET Crowd HQ 1">
+**Best For:** Background Vocals
+<br/>Separates background vocals from main vocals.
+</Card>
+</CardGrid>
 
 ### VR Arch Models
-**VR-Arch** is a location-guided audio-visual spatial audio separator model, capable of delivering great results in most tasks.
+A location-guided model that delivers great results in most tasks.
 
-| Model Name | Best For | Description |
-|------------|----------|-------------|
-| **UVR-DeEcho-DeReverb** | Reverb & Echo | Separates reverb and echo |
-| **UVR-BVE-4B_SN-44100-1** | Multiple Voices | Multiple background voices separator |
-| **5_Hp-Karaoke-UVR** | Background Vocals | Separates background vocals (best option) |
-| **UVR-DeNoise** | Noise Removal | Removes noise and some artifacts |
+<CardGrid>
+<Card title="UVR-DeEcho-DeReverb">
+**Best For:** Reverb & Echo
+<br/>Separates reverb and echo from audio.
+</Card>
+<Card title="5_Hp-Karaoke-UVR">
+**Best For:** Background Vocals
+<br/>Another excellent model for separating background vocals.
+</Card>
+<Card title="UVR-DeNoise">
+**Best For:** Noise Removal
+<br/>Removes noise and some artifacts from audio.
+</Card>
+</CardGrid>
 
 ### Demucs Models
-**Demucs** is an all-in-one model capable of separating most objects from audio into 4 to 6 stems. The best version is DemucsV4.
+An all-in-one model capable of separating audio into 4 to 6 stems.
 
-| Model Name | Processing Speed | Quality | Best For |
-|------------|-----------------|---------|----------|
-| **htdemucs** | Normal | Good | Default model with normal processing time and good results |
-| **htdemucs_ft** | Slow | Better | Slower processing but better results |
-| **htdemucs_6s** | Normal | Good | Capable of separating guitar and piano stems |
+<CardGrid>
+<Card title="htdemucs_ft">
+**Best For:** General Purpose
+<br/>Slower processing but better results than the standard `htdemucs` model.
+</Card>
+<Card title="htdemucs_6s">
+**Best For:** Instrument Separation
+<br/>Capable of separating guitar and piano stems in addition to vocals and drums.
+</Card>
+</CardGrid>
 
-## Performing Audio Conversion
-
-Once you have downloaded the models, you can perform audio separation:
-
-<Steps>
-1. **Select the desired structure and downloaded model**
-2. **Select your audio file** (you can easily download audio from sites such as [Cobalt.Tools](https://cobalt.tools/))
-3. **Select the output path for the results**
-4. **Click convert to start the process**
-</Steps>
-
-### Additional Options
-- **Segment Size:** Larger segments consume more resources but may provide better results
-- **Overlap:** Amount of overlap between prediction windows
+</details>

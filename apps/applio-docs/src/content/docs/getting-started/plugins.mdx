@@ -1,23 +1,43 @@
 ---
-title: Plugins
-description: Learn how to install and use plugins to extend Applio's functionality
+title: "Using Plugins"
+description: "Learn how to install and use plugins to extend Applio's functionality."
 ---
 
-### What are plugins in Applio?
-Plugins or extensions, as the name implies, allow you to add functions to applio without having to update the program.
+import { Aside, Steps } from '@astrojs/starlight/components';
 
-## How do I install plugins to Applio?
+**Plugins** are extensions that add new features and functionality to Applio without needing to update the entire application. They can provide new tools, new tabs in the interface, or new options for audio processing.
 
-### Download the plugins
-Download the plugins you want from [here](https://github.com/IAHispano/Applio-Plugins/releases/latest).
+## Installing Plugins
 
-### Install the plugins
-Go to the Plugins section and drag the plugin **.zip** file to Plugin Installer, when you upload the file and refresh the interface you will see the section of the extension you have downloaded.
+You can install plugins in two ways: through the Applio interface or manually.
 
-![Plugin Installer](/images/plugin-installer.png)
+### Method 1: Use the Plugin Installer
 
-#### Second Method
-Extract the plugin **.zip** file and move the extracted folder to `Applio/Tabs/Plugins/installed`.
+This is the easiest and recommended way to install plugins.
 
-## Update Plugin
-Follow the previous same steps that you did to install the plugin.
+<Steps>
+1.  Download the plugin you want to install. Plugins are usually distributed as `.zip` files.
+2.  In the Applio interface, go to the **Plugins** tab.
+3.  Drag and drop the plugin's `.zip` file into the **Plugin Installer** box.
+4.  Refresh the Applio interface. The new plugin's features should now be available.
+</Steps>
+
+![A screenshot of the Plugin Installer in Applio.](/images/plugin-installer.png)
+
+### Method 2: Manual Installation
+
+If you prefer, you can also install plugins manually.
+
+<Steps>
+1.  Download and extract the plugin's `.zip` file.
+2.  Move the extracted folder to the `Applio/tabs/Plugins/installed` directory in your Applio installation.
+3.  Restart Applio.
+</Steps>
+
+## Finding Plugins
+
+You can find a collection of official and community-made plugins on the [Applio Plugins GitHub repository](https://github.com/IAHispano/Applio-Plugins/releases/latest).
+
+## Updating Plugins
+
+To update a plugin, simply follow the same installation steps with the new version of the plugin. It will overwrite the old version.

@@ -1,119 +1,91 @@
 ---
-title: Pretrained
-description: Learn how to use pretrained models to improve your voice training results
+title: "Using Pre-trained Models"
+description: "Learn how to use pre-trained models to improve your voice training results."
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 
-## What are pretraineds?
+## What are Pre-trained Models?
 
-When it comes to training, you have two main options: building a model from the ground up or fine-tuning an already existing one. These pre-trained models are designed to streamline your training process, saving time and enhancing the overall quality of your results.
+A **pre-trained model** is a base model that has already been trained on a large amount of data. When you train your own voice model, you can start from scratch or you can use a pre-trained model as a starting point.
 
-_Simply put, the image illustrates that having a pre-trained model saves you effort during subsequent model training._
+Using a pre-trained model can save you a significant amount of time and effort, and it can often lead to better results, especially if you have a small dataset.
 
-![Pretrained Models](/images/pretrained.png)
+![An illustration showing that using a pre-trained model saves you time and effort when training your own model.](/images/pretrained.png)
 
-## How to create pretraineds?
+## How to Use a Pre-trained Model
 
-When creating a pretrained model, you have two primary options to consider.
+To use a pre-trained model in Applio:
 
-Firstly, you can either initiate a fine-tuning process on another pretrained model, which could be one of the originals, or start building one from scratch.
+1.  In the **Train** tab, check the **Custom Pretrained** box.
+2.  Upload the pre-trained model's `.pth` and `.index` files.
+3.  Select the pre-trained model from the **Pretrained G/D Path** dropdown menus.
+4.  Proceed with your training as usual.
 
-Should you opt for building from scratch, the ideal approach involves gathering a substantial amount of moderately clean data (50 hours or more); it doesn't necessarily have to be perfectly pristine. Subsequently, fine-tune this model with high-quality data.
-
-An essential consideration is to construct datasets devoid of copyrighted material.
-
-Alternatively, if you choose to fine-tune a pretrained model, the crux lies in the quality of the audio inputs. You can tailor it to a specific language, incorporate diverse speakers, and even integrate various accents (10 hours or more). The customization possibilities are vast. However, it's crucial to strike a balance; avoid overtraining the pretrained model. The more effectively you fine-tune it now, the less training it will necessitate later during usage.
-
-To embark on building a model from scratch, conduct standard training while disabling the Pretrained option. For fine-tuning, engage in ordinary training while loading the desired pretrained model to fine-tune it.
-
-## How to use pretraineds?
-
-In the training tab, check the **'Custom Pretrained'** box, upload the files, and select it in the **Pretrained G/D Path boxes**.
-
-![Load Pretrained](/images/load-pretrained.png)
+![A screenshot of the 'Custom Pretrained' section in Applio's training tab.](/images/load-pretrained.png)
 
 <Aside type="note">
-Now you can download the custom pretrained models directly from the **Download** tab in Applio, go to **Download Pretrained Models** and select the **Pretrained** model you want to download, choose the **Sample Rate**, and click on **Download**.
+  You can download many popular pre-trained models directly from the **Download** tab in Applio.
 </Aside>
 
-## Where to find pretraineds?
+## How to Create Your Own Pre-trained Model
 
-### DMR V1 by Razer
-DMR V1 is a fine-tuned based on the original RVC V2 pretrained and made with 11.3 hours dataset and specially only for e-girl, soft male/female and deep male/female voices. This model was trained with Mangio-Crepe/Crepe (Applio) therefore it is advisable to use this extraction algorithm with a 128 hop length or below and have a clean dataset due to the sensitivity to noise of this algorithm. This only supports **32k sample rate**.
+You can also create your own pre-trained models to use as a base for future projects.
 
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/Razer112/DMR_Pretrain/resolve/main/D_DMR-V1.pth?download=true) | [Download G file](https://huggingface.co/Razer112/DMR_Pretrain/resolve/main/G_DMR-V1.pth?download=true) |
+-   **From Scratch:** To create a pre-trained model from scratch, you'll need a large, diverse dataset (50+ hours of audio is recommended). Train a model on this dataset as you normally would, but without using an existing pre-trained model.
+-   **Fine-tuning an Existing Model:** You can also fine-tune an existing pre-trained model to create a new one. For example, you could fine-tune a general-purpose English model on a dataset of a specific accent to create a pre-trained model for that accent.
 
-### KLM 4.1 by SeoulStreamingStation
+When creating pre-trained models, it's important to use high-quality, non-copyrighted audio.
 
-KLM 4.1 is a fine-tuned based on KLM V7 pretrained and made with around 100 hours dataset (Korean vocal/speech, Japanese vocal/speech and English speech), so it will work better with those languages. Unlike typical pretrained models KLM is a pretrained model created to make vocal guides using short voice recordings from a studio, this means that even with short dataset high pitch information it is possible to implement high-pitched sounds but it is sensitive to noise so it is recommended to use it with high quality datasets. This only supports **32k and 48k sample rate**.
+## Community Pre-trained Models
 
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/D_KLM41_32k.pth?download=true) | [Download G file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/G_KLM41_32k.pth?download=true) |
-| 48K | [Download D file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/D_KLM41_48k.pth?download=true) | [Download G file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/G_KLM41_48k.pth?download=true) |
+Here are some popular pre-trained models created by the community.
 
-### Nanashi V1.7 by shiromiya
-
-Nanashi V1.7 is a fine-tuned based on TITAN pretrained and made with 11 hours of Brazilian music, so it will work better with this language but it can work with other languages without any problems, like TITAN, it allows models to be trained with few epochs and handles the noise better. This only supports **32k sample rate**.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/shiromiya/nanashi-pretrain/resolve/main/v1.7/D_nanashi_v1_7.pth?download=true) | [Download G file](https://huggingface.co/shiromiya/nanashi-pretrain/resolve/main/v1.7/G_nanashi_v1_7.pth?download=true) |
-
-### Ov2 Super by SimplCup
-
-Ov2Super is a fine-tuned based on the original RVC V2 pretrained and made with 30 minutes dataset, works well for small datasets and English language, this pretrained was trained on a precisely chosen clean speech and singing dataset, with bright and emotional voices. Additionally, it allows models to train with very few epochs compared to regular pretrains. This only supports **32k and 40k** sample rates.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super32kD.pth?download=true) | [Download G file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super32kG.pth?download=true) |
-| 40K | [Download D file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super40kD.pth?download=true) | [Download G file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super40kG.pth?download=true) |
-
-### RIN_E3 by MUSTAR
-
-RIN_E3 is a pretrain made from scratch with 140 hours dataset, works well with English language but it is advisable to use it with high quality datasets due to its sensitivity to noise. This only supports **40k** sample rate.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 40K | [Download D file](https://huggingface.co/MUSTAR/RIN_E3/resolve/main/RIN_E3_D.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/RIN_E3/resolve/main/RIN_E3_G.pth?download=true) |
-
-### SingerPreTrain by Sztef
-
-SingerPetrain is a fine-tuned based on Ov2 Super pretrained and made with 14 hours dataset (English singers). It is most suitable for training singers but it works for everything, the vocal range dataset is c1 to db7 so it works well with bass, baritone , tenor, alto , mezzo-soprano, soprano voices. This only supports **32k sample rate**.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/Sztef/SingerPreTrained/resolve/main/update/f0D_SingerPreTrain.pth?download=true) | [Download G file](https://huggingface.co/Sztef/SingerPreTrained/resolve/main/update/f0G_SingerPreTrain.pth?download=true) |
-
-### SnowieV3 X RIN_E3 by MUSTAR
-
-SnowieV3 X RIN_E3 continues the training with Snowie dataset and then finetuned with additional data, so it will work better with English, Russian and Japanese language and also helps models of other languages to pronounce them well. This only supports **40k** sample rate.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 40K | [Download D file](https://huggingface.co/MUSTAR/SnowieV3.1-X-RinE3-40K/resolve/main/D_Snowie-X-Rin_40k.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/SnowieV3.1-X-RinE3-40K/resolve/main/G_Snowie-X-Rin_40k.pth?download=true) |
-
-### SnowieV3.1 by MUSTAR
-
-SnowieV3.1 is a fine-tuned based on Snowie base pretrained (not publicly available) and made with 58 hours dataset (Russian and Japanese), so it will work better with those languages and also helps models of other languages to pronounce them well. Supports **all the sample rates**.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/MUSTAR/SnowieV3.1-32k/resolve/main/D_SnowieV3.1_32k.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/SnowieV3.1-32k/resolve/main/G_SnowieV3.1_32k.pth?download=true) |
-| 40K | [Download D file](https://huggingface.co/MUSTAR/SnowieV3.1-40k/resolve/main/D_SnowieV3.1_40k.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/SnowieV3.1-40k/resolve/main/G_SnowieV3.1_40k.pth?download=true) |
-| 48K | [Download D file](https://huggingface.co/MUSTAR/SnowieV3.1-48k/resolve/main/D_SnowieV3.1_48k.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/SnowieV3.1-48k/resolve/main/G_SnowieV3.1_48k.pth?download=true) |
-
-### TITAN by blaise-tk
-
-TITAN is a fine-tuned based on the original RVC V2 pretrained, leveraging an 11.15-hours dataset sourced from Expresso. It gives cleaner results compared to the original pretrained, also handles the accent and noise better due to its robustness, being able to generate high quality results. Like Ov2 Super, it allows models to be trained with few epochs, it supports **all the sample rates**.
-
-| Sample Rate | D File | G File |
-|-------------|--------|--------|
-| 32K | [Download D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/D-f032k-TITAN-Medium.pth?download=true) | [Download G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/G-f032k-TITAN-Medium.pth?download=true) |
-| 40K | [Download D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/D-f040k-TITAN-Medium.pth?download=true) | [Download G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/G-f040k-TITAN-Medium.pth?download=true) |
-| 48K | [Download D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/48k/pretrained/D-f048k-TITAN-Medium.pth?download=true) | [Download G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/48k/pretrained/G-f048k-TITAN-Medium.pth?download=true) |
-
-Make sure to select the sample rate according to the [sample rate](/images/getting-started/audio-analyzer/) of the custom pretraineds.
+<CardGrid>
+    <Card title="DMR V1">
+        Fine-tuned for e-girl, soft male/female, and deep male/female voices. Works best with clean datasets and the Mangio-Crepe/Crepe pitch extraction algorithm.
+        <br/>**Sample Rate:** 32k
+        <br/>[Download D file](https://huggingface.co/Razer112/DMR_Pretrain/resolve/main/D_DMR-V1.pth?download=true) | [Download G file](https://huggingface.co/Razer112/DMR_Pretrain/resolve/main/G_DMR-V1.pth?download=true)
+    </Card>
+    <Card title="KLM 4.1">
+        Trained on Korean, Japanese, and English data. Ideal for creating vocal guides from short, high-quality studio recordings. Sensitive to noise.
+        <br/>**Sample Rates:** 32k, 48k
+        <br/>[Download 32k D file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/D_KLM41_32k.pth?download=true) | [Download 32k G file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/G_KLM41_32k.pth?download=true)
+        <br/>[Download 48k D file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/D_KLM41_48k.pth?download=true) | [Download 48k G file](https://huggingface.co/SeoulStreamingStation/KLM4.1/resolve/main/G_KLM41_48k.pth?download=true)
+    </Card>
+    <Card title="Nanashi V1.7">
+        Trained on Brazilian music. Works well for Portuguese and other languages. Handles noise well and requires fewer training epochs.
+        <br/>**Sample Rate:** 32k
+        <br/>[Download D file](https://huggingface.co/shiromiya/nanashi-pretrain/resolve/main/v1.7/D_nanashi_v1_7.pth?download=true) | [Download G file](https://huggingface.co/shiromiya/nanashi-pretrain/resolve/main/v1.7/G_nanashi_v1_7.pth?download=true)
+    </Card>
+    <Card title="Ov2 Super">
+        Works well for small, clean English datasets. Trained on bright, emotional voices. Requires fewer training epochs.
+        <br/>**Sample Rates:** 32k, 40k
+        <br/>[Download 32k D file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super32kD.pth?download=true) | [Download 32k G file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super32kG.pth?download=true)
+        <br/>[Download 40k D file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super40kD.pth?download=true) | [Download 40k G file](https://huggingface.co/ORVC/Ov2Super/resolve/main/f0Ov2Super40kG.pth?download=true)
+    </Card>
+    <Card title="RIN_E3">
+        Trained from scratch on a large English dataset. Best used with high-quality datasets due to its sensitivity to noise.
+        <br/>**Sample Rate:** 40k
+        <br/>[Download D file](https://huggingface.co/MUSTAR/RIN_E3/resolve/main/RIN_E3_D.pth?download=true) | [Download G file](https://huggingface.co/MUSTAR/RIN_E3/resolve/main/RIN_E3_G.pth?download=true)
+    </Card>
+    <Card title="SingerPreTrain">
+        Fine-tuned for English singers. Suitable for a wide range of vocal types, from bass to soprano.
+        <br/>**Sample Rate:** 32k
+        <br/>[Download D file](https://huggingface.co/Sztef/SingerPreTrained/resolve/main/update/f0D_SingerPreTrain.pth?download=true) | [Download G file](https://huggingface.co/Sztef/SingerPreTrained/resolve/main/update/f0G_SingerPreTrain.pth?download=true)
+    </Card>
+    <Card title="SnowieV3.1">
+        Trained on Russian and Japanese data. Helps to improve pronunciation in other languages.
+        <br/>**Sample Rates:** 32k, 40k, 48k
+        <br/>[Download 32k D file](https://huggingface.co/MUSTAR/SnowieV3.1-32k/resolve/main/D_SnowieV3.1_32k.pth?download=true) | [Download 32k G file](https://huggingface.co/MUSTAR/SnowieV3.1-32k/resolve/main/G_SnowieV3.1_32k.pth?download=true)
+        <br/>[Download 40k D file](https://huggingface.co/MUSTAR/SnowieV3.1-40k/resolve/main/D_SnowieV3.1_40k.pth?download=true) | [Download 40k G file](https://huggingface.co/MUSTAR/SnowieV3.1-40k/resolve/main/G_SnowieV3.1_40k.pth?download=true)
+        <br/>[Download 48k D file](https://huggingface.co/MUSTAR/SnowieV3.1-48k/resolve/main/D_SnowieV3.1_48k.pth?download=true) | [Download 48k G file](https://huggingface.co/MUSTAR/SnowieV3.1-48k/resolve/main/G_SnowieV3.1_48k.pth?download=true)
+    </Card>
+    <Card title="TITAN">
+        A robust, general-purpose model that gives clean results and handles accents and noise well. Requires fewer training epochs.
+        <br/>**Sample Rates:** 32k, 40k, 48k
+        <br/>[Download 32k D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/D-f032k-TITAN-Medium.pth?download=true) | [Download 32k G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/32k/pretrained/G-f032k-TITAN-Medium.pth?download=true)
+        <br/>[Download 40k D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/D-f040k-TITAN-Medium.pth?download=true) | [Download 40k G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/40k/pretrained/G-f040k-TITAN-Medium.pth?download=true)
+        <br/>[Download 48k D file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/48k/pretrained/D-f048k-TITAN-Medium.pth?download=true) | [Download G file](https://huggingface.co/blaise-tk/TITAN/resolve/main/models/medium/48k/pretrained/G-f048k-TITAN-Medium.pth?download=true)
+    </Card>
+</CardGrid>

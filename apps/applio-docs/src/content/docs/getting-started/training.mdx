@@ -1,107 +1,89 @@
 ---
-title: Training
-description: Learn how to train voice models using Self-Supervised Speech technology
+title: "Training a Voice Model"
+description: "A step-by-step guide to training a high-quality voice model in Applio."
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
-import { FileTree } from '@astrojs/starlight/components';
+import { Aside, Steps, FileTree } from '@astrojs/starlight/components';
 
-<Aside type="caution">
-If you don't have a compatible GPU, we offer alternatives to [run Applio in the cloud](/getting-started/other-alternatives/).
+**Training** is the process where Applio learns to replicate a voice from a dataset of audio files. This guide will walk you through each step of the training process, from preparing your dataset to exporting your final model.
+
+<Aside type="note">
+  If you don't have a powerful local GPU, you can use our [Google Colab Guide](/getting-started/google-colab-guide/) to train your model in the cloud.
 </Aside>
 
-## Training a Voice Model
+### Step 1: Prepare Your Dataset
 
-Training is the process by which Applio learns to clone any voice or sound using Self-Supervised Speech technology. This guide will walk you through the complete training process.
+The first and most important step is to prepare a high-quality audio dataset.
 
-### Step 1: Dataset Preparation
+-   **Duration:** Aim for 10-30 minutes of clean audio.
+-   **Format:** Your audio files must be in a lossless format, such as `.wav` or `.flac`.
+-   **Quality:** The audio should be free of background noise, reverb, and other artifacts.
 
-Before you can start training, you need to prepare an audio dataset of the desired voice. Here are the requirements:
+For a detailed guide on creating a high-quality dataset, please see our [Dataset Creation Guide](/guides/how-create-datasets/).
 
-- **Minimum duration**: 10 minutes of clean audio without noise or silences
-- **Recommended duration**: 30 minutes for optimal results
-- **Audio format**: Uncompressed audio files (`.wav` or `.flac`)
-
-<Aside type="tip">
-If you have less audio than recommended, pretrained models can help you achieve good results with limited data.
-</Aside>
-
-Upload your dataset using the **Dataset Maker** (for single audio files) or set it up manually (for multiple audio files) in the `applio/assets/datasets` directory. Create a folder for your dataset so the program can read it properly.
-
-- [Don't know how to create a dataset? Check our dataset guide](/guides/how-create-datasets/)
+Once your dataset is ready, you need to place it in the `applio/assets/datasets` directory. Create a new folder inside this directory for your model.
 
 #### Multi-Speaker Models (Optional)
 
-If you want to train a multi-speaker model, create a folder for the model and inside that folder, create a separate folder for each speaker.
-
-Speaker folders must be named with numbers starting from 0.
-
-**Recommendation**: Each speaker should have a similar amount of audio data.
+If you want to train a model with multiple speakers, create a subfolder for each speaker inside your model's dataset folder. The speaker folders must be named numerically, starting from `0`.
 
 <FileTree>
-- Dataset
-  - 0
-    - speaker0-audio1.flac
-    - speaker0-audio2.flac
-    - speaker0-audio3.flac
-  - 1
-    - speaker1-audio1.flac
-    - speaker1-audio2.flac
-    - speaker1-audio3.flac
-  - 2
-    - speaker2-audio1.flac
-    - speaker2-audio2.flac
-    - speaker2-audio3.flac
+- applio/assets/datasets/your-model-name/
+  - 0/
+    - speaker0-audio1.wav
+    - speaker0-audio2.wav
+  - 1/
+    - speaker1-audio1.wav
+    - speaker1-audio2.wav
 </FileTree>
 
-### Step 2: Dataset Processing
+### Step 2: Pre-process the Dataset
 
-Once your audio is ready, give your model a name and select the correct frequency for your files (`32k`, `40k`, or `48k`). Before running "Preprocess Dataset", consider these options:
+Now it's time to pre-process your dataset.
 
-- **CPU Cores**: The default setting uses all your CPU cores, which is recommended for most cases.
-- **Audio Cutting**: Recommended to disable this option if your dataset has already been processed.
-- **Process Effects**: Recommended to disable this option if your dataset has already been processed.
+<Steps>
+1.  In the **Train** tab of Applio, enter a name for your model.
+2.  Select the correct sample rate for your audio files (`32k`, `40k`, or `48k`).
+3.  Click the **Pre-process Dataset** button.
+</Steps>
 
-### Step 3: Feature Extraction
+### Step 3: Extract Features
 
-Feature extraction is an essential step in the training process. This process converts each audio fragment (divided by the post-processing step) into files readable by the F0 (Fundamental frequency) system.
+Next, you need to extract the features from your pre-processed dataset.
 
-Several F0 models are available, but **RMVPE** performs best. **CREPE (MANGIO-CREPE)** is also good but requires very clean audio and a hop length of 128 or lower.
+<Steps>
+1.  **Choose a Pitch Extraction Algorithm:** We recommend using **RMVPE** for the best results.
+2.  **Select an Embedder Model:** Make sure to choose the correct embedder for your model.
+3.  Click the **Extract Features** button.
+</Steps>
 
-**Configuration Options:**
-- **CPU Cores**: Adjust for the index extraction process. Default uses all CPU cores.
-- **Embedder Model**: Select the model used for learning speaker embedding.
-- **Pitch Guidance**: Enables mirroring the intonation of the original voice, including its pitch. Particularly valuable for singing and scenarios where preserving the original melody is essential.
-- **GPU Number**: Specify the number of GPUs to utilize for extraction (separate multiple GPUs with hyphens).
+This process will take some time. You can monitor the progress in the command line window.
 
-When you've selected your model, press **Extract Features** to start the process. Monitor your command prompt until you see a completion message.
+### Step 4: Train the Model and Index
 
-- [Don't know how to check sample rate? Check the Audio Analyzer section](/getting-started/audio-analyzer/)
+This is the final and most time-consuming step.
 
-### Step 4: Model & Index Training
+<Steps>
+1.  **Set the "Save Every Epoch" Value:** This determines how often the model is saved. A value between 10 and 50 is recommended.
+2.  **Set the "Total Epochs":** This is the total number of times the model will train on the entire dataset. A good starting point is 200-400 epochs, but you should use [TensorBoard](/getting-started/tensorboard) to monitor your model's progress and decide when to stop.
+3.  **Set the "Batch Size":** This depends on your GPU's VRAM. For an 8GB GPU, a batch size of 6-8 is a good starting point.
+4.  Click the **Train Model** button.
+5.  Once the model training is complete, click the **Train Index** button.
+</Steps>
 
-This is where the actual training begins. You'll need to configure a few settings before starting:
-
-![Training Example](/images/training.png)
-
-**Training Configuration:**
-- **Save Every Epoch**: Set this value between 10 and 50 to determine how often the model's state is saved during training.
-- **Total Epochs**: The number of epochs varies based on your dataset. Monitor progress using TensorBoard; typically, models perform well around 200-400 epochs.
-- **Batch Size**: Adjust based on your GPU's VRAM. For 8 GB VRAM, use a batch size between 6 and 8. Consider CUDA cores when experimenting with higher batch sizes.
-
-**Index Generation**: Generating an index is essential. Click the "Train Index" button to perform this process.
+![A screenshot of the training configuration section in Applio.](/images/training.png)
 
 ### Step 5: Export Your Model
 
-Your trained model is located in the `logs/model` folder, and the `.pth` files are in the `logs/zips` folder. You can also export your trained model directly from the Applio interface:
+Your trained models are saved in the `logs` folder. You can also export them directly from the Applio interface.
 
 <Steps>
-1. Go to the **Export Model** section in the **Train** tab
-2. Click the **Refresh** button
-3. Select the **pth file and the corresponding index** of your model
-4. Export your model
+1.  Go to the **Export Model** section in the **Train** tab.
+2.  Click the **Refresh** button.
+3.  Select the `.pth` file and the corresponding `.index` file for your model.
+4.  Click the **Export Model** button.
 </Steps>
 
-<Aside type="note">
-You can also use a pretrained model to improve results. Learn how to use them [here](/getting-started/pretrained/).
+<Aside type="tip">
+  You can often get better results by using a [pre-trained model](/getting-started/pretrained) as a starting point for your training.
 </Aside>

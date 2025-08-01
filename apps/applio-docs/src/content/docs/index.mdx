@@ -1,103 +1,78 @@
 ---
-title: Introduction
-description: Welcome to Applio - AI-driven voice conversion tool
+title: "Introduction"
+description: "Welcome to Applio - your all-in-one AI voice conversion tool."
 ---
 
-import { Card, CardGrid, Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid, Steps, Aside } from '@astrojs/starlight/components';
 
-Applio is a powerful, AI-driven voice conversion tool that enables you to create personalized voices or utilize a variety of pre-existing voices. Whether you prefer local installation or cloud-based usage through Google Colab, Applio is designed to be efficient and user-friendly.
+**Welcome to Applio!** Whether you're looking to create AI-powered song covers, train custom voice models, or simply experiment with voice conversion, you've come to the right place.
 
-## What is Applio and Where Can I Use It?
+Applio is a powerful, user-friendly tool designed for everyone, from complete beginners to seasoned experts. You can run it on your own computer or use it in the cloud with Google Colab.
 
-Applio allows you to easily perform voice conversion tasks, whether by creating custom voices or utilizing existing ones. With a flexible design, it supports both local installation for users with sufficient hardware resources and cloud access via Google Colab for those with limited computing power.
+<Aside type="note">
+  For local voice training, we recommend an **Nvidia RTX 20-series GPU or newer** for the best experience. For voice inference (using existing models), most modern computers will work just fine.
+</Aside>
 
-### Hardware Requirements for Local Installation:
+## Quick Start
 
-- **Voice Training:** For performing voice conversion locally, your system should be equipped with a **Nvidia RTX 2000 series** graphics card or higher to ensure optimal performance.
-- **Voice Inference:** If your goal is to use pre-existing voices, Applio will run efficiently on most standard hardware configurations.
+Ready to dive in? Here’s how to get started based on your experience level.
 
-## Quick Start Guide
-
-### For Beginners
-If you're new to voice conversion, we recommend starting with these steps:
-
-<Steps>
-1. **Install Applio**: Choose between [local installation](/getting-started/installation/) or [cloud-based alternatives](/getting-started/other-alternatives/)
-2. **Learn the Interface**: Start with [inference](/getting-started/inference/) to understand how Applio works
-3. **Create Your First Cover**: Follow our step-by-step guide below
-</Steps>
-
-### For Advanced Users
-If you're experienced with voice conversion tools:
-
-<Steps>
-1. **Set up your environment**: [Installation guide](/getting-started/installation/)
-2. **Train custom models**: [Training guide](/getting-started/training/)
-3. **Optimize your workflow**: Explore [advanced features](/getting-started/)
-</Steps>
-
-## Get Started
-
-### Local Installation:
-
-To install Applio on your PC, follow the detailed steps outlined in our comprehensive [Installation Guide](/getting-started/installation/).
-
-### Google Colab Access:
-
-If you prefer a cloud-based solution or have limited hardware resources, you can access Applio through our [Google Colab Notebook](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio.ipynb).
-
-If you're new to Google Colab or need additional help, be sure to check out our [Alternative Methods Section](/getting-started/other-alternatives/) for more guidance.
+<CardGrid>
+    <Card title="For Beginners" icon="rocket">
+        New to voice conversion? Follow these steps to create your first AI cover.
+        <Steps>
+        1. **Install Applio**: Use our simple [local installation](/getting-started/installation/) guide or try our [cloud-based alternatives](/getting-started/other-alternatives/).
+        2. **Learn the Basics**: Get familiar with the Applio interface by following our [inference guide](/getting-started/inference/).
+        3. **Create Your First Cover**: Learn how to produce your first AI cover with our step-by-step tutorial.
+        </Steps>
+    </Card>
+    <Card title="For Advanced Users" icon="puzzle">
+        Already familiar with voice conversion? Here's a faster path for you.
+        <Steps>
+        1. **Set Up Your Environment**: Follow the [installation guide](/getting-started/installation/) to get Applio running.
+        2. **Train a Custom Model**: Dive into our [training guide](/getting-started/training/) to create your own voice models.
+        3. **Optimize Your Workflow**: Explore [advanced features](/getting-started/plugins/) to streamline your projects.
+        </Steps>
+    </Card>
+</CardGrid>
 
 ## Core Features
 
-  <Card title="Explore the Interface" icon="rocket">
-    One of the main features of Applio is its simple and easy-to-understand interface. Here you will find the main things you can do:
+Applio is packed with features to help you on your voice conversion journey. Here are some of the key things you can do:
 
-    - **Make an inference/use voices**: [Inference section](/getting-started/inference/)
-    - **Make a Dataset, train a Voice Model**: [Training Guide](/getting-started/training/) / [Create a Dataset](/guides/how-create-datasets/)
-    - **Use custom Pretrained (like TITAN and Ov2)**: [Load custom Pretrained](/getting-started/pretrained/)
-    - **Use text-to-speech conversion for your Models**: [TTS Guide](/getting-started/tts/)
-    - **How to use and understand the Tensorboard**: [Tensorboard Guide](/getting-started/tensorboard/)
-    - **Use the Audio Analyzer Tool for your datasets**: [Audio Analyzer Guide](/getting-started/audio-analyzer/)
-    - **Combine models to create a new one**: [Voice Blender Guide](/getting-started/voice-blender/)
-  </Card>
-
-  <Card title="Make AI Cover" icon="star">
-    Learn how to create your first AI cover in just a few steps:
-
-    1. **Separate the vocals from the instrumental**: [Audio Isolating Guides](/guides/uvr/)
-    2. **Search or download the model you want to use**
-    3. **Open Applio and make the cover**: [Inference Guide](/getting-started/inference/) / [Other Alternatives](/getting-started/other-alternatives/)
-    4. **Combine it with the instrumental and you're done**
-  </Card>
-
-  <Card title="Make Your First Model" icon="puzzle">
-    Ready to train your own voice model? Follow these steps:
-
-    1. **Learn the basics of Applio**: [How to use Applio](/getting-started/inference/)
-    2. **Create your dataset**: [Guide on creating a dataset](/guides/how-create-datasets/)
-    3. **Learn how to easily extract vocals or audio**: [Audio Isolating Guides](/guides/uvr/)
-    4. **Verify the sample rate of your dataset**: [Learn how to check it](/getting-started/audio-analyzer/)
-    5. **Train your model while monitoring TensorBoard**: [Training Guide](/getting-started/training/) / [Tensorboard Guide](/getting-started/tensorboard/)
-    6. **Finally, test it**: [Inference Guide](/getting-started/inference/)
-  </Card>
+<CardGrid>
+    <Card title="Voice Inference" icon="microphone">
+        Use pre-trained voice models to generate AI covers or convert speech.
+        <br/><a href="/getting-started/inference/">Learn about Inference</a>
+    </Card>
+    <Card title="Model Training" icon="setting">
+        Train your own custom voice models from scratch using your own datasets.
+        <br/><a href="/getting-started/training/">Training Guide</a>
+    </Card>
+    <Card title="Dataset Creation" icon="document">
+        Learn how to prepare high-quality audio datasets for optimal training results.
+        <br/><a href="/guides/how-create-datasets/">Create a Dataset</a>
+    </Card>
+    <Card title="Text-to-Speech (TTS)" icon="chat">
+        Use TTS to generate speech for your voice models.
+        <br/><a href="/getting-started/tts/">TTS Guide</a>
+    </Card>
+    <Card title="Voice Blender" icon="beaker">
+        Combine multiple voice models to create unique new voices.
+        <br/><a href="/getting-started/voice-blender/">Voice Blender Guide</a>
+    </Card>
+    <Card title="Audio Analyzer" icon="chart-bar">
+        Analyze your datasets to ensure they are ready for training.
+        <br/><a href="/getting-started/audio-analyzer/">Audio Analyzer Guide</a>
+    </Card>
+</CardGrid>
 
 ## Choose Your Path
 
-Now that you have an overview of what Applio can do, choose your path:
+Now that you have an overview of what Applio can do, it's time to choose your adventure:
 
-- **Want to make a cover right away?** Start with the [Inference Guide](/getting-started/inference/)
-- **Ready to train your own model?** Follow the [Training Guide](/getting-started/training/)
-- **Need to understand the interface better?** Explore the [Getting Started](/getting-started/) section
+-   **Ready to create an AI cover right now?** Head over to the [Inference Guide](/getting-started/inference/).
+-   **Want to train your own voice model?** The [Training Guide](/getting-started/training/) is the perfect place to start.
+-   **Just want to explore?** Check out the full [Getting Started](/getting-started/) section.
 
-Each section provides detailed step-by-step instructions to help you succeed with Applio!
-
-## Documentation Structure
-
-Our documentation is organized into several main sections:
-
-- **Getting Started**: Installation, basic usage, and core features
-- **Guides**: Advanced topics like dataset creation and audio processing
-- **Reference**: Technical details and troubleshooting
-
-For the best experience, we recommend following the documentation in order, especially if you're new to voice conversion tools.
+Each guide provides detailed, step-by-step instructions to help you succeed. Happy creating!

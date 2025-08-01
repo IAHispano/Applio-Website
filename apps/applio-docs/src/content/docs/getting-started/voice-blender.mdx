@@ -1,10 +1,33 @@
 ---
-title: Voice Blender
-description: Fuses two models into one
+title: "Using the Voice Blender"
+description: "Learn how to use the Voice Blender to fuse two voice models into a new, unique model."
 ---
 
-Go to the Voice Blender section, place the Model Name of your new model, drag or upload the pth A and B files below, adjust the Audio Blend if desired, and click the Fusion button.
+import { Aside, Steps } from '@astrojs/starlight/components';
 
-![Voice Blender Interface](/images/voice-blender.png)
+The **Voice Blender** is a unique feature in Applio that allows you to fuse two existing voice models into a single new model. This can be a fun way to experiment and create new, unique voices.
 
-Your new pth file can be found in `Applio/logs`, ready for use in [inference](/getting-started/inference/). Please note that being a mixed model, it won't have an index.
+![A screenshot of the Voice Blender interface in Applio.](/images/voice-blender.png)
+
+## How to Use the Voice Blender
+
+<Steps>
+1.  Go to the **Voice Blender** tab in the Applio interface.
+2.  **Enter a Name:** Give your new, blended model a unique name.
+3.  **Select Model A:** Drag and drop the `.pth` file for your first model into the "Model A" box.
+4.  **Select Model B:** Drag and drop the `.pth` file for your second model into the "Model B" box.
+5.  **Adjust the Blend Ratio:** Use the slider to adjust the blend ratio between the two models. A value of `0.5` will create an even blend, while a value closer to `0` will favor Model A, and a value closer to `1` will favor Model B.
+6.  **Fuse:** Click the **Fusion** button to create your new model.
+</Steps>
+
+Your new blended model will be saved in the `Applio/logs` directory and will be available for use in the [Inference](/getting-started/inference) tab.
+
+<Aside type="note">
+  Blended models do not have an index file, so you will not need to select one when using them for inference.
+</Aside>
+
+## Tips for Best Results
+
+-   **Experiment:** The best way to get interesting results with the Voice Blender is to experiment with different combinations of models and blend ratios.
+-   **Use Similar Models:** You'll often get the best results when blending models that have similar vocal characteristics.
+-   **Start with a 50/50 Blend:** A good starting point is to set the blend ratio to `0.5` and then adjust from there.

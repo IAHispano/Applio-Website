@@ -1,0 +1,92 @@
+---
+title: "Google Colab Guide"
+description: "Learn how to use Applio in the cloud with Google Colab."
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+Google Colab provides a convenient way to use Applio without needing a powerful local computer. However, it's important to be aware of the risks and limitations.
+
+<Aside type="danger" title="Important Notice">
+  Launching graphical user interfaces (UIs) like Applio on Google Colab is against their Terms of Service. Doing so may result in limitations being placed on your Google account. If you understand and accept this risk, you may proceed.
+
+  As a safer alternative, we recommend using the official [Applio No UI Colab Notebook](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio_NoUI.ipynb), which is designed to be used without a graphical interface.
+</Aside>
+
+## Getting Started with the Applio UI Colab
+
+If you choose to proceed with the UI version, here's how to get it running.
+
+<Steps>
+1.  **Open the Colab Notebook:** Launch the [Applio UI Colab Notebook](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio.ipynb).
+2.  **Install Applio:** Run the first cell, labeled "Install Applio," by clicking the play button. This will install Applio and all its dependencies.
+3.  **Launch the Interface:** Run the second cell. This will launch the Applio interface and provide you with a URL to access it. We recommend using the `localtunnel` sharing method for a more stable connection.
+4.  **Access the UI:** Open the provided URL. You will be prompted for a password, which is the IP address displayed in the Colab cell output.
+</Steps>
+
+![A screenshot showing the two main cells to run in the Applio Colab notebook.](/images/colab.png)
+
+## Training on Colab
+
+Training models on Colab requires a bit of extra setup to ensure you don't lose your progress.
+
+### Syncing with Google Drive
+
+We highly recommend syncing your Colab instance with Google Drive. This will save your trained models to a folder called `ApplioBackup` in your Google Drive and allow you to resume training from a previously saved model.
+
+To do this, run the **Sync with Google Drive** cell in the Colab notebook.
+
+![A screenshot of the "Sync with Google Drive" cell in the Applio Colab notebook.](/images/extra-colab.png)
+
+### Resuming Training
+
+To resume training a model that you've previously saved to Google Drive:
+
+<Steps>
+1.  Run all the initial cells, including **Install Applio** and **Sync with Google Drive**.
+2.  In the Applio UI, go to the **Train** tab.
+3.  Enter the name of your model.
+4.  Select the same sample rate you used previously.
+5.  Load your custom pretrained model if you used one.
+6.  Increase the number of epochs and click **Train** to continue training.
+</Steps>
+
+## Managing Models on Colab
+
+### Exporting Your Final Model
+
+Once your model is fully trained, you can export it to your Google Drive.
+
+<Steps>
+1.  Go to the **Train** tab and click the **Export Model** sub-tab.
+2.  Click the **Refresh** button.
+3.  Select the `.pth` and `.index` files for your model.
+4.  Click the **Upload** button. Your model will be saved to a folder named `ApplioExported` in your Google Drive.
+</Steps>
+
+## Keeping Colab Active
+
+Google Colab will automatically disconnect idle notebooks. To prevent this from happening during a long training session, you can run a small script in your browser's developer console.
+
+<Steps>
+1.  Press `Ctrl + Shift + i` to open the developer tools.
+2.  Go to the **Console** tab.
+3.  Type `Allow pasting` and press Enter.
+4.  Paste the following code into the console and press Enter:
+    ```js
+    function ClickConnect() {
+      var iconElement = document.getElementById("toggle-header-button");
+      if (iconElement) {
+        var clickEvent = new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        iconElement.dispatchEvent(clickEvent);
+      }
+    }
+    setInterval(ClickConnect, 60000);
+    ```
+</Steps>
+
+This script will simulate a click every minute, keeping your Colab session active.

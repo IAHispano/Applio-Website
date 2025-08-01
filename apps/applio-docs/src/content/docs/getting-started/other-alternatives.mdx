@@ -8,41 +8,38 @@ import { Aside } from '@astrojs/starlight/components';
 <Aside type="caution">
   Before starting. Note that launching any external interfaces (UIs) through Google Colaboratory is against the ToS of the platform. Running these can cause **limitations to your Google Account**, if you understand the risks you can continue to use the following alternative.
 
-  Otherwise you can choose to use others such as [Applio No UI.](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio_NoUI.ipynb)
+  Otherwise you can choose to use others such as [Applio No UI.](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio_NoUI.ipynb)
 </Aside>
 
 ## Applio UI Colab
 
-### Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/master/assets/Applio.ipynb)
+### Enter the [Applio Colab](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio.ipynb)
 
 When inside execute the following **two cells**
 
 ![Applio Colab](/images/colab.png)
 
 ### Access the interface
-You will find that when the first **"Install Applio"** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to activate the **"Share tunnel"** checkbox and follow the following simple procedure
+You will find that when the first **“Install Applio”** cell finishes executing the next one will give a URL, normally this is offered via gradio, but currently this tunnel disconnects the execution environment, it is recommended to choose **“localtunnel”** as the sharing method and do the following
 
+- Copy the given IP on Collab.
 - Open the given URL.
-- Paste the IP given on Collab.
+- Paste the IP as the password.
 
 ![Applio Colab Tunnel](/images/tunel.png)
 
 and yap, that's all, have fun using the Applio UI version!
 
 <Aside type="note">
-In case you want to train in the UI version, it is advisable to use the advanced options in order not to lose progress in case of disconnection.
+In case you want to train in the UI version, it is advisable to use the extra cells in order not to lose progress in case of disconnection.
 </Aside>
 
 ## Extra cells (only for training)
 
-In this section, you will find the following options:
+- **Sync with Google Drive:**
+Saves any trained model in colab to `ApplioBackup` in your mounted Google Drive, and links that folder back to colab to continue training in previously saved models. Drive needs to be mounted first, you can either manually mount drive yourself or use the cell from the **"Install Applio"** category.
 
-- **Mount Drive:** Connects Colab to our Google Drive for performing backups.
-- **AutoBackup:** Saves our trained model to our drive. Drive needs to be mounted first.
-- **Load a Backup:** Used to load our model if we want to retrain it. Drive must be mounted.
-- **Download all [custom pretrains](/getting-started/pretrained/):** Allows direct downloading of custom pretrains to Applio.
-
-![Applio Colab Custom Pretrained](/images/extra-colab.png)
+![Applio Colab Sync cell](/images/extra-colab.png)
 
 ### Options inside UI
 
@@ -60,15 +57,15 @@ To save your model, there are three ways to do it:
 
 - **Finished Model:** Go to the **Export Model** section in the **Train** tab, click on the **Refresh** button and select the pth and the added index of the model to export. Finally, click on the **Upload** button, your model will be found in the **ApplioExported** folder ready to be used.
 
-- **Model to continue training:** If you want to save all the archives of your model folder in your Drive, you just need to run the **Mount Drive** and **AutoBackup** cell before run **Start Applio** cell, your model folder will be found inside the **ApplioBackup** folder.
+- **Model to continue training:** If you want to save all the files of your model folder in your Drive, you just need to run the **Sync with Drive** cell (if Google Drive is mounted, otherwise go to the **Install Applio** category and run **Mount Drive** cell), your model folder will be found inside the **ApplioBackup** folder.
 
-- **Manual (NOT RECOMMENDED):** Click on 📁 in Colab and locate the **added index** of your model in the `program/logs/model` folder, and the **.pth** files are in the `program/logs/zips` folder so you can download them. If you want to save your model folder in your Drive, you just need to cancel the **Start Applio** cell and run the **Mount Drive** cell to be able to move it to your Google Drive.
+- **Manual (NOT RECOMMENDED):** Click on 📁 in Colab and locate the files **"model_\*e_\*s.pth"** and **"model.index"** of your model in `Applio/logs/model`. From there you can either Download them by clicking ⋮ and Download, or by dragging them to `drive/MyDrive/SomeFolder` (if it is mounted).
 
 ## How to resume training in Google Colab?
 
 If the model still needs training, simply do the following:
 
-- Run the same cells as before, but now you'll need to enter your **model name** in **Load a backup** and run it.
+- Run every cell, including **Sync with Google Drive**.
 
 - Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/images/faq#terminology)**, **[pretrained](/images/getting-started/pretrained/) (if you used)** and increase the number of epochs you want to train.
 

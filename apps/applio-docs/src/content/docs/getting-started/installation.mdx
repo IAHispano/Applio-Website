@@ -1,6 +1,8 @@
 ---
 title: Installation
 description: How to install Applio on your computer.
+sidebar:
+  order: 1
 ---
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
@@ -19,7 +21,7 @@ The Dione Launcher is the simplest way to install and update Applio. It handles 
 
 ## Manual Installation
 
-If you prefer to install Applio manually, you can use our precompiled version or the installation scripts.
+If you prefer to install Applio manually, you can use our precompiled version (Windows) or the installation scripts.
 
 <Tabs>
   <TabItem label="Windows">
@@ -35,19 +37,40 @@ If you prefer to install Applio manually, you can use our precompiled version or
     </Aside>
   </TabItem>
   <TabItem label="Linux/macOS">
-    <Steps>
-      1.  Download the latest precompiled `.zip` file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Linux).
-      2.  Extract the archive to a folder in your home directory.
-      3.  Open a terminal in the Applio directory.
-      4.  Make the startup script executable and run it:
-          ```bash
-          chmod +x run-applio.sh
-          ./run-applio.sh
-          ```
-    </Steps>
+    <Tabs>
+      <TabItem label="Option 1: Git Clone">
+        <Steps>
+          1.  Clone the repository from GitHub:
+              ```bash
+              git clone https://github.com/IAHispano/Applio.git
+              cd Applio
+              ```
+          2.  Run the installation script:
+              ```bash
+              chmod +x run-install.sh
+              ./run-install.sh
+              ```
+          3.  Launch Applio:
+              ```bash
+              chmod +x run-applio.sh
+              ./run-applio.sh
+              ```
+        </Steps>
+      </TabItem>
+      <TabItem label="Option 2: Manual Python Installation">
+        <Steps>
+          1.  Clone the repository from GitHub:
+              ```bash
+              git clone https://github.com/IAHispano/Applio.git
+              cd Applio
+              ```
+          2.  Set up a Python virtual environment and install dependencies manually. See the **Detailed Setup for Linux/macOS** section below for instructions.
+        </Steps>
+      </TabItem>
      <Aside type="note" title="First-Time Setup">
         If you encounter issues, you may need to install Python 3.10.12 and create a virtual environment. See the **Detailed Setup for Linux/macOS** section below for instructions.
      </Aside>
+    </Tabs>
   </TabItem>
 </Tabs>
 

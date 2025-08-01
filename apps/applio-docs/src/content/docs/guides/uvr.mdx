@@ -33,7 +33,7 @@ To use UVR, you'll need to install it on your local machine.
 
 ## Available Models
 
-UVR has a wide variety of models available for different tasks. Here are some of the most popular ones.
+UVR has a wide variety of models available for different tasks. Here are some of the most popular ones organized by category.
 
 <details>
 <summary>Click to expand the list of recommended models</summary>
@@ -41,81 +41,38 @@ UVR has a wide variety of models available for different tasks. Here are some of
 ### RoFormer Models
 These models are currently the best-performing models for most tasks.
 
-<CardGrid>
-<Card title="BS-Roformer-Viperx-1297">
-**Best For:** Vocals & Instrumentals
-<br/>The best all-around model for separating vocals and instrumentals.
-</Card>
-<Card title="Kim Mel Roformer">
-**Best For:** Vocals & Instrumentals
-<br/>Another excellent model for separating vocals and instrumentals.
-<br/>[Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/Kim-MelRoformer)
-</Card>
-<Card title="Aufr33 and Viperx Mel Roformer Karaoke">
-**Best For:** Main vs. Backing Vocals
-<br/>The best model for separating main vocals from backing vocals.
-<br/>[Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/mel_band_roformer_karaoke_aufr33_viperx)
-</Card>
-<Card title="anvuew Mel Roformer dereverb">
-**Best For:** Reverb Removal
-<br/>The best model for removing stereo reverb from audio.
-<br/>[Download](https://huggingface.co/anvuew/dereverb_mel_band_roformer/tree/main)
-</Card>
-<Card title="Aufr33 Mel Roformer Denoise">
-**Best For:** Noise Removal
-<br/>The best model for removing background noise from audio.
-<br/>[Download](https://huggingface.co/jarredou/aufr33_MelBand_Denoise/tree/main)
-</Card>
-</CardGrid>
+| Model Name | Best For | Description | Download Link |
+|------------|----------|-------------|---------------|
+| BS-Roformer-Viperx-1297 | Vocals & Instrumentals | The best all-around model for separating vocals and instrumentals | Built-in |
+| Kim Mel Roformer | Vocals & Instrumentals | Another excellent model for separating vocals and instrumentals | [Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/Kim-MelRoformer) |
+| Aufr33 and Viperx Mel Roformer Karaoke | Main vs. Backing Vocals | The best model for separating main vocals from backing vocals | [Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/mel_band_roformer_karaoke_aufr33_viperx) |
+| anvuew Mel Roformer dereverb | Reverb Removal | The best model for removing stereo reverb from audio | [Download](https://huggingface.co/anvuew/dereverb_mel_band_roformer/tree/main) |
+| Aufr33 Mel Roformer Denoise | Noise Removal | The best model for removing background noise from audio | [Download](https://huggingface.co/jarredou/aufr33_MelBand_Denoise/tree/main) |
 
 ### MDX-Net Models
 A prize-winning model framework that is great for a variety of tasks.
 
-<CardGrid>
-<Card title="MDX23C-InstVoc HQ">
-**Best For:** Multiple Tasks
-<br/>A set of models that work together to deliver high-quality results.
-</Card>
-<Card title="UVR-MDX-NET Voc FT">
-**Best For:** Vocals
-<br/>A model focused specifically on separating vocals.
-</Card>
-<Card title="UVR-MDX-NET Crowd HQ 1">
-**Best For:** Background Vocals
-<br/>Separates background vocals from main vocals.
-</Card>
-</CardGrid>
+| Model Name | Best For | Description | Download Link |
+|------------|----------|-------------|---------------|
+| MDX23C-InstVoc HQ | Multiple Tasks | A set of models that work together to deliver high-quality results | Built-in |
+| UVR-MDX-NET Voc FT | Vocals | A model focused specifically on separating vocals | Built-in |
+| UVR-MDX-NET Crowd HQ 1 | Background Vocals | Separates background vocals from main vocals | Built-in |
 
 ### VR Arch Models
 A location-guided model that delivers great results in most tasks.
 
-<CardGrid>
-<Card title="UVR-DeEcho-DeReverb">
-**Best For:** Reverb & Echo
-<br/>Separates reverb and echo from audio.
-</Card>
-<Card title="5_Hp-Karaoke-UVR">
-**Best For:** Background Vocals
-<br/>Another excellent model for separating background vocals.
-</Card>
-<Card title="UVR-DeNoise">
-**Best For:** Noise Removal
-<br/>Removes noise and some artifacts from audio.
-</Card>
-</CardGrid>
+| Model Name | Best For | Description | Download Link |
+|------------|----------|-------------|---------------|
+| UVR-DeEcho-DeReverb | Reverb & Echo | Separates reverb and echo from audio | Built-in |
+| 5_Hp-Karaoke-UVR | Background Vocals | Another excellent model for separating background vocals | Built-in |
+| UVR-DeNoise | Noise Removal | Removes noise and some artifacts from audio | Built-in |
 
 ### Demucs Models
 An all-in-one model capable of separating audio into 4 to 6 stems.
 
-<CardGrid>
-<Card title="htdemucs_ft">
-**Best For:** General Purpose
-<br/>Slower processing but better results than the standard `htdemucs` model.
-</Card>
-<Card title="htdemucs_6s">
-**Best For:** Instrument Separation
-<br/>Capable of separating guitar and piano stems in addition to vocals and drums.
-</Card>
-</CardGrid>
+| Model Name | Best For | Description | Download Link |
+|------------|----------|-------------|---------------|
+| htdemucs_ft | General Purpose | Slower processing but better results than the standard `htdemucs` model | Built-in |
+| htdemucs_6s | Instrument Separation | Capable of separating guitar and piano stems in addition to vocals and drums | Built-in |
 
 </details>

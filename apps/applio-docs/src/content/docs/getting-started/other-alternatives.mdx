@@ -44,11 +44,8 @@ Saves any trained model in colab to `ApplioBackup` in your mounted Google Drive,
 ### Options inside UI
 
 - **Dataset Maker:** Upload your audio directly to its proper path via the interface.
-
 - **Or manual audio upload:** Place your audio in a folder on your Google Drive, run the Mount Cell, enter collab's file explorer 📁, copy the path to the folder (`Drive/content/drive/MyDrive/My_custom_folderd`)
-
 - **Save Only Latest:** Replace the same D/G file newer data. This help to prevent filling up storage.
-
 - **Download Pretrained Models:** Download the custom pretrained models directly from the Download tab in Applio in case of **Download all custom pretrains** cell is not working.
 
 ## How to export my model to my Google Drive?
@@ -56,9 +53,7 @@ Saves any trained model in colab to `ApplioBackup` in your mounted Google Drive,
 To save your model, there are three ways to do it:
 
 - **Finished Model:** Go to the **Export Model** section in the **Train** tab, click on the **Refresh** button and select the pth and the added index of the model to export. Finally, click on the **Upload** button, your model will be found in the **ApplioExported** folder ready to be used.
-
 - **Model to continue training:** If you want to save all the files of your model folder in your Drive, you just need to run the **Sync with Drive** cell (if Google Drive is mounted, otherwise go to the **Install Applio** category and run **Mount Drive** cell), your model folder will be found inside the **ApplioBackup** folder.
-
 - **Manual (NOT RECOMMENDED):** Click on 📁 in Colab and locate the files **"model_\*e_\*s.pth"** and **"model.index"** of your model in `Applio/logs/model`. From there you can either Download them by clicking ⋮ and Download, or by dragging them to `drive/MyDrive/SomeFolder` (if it is mounted).
 
 ## How to resume training in Google Colab?
@@ -66,7 +61,6 @@ To save your model, there are three ways to do it:
 If the model still needs training, simply do the following:
 
 - Run every cell, including **Sync with Google Drive**.
-
 - Then, in the Applio interface, input your **model name**, use the same **sample rate**, and proceed to the last part of the train tab. Set the same **[batch size](/images/faq#terminology)**, **[pretrained](/images/getting-started/pretrained/) (if you used)** and increase the number of epochs you want to train.
 
 ### Code to be afk

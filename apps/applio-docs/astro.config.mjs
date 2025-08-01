@@ -1,87 +1,92 @@
+import starlight from "@astrojs/starlight";
 // @ts-check
-import { defineConfig } from 'astro/config';
-import starlight from '@astrojs/starlight';
-import starlightThemeNext from 'starlight-theme-next'
+import { defineConfig } from "astro/config";
+import starlightThemeNext from "starlight-theme-next";
 
 // https://astro.build/config
 export default defineConfig({
 	integrations: [
 		starlight({
 			plugins: [starlightThemeNext()],
-			title: 'Applio',
-			description: 'Documentation for Applio - AI-driven voice conversion tool',
+			title: "Applio",
+			description: "Documentation for Applio - AI-driven voice conversion tool",
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/iahispano/applio' }
+				{
+					icon: "github",
+					label: "GitHub",
+					href: "https://github.com/iahispano/applio",
+				},
 			],
 			sidebar: [
 				{
-					label: 'Introduction',
-					link: '/',
+					label: "Introduction",
+					link: "/",
 				},
 				{
-					label: 'Getting Started',
-					autogenerate: { directory: 'getting-started' },
+					label: "Getting Started",
+					autogenerate: { directory: "getting-started" },
 				},
 				{
-					label: 'Guides',
-					autogenerate: { directory: 'guides' },
+					label: "Guides",
+					autogenerate: { directory: "guides" },
 				},
 				{
-					label: 'Terms of Use',
-					link: '/tos',
+					label: "Terms of Use",
+					link: "/tos",
 				},
 			],
 			editLink: {
-				baseUrl: 'https://github.com/iahispano/applio-website/edit/main/apps/applio-docs/',
+				baseUrl:
+					"https://github.com/iahispano/applio-website/edit/main/apps/applio-docs/",
 			},
 			head: [
 				{
-					tag: 'link',
+					tag: "link",
 					attrs: {
-						rel: 'icon',
-						href: '/favicon.ico',
+						rel: "icon",
+						href: "/favicon.ico",
 					},
 				},
 				{
-					tag: 'meta',
+					tag: "meta",
 					attrs: {
-						property: 'og:image',
-						content: '/opengraph-image.png',
+						property: "og:image",
+						content: "/opengraph-image.png",
 					},
 				},
 				{
-					tag: 'meta',
+					tag: "meta",
 					attrs: {
-						name: 'twitter:image',
-						content: '/opengraph-image.png',
+						name: "twitter:image",
+						content: "/opengraph-image.png",
 					},
 				},
 				{
-					tag: 'link',
+					tag: "link",
 					attrs: {
-						rel: 'preconnect',
-						href: 'https://fonts.googleapis.com',
+						rel: "preconnect",
+						href: "https://fonts.googleapis.com",
 					},
 				},
 				{
-					tag: 'link',
+					tag: "link",
 					attrs: {
-						rel: 'preconnect',
-						href: 'https://fonts.gstatic.com',
-						crossorigin: '',
+						rel: "preconnect",
+						href: "https://fonts.gstatic.com",
+						crossorigin: "",
 					},
 				},
 				{
-					tag: 'link',
+					tag: "link",
 					attrs: {
-						rel: 'stylesheet',
-						href: 'https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap',
+						rel: "stylesheet",
+						href: "https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap",
 					},
 				},
 				{
-					tag: 'style',
+					tag: "style",
 					attrs: {
-						type: 'text/css',
+						type: "text/css",
 					},
 					content: `
 						@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');

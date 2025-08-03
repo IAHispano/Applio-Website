@@ -89,3 +89,20 @@ Your trained models are saved in the `logs` folder. You can also export them dir
 <Aside type="tip">
   You can often get better results by using a [pre-trained model](/getting-started/pretrained) as a starting point for your training.
 </Aside>
+
+### Resume Training (Optional)
+
+If you want to continue training a model you've already started, follow these steps to resume from where you left off:
+
+<Steps>
+1.  **Select Your Model** from the dropdown menu.
+2.  Make sure to **select the same original sample rate** that you used when you started training (e.g., `32k`, `40k`, or `48k`).
+3.  Scroll down to the **Training** section.
+4.  Choose the **same batch size** you used previously.
+5.  Set a **new max epoch value** that is higher than your current one. For example, if your last completed epoch was 200, you can set this to 400 to continue training up to that point.
+6.  Click the **Start Training** button to resume training from the latest saved checkpoint.
+</Steps>
+
+<Aside type="note">
+  Make sure your previously saved model checkpoints are still in the `logs` directory. Applio will automatically load the latest checkpoint and continue from there.
+</Aside>

@@ -1,0 +1,152 @@
+---
+title: "Cloud Guides"
+description: "Learn how to use Applio in the cloud with Google Colab and Kaggle."
+sidebar:
+  order: 2
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+## Google Colab
+
+Google Colab provides a convenient way to use Applio without needing a powerful local computer. However, it's important to be aware of the risks and limitations.
+
+<Aside type="danger" title="Important Notice">
+  Launching graphical user interfaces (UIs) like Applio on Google Colab goes against their Terms of Service. Doing so may result in limitations on your Google account. If you understand and accept this risk, you may proceed.
+
+  As a safer alternative, we recommend using the [official Applio No UI notebook for Colab](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio_NoUI.ipynb), which is designed to be used without a graphical interface.
+</Aside>
+
+### Getting Started with Applio UI on Colab
+
+If you decide to proceed with the UI version, here's how to get it up and running.
+
+<Steps>
+1.  **Open the Colab Notebook:** Launch the [Applio UI notebook for Colab](https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio.ipynb).
+2.  **Install Applio:** Run the first cell, labeled "Install Applio", by clicking the play button. This will install Applio and all its dependencies.
+3.  **Launch the Interface:** Run the second cell. This will launch the Applio interface and provide you with a URL to access it. We recommend using the `localtunnel` sharing method for a more stable connection.
+4.  **Access the UI:** Open the provided URL. You'll be asked for a password, which is the IP address shown in the Colab cell output.
+</Steps>
+
+![A screenshot showing the two main cells to run in the Applio Colab notebook.](/images/colab.png)
+
+### Training on Colab
+
+Training models on Colab requires a bit of extra setup to ensure you don't lose your progress.
+
+#### Syncing with Google Drive
+
+We strongly recommend syncing your Colab instance with Google Drive. This will save your trained models in a folder called `ApplioBackup` in your Google Drive and allow you to resume training from a previously saved model.
+
+To do this, run the **Sync with Google Drive** cell in the Colab notebook.
+
+![A screenshot of the "Sync with Google Drive" cell in the Applio Colab notebook.](/images/extra-colab.png)
+
+#### Resuming Training
+
+To resume training a model you've previously saved to Google Drive:
+
+<Steps>
+1.  Run all the initial cells, including **Install Applio** and **Sync with Google Drive**.
+2.  In the Applio interface, go to the **Train** tab.
+3.  Enter your model name.
+4.  Select the same sampling rate you used previously.
+5.  Load your custom pre-trained model if you used one.
+6.  Increase the number of epochs and click **Train** to continue training.
+</Steps>
+
+### Managing Models on Colab
+
+#### Exporting Your Final Model
+
+Once your model is fully trained, you can export it to your Google Drive.
+
+<Steps>
+1.  Go to the **Train** tab and click on the **Export Model** sub-tab.
+2.  Click the **Refresh** button.
+3.  Select your model's `.pth` and `.index` files.
+4.  Click the **Upload** button. Your model will be saved in a folder called `ApplioExported` in your Google Drive.
+</Steps>
+
+### Keeping Colab Active
+
+Google Colab will automatically disconnect inactive notebooks. To prevent this from happening during a long training session, you can run a small script in your browser's developer console.
+
+<Steps>
+1.  Press `Ctrl + Shift + i` to open the developer tools.
+2.  Go to the **Console** tab.
+3.  Type `Allow pasting` and press Enter.
+4.  Paste the following code into the console and press Enter:
+    ```js
+    function ClickConnect() {
+      var iconElement = document.getElementById("toggle-header-button");
+      if (iconElement) {
+        var clickEvent = new MouseEvent("click", {
+          bubbles: true,
+          cancelable: true,
+          view: window,
+        });
+        iconElement.dispatchEvent(clickEvent);
+      }
+    }
+    setInterval(ClickConnect, 60000);
+    ```
+</Steps>
+
+This script will simulate a click every minute, keeping your Colab session active.
+
+## Kaggle
+
+Kaggle is another excellent cloud alternative that offers free GPU sessions, making it ideal for running Applio.
+
+### Getting Started with Kaggle
+
+<Steps>
+1.  **Create Your Accounts**
+    *   **Kaggle:** Head over to [Kaggle.com](https://www.kaggle.com/) and set up an account. You'll need to verify your phone number to unlock the **Internet** option in notebooks.
+    *   **Ngrok:** Visit [Ngrok.com](https://ngrok.com/) and create an account. This is essential for generating a public URL to access the Applio interface.
+
+2.  **Set Up the Environment**
+    *   Open the link https://www.kaggle.com/code?import=true, which will open an import window where you'll paste the following information:
+    *   ![An image showing the import window](/images/import-kaggle.png)
+    *   After entering the same data shown in the image, click the import button, which will redirect you to another page where you'll find yourself in the notebook.
+    *   In the right sidebar, under "Settings", enable the **Internet** option.
+    *   Make sure that under "Persistence", the **"Variables and Files"** option is selected.
+    *   Under "Accelerator", select **GPU T4 x2**.
+
+3.  **Running Applio**
+    *   Run the first cell, **Install**, to install all necessary dependencies.
+    
+    <Aside type="caution" title="Tunneling Options">
+      **Gradio + LocalTunnel** is now the default due to Ngrok's free tier rate limits (120 requests/min). However, you can still use Ngrok with a paid plan or other alternatives like Horizon.
+    </Aside>
+    
+    *   **Choose your tunneling service:**
+        *   **Gradio + LocalTunnel (Default):** Select it in Tunnel, run the **Start** cell, and wait for the Local URL to appear. Open the Gradio Public URL for Applio UI. For Tensorboard and Filebrowser, copy the LocalTunnel Password and paste it when prompted.
+        *   **Ngrok:** Select it in Tunnel, get your authentication token from the [Ngrok dashboard](https://dashboard.ngrok.com/get-started/your-authtoken), replace *`token`* in the **Start** cell, run it, and click the Ngrok URL when it appears.
+        *   **LocalTunnel:** Select it in Tunnel, run the **Start** cell, copy the password displayed, and paste it when accessing the tunnel URL.
+        *   **Horizon:** Select it in Tunnel, get your Horizon ID from [Horizon dashboard](https://hrzn.run/dashboard/) (look for `hrzn login YOUR_ID`), paste it in `horizon_id`, run the cell, approve the authorization request, then click the Horizon URL.
+
+4.  **Upload Your Dataset**
+    
+    <Aside type="tip" title="Free Method">
+      Using Kaggle's native interface - no extra costs required!
+    </Aside>
+    
+    *   In the right sidebar, click the upload button and then on new dataset.
+    *   Drop your audio file or files, though it's recommended to have them inside a zip file.
+    *   ![An image showing the upload window](/images/upload-kaggle.png)
+    *   Once you've filled in the upload information, click create and you're done!
+    *   It will appear in the right sidebar, and you simply need to click the clipboard icon that will appear next to your dataset name when you hover over it (make sure to copy the folder path and not the audio file path).
+    *   With the obtained path, all you need to do is go to the Applio UI and paste it in.
+    *   ![An image showing the dataset interface](/images/dataset-ui.png)
+    
+    <Aside type="caution" title="Paid Method">
+      By subscribing to an Ngrok plan, you can use Filebrowser for easier and more convenient file uploads.
+    </Aside>
+    
+    *   In the output of the **Start** cell, you'll find a second URL for `Filebrowser`. Click on it to open a file manager.
+    *   Navigate to the path `/kaggle/working/program_ml/assets/datasets`.
+    *   Create a new folder with your model's name and upload your audio files there.
+    *   Now you can go back to the Applio interface and start training!
+</Steps>

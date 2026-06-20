@@ -7,12 +7,15 @@ sidebar:
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Realtime inference** has many of the features of regular file-based inference, because at the core it is using the model in much the same way. The main difference is that it can work on a live audio stream instead of just a pre-recorded file. This makes it useful for humor or scambaiting.
+**Realtime inference** can work on a live audio stream instead of just a pre-recorded file. This makes it useful for humor or scambaiting. Aside from that key difference, it has many of the features of regular file-based inference. After all, internally it is using the model in much the same way.
 
 ![The main realtime inference interface in Applio, showing the Audio Settings tab contents.](/images/realtime.png)
 
 <Aside type="caution">
   Please remember to comply with our [Terms of Service](/tos/). We do not endorse nor encourage any kind of ultimately deceptive or harmful behavior).
+</Aside>
+<Aside type="note">
+  GPU compute has not been implemented for realtime inference in Applio. You will be limited to CPU.
 </Aside>
 
 ## How to Perform Realtime Inference
@@ -23,11 +26,11 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
   3.  **Switch to the Model Settings tab.**
   4.  **Select Your Model:** Choose the `.pth` and `.index` files for your model. If you don't see your model in the list, click the refresh button.
   5.  **Start the engine:** Click the large **Start** button at the top of the page. It may take a moment to load, but you should soon see some fluctuating **Latency** readings. Keep an eye on the console for errors.
-  6/  **Shuttind down:** When you are done, click the same button again, now labeled **Stop**, to stop the engine.
+  6.  **Shuttind down:** When you are done, click the same button again, now labeled **Stop**, to stop the engine.
 </Steps>
 
 <Aside type="note">
-  Applio uses Python PortAudio as the backend for connecting to audio devices. If you are having trouble getting your desired device(s) to show up, it is probably a limitation of PortAudio. You may have success in looking up how to make your device show up for it, however.
+  Applio uses [PortAudio](https://portaudio.com/) as the backend for connecting to audio devices. If you are having trouble getting your desired device(s) to show up, it is probably a limitation of PortAudio. You may have success in looking up how to make your device show up for it, however.
 </Aside>
 
 ## Additional settings
@@ -47,9 +50,19 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 - **Record Audio (Optional):** While realtime inference is running, you can record the output to a file.
   <Steps>
     1.  **Choose an output path, if desired:** This isn't really necessary, as you will have a chance to download the file elsewhere, and is also restricted to Applio's allowed paths, but you can set an **Output Path** other than the default if you want. The biggest use for this is to correct the output file extension to match the **Export Format** that you select. It can also be used to prevent Applio from overwriting `assets/audios/output.wav`.
-    2.  **Choose an export format:** Applio defaults to saving the recorded audio as Microsoft uncompressed Wave PCM, but you can choose to save it as lossy ultra-compressed MPEG-3, compressed Free Lossless Audio Codec, or lossy compressed ultra-seekable OGG. Note: If you choose something other than WAV, you must manually change the file name extension yourself in the **Output Path**.
+    2.  **Choose an export format:** Applio defaults to saving the recorded audio as Microsoft uncompressed Wave PCM, but you can choose to save it as lossy ultra-compressed MPEG-3, compressed Free Lossless Audio Codec, or lossy compressed ultra-seekable OGG. Note: If you choose something other than WAV, you should manually change the file name extension yourself in the **Output Path**.
     3.  **Begin recording:** Once the realtime engine is *already running*, click the big **Start** button in the **Record Audio (Optional)** panel to begin recording. Click it again later to **Stop**.
   </Steps>
-- **Enable VAD:** This is essentially the VOX setting on a two-way radio, only running inference when Applio detects that you are actually talking. This saves CPU power only intermittently, so it won't help for gaming on the same machine, but it might help improve battery life or thermals.
+- **Enable VAD:** This is essentially the VOX setting on a two-way radio, only running inference when Applio detects that you are actually talking. This saves CPU power only intermittently, so it won't help for gaming on the same machine, but it might help improve battery life or thermals, as well as reduce artifacting from inferring near-silence. You can control the threshold for this in [Performance Settings](#performance-settings).
 
 ### Model Settings
+
+All of these settings are functionally the same as their counterparts [in file-based inference](/getting-started/inference/#basic-settings).
+
+### Performance settings
+
+- **Chunk Size (ms):** Control how far behind the present Applio's conversion should be. Setting this high will increase latency, but setting it too low will result in higher CPU usage or artifacting.
+- **Crossfade Overlap Size (s):** To prevent clicking between the chunks of audio Applio processes, they overlap and are crossfaded. Setting this overlap to be large will naturally push processing farther into the past (i.e. increase latency), but setting it too low may start to sound jittery.
+- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but it means your CPU has to get through all of that data in the time of one **Chunk Size**, so don't set it too high.
+
+- **Silence Threshold (dB):** Remember **Enable VAD** back in [Audio Settings](#audio-settings)? This is where you can control its threshold.

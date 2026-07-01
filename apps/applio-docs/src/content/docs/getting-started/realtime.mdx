@@ -7,7 +7,7 @@ sidebar:
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Realtime inference** can work on a live audio stream instead of just a pre-recorded file. This makes it useful for humor or scambaiting. Aside from that key difference, it has many of the features of regular file-based inference. After all, internally it is using the model in much the same way.
+**Realtime inference** is internally much the same as [regular inference](/getting-started/inference), but works on a live audio stream instead of a pre-recorded file. This makes it useful for humor or scambaiting. Aside from that key difference, it has many of the features of regular file-based inference.
 
 ![The main realtime inference interface in Applio, showing the Audio Settings tab contents.](/images/realtime.png)
 
@@ -15,7 +15,7 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
   Please remember to comply with our [Terms of Service](/tos/). We do not endorse nor encourage any kind of ultimately deceptive or harmful behavior).
 </Aside>
 <Aside type="note">
-  GPU compute has not been implemented for realtime inference in Applio. You will be limited to CPU.
+  GPU compute has not been implemented for realtime inference in Applio. You will be limited to CPU only.
 </Aside>
 
 ## How to Perform Realtime Inference
@@ -26,7 +26,7 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
   3.  **Switch to the Model Settings tab.**
   4.  **Select Your Model:** Choose the `.pth` and `.index` files for your model. If you don't see your model in the list, click the refresh button.
   5.  **Start the engine:** Click the large **Start** button at the top of the page. It may take a moment to load, but you should soon see some fluctuating **Latency** readings. Keep an eye on the console for errors.
-  6.  **Shuttind down:** When you are done, click the same button again, now labeled **Stop**, to stop the engine.
+  6.  **Shuttind down:** When you are done, click the same button again, now labeled **Stop**, to stop the realtime engine.
 </Steps>
 
 <Aside type="note">
@@ -41,13 +41,16 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
   - **Input gain** should be adjusted if you encounter distortion from input clipping, or if the model seems to have a hard time hearing you (i.e. it only produces output when you are being very loud).
   - **Output gain** can be adjusted to the requirements of any audio application you might be piping into (e.g. Discord, OBS Studio, etc).
   - **Monitor gain** can be adjusted to your tastes.
-- **Monitor Device (Optional):** Useful for when you want the converted audio piped into another application, but you also want to hear it. *Before* starting the realtime inference engine,
+- **Monitor Device (Optional):** Useful for when you want the converted audio piped into another application, but you also want to hear it.
+  <Aside type="note">
+  You must set this up *before* starting the realtime inference engine.
+  </Aside>
   <Steps>
     1.  **Enable the feature:** Click the **Use Monitor Device** checkbox.
     2.  **Select a device:** Click the **Monitor Device** drop-down menu, and pick a device that is *not* the same as the **Output Device**.
     3.  **Continue preparing for engine start.**
   </Steps>
-- **Record Audio (Optional):** While realtime inference is running, you can record the output to a file.
+- **Record Audio (Optional):** While realtime inference is running, you can start and stop recording the output to a file.
   <Steps>
     1.  **Choose an output path, if desired:** This isn't really necessary, as you will have a chance to download the file elsewhere, and is also restricted to Applio's allowed paths, but you can set an **Output Path** other than the default if you want. The biggest use for this is to correct the output file extension to match the **Export Format** that you select. It can also be used to prevent Applio from overwriting `assets/audios/output.wav`.
     2.  **Choose an export format:** Applio defaults to saving the recorded audio as Microsoft uncompressed Wave PCM, but you can choose to save it as lossy ultra-compressed MPEG-3, compressed Free Lossless Audio Codec, or lossy compressed ultra-seekable OGG. Note: If you choose something other than WAV, you should manually change the file name extension yourself in the **Output Path**.
@@ -62,7 +65,6 @@ All of these settings are functionally the same as their counterparts [in file-b
 ### Performance settings
 
 - **Chunk Size (ms):** Control how far behind the present Applio's conversion should be. Setting this high will increase latency, but setting it too low will result in higher CPU usage or artifacting.
-- **Crossfade Overlap Size (s):** To prevent clicking between the chunks of audio Applio processes, they overlap and are crossfaded. Setting this overlap to be large will naturally push processing farther into the past (i.e. increase latency), but setting it too low may start to sound jittery.
-- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but it means your CPU has to get through all of that data in the time of one **Chunk Size**, so don't set it too high.
-
-- **Silence Threshold (dB):** Remember **Enable VAD** back in [Audio Settings](#audio-settings)? This is where you can control its threshold.
+- **Crossfade Overlap Size (s):** To prevent clicking between the chunks of audio Applio processes, Applio overlaps them with crossfading. Setting this overlap larger will naturally push processing farther into the past (i.e. increase latency), but setting it too low may sound jittery.
+- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but remember, you are passing your CPU audio to infer faster than you are recording it. Setting it too high will mean your CPU cannot keep up.
+- **Silence Threshold (dB):** Remember **Enable VAD** back in [Audio Settings](#audio-settings)? This is where you can control its threshold. Below this level, Applio treats the input audio as silence and does not infer it.

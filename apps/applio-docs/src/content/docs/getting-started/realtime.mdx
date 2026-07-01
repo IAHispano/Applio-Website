@@ -15,7 +15,7 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
   Please remember to comply with our [Terms of Service](/tos/). We do not endorse nor encourage any kind of ultimately deceptive or harmful behavior).
 </Aside>
 <Aside type="note">
-  GPU compute has not been implemented for realtime inference in Applio. You will be limited to CPU only.
+  Realtime inference requires more compute power than current CPUs can perform, so this type of inference is restricted to GPU only.
 </Aside>
 
 ## How to Perform Realtime Inference
@@ -56,7 +56,7 @@ import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
     2.  **Choose an export format:** Applio defaults to saving the recorded audio as Microsoft uncompressed Wave PCM, but you can choose to save it as lossy ultra-compressed MPEG-3, compressed Free Lossless Audio Codec, or lossy compressed ultra-seekable OGG. Note: If you choose something other than WAV, you should manually change the file name extension yourself in the **Output Path**.
     3.  **Begin recording:** Once the realtime engine is *already running*, click the big **Start** button in the **Record Audio (Optional)** panel to begin recording. Click it again later to **Stop**.
   </Steps>
-- **Enable VAD:** This is essentially the VOX setting on a two-way radio, only running inference when Applio detects that you are actually talking. This saves CPU power only intermittently, so it won't help for gaming on the same machine, but it might help improve battery life or thermals, as well as reduce artifacting from inferring near-silence. You can control the threshold for this in [Performance Settings](#performance-settings).
+- **Enable VAD:** This is essentially the VOX setting on a two-way radio, only running inference when Applio detects that you are actually talking. This saves compute power only intermittently, so it won't help for gaming on the same machine, but it might help improve battery life or thermals, as well as reduce artifacting from inferring near-silence. You can control the threshold for this in [Performance Settings](#performance-settings).
 
 ### Model Settings
 
@@ -64,7 +64,7 @@ All of these settings are functionally the same as their counterparts [in file-b
 
 ### Performance settings
 
-- **Chunk Size (ms):** Control how far behind the present Applio's conversion should be. Setting this high will increase latency, but setting it too low will result in higher CPU usage or artifacting.
+- **Chunk Size (ms):** Control how far behind the present Applio's conversion should be. Setting this high will increase latency, but setting it too low will result in higher GPU usage or artifacting.
 - **Crossfade Overlap Size (s):** To prevent clicking between the chunks of audio Applio processes, Applio overlaps them with crossfading. Setting this overlap larger will naturally push processing farther into the past (i.e. increase latency), but setting it too low may sound jittery.
-- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but remember, you are passing your CPU audio to infer faster than you are recording it. Setting it too high will mean your CPU cannot keep up.
+- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but remember, you are passing your GPU audio to infer faster than you are recording it. Setting it too high will mean your GPU cannot keep up.
 - **Silence Threshold (dB):** Remember **Enable VAD** back in [Audio Settings](#audio-settings)? This is where you can control its threshold. Below this level, Applio treats the input audio as silence and does not infer it.

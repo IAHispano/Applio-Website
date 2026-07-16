@@ -1,0 +1,41 @@
+---
+title: "Installing Inference Models"
+description: "Learn how to use ready-made models I.E. 'voices' from elsewhere."
+sidebar:
+  order: 7
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+
+While you can create your own **inference models** in Applio (see [Training a Voice Model](/getting-started/training)), you may be able to find pre-existing models ready for inference. You can find such models [here](https://applio.org/search). These can be installed in three ways:
+1. [Using the model downloader](#using-the-model-downloader)
+2. [Uploading the files through Applio's interface](#uploading-the-files-through-applios-interface)
+3. [Manually placing the model files](#manually-placing-the-model-files)
+
+RVC models typically have two components: A PTH file (short for *P*y*T*orc*h* archive) where all the actual model weights are, and a much smaller Index file. The Index file is optional, and can be left off even if it is provided. This file helps enforce the accent of the original speaker.
+
+## Using the model downloader
+<Steps>
+1.  Obtain the URL of a ZIP file containing the PTH and Index files.
+2.  Go to the **Download tab** of Applio.
+3.  Paste the URL into the **Download Model** panel's **Download Link** field.
+4.  Click the **Download Model** button.
+5.  Wait for the download to complete.
+</Steps>
+
+## Uploading the files through Applio's interface
+<Steps>
+1.  If the files are in an archive such as a "zipped folder", extract them.
+2.  Go to the **Download tab** of Applio.
+3.  Use the **Drop Files** field to upload the files, by clicking it and selecting them, or by dragging and dropping them to it.
+4.  Wait for the upload to complete.
+</Steps>
+
+## Manually placing the model files
+<Steps>
+1.  If the files are in an archive such as a "zipped folder", extract them.
+2.  If the files do not extract to their own folder, create one named after the model and put them in it.
+3.  Move that folder to be inside Applio's `logs` folder.
+</Steps>
+
+In all three cases, the end result should be that both the PTH and Index files are, for the example of a model named "John Doe Voice", inside `Applio/logs/JohnDoeVoice`.

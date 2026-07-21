@@ -38,9 +38,41 @@ You can find a wide variety of pre-trained embedders on [Hugging Face](https://h
 When choosing an embedder, consider factors like the model's size, the languages it was trained on, and its popularity within the community.
 </Aside>
 
+## Available Embedders in Applio
+
+| Embedder | Language Focus | Best For | Model Size |
+|----------|---------------|----------|------------|
+| **contentvec** | Multilingual | General voice conversion | ~300 MB |
+| **contentvec-pitch** | Multilingual | Pitch-sensitive conversion | ~300 MB |
+| **spin** | English | Speech conversion | ~500 MB |
+| **spin-v2** | English | Improved speech conversion | ~500 MB |
+| **chinese-hubert** | Mandarin Chinese | Chinese speech/singing | ~400 MB |
+| **japanese-hubert** | Japanese | Japanese speech/singing | ~400 MB |
+| **korean-hubert** | Korean | Korean speech/singing | ~400 MB |
+| **custom** | Any | User-supplied HuggingFace model | Varies |
+
+## Using Custom Embedders
+
+In addition to the built-in embedders, Applio supports **custom embedders** from Hugging Face. This allows you to use any HuggingFace `transformers` feature-extraction model as your embedder:
+
+1. Choose a model from the [Hugging Face Hub](https://huggingface.co/models?pipeline_tag=feature-extraction&sort=trending&search=Hubert)
+2. In the training UI, select **custom** as the embedder
+3. Enter the HuggingFace model ID (e.g., `facebook/hubert-base-ls960`)
+4. Use the **same custom embedder** during inference
+
+## How Embedders Affect Quality
+
+The choice of embedder significantly impacts the quality and characteristics of your voice model:
+
+- **Content vs. Timbre:** Some embedders encode more linguistic content information, while others encode more speaker timbre information. ContentVec emphasizes content, making it good for natural speech conversion. Spin variants capture more timbre detail, making them better for singing.
+- **Language Match:** Using an embedder trained on the same language as your dataset typically yields better results. Language-specific HuBERT models (Chinese, Japanese, Korean) significantly outperform multilingual models on those languages.
+- **Model Size:** Larger embedders generally produce better quality but require more VRAM and processing time. ContentVec offers the best quality-to-size ratio.
+- **Pitch Awareness:** ContentVec-pitch and certain other embedders encode pitch information directly into the embeddings, which can improve pitch stability during conversion.
+
 ## Best Practices for Using Embedders
 
 -   **Consistency is Key:** Always use the same embedder for a given model, from training all the way through to inference.
--   **Keep Track:** If you're working with multiple models, keep a record of which embedder you used for each one.
+-   **Keep Track:** If you're working with multiple models, keep a record of which embedder you used for each one. The embedder name is stored in the model's `.pth` metadata for reference.
 -   **Experiment:** Don't be afraid to experiment with different embedders to see which one works best for your specific use case. Some embedders may be better suited for singing, while others excel at speech.
+-   **Match Languages:** For non-English datasets, using a language-specific embedder (Chinese, Japanese, or Korean HuBERT) will typically yield noticeably better results than a general-purpose embedder.
 -   **Stay Updated:** The field of audio processing is constantly evolving. Keep an eye out for new and improved embedders that may offer better performance.

@@ -15,6 +15,15 @@ A **pre-trained model** is a base model that has already been trained on a large
   **Pre-trained models** are _not_ meant to be used for inference directly, only as a base for training. You can find **inference models** of characters and celebreties and such [here](https://applio.org/search), and learn how to use them in [Installing Inferrence Models](/getting-started/installing-inference-models).
 </Aside>
 
+### Understanding G and D Files
+
+Pre-trained models come as two files:
+
+- **G file (Generator):** The generator network that converts acoustic features into audio. This is the file that gets extracted and used for inference after training.
+- **D file (Discriminator):** The discriminator network that helps the generator improve during training. This file is only needed during training and is not used for inference.
+
+Both files are required when using a pre-trained model as a starting point for training. The generator provides a strong foundation for the target voice, while the discriminator helps guide the training process to produce higher quality results.
+
 Using a pre-trained model can save you a significant amount of time and effort, and it can often lead to better results, especially if you have a small dataset.
 
 ![An illustration showing that using a pre-trained model saves you time and effort when training your own model.](/images/pretrained.png)

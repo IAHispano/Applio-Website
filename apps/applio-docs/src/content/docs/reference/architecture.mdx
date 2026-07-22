@@ -1,0 +1,160 @@
+---
+title: "How Voice Conversion Works"
+description: "An in-depth explanation of the RVC architecture and how voice conversion works under the hood in Applio."
+sidebar:
+  order: 1
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+
+## What is RVC?
+
+Applio is built on **Retrieval-Based Voice Conversion (RVC)**, a deep learning framework for converting the voice in an audio file from one speaker to another while preserving the linguistic content, intonation, and emotional delivery of the original recording.
+
+Unlike traditional voice conversion methods that rely on direct feature mapping, RVC uses a **retrieval-augmented approach**: during conversion, it searches a pre-built index of speaker-specific features to retrieve the most acoustically similar matches, then blends them into the output. This preserves the target speaker's timbre with high fidelity.
+
+## The RVC Pipeline
+
+Voice conversion in Applio follows a multi-stage pipeline:
+
+### 1. Audio Input and Preprocessing
+
+The input audio is loaded and resampled to the model's target sample rate (32kHz, 40kHz, or 48kHz). The audio is converted to a mono float tensor and normalized to the [-1, 1] range.
+
+### 2. Pitch (F0) Extraction
+
+**F0** (fundamental frequency) represents the pitch of the voice. Extracting accurate F0 is critical for natural-sounding conversion. Applio supports multiple pitch extraction algorithms:
+
+| Algorithm | Accuracy | Speed | Best For |
+|-----------|----------|-------|----------|
+| **RMVPE** | High | Fast | General purpose — the recommended default |
+| **CREPE** | Very High | Slow | Maximum accuracy, especially for singing |
+| **CREPE-tiny** | Moderate | Very Fast | Real-time and low-resource scenarios |
+| **FCPE** | High | Fast | Good balance of speed and quality |
+| **Hybrid** | Variable | Moderate | Combines multiple methods for robustness |
+
+Pitch can also be manually adjusted during inference (the **Pitch** setting), which shifts all extracted F0 values by a number of semitones.
+
+### 3. Speaker Embedding Extraction
+
+The audio is passed through an **embedder** — a pre-trained neural network (typically a HuBERT model) that converts the raw waveform into a sequence of high-dimensional feature vectors called **embeddings**. These embeddings capture:
+
+- **Linguistic content** — what words are being spoken
+- **Acoustic features** — tone, timbre, accent, emotion
+- **Prosodic information** — rhythm, stress, intonation
+
+Applio supports multiple embedder models:
+
+| Embedder | Description |
+|----------|-------------|
+| **contentvec** | A HuBERT-based model fine-tuned for content representation. The most widely used embedder for general voice conversion |
+| **contentvec-pitch** | A variant of contentvec that also encodes pitch information directly into the embeddings |
+| **spin** | A self-supervised model trained on diverse audio data |
+| **spin-v2** | Improved version of spin with better representation quality |
+| **chinese-hubert** | HuBERT fine-tuned for Mandarin Chinese |
+| **japanese-hubert** | HuBERT fine-tuned for Japanese |
+| **korean-hubert** | HuBERT fine-tuned for Korean |
+| **custom** | Any user-supplied HuggingFace-compatible embedding model |
+
+### 4. Feature Retrieval (Index Lookup)
+
+This is the key innovation in RVC. During training, a **feature index** is built from the extracted embeddings of the training dataset. This index (using FAISS for efficient similarity search) stores all the speaker-specific feature vectors.
+
+During inference, for each frame of the input audio:
+
+1. The embedding is extracted from the current frame
+2. The system searches the index for the `k` most similar feature vectors (controlled by **Search Feature Ratio**)
+3. These retrieved features are blended with the query embedding
+
+The **Search Feature Ratio** parameter controls the trade-off:
+- **Higher values (closer to 1.0):** The output more closely matches the target speaker's timbre but may introduce artifacts
+- **Lower values (closer to 0.0):** The output preserves more of the original speaker's characteristics with fewer artifacts
+
+### 5. Synthesis
+
+The processed features (pitch-corrected F0 + retrieved embeddings) are fed into the **generator network** — a neural vocoder that converts the feature representation back into a raw audio waveform.
+
+Applio supports three generator/vocoder architectures:
+
+| Generator | Description |
+|-----------|-------------|
+| **HiFi-GAN** | A high-fidelity GAN-based vocoder. The standard option that works well for most cases |
+| **NSF HiFi-GAN** | HiFi-GAN with neural source-filter modeling for better pitch control. Handles singing and extreme pitch shifts better |
+| **RefineGAN** | A refinement-based generator that iteratively improves the output quality. Can produce cleaner results but requires more computation |
+
+During training, the generator is trained alongside a **discriminator** network in a GAN (Generative Adversarial Network) setup. The discriminator learns to distinguish real audio from generated audio, while the generator learns to produce increasingly realistic audio to fool the discriminator.
+
+### 6. Post-Processing
+
+After synthesis, the audio passes through an optional post-processing chain. Applio uses the `pedalboard` library to apply audio effects in sequence:
+
+1. **Formant Shifting** — Adjusts the formant frequencies to make gender conversions sound more natural by modifying the **Quefrency** (formant scale) and **Timbre** (formant shift)
+2. **Reverb** — Adds simulated room acoustics
+3. **Pitch Shift** — Adjusts overall pitch in semitones
+4. **Limiter** — Prevents clipping by applying a hard ceiling
+5. **Gain** — Adjusts overall volume
+6. **Distortion** — Adds harmonic saturation
+7. **Chorus** — Creates a thickened, ensemble effect
+8. **Bitcrush** — Reduces bit depth for a lo-fi aesthetic
+9. **Clipping** — Intentionally clips the waveform at a threshold
+10. **Compressor** — Reduces dynamic range
+11. **Delay** — Adds echo/repeats
+
+## Training Architecture
+
+### Dataset Preprocessing
+
+Raw audio undergoes several preprocessing steps before training:
+
+1. **Slicing** — Long audio files are cut into manageable segments (typically 5-15 seconds)
+2. **Silence Trimming** — Leading/trailing silence is removed
+3. **Resampling** — All audio is resampled to the target sample rate (32k/40k/48k)
+4. **Noise Reduction** — Optional noise gate and spectral gating are applied
+5. **Normalization** — Peak amplitude is normalized to a consistent level
+
+### Feature Extraction
+
+For each preprocessed audio segment:
+
+1. **F0 Extraction** — Pitch contour is extracted using the selected algorithm
+2. **Embedding Extraction** — HuBERT embeddings are computed for each frame
+3. **Mel Spectrogram** — A mel-scale spectrogram is computed as the training target
+
+### GAN Training Loop
+
+The training process uses a Generative Adversarial Network (GAN) with two competing networks:
+
+- **Generator (G):** Takes extracted features (F0 + embeddings) and attempts to reconstruct the original mel spectrogram, then converts it to audio via the vocoder
+- **Discriminator (D):** Takes both real audio samples and generator outputs, and learns to distinguish between them
+
+The training optimizes multiple loss functions simultaneously:
+- **Mel Loss** — L1 distance between predicted and ground-truth mel spectrograms
+- **KL Divergence Loss** — Regularizes the learned latent distribution
+- **Feature Matching Loss** — Encourages the generator to match discriminator feature representations
+- **GAN Adversarial Loss** — Both generator and discriminator losses from the adversarial game
+
+Training is performed using Distributed Data Parallel (DDP), which allows scaling across multiple GPUs.
+
+### Index Generation
+
+After training, a **FAISS index** (or optionally **KMeans** index) is built from the extracted embeddings of the training data. This index is saved alongside the model weights and is used during inference for the retrieval step.
+
+## Model File Formats
+
+Applio uses several file types:
+
+| Extension | Contents | Required |
+|-----------|----------|----------|
+| `.pth` | PyTorch checkpoint containing generator (G) and discriminator (D) weights, training metadata (version, sample rate, F0 flag, embedder name, epoch number, step count) | Yes |
+| `.index` | FAISS or KMeans index of training embeddings for retrieval during inference | Recommended |
+| `D_*.pth` | Discriminator-only weights (used as pre-trained starting point) | For training only |
+| `G_*.pth` | Generator-only weights (used as pre-trained starting point, or extracted for inference) | For training/inference |
+
+## F0 vs. Non-F0 Models
+
+Models can be trained with or without pitch (F0) information:
+
+- **F0 models (recommended):** Use explicit pitch extraction, allowing pitch adjustment during inference. Better for singing and pitch-sensitive applications
+- **Non-F0 models:** Do not use explicit pitch information. The model must infer pitch from the embeddings alone. Can work well for speech but offers less pitch control
+
+The model file's metadata indicates whether it uses F0 or not.

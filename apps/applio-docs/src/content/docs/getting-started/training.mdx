@@ -23,14 +23,14 @@ The first and most important step is to prepare a high-quality audio dataset.
 
 For a detailed guide on creating a high-quality dataset, please see our [Dataset Creation Guide](/guides/how-create-datasets/).
 
-Once your dataset is ready, you need to place it in the `applio/assets/datasets` directory. Create a new folder inside this directory for your model.
+Once your dataset is ready, you need to place it in the `assets/datasets` directory. Create a new folder inside this directory for your model.
 
 #### Multi-Speaker Models (Optional)
 
 If you want to train a model with multiple speakers, create a subfolder for each speaker inside your model's dataset folder. The speaker folders must be named numerically, starting from `0`.
 
 <FileTree>
-- applio/assets/datasets/your-model-name/
+- assets/datasets/your-model-name/
   - 0/
     - speaker0-audio1.wav
     - speaker0-audio2.wav
@@ -41,13 +41,15 @@ If you want to train a model with multiple speakers, create a subfolder for each
 
 ### Step 2: Pre-process the Dataset
 
-Now it's time to pre-process your dataset.
+Now it's time to pre-process your dataset. This step loads your raw audio files, slices them into manageable segments (typically 5-15 seconds), removes leading/trailing silence, applies optional noise reduction, and resamples all audio to the target sample rate.
 
 <Steps>
 1.  In the **Train** tab of Applio, enter a name for your model.
-2.  Select the correct sample rate for your audio files (`32k`, `40k`, or `48k`).
+2.  Select the correct sample rate for your audio files (`32k`, `40k`, or `48k`). This should match the sample rate of your pre-trained model if using one.
 3.  Click the **Pre-process Dataset** button.
 </Steps>
+
+The preprocessing progress is shown in the command-line window. Depending on the size of your dataset, this may take a few minutes.
 
 ### Step 3: Extract Features
 
@@ -66,14 +68,24 @@ This process will take some time. You can monitor the progress in the command li
 This is the final and most time-consuming step.
 
 <Steps>
-1.  **Set the "Save Every Epoch" Value:** This determines how often the model is saved. A value between 10 and 50 is recommended.
-2.  **Set the "Total Epochs":** This is the total number of times the model will train on the entire dataset. A good starting point is 200-400 epochs, but you should use [TensorBoard](/getting-started/tensorboard) to monitor your model's progress and decide when to stop.
-3.  **Set the "Batch Size":** This depends on your GPU's VRAM. For an 8GB GPU, a batch size of 6-8 is a good starting point.
-4.  Click the **Train Model** button.
-5.  Once the model training is complete, click the **Train Index** button.
+1.  **Set the "Save Every Epoch" Value:** This determines how often a checkpoint is saved. A value between 10 and 50 is recommended. Saving more frequently uses more disk space but gives you more granular snapshots to choose from when selecting the final model.
+2.  **Set the "Total Epochs":** The total number of complete passes through the entire dataset. A good starting point is 200-400 epochs, but you should use [TensorBoard](/getting-started/tensorboard) to monitor the `g/total` loss graph and decide when to stop. Training too long leads to overtraining, while too few epochs produces low-quality results.
+3.  **Set the "Batch Size":** The number of training samples processed simultaneously. Larger batch sizes give more stable training but require more GPU VRAM.
+4.  **Select a Vocoder:** Choose between HiFi-GAN, NSF HiFi-GAN, or RefineGAN. HiFi-GAN is the standard for most cases. NSF HiFi-GAN handles singing better. RefineGAN may produce cleaner results but takes longer to train.
+5.  **Select Pre-trained G/D (Optional):** If you have a [pre-trained model](/getting-started/pretrained/), you can load its generator (G) and discriminator (D) weights as a starting point. This significantly reduces training time and often improves quality, especially for small datasets.
+6.  Click the **Train Model** button.
+7.  Once the model training is complete, click the **Train Index** button to build the FAISS index from the extracted features.
 </Steps>
 
 ![A screenshot of the training configuration section in Applio.](/images/training.png)
+
+#### Understanding Training Hyperparameters
+
+-   **Epochs vs. Steps:** An epoch is one full pass through the dataset. A step is one batch processed. Total steps = epochs * (dataset size / batch size). Monitor steps in TensorBoard to track progress.
+-   **Learning Rate:** The learning rate controls how much the model weights are updated per step. Applio uses a default learning rate schedule that starts at a higher value and decays over time. This is not adjustable in the UI but is defined in the architecture config files.
+-   **Batch Size and VRAM:** Larger batch sizes give more accurate gradient estimates but require more memory. If you get CUDA out-of-memory errors, reduce the batch size by half.
+-   **Save Frequency:** Frequent saving ensures you don't lose progress but uses disk space. Each checkpoint is approximately 200 MB. With a save interval of 10 epochs over 300 epochs, expect ~6 GB of checkpoints.
+-   **Vocoder Choice:** HiFi-GAN is the fastest and most memory-efficient. NSF HiFi-GAN adds neural source-filter modeling for better pitch handling. RefineGAN is the most computationally expensive but can produce the highest quality.
 
 ### Step 5: Export Your Model
 
@@ -105,4 +117,16 @@ If you want to continue training a model you've already started, follow these st
 
 <Aside type="note">
   Make sure your previously saved model checkpoints are still in the `logs` directory. Applio will automatically load the latest checkpoint and continue from there.
+</Aside>
+
+### Multi-GPU Training
+
+Applio supports **Distributed Data Parallel (DDP)** training across multiple GPUs automatically. If your system has multiple NVIDIA GPUs, the training script will detect them and distribute the workload.
+
+- **Automatic Detection:** Applio automatically detects all available CUDA devices and uses them for training
+- **Linear Scaling:** With 2 GPUs, you can approximately double your batch size (e.g., from 8 to 16 total across both GPUs)
+- **Monitoring:** Each GPU's memory usage is logged during training. If any GPU runs out of memory, reduce the per-GPU batch size
+
+<Aside type="tip">
+  For multi-GPU training, ensure all GPUs have sufficient VRAM for at least one batch item each. The total batch size is divided equally across GPUs.
 </Aside>

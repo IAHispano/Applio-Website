@@ -12,8 +12,17 @@ import { Aside, Card, CardGrid } from '@astrojs/starlight/components';
 A **pre-trained model** is a base model that has already been trained on a large amount of data. When you train your own voice model, you can start from scratch or you can use a pre-trained model as a starting point.
 
 <Aside type="note">
-  **Pre-trained models** are _not_ meant to be used for inference directly, only as a base for training. You can find **inference models** of characters and celebreties and such [here](https://applio.org/search), and learn how to use them in [Installing Inferrence Models](/getting-started/installing-inference-models).
+  **Pre-trained models** are _not_ meant to be used for inference directly, only as a base for training. You can find **inference models** of characters and celebreties and such [here](https://applio.org/search), and learn how to use them in [Installing Inference Models](/getting-started/installing-inference-models).
 </Aside>
+
+### Understanding G and D Files
+
+Pre-trained models come as two files:
+
+- **G file (Generator):** The generator network that converts acoustic features into audio. This is the file that gets extracted and used for inference after training.
+- **D file (Discriminator):** The discriminator network that helps the generator improve during training. This file is only needed during training and is not used for inference.
+
+Both files are required when using a pre-trained model as a starting point for training. The generator provides a strong foundation for the target voice, while the discriminator helps guide the training process to produce higher quality results.
 
 Using a pre-trained model can save you a significant amount of time and effort, and it can often lead to better results, especially if you have a small dataset.
 
@@ -24,7 +33,7 @@ Using a pre-trained model can save you a significant amount of time and effort, 
 To use a pre-trained model in Applio:
 
 1.  In the **Train** tab, check the **Custom Pretrained** box.
-2.  Upload the pre-trained model's `.pth` and `.index` files.
+2.  Upload the pre-trained model's `G_*.pth` (generator) and `D_*.pth` (discriminator) files.
 3.  Select the pre-trained model from the **Pretrained G/D Path** dropdown menus.
 4.  Proceed with your training as usual.
 

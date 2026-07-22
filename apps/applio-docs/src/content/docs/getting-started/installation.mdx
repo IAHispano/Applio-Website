@@ -132,6 +132,30 @@ If the manual installation for Linux/macOS fails, you may need to set up a virtu
   </TabItem>
 </Tabs>
 
+### Docker Deployment
+
+Applio provides official Docker images for both CPU and GPU (CUDA) deployments.
+
+<Steps>
+1.  **Install Docker:** Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) for your operating system. For GPU support, install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
+2.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/IAHispano/Applio.git
+    cd Applio
+    ```
+3.  **Build the Docker image:**
+    -   For CPU: `docker build -f Dockerfile -t applio:cpu .`
+    -   For GPU: `docker build -f Dockerfile_cuda -t applio:cuda .`
+4.  **Run the container:**
+    -   Using Docker Compose: `docker compose up`
+    -   Or manually: `docker run --gpus all -p 6969:6969 applio:cuda`
+5.  **Access Applio:** Open `http://localhost:6969` in your browser.
+</Steps>
+
+<Aside type="tip">
+  Docker is an excellent option for server deployments, cloud environments, and ensuring consistent dependencies across different systems.
+</Aside>
+
 ---
 
 ## Updating and Uninstalling

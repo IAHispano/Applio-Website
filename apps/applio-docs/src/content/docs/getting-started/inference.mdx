@@ -7,7 +7,9 @@ sidebar:
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Inference** is the process of using a trained voice model to convert an audio file from one voice to another. Applio makes this process simple and provides a wealth of advanced options for fine-tuning your results.
+**Inference** (or **voice conversion**) is the process of using a trained voice model to convert an audio file from one voice to another. Under the hood, Applio extracts the pitch and linguistic content from your input audio, retrieves matching timbre features from the model's index, and synthesizes a new audio file that preserves the original phrasing and emotion but with the target voice's character.
+
+Applio makes this process simple and provides a wealth of advanced options for fine-tuning your results.
 
 ![The main inference interface in Applio, showing the model selection, audio input, and conversion button.](/images/inference.png)
 
@@ -51,12 +53,12 @@ Applio provides a wide range of advanced settings to help you achieve the perfec
 
 ### Pitch and Voice Settings
 
--   **Pitch:** Adjusts the pitch of the output. Use negative values to lower the pitch (more masculine) and positive values to raise it (more feminine). A common starting point is -12 for male-to-female and +12 for female-to-male.
--   **Filter Radius:** Applies a filter to reduce breathiness and other artifacts.
--   **Search Feature Ratio:** Controls how closely the model searches for matching features in the index file. Higher values can be more accurate but may also introduce artifacts. It's usually best to leave this at the default value.
--   **Volume Envelope:** Blends the volume envelope of the output with the original audio's volume.
--   **Protect Voiceless Consonants:** Helps to preserve the clarity of consonants and breathing sounds, which can prevent artifacts.
--   **Hop Length:** Determines how quickly the model adapts to large pitch changes. Smaller values can result in more accurate pitch tracking but require more processing time.
+-   **Pitch:** Adjusts the pitch of the output in semitones. Use negative values to lower the pitch (more masculine) and positive values to raise it (more feminine). A common starting point is -12 for male-to-female and +12 for female-to-male. For singing, smaller adjustments (e.g., -3 to +3) are often more appropriate.
+-   **Filter Radius:** Applies a median filter to the F0 contour to reduce breathiness and pitch jitter. Values between 1 and 5 are typical. Higher values produce smoother pitch but may sound less natural. Default is 3.
+-   **Search Feature Ratio:** Controls how closely the output matches the target speaker's voice by determining the blend between the input embedding and the retrieved index features. At 0, no retrieval is used (the model relies entirely on the embedder's output). At 1, the output is maximally influenced by the index. Values between 0.3 and 0.8 are typical. Higher values produce more accurate timbre matching but may introduce artifacts.
+-   **Volume Envelope:** Blends the volume dynamics of the output with the original audio. At 1, the output retains its own volume envelope. At 0, the output follows the original audio's volume. This is useful when the converted output sounds too compressed or too dynamic.
+-   **Protect Voiceless Consonants:** Preserves the clarity of consonants and breathing sounds by protecting them from excessive modification. Recommended values are between 0.3 and 0.7. Higher values better preserve sibilants and plosives but may reduce conversion quality.
+-   **Hop Length:** Determines the analysis frame stride in samples. Smaller values (e.g., 128) provide more precise pitch tracking at the cost of higher processing time. Larger values (e.g., 320) are faster but may miss rapid pitch changes. Default is 128 for speech, 192 for singing.
 
 ### Models and Algorithms
 
@@ -78,6 +80,23 @@ You can apply a variety of audio effects to your output file.
 -   **Clipping:** Intentionally clips the audio at a certain threshold.
 -   **Compressor:** Reduces the dynamic range of the audio.
 -   **Delay:** Adds an echo effect to the audio.
+
+## Command-Line Inference
+
+All inference features are also available via the command line for automation and scripting:
+
+```bash
+# Basic conversion
+python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth
+
+# With pitch adjustment and specific settings
+python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index --pitch -3 --f0_method crepe --embedder_model contentvec
+
+# Batch processing an entire folder
+python core.py batch_infer --input_folder ./input_folder --output_folder ./output_folder --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index
+```
+
+See the [CLI Reference](/reference/cli/) for a complete list of all available options.
 
 ## Tips for Better Results
 

@@ -26,7 +26,7 @@ You can run UVR on your local computer or on Google Colab.
   When you run the installer, Windows may flag it as potential malware. This is a false positive due to the installer not being signed with a commercial license. You can review the source code on their GitHub repository if you have any concerns.
 </Aside>
 <Aside type="tip">
-  To use RoFormer models, you'll need the **Roformer patch**, listed as "UVR Roformer Version Patch Only" (or "Full Install" if you haven't installed UVR yet), separately for Windows and MacOS.
+  To use RoFormer models, you'll need the **Roformer patch**, listed as "UVR Roformer Version Patch Only" (or "Full Install" if you haven't installed UVR yet).
 </Aside>
 
 ## How to Use UVR
@@ -66,7 +66,7 @@ These models are currently the best-performing models for most tasks.
 | Gabox Fv4 Mel-Roformer | Vocals | Clean, non-muddy vocals with a good noise/fullness balance, though it can miss some backing vocals | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_fv4.ckpt) / [Config](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_gabox.yaml) |
 | Gabox Fv7 Mel-Roformer | Vocals | Captures harmonies well with minimal bleed, but fullness varies by track and can sound a bit noisy | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_fv7.ckpt) / [Config](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/v7.yaml) |
 | Gabox and Aufr33 Mel Roformer Small Karaoke | Main vs. Backing Vocals | The best model for separating main vocals from backing vocals | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/karaoke/small_karaoke_gaboxaufr.ckpt) / [Config](https://huggingface.co/pcunwa/Mel-Band-Roformer-small/blob/main/config_melbandroformer_small.yaml) |
-| Anvuew BS-Roformer Dereverb 22.5050 | Reverb Removal | The best model for removing stereo reverb from audio | [Model](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt) / [Config](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/config.yaml) |
+| Anvuew BS-Roformer Dereverb | Reverb Removal | The best model for removing stereo reverb from audio | [Model](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt) / [Config](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/config.yaml) |
 | Aufr33 Mel Roformer Denoise 1-2 | Noise Removal | The best model for removing background noise from audio | [V1] [Model](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aufr33.ckpt) [Config](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aufr33_config.yaml) / [V2] [Model](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aggr_aufr33.ckpt) [Config](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aggr_aufr33_config.yaml)
 
 ### MDX-Net Models

@@ -9,10 +9,13 @@ import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
 
 Applio provides a command-line interface through `core.py` that allows you to perform all major operations without the Gradio web UI. This is useful for automation, headless servers, cloud environments, and advanced scripting.
 
+The web server (`app.py`) also accepts a number of startup arguments — see [Application Server Arguments](#application-server-arguments) below.
+
 ## Usage
 
 ```bash
 python core.py <command> [options]
+python app.py [options]
 ```
 
 ## Global Options
@@ -21,65 +24,88 @@ python core.py <command> [options]
 |--------|-------------|
 | `-h`, `--help` | Show help message and exit |
 
-## Commands
+---
+
+## Inference Commands
 
 ### `infer`
 
 Convert a single audio file using a voice model.
 
 ```bash
-python core.py infer -i <input> -o <output> -m <model> [options]
+python core.py infer --input_path <audio> --output_path <output> --pth_path <model> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--input-audio-path` | `-i` | Path to the input audio file | Required |
-| `--output-audio-path` | `-o` | Path to save the converted audio | Required |
-| `--model-path` | `-m` | Path to the model `.pth` file | Required |
-| `--index-path` | `-id` | Path to the `.index` file | None |
-| `--pitch` | `-p` | Pitch adjustment in semitones | `0` |
-| `--filter-radius` | `-r` | Filter radius for artifact reduction | `3` |
-| `--search-feature-ratio` | `-s` | Index search feature ratio (0.0 - 1.0) | `0.6` |
-| `--volume-envelope` | `-v` | Volume envelope blending ratio | `1` |
-| `--protect-voiceless-consonants` | `-c` | Protection amount for voiceless consonants | `0.5` |
-| `--hop-length` | `-hl` | Hop length for pitch tracking | `128` |
-| `--f0-method` | `-f` | Pitch extraction method (`rmvpe`, `crepe`, `crepe-tiny`, `fcpe`, `hybrid`) | `rmvpe` |
-| `--f0-file` | `-ff` | Path to external F0 curve file | None |
-| `--embedder-model` | `-e` | Embedder model name | `contentvec` |
-| `--export-format` | `-ef` | Output audio format (`wav`, `mp3`, `flac`, `ogg`, `m4a`) | `wav` |
-| `--upscale` | `-u` | Enable audio upscaling | `False` |
-| `--clean` | `-cl` | Enable noise reduction cleaning | `False` |
-| `--clean-strength` | `-cs` | Noise reduction strength | `0` |
-| `--autotune` | `-at` | Enable autotune | `False` |
-| `--autotune-strength` | `-as` | Autotune strength | `1` |
-| `--split-audio` | `-sa` | Enable audio splitting for long files | `False` |
-| `--reverb` | `-rv` | Reverb amount (0-100) | `0` |
-| `--pitch-shift` | `-ps` | Post-processing pitch shift (semitones) | `0` |
-| `--limiter` | `-l` | Limiter threshold (0-100) | `0` |
-| `--gain` | `-g` | Gain adjustment (dB) | `0` |
-| `--distortion` | `-d` | Distortion amount (0-100) | `0` |
-| `--chorus` | `-ch` | Chorus amount (0-100) | `0` |
-| `--bitcrush` | `-bc` | Bitcrush amount (0-100) | `0` |
-| `--clipping` | `-clp` | Clipping threshold (0-100) | `0` |
-| `--compressor` | `-cmp` | Compressor amount (0-100) | `0` |
-| `--delay` | `-dl` | Delay amount (0-100) | `0` |
-| `--formant-shift` | `-fs` | Formant shift quefrency | `0` |
-| `--formant-timbre` | `-ft` | Formant shift timbre | `1` |
-| `--formant-q` | `-fq` | Formant shift Q factor | `5` |
+**Required Arguments:**
+
+| Option | Description |
+|--------|-------------|
+| `--input_path` | Path to the input audio file |
+| `--output_path` | Path to save the converted audio |
+| `--pth_path` | Path to the model `.pth` file |
+| `--index_path` | Path to the `.index` file |
+
+**Pitch & Voice Arguments:**
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--pitch` | int (-24..24) | `0` | Pitch adjustment in semitones |
+| `--index_rate` | float (0..1) | `0.75` | Search feature ratio — how much the index influences output |
+| `--volume_envelope` | float (0..1) | `1` | RMS mix rate — blends output volume with original |
+| `--protect` | float (0..0.5) | `0.5` | Protect voiceless consonants and breathing sounds |
+| `--f0_method` | str | `"rmvpe"` | Pitch extraction method (`crepe`, `crepe-tiny`, `rmvpe`, `fcpe`, `hybrid`) |
+| `--sid` | int | `0` | Speaker ID for multi-speaker models |
+
+**Processing Arguments:**
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--split_audio` | bool | `False` | Split long audio into segments for processing |
+| `--f0_autotune` | bool | `False` | Apply autotune to the output pitch |
+| `--f0_autotune_strength` | float (0..1) | `1.0` | Autotune intensity |
+| `--proposed_pitch` | bool | `False` | Enable proposed pitch correction |
+| `--proposed_pitch_threshold` | float (50..1200) | `155.0` | Threshold for proposed pitch |
+| `--clean_audio` | bool | `False` | Apply noise reduction to the output |
+| `--clean_strength` | float (0..1) | `0.7` | Noise reduction intensity |
+| `--export_format` | str | `"WAV"` | Output format (`WAV`, `MP3`, `FLAC`, `OGG`, `M4A`) |
+| `--embedder_model` | str | `"contentvec"` | Embedder model (`contentvec`, `spin`, `spin-v2`, `chinese-hubert`, `japanese-hubert`, `korean-hubert`, `custom`) |
+| `--embedder_model_custom` | str | `None` | HuggingFace model ID when `embedder_model` is `custom` |
+| `--formant_shifting` | bool | `False` | Enable formant shifting |
+| `--formant_qfrency` | float | `1.0` | Formant shift quefrency |
+| `--formant_timbre` | float | `1.0` | Formant shift timbre |
+| `--post_process` | bool | `False` | Enable post-processing effects chain |
+
+**Post-Processing Effects:**
+
+Each effect has a boolean toggle and one or more parameter flags. Set the toggle to enable the effect, then configure it with the parameter flags.
+
+| Effect Toggle | Parameter Flags | Defaults |
+|---------------|-----------------|----------|
+| `--reverb` | `--reverb_room_size` `--reverb_damping` `--reverb_wet_gain` `--reverb_dry_gain` `--reverb_width` `--reverb_freeze_mode` | 0.5 each |
+| `--pitch_shift` | `--pitch_shift_semitones` | 0.0 |
+| `--limiter` | `--limiter_threshold` `--limiter_release_time` | -6 / 0.01 |
+| `--gain` | `--gain_db` | 0.0 |
+| `--distortion` | `--distortion_gain` | 25 |
+| `--chorus` | `--chorus_rate` `--chorus_depth` `--chorus_center_delay` `--chorus_feedback` `--chorus_mix` | 1.0 / 0.25 / 7 / 0.0 / 0.5 |
+| `--bitcrush` | `--bitcrush_bit_depth` | 8 |
+| `--clipping` | `--clipping_threshold` | -6 |
+| `--compressor` | `--compressor_threshold` `--compressor_ratio` `--compressor_attack` `--compressor_release` | 0 / 1 / 1.0 / 100 |
+| `--delay` | `--delay_seconds` `--delay_feedback` `--delay_mix` | 0.5 / 0.0 / 0.5 |
 
 ### `batch_infer`
 
 Convert multiple audio files in a directory.
 
 ```bash
-python core.py batch_infer -i <input_folder> -o <output_folder> -m <model> [options]
+python core.py batch_infer --input_folder <folder> --output_folder <folder> --pth_path <model> [options]
 ```
 
 | Option | Alias | Description | Default |
 |--------|-------|-------------|---------|
-| `--input-folder` | `-i` | Path to folder containing input audio files | Required |
-| `--output-folder` | `-o` | Path to folder for output files | Required |
-| `--model-path` | `-m` | Path to the model `.pth` file | Required |
+| `--input_folder` | | Path to folder containing input audio files | Required |
+| `--output_folder` | | Path to folder for output files | Required |
+| `--pth_path` | | Path to the model `.pth` file | Required |
+| `--index_path` | | Path to the `.index` file | Required |
 | All inference options | | Same as `infer` command | Same as `infer` |
 
 ### `tts`
@@ -87,96 +113,136 @@ python core.py batch_infer -i <input_folder> -o <output_folder> -m <model> [opti
 Generate speech from text using Edge TTS, optionally passing through voice conversion.
 
 ```bash
-python core.py tts -t <text> -v <voice> [options]
+python core.py tts --tts_text <text> --tts_voice <voice> --output_tts_path <file> --output_rvc_path <file> --pth_path <model> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--text` | `-t` | Text to synthesize | Required |
-| `--tts-voice` | `-v` | TTS voice name (from edge-tts) | Required |
-| `--tts-rate` | `-tr` | TTS speech rate adjustment | `+0%` |
-| `--model-path` | `-m` | Path to voice model `.pth` for VC after TTS | None |
-| `--index-path` | `-id` | Path to `.index` file for VC | None |
-| `--pitch` | `-p` | Pitch adjustment after TTS | `0` |
-| `--f0-method` | `-f` | Pitch extraction method | `rmvpe` |
-| `--embedder-model` | `-e` | Embedder model | `contentvec` |
-| All post-processing options | | Same as `infer` | Same as `infer` |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--tts_text` | str | Required | Text to synthesize |
+| `--tts_file` | str | None | Path to a `.txt` file with the text |
+| `--tts_voice` | str | Required | TTS voice name |
+| `--tts_rate` | int (-100..100) | `0` | Speech rate adjustment |
+| `--output_tts_path` | str | Required | Path to save the raw TTS audio |
+| `--output_rvc_path` | str | Required | Path to save the voice-converted audio |
+| `--pth_path` | str | Required | Path to voice model `.pth` |
+| `--index_path` | str | Required | Path to `.index` file |
+| `--pitch` | int (-24..24) | `0` | Pitch adjustment |
+| `--index_rate` | float (0..1) | `0.3` | Search feature ratio |
+| `--volume_envelope` | float (0..1) | `1` | RMS mix rate |
+| `--protect` | float (0..0.5) | `0.33` | Protect voiceless consonants |
+| `--f0_method` | str | `"rmvpe"` | Pitch extraction method |
+| `--split_audio` | bool | `False` | Split audio for processing |
+| `--f0_autotune` | bool | `False` | Enable autotune |
+| `--f0_autotune_strength` | float (0..1) | `1.0` | Autotune strength |
+| `--proposed_pitch` | bool | `False` | Proposed pitch correction |
+| `--proposed_pitch_threshold` | float (100..500) | `155.0` | Pitch threshold |
+| `--clean_audio` | bool | `False` | Enable noise reduction |
+| `--clean_strength` | float (0..1) | `0.7` | Noise reduction strength |
+| `--export_format` | str | `"WAV"` | Output format |
+| `--embedder_model` | str | `"contentvec"` | Embedder model |
+| `--embedder_model_custom` | str | None | Custom HuggingFace embedder |
+
+---
+
+## Training Commands
 
 ### `preprocess`
 
-Preprocess a dataset for training.
+Preprocess a dataset for training. Slices audio, removes silence, applies noise reduction, and resamples.
 
 ```bash
-python core.py preprocess -n <model_name> -sr <sample_rate> [options]
+python core.py preprocess --model_name <name> --dataset_path <path> --sample_rate <rate> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-name` | `-n` | Name of the model/dataset | Required |
-| `--sample-rate` | `-sr` | Target sample rate (`32k`, `40k`, `48k`) | `40k` |
-| `--cpu` | `-cpu` | Process on CPU instead of GPU | `False` |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--model_name` | str | Required | Name for the model |
+| `--dataset_path` | str | Required | Path to the dataset folder |
+| `--sample_rate` | int | Required | Target sample rate (`32000`, `40000`, `48000`) |
+| `--cpu_cores` | int | None | Number of CPU threads to use |
+| `--cut_preprocess` | str | `"Automatic"` | Slicing method (`Skip`, `Simple`, `Automatic`) |
+| `--process_effects` | bool | `False` | Apply audio effects during preprocessing |
+| `--noise_reduction` | bool | `False` | Apply noise reduction |
+| `--noise_reduction_strength` | float (0..1) | `0.7` | Noise reduction intensity |
+| `--chunk_len` | float (0.5..5) | `3.0` | Slice length in seconds |
+| `--overlap_len` | float (0..0.4) | `0.3` | Overlap between slices |
+| `--normalization_mode` | str | `"none"` | Peak normalization (`none`, `pre`, `post`) |
 
 ### `extract`
 
 Extract features (F0 and embeddings) from a preprocessed dataset.
 
 ```bash
-python core.py extract -n <model_name> -sr <sample_rate> -f <f0_method> -e <embedder>
+python core.py extract --model_name <name> --sample_rate <rate> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-name` | `-n` | Name of the model | Required |
-| `--sample-rate` | `-sr` | Sample rate (`32k`, `40k`, `48k`) | `40k` |
-| `--f0-method` | `-f` | Pitch extraction method | `rmvpe` |
-| `--embedder-model` | `-e` | Embedder model | `contentvec` |
-| `--cpu` | `-cpu` | Process on CPU | `False` |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--model_name` | str | Required | Name of the model |
+| `--sample_rate` | int | Required | Sample rate (`32000`, `40000`, `44100`, `48000`) |
+| `--f0_method` | str | `"rmvpe"` | Pitch extraction method |
+| `--embedder_model` | str | `"contentvec"` | Embedder model |
+| `--embedder_model_custom` | str | None | Custom HuggingFace embedder |
+| `--cpu_cores` | int | None | CPU threads |
+| `--gpu` | str | `"-"` | GPU index to use (e.g. `"0"`) |
+| `--include_mutes` | int (0..10) | `2` | Number of mute frames to include |
 
 ### `train`
 
 Train a voice model.
 
 ```bash
-python core.py train -n <model_name> -sr <sample_rate> -f <f0_method> -e <embedder> [options]
+python core.py train --model_name <name> --sample_rate <rate> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-name` | `-n` | Name of the model | Required |
-| `--sample-rate` | `-sr` | Sample rate (`32k`, `40k`, `48k`) | `40k` |
-| `--f0-method` | `-f` | Pitch extraction method | `rmvpe` |
-| `--embedder-model` | `-e` | Embedder model | `contentvec` |
-| `--save-every-epoch` | `-s` | Save checkpoint every N epochs | `10` |
-| `--total-epoch` | `-te` | Total number of training epochs | `200` |
-| `--batch-size` | `-b` | Training batch size | `6` |
-| `--pretrained-g` | `-pg` | Path to pre-trained generator | None |
-| `--pretrained-d` | `-pd` | Path to pre-trained discriminator | None |
-| `--vocoder` | `-v` | Vocoder type (`hifigan`, `nsf-hifigan`, `refinegan`) | `hifigan` |
-| `--index` | `-i` | Train index after training | `True` |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--model_name` | str | Required | Name of the model |
+| `--sample_rate` | int | Required | Sample rate (`32000`, `40000`, `48000`) |
+| `--vocoder` | str | `"HiFi-GAN"` | Vocoder type (`HiFi-GAN`, `MRF HiFi-GAN`, `RefineGAN`) |
+| `--total_epoch` | int (1..10000) | `1000` | Total training epochs |
+| `--save_every_epoch` | int (1..100) | Required | Save checkpoint every N epochs |
+| `--batch_size` | int (1..50) | `8` | Training batch size |
+| `--gpu` | str | `"0"` | GPU index for training |
+| `--pretrained` | bool | `True` | Use default pre-trained model |
+| `--custom_pretrained` | bool | `False` | Use a custom pre-trained model |
+| `--g_pretrained_path` | str | None | Path to custom pre-trained generator |
+| `--d_pretrained_path` | str | None | Path to custom pre-trained discriminator |
+| `--index_algorithm` | str | `"Auto"` | Index algorithm (`Auto`, `Faiss`, `KMeans`) |
+| `--checkpointing` | bool | `False` | Enable gradient checkpointing to save VRAM |
+| `--save_only_latest` | bool | `False` | Only keep the latest checkpoint |
+| `--save_every_weights` | bool | `True` | Save model weights at every checkpoint |
+| `--cleanup` | bool | `False` | Clean up temporary files after training |
+| `--cache_data_in_gpu` | bool | `False` | Cache training data in GPU memory |
 
 ### `index`
 
 Generate a FAISS or KMeans index from extracted features.
 
 ```bash
-python core.py index -n <model_name>
+python core.py index --model_name <name>
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-name` | `-n` | Name of the trained model | Required |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--model_name` | str | Required | Name of the trained model |
+| `--index_algorithm` | str | `"Auto"` | Index algorithm (`Auto`, `Faiss`, `KMeans`) |
+
+---
+
+## Model Utilities
 
 ### `model_information`
 
 Display metadata about a trained model.
 
 ```bash
-python core.py model_information -m <model_path>
+python core.py model_information --pth_path <path>
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-path` | `-m` | Path to the `.pth` model file | Required |
+| Option | Type | Description |
+|--------|------|-------------|
+| `--pth_path` | str | Path to the `.pth` model file (Required) |
 
 **Output includes:** version, sample rate, whether F0 was used, embedder name, epoch count, step count.
 
@@ -185,15 +251,15 @@ python core.py model_information -m <model_path>
 Blend two model weights into a new model using linear interpolation.
 
 ```bash
-python core.py model_blender -m1 <model_a> -m2 <model_b> -o <output> -r <ratio>
+python core.py model_blender --model_name <name> --pth_path_1 <model_a> --pth_path_2 <model_b> [options]
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--model-a` | `-m1` | Path to first model `.pth` | Required |
-| `--model-b` | `-m2` | Path to second model `.pth` | Required |
-| `--output` | `-o` | Path for the blended output `.pth` | Required |
-| `--ratio` | `-r` | Blend ratio (0.0 = all model A, 1.0 = all model B) | `0.5` |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--model_name` | str | Required | Name for the blended model |
+| `--pth_path_1` | str | Required | Path to first model `.pth` |
+| `--pth_path_2` | str | Required | Path to second model `.pth` |
+| `--ratio` | float (0..1) | `0.5` | Blend ratio (0 = all model A, 1 = all model B) |
 
 ### `tensorboard`
 
@@ -203,68 +269,117 @@ Launch TensorBoard for monitoring training progress.
 python core.py tensorboard
 ```
 
+No arguments.
+
+---
+
+## Download & Setup
+
 ### `download`
 
 Download a model from a URL (HuggingFace, Google Drive, or direct link).
 
 ```bash
-python core.py download -u <url>
+python core.py download --model_link <url>
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--url` | `-u` | Download URL for the model | Required |
+| Option | Type | Description |
+|--------|------|-------------|
+| `--model_link` | str | Download URL for the model (Required) |
 
 ### `prerequisites`
 
 Download and install required prerequisites (pretrained models, predictors, embedders).
 
 ```bash
-python core.py prerequisites
+python core.py prerequisites [options]
 ```
+
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| `--pretraineds_hifigan` | bool | `True` | Download pre-trained HiFi-GAN models |
+| `--models` | bool | `True` | Download predictor models |
+| `--exe` | bool | `True` | Download bundled executables (ffmpeg, etc.) |
+
+---
+
+## Analysis
 
 ### `audio_analyzer`
 
 Analyze an audio file and display spectral information.
 
 ```bash
-python core.py audio_analyzer -i <input_audio>
+python core.py audio_analyzer --input_path <audio>
 ```
 
-| Option | Alias | Description | Default |
-|--------|-------|-------------|---------|
-| `--input-audio-path` | `-i` | Path to the audio file to analyze | Required |
+| Option | Type | Description |
+|--------|------|-------------|
+| `--input_path` | str | Path to the audio file to analyze (Required) |
+
+---
+
+## Application Server Arguments
+
+These arguments are passed to `app.py` when starting the web interface:
+
+```bash
+python app.py [options]
+```
+
+| Option | Description |
+|--------|-------------|
+| `--share` | Generate a public Gradio share URL (e.g., `https://xxxxx.gradio.live`) |
+| `--port <num>` | Specify the server port (default: `6969`) |
+| `--server-name <host>` | Bind to a specific host address (default: `127.0.0.1`) |
+| `--open` | Automatically open the browser on launch |
+| `--client` | Enable realtime client mode (mounts FastAPI endpoint and injects audio client JS) |
+
+**Port conflict handling:** If the specified port is already in use, Applio automatically decrements the port number and retries until it finds an available port.
+
+---
 
 ## Examples
 
 **Basic inference with a model:**
 ```bash
-python core.py infer -i my_speech.wav -o converted.wav -m logs/MyModel/G_1234.pth -id logs/MyModel/MyModel.index
+python core.py infer --input_path my_speech.wav --output_path converted.wav --pth_path logs/MyModel/G_1234.pth --index_path logs/MyModel/MyModel.index
 ```
 
-**Batch inference with pitch adjustment:**
+**Inference with pitch adjustment and CREPE:**
 ```bash
-python core.py batch_infer -i ./input_folder -o ./output_folder -m logs/Singer/G_5678.pth -p -2 -f crepe
+python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index --pitch -3 --f0_method crepe --embedder_model contentvec
+```
+
+**Batch inference:**
+```bash
+python core.py batch_infer --input_folder ./input --output_folder ./output --pth_path logs/MyModel/G_1234.pth --index_path logs/MyModel/MyModel.index
 ```
 
 **Full training pipeline:**
 ```bash
-python core.py preprocess -n MyVoice -sr 40k
-python core.py extract -n MyVoice -sr 40k -f rmvpe -e contentvec
-python core.py train -n MyVoice -sr 40k -f rmvpe -e contentvec -b 8 -te 300 -pg pretrained/G_40k.pth -pd pretrained/D_40k.pth
+python core.py preprocess --model_name MyVoice --dataset_path assets/datasets/MyVoice --sample_rate 40000
+python core.py extract --model_name MyVoice --sample_rate 40000 --f0_method rmvpe --embedder_model contentvec
+python core.py train --model_name MyVoice --sample_rate 40000 --f0_method rmvpe --embedder_model contentvec --batch_size 8 --save_every_epoch 50 --total_epoch 300
+python core.py index --model_name MyVoice
 ```
 
 **TTS with voice conversion:**
 ```bash
-python core.py tts -t "Hello, this is a test." -v "en-US-JennyNeural" -m logs/MyModel/G_1234.pth -id logs/MyModel/MyModel.index
+python core.py tts --tts_text "Hello, this is a test." --tts_voice "en-US-JennyNeural" --output_tts_path tts_output.wav --output_rvc_path converted.wav --pth_path logs/MyModel/G_1234.pth --index_path logs/MyModel/MyModel.index
 ```
 
 **Blend two models:**
 ```bash
-python core.py model_blender -m1 logs/ModelA/G_100.pth -m2 logs/ModelB/G_200.pth -o logs/Blended/G_blended.pth -r 0.6
+python core.py model_blender --model_name Blended --pth_path_1 logs/ModelA/G_100.pth --pth_path_2 logs/ModelB/G_200.pth --ratio 0.6
 ```
 
 **Inspect model metadata:**
 ```bash
-python core.py model_information -m logs/MyModel/G_1234.pth
+python core.py model_information --pth_path logs/MyModel/G_1234.pth
+```
+
+**Start the web UI with a public share link:**
+```bash
+python app.py --share --port 7860
 ```

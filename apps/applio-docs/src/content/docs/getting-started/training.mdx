@@ -23,14 +23,14 @@ The first and most important step is to prepare a high-quality audio dataset.
 
 For a detailed guide on creating a high-quality dataset, please see our [Dataset Creation Guide](/guides/how-create-datasets/).
 
-Once your dataset is ready, you need to place it in the `applio/assets/datasets` directory. Create a new folder inside this directory for your model.
+Once your dataset is ready, you need to place it in the `assets/datasets` directory. Create a new folder inside this directory for your model.
 
 #### Multi-Speaker Models (Optional)
 
 If you want to train a model with multiple speakers, create a subfolder for each speaker inside your model's dataset folder. The speaker folders must be named numerically, starting from `0`.
 
 <FileTree>
-- applio/assets/datasets/your-model-name/
+- assets/datasets/your-model-name/
   - 0/
     - speaker0-audio1.wav
     - speaker0-audio2.wav
@@ -70,7 +70,7 @@ This is the final and most time-consuming step.
 <Steps>
 1.  **Set the "Save Every Epoch" Value:** This determines how often a checkpoint is saved. A value between 10 and 50 is recommended. Saving more frequently uses more disk space but gives you more granular snapshots to choose from when selecting the final model.
 2.  **Set the "Total Epochs":** The total number of complete passes through the entire dataset. A good starting point is 200-400 epochs, but you should use [TensorBoard](/getting-started/tensorboard) to monitor the `g/total` loss graph and decide when to stop. Training too long leads to overtraining, while too few epochs produces low-quality results.
-3.  **Set the "Batch Size":** The number of training samples processed simultaneously. Larger batch sizes give more stable training but require more GPU VRAM. See the [Hardware Guide](/reference/hardware/) for recommended batch sizes per GPU. For an 8GB GPU, a batch size of 6-8 is a good starting point.
+3.  **Set the "Batch Size":** The number of training samples processed simultaneously. Larger batch sizes give more stable training but require more GPU VRAM.
 4.  **Select a Vocoder:** Choose between HiFi-GAN, NSF HiFi-GAN, or RefineGAN. HiFi-GAN is the standard for most cases. NSF HiFi-GAN handles singing better. RefineGAN may produce cleaner results but takes longer to train.
 5.  **Select Pre-trained G/D (Optional):** If you have a [pre-trained model](/getting-started/pretrained/), you can load its generator (G) and discriminator (D) weights as a starting point. This significantly reduces training time and often improves quality, especially for small datasets.
 6.  Click the **Train Model** button.

@@ -87,13 +87,13 @@ All inference features are also available via the command line for automation an
 
 ```bash
 # Basic conversion
-python core.py infer -i input.wav -o output.wav -m logs/MyModel/G_1000.pth
+python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth
 
 # With pitch adjustment and specific settings
-python core.py infer -i input.wav -o output.wav -m logs/MyModel/G_1000.pth -id logs/MyModel/MyModel.index -p -3 -f crepe -e contentvec
+python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index --pitch -3 --f0_method crepe --embedder_model contentvec
 
 # Batch processing an entire folder
-python core.py batch_infer -i ./input_folder -o ./output_folder -m logs/MyModel/G_1000.pth
+python core.py batch_infer --input_folder ./input_folder --output_folder ./output_folder --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index
 ```
 
 See the [CLI Reference](/reference/cli/) for a complete list of all available options.

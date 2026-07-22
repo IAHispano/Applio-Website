@@ -3,14 +3,16 @@ title: "Audio Isolation with UVR5"
 description: "Learn how to use Ultimate Vocal Remover (UVR) to separate audio sources and create clean datasets."
 ---
 
-import { Aside, FileTree, Steps, Card, CardGrid } from '@astrojs/starlight/components';
+import { Aside, FileTree, Steps, Card, CardGrid, Tabs, TabItem } from '@astrojs/starlight/components';
 
 **Ultimate Vocal Remover (UVR)** is a powerful, free, and open-source tool for separating audio sources. It's an essential tool for creating the clean, isolated vocal tracks needed for high-quality voice model training.
 
-## How to Install UVR
+## Installation
 
-To use UVR, you'll need to install it on your local machine.
+You can run UVR on your local computer or on Google Colab.
 
+<Tabs>
+<TabItem label="Local Installation">
 <Steps>
 1.  Download the installer from the [UVR website](https://ultimatevocalremover.com/).
 2.  Run the installer to set up UVR on your computer.
@@ -21,6 +23,9 @@ To use UVR, you'll need to install it on your local machine.
 <Aside type="note">
   When you run the installer, Windows may flag it as potential malware. This is a false positive due to the installer not being signed with a commercial license. You can review the source code on their GitHub repository if you have any concerns.
 </Aside>
+<Aside type="tip">
+  To use RoFormer models, you'll need the **Roformer patch**, listed as "UVR Roformer Version Patch Only" (or "Full Install" if you haven't installed UVR yet), separately for Windows and MacOS.
+</Aside>
 
 ## How to Use UVR
 
@@ -30,6 +35,19 @@ To use UVR, you'll need to install it on your local machine.
 3.  **Select a Model:** Choose the separation model you want to use. Different models are optimized for different tasks.
 4.  **Click Convert:** Click the **Convert** button to start the separation process.
 </Steps>
+
+
+</TabItem>
+<TabItem label="Google Colab">
+<Steps>
+1.  Open the [UVR5 NO UI Colab Notebook](https://colab.research.google.com/github/Eddycrack864/UVR5-NO-UI/blob/main/UVR5_NO_UI.ipynb).
+2.  In your Google Drive, create a folder named `Music` for your input audio files and a folder named `Vocales` for the output files.
+3.  Run the **Installation** cell to set up UVR5.
+4.  Once the installation is complete, run the cell for whichever separation method you want to use.
+</Steps>
+</TabItem>
+</Tabs>
+
 
 ## Available Models
 
@@ -43,11 +61,11 @@ These models are currently the best-performing models for most tasks.
 
 | Model Name | Best For | Description | Download Link |
 |------------|----------|-------------|---------------|
-| BS-Roformer-Viperx-1297 | Vocals & Instrumentals | The best all-around model for separating vocals and instrumentals | Built-in |
-| Kim Mel Roformer | Vocals & Instrumentals | Another excellent model for separating vocals and instrumentals | [Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/Kim-MelRoformer) |
-| Aufr33 and Viperx Mel Roformer Karaoke | Main vs. Backing Vocals | The best model for separating main vocals from backing vocals | [Download](https://huggingface.co/shiromiya/audio-separation-models/tree/main/mel_band_roformer_karaoke_aufr33_viperx) |
-| anvuew Mel Roformer dereverb | Reverb Removal | The best model for removing stereo reverb from audio | [Download](https://huggingface.co/anvuew/dereverb_mel_band_roformer/tree/main) |
-| Aufr33 Mel Roformer Denoise | Noise Removal | The best model for removing background noise from audio | [Download](https://huggingface.co/jarredou/aufr33_MelBand_Denoise/tree/main) |
+| Gabox Fv4 Mel-Roformer | Vocals | Clean, non-muddy vocals with a good noise/fullness balance, though it can miss some backing vocals | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_fv4.ckpt) / [Config](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_gabox.yaml) |
+| Gabox Fv7 Mel-Roformer | Vocals | Captures harmonies well with minimal bleed, but fullness varies by track and can sound a bit noisy | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/voc_fv7.ckpt) / [Config](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/vocals/v7.yaml) |
+| Gabox and Aufr33 Mel Roformer Small Karaoke | Main vs. Backing Vocals | The best model for separating main vocals from backing vocals | [Model](https://huggingface.co/GaboxR67/MelBandRoformers/blob/main/melbandroformers/karaoke/small_karaoke_gaboxaufr.ckpt) / [Config](https://huggingface.co/pcunwa/Mel-Band-Roformer-small/blob/main/config_melbandroformer_small.yaml) |
+| Anvuew BS-Roformer Dereverb 22.5050 | Reverb Removal | The best model for removing stereo reverb from audio | [Model](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/dereverb_bs_roformer_anvuew_sdr_22.5050.ckpt) / [Config](https://huggingface.co/anvuew/dereverb_bs_roformer/resolve/main/config.yaml) |
+| Aufr33 Mel Roformer Denoise 1-2 | Noise Removal | The best model for removing background noise from audio | [V1] [Model](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aufr33.ckpt) [Config](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aufr33_config.yaml) / [V2] [Model](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aggr_aufr33.ckpt) [Config](https://huggingface.co/noblebarkrr/mvsepless_resources/resolve/main/mel_band_roformer/mbr_denoise_aggr_aufr33_config.yaml)
 
 ### MDX-Net Models
 A prize-winning model framework that is great for a variety of tasks.
@@ -76,3 +94,7 @@ An all-in-one model capable of separating audio into 4 to 6 stems.
 | htdemucs_6s | Instrument Separation | Capable of separating guitar and piano stems in addition to vocals and drums | Built-in |
 
 </details>
+
+<Aside type="note">
+  New models come out frequently, so this list may not always be up to date. For the latest models and more detailed, community-tested information, check out this [community guide](https://docs.google.com/document/d/17fjNvJzj8ZGSer7c7OFe_CNfUKbAxEh_OBv94ZdRG5c/edit?usp=drivesdk).
+</Aside>

@@ -160,5 +160,14 @@ Applio provides official Docker images for both CPU and GPU (CUDA) deployments.
 
 ## Updating and Uninstalling
 
--   **To update Applio**, we recommend deleting the current Applio folder and reinstalling using your preferred method. Be sure to back up your `audios` and `models` folders first!
--   **To uninstall Applio**, simply delete the Applio folder.
+**To update Applio**, we recommend deleting the current Applio folder and reinstalling using your preferred method, but be sure to back up any desired data first! Here are the most common desired data locations:
+- `assets/audios`: Audio you have uploaded, and the inference results.
+- `logs`: Inference models you have downloaded or trained, plus some other stuff that comes with Applio.
+- `rvc/models/pretraineds/custom`: Any pretrained base models you have downloaded.
+<Steps>
+  1. Move or copy the above folders out of the `Applio` folder, if they contain something you want to keep.
+  2. Delete the entire `Applio` folder, then install the new version.
+  3. Move the above folders back into their correct locations in the new `Applio` folder. Merge folders with the same names, but do not overwrite files that came with both Applio versions. This should mean choosing to "merge" or "write into" folders with the same names, but choosing to "skip" files with the same names.
+</Steps>
+
+**To uninstall Applio**, simply delete the Applio folder.

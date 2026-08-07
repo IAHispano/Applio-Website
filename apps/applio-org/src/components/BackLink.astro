@@ -1,0 +1,29 @@
+---
+interface Props {
+	href?: string;
+	label?: string;
+}
+
+const { href = "/", label = "Back to home" } = Astro.props;
+---
+
+<a
+  href={href}
+  class="group inline-flex px-4 py-2 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-all items-center gap-2 mb-8 text-sm"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="group-hover:-translate-x-1 transition-transform"
+  >
+    <path d="M19 12H5M12 19l-7-7 7-7"></path>
+  </svg>
+  {label}
+</a>

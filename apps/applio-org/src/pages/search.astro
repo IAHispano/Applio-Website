@@ -1,39 +1,17 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import BackLink from "../components/BackLink.astro";
+import GlowBackground from "../components/GlowBackground.astro";
 ---
 
 <Layout>
-  <div class="fixed inset-0 flex justify-center items-center pointer-events-none">
-    <div
-      class="bg-white/5 h-[50vh] w-[50vh] rounded-full blur-3xl"
-    >
-    </div>
-  </div>
+  <GlowBackground />
 
   <div
     class="relative flex flex-col items-center justify-center min-h-[100dvh] px-6 py-16 max-w-4xl mx-auto animate-fade-in"
   >
     <div class="w-full max-w-2xl mb-8 flex justify-start">
-      <a
-        href="/"
-        class="group inline-flex px-4 py-2 bg-neutral-800/80 hover:bg-neutral-700 text-neutral-300 rounded-xl transition-all items-center gap-2 text-sm"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="20"
-          height="20"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          class="group-hover:-translate-x-1 transition-transform"
-        >
-          <path d="M19 12H5M12 19l-7-7 7-7"></path>
-        </svg>
-        Back to home
-      </a>
+      <BackLink />
     </div>
 
     <div class="text-center w-full max-w-2xl">
@@ -41,7 +19,8 @@ import Layout from "../layouts/Layout.astro";
         Search
       </h1>
       <p class="mt-4 text-base text-neutral-300 max-w-xl mx-auto">
-        Quickly find voice conversion models on Google. Enter your search query below to get started.
+        Quickly find voice conversion models on Google. Enter your search query
+        below to get started.
       </p>
     </div>
 
@@ -86,33 +65,28 @@ import Layout from "../layouts/Layout.astro";
         Search Disclaimer & Liability Notice
       </h3>
       <p class="mb-3">
-        This search utility is provided solely as a convenience to simplify your lookup process by redirecting you to external Google search queries. Applio does not host, index, distribute, verify, or control any RVC models, voice files, or external content.
+        This search utility is provided solely as a convenience to simplify your
+        lookup process by redirecting you to external Google search queries.
+        Applio does not host, index, distribute, verify, or control any RVC
+        models, voice files, or external content.
       </p>
       <p class="mb-3">
-        By using this tool, you acknowledge and agree to our <a href="/terms-use" class="text-white underline hover:text-neutral-200">Terms of Use</a>. You bear full and sole responsibility for any models or content you download, train, or process from external sources. You must respect intellectual property, copyrights, and privacy rights of all individuals and entities, and comply with all applicable local laws and regulations governing AI-generated content in your jurisdiction.
+        By using this tool, you acknowledge and agree to our
+        <a href="/terms-use" class="text-white underline hover:text-neutral-200"
+          >Terms of Use</a
+        >. You bear full and sole responsibility for any models or content you
+        download, train, or process from external sources. You must respect
+        intellectual property, copyrights, and privacy rights of all individuals
+        and entities, and comply with all applicable local laws and regulations
+        governing AI-generated content in your jurisdiction.
       </p>
       <p>
-        Applio and its contributors disclaim all liability, direct or indirect, for any external content, downloads, misuse, or any unintended consequences arising from your search or subsequent use of any models.
+        Applio and its contributors disclaim all liability, direct or indirect,
+        for any external content, downloads, misuse, or any unintended
+        consequences arising from your search or subsequent use of any models.
       </p>
     </div>
   </div>
-
-  <style>
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in {
-      animation: fade-in 0.6s ease-out;
-    }
-  </style>
 </Layout>
 
 <script>

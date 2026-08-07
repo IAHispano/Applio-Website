@@ -1,57 +1,61 @@
 ---
 import "@fontsource-variable/syne";
 import { ClientRouter } from "astro:transitions";
+
+const siteUrl = "https://applio.org";
 ---
 
 <!doctype html>
 <html lang="en">
-  <meta />
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-  <meta name="generator" content={Astro.generator} />
-  <meta name="application-name" content="Applio" />
-  <meta
-    name="description"
-    content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
-  />
-  <meta name="theme-color" content="#110F0F" />
-  <meta name="color-scheme" content="dark" />
-  <meta name="msapplication-TileColor" content="#110F0F" />
-  <meta
-    name="apple-mobile-web-app-status-bar-style"
-    content="black-translucent"
-  />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="mobile-web-app-capable" content="yes" />
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="https://applio.org" />
-  <meta name="twitter:creator" content="@IAHispano" />
-  <meta name="twitter:title" content="Applio" />
-  <meta
-    name="twitter:description"
-    content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
-  />
-  <meta name="twitter:image" content="https://applio.org/opengraph-image.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Applio" />
-  <meta property="og:locale" content="en_US" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://applio.org" />
-  <meta property="og:title" content="Applio" />
-  <meta
-    property="og:description"
-    content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
-  />
-  <meta property="og:image" content="https://applio.org/opengraph-image.png" />
-  <title>
-    Applio - A simple, high-quality voice conversion tool focused on simplicity
-    and ease of use.
-  </title>
-  <ClientRouter />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="application-name" content="Applio" />
+    <meta
+      name="description"
+      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
+    />
+    <meta name="theme-color" content="#110F0F" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="msapplication-TileColor" content="#110F0F" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="https://applio.org" />
+    <meta name="twitter:creator" content="@IAHispano" />
+    <meta name="twitter:title" content="Applio" />
+    <meta
+      name="twitter:description"
+      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
+    />
+    <meta name="twitter:image" content="https://applio.org/opengraph-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Applio" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://applio.org" />
+    <meta property="og:title" content="Applio" />
+    <meta
+      property="og:description"
+      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
+    />
+    <meta property="og:image" content="https://applio.org/opengraph-image.png" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl)} />
+    <title>
+      Applio - A simple, high-quality voice conversion tool focused on simplicity
+      and ease of use.
+    </title>
+    <ClientRouter />
+  </head>
 
   <body>
     <slot />
@@ -86,5 +90,70 @@ import { ClientRouter } from "astro:transitions";
   ::-moz-selection {
     background-color: white;
     color: #110f0f;
+  }
+</style>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out both;
+  }
+
+  @keyframes glow {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.6;
+    }
+    50% {
+      transform: scale(1.15);
+      opacity: 1;
+    }
+  }
+
+  .animate-glow {
+    animation: glow 12s ease-in-out infinite;
+  }
+
+  @keyframes bounce-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
+  .animate-bounce-y {
+    animation: bounce-y 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 1.6s ease-in-out infinite;
   }
 </style>

@@ -1,0 +1,18 @@
+---
+interface Props {
+	/** Diameter of the glow, e.g. "70vh". */
+	size?: string;
+}
+
+const { size = "70vh" } = Astro.props;
+---
+
+<div
+  class="fixed inset-0 flex justify-center items-center pointer-events-none"
+  aria-hidden="true"
+>
+  <div
+    class="bg-white/5 rounded-full blur-3xl animate-glow"
+    style={`width: ${size}; height: ${size}`}
+  ></div>
+</div>

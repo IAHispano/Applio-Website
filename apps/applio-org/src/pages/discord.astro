@@ -1,17 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import GlowBackground from "../components/GlowBackground.astro";
+
+const target = "https://discord.gg/wY7gmqTyEV";
 ---
 
-<script>
-    window.location.href = "https://discord.gg/wY7gmqTyEV"
+<script define:vars={{ target }}>
+  window.location.replace(target);
 </script>
+
 <Layout>
-      {/* background glow effect */}
-  <div class="fixed inset-0 flex justify-center items-center">
-    <div
-      class="bg-white/5 h-[50vh] w-[50vh] rounded-full blur-3xl animate-spin"
-    >
-    </div>
+  <GlowBackground />
+  <div class="relative flex flex-col items-center justify-center min-h-[100dvh] px-6 py-16 text-center">
+    <div class="w-10 h-10 mb-6 rounded-full border-2 border-white/15 border-t-white animate-spin"></div>
+    <h1 class="text-2xl font-bold text-white">Taking you to Discord</h1>
+    <p class="mt-3 text-neutral-400 max-w-sm">
+      <a
+        href={target}
+        class="text-white font-medium underline decoration-white/30 hover:decoration-white transition-all duration-200"
+      >
+        Click here
+      </a>
+      to join the Applio community if you are not redirected automatically.
+    </p>
   </div>
-    <p class="mt-auto h-full flex justify-center items-center text-xs text-center">Redirecting...</p>
 </Layout>

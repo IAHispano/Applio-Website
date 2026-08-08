@@ -1,5 +1,4 @@
 ---
-import BackLink from "../components/BackLink.astro";
 import Layout from "./Layout.astro";
 
 interface Props {
@@ -16,11 +15,30 @@ const { frontmatter } = Astro.props;
 
 <Layout>
   <div
-    class="flex flex-col items-start justify-center max-w-4xl mx-auto p-6 md:p-12 pt-6 text-base"
+    class="flex flex-col items-start justify-center max-w-4xl mx-auto px-6 md:px-12 pt-24 pb-24 text-base w-full"
   >
-    <BackLink href="/blog" label="Back to blog" />
+    <a
+      href="/blog"
+      class="group inline-flex px-4 py-2 bg-white/5 border border-white/10 hover:border-white/25 text-neutral-300 hover:text-white rounded-full transition-all items-center gap-2 mb-8 text-sm"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="group-hover:-translate-x-1 transition-transform"
+      >
+        <path d="M19 12H5M12 19l-7-7 7-7"></path>
+      </svg>
+      Back to blog
+    </a>
 
-    <div class="w-full mb-10 bg-neutral-800/50 rounded-xl p-8 backdrop-blur-sm">
+    <div class="w-full mb-10 border border-white/10 bg-white/5 rounded-2xl p-8 backdrop-blur-sm">
       <div class="flex flex-col gap-6">
         <div class="flex items-center justify-between">
           <span
@@ -68,7 +86,7 @@ const { frontmatter } = Astro.props;
       </div>
     </div>
 
-    <section class="space-y-8 text-neutral-300">
+    <section class="space-y-8 text-neutral-300 w-full">
       <slot />
     </section>
   </div>

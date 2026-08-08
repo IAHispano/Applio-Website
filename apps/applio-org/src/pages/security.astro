@@ -1,0 +1,150 @@
+---
+import GlowBackground from "../components/GlowBackground.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <GlowBackground />
+
+  <div
+    class="relative flex flex-col items-start max-w-4xl mx-auto px-6 md:px-12 pt-24 pb-24 text-sm animate-fade-in w-full"
+  >
+    <span
+      class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-neutral-300 backdrop-blur-sm"
+    >
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      Security
+    </span>
+
+    <h1 class="mt-6 text-4xl md:text-5xl font-bold text-white tracking-tight">
+      Security policy
+    </h1>
+    <p class="mt-4 max-w-2xl text-lg text-neutral-300">
+      The security of our users and the trust of our community are taken
+      seriously. This page explains how to report a vulnerability and what you
+      can expect from us in return.
+    </p>
+
+    <section class="mt-12 w-full">
+      <h2 class="text-2xl font-semibold text-white">
+        Reporting a vulnerability
+      </h2>
+      <p class="mt-3 text-neutral-300 text-sm leading-relaxed max-w-3xl">
+        If you believe you have found a security vulnerability in Applio, its
+        website, or its documentation, please report it privately through
+        GitHub's private vulnerability reporting. Do
+        <strong class="text-white">not</strong> open a public issue or share
+        details in public channels before the issue has been addressed.
+      </p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        <a
+          href="https://github.com/IAHispano/Applio/security/advisories/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
+        >
+          Report a vulnerability
+        </a>
+        <a
+          href="https://github.com/IAHispano/Applio-Website/security/advisories/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
+        >
+          Report a website issue
+        </a>
+      </div>
+
+      <h3 class="mt-10 text-lg font-semibold text-white">
+        What to include in your report
+      </h3>
+      <p class="mt-2 text-neutral-300 text-sm leading-relaxed max-w-3xl">
+        The more context you provide, the faster we can assess the issue. Helpful
+        details include:
+      </p>
+      <ul class="mt-4 space-y-2 text-neutral-300 text-sm max-w-3xl list-disc list-outside ml-4">
+        <li>The Applio version and operating system you are using.</li>
+        <li>A description of the vulnerability and the steps to reproduce it.</li>
+        <li>The potential impact (e.g. data exposure, privilege escalation).</li>
+        <li>Any suggested fix or mitigation, if you have one.</li>
+      </ul>
+
+      <h3 class="mt-10 text-lg font-semibold text-white">
+        What happens next
+      </h3>
+      <ul class="mt-4 space-y-2 text-neutral-300 text-sm max-w-3xl list-disc list-outside ml-4">
+        <li>
+          Your report is acknowledged by a maintainer, usually within a few
+          days.
+        </li>
+        <li>
+          We investigate the issue and work on a fix, keeping you informed of
+          the progress.
+        </li>
+        <li>
+          Once fixed, a patch is released and the vulnerability is disclosed
+          responsibly, giving credit to the reporter when appropriate.
+        </li>
+      </ul>
+    </section>
+
+    <section class="mt-12 w-full">
+      <h2 class="text-2xl font-semibold text-white">
+        Our security posture
+      </h2>
+      <div class="mt-6 grid gap-6 md:grid-cols-2">
+        <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl">
+          <h3 class="text-lg font-semibold text-white">Local-first by design</h3>
+          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
+            Applio runs entirely on your machine. Your audio and models never
+            leave your device unless you choose to share them — there is no
+            account, no telemetry, and no cloud dependency for core features.
+          </p>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl">
+          <h3 class="text-lg font-semibold text-white">Open and auditable</h3>
+          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
+            All source code is public and MIT-licensed, so anyone can review it.
+            Dependencies are pinned and updated through automated workflows.
+          </p>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl">
+          <h3 class="text-lg font-semibold text-white">Use trusted models</h3>
+          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
+            Your data stays on your machine, but models come from external
+            sources. Only use models from sources you trust, verify the
+            integrity of files you download, and be careful with models shared
+            in public communities.
+          </p>
+        </div>
+        <div class="p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl">
+          <h3 class="text-lg font-semibold text-white">Keep Applio updated</h3>
+          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
+            The easiest way to stay secure is to run the latest release. Fixes
+            and improvements are released through our regular update channels.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="mt-12 w-full p-8 bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl">
+      <p class="text-neutral-300 text-sm leading-relaxed">
+        As with all open source software, Applio is provided "as is" without
+        warranty. For details on your rights and responsibilities, see the
+        <a href="/terms-use" class="text-white underline decoration-white/30 hover:decoration-white transition-all duration-200"
+          >Terms of Use</a
+        >, the
+        <a
+          href="https://github.com/IAHispano/Applio/blob/main/LICENSE"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-white underline decoration-white/30 hover:decoration-white transition-all duration-200"
+          >MIT License</a
+        >, or reach out on
+        <a href="/discord" class="text-white underline decoration-white/30 hover:decoration-white transition-all duration-200"
+          >Discord</a
+        >.
+      </p>
+    </div>
+  </div>
+</Layout>

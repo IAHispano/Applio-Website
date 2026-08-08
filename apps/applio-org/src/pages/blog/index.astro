@@ -1,5 +1,4 @@
 ---
-import BackLink from "../../components/BackLink.astro";
 import Layout from "../../layouts/Layout.astro";
 
 interface BlogPost {
@@ -31,17 +30,22 @@ const sortedPosts = Object.entries(posts)
 ---
 
 <Layout>
-  <div class="flex flex-col items-start justify-center max-w-4xl mx-auto p-6 md:p-12 pt-6 text-base">
-    <BackLink />
+  <div class="flex flex-col items-start justify-center max-w-4xl mx-auto px-6 md:px-12 pt-24 pb-24 text-base w-full">
+    <span
+      class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-neutral-300 backdrop-blur-sm"
+    >
+      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+      Blog
+    </span>
 
-    <h1 class="text-4xl font-bold text-white tracking-tight mb-8">Blog</h1>
+    <h1 class="mt-6 text-4xl font-bold text-white tracking-tight mb-8">News &amp; updates</h1>
 
-    <div class="grid gap-6">
+    <div class="grid gap-6 w-full">
       {
         sortedPosts.map((post) => (
           <a
             href={post.url}
-            class="block p-8 bg-neutral-800/50 backdrop-blur-sm rounded-xl hover:bg-neutral-700 transition-all duration-300"
+            class="group block p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
           >
             <div class="flex items-start justify-between gap-4">
               <div>
@@ -56,7 +60,16 @@ const sortedPosts = Object.entries(posts)
                     {post.frontmatter.tag}
                   </span>
                   <span class="text-neutral-400 text-sm">
-                    {new Date(post.frontmatter.date).toLocaleDateString()}
+                    {
+                      new Date(post.frontmatter.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        },
+                      )
+                    }
                   </span>
                 </div>
               </div>

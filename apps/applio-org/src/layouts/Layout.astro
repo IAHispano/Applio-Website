@@ -1,8 +1,12 @@
 ---
 import "@fontsource-variable/syne";
 import { ClientRouter } from "astro:transitions";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
 
 const siteUrl = "https://applio.org";
+const description =
+	"Applio is a free, open-source, AI-driven voice conversion suite. Create AI covers, train custom voice models, and convert voices in real time — on Windows, Linux, macOS or in the cloud.";
 ---
 
 <!doctype html>
@@ -10,13 +14,10 @@ const siteUrl = "https://applio.org";
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
     <meta name="application-name" content="Applio" />
-    <meta
-      name="description"
-      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
-    />
+    <meta name="description" content={description} />
     <meta name="theme-color" content="#110F0F" />
     <meta name="color-scheme" content="dark" />
     <meta name="msapplication-TileColor" content="#110F0F" />
@@ -28,37 +29,69 @@ const siteUrl = "https://applio.org";
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="robots" content="index, follow" />
     <meta name="googlebot" content="index, follow" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="https://applio.org" />
-    <meta name="twitter:creator" content="@IAHispano" />
-    <meta name="twitter:title" content="Applio" />
-    <meta
-      name="twitter:description"
-      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
+
+    <meta property="og:image"
+      content="https://applio.org/opengraph-image.png"
     />
-    <meta name="twitter:image" content="https://applio.org/opengraph-image.png" />
+
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="Applio" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://applio.org" />
-    <meta property="og:title" content="Applio" />
-    <meta
-      property="og:description"
-      content="A simple, high-quality voice conversion tool focused on simplicity and ease of use."
-    />
+    <meta property="og:title" content="Applio — Open source AI voice conversion" />
+    <meta property="og:description" content={description} />
     <meta property="og:image" content="https://applio.org/opengraph-image.png" />
+
     <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl)} />
     <title>
-      Applio - A simple, high-quality voice conversion tool focused on simplicity
-      and ease of use.
+      Applio — Open source, free AI voice conversion tool
     </title>
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: "Applio",
+        url: "https://applio.org",
+        applicationCategory: "MultimediaApplication",
+        operatingSystem: "Windows, Linux, macOS, Cloud",
+        license: "https://github.com/IAHispano/Applio/blob/main/LICENSE",
+        description,
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        author: {
+          "@type": "Organization",
+          name: "IAHispano",
+          url: "https://github.com/IAHispano",
+        },
+		sameAs: [
+			"https://github.com/IAHispano/Applio",
+			"https://discord.gg/wY7gmqTyEV",
+		],
+      })}
+    />
+
     <ClientRouter />
   </head>
 
   <body>
-    <slot />
+    <a
+      href="#main-content"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-black"
+    >
+      Skip to content
+    </a>
+    <Header />
+    <div id="main-content">
+      <slot />
+    </div>
+    <Footer />
   </body>
 </html>
 
@@ -155,5 +188,27 @@ const siteUrl = "https://applio.org";
 
   .animate-pulse-soft {
     animation: pulse-soft 1.6s ease-in-out infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-marquee,
+    .animate-glow,
+    .animate-bounce-y,
+    .animate-pulse-soft {
+      animation: none;
+    }
   }
 </style>

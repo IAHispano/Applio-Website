@@ -1,113 +1,201 @@
 ---
 import GlowBackground from "../components/GlowBackground.astro";
+import HeroPreview from "../components/HeroPreview.astro";
 import Layout from "../layouts/Layout.astro";
+
+interface BlogPost {
+	title: string;
+	description: string;
+	date: string;
+	tag: string;
+}
+
+const posts = import.meta.glob("./blog/*.astro", { eager: true });
+
+const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
+	.filter(([path]) => path !== "./blog/index.astro")
+	.map(([path, module]) => {
+		const { frontmatter } = module as { frontmatter: BlogPost };
+		return {
+			...frontmatter,
+			url: path.replace("./blog/", "/blog/").replace(".astro", ""),
+		};
+	})
+	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	.slice(0, 2);
 ---
 
 <Layout>
   <GlowBackground />
 
-  {/* hero */}
-  <section
-    class="relative flex flex-col items-center justify-center min-h-[100dvh] px-6 py-16 text-center"
+<section
+    class="relative flex flex-col items-center justify-center min-h-[calc(100dvh-4rem)] px-6 py-16 text-center"
   >
-    <span
-      class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-neutral-300 backdrop-blur-sm animate-fade-in"
+    <div
+      class="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black,transparent)]"
+      aria-hidden="true"
+    ></div>
+    <a
+      href="/playground"
+      class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur transition-all duration-200 hover:border-white/25 hover:text-white animate-fade-in"
     >
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-      Open source &middot; MIT licensed &middot; Free forever
-    </span>
+      <span class="relative flex h-1.5 w-1.5">
+<span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"
+        ></span>
+        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-white"></span>
+      </span>
+      Try Applio instantly &mdash; live in your browser
+      <span
+        class="text-neutral-500 transition-transform duration-200 group-hover:translate-x-0.5"
+        >&rarr;</span
+      >
+    </a>
 
-    <h1
-      class="mt-8 text-6xl md:text-7xl xl:text-8xl font-bold text-white tracking-tight animate-fade-in"
+<h1
+      class="mt-8 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl animate-fade-in"
     >
-      Applio
+      Turn voice into
+      <span
+        class="block bg-gradient-to-r from-white via-white/70 to-white/35 bg-clip-text text-transparent"
+        >anything you can</span
+      >
+      <span
+        class="block bg-gradient-to-r from-white via-white/70 to-white/35 bg-clip-text text-transparent"
+        >imagine.</span
+      >
     </h1>
 
-    <p class="mt-6 mb-12 max-w-2xl text-lg text-neutral-200 animate-fade-in">
-      A simple, high-quality voice conversion tool focused on ease of use and
-      performance. Create AI covers, train custom voice models, and convert
-      voices in real time.
+    <p
+      class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-300 animate-fade-in"
+    >
+      Applio is a complete, open-source voice conversion suite. Create AI
+      covers, train custom voice models, and convert voices in real time &mdash;
+      on your machine or in the cloud.
     </p>
 
-    <div class="flex flex-wrap gap-4 items-center justify-center animate-fade-in">
+    <div
+      class="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-in"
+    >
       <a
         href="https://docs.applio.org/getting-started/installation/"
         target="_blank"
-        class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
+        rel="noopener noreferrer"
+        class="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3 text-sm font-semibold text-black shadow-[0_8px_30px_rgba(255,255,255,0.12)] transition-all duration-300 hover:bg-neutral-200 hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)]"
       >
-        Download
+        <svg
+          class="h-4 w-4 transition-transform duration-300 group-hover:translate-y-0.5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download for free
       </a>
 
       <a
         href="/playground"
-        class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
+        class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium text-white backdrop-blur transition-all duration-300 hover:border-white/30 hover:bg-white/10"
       >
+        <svg
+          class="h-4 w-4"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <polygon points="5 3 19 12 5 21 5 3"></polygon>
+        </svg>
         Try the playground
       </a>
 
       <a
         href="https://github.com/IAHispano/Applio"
         target="_blank"
+        rel="noopener noreferrer"
         aria-label="Applio on GitHub"
-        class="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
+        class="flex h-[46px] w-[46px] items-center justify-center rounded-full border border-white/15 bg-white/5 text-neutral-300 backdrop-blur transition-all duration-300 hover:border-white/30 hover:bg-white/10 hover:text-white"
       >
         <svg
-          class="w-5 h-5"
+          class="h-5 w-5"
           viewBox="0 0 24 24"
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
         >
-          <path
-            d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.56 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z"
-          />
-        </svg>
-      </a>
-
-      <a
-        href="/discord"
-        target="_blank"
-        aria-label="Join the Applio Discord server"
-        class="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 30 23"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M25.1716 1.88417C23.2874 1.00583 21.2474 0.368333 19.1224 0C19.085 0.000532248 19.0494 0.0158083 19.0232 0.0425003C18.7682 0.51 18.4707 1.11917 18.2724 1.58667C16.0185 1.24688 13.7263 1.24688 11.4724 1.58667C11.2741 1.105 10.9766 0.51 10.7074 0.0425003C10.6932 0.014167 10.6507 0 10.6082 0C8.48323 0.368333 6.4574 1.00583 4.55907 1.88417C4.5449 1.88417 4.53073 1.89833 4.51657 1.9125C0.663233 7.67833 -0.399268 13.2883 0.124899 18.8417C0.124899 18.87 0.139066 18.8983 0.167399 18.9125C2.7174 20.7825 5.16823 21.9158 7.59073 22.6667C7.63323 22.6808 7.67573 22.6667 7.6899 22.6383C8.25657 21.8592 8.76657 21.0375 9.20573 20.1733C9.23407 20.1167 9.20573 20.06 9.14907 20.0458C8.34157 19.7342 7.57657 19.3658 6.82573 18.9408C6.76907 18.9125 6.76907 18.8275 6.81157 18.785C6.9674 18.6717 7.12323 18.5442 7.27907 18.4308C7.3074 18.4025 7.3499 18.4025 7.37823 18.4167C12.2516 20.6408 17.5074 20.6408 22.3241 18.4167C22.3524 18.4025 22.3949 18.4025 22.4232 18.4308C22.5791 18.5583 22.7349 18.6717 22.8907 18.7992C22.9474 18.8417 22.9474 18.9267 22.8766 18.955C22.1399 19.3942 21.3607 19.7483 20.5532 20.06C20.4966 20.0742 20.4824 20.145 20.4966 20.1875C20.9499 21.0517 21.4599 21.8733 22.0124 22.6525C22.0549 22.6667 22.0974 22.6808 22.1399 22.6667C24.5766 21.9158 27.0274 20.7825 29.5774 18.9125C29.6057 18.8983 29.6199 18.87 29.6199 18.8417C30.2432 12.4242 28.5857 6.85667 25.2282 1.9125C25.2141 1.89833 25.1999 1.88417 25.1716 1.88417ZM9.9424 15.4558C8.48323 15.4558 7.2649 14.11 7.2649 12.4525C7.2649 10.795 8.4549 9.44917 9.9424 9.44917C11.4441 9.44917 12.6341 10.8092 12.6199 12.4525C12.6199 14.11 11.4299 15.4558 9.9424 15.4558ZM19.8166 15.4558C18.3574 15.4558 17.1391 14.11 17.1391 12.4525C17.1391 10.795 18.3291 9.44917 19.8166 9.44917C21.3182 9.44917 22.5082 10.8092 22.4941 12.4525C22.4941 14.11 21.3182 15.4558 19.8166 15.4558Z"></path>
-        </svg>
-      </a>
-
-      <a
-        href="/donate"
-        target="_blank"
-        aria-label="Support Applio on Ko-fi"
-        class="flex items-center justify-center w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm hover:bg-white/20 transition-all duration-300"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 26 23"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M9.52545 4.69992e-05C7.29182 -0.0114129 5.11727 2.07428 6.11 4.66421H2.36364C1.73676 4.66421 1.13556 4.90569 0.692293 5.33552C0.249025 5.76534 0 6.34832 0 6.95619V9.24816C0 9.55209 0.124513 9.84358 0.346146 10.0585C0.56778 10.2734 0.86838 10.3941 1.18182 10.3941H11.8182V6.95619H14.1818V10.3941H24.8182C25.1316 10.3941 25.4322 10.2734 25.6539 10.0585C25.8755 9.84358 26 9.55209 26 9.24816V6.95619C26 6.34832 25.751 5.76534 25.3077 5.33552C24.8644 4.90569 24.2632 4.66421 23.6364 4.66421H19.89C21.2727 0.916837 16.0727 -1.73039 13.6736 1.50129L13 2.37224L12.3264 1.47837C11.5818 0.458442 10.5536 0.0115069 9.52545 4.69992e-05ZM9.45455 2.37224C10.5064 2.37224 11.0382 3.60991 10.2936 4.33188C9.54909 5.05385 8.27273 4.53815 8.27273 3.51823C8.27273 3.21429 8.39724 2.92281 8.61887 2.70789C8.84051 2.49298 9.14111 2.37224 9.45455 2.37224ZM16.5455 2.37224C17.5973 2.37224 18.1291 3.60991 17.3845 4.33188C16.64 5.05385 15.3636 4.53815 15.3636 3.51823C15.3636 3.21429 15.4881 2.92281 15.7098 2.70789C15.9314 2.49298 16.232 2.37224 16.5455 2.37224ZM1.18182 11.5401V20.708C1.18182 21.3159 1.43084 21.8989 1.87411 22.3287C2.31738 22.7585 2.91858 23 3.54545 23H22.4545C23.0814 23 23.6826 22.7585 24.1259 22.3287C24.5692 21.8989 24.8182 21.3159 24.8182 20.708V11.5401H14.1818V20.708H11.8182V11.5401H1.18182Z"
-            fill="#FFFFFF"
-          ></path>
+          <path d="M12 .5C5.37.5 0 5.87 0 12.5c0 5.3 3.44 9.8 8.21 11.39.6.11.82-.26.82-.58 0-.29-.01-1.04-.02-2.04-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.49.99.11-.78.42-1.31.76-1.61-2.67-.3-5.47-1.34-5.47-5.94 0-1.31.47-2.39 1.24-3.23-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.56 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.92 1.23 3.23 0 4.61-2.8 5.63-5.48 5.93.43.37.81 1.1.81 2.22 0 1.6-.01 2.88-.01 3.27 0 .32.21.7.82.58A12 12 0 0 0 24 12.5C24 5.87 18.63.5 12 .5Z" />
         </svg>
       </a>
     </div>
 
-    <p class="mt-6 text-sm text-neutral-400">
-      Available on Windows, Linux, macOS & supported cloud platforms.
+    <div
+      class="mt-10 flex flex-wrap items-center justify-center gap-2.5 animate-fade-in"
+    >
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
+      >
+        <svg
+          class="h-3.5 w-3.5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+        Open source
+      </span>
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
+      >
+        <svg
+          class="h-3.5 w-3.5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+        MIT licensed
+      </span>
+      <span
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
+      >
+        <svg
+          class="h-3.5 w-3.5 text-white"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M20 6 9 17l-5-5"></path>
+        </svg>
+        No account needed
+      </span>
+    </div>
+
+<p class="mt-6 text-sm text-neutral-400 animate-fade-in">
+      Runs on Windows &middot; macOS &middot; Linux &middot; Colab &middot;
+      Kaggle
     </p>
+
+    <HeroPreview />
 
     <a
       href="#features"
       aria-label="Scroll to features"
-      class="absolute bottom-8 p-2 text-neutral-500 hover:text-white transition-colors duration-200 animate-bounce-y"
+      class="absolute bottom-8 hidden p-2 text-neutral-500 hover:text-white transition-colors duration-200 animate-bounce-y md:block"
     >
       <svg
         class="w-6 h-6"
@@ -552,6 +640,294 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </section>
 
+  {/* open source */}
+  <section id="open-source" class="relative px-6 py-24">
+    <div class="max-w-6xl mx-auto">
+      <p class="text-sm text-neutral-400 uppercase tracking-widest">Open source</p>
+      <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
+        Built in the open, free for everyone
+      </h2>
+      <p class="mt-4 max-w-2xl text-lg text-neutral-300">
+        Applio is a community-driven project with everything public: source
+        code, roadmap, issues, and releases. No accounts, no paywalls, no
+        telemetry — just code you can read, modify, and trust.
+      </p>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl"
+        >
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20.91 11.12a1 1 0 0 0-1.59-.73l-4.44 3.43-1.63-5.19a1 1 0 0 0-1.84-.17L8.6 12.16H4.6a1 1 0 0 0 0 2h4.79a1 1 0 0 0 .95-.68l1.03-3.27 1.63 5.19a1 1 0 0 0 1.84.17l1.63-5.19.6.46a1 1 0 0 0 1.03.73H21a1 1 0 0 0-.09-1.9Z"></path>
+            </svg>
+          </div>
+          <h3 class="mt-5 text-xl font-semibold text-white">MIT licensed</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-300">
+            Use, modify, and redistribute Applio freely — for personal projects,
+            research, or commercial work. Free forever, by design.
+          </p>
+        </div>
+
+        <div
+          class="p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl"
+        >
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="mt-5 text-xl font-semibold text-white">Community driven</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-300">
+            Maintained by contributors around the world. Report bugs, request
+            features, or contribute code — every change is public and reviewed.
+          </p>
+        </div>
+
+        <div
+          class="p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl"
+        >
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white">
+            <svg
+              class="w-5 h-5"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3 class="mt-5 text-xl font-semibold text-white">Transparent by default</h3>
+          <p class="mt-2 text-sm leading-relaxed text-neutral-300">
+            No data collection and no accounts required. Everything runs locally,
+            and the full development history is open for anyone to audit.
+          </p>
+        </div>
+      </div>
+
+      {/* live repository stats */}
+      <div
+        id="repo-stats"
+        class="mt-12 flex flex-wrap items-center justify-center gap-3"
+        hidden
+      >
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm"
+        >
+          <svg
+            class="w-4 h-4 text-amber-400"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+          </svg>
+          <b data-stat="stars" class="tabular-nums text-white">…</b>
+          GitHub stars
+        </span>
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm"
+        >
+          <svg
+            class="w-4 h-4 text-white"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <circle cx="12" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <circle cx="18" cy="6" r="3"></circle>
+            <path d="M18 9v2a2 2 0 0 1-2 2h-4a2 2 0 0 0-2 2v2"></path>
+            <line x1="12" y1="6" x2="12" y2="10"></line>
+          </svg>
+          <b data-stat="forks" class="tabular-nums text-white">0</b>
+          forks
+        </span>
+        <span
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm"
+        >
+          <svg
+            class="w-4 h-4 text-white"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.73.02-1.01.07C15.74 13.58 16 14.29 16 15.5V19h7v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+          </svg>
+          <b data-stat="contributors" class="tabular-nums text-white">0</b>
+          contributors
+        </span>
+        <a
+          href="https://github.com/IAHispano/Applio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm transition-all duration-200 hover:border-white/30 hover:text-white"
+        >
+          View the repository
+          <svg
+            class="w-3.5 h-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M7 17 17 7"></path>
+            <path d="M7 7h10v10"></path>
+          </svg>
+        </a>
+      </div>
+
+      {/* contributors */}
+      <div
+        id="contributors"
+        class="mt-16 flex flex-col items-center gap-6"
+        style="display: none"
+      >
+        <p class="text-sm text-neutral-400 uppercase tracking-widest">
+          Contributors
+        </p>
+        <h3 class="text-2xl font-bold text-white md:text-3xl">
+          Built by <span id="contributors-count" class="tabular-nums">…</span>
+          amazing people
+        </h3>
+        <div
+          id="contributor-avatars"
+          class="mt-2 flex max-w-3xl flex-wrap items-center justify-center gap-2"
+        ></div>
+        <p class="text-center text-sm text-neutral-500">
+          Thank you to everyone who has helped shape Applio. Want to join them?
+        </p>
+      </div>
+
+      <div class="mt-10 flex flex-wrap gap-4 items-center justify-center">
+        <a
+          href="https://github.com/IAHispano/Applio/blob/main/CONTRIBUTING.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
+        >
+          Contribute on GitHub
+        </a>
+        <a
+          href="https://github.com/IAHispano/Applio/issues"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
+        >
+          Report an issue
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* blog */}
+  <section id="blog" class="relative px-6 py-24">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between gap-4 flex-wrap">
+        <div>
+          <p class="text-sm text-neutral-400 uppercase tracking-widest">News</p>
+          <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
+            Latest from the blog
+          </h2>
+        </div>
+        <a
+          href="/blog"
+          class="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
+        >
+          View all posts
+          <svg
+            class="w-4 h-4"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+
+      <div class="mt-12 grid gap-6 md:grid-cols-2">
+        {
+          latestPosts.map((post) => (
+            <a
+              href={post.url}
+              class="group block p-8 border border-white/10 bg-white/5 backdrop-blur-sm rounded-2xl hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+            >
+              <div class="flex items-center gap-3">
+                <span
+                  class="px-4 py-1.5 bg-white/10 text-white rounded-full text-xs font-medium"
+                >
+                  {post.tag}
+                </span>
+                <span class="text-neutral-400 text-xs">
+                  {new Date(post.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+              <h3 class="mt-5 text-xl font-semibold text-white group-hover:text-neutral-100">
+                {post.title}
+              </h3>
+              <p class="mt-2 text-sm leading-relaxed text-neutral-300">
+                {post.description}
+              </p>
+              <span
+                class="mt-5 inline-flex items-center gap-2 text-sm text-white/70 transition-all duration-300 group-hover:gap-3 group-hover:text-white"
+              >
+                Read more
+                <svg
+                  class="w-4 h-4"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="m12 5 7 7-7 7"></path>
+                </svg>
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   {/* call to action */}
   <section class="relative px-6 py-24">
     <div class="max-w-3xl mx-auto text-center">
@@ -580,24 +956,132 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
   </section>
-
-  {/* footer */}
-  <footer class="relative border-t border-white/10 px-6 py-12">
-    <div
-      class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-6 text-sm text-neutral-400 flex-wrap justify-center md:justify-between"
-    >
-      <p class="text-neutral-500 text-xs">
-        © {new Date().getFullYear()} Applio · MIT licensed · Made for the
-        community
-      </p>
-      <div class="flex gap-6 justify-center items-center flex-wrap">
-        <a href="/terms-use" class="hover:text-white transition-colors duration-200">Terms Of Use</a>
-        <a href="https://docs.applio.org" target="_blank" class="hover:text-white transition-colors duration-200">Documentation</a>
-        <a href="/playground" class="hover:text-white transition-colors duration-200">Playground</a>
-        <a href="/search" class="hover:text-white transition-colors duration-200">Search</a>
-        <a href="/blog" class="hover:text-white transition-colors duration-200">Blog</a>
-        <a href="https://github.com/IAHispano/Applio" target="_blank" class="hover:text-white transition-colors duration-200">GitHub</a>
-      </div>
-    </div>
-  </footer>
 </Layout>
+
+<script>
+	function formatCount(n: number) {
+		return new Intl.NumberFormat("en", {
+			notation: "compact",
+			maximumFractionDigits: 1,
+		}).format(n);
+	}
+
+	async function loadRepositoryStats() {
+		const container = document.getElementById("repo-stats");
+		if (!container) return;
+
+		try {
+			const repoRes = await fetch(
+				"https://api.github.com/repos/IAHispano/Applio",
+			);
+			if (!repoRes.ok) throw new Error("Failed to load repository data");
+
+			const repo = (await repoRes.json()) as {
+				stargazers_count?: number;
+				forks_count?: number;
+			};
+			if (typeof repo.stargazers_count !== "number") {
+				throw new Error("Missing repository data");
+			}
+
+			const starsEl = container.querySelector('[data-stat="stars"]');
+			if (starsEl) {
+				starsEl.textContent = formatCount(repo.stargazers_count);
+			}
+
+			const forksEl = container.querySelector('[data-stat="forks"]');
+			if (forksEl && typeof repo.forks_count === "number") {
+				forksEl.textContent = formatCount(repo.forks_count);
+			}
+
+			try {
+				const contribRes = await fetch(
+					"https://api.github.com/repos/IAHispano/Applio/contributors?per_page=1",
+				);
+				const link = contribRes.headers.get("link") || "";
+				const match = link.match(/page=(\d+)>;\s*rel="last"/);
+				if (match) {
+					const contribEl = container.querySelector(
+						'[data-stat="contributors"]',
+					);
+					if (contribEl) {
+						contribEl.textContent = formatCount(Number(match[1]));
+					}
+				}
+			} catch {
+				// contributors count is optional; stars still show
+			}
+
+			container.hidden = false;
+		} catch {
+			container.hidden = true;
+		}
+	}
+
+	async function loadContributors() {
+		const container = document.getElementById("contributors");
+		const avatarsEl = document.getElementById("contributor-avatars");
+		const countEl = document.getElementById("contributors-count");
+		if (!container || !avatarsEl || !countEl) return;
+
+		try {
+			const contributors: {
+				login?: string | null;
+				avatar_url?: string;
+				html_url?: string;
+			}[] = [];
+			let page = 1;
+			while (true) {
+				const res = await fetch(
+					`https://api.github.com/repos/IAHispano/Applio/contributors?per_page=100&page=${page}`,
+				);
+				if (!res.ok) throw new Error("Failed to load contributors");
+
+				const batch = (await res.json()) as typeof contributors;
+				if (!Array.isArray(batch) || batch.length === 0) break;
+				contributors.push(...batch);
+
+				const link = res.headers.get("link") || "";
+				if (!link.includes('rel="next"') || page >= 10) break;
+				page += 1;
+			}
+
+			const people = contributors.filter((c) => c.login);
+			if (people.length === 0) return;
+
+			countEl.textContent = String(people.length);
+
+			const frag = document.createDocumentFragment();
+			for (const c of people) {
+				const a = document.createElement("a");
+				a.href = c.html_url || `https://github.com/${c.login}`;
+				a.target = "_blank";
+				a.rel = "noopener noreferrer";
+				a.title = c.login ?? "Contributor";
+				a.className =
+					"transition-transform duration-200 hover:-translate-y-0.5";
+
+				const img = document.createElement("img");
+				img.src = `${c.avatar_url ?? ""}&s=80`;
+				img.alt = c.login ?? "Contributor";
+				img.width = 40;
+				img.height = 40;
+				img.loading = "lazy";
+				img.className =
+					"h-10 w-10 rounded-full border-2 border-[#161414] bg-white/10 object-cover transition-all duration-200 hover:border-white/50";
+
+				a.appendChild(img);
+				frag.appendChild(a);
+			}
+			avatarsEl.appendChild(frag);
+			container.style.display = "flex";
+		} catch {
+			// keep the section hidden if the API is unreachable
+		}
+	}
+
+	document.addEventListener("astro:page-load", () => {
+		loadRepositoryStats();
+		loadContributors();
+	});
+</script>

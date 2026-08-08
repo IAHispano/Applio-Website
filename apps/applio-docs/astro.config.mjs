@@ -5,6 +5,7 @@ import starlightThemeNext from "starlight-theme-next";
 
 // https://astro.build/config
 export default defineConfig({
+	site: "https://docs.applio.org",
 	integrations: [
 		starlight({
 			plugins: [starlightThemeNext()],
@@ -15,6 +16,16 @@ export default defineConfig({
 					icon: "github",
 					label: "GitHub",
 					href: "https://github.com/iahispano/applio",
+				},
+				{
+					icon: "discord",
+					label: "Discord",
+					href: "https://discord.gg/wY7gmqTyEV",
+				},
+				{
+					icon: "star",
+					label: "Sponsor",
+					href: "https://ko-fi.com/iahispano",
 				},
 			],
 			sidebar: [
@@ -55,13 +66,6 @@ export default defineConfig({
 					tag: "meta",
 					attrs: {
 						property: "og:image",
-						content: "/opengraph-image.png",
-					},
-				},
-				{
-					tag: "meta",
-					attrs: {
-						name: "twitter:image",
 						content: "/opengraph-image.png",
 					},
 				},

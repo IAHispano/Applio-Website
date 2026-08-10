@@ -29,6 +29,51 @@ You can run UVR on your local computer or on Google Colab.
   To use RoFormer models, you'll need the **Roformer patch**, listed as "UVR Roformer Version Patch Only" (or "Full Install" if you haven't installed UVR yet).
 </Aside>
 
+## AMD GPU Troubleshooting for UVR
+
+Some Linux setups using AMD GPUs can fail when the UVR plugin is installed because its dependencies may pull in `onnxruntime-gpu`, which is compiled for NVIDIA CUDA. On an AMD system, that can lead to startup crashes when Applio tries to load the plugin.
+
+<Aside type="caution" title="Typical error">
+  A common failure looks like this:
+
+  ```text
+  ImportError: libcudart.so.13: cannot open shared object file: No such file or directory
+  ```
+
+  This usually means the plugin imported the NVIDIA CUDA build of ONNX Runtime, but your system does not have the required CUDA runtime libraries.
+</Aside>
+
+### Fix
+
+<Steps>
+1.  From your Applio project root...
+
+    Remove the CUDA-based ONNX Runtime packages from the Applio environment:
+    ```bash
+    . .venv/bin/activate
+    pip uninstall onnxruntime onnxruntime-gpu
+    ```
+2.  Install the CPU build or the ROCm build instead, depending on your setup:
+    ```bash
+    pip install onnxruntime
+    ```
+    Or, for AMD ROCm support:
+    ```bash
+    pip install onnxruntime-rocm
+    ```
+3.  If you then see an error about an executable stack, clear the problematic ELF flag with `patchelf`:
+    ```bash
+    sudo apt install patchelf
+    patchelf --clear-execstack .venv/lib/python3.12/site-packages/onnxruntime/capi/*.so
+    ```
+4.  Verify the package loads correctly:
+    ```bash
+    python -c "import onnxruntime; print('Success! Version:', onnxruntime.__version__)"
+    ```
+</Steps>
+
+If Applio still fails to start after switching packages, double-check that your ROCm stack is installed correctly and that the plugin is loading from the intended virtual environment.
+
 ## How to Use UVR
 
 <Steps>

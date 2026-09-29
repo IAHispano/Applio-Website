@@ -9,6 +9,7 @@ interface NavItem {
 
 const nav: NavItem[] = [
 	{ label: "Features", href: "/#features" },
+	{ label: "Download", href: "/app/download" },
 	{ label: "Documentation", href: "https://docs.applio.org", external: true },
 	{ label: "Blog", href: "/blog" },
 	{ label: "Community", href: "/community" },
@@ -16,8 +17,9 @@ const nav: NavItem[] = [
 
 function isActive(item: NavItem) {
 	if (item.external) return false;
+	if (item.href.includes("#")) return false;
 	const target = item.href.replace(/#.*$/, "");
-	if (target === "/") return pathname === "/";
+	if (!target || target === "/") return pathname === "/";
 	return pathname === target || pathname.startsWith(`${target}/`);
 }
 ---
@@ -92,9 +94,7 @@ function isActive(item: NavItem) {
       </a>
 
       <a
-        href="https://docs.applio.org/getting-started/installation/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/app/download"
         class="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-neutral-200 sm:inline-flex"
       >
         Download
@@ -198,5 +198,24 @@ function isActive(item: NavItem) {
 		}
 	}
 
-	document.addEventListener("astro:page-load", loadGitHubStats);
+	document.addEventListener("astro:page-load", () => {
+		loadGitHubStats();
+
+		// Prevent clicked nav links from staying focused/hovered
+		document.querySelectorAll("header a, nav a").forEach((el) => {
+			el.addEventListener("click", () => {
+				(el as HTMLElement).blur();
+			});
+		});
+
+		// Auto-close mobile menu when a link inside it is clicked
+		const mobileDetails = document.querySelector("header details");
+		if (mobileDetails) {
+			mobileDetails.querySelectorAll("a").forEach((el) => {
+				el.addEventListener("click", () => {
+					mobileDetails.removeAttribute("open");
+				});
+			});
+		}
+	});
 </script>

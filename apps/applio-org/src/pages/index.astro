@@ -1,6 +1,5 @@
 ---
 import GlowBackground from "../components/GlowBackground.astro";
-import HeroPreview from "../components/HeroPreview.astro";
 import Layout from "../layouts/Layout.astro";
 
 interface BlogPost {
@@ -28,59 +27,54 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
 <Layout>
   <GlowBackground />
 
-<section
-    class="relative flex flex-col items-center justify-center min-h-[calc(100dvh-4rem)] px-6 py-16 text-center"
+  {/* hero */}
+  <section
+    class="relative flex flex-col items-center justify-center min-h-[calc(100dvh-5rem)] px-6 py-20 text-center"
   >
     <div
       class="pointer-events-none absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:28px_28px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black,transparent)]"
       aria-hidden="true"
     ></div>
+
     <a
-      href="/playground"
+      href="/app/download"
       class="group inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur transition-all duration-200 hover:border-white/25 hover:text-white animate-fade-in"
     >
       <span class="relative flex h-1.5 w-1.5">
-<span
-          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75"
+        <span
+          class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"
         ></span>
-        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-white"></span>
+        <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
       </span>
-      Try Applio instantly &mdash; live in your browser
+      <span>Applio Desktop is now available</span>
       <span
         class="text-neutral-500 transition-transform duration-200 group-hover:translate-x-0.5"
         >&rarr;</span
       >
     </a>
 
-<h1
-      class="mt-8 max-w-4xl text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl animate-fade-in"
+    <h1
+      class="mt-8 max-w-4xl text-5xl font-bold leading-[1.08] tracking-tight text-white sm:text-6xl md:text-7xl animate-fade-in text-balance"
     >
       Turn voice into
       <span
-        class="block bg-gradient-to-r from-white via-white/70 to-white/35 bg-clip-text text-transparent"
-        >anything you can</span
-      >
-      <span
-        class="block bg-gradient-to-r from-white via-white/70 to-white/35 bg-clip-text text-transparent"
-        >imagine.</span
+        class="block bg-gradient-to-r from-white via-white/80 to-white/40 bg-clip-text text-transparent"
+        >anything you can imagine.</span
       >
     </h1>
 
     <p
-      class="mt-6 max-w-2xl text-lg leading-relaxed text-neutral-300 animate-fade-in"
+      class="mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-neutral-300 animate-fade-in"
     >
-      Applio is a complete, open-source voice conversion suite. Create AI
-      covers, train custom voice models, and convert voices in real time &mdash;
-      on your machine or in the cloud.
+      Applio is a complete, open-source AI voice conversion suite. Create AI covers, train
+      custom voice models, and convert voices in real time &mdash; on your desktop or in the cloud.
     </p>
 
     <div
       class="mt-10 flex flex-wrap items-center justify-center gap-3 animate-fade-in"
     >
       <a
-        href="https://docs.applio.org/getting-started/installation/"
-        target="_blank"
-        rel="noopener noreferrer"
+        href="/app/download"
         class="group inline-flex items-center gap-2.5 rounded-full bg-white px-7 py-3 text-sm font-semibold text-black shadow-[0_8px_30px_rgba(255,255,255,0.12)] transition-all duration-300 hover:bg-neutral-200 hover:shadow-[0_8px_30px_rgba(255,255,255,0.2)]"
       >
         <svg
@@ -96,12 +90,12 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
-        Download for free
+        Download Applio
       </a>
 
       <a
         href="/playground"
-        class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/5 px-7 py-3 text-sm font-medium text-white backdrop-blur transition-all duration-300 hover:border-white/30 hover:bg-white/10"
+        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm font-medium text-neutral-300 backdrop-blur transition-all duration-300 hover:border-white/20 hover:text-white"
       >
         <svg
           class="h-4 w-4"
@@ -111,7 +105,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
         >
           <polygon points="5 3 19 12 5 21 5 3"></polygon>
         </svg>
-        Try the playground
+        Playground
       </a>
 
       <a
@@ -133,86 +127,27 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
     </div>
 
     <div
-      class="mt-10 flex flex-wrap items-center justify-center gap-2.5 animate-fade-in"
+      class="mt-10 flex flex-wrap items-center justify-center gap-4 text-xs text-neutral-400 animate-fade-in"
     >
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
-      >
-        <svg
-          class="h-3.5 w-3.5 text-white"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5"></path>
-        </svg>
-        Open source
+      <span class="inline-flex items-center gap-1.5">
+        <svg class="h-3.5 w-3.5 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        100% Open source
       </span>
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
-      >
-        <svg
-          class="h-3.5 w-3.5 text-white"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5"></path>
-        </svg>
+      <span class="text-white/20">•</span>
+      <span class="inline-flex items-center gap-1.5">
+        <svg class="h-3.5 w-3.5 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
         MIT licensed
       </span>
-      <span
-        class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-xs text-neutral-300 backdrop-blur"
-      >
-        <svg
-          class="h-3.5 w-3.5 text-white"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="3"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        >
-          <path d="M20 6 9 17l-5-5"></path>
-        </svg>
-        No account needed
+      <span class="text-white/20">•</span>
+      <span class="inline-flex items-center gap-1.5">
+        <svg class="h-3.5 w-3.5 text-neutral-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        Windows, macOS & Linux
       </span>
     </div>
-
-<p class="mt-6 text-sm text-neutral-400 animate-fade-in">
-      Runs on Windows &middot; macOS &middot; Linux &middot; Colab &middot;
-      Kaggle
-    </p>
-
-    <HeroPreview />
-
-    <a
-      href="#features"
-      aria-label="Scroll to features"
-      class="absolute bottom-8 hidden p-2 text-neutral-500 hover:text-white transition-colors duration-200 animate-bounce-y md:block"
-    >
-      <svg
-        class="w-6 h-6"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      >
-        <path d="M6 9l6 6 6-6"></path>
-      </svg>
-    </a>
   </section>
 
   {/* features */}
-  <section id="features" class="relative px-6 py-24">
+  <section id="features" class="relative px-6 py-20">
     <div class="max-w-6xl mx-auto">
       <p class="text-sm text-neutral-400 uppercase tracking-widest">Features</p>
       <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
@@ -220,7 +155,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
       </h2>
       <p class="mt-4 max-w-2xl text-lg text-neutral-300">
         From a single cover to a fully custom voice, Applio ships with a
-        complete set of tools for voice work.
+        complete set of tools for audio work.
       </p>
 
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -398,7 +333,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
   </section>
 
   {/* how it works */}
-  <section id="get-started" class="relative px-6 py-24">
+  <section id="get-started" class="relative px-6 py-20">
     <div class="max-w-6xl mx-auto">
       <p class="text-sm text-neutral-400 uppercase tracking-widest">Get started</p>
       <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
@@ -407,7 +342,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
 
       <div class="mt-12 grid gap-6 md:grid-cols-3">
         <div
-          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
         >
           <span
             class="pointer-events-none absolute -top-3 right-2 select-none text-[72px] leading-none font-bold text-white/[0.04]"
@@ -440,35 +375,24 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
                 Step 1
               </span>
             </div>
-            <h3 class="mt-5 text-xl font-semibold text-white">Install Applio</h3>
+            <h3 class="mt-5 text-xl font-semibold text-white">Get Applio</h3>
             <p class="mt-2 grow text-sm leading-relaxed text-neutral-300">
-              Run the install script for Windows, Linux or Mac. No prerequisites
-              — everything is bundled.
+              Download the standalone Desktop app or choose the classic Gradio WebUI.
             </p>
-            <a
-              href="https://docs.applio.org/getting-started/installation/"
-              target="_blank"
-              class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
-            >
-              Installation guide
-              <svg
-                class="w-4 h-4"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+            <div class="mt-5 flex items-center gap-2">
+              <a
+                href="/app/download"
+                class="inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold transition-all hover:bg-neutral-200"
               >
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </a>
+                Download Applio
+                <span>&rarr;</span>
+              </a>
+            </div>
           </div>
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
         >
           <span
             class="pointer-events-none absolute -top-3 right-2 select-none text-[72px] leading-none font-bold text-white/[0.04]"
@@ -505,8 +429,8 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               Pick or train a voice
             </h3>
             <p class="mt-2 grow text-sm leading-relaxed text-neutral-300">
-              Use a ready-made voice model, or train your own with audio you
-              provide. Pre-trained models are available as a base for training.
+              Use community-shared voice models, or train your own voice with your
+              own audio datasets.
             </p>
             <a
               href="/search"
@@ -530,7 +454,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
         </div>
 
         <div
-          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/10"
+          class="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/[0.08]"
         >
           <span
             class="pointer-events-none absolute -top-3 right-2 select-none text-[72px] leading-none font-bold text-white/[0.04]"
@@ -565,15 +489,14 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               Convert your audio
             </h3>
             <p class="mt-2 grow text-sm leading-relaxed text-neutral-300">
-              Upload a song, speech, or your microphone and let Applio handle
-              the rest.
+              Transform songs, speech, or microphone input with high fidelity
+              and real-time inference.
             </p>
             <a
-              href="https://docs.applio.org/getting-started/inference/"
-              target="_blank"
+              href="/playground"
               class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white text-black px-4 py-1.5 text-sm font-medium transition-all duration-300 hover:gap-3 hover:bg-neutral-200"
             >
-              Inference guide
+              Test in playground
               <svg
                 class="w-4 h-4"
                 viewBox="0 0 24 24"
@@ -593,64 +516,16 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
     </div>
   </section>
 
-  {/* platforms */}
-  <section id="platforms" class="relative px-6 py-24">
-    <div class="max-w-6xl mx-auto">
-      <p class="text-sm text-neutral-400 uppercase tracking-widest">Run it anywhere</p>
-      <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
-        On your machine or in the cloud
-      </h2>
-      <div class="mt-12 grid gap-6 md:grid-cols-2">
-        <div class="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-          <h3 class="text-lg font-semibold text-white">Local</h3>
-          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
-            Runs natively on <strong class="text-white">Windows</strong>,
-            <strong class="text-white">Linux</strong> and
-            <strong class="text-white">macOS</strong>. For the best training
-            experience we recommend an Nvidia RTX 20-series GPU or newer —
-            a modern computer is plenty for inference.
-          </p>
-        </div>
-        <div class="p-8 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm">
-          <h3 class="text-lg font-semibold text-white">Cloud</h3>
-          <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
-            No powerful hardware? Run Applio with free GPU time on
-            <strong class="text-white">Google Colab</strong> or
-            <strong class="text-white">Kaggle</strong>, or test it immediately in
-            the browser playground.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-3">
-            <a
-              href="https://colab.research.google.com/github/iahispano/applio/blob/main/assets/Applio_NoUI.ipynb"
-              target="_blank"
-              class="px-4 py-2 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
-            >Google Colab</a>
-            <a
-              href="https://docs.applio.org/getting-started/cloud-guides/"
-              target="_blank"
-              class="px-4 py-2 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
-            >Kaggle</a>
-            <a
-              href="/playground"
-              class="px-4 py-2 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
-            >Playground</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   {/* open source */}
-  <section id="open-source" class="relative px-6 py-24">
+  <section id="open-source" class="relative px-6 py-20">
     <div class="max-w-6xl mx-auto">
       <p class="text-sm text-neutral-400 uppercase tracking-widest">Open source</p>
       <h2 class="mt-3 text-4xl md:text-5xl font-bold text-white tracking-tight">
         Built in the open, free for everyone
       </h2>
       <p class="mt-4 max-w-2xl text-lg text-neutral-300">
-        Applio is a community-driven project with everything public: source
-        code, roadmap, issues, and releases. No accounts, no paywalls, no
-        telemetry — just code you can read, modify, and trust.
+        Applio is an open source, community-driven project. No accounts, no paywalls,
+        and no telemetry &mdash; just pure, auditable code.
       </p>
 
       <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -672,8 +547,8 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           </div>
           <h3 class="mt-5 text-xl font-semibold text-white">MIT licensed</h3>
           <p class="mt-2 text-sm leading-relaxed text-neutral-300">
-            Use, modify, and redistribute Applio freely — for personal projects,
-            research, or commercial work. Free forever, by design.
+            Use, modify, and redistribute Applio freely for personal projects,
+            research, or commercial work.
           </p>
         </div>
 
@@ -698,8 +573,8 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           </div>
           <h3 class="mt-5 text-xl font-semibold text-white">Community driven</h3>
           <p class="mt-2 text-sm leading-relaxed text-neutral-300">
-            Maintained by contributors around the world. Report bugs, request
-            features, or contribute code — every change is public and reviewed.
+            Maintained by creators and contributors around the world. Every feature,
+            bug fix, and roadmap item is discussed openly.
           </p>
         </div>
 
@@ -721,17 +596,16 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           </div>
           <h3 class="mt-5 text-xl font-semibold text-white">Transparent by default</h3>
           <p class="mt-2 text-sm leading-relaxed text-neutral-300">
-            No data collection and no accounts required. Everything runs locally,
-            and the full development history is open for anyone to audit.
+            No telemetry and no account needed. Everything runs locally on your machine,
+            fully open for anyone to inspect.
           </p>
         </div>
       </div>
 
-      {/* live repository stats */}
+      {/* repository stats */}
       <div
         id="repo-stats"
         class="mt-12 flex flex-wrap items-center justify-center gap-3"
-        hidden
       >
         <span
           class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm"
@@ -765,22 +639,8 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             <path d="M18 9v2a2 2 0 0 1-2 2h-4a2 2 0 0 0-2 2v2"></path>
             <line x1="12" y1="6" x2="12" y2="10"></line>
           </svg>
-          <b data-stat="forks" class="tabular-nums text-white">0</b>
+          <b data-stat="forks" class="tabular-nums text-white">…</b>
           forks
-        </span>
-        <span
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm"
-        >
-          <svg
-            class="w-4 h-4 text-white"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.73.02-1.01.07C15.74 13.58 16 14.29 16 15.5V19h7v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
-          </svg>
-          <b data-stat="contributors" class="tabular-nums text-white">0</b>
-          contributors
         </span>
         <a
           href="https://github.com/IAHispano/Applio"
@@ -788,7 +648,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           rel="noopener noreferrer"
           class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm transition-all duration-200 hover:border-white/30 hover:text-white"
         >
-          View the repository
+          View repository
           <svg
             class="w-3.5 h-3.5"
             viewBox="0 0 24 24"
@@ -804,34 +664,12 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
         </a>
       </div>
 
-      {/* contributors */}
-      <div
-        id="contributors"
-        class="mt-16 flex flex-col items-center gap-6"
-        style="display: none"
-      >
-        <p class="text-sm text-neutral-400 uppercase tracking-widest">
-          Contributors
-        </p>
-        <h3 class="text-2xl font-bold text-white md:text-3xl">
-          Built by <span id="contributors-count" class="tabular-nums">…</span>
-          amazing people
-        </h3>
-        <div
-          id="contributor-avatars"
-          class="mt-2 flex max-w-3xl flex-wrap items-center justify-center gap-2"
-        ></div>
-        <p class="text-center text-sm text-neutral-500">
-          Thank you to everyone who has helped shape Applio. Want to join them?
-        </p>
-      </div>
-
       <div class="mt-10 flex flex-wrap gap-4 items-center justify-center">
         <a
           href="https://github.com/IAHispano/Applio/blob/main/CONTRIBUTING.md"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
+          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
         >
           Contribute on GitHub
         </a>
@@ -839,7 +677,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           href="https://github.com/IAHispano/Applio/issues"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
+          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300 text-sm"
         >
           Report an issue
         </a>
@@ -848,7 +686,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
   </section>
 
   {/* blog */}
-  <section id="blog" class="relative px-6 py-24">
+  <section id="blog" class="relative px-6 py-20">
     <div class="max-w-6xl mx-auto">
       <div class="flex items-end justify-between gap-4 flex-wrap">
         <div>
@@ -934,22 +772,20 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
       <h2 class="text-4xl md:text-5xl font-bold text-white tracking-tight">
         Start creating voices today
       </h2>
-      <p class="mt-4 text-lg text-neutral-300">
-        Free, open source, and built for everyone — from complete beginners to
-        seasoned pros.
+      <p class="mt-4 text-base sm:text-lg text-neutral-300">
+        Free, open source, and built for everyone &mdash; from complete beginners to
+        seasoned audio engineers.
       </p>
-      <div class="mt-8 flex flex-wrap justify-center gap-4">
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a
-          href="https://docs.applio.org/getting-started/installation/"
-          target="_blank"
-          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
+          href="/app/download"
+          class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
         >
-          Get Applio
+          Download Applio
         </a>
         <a
-          href="https://discord.gg/wY7gmqTyEV"
-          target="_blank"
-          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
+          href="/discord"
+          class="px-7 py-3 bg-white/5 border border-white/10 text-neutral-300 font-medium rounded-full hover:bg-white/10 hover:text-white transition-all duration-300 text-sm"
         >
           Join our Discord
         </a>
@@ -974,15 +810,13 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
 			const repoRes = await fetch(
 				"https://api.github.com/repos/IAHispano/Applio",
 			);
-			if (!repoRes.ok) throw new Error("Failed to load repository data");
+			if (!repoRes.ok) return;
 
 			const repo = (await repoRes.json()) as {
 				stargazers_count?: number;
 				forks_count?: number;
 			};
-			if (typeof repo.stargazers_count !== "number") {
-				throw new Error("Missing repository data");
-			}
+			if (typeof repo.stargazers_count !== "number") return;
 
 			const starsEl = container.querySelector('[data-stat="stars"]');
 			if (starsEl) {
@@ -993,95 +827,10 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
 			if (forksEl && typeof repo.forks_count === "number") {
 				forksEl.textContent = formatCount(repo.forks_count);
 			}
-
-			try {
-				const contribRes = await fetch(
-					"https://api.github.com/repos/IAHispano/Applio/contributors?per_page=1",
-				);
-				const link = contribRes.headers.get("link") || "";
-				const match = link.match(/page=(\d+)>;\s*rel="last"/);
-				if (match) {
-					const contribEl = container.querySelector(
-						'[data-stat="contributors"]',
-					);
-					if (contribEl) {
-						contribEl.textContent = formatCount(Number(match[1]));
-					}
-				}
-			} catch {
-				// contributors count is optional; stars still show
-			}
-
-			container.hidden = false;
 		} catch {
-			container.hidden = true;
+			// silent fallback
 		}
 	}
 
-	async function loadContributors() {
-		const container = document.getElementById("contributors");
-		const avatarsEl = document.getElementById("contributor-avatars");
-		const countEl = document.getElementById("contributors-count");
-		if (!container || !avatarsEl || !countEl) return;
-
-		try {
-			const contributors: {
-				login?: string | null;
-				avatar_url?: string;
-				html_url?: string;
-			}[] = [];
-			let page = 1;
-			while (true) {
-				const res = await fetch(
-					`https://api.github.com/repos/IAHispano/Applio/contributors?per_page=100&page=${page}`,
-				);
-				if (!res.ok) throw new Error("Failed to load contributors");
-
-				const batch = (await res.json()) as typeof contributors;
-				if (!Array.isArray(batch) || batch.length === 0) break;
-				contributors.push(...batch);
-
-				const link = res.headers.get("link") || "";
-				if (!link.includes('rel="next"') || page >= 10) break;
-				page += 1;
-			}
-
-			const people = contributors.filter((c) => c.login);
-			if (people.length === 0) return;
-
-			countEl.textContent = String(people.length);
-
-			const frag = document.createDocumentFragment();
-			for (const c of people) {
-				const a = document.createElement("a");
-				a.href = c.html_url || `https://github.com/${c.login}`;
-				a.target = "_blank";
-				a.rel = "noopener noreferrer";
-				a.title = c.login ?? "Contributor";
-				a.className =
-					"transition-transform duration-200 hover:-translate-y-0.5";
-
-				const img = document.createElement("img");
-				img.src = `${c.avatar_url ?? ""}&s=80`;
-				img.alt = c.login ?? "Contributor";
-				img.width = 40;
-				img.height = 40;
-				img.loading = "lazy";
-				img.className =
-					"h-10 w-10 rounded-full border-2 border-[#161414] bg-white/10 object-cover transition-all duration-200 hover:border-white/50";
-
-				a.appendChild(img);
-				frag.appendChild(a);
-			}
-			avatarsEl.appendChild(frag);
-			container.style.display = "flex";
-		} catch {
-			// keep the section hidden if the API is unreachable
-		}
-	}
-
-	document.addEventListener("astro:page-load", () => {
-		loadRepositoryStats();
-		loadContributors();
-	});
+	document.addEventListener("astro:page-load", loadRepositoryStats);
 </script>

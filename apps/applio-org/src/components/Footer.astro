@@ -1,4 +1,4 @@
-﻿---
+---
 interface LinkColumn {
 	title: string;
 	links: { label: string; href: string; external?: boolean }[];
@@ -11,8 +11,7 @@ const columns: LinkColumn[] = [
 			{ label: "Features", href: "/#features" },
 			{
 				label: "Download",
-				href: "https://docs.applio.org/getting-started/installation/",
-				external: true,
+				href: "/app/download",
 			},
 			{ label: "Playground", href: "/playground" },
 			{ label: "Search models", href: "/search" },
@@ -21,7 +20,11 @@ const columns: LinkColumn[] = [
 	{
 		title: "Resources",
 		links: [
-			{ label: "Documentation", href: "https://docs.applio.org", external: true },
+			{
+				label: "Documentation",
+				href: "https://docs.applio.org",
+				external: true,
+			},
 			{ label: "Blog", href: "/blog" },
 			{ label: "Security", href: "/security" },
 			{ label: "Terms of Use", href: "/terms-use" },

@@ -4,8 +4,19 @@ import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 
+interface Props {
+	title?: string;
+	description?: string;
+}
+
 const siteUrl = "https://applio.org";
+const {
+	title = "Applio — Open source, free AI voice conversion tool",
+	description: customDescription,
+} = Astro.props;
+
 const description =
+	customDescription ??
 	"Applio is a free, open-source, AI-driven voice conversion suite. Create AI covers, train custom voice models, and convert voices in real time — on Windows, Linux, macOS or in the cloud.";
 ---
 
@@ -40,14 +51,12 @@ const description =
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://applio.org" />
-    <meta property="og:title" content="Applio — Open source AI voice conversion" />
+    <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content="https://applio.org/opengraph-image.png" />
 
     <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl)} />
-    <title>
-      Applio — Open source, free AI voice conversion tool
-    </title>
+    <title>{title}</title>
 
     <script
       type="application/ld+json"

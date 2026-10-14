@@ -4,35 +4,38 @@ import Layout from "../layouts/Layout.astro";
 import { docsUrl, ecosystem } from "../lib/ecosystem";
 
 const projects = [
-  {
-    name: ecosystem.projects.desktop.name,
-    description: "A desktop workspace for conversion, realtime audio, speech synthesis, and training, with setup tools and job history.",
-    action: "Get Desktop",
-    href: "/download",
-    guide: docsUrl("desktop"),
-    source: ecosystem.projects.desktop.repository,
-  },
-  {
-    name: ecosystem.projects.gradio.name,
-    description: "The Python engine, browser tabs, and CLI behind existing local and cloud workflows.",
-    action: "Get Gradio",
-    href: "/download?tab=gradio",
-    guide: docsUrl("installation") + "#python-application-with-gradio",
-    source: ecosystem.projects.gradio.repository,
-  },
-  {
-    name: ecosystem.projects.docs.name,
-    description: "One documentation home for both interfaces: setup, models, conversion, training, troubleshooting, and reference.",
-    action: "Read the docs",
-    href: ecosystem.links.docs,
-    guide: docsUrl("storage"),
-    source: ecosystem.projects.docs.repository,
-  },
+	{
+		name: ecosystem.projects.desktop.name,
+		description:
+			"A desktop workspace for conversion, realtime audio, speech synthesis, and training, with setup tools and job history.",
+		action: "Get Desktop",
+		href: "/download",
+		guide: docsUrl("desktop"),
+		source: ecosystem.projects.desktop.repository,
+	},
+	{
+		name: ecosystem.projects.gradio.name,
+		description:
+			"The Python engine, browser tabs, and CLI behind existing local and cloud workflows.",
+		action: "Get Gradio",
+		href: "/download?tab=gradio",
+		guide: docsUrl("installation") + "#python-application-with-gradio",
+		source: ecosystem.projects.gradio.repository,
+	},
+	{
+		name: ecosystem.projects.docs.name,
+		description:
+			"One documentation home for both interfaces: setup, models, conversion, training, troubleshooting, and reference.",
+		action: "Read the docs",
+		href: ecosystem.links.docs,
+		guide: docsUrl("storage"),
+		source: ecosystem.projects.docs.repository,
+	},
 ];
 const issueTargets = [
-  { name: "Desktop app", href: ecosystem.projects.desktop.issues },
-  { name: "Python / Gradio", href: ecosystem.projects.gradio.issues },
-  { name: "Website / docs", href: ecosystem.projects.website.issues },
+	{ name: "Desktop app", href: ecosystem.projects.desktop.issues },
+	{ name: "Python / Gradio", href: ecosystem.projects.gradio.issues },
+	{ name: "Website / docs", href: ecosystem.projects.website.issues },
 ];
 ---
 

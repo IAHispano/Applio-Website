@@ -1,104 +1,66 @@
 ---
-title: "How to Create a High-Quality Dataset"
-description: "A step-by-step guide to creating high-quality datasets for training voice models in Applio."
+title: "Prepare a training dataset"
+description: "Select, clean, review, and organize voice recordings without damaging useful speech detail."
 sidebar:
-  order: 3
+  order: 2
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 
-A **dataset** is a collection of clean, high-quality audio files of a single speaker that Applio uses to train a voice model. The quality of your dataset is the single most important factor in achieving good training results. A high-quality dataset consists of clear, consistent, and noise-free audio.
+A useful dataset represents the intended voice clearly across the sounds and delivery you want the model to handle. Keep original recordings and perform cleanup on copies.
 
-This guide will walk you through the process of creating a great dataset.
+## Select recordings
 
-## Dataset Creation Workflow
+Choose recordings you have permission to use. Prefer a consistent speaker, little background noise or reverberation, and natural variation in pitch, articulation, and emotion.
 
-### Step 1: Source Your Audio
+There is no fixed duration that guarantees quality. A smaller clean and varied dataset can be more useful than many repetitive or damaged recordings. Avoid duplicates and long passages with no useful voice.
 
-First, you need to collect audio of the person or character you want to create a voice model for.
+For singing models, include relevant pitch ranges and delivery. For speech models, include varied phrases and speaking styles. Separate speakers into numeric folders for multispeaker training.
 
-<Aside type="tip" title="Best Practices for Audio Sourcing">
--   **Audio Format:** Your audio files should be in a lossless format like **WAV** or **FLAC**.
--   **Duration:** Aim for a total duration of **10 to 30 minutes**. Less than 10 minutes may not be enough for good results, and more than 30 minutes can lead to diminishing returns.
--   **Variety:** The dataset should include a wide range of tones, pitches, and emotions to create a versatile voice model.
--   **Quality:** The audio should be as clean as possible, with minimal background noise, reverb, or other artifacts.
+## Isolate and clean
+
+<Steps>
+
+1. If music is present, [separate the vocal](/guides/uvr/) and listen for remaining instruments and separation artifacts.
+2. Remove wrong-speaker sections, strong interference, and unusable recordings.
+3. Apply noise reduction only where necessary. Compare before and after to avoid removing consonants or vocal detail.
+4. Trim long silent edges while retaining natural word boundaries.
+5. Balance levels and leave peak headroom. Lowering a clipped recording's level does not undo clipping.
+
+</Steps>
+
+Avoid strong gating, compression, denoising, or reverb removal simply because they are available. Natural breaths and unvoiced consonants can be useful training material.
+
+## Review in Desktop
+
+In **Training**, use dataset review to scan recordings and inspect flagged sections. Listen to clips before excluding them. **Prepare training copy** can trim silent edges, balance recording levels, and lower full-scale peaks while keeping the source dataset separate.
+
+Select **Use this dataset for training** when the prepared copy is ready.
+
+## Export and organize
+
+Use lossless WAV or FLAC where possible. Converting a lossy source into WAV does not restore lost information. Training preprocessing resamples input files to the selected model rate; that rate must match the architecture and pretrainings.
+
+~~~text
+assets/datasets/MyVoice/
+  recording-one.wav
+  recording-two.flac
+~~~
+
+For multispeaker training:
+
+~~~text
+assets/datasets/MyVoice/
+  0/
+    first-speaker.wav
+  1/
+    second-speaker.wav
+~~~
+
+Desktop can upload files or use a host-side dataset path. Ensure the selected method preserves speaker folders when needed. Gradio commonly uses folders under `assets/datasets`.
+
+<Aside type="tip">
+  Hold back a few recordings for evaluation. Use the same held-out clips to compare checkpoints so that training progress is judged on audio the model did not train on.
 </Aside>
 
-### Step 2: Isolate the Vocals
-
-If your audio contains background music or other sounds, you'll need to isolate the vocals. For a detailed guide on how to do this, please see our [audio isolation guide](/guides/uvr/).
-
-### Step 3: Clean and Process Your Audio with Audacity
-
-Once you have your vocal recordings, it's time to clean and process them using a free audio editor like [Audacity](https://www.audacityteam.org/download/).
-
-#### Noise Reduction
-
-Noise reduction helps to remove unwanted background noise from your recordings.
-
-<Steps>
-1.  In Audacity, select a small portion of your audio that contains only background noise.
-2.  Go to **Effect > Noise Removal and Repair > Noise Reduction**.
-3.  Click **Get Noise Profile**.
-4.  Now, select the entire audio track.
-5.  Go back to the **Noise Reduction** effect and click **OK** to apply it.
-</Steps>
-
-#### Noise Gate
-
-A noise gate is used to silence parts of the audio that are below a certain volume threshold. This is great for removing low-level noise between words and sentences.
-
-<Steps>
-1.  Select your entire audio track.
-2.  Go to **Effect > Gating > Noise Gate**.
-3.  Apply the recommended settings as shown in the image below. These settings are a good starting point, but you may need to adjust them based on your audio.
-</Steps>
-
-![A screenshot of the Noise Gate settings in Audacity. The recommended settings are shown.](/images/noise-gate.png)
-
-#### Truncate Silence
-
-This effect removes long periods of silence from your audio, which helps to create a more concise dataset.
-
-<Steps>
-1.  Select your entire audio track.
-2.  Go to **Effect > Truncate / Silence > Truncate Silence**.
-3.  Apply the recommended settings as shown in the image below.
-</Steps>
-
-![A screenshot of the Truncate Silence settings in Audacity. The recommended settings are shown.](/images/truncate-silence.png)
-
-<Aside type="caution">
-  Before truncating silence, make sure your audio contains only speech. Manually remove any non-speech sounds like coughs, breaths, or clicks.
-</Aside>
-
-### Step 4: Export Your Dataset
-
-Once you're happy with your audio, it's time to export it.
-
-<Steps>
-1.  Go to **File > Export > Export as WAV** (or FLAC).
-2.  Choose a location to save your file.
-3.  Ensure the format is set to **WAV (Microsoft) signed 16-bit PCM** or **FLAC**.
-4.  Click **Export**.
-</Steps>
-
-| WAV Export Settings | FLAC Export Settings |
-| :--- | :--- |
-| ![A screenshot of the WAV export settings in Audacity.](/images/wav.png) | ![A screenshot of the FLAC export settings in Audacity.](/images/flac.png) |
-
-<Aside type="note">
-You can export your dataset as a single audio file or as multiple smaller files. If you choose to split your audio, aim for each file to be between 10 and 15 seconds long.
-</Aside>
-
-Your dataset is now ready for [training](/getting-started/training/)!
-
----
-
-## Recommended Audio Editing Plugins
-
-While Audacity is a powerful tool on its own, you can extend its functionality with plugins. These plugins work with Audacity, FL Studio, and other DAWs.
-
--   **[T-De-Esser](https://techivation.com/t-de-esser/)**: A de-esser is a tool that reduces sibilance, which is the harsh "s" sound in speech. This is a must-have for creating clean vocal recordings.
--   **[ReaPlugs](https://www.reaper.fm/reaplugs/)**: A suite of powerful plugins from the creators of the Reaper DAW. It includes a more advanced noise gate, EQ, and compressor.
--   **[Auburn Sounds Renegate](https://www.auburnsounds.com/products/Renegate.html)**: A sophisticated noise gate plugin that gives you more control than Audacity's built-in noise gate.
+Continue with [training](/getting-started/training/).

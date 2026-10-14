@@ -1,72 +1,68 @@
 ---
-title: "Reporting Errors and Common Issues"
-description: "Learn how to report errors and find solutions for common issues in Applio."
+title: "Troubleshoot and report issues"
+description: "Resolve setup, model, audio, and training failures, and collect useful diagnostics."
 sidebar:
   order: 14
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
 
-If you encounter an error while using Applio, this guide will help you report it effectively and find solutions to common problems.
+Start with the failed operation's message and log. Check whether the problem is setup, model loading, conversion, or audio routing before changing unrelated settings.
 
-## How to Report an Error
+## Common problems
 
-Before reporting a new error, please check the [Common Errors and Solutions](#common-errors-and-solutions) section below to see if your issue is already known.
+| Symptom | What to try |
+| --- | --- |
+| Engine is not ready | Open setup, read the failed checks, and run **Install / Repair** in Desktop. |
+| Package or GPU error | Capture the detected hardware and PyTorch/runtime error. Repair through your interface's installer before following older package recipes. |
+| Model missing | Refresh the library; verify you used the active logs/models folder and an inference export. |
+| Model will not load | Inspect its architecture, sample rate, embedder, and file format. A D checkpoint is not an inference model. |
+| Index error | Try conversion without the index, then verify the matching index. Regenerate only if you have the experiment's extracted features. |
+| Out of GPU memory | Stop competing GPU work, reduce training batch size, disable GPU dataset caching, or try checkpointing. For long file conversion, try Split Audio. |
+| Robotic audio | Match the training embedder, check input quality, compare pitch methods, and test a lower retrieval ratio without effects. |
+| Realtime drops or lags | Increase chunk size, reduce extra context/effects, and inspect diagnostics. |
+| No microphone or output | Check OS permissions, selected devices, output routing, monitoring, and VAD threshold. |
+| Job interrupted after restart | Start the operation again. Training continuation requires compatible saved checkpoints. |
+| Output has disappeared | Check cleanup/retention. Download valuable audio promptly. |
 
-If you can't find a solution, you can report the error in two ways:
+### Gradio server and CLI checks
 
-### Method 1: GitHub Issues
+Keep the launch process running while using Gradio. Read the address it prints; the port may differ if another service is already using it. To select a port from its Python environment:
 
-This is the preferred method for reporting bugs.
+~~~bash
+python app.py --port 6970
+~~~
+
+Inspect an inference model:
+
+~~~bash
+python core.py model-information --pth-path "logs/MyVoice/MyVoice.pth"
+~~~
+
+Generate an index from an experiment with extracted features:
+
+~~~bash
+python core.py index --model-name MyVoice --index-algorithm Auto
+~~~
+
+These examples use hyphenated Click commands and flags. See [CLI reference](/reference/cli/) for environment and release differences.
+
+## Report a reproducible bug
 
 <Steps>
-1.  Go to the [Applio GitHub Issues](https://github.com/IAHispano/Applio/issues) page.
-2.  Click on **New Issue**.
-3.  Provide a clear and descriptive title for the issue.
-4.  In the description, include a screenshot of the error and the full text from the Applio command line window.
-5.  Describe the steps you took to encounter the error.
+
+1. Open **Report a Bug** in Desktop or **Report a Bug** in Gradio and collect the available diagnostics.
+2. Copy the failed job's relevant log, including the first error and final message.
+3. Write the steps, expected behavior, and what actually happened.
+4. Include the interface, version, OS, GPU, model metadata, and any non-default settings.
+5. File the issue in the appropriate repository.
+
 </Steps>
 
-### Method 2: Built-in Bug Reporter
+| Problem | Issue tracker |
+| --- | --- |
+| Desktop interface, setup, tray, or App workflow | [Applio-App issues](https://github.com/IAHispano/Applio-App/issues) |
+| Gradio or standalone Python workflow | [Applio issues](https://github.com/IAHispano/Applio/issues) |
+| Documentation or public website | [Applio-Website issues](https://github.com/IAHispano/Applio-Website/issues) |
 
-You can also use Applio's built-in bug reporter.
-
-![A screenshot of the 'Report a bug' feature in Applio.](/images/report-bug.png)
-
-<Aside type="note">
-You can also get help from the community by joining our [Discord Server](https://discord.gg/wY7gmqTyEV) and asking in the help channels.
-</Aside>
-
----
-
-## Common Errors and Solutions
-
-### Installation and Dependency Errors
-
-<Aside type="tip">
-  Applio is installed in a self-contained Conda environment with all the necessary dependencies. You shouldn't need to install anything else manually.
-</Aside>
-
--   **Miniconda Download Fails:** If the automatic download of Miniconda fails, you can [download and install it manually](https://repo.anaconda.com/miniconda/Miniconda3-py39_23.9.0-0-Windows-x86_64.exe).
--   **Conda "Wheels" Errors:** This usually means that the Visual Studio Build Tools are not installed correctly. The Applio installer should handle this automatically, but you may need to install them manually.
--   **TensorBoard or Dependency Errors:** These errors usually indicate that the dependencies were not installed correctly. Make sure you are using the [latest version of the installer](/getting-started/installation/) and that your system meets the installation requirements.
-
-### Installation Requirements Checklist
-
--   **Path Issues:** Did you install Applio in a directory with spaces or special characters in the path (e.g., `C:\Program Files\Applio`)? If so, please reinstall it in a simple path like `C:\Applio`.
--   **Antivirus/Firewall:** Did you have your antivirus or firewall enabled during installation? These can sometimes interfere with the installation process. Try reinstalling with them temporarily disabled.
--   **Administrator Privileges:** Did you run the `run-applio.bat` file with administrator privileges? If so, try running it normally, without administrator rights.
-
-### Runtime Errors
-
--   **FFmpeg and UTF-8 Errors:** These errors are often caused by special characters in file paths or filenames. Make sure all your file and folder names use standard ASCII characters.
--   **Connection Issues:** If you can't connect to the Applio interface, make sure the console window is running and that your firewall is not blocking the connection.
--   **Proxy Issues:** If you're using a system-wide proxy, try disabling it and then refreshing the Applio interface.
--   **GPU Memory Issues:** If you run out of GPU memory during training, try reducing the **Batch Size**. If it happens during inference, you may need to adjust your settings in the `config.py` file. Also try enabling **FP16** precision in the settings tab, which reduces VRAM usage by approximately 40%.
--   **CPU Processing Issues:** If your CPU is struggling, try reducing the **Number of CPU threads** in the training settings. You can also pre-process your dataset into shorter audio clips.
--   **Model Not Found in List:** If a model you placed in the `logs` folder doesn't appear in the UI dropdowns, click the **Refresh** button next to the model selector. If it still doesn't appear, check that the `.pth` file is valid by running `python core.py model_information -m path/to/model.pth` in the terminal.
--   **"No module named 'rvc'" Error:** This typically means you're running `core.py` or another script from outside the Applio directory. Make sure your terminal is in the Applio root directory before running any commands.
--   **Index File Loading Error:** If the index file fails to load, it may be corrupted or incompatible. Try regenerating it by going to the **Extras** tab and using the **Generate Index** feature, or run `python core.py index -n your_model_name`.
--   **Audio Artifacts / Robotic Sound:** This is usually caused by incorrect settings. Try: using a different pitch extraction algorithm (switch from RMVPE to CREPE or vice versa), lowering the Search Feature Ratio (try 0.5), enabling "Clean Audio," or ensuring the embedder matches the one used during training.
--   **Slow Inference:** If inference is very slow, try: enabling **FP16** precision, using CREPE-tiny instead of full CREPE for pitch extraction, disabling post-processing effects, or reducing the hop length.
--   **Port Already in Use:** If you see an error about port 6969 being in use, it means another instance of Applio (or another application) is running on that port. Close the other instance or change the port using the `--port` flag: `run-applio.bat --port 6970`.
+If unsure which layer failed, state your interface and include diagnostics. Redact private paths, tokens, and personal recordings before posting a public report. Community help is also available on [Discord](https://discord.gg/wY7gmqTyEV).

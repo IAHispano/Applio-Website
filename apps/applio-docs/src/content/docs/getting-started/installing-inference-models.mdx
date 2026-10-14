@@ -1,41 +1,75 @@
 ---
-title: "Installing Inference Models"
-description: "Learn how to use ready-made models I.E. 'voices' from elsewhere."
+title: "Add a voice model"
+description: "Download or upload inference models, select a matching index, and check compatibility."
 sidebar:
-  order: 7
+  order: 3
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-While you can create your own **inference models** in Applio (see [Training a Voice Model](/getting-started/training)), you may be able to find pre-existing models ready for inference. You can find such models [here](https://applio.org/search). These can be installed in three ways:
-1. [Using the model downloader](#using-the-model-downloader)
-2. [Uploading the files through Applio's interface](#uploading-the-files-through-applios-interface)
-3. [Manually placing the model files](#manually-placing-the-model-files)
+An **inference model** is a trained voice you use for conversion. It is different from an [embedder](/getting-started/embedder/) or a [G/D pretrained pair](/getting-started/pretrained/) used for training.
 
-RVC models typically have two components: A PTH file (short for *P*y*T*orc*h* archive) where all the actual model weights are, and a much smaller Index file. The Index file is optional, and can be left off even if it is provided. This file helps enforce the accent of the original speaker.
+| File | Purpose |
+| --- | --- |
+| Exported `.pth` | Speaker-model weights and metadata for inference |
+| Matching `.index` | Retrieved training features that can influence the converted timbre |
+| `G_*.pth` / `D_*.pth` training checkpoints | Training state; not interchangeable with an inference export |
 
-## Using the model downloader
+An index is optional. It may be large: its size depends on the training features. Use the index supplied for that model rather than one from an unrelated voice.
+
+## Download or upload
+
+<Tabs>
+  <TabItem label="Desktop">
+
 <Steps>
-1.  Obtain the URL of a ZIP file containing the PTH and Index files.
-2.  Go to the **Download tab** of Applio.
-3.  Paste the URL into the **Download Model** panel's **Download Link** field.
-4.  Click the **Download Model** button.
-5.  Wait for the download to complete.
+
+1. Open **Models → Download Models**.
+2. Under **Download from Link**, paste a supported model link and select **Download**. For local files, use **Upload Model Files** and **Save File** for the `.pth` and `.index`.
+3. Wait for the download or upload to finish, then refresh **Model Library**.
+4. Select **Inspect** to check metadata, or **Use** to open conversion.
+
 </Steps>
 
-## Uploading the files through Applio's interface
+  </TabItem>
+  <TabItem label="Gradio">
+
 <Steps>
-1.  If the files are in an archive such as a "zipped folder", extract them.
-2.  Go to the **Download tab** of Applio.
-3.  Use the **Drop Files** field to upload the files, by clicking it and selecting them, or by dragging and dropping them to it.
-4.  Wait for the upload to complete.
+
+1. Open **Download**.
+2. Paste the model link into its download panel, or upload extracted model files using **Drop Files**.
+3. Wait for completion, then refresh the model list in **Inference**.
+
 </Steps>
 
-## Manually placing the model files
-<Steps>
-1.  If the files are in an archive such as a "zipped folder", extract them.
-2.  If the files do not extract to their own folder, create one named after the model and put them in it.
-3.  Move that folder to be inside Applio's `logs` folder.
-</Steps>
+  </TabItem>
+</Tabs>
 
-In all three cases, the end result should be that both the PTH and Index files are, for the example of a model named "John Doe Voice", inside `Applio/logs/JohnDoeVoice`.
+For a model archive, extract local files before uploading them individually. A downloaded web page is not a model file.
+
+## Install files manually
+
+Create a named folder in your active logs/models directory and put the model and index together:
+
+~~~text
+logs/
+  MyVoice/
+    MyVoice.pth
+    MyVoice.index
+~~~
+
+Refresh the interface afterward. Desktop's active directory may be outside the installation; see [storage locations](/guides/moving-to-desktop/). Prefer the upload controls if you are unsure which folder is active.
+
+## Check compatibility
+
+Use **Inspect Model** in Desktop to read available metadata: sample rate, version, pitch guidance, embedder, vocoder, and speaker count. Match the training embedder during conversion. For a multispeaker model, choose the intended speaker ID.
+
+Standard RVC and Applio-specific architectures have different compatibility. A `.pth` extension does not guarantee a model works in every RVC client. Desktop also exposes ONNX options; an arbitrary ONNX network is not a drop-in voice model. Start with a compatible inference `.pth` and follow the model author's format instructions.
+
+<Aside type="note">
+  Some older models lack metadata. Use the author's training settings where available, and test a short recording before processing a batch.
+</Aside>
+
+Only use models and recordings you have permission to use. The [model search page](https://applio.org/search) helps find sources; verify the files and their usage terms with the publisher.
+
+If a model is missing or fails to load, see [troubleshooting](/getting-started/report-error/).

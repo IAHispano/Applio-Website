@@ -1,173 +1,112 @@
 ---
-title: Installation
-description: How to install Applio on your computer.
+title: "Install Applio"
+description: "Install Applio Desktop, download the compiled Windows Gradio build, or run Applio from source."
 sidebar:
   order: 1
 ---
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-## Manual Installation
+## Applio Desktop
+
+Download a build for your operating system from the [official App releases](https://github.com/IAHispano/Applio-App/releases). Read its release notes for platform requirements and known issues.
 
 <Tabs>
   <TabItem label="Windows">
-    <Steps>
-      1.  Download the latest precompiled `.zip` file from [Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows).
-      2.  Extract the archive to a simple path on your `C:` drive (e.g., `C:\Applio`).
-      3.  Run the `run-applio.bat` file to start Applio.
-    </Steps>
-    <Aside type="caution" title="Important">
-      -   Make sure the installation path does not contain spaces or special characters.
-      -   Temporarily disable your antivirus or firewall if it interferes with the installation.
-      -   Do not run the installer as an administrator.
-    </Aside>
+    Run the Windows setup executable as your normal user. Choose a folder you can write to: the packaged Windows app stores its runtime and user data in a `data` folder beside the executable.
   </TabItem>
-  <TabItem label="Linux/macOS">
-    <Tabs>
-      <TabItem label="Option 1: Git Clone">
-        <Steps>
-          1.  Clone the repository from GitHub:
-              ```bash
-              git clone https://github.com/IAHispano/Applio.git
-              cd Applio
-              ```
-          2.  Run the installation script:
-              ```bash
-              chmod +x run-install.sh
-              ./run-install.sh
-              ```
-          3.  Launch Applio:
-              ```bash
-              chmod +x run-applio.sh
-              ./run-applio.sh
-              ```
-        </Steps>
-      </TabItem>
-      <TabItem label="Option 2: Manual Python Installation">
-        <Steps>
-          1.  Clone the repository from GitHub:
-              ```bash
-              git clone https://github.com/IAHispano/Applio.git
-              cd Applio
-              ```
-          2.  Set up a Python virtual environment and install dependencies manually. See the **Detailed Setup for Linux/macOS** section below for instructions.
-        </Steps>
-      </TabItem>
-     <Aside type="note" title="First-Time Setup">
-        If you encounter issues, you may need to install Python 3.10.12 and create a virtual environment. See the **Detailed Setup for Linux/macOS** section below for instructions.
-     </Aside>
-    </Tabs>
+  <TabItem label="macOS">
+    Choose **arm64** for Apple Silicon or **x64** for Intel. Open the disk image and install the app. Consult the release notes if macOS blocks it from opening.
+  </TabItem>
+  <TabItem label="Linux">
+    Choose an available Linux package. Allow an AppImage to run as an executable before launching it; install a Debian package with your distribution's package manager.
   </TabItem>
 </Tabs>
 
----
-
-## Advanced Installation & Guides
-
-This section contains advanced installation methods and guides for specific hardware.
-
-### AMD GPU Support (Windows)
-
-If you have an AMD GPU, you can set up Applio with Zluda for hardware acceleration.
-
-<Tabs>
-  <TabItem label="1. Install Dependencies">
-    <Steps>
-      1.  Download and install the [VC++ Runtime](https://aka.ms/vs/17/release/vc_redist.x64.exe).
-      2.  Verify your GPU meets the [System Requirements](https://rocm.docs.amd.com/projects/install-on-windows/en/develop/reference/system-requirements.html).
-      3.  Install the appropriate HIP SDK version from the [AMD ROCm Hub](https://www.amd.com/en/developer/resources/rocm-hub/hip-sdk.html) for your GPU.
-    </Steps>
-  </TabItem>
-  <TabItem label="2. Install Applio">
-    <Steps>
-      1.  Download and extract the Applio v3.2.5+ precompiled version.
-      2.  Open a command prompt in the Applio folder and run the following commands to install the correct PyTorch version:
-          ```cmd
-          env\python -m pip uninstall torch torchvision torchaudio
-          env\python -m pip install torch==2.3.1 torchvision==0.18.1 torchaudio==2.3.1 --upgrade --index-url https://download.pytorch.org/whl/cu118
-          ```
-    </Steps>
-  </TabItem>
-  <TabItem label="3. Configure Zluda">
-    <Steps>
-      1.  Move all `.bat` files from the `assets\zluda` directory to the root Applio folder.
-      2.  Run the appropriate patch script for your HIP SDK version (`patch_zluda_hip57.bat` or `patch_zluda_hip61.bat`).
-      3.  Add the `bin` directory of your HIP SDK installation to your system's Path environment variable.
-      4.  Run `run-applio-amd.bat` to start Applio.
-    </Steps>
-    <Aside type="note" title="Initial Compilation">
-      The first time you run Applio with Zluda, it will compile kernel code, which can take 15-20 minutes. The application may appear frozen during this time.
-    </Aside>
-  </TabItem>
-</Tabs>
-
-### Detailed Setup for Linux/macOS
-
-If the manual installation for Linux/macOS fails, you may need to set up a virtual environment manually.
-
-<Tabs>
-  <TabItem label="Debian/Ubuntu">
-    <Steps>
-      1.  Ensure you have Python 3.10 installed.
-      2.  Open a terminal in the Applio directory and run:
-          ```bash
-          sudo apt install python3.10-venv -y
-          python3.10 -m venv .venv
-          source .venv/bin/activate
-          # Continue with installation steps inside the virtual environment
-          ```
-    </Steps>
-  </TabItem>
-  <TabItem label="Arch Linux">
-    <Steps>
-      1.  Ensure you have Python 3.10 installed.
-      2.  Open a terminal in the Applio directory and run:
-          ```bash
-          sudo pacman -S python-virtualenv --noconfirm
-          python3.10 -m venv .venv
-          source .venv/bin/activate
-          # Continue with installation steps inside the virtual environment
-          ```
-    </Steps>
-  </TabItem>
-</Tabs>
-
-### Docker Deployment
-
-Applio provides official Docker images for both CPU and GPU (CUDA) deployments.
+### Finish engine setup
 
 <Steps>
-1.  **Install Docker:** Follow the [official Docker installation guide](https://docs.docker.com/get-docker/) for your operating system. For GPU support, install [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
-2.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/IAHispano/Applio.git
-    cd Applio
-    ```
-3.  **Build the Docker image:**
-    -   For CPU: `docker build -f Dockerfile -t applio:cpu .`
-    -   For GPU: `docker build -f Dockerfile_cuda -t applio:cuda .`
-4.  **Run the container:**
-    -   Using Docker Compose: `docker compose up`
-    -   Or manually: `docker run --gpus all -p 6969:6969 applio:cuda`
-5.  **Access Applio:** Open `http://localhost:6969` in your browser.
+
+1. Open Applio and review the terms shown on first run.
+2. Select **Install / Repair**. Keep the app open while it prepares Python, engine packages, and required assets.
+3. Read the setup log if a check fails, resolve the reported issue, and retry.
+4. [Add a voice model](/getting-started/installing-inference-models/) and try a short conversion.
+
 </Steps>
 
-<Aside type="tip">
-  Docker is an excellent option for server deployments, cloud environments, and ensuring consistent dependencies across different systems.
+The desktop download contains the interface and engine code. First-run setup installs the environment needed to run the engine; it requires internet access and can take time. Audio separation may install extra packages and download models on first use.
+
+<Aside type="note">
+  Installing a release does not require Node.js or pnpm. Those tools are for building Desktop from source.
 </Aside>
 
----
+### Hardware and dependencies
 
-## Updating and Uninstalling
+| Component | What to check |
+| --- | --- |
+| GPU | Setup's detected hardware and engine status. NVIDIA CUDA, supported AMD configurations, and Apple MPS have different requirements. |
+| Memory | Try a short file first. Training and realtime need different amounts of memory and compute. |
+| Disk | Space for the environment, models, datasets, checkpoints, and outputs. |
+| FFmpeg | Setup status, especially if loading or exporting audio fails. |
+| Network | Setup, downloads, and Edge TTS need internet access. Downloaded voice models can be used for local conversion. |
 
-**To update Applio**, we recommend deleting the current Applio folder and reinstalling using your preferred method, but be sure to back up any desired data first! Here are the most common desired data locations:
-- `assets/audios`: Audio you have uploaded, and the inference results.
-- `logs`: Inference models you have downloaded or trained, plus some other stuff that comes with Applio.
-- `rvc/models/pretraineds/custom`: Any pretrained base models you have downloaded.
-<Steps>
-  1. Move or copy the above folders out of the `Applio` folder, if they contain something you want to keep.
-  2. Delete the entire `Applio` folder, then install the new version.
-  3. Move the above folders back into their correct locations in the new `Applio` folder. Merge folders with the same names, but do not overwrite files that came with both Applio versions. This should mean choosing to "merge" or "write into" folders with the same names, but choosing to "skip" files with the same names.
-</Steps>
+Use the repair workflow before changing PyTorch manually. Old CUDA or HIP/ZLUDA recipes may conflict with the environment chosen by the current app.
 
-**To uninstall Applio**, simply delete the Applio folder.
+## Python application with Gradio
+
+Applio with Gradio runs locally and opens its interface in your browser. On Windows, you can use the compiled package from Hugging Face. The [Applio repository](https://github.com/IAHispano/Applio) also provides source installation, CLI, and cloud workflows.
+
+<Tabs>
+  <TabItem label="Windows">
+
+    **Compiled version**
+
+    1. Download a compiled Windows `.zip` from [Applio on Hugging Face](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows).
+    2. Extract the entire archive into a folder you can write to.
+    3. Run `run-applio.bat` from the extracted folder and open the local address printed in the console. Keep the console open while using Applio.
+
+    The compiled package includes its Python environment. Follow any additional instructions included with your chosen build.
+
+    **From source**
+
+    If you prefer a source checkout, clone or download the repository, run `run-install.bat`, then run `run-applio.bat`.
+  </TabItem>
+  <TabItem label="Linux / macOS">
+
+~~~bash
+git clone https://github.com/IAHispano/Applio.git
+cd Applio
+bash run-install.sh
+bash run-applio.sh
+~~~
+
+    Current scripts target Python 3.12. Follow the requirements shipped with your chosen release.
+  </TabItem>
+</Tabs>
+
+Keep the launch process running while using Gradio. In its Python environment, `python app.py --help` lists server options. [Cloud notebooks](/getting-started/cloud-guides/) have their own setup.
+
+### Containers
+
+The Python repository includes Dockerfiles and Compose configuration. Read those files for your chosen revision before building: GPU access, ports, and persistent volumes are deployment choices. Keep datasets, models, and outputs outside an ephemeral container.
+
+## Build Desktop from source
+
+The [App README](https://github.com/IAHispano/Applio-App#development) specifies Git, Node.js 22+, pnpm 11, Python 3.12, and FFmpeg.
+
+~~~bash
+git clone --recurse-submodules https://github.com/IAHispano/Applio-App.git
+cd Applio-App
+pnpm install
+pnpm desktop:dev
+~~~
+
+If the engine submodule is missing, run `pnpm backend:init`. Complete setup in the interface. `pnpm dev` starts the App browser UI and API; `pnpm typecheck` checks TypeScript; `pnpm build:all` builds its packages.
+
+## Update or uninstall
+
+**Desktop:** use the update controls in **Settings** or install an official newer build. Finish or stop active work before restarting. Updating the interface and repairing engine dependencies are separate operations.
+
+**Gradio:** back up data before replacing a release. In a source checkout, preserve local changes and read release instructions before updating code and dependencies.
+
+Save outputs and back up models, datasets, training checkpoints, custom assets, and preferences. See [storage and migration](/guides/moving-to-desktop/) for locations. Uninstalling the program and deleting its user data are separate decisions.

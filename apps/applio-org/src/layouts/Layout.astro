@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/syne";
+import { ecosystem } from "../lib/ecosystem";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -9,7 +10,8 @@ interface Props {
 	description?: string;
 }
 
-const siteUrl = "https://applio.org";
+const siteUrl = ecosystem.links.website;
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).href;
 const {
 	title = "Applio — Open source, free AI voice conversion tool",
 	description: customDescription,
@@ -17,7 +19,7 @@ const {
 
 const description =
 	customDescription ??
-	"Applio is a free, open-source, AI-driven voice conversion suite. Create AI covers, train custom voice models, and convert voices in real time — on Windows, Linux, macOS or in the cloud.";
+	ecosystem.brand.description;
 ---
 
 <!doctype html>
@@ -50,12 +52,12 @@ const description =
     <meta property="og:site_name" content="Applio" />
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://applio.org" />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content="https://applio.org/opengraph-image.png" />
 
-    <link rel="canonical" href={new URL(Astro.url.pathname, siteUrl)} />
+
+    <link rel="canonical" href={canonicalUrl} />
     <title>{title}</title>
 
     <script
@@ -63,8 +65,8 @@ const description =
       set:html={JSON.stringify({
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
-        name: "Applio",
-        url: "https://applio.org",
+        name: ecosystem.brand.name,
+        url: ecosystem.links.website,
         applicationCategory: "MultimediaApplication",
         operatingSystem: "Windows, Linux, macOS, Cloud",
         license: "https://github.com/IAHispano/Applio/blob/main/LICENSE",
@@ -80,8 +82,9 @@ const description =
           url: "https://github.com/IAHispano",
         },
 		sameAs: [
-			"https://github.com/IAHispano/Applio",
-			"https://discord.gg/wY7gmqTyEV",
+			ecosystem.projects.gradio.repository,
+			ecosystem.projects.desktop.repository,
+			ecosystem.links.discord,
 		],
       })}
     />

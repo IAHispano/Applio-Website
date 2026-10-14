@@ -1,48 +1,43 @@
 ---
-title: "Audio Analyzer"
-description: "Learn how to use the Audio Analyzer to get detailed information about your audio files."
+title: "Analyze audio and pitch"
+description: "Inspect waveforms, spectra, levels, and pitch curves before conversion or training."
 sidebar:
-  order: 12
+  order: 11
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps } from '@astrojs/starlight/components';
 
-The **Audio Analyzer** is a powerful tool that provides detailed information about your audio files, including sample rate, frequency distribution, and more. This information is crucial for training high-quality voice models.
+Audio analysis helps you inspect recordings before conversion or training. Combine measurements with listening: a graph alone cannot tell whether a dataset is suitable.
 
-![The Audio Analyzer interface in Applio, showing the audio upload section.](/images/audio-analyzer.png)
-
-## Why is the Sample Rate Important?
-
-Applio's pre-trained models are available in three sample rates: **32k**, **40k**, and **48k** (corresponding to 32,000 Hz, 40,000 Hz, and 48,000 Hz). For the best training results, the sample rate of your dataset should match the sample rate of the pre-trained model you are using.
-
-While you can check the sample rate in audio editors like Audacity, the Audio Analyzer provides a more detailed analysis of your audio's frequency content.
-
-## How to Use the Audio Analyzer
+## Inspect a recording
 
 <Steps>
-1.  Navigate to the **Extras** tab in Applio.
-2.  Upload your audio file using the **Upload Audio** box.
-3.  Click the **Get Information About Audio** button.
+
+1. Open **Audio Tools** in Desktop, or **Extra** in Gradio.
+2. Upload or select a recording.
+3. Use the analyzer and listen while inspecting the waveform, levels, and spectrogram.
+4. Save useful plots or notes, then return to the original audio to make edits.
+
 </Steps>
 
-Once the analysis is complete, you will see a detailed breakdown of your audio file, including a spectrogram and several spectral feature graphs.
+Desktop has a browser-based waveform/spectrogram analyzer. Gradio's analysis output includes spectral-feature plots; the displays differ.
 
-![The results of an audio analysis in Applio, showing the spectrogram and spectral feature graphs.](/images/audio-analyzer-result.png)
+![Gradio audio-analysis results.](/images/audio-analyzer-result.png)
 
-## Understanding the Graphs
+## What to look for
 
-The graphs provided by the Audio Analyzer can help you identify issues with your audio and fine-tune your training settings for optimal results.
+| Measurement | What it can show |
+| --- | --- |
+| Duration and channels | Recording length and mono/stereo layout |
+| Waveform / peak level | Silence, sudden level changes, or suspicious flat peaks |
+| RMS level | Average signal level; useful when comparing recordings |
+| Spectrogram | Frequency content over time, hum, noise bands, and bandwidth limits |
+| Spectral centroid, bandwidth, rolloff | Summaries of spectral distribution in the engine-generated analysis |
 
-### Spectrogram
+A high file sample rate does not prove the source contains high-frequency detail. Training preprocessing can resample a recording, but cannot recover information missing from it. Match the **training rate** to the architecture and pretrainings.
 
-The spectrogram is a visual representation of the frequencies in your audio over time. It can help you identify unwanted noise, such as background hiss or electrical hum, which you can then remove using an audio editor.
+## Extract a pitch curve
 
-### Spectral Features
+Use the F0 extraction controls in **Audio Tools** to inspect how a supported pitch method tracks the voice. Unvoiced sections have no stable F0. Compare against what you hear before interpreting sudden jumps as a recording problem.
 
-The spectral feature graphs provide a more detailed look at the frequency content of your audio.
-
--   **Spectral Centroid:** This graph represents the "center of mass" of the spectrum. A higher spectral centroid indicates that the audio has more high-frequency content, while a lower spectral centroid indicates more low-frequency content. This can help you understand the overall brightness or darkness of the audio.
--   **Spectral Bandwidth:** This graph shows the range of frequencies in the audio. A wider bandwidth indicates a more complex sound with a wider range of frequencies, while a narrower bandwidth indicates a simpler sound.
--   **Spectral Rolloff:** This graph shows the frequency below which a certain percentage of the total spectral energy lies. It's another way to measure the "skewness" of the spectral distribution and can be useful for distinguishing between different types of sounds.
-
-By understanding these graphs, you can make more informed decisions about your audio processing and training settings, leading to better voice models.
+For reviewing many recordings, Desktop's [dataset review workflow](/getting-started/training/#review-recordings-in-desktop) can flag clips and prepare a separate training copy.

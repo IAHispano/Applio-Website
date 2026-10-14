@@ -1,0 +1,74 @@
+---
+title: "Meet Applio Desktop"
+description: "Find your way around the desktop app, follow jobs, manage settings, and share a session with Bridge Mode."
+sidebar:
+  order: 2
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+Applio Desktop brings the Applio engine into a desktop application for Windows, macOS, and Linux. Start with [installation](/getting-started/installation/), then add a model and convert a short recording.
+
+## Find the right workspace
+
+| Sidebar page | Use it to |
+| --- | --- |
+| **Home** | Check system status and open common workflows |
+| **Convert Audio** | Convert one recording or a batch |
+| **Realtime** | Convert microphone audio, monitor it, and record a session |
+| **Text to Speech** | Generate speech and convert it with a voice model |
+| **Models** | Browse, download, upload, inspect, and export models |
+| **Training** | Review datasets and run automatic or manual training |
+| **Voice Blender** | Combine compatible model weights |
+| **TensorBoard** | Inspect training metrics |
+| **Audio Tools** | Analyze audio and extract pitch curves |
+| **Audio Separator** | Separate vocals, instrumental audio, or other supported stems |
+| **Job history** | Review progress, logs, errors, and outputs |
+| **Settings** | Change preferences, storage, engine options, and updates |
+| **Report a Bug** | Gather diagnostics for a reproducible issue |
+
+Labels may be translated when you select another interface language.
+
+## Follow a job
+
+Conversion, training, downloads, and setup can take time. A job shows its status, stage, and logs; open **Job history** to inspect it.
+
+- **Queued:** waiting for a resource such as the GPU.
+- **Running:** processing has started.
+- **Done:** the job completed and its output is available.
+- **Error:** read the message and logs. Stopped and interrupted jobs also appear here.
+
+Navigation does not stop an active job. Use its stop control to cancel it. Closing or restarting the app interrupts active processing; job history can preserve the record, but it does not automatically resume the work.
+
+<Aside type="note">
+  Realtime and other GPU work share the same hardware. Stop realtime before starting a GPU job. If training is already running, finish or stop it before starting realtime.
+</Aside>
+
+## Settings and outputs
+
+Conversion settings are saved per selected model. Check them when switching voices, especially pitch, embedder, index ratio, and effects.
+
+In **Settings**, you can change language and appearance, inspect engine status, check for updates, and choose the **Logs & Models Folder**. Changing that folder requires a restart to move files. See [storage and migration](/guides/moving-to-desktop/).
+
+Download or copy results you want to keep. Temporary output and upload files can be cleaned up by the app.
+
+## Tray and realtime controls
+
+The desktop tray provides shortcuts to workspaces and realtime controls. A minimized window can keep an active realtime session running. Use **Passthrough** to switch to unconverted microphone audio when needed; the realtime page also offers a configurable hotkey.
+
+## Bridge Mode
+
+Bridge Mode lets another browser access your running desktop session through an internet tunnel. Processing stays on the computer hosting Applio.
+
+<Steps>
+
+1. Open the **Bridge Mode** controls and start sharing.
+2. Copy the invitation or use its QR code on the other device.
+3. Review and approve the device's pairing request in the desktop app.
+4. Revoke a device when it no longer needs access, or stop sharing to close the tunnel.
+
+</Steps>
+
+Keep the host app open and connected. Invitations expire; generate a new invitation when necessary. Approve only devices you intend to give access to your workspace. Bridge Mode is separate from Gradio's public share link.
+
+For an existing Gradio installation, use [moving to Desktop](/guides/moving-to-desktop/).

@@ -1,109 +1,98 @@
 ---
-title: "Voice Conversion with Inference"
-description: "Learn how to use Applio's inference features to perform voice conversion."
+title: "Convert audio"
+description: "Convert a file or batch with a voice model and understand pitch, retrieval, protection, and effects."
 sidebar:
   order: 4
 ---
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Inference** (or **voice conversion**) is the process of using a trained voice model to convert an audio file from one voice to another. Under the hood, Applio extracts the pitch and linguistic content from your input audio, retrieves matching timbre features from the model's index, and synthesizes a new audio file that preserves the original phrasing and emotion but with the target voice's character.
+Voice conversion changes the speaker characteristics of a recording. It uses the original words, rhythm, and pitch contour; it does not generate a new performance from text. For a song, use an isolated vocal rather than the full music mix.
 
-Applio makes this process simple and provides a wealth of advanced options for fine-tuning your results.
-
-![The main inference interface in Applio, showing the model selection, audio input, and conversion button.](/images/inference.png)
-
-## How to Perform Inference
-
-You can perform inference on a single audio file, or on a batch of files at once, or on a stream of audio in real time. The realtime inferrence feature is significantly different, though, and so [has its own tab](/getting-started/realtime/).
+## Convert your first file
 
 <Tabs>
-  <TabItem label="Single Inference">
-    <Steps>
-      1.  **Select Your Model:** Choose the `.pth` and `.index` files for your model. If you don't see your model in the list, click the refresh button.
-      2.  **Upload Your Audio:** Drag and drop your audio file into the input box, or click to browse your files.
-      3.  **Convert:** Click the **Convert** button to start the voice conversion process. The time it takes will depend on the length of your audio and the speed of your computer.
-    </Steps>
+  <TabItem label="Desktop">
+
+<Steps>
+
+1. Finish engine setup and [add a voice model](/getting-started/installing-inference-models/).
+2. Open **Convert Audio** and choose single-file conversion.
+3. Select the model and its matching index, if available. Match the model's training embedder.
+4. Upload a voice recording or choose an available input.
+5. Keep pitch at **0** for the first test, select an export format, and start conversion.
+6. Follow the job, listen to the result, and download audio you want to keep.
+
+</Steps>
+
+Desktop saves conversion settings per selected model. Check them when switching voices.
+
   </TabItem>
-  <TabItem label="Batch Inference">
-    <Steps>
-      1.  **Select Your Audio Folder:** Enter the path to the folder containing your audio files in the **Input Folder** field.
-      2.  **Select Your Model:** Choose the `.pth` and `.index` files for your model.
-      3.  **Convert:** Click the **Convert** button to process all the files in the folder.
-    </Steps>
+  <TabItem label="Gradio">
+
+<Steps>
+
+1. Open **Inference** and refresh the model list if needed.
+2. Select the model and matching index, and upload your recording.
+3. Match the embedder in the advanced controls.
+4. Select the export format and start conversion.
+5. Listen to or download the output.
+
+</Steps>
+
+The image below shows the Gradio interface; Desktop uses a different layout.
+
+![Gradio inference interface with model and audio selection.](/images/inference.png)
+
   </TabItem>
 </Tabs>
 
-<Aside type="caution">
-  If you encounter errors during inference, make sure your audio file names do not contain any spaces or special characters.
+## Batch conversion
+
+Use batch mode to apply the same model and settings to several recordings. Choose the source and destination supported by your interface, run a short test first, and then start the batch. Inspect the job logs for skipped files or failures.
+
+For CLI automation, see [batch inference](/reference/cli/#batch-conversion). For live microphone audio, use [Realtime](/getting-started/realtime/).
+
+## Understand the main settings
+
+| Setting | What it changes |
+| --- | --- |
+| **Pitch** | Shifts the extracted F0 in semitones. Positive raises it; negative lowers it. `+12` is one octave up and `-12` one octave down. Start at 0 and adjust for the recording and target range. |
+| **Search Feature Ratio** | Blends retrieved index features with input features. 0 disables their influence; larger values increase it. This is not the number of neighbors searched. |
+| **Volume Envelope** | Blends loudness behavior: 0 follows the original envelope more closely; 1 retains the converted envelope. |
+| **Protect Voiceless Consonants** | Reduces conversion influence on unvoiced sections when pitch guidance is active. In the current engine, values below 0.5 enable protection; 0.5 disables it. Lower values provide stronger protection. |
+| **Pitch extraction algorithm** | Estimates F0. Use the available choices in your release; current Desktop offers RMVPE, FCPE, CREPE, and Swift. |
+| **Embedder Model** | Extracts content features. Use the same embedder used in training. |
+
+Adjust one setting at a time and compare the same short clip. A higher retrieval ratio or stronger effect is not automatically better.
+
+### Processing options
+
+- **Split Audio:** processes long recordings in segments and combines the results.
+- **Autotune:** adjusts the extracted pitch toward note frequencies before synthesis; strength controls the amount.
+- **Proposed Pitch:** calculates an additional shift toward the configured pitch target. Avoid combining it with a large manual shift without checking the result.
+- **Clean Audio:** reduces output noise. Excessive cleaning can remove detail or introduce artifacts.
+- **Formant Shifting:** changes vocal resonance in the input-processing path. Start near the defaults and compare carefully.
+- **Export Format:** WAV or FLAC preserves a lossless result; compressed formats are useful for sharing. Exporting at a higher rate does not restore missing input detail.
+- **Inference engine / ONNX precision:** available Desktop controls depend on model and runtime support. Use the default Torch path first; read diagnostics if another engine fails.
+
+### Effects
+
+Enable **Post-Process** and then the effects you want. Available controls include reverb, pitch shift, delay, limiter, gain, distortion, chorus, compressor, bitcrush, and clipping.
+
+The post-processing pitch-shift effect acts on synthesized audio; the main **Pitch** control changes F0 before synthesis. Keep effects off while diagnosing conversion quality.
+
+## Improve a poor result
+
+| Symptom | First checks |
+| --- | --- |
+| Robotic or unstable pitch | Verify embedder and speaker ID, check input quality, compare available F0 methods |
+| Target voice sounds weak | Verify the matching index and try a moderate retrieval ratio |
+| Harsh consonants or breaths | Try protection below 0.5 and compare |
+| Distortion | Check input clipping and gain; disable effects |
+| Very slow conversion | Read hardware diagnostics, stop competing GPU work, and compare a short clip without effects |
+| Long file runs out of memory | Try Split Audio or shorter recordings |
+
+<Aside type="tip">
+  Save a result you like before changing more settings. Desktop working outputs are temporary; download or copy audio you want to retain.
 </Aside>
-
-## Advanced Settings
-
-Applio provides a wide range of advanced settings to help you achieve the perfect voice conversion.
-
-### Basic Settings
-
--   **Export Format:** Choose the audio format for your converted file (e.g., WAV, FLAC, MP3).
--   **Split Audio:** This option chops the audio into smaller segments for processing and then stitches them back together at the end. This can be useful for very long audio files to avoid memory issues.
--   **Autotune:** Applies a gentle autotune effect to the output. This is often recommended for singing conversions.
--   **Clean Audio:** Uses noise reduction algorithms to clean up the output audio. This is recommended for speech-to-speech conversions.
--   **Upscale Audio:** Enhances the quality of the output audio. This is useful if your input audio is low quality.
--   **Clean Strength:** Controls the intensity of the audio cleaning. Higher values are more aggressive but can sometimes introduce compression artifacts.
-
-### Pitch and Voice Settings
-
--   **Pitch:** Adjusts the pitch of the output in semitones. Use negative values to lower the pitch (more masculine) and positive values to raise it (more feminine). A common starting point is -12 for male-to-female and +12 for female-to-male. For singing, smaller adjustments (e.g., -3 to +3) are often more appropriate.
--   **Filter Radius:** Applies a median filter to the F0 contour to reduce breathiness and pitch jitter. Values between 1 and 5 are typical. Higher values produce smoother pitch but may sound less natural. Default is 3.
--   **Search Feature Ratio:** Controls how closely the output matches the target speaker's voice by determining the blend between the input embedding and the retrieved index features. At 0, no retrieval is used (the model relies entirely on the embedder's output). At 1, the output is maximally influenced by the index. Values between 0.3 and 0.8 are typical. Higher values produce more accurate timbre matching but may introduce artifacts.
--   **Volume Envelope:** Blends the volume dynamics of the output with the original audio. At 1, the output retains its own volume envelope. At 0, the output follows the original audio's volume. This is useful when the converted output sounds too compressed or too dynamic.
--   **Protect Voiceless Consonants:** Preserves the clarity of consonants and breathing sounds by protecting them from excessive modification. Recommended values are between 0.3 and 0.7. Higher values better preserve sibilants and plosives but may reduce conversion quality.
--   **Hop Length:** Determines the analysis frame stride in samples. Smaller values (e.g., 128) provide more precise pitch tracking at the cost of higher processing time. Larger values (e.g., 320) are faster but may miss rapid pitch changes. Default is 128 for speech, 192 for singing.
-
-### Models and Algorithms
-
--   **Pitch Extraction Algorithm:** Choose the algorithm used for pitch detection. `rvmpe` and `crepe` are popular choices, but you can experiment to see which one works best for your audio.
--   **Embedder Model:** Select the embedder model that was used to train your voice model. This must be the same embedder used during training.
--   **Formant Shifting:** This can be used to make male-to-female and female-to-male conversions sound more natural. You can adjust the **Quefrency** and **Timbre** for formant shifting.
-
-### Post-Processing Effects
-
-You can apply a variety of audio effects to your output file.
-
--   **Reverb:** Adds reverberation to the audio.
--   **Pitch Shift:** Shifts the pitch of the audio in semitones.
--   **Limiter:** Prevents the audio from clipping.
--   **Gain:** Adjusts the volume of the audio.
--   **Distortion:** Adds harmonic distortion to the audio.
--   **Chorus:** Adds a chorus effect.
--   **Bitcrush:** Reduces the bit depth of the audio, creating a lo-fi effect.
--   **Clipping:** Intentionally clips the audio at a certain threshold.
--   **Compressor:** Reduces the dynamic range of the audio.
--   **Delay:** Adds an echo effect to the audio.
-
-## Command-Line Inference
-
-All inference features are also available via the command line for automation and scripting:
-
-```bash
-# Basic conversion
-python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth
-
-# With pitch adjustment and specific settings
-python core.py infer --input_path input.wav --output_path output.wav --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index --pitch -3 --f0_method crepe --embedder_model contentvec
-
-# Batch processing an entire folder
-python core.py batch_infer --input_folder ./input_folder --output_folder ./output_folder --pth_path logs/MyModel/G_1000.pth --index_path logs/MyModel/MyModel.index
-```
-
-See the [CLI Reference](/reference/cli/) for a complete list of all available options.
-
-## Tips for Better Results
-
-If your output audio sounds robotic or has artifacts, here are a few things you can try:
-
--   **Improve Input Quality:** The better your input audio, the better the output will be.
--   **Check Model Training:** If you're using a custom model, it may be undertrained or overtrained.
--   **Clean Your Audio:** Use a tool like [UVR](/guides/uvr/) to remove any reverb, background noise, or double vocals from your input audio.
--   **Verify Dataset Quality:** If your model was trained on a noisy dataset, you'll need to [clean the dataset](/guides/how-create-datasets/) and retrain the model.
--   **Experiment with Settings:** Don't be afraid to experiment with the advanced settings to find the best combination for your specific audio.

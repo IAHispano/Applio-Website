@@ -1,77 +1,49 @@
 ---
-title: "Understanding Embedders"
-description: "Learn what embedders are and how to use them effectively in your voice conversion projects."
+title: "Understand embedders"
+description: "Match content-feature extraction between training and inference, including custom embedder files."
 sidebar:
-  order: 3
+  order: 7
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 
-## What is an Embedder?
+An **embedder** turns audio into numerical content features used by the voice conversion model. It is separate from the speaker model and the F0 predictor.
 
-An **embedder** is a crucial component in the voice conversion process. It's a neural network that analyzes an audio file and converts it into a set of numerical representations, called "embeddings." These embeddings capture the essential acoustic and linguistic features of the audio, such as the speaker's tone, pitch, and accent.
+Use the **same embedder for extraction during training and conversion during inference**. A model trained with one feature representation cannot reliably interpret a different one.
 
-Think of an embedder as a translator that turns complex audio waves into a simplified language that the voice conversion model can understand and work with.
+## Built-in choices
 
-## How to Use Embedders in Applio
+| Interface value | Model family |
+| --- | --- |
+| `contentvec` | ContentVec |
+| `spin` | Spin |
+| `spin-v2` | Spin v2 |
+| `chinese-hubert-base` | Chinese HuBERT |
+| `japanese-hubert-base` | Japanese HuBERT |
+| `korean-hubert-base` | Korean HuBERT |
+| `custom` | A compatible local embedder directory |
 
-You'll interact with embedders at two key stages of the voice conversion process:
+Choose the embedder recorded in the model metadata or specified by its author. Language alone is not a reason to change the embedder of an already trained model.
 
--   **Training:** When you're training a new voice model, you'll need to select an embedder in the **Extraction Settings**.
--   **Inference:** When you're using a trained model to convert a voice, you must select the *same* embedder in the **Advanced Settings**.
+Desktop exposes the choice in conversion settings, realtime settings, and training feature extraction. Inspect models in **Models** to check available metadata.
 
-<Aside type="danger" title="Critical Information">
-  It is absolutely essential to use the same embedder for both training and inference. Using different embedders will result in poor-quality output or errors.
-</Aside>
+## Custom embedders
 
-## Where to Find Embedders
-
-You can find a wide variety of pre-trained embedders on [Hugging Face](https://huggingface.co/models?pipeline_tag=feature-extraction&sort=trending&search=Hubert). Here's how to find them:
+The current loader expects a compatible local model directory. Selecting **custom** is not a promise that every Hugging Face feature-extraction network will work.
 
 <Steps>
-1.  Go to the Hugging Face model hub.
-2.  In the sidebar, filter by **Task > Feature Extraction**.
-3.  Use the search bar to find specific embedder types, such as "HuBERT" or "ContentVec".
+
+1. Obtain compatible weights and their matching configuration from the model publisher.
+2. In Desktop training, use **Custom Embedder (.bin + .json)** to upload the files, or select an existing local directory.
+3. Choose **custom** and the resulting path for feature extraction.
+4. Use the same files and path for inference and realtime conversion.
+
 </Steps>
 
-<Aside type="note">
-When choosing an embedder, consider factors like the model's size, the languages it was trained on, and its popularity within the community.
+A typical directory contains `pytorch_model.bin` and `config.json`. The architecture and feature dimensions must match what the engine and speaker model expect. Preserve these files with your experiment.
+
+<Aside type="caution">
+  Read the log if a custom path is missing or fails to load. Do not continue training under the assumption that the requested embedder was used.
 </Aside>
 
-## Available Embedders in Applio
-
-| Embedder | Language Focus | Best For | Model Size |
-|----------|---------------|----------|------------|
-| **contentvec** | Multilingual | General voice conversion | ~300 MB |
-| **spin** | English | Speech conversion | ~500 MB |
-| **spin-v2** | English | Improved speech conversion | ~500 MB |
-| **chinese-hubert** | Mandarin Chinese | Chinese speech/singing | ~400 MB |
-| **japanese-hubert** | Japanese | Japanese speech/singing | ~400 MB |
-| **korean-hubert** | Korean | Korean speech/singing | ~400 MB |
-| **custom** | Any | User-supplied HuggingFace model | Varies |
-
-## Using Custom Embedders
-
-In addition to the built-in embedders, Applio supports **custom embedders** from Hugging Face. This allows you to use any HuggingFace `transformers` feature-extraction model as your embedder:
-
-1. Choose a model from the [Hugging Face Hub](https://huggingface.co/models?pipeline_tag=feature-extraction&sort=trending&search=Hubert)
-2. In the training UI, select **custom** as the embedder
-3. Enter the HuggingFace model ID (e.g., `facebook/hubert-base-ls960`)
-4. Use the **same custom embedder** during inference
-
-## How Embedders Affect Quality
-
-The choice of embedder significantly impacts the quality and characteristics of your voice model:
-
-- **Content vs. Timbre:** Some embedders encode more linguistic content information, while others encode more speaker timbre information. ContentVec emphasizes content, making it good for natural speech conversion. Spin variants capture more timbre detail, making them better for singing.
-- **Language Match:** Using an embedder trained on the same language as your dataset typically yields better results. Language-specific HuBERT models (Chinese, Japanese, Korean) significantly outperform multilingual models on those languages.
-- **Model Size:** Larger embedders generally produce better quality but require more VRAM and processing time. ContentVec offers the best quality-to-size ratio.
-- **Pitch Awareness:** ContentVec-pitch and certain other embedders encode pitch information directly into the embeddings, which can improve pitch stability during conversion.
-
-## Best Practices for Using Embedders
-
--   **Consistency is Key:** Always use the same embedder for a given model, from training all the way through to inference.
--   **Keep Track:** If you're working with multiple models, keep a record of which embedder you used for each one. The embedder name is stored in the model's `.pth` metadata for reference.
--   **Experiment:** Don't be afraid to experiment with different embedders to see which one works best for your specific use case. Some embedders may be better suited for singing, while others excel at speech.
--   **Match Languages:** For non-English datasets, using a language-specific embedder (Chinese, Japanese, or Korean HuBERT) will typically yield noticeably better results than a general-purpose embedder.
--   **Stay Updated:** The field of audio processing is constantly evolving. Keep an eye out for new and improved embedders that may offer better performance.
+To experiment with another embedder, extract features and train a separate model. Compare held-out conversions, rather than switching the embedder only at inference time.

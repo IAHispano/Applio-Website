@@ -1,80 +1,65 @@
 ---
-title: "Introduction"
-description: "Welcome to Applio - your all-in-one AI voice conversion tool."
+title: "Welcome to Applio"
+description: "Convert audio, change your voice live, and train voice models with Applio Desktop or Gradio."
 ---
 
-import { Card, CardGrid, Steps, Aside } from '@astrojs/starlight/components';
+import { Card, CardGrid, Steps } from '@astrojs/starlight/components';
 
-**Welcome to Applio!** Whether you're looking to create AI-powered song covers, train custom voice models, or simply experiment with voice conversion, you've come to the right place.
+Applio converts a recording into another voice while retaining the words and performance. You can convert files, change your microphone voice live, generate speech from text, and train models from voice recordings.
 
-Applio is a powerful, user-friendly tool designed for everyone, from complete beginners to seasoned experts. You can run it on your own computer or use it in the cloud with Google Colab.
+## Choose your interface
 
-<Aside type="note">
-  For local voice training, we recommend an **Nvidia RTX 20-series GPU or newer** for the best experience. For voice inference (using existing models), most modern computers will work just fine.
-</Aside>
+| Choose by | Applio Desktop | Applio with Gradio |
+| --- | --- | --- |
+| Interface | A desktop window with a sidebar and job history | A browser interface organized into tabs |
+| Setup | Download a build and run **Install / Repair** | On Windows, download the [compiled package](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows); source installation is also available |
+| Use it for | Local conversion, realtime audio, and training | Existing Gradio workflows, Python development, and cloud notebooks |
+| Source | [Applio-App](https://github.com/IAHispano/Applio-App) | [Applio](https://github.com/IAHispano/Applio) |
 
-## Quick Start
+Both use the Applio voice conversion engine. Their interfaces, installation steps, and release versions differ. These docs identify Desktop and Gradio instructions where they differ.
 
-Ready to dive in? Here’s how to get started based on your experience level.
+## Your first conversion
 
-<CardGrid>
-    <Card title="For Beginners" icon="rocket">
-        New to voice conversion? Follow these steps to create your first AI cover.
-        <Steps>
-        1. **Install Applio**: Use our simple [local installation](/getting-started/installation/) guide or try our [cloud-based alternatives](/getting-started/cloud-guides/).
-        2. **Learn the Basics**: Get familiar with the Applio interface by following our [inference guide](/getting-started/inference/).
-        3. **Create Your First Cover**: Learn how to produce your first AI cover with our step-by-step tutorial.
-        </Steps>
-    </Card>
-    <Card title="For Advanced Users" icon="puzzle">
-        Already familiar with voice conversion? Here's a faster path for you.
-        <Steps>
-        1. **Set Up Your Environment**: Follow the [installation guide](/getting-started/installation/) to get Applio running.
-        2. **Train a Custom Model**: Dive into our [training guide](/getting-started/training/) to create your own voice models.
-        3. **Optimize Your Workflow**: Explore [advanced features](/getting-started/plugins/) to streamline your projects.
-        </Steps>
-    </Card>
-</CardGrid>
+<Steps>
 
-## Core Features
+1. [Install Applio](/getting-started/installation/) and finish engine setup.
+2. [Add a voice model](/getting-started/installing-inference-models/): an exported `.pth` and its matching `.index`, if supplied.
+3. Open **Convert Audio** in Desktop or **Inference** in Gradio. Upload a short voice recording.
+4. Select the model, match its embedder, and convert. Listen before adjusting settings.
 
-Applio is packed with features to help you on your voice conversion journey. Here are some of the key things you can do:
+</Steps>
+
+For a song, [separate the vocal](/guides/uvr/) first, convert it, then mix it back with the instrumental in an audio editor.
+
+## Explore the workflows
 
 <CardGrid>
-    <Card title="Voice Inference" icon="right-caret">
-        Use pre-trained voice models to generate AI covers or convert speech.
-        <br/><a href="/getting-started/inference/">Learn about Inference</a>
-    </Card>
-    <Card title="Model Training" icon="right-caret">
-        Train your own custom voice models from scratch using your own datasets.
-        <br/><a href="/getting-started/training/">Training Guide</a>
-    </Card>
-    <Card title="Dataset Creation" icon="right-caret">
-        Learn how to prepare high-quality audio datasets for optimal training results.
-        <br/><a href="/guides/how-create-datasets/">Create a Dataset</a>
-    </Card>
-    <Card title="Text-to-Speech (TTS)" icon="right-caret">
-        Use TTS to generate speech for your voice models.
-        <br/><a href="/getting-started/tts/">TTS Guide</a>
-    </Card>
-    <Card title="Voice Blender" icon="right-caret">
-        Combine multiple voice models to create unique new voices.
-        <br/><a href="/getting-started/voice-blender/">Voice Blender Guide</a>
-    </Card>
-    <Card title="Audio Analyzer" icon="right-caret">
-        Analyze your datasets to ensure they are ready for training.
-        <br/><a href="/getting-started/audio-analyzer/">Audio Analyzer Guide</a>
-    </Card>
+  <Card title="Convert audio" icon="right-caret">
+    Single files, batches, pitch, and effects.
+
+    [Conversion guide](/getting-started/inference/)
+  </Card>
+  <Card title="Change your voice live" icon="right-caret">
+    Microphone routing, monitoring, latency, and recording.
+
+    [Realtime guide](/getting-started/realtime/)
+  </Card>
+  <Card title="Train a voice model" icon="right-caret">
+    Prepare recordings, extract features, train, and export.
+
+    [Training guide](/getting-started/training/)
+  </Card>
+  <Card title="Generate speech" icon="right-caret">
+    Synthesize text and convert the resulting speech.
+
+    [Text-to-speech guide](/getting-started/tts/)
+  </Card>
 </CardGrid>
 
-## Choose Your Path
+See the [desktop overview](/getting-started/desktop/) for workspaces and jobs, [migration guide](/guides/moving-to-desktop/) for existing installations, or [CLI reference](/reference/cli/) for scripting.
 
-Now that you have an overview of what Applio can do, it's time to choose your adventure:
+## Before you begin
 
--   **Ready to create an AI cover right now?** Head over to the [Inference Guide](/getting-started/inference/).
--   **Want to train your own voice model?** The [Training Guide](/getting-started/training/) is the perfect place to start.
--   **Just want to explore?** Check out the full [Getting Started](/getting-started/) section.
+Speed and memory requirements depend on your hardware and model. Training needs substantially more compute than file conversion. Check setup diagnostics rather than assuming every GPU supports the same features.
 
-For detailed technical information about how voice conversion works, hardware requirements, configuration options, and a complete glossary of terms, check out the [Reference](/reference/architecture/) section.
-
-Each guide provides detailed, step-by-step instructions to help you succeed. Happy creating!
+Use recordings and models you have permission to use, and follow the [Terms of Use](/tos/). If something fails, start with [troubleshooting](/getting-started/report-error/).

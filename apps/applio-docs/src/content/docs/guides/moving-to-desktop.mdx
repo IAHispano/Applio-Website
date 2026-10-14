@@ -1,0 +1,64 @@
+---
+title: "Move to Desktop and manage storage"
+description: "Bring existing models into Desktop, understand data locations, and back up your work."
+sidebar:
+  order: 1
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+Keep your Gradio installation while trying Desktop. Install Desktop separately and copy the files you need.
+
+## Bring your models across
+
+<Steps>
+
+1. Finish Desktop's **Install / Repair** setup.
+2. Find the exported inference `.pth` files and matching `.index` files in the old installation, usually under `logs`.
+3. Open **Models → Download Models → Upload Model Files** in Desktop. Upload the model and index.
+4. Refresh **Model Library** and inspect the metadata.
+5. Select the model in **Convert Audio**, match its training embedder, and test a short recording.
+
+</Steps>
+
+A discriminator checkpoint is not a voice model. To continue training, preserve the entire experiment folder, dataset, configuration, and training checkpoints. Inference exports alone cannot resume training.
+
+Copy or download custom embedders and pretrainings separately. Let Desktop create its own Python environment; virtual environments are not portable between installations.
+
+## Where Desktop stores files
+
+| Installation | Default writable runtime |
+| --- | --- |
+| Packaged Windows | `data/runtime` beside the executable |
+| Packaged macOS / Linux | The `data` folder within the app's user-data directory |
+| App running from source | The App repository directory |
+
+Within the runtime, models and experiments normally live in `logs`, datasets in `assets/datasets`, and custom engine assets under `rvc/models`. Working uploads default to `assets/audios/_uploads`; generated audio defaults to `assets/audios`. The `/outputs` address is a served URL, not a separate default folder. Source/server deployments can override these paths with `UPLOADS_DIR` and `OUTPUTS_DIR`.
+
+Preferences and job history are in the configuration directory. For packaged Windows, that is the installation's `data` folder. The desktop tray offers folder shortcuts for models, outputs, logs, and preferences.
+
+### Choose another models folder
+
+In **Settings → Disk & Cache Storage**, set **Logs & Models Folder**, select **Save Folder**, and restart Applio. It moves existing logs and model files after restarting. Finish active jobs first and ensure the destination has enough space.
+
+This moves the logs/models tree, not every dataset, cache, or output. If a move fails, read its error before moving files manually.
+
+## Gradio's typical layout
+
+- `logs`: models and training experiments.
+- `assets/datasets`: training recordings.
+- `assets/audios`: audio used or produced by workflows.
+- `rvc/models/pretraineds/custom`: custom G/D pretrainings.
+- `rvc/models/embedders/embedders_custom`: custom embedders.
+
+A configured logs folder can differ from the default. Check settings before copying files.
+
+## Back up before updating
+
+Save inference models and matching indexes, original datasets, full experiments you want to resume, custom assets, preferences, and valuable generated audio. Keep a copy outside the installation.
+
+<Aside type="caution">
+  Desktop outputs and uploads are temporary working files. Download or copy results you want to keep before cleanup or automatic retention removes them.
+</Aside>
+
+Use **Settings** to update Desktop, and **Install / Repair** when its environment needs attention. Preserve user data when uninstalling if you intend to reinstall; delete it separately only when you no longer need it.

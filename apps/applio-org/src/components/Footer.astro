@@ -1,4 +1,5 @@
 ---
+import { ecosystem } from "../lib/ecosystem";
 interface LinkColumn {
 	title: string;
 	links: { label: string; href: string; external?: boolean }[];
@@ -9,6 +10,7 @@ const columns: LinkColumn[] = [
 		title: "Product",
 		links: [
 			{ label: "Features", href: "/#features" },
+			{ label: "Applio ecosystem", href: "/ecosystem" },
 			{
 				label: "Download",
 				href: "/download",
@@ -22,7 +24,7 @@ const columns: LinkColumn[] = [
 		links: [
 			{
 				label: "Documentation",
-				href: "https://docs.applio.org",
+				href: ecosystem.links.docs,
 				external: true,
 			},
 			{ label: "Blog", href: "/blog" },
@@ -35,10 +37,11 @@ const columns: LinkColumn[] = [
 		links: [
 			{ label: "Discord", href: "/discord" },
 			{
-				label: "GitHub",
-				href: "https://github.com/IAHispano/Applio",
+				label: "Engine source",
+				href: ecosystem.projects.gradio.repository,
 				external: true,
 			},
+			{ label: "Desktop source", href: ecosystem.projects.desktop.repository, external: true },
 			{ label: "Community hub", href: "/community" },
 			{ label: "Support us on Ko-fi", href: "/donate", external: true },
 		],

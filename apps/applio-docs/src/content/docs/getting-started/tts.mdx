@@ -1,35 +1,44 @@
 ---
-title: "Text-to-Speech (TTS)"
-description: "Learn how to use Applio's built-in Text-to-Speech (TTS) feature to generate audio from text."
+title: "Text to speech"
+description: "Generate speech with Edge TTS and convert it with an Applio voice model."
 sidebar:
   order: 6
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 
-Applio includes a built-in Text-to-Speech (TTS) feature that allows you to generate audio from text and then convert it to the voice of your chosen model, all without needing to use external software.
+Applio uses **Edge TTS** to synthesize speech, then can convert that audio with an RVC model. The TTS voice provides the language and delivery; the conversion model changes the voice characteristics.
 
-![A screenshot of the Text-to-Speech (TTS) interface in Applio.](/images/tts.png)
-
-## How to Use the TTS Feature
+## Generate speech
 
 <Steps>
-1.  Go to the **TTS** tab in the Applio interface.
-2.  **Select Your Model:** Choose the voice model you want to use from the dropdown menu.
-3.  **Select a TTS Voice:** Choose a TTS voice from the list. These voices are provided by EdgeTTS and are available in a variety of languages.
-4.  **Enter Your Text:** Type or paste the text you want to convert into the text box. You can also upload a `.txt` file.
-5.  **Adjust the Speed:** Use the slider to adjust the speed of the generated speech.
-6.  **Convert:** Click the **Convert** button to start the process.
+
+1. Open **Text to Speech** in Desktop or **TTS** in Gradio.
+2. Select a TTS voice appropriate for the language of your text.
+3. Enter text or upload a `.txt` file.
+4. Adjust **TTS Speed** and choose your conversion model and matching embedder.
+5. Generate the speech, follow the job, and listen to the result.
+6. Save the source TTS audio and converted output you want to keep.
+
 </Steps>
 
-## Important Information
+This screenshot shows the Gradio interface.
 
-Applio's TTS feature is powered by **EdgeTTS**, which has a few limitations:
+![Gradio TTS interface.](/images/tts.png)
 
--   **Internet Connection Required:** EdgeTTS requires an active internet connection to function.
--   **Limited Voices:** You can only use the voices that are provided by EdgeTTS. It is not possible to add custom voices.
--   **Audio Length Limit:** The maximum audio length is currently limited to 10 minutes per request due to Azure's free tier restrictions.
+Use a short paragraph to test pronunciation and conversion settings before submitting a long script.
 
-<Aside type="tip">
-  If you're looking for more advanced TTS options, consider using the [ElevenLabs plugin](/getting-started/plugins) or generating audio with a different TTS platform and then using Applio's standard [inference](/getting-started/inference) features to convert the voice.
-</Aside>
+## Connection and voice selection
+
+Edge TTS requires internet access. Text is sent to the remote speech service. Its available voices and service behavior can change; errors and rate limits are reported in the job log.
+
+A custom RVC model does not add a new Edge TTS voice. Choose a source TTS voice, then convert the synthesized audio. If you prefer another synthesis service, generate the audio there and upload it to [Convert Audio](/getting-started/inference/).
+
+## Troubleshooting
+
+- **Synthesis fails:** check connectivity, the selected voice, and the log; try a shorter text.
+- **Wrong pronunciation:** match the TTS voice's language and simplify unusual punctuation or abbreviations.
+- **Conversion fails after synthesis:** check the RVC model, index, embedder, and engine setup.
+- **Unnatural output:** listen to the source speech first, then compare pitch and retrieval settings without effects.
+
+For automation and the differences between standalone and App CLI requirements, see [CLI TTS](/reference/cli/#text-to-speech).

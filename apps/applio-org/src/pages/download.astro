@@ -2,36 +2,21 @@
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
 
-// Default fallback release version & links based on latest GitHub releases
-const defaultVersion = "v0.1.2";
-const gradioVersion = "v3.6.5";
-const releasesUrl = "https://github.com/IAHispano/Applio-App/releases";
-const gradioReleasesUrl =
-	"https://github.com/IAHispano/Applio/releases/tag/3.6.5";
+import { docsUrl, ecosystem } from "../lib/ecosystem";
 
+// Official listings remain useful without a latest-release response.
+const releasesUrl = ecosystem.links.desktopReleases;
+const gradioReleasesUrl = ecosystem.links.gradioReleases;
 const staticDownloads = {
-	windows:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-Windows-Setup.exe",
-	macArmDmg:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-macOS-arm64.dmg",
-	macIntelDmg:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-macOS-x64.dmg",
-	macArmZip:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-macOS-arm64.zip",
-	macIntelZip:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-macOS-x64.zip",
-	linuxAppImage:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-Linux.AppImage",
-	linuxDeb:
-		"https://github.com/IAHispano/Applio-App/releases/download/v0.1.2/Applio-0.1.2-Linux.deb",
-	gradioWindowsZip:
-		"https://huggingface.co/IAHispano/Applio/resolve/main/Compiled/Windows/ApplioV3.6.5.zip",
+  windows: releasesUrl, macArmDmg: releasesUrl, macIntelDmg: releasesUrl,
+  macArmZip: releasesUrl, macIntelZip: releasesUrl, linuxAppImage: releasesUrl,
+  linuxDeb: releasesUrl, gradioWindowsZip: ecosystem.links.gradioCompiled,
 };
 ---
 
 <Layout
-  title="Download Applio — Desktop App & Gradio WebUI"
-  description="Download Applio for Windows, macOS, and Linux. Choose between the modern Applio Desktop application or the classic Gradio WebUI."
+  title="Download Applio — Desktop and Gradio"
+  description="Download Applio for Windows, macOS, and Linux. Choose Applio Desktop or the Python and Gradio application, powered by the same voice conversion engine."
 >
   <GlowBackground />
 
@@ -43,7 +28,7 @@ const staticDownloads = {
           <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
           <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
         </span>
-        <span id="release-version-badge">Desktop {defaultVersion} • Gradio {gradioVersion}</span>
+        <span id="release-version-badge">Desktop & Gradio · official releases</span>
         <span class="text-white/20">•</span>
         <a href="https://github.com/IAHispano/Applio" target="_blank" rel="noopener noreferrer" class="text-white/70 hover:text-white transition-colors">
           Open Source
@@ -54,11 +39,13 @@ const staticDownloads = {
         Download Applio
       </h1>
       <p id="page-subtitle" class="text-base sm:text-lg text-white/70 leading-relaxed max-w-xl mx-auto px-4">
-        Choose between the modern standalone Desktop application or the classic Gradio WebUI.
+        Choose Desktop or the Python and Gradio application. Both use the Applio engine.
       </p>
     </div>
 
-    <!-- Mode Switcher Tabs: Desktop App (default) vs WebUI Gradio (classic) -->
+    <a href={docsUrl("installation")} class="mb-6 text-sm text-white/80 underline underline-offset-4 hover:text-white">Installation and first-run setup guide</a>
+
+    <!-- Mode Switcher Tabs: Applio Desktop and Applio with Gradio -->
     <div
       role="tablist"
       aria-label="Applio version selection"
@@ -77,7 +64,7 @@ const staticDownloads = {
           <line x1="8" y1="21" x2="16" y2="21"></line>
           <line x1="12" y1="17" x2="12" y2="21"></line>
         </svg>
-        <span>Desktop App</span>
+        <span>Applio Desktop</span>
         <span id="badge-tab-desktop" class="hidden sm:inline-flex text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-black/10 text-black">App</span>
       </button>
 
@@ -93,13 +80,13 @@ const staticDownloads = {
           <polyline points="4 17 10 11 4 5"></polyline>
           <line x1="12" y1="19" x2="20" y2="19"></line>
         </svg>
-        <span>WebUI Gradio</span>
-        <span id="badge-tab-gradio" class="hidden sm:inline-flex text-[10px] uppercase font-medium tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-neutral-300">Classic</span>
+        <span>Applio with Gradio</span>
+        <span id="badge-tab-gradio" class="hidden sm:inline-flex text-[10px] uppercase font-medium tracking-wider px-2 py-0.5 rounded-full bg-white/10 text-neutral-300">Python</span>
       </button>
     </div>
 
     <!-- ================= VIEW 1: DESKTOP APP (DEFAULT) ================= -->
-    <div id="view-desktop" class="flex flex-col items-center w-full">
+    <div id="view-desktop" role="tabpanel" aria-labelledby="tab-btn-desktop" class="flex flex-col items-center w-full">
       <!-- Platform Cards Container -->
       <div
         id="cards-container"
@@ -142,7 +129,7 @@ const staticDownloads = {
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              <span>Download (.exe)</span>
+              <span data-download-label>View Windows releases</span>
             </a>
           </div>
         </div>
@@ -205,7 +192,7 @@ const staticDownloads = {
                 href={staticDownloads.macArmDmg}
                 class="flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
               >
-                <span>Apple Silicon (M1/M2/M3/M4)</span>
+                <span>Apple Silicon (arm64)</span>
                 <span class="text-xs text-white/40 font-mono">.dmg</span>
               </a>
               <a
@@ -377,20 +364,20 @@ const staticDownloads = {
 
       <!-- GitHub Releases & CLI link for Desktop -->
       <p class="text-white/60 text-xs sm:text-sm mt-8 text-center">
-        Looking for older desktop releases or commit history?{" "}
+        <span id="release-status" aria-live="polite">Links open the official release page if installer information is unavailable.</span>{" "}
         <a
           href={releasesUrl}
           target="_blank"
           rel="noopener noreferrer"
           class="text-white underline hover:text-neutral-200"
         >
-          View Applio Desktop releases on GitHub
+          View official Desktop releases
         </a>
       </p>
     </div>
 
-    <!-- ================= VIEW 2: WEBUI GRADIO (CLASSIC) ================= -->
-    <div id="view-gradio" class="hidden flex flex-col items-center w-full max-w-6xl">
+    <!-- ================= VIEW 2: PYTHON AND GRADIO ================= -->
+    <div id="view-gradio" role="tabpanel" aria-labelledby="tab-btn-gradio" class="hidden flex flex-col items-center w-full max-w-6xl">
       <!-- Gradio Hero Cards Container -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
         <!-- Windows Compiled Package -->
@@ -425,10 +412,10 @@ const staticDownloads = {
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
               </svg>
-              <span>Download (.zip)</span>
+              <span>View compiled packages</span>
             </a>
             <p class="text-center text-[11px] text-neutral-500 mt-2">
-              Hosted on Hugging Face &bull; v3.6.5
+              Official compiled packages on Hugging Face
             </p>
           </div>
         </div>
@@ -535,7 +522,7 @@ run-install.bat # or ./run-install.sh</pre>
 
           <div class="w-full mt-auto">
             <a
-              href="https://docs.applio.org"
+              href={docsUrl("installation")}
               target="_blank"
               rel="noopener noreferrer"
               class="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
@@ -555,11 +542,11 @@ run-install.bat # or ./run-install.sh</pre>
       <div class="mt-8 max-w-4xl w-full p-4 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-sm font-semibold text-white">Applio Gradio v3.6.5 Highlights</span>
-            <span class="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-neutral-300">Classic WebUI</span>
+            <span class="text-sm font-semibold text-white">Applio with Gradio</span>
+            <span class="rounded-full bg-white/10 px-2 py-0.5 text-[11px] text-neutral-300">Python & Gradio</span>
           </div>
           <p class="text-neutral-400 text-xs mt-1">
-            Overhauled CLI inference, RMVPE high-register pitch correction, TF32 and ZLUDA optimizations.
+            Convert audio, train models, and use the CLI. Read the notes for the release you choose.
           </p>
         </div>
         <a
@@ -600,7 +587,7 @@ run-install.bat # or ./run-install.sh</pre>
 
 <script>
   function setupDownloadPage() {
-    // 1. Tab Switching (Desktop App vs WebUI Gradio)
+    // 1. Tab Switching (Desktop and Gradio)
     const tabDesktop = document.getElementById("tab-btn-desktop");
     const tabGradio = document.getElementById("tab-btn-gradio");
     const badgeTabDesktop = document.getElementById("badge-tab-desktop");
@@ -629,12 +616,10 @@ run-install.bat # or ./run-install.sh</pre>
         badgeTabGradio?.classList.add("bg-white/10", "text-neutral-300");
 
         if (subtitle) {
-          subtitle.textContent = "Select your operating system to start downloading the modern standalone desktop studio.";
+          subtitle.textContent = "Choose your operating system, then follow the first-run setup guide.";
         }
 
-        if (updateHistory && window.location.hash !== "#app" && window.location.hash !== "") {
-          history.replaceState(null, "", window.location.pathname);
-        }
+
       } else {
         viewDesktop?.classList.add("hidden");
         viewGradio?.classList.remove("hidden");
@@ -654,17 +639,37 @@ run-install.bat # or ./run-install.sh</pre>
         badgeTabDesktop?.classList.add("bg-white/10", "text-neutral-300");
 
         if (subtitle) {
-          subtitle.textContent = "Classic browser-based research interface with full CLI tools, web interface, and hardware acceleration.";
+          subtitle.textContent = "The browser interface and CLI for local and cloud Python workflows.";
         }
 
-        if (updateHistory && window.location.hash !== "#gradio") {
-          history.replaceState(null, "", "#gradio");
-        }
+
+      }
+      tabDesktop?.setAttribute("tabindex", type === "desktop" ? "0" : "-1");
+      tabGradio?.setAttribute("tabindex", type === "gradio" ? "0" : "-1");
+      if (updateHistory) {
+        const url = new URL(window.location.href);
+        url.searchParams.delete("tab");
+        url.hash = type === "gradio" ? "gradio" : "";
+        history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
       }
     }
 
     tabDesktop?.addEventListener("click", () => setActiveTab("desktop"));
     tabGradio?.addEventListener("click", () => setActiveTab("gradio"));
+
+    for (const tab of [tabDesktop, tabGradio]) {
+      tab?.addEventListener("keydown", (event) => {
+        if (!(event instanceof KeyboardEvent)) return;
+        let next: "desktop" | "gradio" | undefined;
+        if (event.key === "Home") next = "desktop";
+        else if (event.key === "End") next = "gradio";
+        else if (event.key === "ArrowLeft" || event.key === "ArrowRight") next = tab === tabDesktop ? "gradio" : "desktop";
+        if (!next) return;
+        event.preventDefault();
+        setActiveTab(next);
+        (next === "desktop" ? tabDesktop : tabGradio)?.focus();
+      });
+    }
 
     // Check initial tab from URL hash or query param (?tab=gradio or #gradio)
     const hash = window.location.hash.toLowerCase();
@@ -833,78 +838,29 @@ run-install.bat # or ./run-install.sh</pre>
       }
     });
 
-    // 6. Fetch latest release dynamically from GitHub API for Desktop App
-    fetch("https://api.github.com/repos/IAHispano/Applio-App/releases/latest")
-      .then((res) => {
-        if (!res.ok) throw new Error("GitHub API error");
-        return res.json();
+    fetch("https://api.github.com/repos/IAHispano/Applio-App/releases/latest", { signal: AbortSignal.timeout(8000) })
+      .then((response) => {
+        if (!response.ok) throw new Error("Release lookup unavailable");
+        return response.json();
       })
       .then((release) => {
-        if (!release || !release.assets) return;
-
-        const tagName = release.tag_name || release.name;
+        const result = resolveDesktopRelease(release);
+        if (!result || !document.getElementById("view-desktop")) return;
         const badge = document.getElementById("release-version-badge");
-        if (badge && tagName) {
-          badge.textContent = `Desktop ${tagName} • Gradio v3.6.5`;
+        if (badge) badge.textContent = `Desktop ${result.tag} · Gradio releases available`;
+        for (const asset of result.downloads) {
+          const link = document.getElementById(asset.id);
+          if (!(link instanceof HTMLAnchorElement)) continue;
+          link.href = asset.href;
+          link.title = asset.label;
+          link.setAttribute("aria-label", asset.label);
+          const label = link.querySelector("[data-download-label]");
+          if (label) label.textContent = asset.label;
         }
-
-        const assets: Array<{ name: string; browser_download_url: string }> = release.assets;
-
-        // Windows setup .exe
-        const winAsset = assets.find(
-          (a) => a.name.endsWith("-Windows-Setup.exe") || a.name.endsWith(".exe")
-        );
-        if (winAsset) {
-          const btn = document.getElementById("btn-windows") as HTMLAnchorElement | null;
-          if (btn) btn.href = winAsset.browser_download_url;
-        }
-
-        // Mac ARM dmg
-        const macArmDmg = assets.find((a) => a.name.includes("macOS-arm64.dmg"));
-        if (macArmDmg) {
-          const link = document.getElementById("link-mac-arm-dmg") as HTMLAnchorElement | null;
-          if (link) link.href = macArmDmg.browser_download_url;
-        }
-
-        // Mac Intel dmg
-        const macIntelDmg = assets.find((a) => a.name.includes("macOS-x64.dmg"));
-        if (macIntelDmg) {
-          const link = document.getElementById("link-mac-intel-dmg") as HTMLAnchorElement | null;
-          if (link) link.href = macIntelDmg.browser_download_url;
-        }
-
-        // Mac ARM zip
-        const macArmZip = assets.find((a) => a.name.includes("macOS-arm64.zip"));
-        if (macArmZip) {
-          const link = document.getElementById("link-mac-arm-zip") as HTMLAnchorElement | null;
-          if (link) link.href = macArmZip.browser_download_url;
-        }
-
-        // Mac Intel zip
-        const macIntelZip = assets.find((a) => a.name.includes("macOS-x64.zip"));
-        if (macIntelZip) {
-          const link = document.getElementById("link-mac-intel-zip") as HTMLAnchorElement | null;
-          if (link) link.href = macIntelZip.browser_download_url;
-        }
-
-        // Linux AppImage
-        const linuxAppImage = assets.find((a) => a.name.endsWith(".AppImage"));
-        if (linuxAppImage) {
-          const link = document.getElementById("link-linux-appimage") as HTMLAnchorElement | null;
-          if (link) link.href = linuxAppImage.browser_download_url;
-        }
-
-        // Linux deb
-        const linuxDeb = assets.find((a) => a.name.endsWith(".deb"));
-        if (linuxDeb) {
-          const link = document.getElementById("link-linux-deb") as HTMLAnchorElement | null;
-          if (link) link.href = linuxDeb.browser_download_url;
-        }
+        const status = document.getElementById("release-status");
+        if (status) status.textContent = "Available installers link directly to the latest release. Other choices open the official release page.";
       })
-      .catch((err) => {
-        // Static fallbacks remain active
-        console.log("Using static release assets", err);
-      });
+      .catch(() => { /* Keep official listings, not historical executables. */ });
   }
 
   document.addEventListener("astro:page-load", setupDownloadPage);

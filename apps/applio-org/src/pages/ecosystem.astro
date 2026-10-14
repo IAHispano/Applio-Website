@@ -1,0 +1,94 @@
+---
+import GlowBackground from "../components/GlowBackground.astro";
+import Layout from "../layouts/Layout.astro";
+import { docsUrl, ecosystem } from "../lib/ecosystem";
+
+const projects = [
+  {
+    name: ecosystem.projects.desktop.name,
+    description: "A desktop workspace for conversion, realtime audio, speech synthesis, and training, with setup tools and job history.",
+    action: "Get Desktop",
+    href: "/download",
+    guide: docsUrl("desktop"),
+    source: ecosystem.projects.desktop.repository,
+  },
+  {
+    name: ecosystem.projects.gradio.name,
+    description: "The Python engine, browser tabs, and CLI behind existing local and cloud workflows.",
+    action: "Get Gradio",
+    href: "/download?tab=gradio",
+    guide: docsUrl("installation") + "#python-application-with-gradio",
+    source: ecosystem.projects.gradio.repository,
+  },
+  {
+    name: ecosystem.projects.docs.name,
+    description: "One documentation home for both interfaces: setup, models, conversion, training, troubleshooting, and reference.",
+    action: "Read the docs",
+    href: ecosystem.links.docs,
+    guide: docsUrl("storage"),
+    source: ecosystem.projects.docs.repository,
+  },
+];
+const issueTargets = [
+  { name: "Desktop app", href: ecosystem.projects.desktop.issues },
+  { name: "Python / Gradio", href: ecosystem.projects.gradio.issues },
+  { name: "Website / docs", href: ecosystem.projects.website.issues },
+];
+---
+
+<Layout title="The Applio ecosystem" description="One voice conversion engine, connected desktop, browser, and CLI workflows, shared documentation, and one community.">
+  <GlowBackground />
+  <main class="relative mx-auto max-w-6xl px-6 py-20 sm:py-24">
+    <div class="max-w-3xl">
+      <p class="text-xs uppercase tracking-widest text-neutral-400">One Applio</p>
+      <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">One engine. Your choice of workflow.</h1>
+      <p class="mt-6 text-lg leading-relaxed text-neutral-300">
+        Applio brings voice conversion, realtime voice changing, speech synthesis, and model training together.
+        Choose Desktop, Gradio, or the CLI, then follow the same guides and join the same community.
+      </p>
+    </div>
+
+    <section class="mt-12 grid gap-5 md:grid-cols-3" aria-label="Applio projects">
+      {projects.map((project) => (
+        <article class="flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6">
+          <h2 class="text-xl font-semibold text-white">{project.name}</h2>
+          <p class="mt-3 flex-1 text-sm leading-relaxed text-neutral-300">{project.description}</p>
+          <a href={project.href} class="mt-6 inline-flex w-fit rounded-full bg-white px-5 py-2.5 text-sm font-medium text-black hover:bg-neutral-200">
+            {project.action}
+          </a>
+          <div class="mt-4 flex flex-wrap gap-4 text-sm text-neutral-300">
+            <a href={project.guide} class="underline underline-offset-4 hover:text-white">Guide</a>
+            <a href={project.source} target="_blank" rel="noopener noreferrer" class="underline underline-offset-4 hover:text-white">Source code</a>
+          </div>
+        </article>
+      ))}
+    </section>
+
+    <section class="mt-12 rounded-2xl border border-white/10 p-6 sm:p-8">
+      <h2 class="text-2xl font-semibold text-white">Bring your work with you</h2>
+      <p class="mt-4 max-w-3xl text-sm leading-relaxed text-neutral-300">
+        Compatible voice models can be used across interfaces. Keep the matching index and embedder settings.
+        When continuing training, preserve the full experiment and checkpoints; an inference export alone cannot resume a run.
+      </p>
+      <a href={docsUrl("storage")} class="mt-4 inline-block text-sm text-white underline underline-offset-4">Migration and storage guide</a>
+    </section>
+
+    <section class="mt-12 grid gap-8 md:grid-cols-2">
+      <div>
+        <h2 class="text-2xl font-semibold text-white">One community</h2>
+        <p class="mt-3 text-sm leading-relaxed text-neutral-300">Ask questions, share work, and support the people maintaining Applio.</p>
+        <div class="mt-5 flex flex-wrap gap-4 text-sm">
+          <a href={ecosystem.links.discord} target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4">Join Discord</a>
+          <a href={ecosystem.links.support} target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4">Support Applio</a>
+        </div>
+      </div>
+      <div>
+        <h2 id="reporting" class="text-2xl font-semibold text-white">Report to the right project</h2>
+        <p class="mt-3 text-sm leading-relaxed text-neutral-300">Include your interface, version, steps, and relevant logs. For a security vulnerability, use the <a href="/security" class="underline">private reporting guidance</a>.</p>
+        <ul class="mt-5 flex flex-wrap gap-4 text-sm">
+          {issueTargets.map((target) => <li><a href={target.href} target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-4">{target.name}</a></li>)}
+        </ul>
+      </div>
+    </section>
+  </main>
+</Layout>

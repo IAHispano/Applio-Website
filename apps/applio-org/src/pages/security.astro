@@ -1,9 +1,10 @@
 ---
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
+import { ecosystem } from "../lib/ecosystem";
 ---
 
-<Layout>
+<Layout title="Applio security" description="Find the private vulnerability-reporting destination for Applio Desktop, the Python engine, website, and docs.">
   <GlowBackground />
 
   <div
@@ -37,21 +38,22 @@ import Layout from "../layouts/Layout.astro";
         details in public channels before the issue has been addressed.
       </p>
       <div class="mt-6 flex flex-wrap gap-3">
+        <a href={`${ecosystem.projects.desktop.repository}/security/advisories/new`} target="_blank" rel="noopener noreferrer" class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300">Report a Desktop vulnerability</a>
         <a
-          href="https://github.com/IAHispano/Applio/security/advisories/new"
+          href={`${ecosystem.projects.gradio.repository}/security/advisories/new`}
           target="_blank"
           rel="noopener noreferrer"
           class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300"
         >
-          Report a vulnerability
+          Report a Python / Gradio vulnerability
         </a>
         <a
-          href="https://github.com/IAHispano/Applio-Website/security/advisories/new"
+          href={`${ecosystem.projects.website.repository}/security/advisories/new`}
           target="_blank"
           rel="noopener noreferrer"
           class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300"
         >
-          Report a website issue
+          Report a website / docs vulnerability
         </a>
       </div>
 

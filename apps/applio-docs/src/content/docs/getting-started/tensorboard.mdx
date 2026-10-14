@@ -1,47 +1,35 @@
 ---
-title: "Monitoring Training with TensorBoard"
-description: "Learn how to use TensorBoard to monitor the progress of your model training and prevent overtraining."
+title: "Monitor training with TensorBoard"
+description: "View training metrics and compare checkpoints without treating loss alone as a quality score."
 sidebar:
-  order: 9
+  order: 12
 ---
 
-import { Aside, Steps } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 
-**TensorBoard** is a powerful tool that allows you to visualize and monitor the training process of your voice models. By keeping an eye on the graphs in TensorBoard, you can get a better understanding of how your model is learning and identify potential issues like overtraining.
+TensorBoard displays metrics written by the training process. Use it alongside listening tests.
 
-## How to Use TensorBoard
+## Open the dashboard
 
 <Steps>
-1.  **Launch TensorBoard:** Run the `run-tensorboard.bat` file in your Applio directory, or open a terminal and run the command `tensorboard --logdir=logs`.
-2.  **Open in Browser:** Open your web browser and navigate to `http://localhost:6006` (or the address shown in your terminal).
-3.  **Navigate to Scalars:** In the TensorBoard interface, click on the **Scalars** tab.
-4.  **Find the "g/total" Graph:** This graph shows the total loss for the generator, which is the most important metric for tracking the overall progress of your training.
+
+1. Start training or select an experiment with saved event logs.
+2. In Desktop, open **TensorBoard**; its service starts on demand. In Gradio, open its TensorBoard tab or use the repository's TensorBoard launch script.
+3. Select the experiment and metrics you want to inspect.
+4. Refresh if recent points have not appeared yet.
+
 </Steps>
 
-![A screenshot of the TensorBoard interface, showing the 'g/total' graph in the 'Scalars' tab.](/images/tensorboard.png)
+If the dashboard is empty, verify that training has written event logs in the active logs folder. In Desktop, inspect the service status and use its refresh/restart controls if necessary.
 
-<Aside type="tip" title="TensorBoard Settings">
-  - **Smoothing:** Set the smoothing value to around `0.950` for a clearer view of the graph's trend.
-  - **Reload Data:** Click the gear icon and enable auto-reloading to keep the data up to date.
-  - **Ignore Outliers:** Uncheck the "Ignore outliers in chart scaling" option to get a more accurate representation of the data.
+## Read the metrics
+
+Training can report generator and discriminator losses, mel reconstruction, feature matching, and other terms. They measure different parts of optimization and are not directly interchangeable.
+
+A lower total loss does not guarantee a better voice. Compare periodic exports using the same held-out speech or singing clips and the same conversion settings. Listen for articulation, pitch stability, speaker similarity, and artifacts.
+
+<Aside type="tip">
+  Record the epoch, model file, and test settings for comparisons. Keep a good checkpoint before continuing an experiment.
 </Aside>
 
-## Preventing Overtraining with TensorBoard
-
-**Overtraining** happens when a model learns the training data too well, including its noise and imperfections. An overtrained model will perform poorly on new data, so it's important to stop training at the right time.
-
-The "lowest point" on the `g/total` graph is a good indicator of when to stop training. This is the point where the loss value is at its lowest before it starts to rise or plateau.
-
-![A screenshot of the 'g/total' graph in TensorBoard, with the lowest point highlighted.](/images/point.png)
-
-To find the best version of your model, look for the lowest point on the `g/total` graph and note the corresponding **step** number. You can then find the saved model file (`.pth`) with the closest step number in your `logs` folder.
-
-## Advanced Monitoring
-
-For more advanced users, you can also monitor these graphs:
-
--   `loss/g/mel`: The mel spectrogram loss. This should generally decrease throughout training. If it starts to rise, it could be a sign of overtraining.
--   `loss/g/kl`: The KL divergence loss. This should also decrease over time.
--   `loss/d/total`: The total discriminator loss. This will likely go up at the beginning of training and then start to decrease.
-
-A healthy training process will show a general downward trend in all these loss values over time. By keeping an eye on these graphs, you can gain a deeper understanding of your model's training process and make more informed decisions.
+For a stalled or failing run, check the training console and **Job history** rather than relying only on TensorBoard. See [training](/getting-started/training/) for checkpoint and resume guidance.

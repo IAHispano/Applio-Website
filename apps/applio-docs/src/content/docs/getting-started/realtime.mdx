@@ -1,70 +1,89 @@
 ---
-title: "Voice Conversion with Realtime"
-description: "Learn how to use Applio's realtime inference feature to perform voice conversion on a live audio stream."
+title: "Realtime voice conversion"
+description: "Set up microphone conversion in Desktop or Gradio, route output, and balance latency with stability."
 sidebar:
   order: 5
 ---
 
 import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Realtime inference** is internally much the same as [regular inference](/getting-started/inference), but works on a live audio stream instead of a pre-recorded file. This makes it useful for humor or scambaiting. Aside from that key difference, it has many of the features of regular file-based inference.
+Realtime converts microphone audio in small blocks. Its latency includes capture, processing, buffering, and playback. A GPU that can convert files may still be too slow for your chosen realtime settings.
 
-![The main realtime inference interface in Applio, showing the Audio Settings tab contents.](/images/realtime.png)
+Use headphones while monitoring to prevent feedback.
 
-<Aside type="caution">
-  Please remember to comply with our [Terms of Service](/tos/). We do not endorse nor encourage any kind of ultimately deceptive or harmful behavior).
-</Aside>
-<Aside type="note">
-  Realtime inference requires more compute than most CPUs can perform currently, so this type of inference is restricted to GPU only.
-</Aside>
+## Start a session
 
-## How to Perform Realtime Inference
+<Tabs>
+  <TabItem label="Desktop">
 
 <Steps>
-  1.  **Select an Input Device:** Click the drop-down device menu in the **Input Device** panel, and select one.
-  2.  **Select an Output Device:** Same song, second verse, this time in the **Output Device** panel.
-  3.  **Switch to the Model Settings tab.**
-  4.  **Select Your Model:** Choose the `.pth` and `.index` files for your model. If you don't see your model in the list, click the refresh button.
-  5.  **Start the engine:** Click the large **Start** button at the top of the page. It may take a moment to load, but you should soon see some fluctuating **Latency** readings. Keep an eye on the console for errors.
-  6.  **Shutting down:** When you are done, click the same button again, now labeled **Stop**, to stop the realtime engine.
+
+1. Finish setup, add a model, and open **Realtime**.
+2. Allow microphone access. Select **Input Device** and **Output Device**; refresh devices if a newly connected device is missing.
+3. Choose your voice model, matching index, and embedder.
+4. Start streaming and wait until the model is ready before speaking.
+5. Enable **Hear myself** if you want local monitoring. Adjust monitor volume.
+6. Stop the session when finished.
+
 </Steps>
 
+Desktop captures and plays audio through its browser audio layer. Device availability depends on operating-system permissions and browser support. Model and audio settings can apply while streaming; wait for the applied status before judging a change.
+
+  </TabItem>
+  <TabItem label="Gradio">
+
+<Steps>
+
+1. Open **Realtime**, select input and output devices, and choose an optional monitor device.
+2. Select the model, index, and embedder in model settings.
+3. Start the engine and wait for its ready status.
+4. Speak, check the latency readings, and stop when finished.
+
+</Steps>
+
+Gradio's native audio-device path uses PortAudio. Its device names and monitor controls can differ from Desktop.
+
+  </TabItem>
+</Tabs>
+
+## Send the voice to another application
+
+To use converted audio in a chat or streaming application, route Applio's output into a virtual audio device, then choose that device's receiving end as the other application's microphone. Applio does not install a system-wide virtual microphone.
+
+Verify the route with a short recording in the receiving application. Avoid sending the same audio through both the physical microphone and the converted route, which can create echo.
+
+## Tune latency
+
+| Control | Effect |
+| --- | --- |
+| **Chunk Size** | Smaller chunks can reduce delay but leave less time for processing. Increase it if audio drops or breaks up. |
+| **Auto chunk size** | Lets Desktop choose a block size; use it as a starting point where available. |
+| **Crossfade Overlap Size** | Smooths transitions between blocks. More overlap adds context and work. |
+| **Extra Conversion Size** | Includes past audio as context. Larger values increase memory and processing cost. |
+| **Enable VAD / Silence Threshold** | Controls voice activity handling. A threshold that is too high can cut off quiet speech. |
+| **Input Gain** | Changes the level reaching conversion. Reduce it if the input clips. |
+| **Output Gain / Monitor volume** | Changes playback level; check the destination recording as well as local monitoring. |
+
+Test with normal speech for several seconds after a change. Reduce optional effects and extra context before pushing chunk size lower. The diagnostic and calibration controls in Desktop can help identify unstable buffering.
+
+The pitch, embedder, retrieval ratio, and protection controls follow the [conversion guide](/getting-started/inference/#understand-the-main-settings). Precision options depend on hardware and decoder support.
+
+## Passthrough, recording, and the tray
+
+Desktop's **Passthrough** sends unconverted microphone audio. Configure its hotkey if you need to switch quickly. Tray controls let you manage realtime while the main window is minimized.
+
+Start streaming before starting a recording. Stop recording, then save or download the result. In Gradio, check the recording output path and export format together.
+
 <Aside type="note">
-  Applio uses [PortAudio](https://portaudio.com/) as the backend for connecting to audio devices. If you are having trouble getting your desired device(s) to show up, it is probably a limitation of PortAudio. You may have success in looking up how to make your device show up for it, however.
+  Realtime shares GPU resources with conversion and training. In Desktop, an active GPU job prevents realtime from starting, and queued GPU jobs wait while realtime owns the GPU. Stop the session before starting other GPU work.
 </Aside>
 
-## Additional settings
+## If audio fails
 
-### Audio settings
+- **No devices:** check microphone permissions and refresh devices.
+- **No output:** check the selected playback device, receiving application, monitor controls, and VAD threshold.
+- **Feedback:** use headphones and remove any route feeding output back into the input.
+- **Dropouts or growing delay:** increase chunk size, reduce extra context and effects, and stop other GPU workloads.
+- **Engine disconnect:** inspect realtime logs and setup diagnostics, then restart the session.
 
-- **Gain:** All three audio devices (**Input**, **Output**, and **Monitor**) have a gain slider to adjust their volume:
-  - **Input gain** should be adjusted if you encounter distortion from input clipping, or if the model seems to have a hard time hearing you (i.e. it only produces output when you are being very loud).
-  - **Output gain** can be adjusted to the requirements of any audio application you might be piping into (e.g. Discord, OBS Studio, etc).
-  - **Monitor gain** can be adjusted to your tastes.
-- **Monitor Device (Optional):** Useful for when you want the converted audio piped into another application, but you also want to hear it.
-  <Aside type="note">
-  You must set this up *before* starting the realtime inference engine.
-  </Aside>
-  <Steps>
-    1.  **Enable the feature:** Click the **Use Monitor Device** checkbox.
-    2.  **Select a device:** Click the **Monitor Device** drop-down menu, and pick a device that is *not* the same as the **Output Device**.
-    3.  **Continue preparing for engine start.**
-  </Steps>
-- **Record Audio (Optional):** While realtime inference is running, you can start and stop recording the output to a file.
-  <Steps>
-    1.  **Choose an output path, if desired:** This isn't really necessary, as you will have a chance to download the file elsewhere, and is also restricted to Applio's allowed paths, but you can set an **Output Path** other than the default if you want. The biggest use for this is to correct the output file extension to match the **Export Format** that you select. It can also be used to prevent Applio from overwriting `assets/audios/output.wav`.
-    2.  **Choose an export format:** Applio defaults to saving the recorded audio as Microsoft uncompressed Wave PCM, but you can choose to save it as lossy ultra-compressed MPEG-3, compressed Free Lossless Audio Codec, or lossy compressed ultra-seekable OGG. Note: If you choose something other than WAV, you should manually change the file name extension yourself in the **Output Path**.
-    3.  **Begin recording:** Once the realtime engine is *already running*, click the big **Start** button in the **Record Audio (Optional)** panel to begin recording. Click it again later to **Stop**.
-  </Steps>
-- **Enable VAD:** This is essentially the VOX setting on a two-way radio, only running inference when Applio detects that you are actually talking. This saves compute power only intermittently, so it won't help for gaming on the same machine, but it might help improve battery life or thermals, as well as reduce artifacting from inferring near-silence. You can control the threshold for this in [Performance Settings](#performance-settings).
-
-### Model Settings
-
-All of these settings are functionally the same as their counterparts [in file-based inference](/getting-started/inference/#basic-settings).
-
-### Performance settings
-
-- **Chunk Size (ms):** Control how far behind the present Applio's conversion should be. Setting this high will increase latency, but setting it too low will result in higher GPU usage or artifacting.
-- **Crossfade Overlap Size (s):** To prevent clicking between the chunks of audio Applio processes, Applio overlaps them with crossfading. Setting this overlap larger will naturally push processing farther into the past (i.e. increase latency), but setting it too low may sound jittery.
-- **Extra Conversion Size (s):** Each chunk of audio can include some already-processed past data to increase context. This can improve conversion quality, but remember, you are passing your GPU audio to infer faster than you are recording it. Setting it too high will mean your GPU cannot keep up.
-- **Silence Threshold (dB):** Remember **Enable VAD** back in [Audio Settings](#audio-settings)? This is where you can control its threshold. Below this level, Applio treats the input audio as silence and does not infer it.
+See [troubleshooting](/getting-started/report-error/) for reporting a reproducible failure.

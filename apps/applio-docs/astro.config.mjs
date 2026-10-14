@@ -2,66 +2,124 @@ import starlight from "@astrojs/starlight";
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlightThemeNext from "starlight-theme-next";
+import { ecosystem } from "../../shared/ecosystem.ts";
 
 // https://astro.build/config
 export default defineConfig({
-	site: "https://docs.applio.org",
+	site: ecosystem.links.docs,
 	integrations: [
 		starlight({
 			plugins: [starlightThemeNext()],
-			title: "Applio",
-			description: "Documentation for Applio - AI-driven voice conversion tool",
+			title: ecosystem.projects.docs.name,
+			logo: {
+				dark: "./src/assets/applio-logo.svg",
+				light: "./src/assets/applio-logo-light.svg",
+			},
+			favicon: "/favicon.ico",
+			description: ecosystem.brand.description,
 			social: [
+				{
+					icon: "external",
+					label: "Applio website",
+					href: ecosystem.links.website,
+				},
+				{
+					icon: "download",
+					label: "Download Desktop",
+					href: ecosystem.links.download,
+				},
 				{
 					icon: "github",
 					label: "GitHub",
-					href: "https://github.com/iahispano/applio",
+					href: ecosystem.projects.gradio.repository,
 				},
 				{
 					icon: "discord",
 					label: "Discord",
-					href: "https://discord.gg/wY7gmqTyEV",
+					href: ecosystem.links.discord,
 				},
 				{
 					icon: "star",
 					label: "Sponsor",
-					href: "https://ko-fi.com/iahispano",
+					href: ecosystem.links.support,
 				},
 			],
 			sidebar: [
 				{
-					label: "Introduction",
-					link: "/",
+					label: "Start here",
+					items: [
+						{ label: "Welcome", link: "/" },
+						{ label: "Applio ecosystem", link: ecosystem.links.ecosystem },
+						{ label: "Installation", link: "/getting-started/installation/" },
+						{ label: "Meet Desktop", link: "/getting-started/desktop/" },
+					],
 				},
 				{
-					label: "Getting Started",
-					autogenerate: { directory: "getting-started" },
+					label: "Voice conversion",
+					items: [
+						{ label: "Convert audio", link: "/getting-started/inference/" },
+						{ label: "Realtime", link: "/getting-started/realtime/" },
+						{ label: "Text to speech", link: "/getting-started/tts/" },
+					],
 				},
 				{
-					label: "Guides",
-					autogenerate: { directory: "guides" },
+					label: "Models & training",
+					items: [
+						{
+							label: "Add a voice model",
+							link: "/getting-started/installing-inference-models/",
+						},
+						{ label: "Embedders", link: "/getting-started/embedder/" },
+						{
+							label: "Training pretrainings",
+							link: "/getting-started/pretrained/",
+						},
+						{
+							label: "Prepare a dataset",
+							link: "/guides/how-create-datasets/",
+						},
+						{ label: "Train a model", link: "/getting-started/training/" },
+						{ label: "Voice Blender", link: "/getting-started/voice-blender/" },
+						{ label: "TensorBoard", link: "/getting-started/tensorboard/" },
+					],
 				},
 				{
-					label: "Reference",
-					autogenerate: { directory: "reference" },
+					label: "Audio tools & extensions",
+					items: [
+						{ label: "Separate audio", link: "/guides/uvr/" },
+						{
+							label: "Analyze audio & pitch",
+							link: "/getting-started/audio-analyzer/",
+						},
+						{ label: "KaraFan", link: "/guides/karafan/" },
+						{ label: "Gradio plugins", link: "/getting-started/plugins/" },
+					],
 				},
 				{
-					label: "Terms of Use",
-					link: "/tos",
+					label: "Manage Applio",
+					items: [
+						{
+							label: "Migration & storage",
+							link: "/guides/moving-to-desktop/",
+						},
+						{
+							label: "Troubleshooting",
+							link: "/getting-started/report-error/",
+						},
+						{
+							label: "Cloud workflows",
+							link: "/getting-started/cloud-guides/",
+						},
+					],
 				},
+				{ label: "Reference", autogenerate: { directory: "reference" } },
+				{ label: "Terms of Use", link: "/tos/" },
 			],
 			editLink: {
 				baseUrl:
 					"https://github.com/iahispano/applio-website/edit/main/apps/applio-docs/",
 			},
 			head: [
-				{
-					tag: "link",
-					attrs: {
-						rel: "icon",
-						href: "/favicon.ico",
-					},
-				},
 				{
 					tag: "meta",
 					attrs: {
@@ -103,8 +161,8 @@ export default defineConfig({
 							font-family: 'Syne', sans-serif;
 						}
 						
-						/* center and round corners for all images */
-						img {
+						/* Keep content image styling out of the navigation and theme logos. */
+						.sl-markdown-content img {
 							display: block;
 							margin-left: auto;
 							margin-right: auto;
@@ -114,7 +172,7 @@ export default defineConfig({
 						}
 						
 						/* ensure images in cards are also centered and rounded */
-						.card img {
+						.sl-markdown-content .card img {
 							display: block;
 							margin-left: auto;
 							margin-right: auto;
@@ -122,7 +180,7 @@ export default defineConfig({
 						}
 						
 						/* ensure images in content areas are centered */
-						.content img {
+						.sl-markdown-content .content img {
 							display: block;
 							margin-left: auto;
 							margin-right: auto;

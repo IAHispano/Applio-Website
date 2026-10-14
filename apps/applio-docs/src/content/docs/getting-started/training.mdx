@@ -1,132 +1,115 @@
 ---
-title: "Training a Voice Model"
-description: "A step-by-step guide to training a high-quality voice model in Applio."
+title: "Train a voice model"
+description: "Review a dataset, choose compatible training settings, run the pipeline, and export or resume a model."
 sidebar:
   order: 8
 ---
 
-import { Aside, Steps, FileTree } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
 
-**Training** is the process where Applio learns to replicate a voice from a dataset of audio files. This guide will walk you through each step of the training process, from preparing your dataset to exporting your final model.
+Training learns a voice from recordings. Dataset quality, coverage, and compatible settings matter more than simply increasing epochs.
 
-<Aside type="note">
-  If you don't have a powerful local GPU, you can use cloud alternatives to train your model. Check out our [Cloud Guide](/getting-started/cloud-guides/).
-</Aside>
+## Prepare the dataset
 
-### Step 1: Prepare Your Dataset
+Use clean recordings of the intended speaker with varied phrases, pitches, and delivery. Keep original recordings and work on copies. See [dataset preparation](/guides/how-create-datasets/).
 
-The first and most important step is to prepare a high-quality audio dataset.
+In Desktop, upload audio through **Training** or select a dataset path on the computer running Applio. Gradio commonly uses folders under `assets/datasets`.
 
--   **Duration:** Aim for 10-30 minutes of clean audio.
--   **Format:** Your audio files must be in a lossless format, such as `.wav` or `.flac`.
--   **Quality:** The audio should be free of background noise, reverb, and other artifacts.
+For multiple speakers, preserve numeric subfolders:
 
-For a detailed guide on creating a high-quality dataset, please see our [Dataset Creation Guide](/guides/how-create-datasets/).
+~~~text
+assets/datasets/MyVoice/
+  0/
+    speaker-zero.wav
+  1/
+    speaker-one.wav
+~~~
 
-Once your dataset is ready, you need to place it in the `assets/datasets` directory. Create a new folder inside this directory for your model.
+Check that the upload or folder-selection method preserves this structure before starting a multispeaker project.
 
-#### Multi-Speaker Models (Optional)
+### Review recordings in Desktop
 
-If you want to train a model with multiple speakers, create a subfolder for each speaker inside your model's dataset folder. The speaker folders must be named numerically, starting from `0`.
+Use the dataset review controls to scan recordings, listen to flagged clips, and choose what to include. You can prepare a training copy with silent-edge trimming, level balancing, and peak headroom, then select **Use this dataset for training**.
 
-<FileTree>
-- assets/datasets/your-model-name/
-  - 0/
-    - speaker0-audio1.wav
-    - speaker0-audio2.wav
-  - 1/
-    - speaker1-audio1.wav
-    - speaker1-audio2.wav
-</FileTree>
+A scan is a starting point for listening. Reducing peaks cannot recover audio already damaged by clipping.
 
-### Step 2: Pre-process the Dataset
+## Choose compatible settings
 
-Now it's time to pre-process your dataset. This step loads your raw audio files, slices them into manageable segments (typically 5-15 seconds), removes leading/trailing silence, applies optional noise reduction, and resamples all audio to the target sample rate.
+| Setting | How to choose |
+| --- | --- |
+| **Model Name** | A distinct experiment name. Reusing a name can reuse existing training artifacts. |
+| **Sampling Rate** | Match the architecture and G/D pretrainings. Desktop exposes 32, 40, 44.1, and 48 kHz where supported; not every combination supports all four. |
+| **Vocoder** | HiFi-GAN, MRF HiFi-GAN, or RefineGAN as offered by your interface. Applio-specific architectures may not load in other RVC clients. |
+| **Embedder** | Record the exact choice and custom path. Use it again during inference. |
+| **Pretrained G/D** | Use a compatible pair matching the architecture, sample rate, and pitch configuration. |
+| **Batch Size** | Choose a value that fits available VRAM. Reduce it if training runs out of memory. |
+| **Total Epoch** | A stopping target, not a quality guarantee. Compare held-out conversions at saved checkpoints. |
+| **Save Every Epoch / Save Every Weights** | Keep periodic checkpoints and inference exports for comparison and recovery. |
 
-<Steps>
-1.  In the **Train** tab of Applio, enter a name for your model.
-2.  Select the correct sample rate for your audio files (`32k`, `40k`, or `48k`). This should match the sample rate of your pre-trained model if using one.
-3.  Click the **Pre-process Dataset** button.
-</Steps>
+Preprocessing resamples recordings to the training rate; input files do not all need to start at that rate. Resampling cannot create missing high-frequency detail.
 
-The preprocessing progress is shown in the command-line window. Depending on the size of your dataset, this may take a few minutes.
+## Run training
 
-### Step 3: Extract Features
+<Tabs>
+  <TabItem label="Desktop">
 
-Next, you need to extract the features from your pre-processed dataset.
-
-<Steps>
-1.  **Choose a Pitch Extraction Algorithm:** We recommend using **RMVPE** for the best results.
-2.  **Select an Embedder Model:** Make sure to choose the correct embedder for your model.
-3.  Click the **Extract Features** button.
-</Steps>
-
-This process will take some time. You can monitor the progress in the command line window.
-
-### Step 4: Train the Model and Index
-
-This is the final and most time-consuming step.
+### Automatic training
 
 <Steps>
-1.  **Set the "Save Every Epoch" Value:** This determines how often a checkpoint is saved. A value between 10 and 50 is recommended. Saving more frequently uses more disk space but gives you more granular snapshots to choose from when selecting the final model.
-2.  **Set the "Total Epochs":** The total number of complete passes through the entire dataset. A good starting point is 200-400 epochs, but you should use [TensorBoard](/getting-started/tensorboard) to monitor the `g/total` loss graph and decide when to stop. Training too long leads to overtraining, while too few epochs produces low-quality results.
-3.  **Set the "Batch Size":** The number of training samples processed simultaneously. Larger batch sizes give more stable training but require more GPU VRAM.
-4.  **Select a Vocoder:** Choose between HiFi-GAN, NSF HiFi-GAN, or RefineGAN. HiFi-GAN is the standard for most cases. NSF HiFi-GAN handles singing better. RefineGAN may produce cleaner results but takes longer to train.
-5.  **Select Pre-trained G/D (Optional):** If you have a [pre-trained model](/getting-started/pretrained/), you can load its generator (G) and discriminator (D) weights as a starting point. This significantly reduces training time and often improves quality, especially for small datasets.
-6.  Click the **Train Model** button.
-7.  Once the model training is complete, click the **Train Index** button to build the FAISS index from the extracted features.
+
+1. Open **Training**, set the model name, hardware, and compatible model settings.
+2. Choose **Automatic Training** and select or upload the dataset.
+3. Review epochs, batch size, and advanced options.
+4. Start the run and follow its job console.
+5. Let preprocessing, extraction, training, and optional index generation finish. Check the final artifact result.
+
 </Steps>
 
-![A screenshot of the training configuration section in Applio.](/images/training.png)
+### Manual training
 
-#### Understanding Training Hyperparameters
+Choose **Manual Training Setup** to run the stages separately:
 
--   **Epochs vs. Steps:** An epoch is one full pass through the dataset. A step is one batch processed. Total steps = epochs * (dataset size / batch size). Monitor steps in TensorBoard to track progress.
--   **Learning Rate:** The learning rate controls how much the model weights are updated per step. Applio uses a default learning rate schedule that starts at a higher value and decays over time. This is not adjustable in the UI but is defined in the architecture config files.
--   **Batch Size and VRAM:** Larger batch sizes give more accurate gradient estimates but require more memory. If you get CUDA out-of-memory errors, reduce the batch size by half.
--   **Save Frequency:** Frequent saving ensures you don't lose progress but uses disk space. Each checkpoint is approximately 200 MB. With a save interval of 10 epochs over 300 epochs, expect ~6 GB of checkpoints.
--   **Vocoder Choice:** HiFi-GAN is the fastest and most memory-efficient. NSF HiFi-GAN adds neural source-filter modeling for better pitch handling. RefineGAN is the most computationally expensive but can produce the highest quality.
+1. **Preprocess Dataset:** slice, resample, and optionally clean/normalize recordings.
+2. **Extract Features:** compute pitch and embedder features.
+3. **Train Model:** train using those features and compatible pretrainings.
+4. **Generate Index:** build a retrieval index from the extracted features.
 
-### Step 5: Export Your Model
+Changing a preprocessing or extraction setting may require rerunning downstream stages.
 
-Your trained models are saved in the `logs` folder. You can also export them directly from the Applio interface.
+  </TabItem>
+  <TabItem label="Gradio">
 
 <Steps>
-1.  Go to the **Export Model** section in the **Train** tab.
-2.  Click the **Refresh** button.
-3.  Select the `.pth` file and the corresponding `.index` file for your model.
-4.  Click the **Export Model** button.
+
+1. Open **Training** and enter a model name and dataset path.
+2. Select compatible architecture and sample-rate settings, then preprocess.
+3. Choose the pitch method and embedder, then extract features.
+4. Set compatible pretrainings, batch size, save interval, and epoch target. Start training.
+5. Generate the index after extraction/training and inspect the exported model.
+
 </Steps>
 
-<Aside type="tip">
-  You can often get better results by using a [pre-trained model](/getting-started/pretrained) as a starting point for your training.
-</Aside>
+This screenshot shows Gradio's training controls.
 
-### Resume Training (Optional)
+![Gradio training configuration.](/images/training.png)
 
-If you want to continue training a model you've already started, follow these steps to resume from where you left off:
+  </TabItem>
+</Tabs>
 
-<Steps>
-1.  **Select Your Model** from the dropdown menu.
-2.  Make sure to **select the same original sample rate** that you used when you started training (e.g., `32k`, `40k`, or `48k`).
-3.  Scroll down to the **Training** section.
-4.  Choose the **same batch size** you used previously.
-5.  Set a **new max epoch value** that is higher than your current one. For example, if your last completed epoch was 200, you can set this to 400 to continue training up to that point.
-6.  Click the **Start Training** button to resume training from the latest saved checkpoint.
-</Steps>
+## Monitor quality
 
-<Aside type="note">
-  Make sure your previously saved model checkpoints are still in the `logs` directory. Applio will automatically load the latest checkpoint and continue from there.
-</Aside>
+Open [TensorBoard](/getting-started/tensorboard/) for training metrics, and convert the same held-out clips with saved models. A lower total loss alone does not prove better voice quality. Listen for intelligibility, pitch stability, timbre, and artifacts.
 
-### Multi-GPU Training
+For memory errors, reduce batch size, disable dataset caching in GPU, or try checkpointing where supported. Stop realtime before starting a Desktop GPU training job.
 
-Applio supports **Distributed Data Parallel (DDP)** training across multiple GPUs automatically. If your system has multiple NVIDIA GPUs, the training script will detect them and distribute the workload.
+## Export your model
 
-- **Automatic Detection:** Applio automatically detects all available CUDA devices and uses them for training
-- **Linear Scaling:** With 2 GPUs, you can approximately double your batch size (e.g., from 8 to 16 total across both GPUs)
-- **Monitoring:** Each GPU's memory usage is logged during training. If any GPU runs out of memory, reduce the per-GPU batch size
+Desktop provides **Models → Export**; Gradio has export controls in its training workflow. Export the inference `.pth` and its matching `.index` if generated.
 
-<Aside type="tip">
-  For multi-GPU training, ensure all GPUs have sufficient VRAM for at least one batch item each. The total batch size is divided equally across GPUs.
-</Aside>
+Keep `G_*.pth` and `D_*.pth` training checkpoints if you want to resume. A small inference export does not contain the full state needed for continuation.
+
+## Resume training
+
+Use the same experiment name, architecture, sample rate, embedder/features, and compatible checkpoint files. Set a new total-epoch target above the completed epoch. In Desktop, leave **Fresh Training** off when continuing a project.
+
+Back up the entire experiment before changing its settings. Fresh/cleanup options are intended for a new run, not continuation. See [storage and backups](/guides/moving-to-desktop/).

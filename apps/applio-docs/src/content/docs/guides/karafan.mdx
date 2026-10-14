@@ -1,63 +1,36 @@
 ---
-title: "Audio Separation with KaraFan"
-description: "Learn how to use KaraFan to separate vocals and instrumentals from your audio files."
+title: "Separate audio with KaraFan"
+description: "Use KaraFan as an external separation workflow and bring its output into Applio."
 sidebar:
-  order: 2
+  order: 4
 ---
 
-import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 
-**KaraFan** is a powerful, free tool for separating audio sources. It can extract vocals from a song, remove instruments, and more. This makes it an excellent tool for creating clean datasets for voice model training.
+KaraFan is an external music-separation project. You can bring its vocal output into Applio for conversion or dataset preparation. Desktop also includes an [Audio Separator](/guides/uvr/) if you prefer to work in one application.
 
-For more information, you can visit the official [KaraFan GitHub repository](https://github.com/Captain-FLAM/KaraFan).
-
-## Installation
-
-You can run KaraFan on your local computer or on Google Colab.
-
-<Aside type="caution">
-  KaraFan requires an NVIDIA GPU for local installation.
-</Aside>
-
-<Tabs>
-<TabItem label="Local Installation">
-<Steps>
-1.  Create a folder on your PC where you want to store the KaraFan project.
-2.  Download and install [Python 3.11](https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe). If you have another version of Python installed, you must uninstall it first.
-3.  Download the [KaraFan installer](https://github.com/Captain-FLAM/KaraFan/wiki/Data/Install.bat) (right-click and save as `Install.bat`).
-4.  On Windows 11, you may need to unblock the `.bat` file. Right-click the file, go to **Properties**, and click the **Unlock** button in the **General** tab.
-5.  Run the `Install.bat` file with administrator rights.
-6.  Once the installation is complete, run `Setup.py` by double-clicking on it.
-7.  You can now launch KaraFan by double-clicking on `KaraFan.pyw`.
-</Steps>
-</TabItem>
-<TabItem label="Google Colab">
-<Steps>
-1.  Open the [KaraFan Colab Notebook](https://colab.research.google.com/github/Eddycrack864/KaraFan/blob/master/KaraFan_Improved_Version.ipynb).
-2.  In your Google Drive, create a folder named `Music` for your input audio files and a folder named `Vocals` for the output files.
-3.  Run the first cell in the notebook to clone the KaraFan repository.
-4.  Run the second cell, labeled "This is it!", to launch the KaraFan interface.
-</Steps>
 <Aside type="note">
-  The first time you use the Colab notebook, it will download the necessary models to a `KaraFan_user` folder in your Google Drive. If you keep this folder, you won't need to download the models again next time.
+  The [KaraFan repository](https://github.com/Captain-FLAM/KaraFan) says the project has been on hold since June 2024. Check its current README and wiki before installing, especially on a newer system.
 </Aside>
-</TabItem>
-</Tabs>
 
-## How to Use KaraFan
+## Use KaraFan with Applio
 
 <Steps>
-1.  Place the audio file you want to process in the `Music` folder (either locally or in your Google Drive).
-2.  In the KaraFan interface, enter the path to your audio file and the path to your output folder.
-3.  Choose the desired settings. The recommended settings for separating vocals are shown below.
-4.  Click the **Start** button to begin the separation process.
-5.  When the process is complete, you'll find the separated audio files in your output folder. The main vocal track is usually named `Vocal Final`.
+
+1. Follow the installation guide linked from the project's README for your platform or notebook.
+2. Keep its Python environment separate from Applio's environment.
+3. Select your source recording, output location, and separation settings.
+4. Run separation and listen to the vocal and instrumental results.
+5. Save the desired vocal as lossless audio, then upload it to Applio.
+
 </Steps>
 
-| To separate vocals | To separate other audio sources |
-| :--- | :--- |
-| ![A screenshot of the recommended KaraFan settings for separating vocals.](/images/karafan-vocals.png) | ![A screenshot of the recommended KaraFan settings for separating other audio sources.](/images/karafan-other.png) |
+There is no need to uninstall another project's Python environment merely to prepare audio. Follow the external tool's current dependency instructions instead of copying old installer commands.
 
-## How to Update
+These images show an earlier KaraFan interface; use them as orientation, not required settings.
 
-To update your local installation of KaraFan, simply run the `Setup.py` file again.
+| Vocals | Other sources |
+| --- | --- |
+| ![Earlier KaraFan vocal-separation controls.](/images/karafan-vocals.png) | ![Earlier KaraFan source-separation controls.](/images/karafan-other.png) |
+
+Listen for missing consonants, instrument bleed, and reverberation before using the result for [training](/getting-started/training/). For a cover, [convert the vocal](/getting-started/inference/) and mix it with the instrumental afterward.

@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFileSync } from "node:fs";
 import {
 	DESKTOP_DOWNLOADS,
 	resolveDesktopRelease,
@@ -23,6 +24,51 @@ test("resolves all seven supported installers", () => {
 	assert.deepEqual(
 		result.downloads.map((item) => item.id),
 		DESKTOP_DOWNLOADS.map((item) => item.id),
+	);
+});
+test("resolves the published Tauri installers and portable archives", () => {
+	const snapshot = JSON.parse(
+		readFileSync(
+			new URL(
+				"../apps/applio-org/src/lib/desktop-release.json",
+				import.meta.url,
+			),
+			"utf8",
+		),
+	);
+	const result = resolveDesktopRelease(snapshot);
+	assert.equal(result.downloads.length, DESKTOP_DOWNLOADS.length);
+	for (const target of DESKTOP_DOWNLOADS) {
+		const download = result.downloads.find((item) => item.id === target.id);
+		assert.ok(
+			download.href.startsWith(
+				`https://github.com/IAHispano/Applio-App/releases/download/${snapshot.tag_name}/`,
+			),
+		);
+	}
+	assert.ok(
+		result.downloads
+			.find((item) => item.id === "btn-windows")
+			.href.endsWith("_x64-setup.exe"),
+	);
+});
+test("does not confuse native installer signatures, architectures, or versions", () => {
+	const names = [
+		"Applio_0.2.9_x64-setup.exe.sig",
+		"Applio_0.2.9_arm64-setup.exe",
+		"Applio_0.2.8_x64-setup.exe",
+		"Applio_0.2.9_arm64.AppImage",
+	];
+	assert.equal(
+		resolveDesktopRelease(
+			release(
+				names.map((name) => ({
+					name,
+					browser_download_url: `https://github.com/IAHispano/Applio-App/releases/download/${tag}/${name}`,
+				})),
+			),
+		),
+		null,
 	);
 });
 test("partial releases leave missing platforms on their fallback", () => {

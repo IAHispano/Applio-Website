@@ -1,0 +1,33 @@
+{
+	"tag_name": "v1.0.6",
+	"assets": [
+		{
+			"name": "Applio-1.0.6-macOS-arm64.zip",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio-1.0.6-macOS-arm64.zip"
+		},
+		{
+			"name": "Applio-1.0.6-macOS-x64.zip",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio-1.0.6-macOS-x64.zip"
+		},
+		{
+			"name": "Applio_1.0.6_aarch64.dmg",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio_1.0.6_aarch64.dmg"
+		},
+		{
+			"name": "Applio_1.0.6_amd64.AppImage",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio_1.0.6_amd64.AppImage"
+		},
+		{
+			"name": "Applio_1.0.6_amd64.deb",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio_1.0.6_amd64.deb"
+		},
+		{
+			"name": "Applio_1.0.6_x64-setup.exe",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio_1.0.6_x64-setup.exe"
+		},
+		{
+			"name": "Applio_1.0.6_x64.dmg",
+			"browser_download_url": "https://github.com/IAHispano/Applio-App/releases/download/v1.0.6/Applio_1.0.6_x64.dmg"
+		}
+	]
+}

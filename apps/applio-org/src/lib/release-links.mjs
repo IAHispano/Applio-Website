@@ -1,13 +1,20 @@
 export const DESKTOP_DOWNLOADS = [
-	{ id: "btn-windows", suffix: "Windows-Setup.exe", label: "Download (.exe)" },
+	{
+		id: "btn-windows",
+		suffix: "Windows-Setup.exe",
+		nativeSuffix: "_x64-setup.exe",
+		label: "Download (.exe)",
+	},
 	{
 		id: "link-mac-arm-dmg",
 		suffix: "macOS-arm64.dmg",
+		nativeSuffix: "_aarch64.dmg",
 		label: "Download Apple Silicon (.dmg)",
 	},
 	{
 		id: "link-mac-intel-dmg",
 		suffix: "macOS-x64.dmg",
+		nativeSuffix: "_x64.dmg",
 		label: "Download Intel Mac (.dmg)",
 	},
 	{
@@ -23,9 +30,15 @@ export const DESKTOP_DOWNLOADS = [
 	{
 		id: "link-linux-appimage",
 		suffix: "Linux.AppImage",
+		nativeSuffix: "_amd64.AppImage",
 		label: "Download AppImage",
 	},
-	{ id: "link-linux-deb", suffix: "Linux.deb", label: "Download .deb" },
+	{
+		id: "link-linux-deb",
+		suffix: "Linux.deb",
+		nativeSuffix: "_amd64.deb",
+		label: "Download .deb",
+	},
 ];
 
 // Upgrade release-page fallbacks only for official, version-matched installers.
@@ -43,10 +56,12 @@ export function resolveDesktopRelease(release) {
 	const version = tag.replace(/^v/, "");
 	const downloads = [];
 	for (const target of DESKTOP_DOWNLOADS) {
-		const filename = `Applio-${version}-${target.suffix}`;
+		const filenames = [`Applio-${version}-${target.suffix}`];
+		if (target.nativeSuffix)
+			filenames.push(`Applio_${version}${target.nativeSuffix}`);
 		for (const asset of release.assets) {
 			if (
-				asset?.name !== filename ||
+				!filenames.includes(asset?.name) ||
 				typeof asset.browser_download_url !== "string"
 			)
 				continue;
@@ -61,7 +76,7 @@ export function resolveDesktopRelease(release) {
 					!url.search &&
 					!url.hash &&
 					url.pathname ===
-						`/IAHispano/Applio-App/releases/download/${tag}/${filename}`
+						`/IAHispano/Applio-App/releases/download/${tag}/${asset.name}`
 				) {
 					downloads.push({
 						id: target.id,

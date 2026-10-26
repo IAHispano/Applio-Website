@@ -2,8 +2,8 @@
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
 
-import { docsUrl, ecosystem } from "../lib/ecosystem";
 import desktopRelease from "../lib/desktop-release.json";
+import { docsUrl, ecosystem } from "../lib/ecosystem";
 import { resolveDesktopRelease } from "../lib/release-links.mjs";
 
 const releasesUrl = ecosystem.links.desktopReleases;
@@ -11,18 +11,28 @@ const gradioReleasesUrl = ecosystem.links.gradioReleases;
 // Render working downloads even when client-side GitHub requests are blocked or limited.
 let release = resolveDesktopRelease(desktopRelease);
 try {
-  const response = await fetch("https://api.github.com/repos/IAHispano/Applio-App/releases/latest", {
-    signal: AbortSignal.timeout(8000),
-  });
-  if (response.ok) release = resolveDesktopRelease(await response.json()) ?? release;
+	const response = await fetch(
+		"https://api.github.com/repos/IAHispano/Applio-App/releases/latest",
+		{
+			signal: AbortSignal.timeout(8000),
+		},
+	);
+	if (response.ok)
+		release = resolveDesktopRelease(await response.json()) ?? release;
 } catch {
-  // Keep the verified installer snapshot when GitHub is unavailable during a build.
+	// Keep the verified installer snapshot when GitHub is unavailable during a build.
 }
-const downloadUrl = (id: string) => release?.downloads.find((asset) => asset.id === id)?.href ?? releasesUrl;
+const downloadUrl = (id: string) =>
+	release?.downloads.find((asset) => asset.id === id)?.href ?? releasesUrl;
 const staticDownloads = {
-  windows: downloadUrl("btn-windows"), macArmDmg: downloadUrl("link-mac-arm-dmg"), macIntelDmg: downloadUrl("link-mac-intel-dmg"),
-  macArmZip: downloadUrl("link-mac-arm-zip"), macIntelZip: downloadUrl("link-mac-intel-zip"), linuxAppImage: downloadUrl("link-linux-appimage"),
-  linuxDeb: downloadUrl("link-linux-deb"), gradioWindowsZip: ecosystem.links.gradioCompiled,
+	windows: downloadUrl("btn-windows"),
+	macArmDmg: downloadUrl("link-mac-arm-dmg"),
+	macIntelDmg: downloadUrl("link-mac-intel-dmg"),
+	macArmZip: downloadUrl("link-mac-arm-zip"),
+	macIntelZip: downloadUrl("link-mac-intel-zip"),
+	linuxAppImage: downloadUrl("link-linux-appimage"),
+	linuxDeb: downloadUrl("link-linux-deb"),
+	gradioWindowsZip: ecosystem.links.gradioCompiled,
 };
 ---
 

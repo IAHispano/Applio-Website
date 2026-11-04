@@ -19,6 +19,12 @@ Use headphones while monitoring to prevent feedback.
   'Other GPU jobs have finished or stopped.',
 ]} />
 
+## First, verify the model with a file
+
+Complete a [short file conversion](/getting-started/inference/#convert-your-first-file) using the voice model and embedder you plan to use live. If that fails, fix model/setup problems before introducing microphone permissions, device routing, and latency settings.
+
+For the first live test, use headphones and a simple local route. Confirm that Applio can convert your microphone before connecting a chat or streaming app.
+
 ## Start a session
 
 <Tabs>
@@ -58,6 +64,12 @@ Gradio's native audio-device path uses PortAudio. Its device names and monitor c
   </TabItem>
 </Tabs>
 
+### Check the local session
+
+Speak a short phrase at your normal volume and leave a brief pause. With monitoring enabled, confirm that you hear the converted voice without feedback, missing words, or repeated interruptions. Local monitoring is a listening check; it does not prove that another application is receiving the converted audio.
+
+If nothing is audible, check the selected input, output, monitoring control, and input level first. If the original voice is passing through in Desktop, check whether **Passthrough** is enabled. For broken audio, follow [latency tuning](#tune-latency) before adding another application.
+
 ## Send the voice to another application
 
 <Workflow title="Route your converted voice" steps={[
@@ -69,7 +81,18 @@ Gradio's native audio-device path uses PortAudio. Its device names and monitor c
 
 To use converted audio in a chat or streaming application, route Applio's output into a virtual audio device, then choose that device's receiving end as the other application's microphone. Applio does not install a system-wide virtual microphone.
 
-Verify the route with a short recording in the receiving application. Avoid sending the same audio through both the physical microphone and the converted route, which can create echo.
+<Steps>
+
+1. Confirm that the simple local session above works, then stop it before changing the route.
+2. Set up a virtual audio device using that tool's own installation instructions. Identify its playback side and receiving/recording side; their names vary by tool and operating system.
+3. Keep your physical microphone selected as Applio's input. Select the virtual device's playback side as Applio's output.
+4. In the chat or streaming application, select the virtual device's receiving side as the microphone. Do not leave the physical microphone selected there if you want the converted voice.
+5. Start the Applio session, then make a short recording or microphone test inside the receiving application. Listen back to that recording to verify which voice arrived.
+6. Check levels at the destination and remove any duplicate physical-microphone route that creates echo.
+
+</Steps>
+
+If Applio monitoring sounds correct but the destination recording does not, troubleshoot the route and the destination's selected input before changing the voice model. If both sound broken, return to the simple local test.
 
 ## Tune latency
 
@@ -82,6 +105,18 @@ Verify the route with a short recording in the receiving application. Avoid send
 | **Enable VAD / Silence Threshold** | Controls voice activity handling. A threshold that is too high can cut off quiet speech. |
 | **Input Gain** | Changes the level reaching conversion. Reduce it if the input clips. |
 | **Output Gain / Monitor volume** | Changes playback level; check the destination recording as well as local monitoring. |
+
+### Tune one variable at a time
+
+<Steps>
+
+1. Keep the model, test phrase, and device route fixed. Use automatic chunk sizing as a starting point where available.
+2. Speak for several seconds and watch the latency/diagnostic readings. Judge stable audio, not just the smallest displayed number.
+3. If audio drops out or delay grows, increase chunk size first and test again. Reduce optional effects or extra context if needed.
+4. Once playback is stable, try a smaller chunk size only if you need less delay. Return to the last stable setting if interruptions come back.
+5. Repeat the destination microphone test after changing the route or important audio settings.
+
+</Steps>
 
 Test with normal speech for several seconds after a change. Reduce optional effects and extra context before pushing chunk size lower. The diagnostic and calibration controls in Desktop can help identify unstable buffering.
 

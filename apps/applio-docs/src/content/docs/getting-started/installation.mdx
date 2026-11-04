@@ -5,8 +5,18 @@ sidebar:
   order: 1
 ---
 
-import { Command, Steps, Tabs, TabItem, Aside, Screenshot } from '../../../components/content/index';
+import { Command, Steps, Tabs, TabItem, Aside, Screenshot, Checklist } from '../../../components/content/index';
 import { desktop } from '../../../../../../shared/screenshots';
+
+Choose one installation route, finish its setup, and then test one voice model. You do not need to install both interfaces.
+
+| What you want to do | Start here |
+| --- | --- |
+| Use the dedicated desktop app | [Applio Desktop](#applio-desktop) |
+| Use the Python application in a browser | [Gradio installation](#python-application-with-gradio) |
+| Change or develop the Desktop source code | [Build Desktop from source](#build-desktop-from-source) |
+
+For your first test, have a short voice recording ready. You will add an inference voice model after setup; installing the interface alone does not select a voice for conversion.
 
 ## Applio Desktop
 
@@ -32,8 +42,8 @@ Download a build for your operating system from the [official App releases](http
 
 1. Open Applio and review the terms shown on first run.
 2. Let automatic setup finish. If your build offers **Install / Repair**, use it when setup or a dependency check needs to be retried. Keep the app open while it prepares Python, engine packages, and required assets.
-3. Read the setup log if a check fails, resolve the reported issue, and retry.
-4. [Add a voice model](/getting-started/installing-inference-models/) and try a short conversion.
+3. Wait for setup verification to finish before opening a conversion job. If a check fails, read the first failure in the setup log, address that issue, and retry **Install / Repair**.
+4. Open **Models** and [add an inference voice model](/getting-started/installing-inference-models/). Then follow [your first file conversion](/getting-started/inference/#convert-your-first-file).
 
 </Steps>
 
@@ -42,6 +52,16 @@ The desktop download contains the interface and engine code. First-run setup ins
 <Aside type="note">
   Installing a release does not require Node.js or pnpm. Those tools are for building Desktop from source.
 </Aside>
+
+### Check that setup is complete
+
+<Checklist title="Ready for your first conversion" items={[
+  'Applio opens and first-run engine verification has completed.',
+  'I can open Models and Convert Audio.',
+  'I have an inference model to add and a short recording to test.',
+]} />
+
+If setup is still running, leave it open rather than starting repeated conversion jobs. If it stops with an error, keep the log and follow [setup troubleshooting](/getting-started/report-error/#common-problems). A successful installation is the starting point; a short conversion confirms that your model and audio workflow also work.
 
 ### Hardware and dependencies
 
@@ -81,6 +101,18 @@ Applio with Gradio runs locally and opens its interface in your browser. On Wind
     Current scripts target Python 3.12. Follow the requirements shipped with your chosen release.
   </TabItem>
 </Tabs>
+
+### Confirm Gradio is running
+
+<Steps>
+
+1. Keep the launch process open and wait for it to print a local browser address.
+2. Open the printed address, rather than assuming a fixed port. Check that the interface finishes loading.
+3. Open **Models** and [add a voice model](/getting-started/installing-inference-models/), then [convert a short file](/getting-started/inference/).
+
+</Steps>
+
+Closing the launch process stops the local service; an open browser tab does not keep it running. If no address appears, read the terminal error before retrying. If the page opens but a job fails, collect the job error and terminal log.
 
 Keep the launch process running while using Gradio. In its Python environment, `python app.py --help` lists server options. [Cloud notebooks](/getting-started/cloud-guides/) have their own setup.
 

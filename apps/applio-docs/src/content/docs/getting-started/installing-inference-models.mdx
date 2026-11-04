@@ -18,6 +18,12 @@ An **inference model** is a trained voice you use for conversion. It is differen
 
 An index is optional. It may be large: its size depends on the training features. Use the index supplied for that model rather than one from an unrelated voice.
 
+## Before you start
+
+Choose a model you want to test and check its download instructions. You need an exported inference `.pth`; keep the matching `.index` if the publisher supplies one. If the download is an archive, extract it before using the local-file upload controls.
+
+Note the model's embedder and supported architecture where the publisher provides them. A file named `G_...pth` or `D_...pth` is a training checkpoint, not the inference file to select for this walkthrough.
+
 ## Download or upload
 
 <Tabs>
@@ -25,14 +31,29 @@ An index is optional. It may be large: its size depends on the training features
 
 <Screenshot src={desktop.models} alt="Desktop Models workspace with Download Models selected" caption="Open Models, then Download Models, to download from a link or upload local inference weights." interfaceName="Desktop 1.0.7" />
 
+### Download from a link
+
 <Steps>
 
 1. Open **Models**, then **Download Models**.
-2. Under **Download from Link**, paste a supported model link and select **Download**. For local files, use **Upload Model Files** and **Save File** for the `.pth` and `.index`.
-3. Wait for the download or upload to finish, then refresh **Model Library**.
-4. Select **Inspect** to check metadata, or **Use** to open conversion.
+2. Paste the publisher's supported download link into **Download from Link** and select **Download**.
+3. Wait for the job to finish. If it fails, read the download error before submitting the same link again.
+4. Refresh **Model Library**. Select **Inspect** to read the available metadata, then **Use** to open conversion.
 
 </Steps>
+
+### Upload files you already downloaded
+
+<Steps>
+
+1. In **Models**, open **Download Models** and find **Upload Model Files**.
+2. Choose the extracted inference `.pth` and use **Save File**. Add the matching `.index` through the same controls if you have one.
+3. Wait for each upload to finish, then refresh **Model Library**.
+4. Inspect the model and use it for the short conversion test below.
+
+</Steps>
+
+You are ready to continue when the model appears in **Model Library**. A completed browser download alone does not install it in Applio. If it is missing, check the active storage location before copying files to another folder.
 
   </TabItem>
   <TabItem label="Gradio">
@@ -79,6 +100,26 @@ Create a named folder in your active logs/models directory and put the model and
 ]} />
 
 Refresh the interface afterward. Desktop's active directory may be outside the installation; see [storage locations](/guides/moving-to-desktop/). Prefer the upload controls if you are unsure which folder is active.
+
+## Confirm the model works
+
+<Steps>
+
+1. Open **Convert Audio** and select the newly added inference model.
+2. Select its matching index, if supplied. Otherwise leave the index unselected; do not substitute one from a different voice.
+3. Match the training embedder and choose the intended speaker ID for a multispeaker model.
+4. Upload a short, clean voice recording, keep pitch at **0** for the initial comparison, and convert without extra effects.
+5. Listen to the output and save the test result before trying a long file or batch.
+
+</Steps>
+
+A library entry confirms that Applio found the file. A completed test conversion confirms that the engine can load and use it. Continue with [conversion settings](/getting-started/inference/#understand-the-main-settings) after this baseline works.
+
+| What happened | Next action |
+| --- | --- |
+| The model is absent from the list | Refresh the list and check the active logs/models directory in [storage settings](/guides/moving-to-desktop/). |
+| The file cannot be loaded | Confirm it is an extracted inference export, then check architecture and embedder compatibility below. |
+| Conversion succeeds but sounds wrong | Keep the same test clip and follow [quality checks](/getting-started/inference/#improve-a-poor-result). |
 
 ## Check compatibility
 

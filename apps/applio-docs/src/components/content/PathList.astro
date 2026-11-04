@@ -1,0 +1,5 @@
+---
+interface Props { label?: string; }
+const { label = "File and folder paths" } = Astro.props;
+---
+<div class="docs-path-list" role="group" aria-label={label}><slot /></div>

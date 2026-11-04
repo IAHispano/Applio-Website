@@ -21,6 +21,7 @@ buttons. Avoid Unicode arrows or other text glyphs as icon substitutes.
 | `Workflow` | Explain the stages before detailed instructions | `title`; `steps`: title, description, optional href |
 | `Accordion`, `AccordionGroup` | Troubleshooting and optional explanations | Accordion: `title`, optional `open`; Markdown body |
 | `Checklist` | Let readers track prerequisites or review steps | `title`, string array `items`; page-local checkboxes |
+| `Path`, `PathList` | Copyable file and folder locations | Path: `value`, optional `description`, `kind` (`folder` or `file`); PathList: optional accessible `label` |
 | `FileTree` | Collapsible folder and file examples | Optional `title`, `items`: name, children, description, highlighted, open; copies the full structure |
 | `PitchExample` | Explore the relationship between semitones and frequency | No props; a clearly labelled 220 Hz example |
 
@@ -80,4 +81,17 @@ import { FileTree } from '../../../components/content/index';
     ] },
   ] },
 ]} />
+```
+
+For storage locations, use `Path` to show the exact copyable path and its purpose.
+Use `PathList` to group related locations. Long paths wrap on small screens;
+paths remain selectable without JavaScript. `kind="file"` switches the icon.
+
+```mdx
+import { Path, PathList } from '../../../components/content/index';
+
+<PathList label="Training locations">
+  <Path value="assets/datasets" description="Training recordings." />
+  <Path value="logs/MyVoice/config.json" kind="file" description="Experiment configuration." />
+</PathList>
 ```

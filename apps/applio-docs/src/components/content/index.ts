@@ -13,3 +13,6 @@ export { default as Checklist } from "./Checklist.astro";
 export { default as PitchExample } from "./PitchExample.astro";
 export { default as FileTree } from "./FileTree.astro";
 export type { FileTreeEntry } from "./file-tree";
+
+export { default as Path } from "./Path.astro";
+export { default as PathList } from "./PathList.astro";

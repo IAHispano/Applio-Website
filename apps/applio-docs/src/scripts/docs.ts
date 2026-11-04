@@ -198,26 +198,29 @@ input.addEventListener("input", () => {
 	}, 160);
 });
 
-document.querySelectorAll<HTMLElement>(".prose pre").forEach((pre) => {
-	const button = document.createElement("button");
-	button.type = "button";
-	button.className = "copy-code";
-	button.textContent = "Copy";
-	button.setAttribute("aria-label", "Copy code to clipboard");
-	button.addEventListener("click", async () => {
-		try {
-			await navigator.clipboard.writeText(
-				pre.querySelector("code")?.textContent ?? "",
-			);
-			button.textContent = "Copied";
-		} catch {
-			button.textContent = "Select code to copy";
-		}
-		setTimeout(() => {
-			button.textContent = "Copy";
-		}, 2000);
-	});
-	pre.append(button);
+document.querySelectorAll<HTMLElement>(".prose pre:not(.docs-command-code)").forEach((pre) => {
+  if (pre.querySelector(".copy-code")) return;
+  const template = document.querySelector<HTMLTemplateElement>("#code-copy-template")!;
+  const button = template.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
+  const label = button.querySelector<HTMLElement>("[data-copy-label]")!;
+  const status = document.createElement("span");
+  status.className = "sr-only";
+  status.setAttribute("role", "status");
+  pre.after(status);
+  let reset: ReturnType<typeof setTimeout>;
+  button.addEventListener("click", async () => {
+    clearTimeout(reset);
+    try {
+      await navigator.clipboard.writeText(pre.querySelector("code")?.textContent ?? "");
+      label.textContent = "Copied";
+      status.textContent = "Code copied.";
+    } catch {
+      label.textContent = "Copy";
+      status.textContent = "Copy unavailable. Select and copy the code instead.";
+    }
+    reset = setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2000);
+  });
+  pre.append(button);
 });
 
 const tocLinks = Array.from(

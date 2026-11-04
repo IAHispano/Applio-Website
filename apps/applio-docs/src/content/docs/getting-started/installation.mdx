@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-import { Steps, Tabs, TabItem, Aside, Screenshot } from '../../../components/content/index';
+import { Command, Steps, Tabs, TabItem, Aside, Screenshot } from '../../../components/content/index';
 import { desktop } from '../../../../../../shared/screenshots';
 
 ## Applio Desktop
@@ -76,12 +76,7 @@ Applio with Gradio runs locally and opens its interface in your browser. On Wind
   </TabItem>
   <TabItem label="Linux / macOS">
 
-~~~bash
-git clone https://github.com/IAHispano/Applio.git
-cd Applio
-bash run-install.sh
-bash run-applio.sh
-~~~
+<Command shell="bash" command={"git clone https://github.com/IAHispano/Applio.git\ncd Applio\nbash run-install.sh\nbash run-applio.sh"} />
 
     Current scripts target Python 3.12. Follow the requirements shipped with your chosen release.
   </TabItem>
@@ -97,12 +92,7 @@ The Python repository includes Dockerfiles and Compose configuration. Read those
 
 The [App README](https://github.com/IAHispano/Applio-App#development) specifies Git, Node.js 22+, pnpm 11, Python 3.12, and FFmpeg.
 
-~~~bash
-git clone --recurse-submodules https://github.com/IAHispano/Applio-App.git
-cd Applio-App
-pnpm install
-pnpm desktop:dev
-~~~
+<Command shell="bash" command={"git clone --recurse-submodules https://github.com/IAHispano/Applio-App.git\ncd Applio-App\npnpm install\npnpm desktop:dev"} />
 
 If the engine submodule is missing, run `pnpm backend:init`. Complete setup in the interface. `pnpm dev` starts the App browser UI and API; `pnpm typecheck` checks TypeScript; `pnpm build:all` builds its packages.
 

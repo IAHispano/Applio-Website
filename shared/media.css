@@ -1,4 +1,5 @@
 .screenshot {
+	display: block;
 	margin: 26px 0;
 	min-width: 0;
 }

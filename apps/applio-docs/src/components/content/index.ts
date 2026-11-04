@@ -16,3 +16,4 @@ export type { FileTreeEntry } from "./file-tree";
 
 export { default as Path } from "./Path.astro";
 export { default as PathList } from "./PathList.astro";
+export { default as Command } from "./Command.astro";

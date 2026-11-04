@@ -5,7 +5,7 @@ sidebar:
   order: 14
 ---
 
-import { Steps, Accordion, AccordionGroup, Checklist } from '../../../components/content/index';
+import { Command, Steps, Accordion, AccordionGroup, Checklist } from '../../../components/content/index';
 
 Start with the failed operation's message and log. Check whether the problem is setup, model loading, conversion, or audio routing before changing unrelated settings.
 
@@ -73,21 +73,15 @@ Check cleanup/retention. Download valuable audio promptly.
 
 Keep the launch process running while using Gradio. Read the address it prints; the port may differ if another service is already using it. To select a port from its Python environment:
 
-~~~bash
-python app.py --port 6970
-~~~
+<Command shell="bash" command={"python app.py --port 6970"} />
 
 Inspect an inference model:
 
-~~~bash
-python core.py model-information --pth-path "logs/MyVoice/MyVoice.pth"
-~~~
+<Command shell="bash" command={"python core.py model-information --pth-path \"logs/MyVoice/MyVoice.pth\""} />
 
 Generate an index from an experiment with extracted features:
 
-~~~bash
-python core.py index --model-name MyVoice --index-algorithm Auto
-~~~
+<Command shell="bash" command={"python core.py index --model-name MyVoice --index-algorithm Auto"} />
 
 These examples use hyphenated Click commands and flags. See [CLI reference](/reference/cli/) for environment and release differences.
 

@@ -21,6 +21,7 @@ buttons. Avoid Unicode arrows or other text glyphs as icon substitutes.
 | `Workflow` | Explain the stages before detailed instructions | `title`; `steps`: title, description, optional href |
 | `Accordion`, `AccordionGroup` | Troubleshooting and optional explanations | Accordion: `title`, optional `open`; Markdown body |
 | `Checklist` | Let readers track prerequisites or review steps | `title`, string array `items`; page-local checkboxes |
+| `Command` | Copyable terminal instructions with syntax highlighting | `command`, optional `shell` (`bash`, `sh`, `powershell`), `title`; supports multiline commands |
 | `Path`, `PathList` | Copyable file and folder locations | Path: `value`, optional `description`, `kind` (`folder` or `file`); PathList: optional accessible `label` |
 | `FileTree` | Collapsible folder and file examples | Optional `title`, `items`: name, children, description, highlighted, open; copies the full structure |
 | `PitchExample` | Explore the relationship between semitones and frequency | No props; a clearly labelled 220 Hz example |
@@ -52,7 +53,9 @@ import { desktop, gradio } from '../../../../../../shared/screenshots';
 Screenshot assets and capture provenance live in `shared/screenshots/`; exports
 are in `shared/screenshots.ts`. Screenshots share their lightbox with the public
 website, work as direct image links without JavaScript, and are included in static
-builds. No external image service is required.
+builds. Markdown images automatically use the same expandable viewer through
+`ContentImage.astro`, including legacy images and images in tables. Brand icons
+and logos remain part of the navigation. No external image service is required.
 
 Run `pnpm --filter applio-docs type-check` and `pnpm build`. The build generates
 Pagefind search. Preview that build with `pnpm --filter applio-docs preview` to
@@ -94,4 +97,15 @@ import { Path, PathList } from '../../../components/content/index';
   <Path value="assets/datasets" description="Training recordings." />
   <Path value="logs/MyVoice/config.json" kind="file" description="Experiment configuration." />
 </PathList>
+```
+
+Use `Command` for commands users can run. Set `shell` for syntax highlighting
+and a default shell label, or override `title`. Copy preserves the command text,
+including quotes, backslashes, and line breaks; no prompt is added. Long lines
+wrap on phones. Use ordinary fenced code blocks for output or configuration.
+
+```mdx
+import { Command } from '../../../components/content/index';
+
+<Command command={'python app.py --port 6970'} />
 ```

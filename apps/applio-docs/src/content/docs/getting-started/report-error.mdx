@@ -5,49 +5,95 @@ sidebar:
   order: 14
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Command, Steps, Accordion, AccordionGroup, Checklist } from '../../../components/content/index';
 
 Start with the failed operation's message and log. Check whether the problem is setup, model loading, conversion, or audio routing before changing unrelated settings.
 
 ## Common problems
 
-| Symptom | What to try |
-| --- | --- |
-| Engine is not ready | Open setup, read the failed checks, and run **Install / Repair** in Desktop. |
-| Package or GPU error | Capture the detected hardware and PyTorch/runtime error. Repair through your interface's installer before following older package recipes. |
-| Model missing | Refresh the library; verify you used the active logs/models folder and an inference export. |
-| Model will not load | Inspect its architecture, sample rate, embedder, and file format. A D checkpoint is not an inference model. |
-| Index error | Try conversion without the index, then verify the matching index. Regenerate only if you have the experiment's extracted features. |
-| Out of GPU memory | Stop competing GPU work, reduce training batch size, disable GPU dataset caching, or try checkpointing. For long file conversion, try Split Audio. |
-| Robotic audio | Match the training embedder, check input quality, compare pitch methods, and test a lower retrieval ratio without effects. |
-| Realtime drops or lags | Increase chunk size, reduce extra context/effects, and inspect diagnostics. |
-| No microphone or output | Check OS permissions, selected devices, output routing, monitoring, and VAD threshold. |
-| Job interrupted after restart | Start the operation again. Training continuation requires compatible saved checkpoints. |
-| Output has disappeared | Check cleanup/retention. Download valuable audio promptly. |
+<AccordionGroup>
+  <Accordion title="Engine is not ready">
+
+Open setup, read the failed checks, and run **Install / Repair** in Desktop.
+
+  </Accordion>
+  <Accordion title="Package or GPU error">
+
+Capture the detected hardware and PyTorch/runtime error. Repair through your interface's installer before following older package recipes.
+
+  </Accordion>
+  <Accordion title="Model missing">
+
+Refresh the library; verify you used the active logs/models folder and an inference export.
+
+  </Accordion>
+  <Accordion title="Model will not load">
+
+Inspect its architecture, sample rate, embedder, and file format. A D checkpoint is not an inference model.
+
+  </Accordion>
+  <Accordion title="Index error">
+
+Try conversion without the index, then verify the matching index. Regenerate only if you have the experiment's extracted features.
+
+  </Accordion>
+  <Accordion title="Out of GPU memory">
+
+Stop competing GPU work, reduce training batch size, disable GPU dataset caching, or try checkpointing. For long file conversion, try Split Audio.
+
+  </Accordion>
+  <Accordion title="Robotic audio">
+
+Match the training embedder, check input quality, compare pitch methods, and test a lower retrieval ratio without effects.
+
+  </Accordion>
+  <Accordion title="Realtime drops or lags">
+
+Increase chunk size, reduce extra context/effects, and inspect diagnostics.
+
+  </Accordion>
+  <Accordion title="No microphone or output">
+
+Check OS permissions, selected devices, output routing, monitoring, and VAD threshold.
+
+  </Accordion>
+  <Accordion title="Job interrupted after restart">
+
+Start the operation again. Training continuation requires compatible saved checkpoints.
+
+  </Accordion>
+  <Accordion title="Output has disappeared">
+
+Check cleanup/retention. Download valuable audio promptly.
+
+  </Accordion>
+</AccordionGroup>
 
 ### Gradio server and CLI checks
 
 Keep the launch process running while using Gradio. Read the address it prints; the port may differ if another service is already using it. To select a port from its Python environment:
 
-~~~bash
-python app.py --port 6970
-~~~
+<Command shell="bash" command={"python app.py --port 6970"} />
 
 Inspect an inference model:
 
-~~~bash
-python core.py model-information --pth-path "logs/MyVoice/MyVoice.pth"
-~~~
+<Command shell="bash" command={"python core.py model-information --pth-path \"logs/MyVoice/MyVoice.pth\""} />
 
 Generate an index from an experiment with extracted features:
 
-~~~bash
-python core.py index --model-name MyVoice --index-algorithm Auto
-~~~
+<Command shell="bash" command={"python core.py index --model-name MyVoice --index-algorithm Auto"} />
 
 These examples use hyphenated Click commands and flags. See [CLI reference](/reference/cli/) for environment and release differences.
 
 ## Report a reproducible bug
+
+<Checklist title="Before you submit" items={[
+  'I can reproduce the problem with a short example.',
+  'I have the interface version, operating system, and GPU details.',
+  'I copied the first error and the final job message.',
+  'I removed private paths, tokens, and recordings from the report.',
+]} />
+
 
 <Steps>
 

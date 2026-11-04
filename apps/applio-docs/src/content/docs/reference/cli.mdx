@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-import { Aside } from '@astrojs/starlight/components';
+import { Command, Aside } from '../../../components/content/index';
 
 Applio-App provides an **`applio` command** that launches its Click CLI through `core.py`. Standalone Applio exposes the engine CLI through `python core.py`. Both need that installation's Python environment and engine dependencies.
 
@@ -13,19 +13,9 @@ Applio-App provides an **`applio` command** that launches its Click CLI through 
 
 From an initialized App source checkout, run the launcher for your shell:
 
-~~~powershell
-# Windows PowerShell, from the App repository root
-.\applio.cmd
-.\applio.cmd --help
-.\applio.cmd infer --help
-~~~
+<Command shell="powershell" command={"# Windows PowerShell, from the App repository root\n.\\applio.cmd\n.\\applio.cmd --help\n.\\applio.cmd infer --help"} />
 
-~~~bash
-# Linux / macOS, from the App repository root
-bash ./applio
-bash ./applio --help
-bash ./applio infer --help
-~~~
+<Command shell="bash" command={"# Linux / macOS, from the App repository root\nbash ./applio\nbash ./applio --help\nbash ./applio infer --help"} />
 
 With no arguments in an interactive terminal, the launcher opens a menu for conversion, training, and other tools. Use `--help` to list commands without opening the menu. If the launcher is available on your `PATH`, you can use `applio`, `applio --help`, and `applio infer --help` directly.
 
@@ -33,18 +23,13 @@ The App also offers `pnpm cli` and `node bin/applio.js` from its repository root
 
 For the App, replace `python core.py` in the examples below with your `applio` launcher; the engine command names and flags are forwarded to the same adapter. For example:
 
-~~~powershell
-.\applio.cmd infer --input-path "input.wav" --output-path "converted.wav" --pth-path "logs/MyVoice/MyVoice.pth"
-~~~
+<Command shell="powershell" command={".\\applio.cmd infer --input-path \"input.wav\" --output-path \"converted.wav\" --pth-path \"logs/MyVoice/MyVoice.pth\""} />
 
 ## Direct Python entry point
 
 Run `core.py` from the repository root using the installation's Python environment. A system Python without Applio's dependencies will not work.
 
-~~~bash
-python core.py --help
-python core.py infer --help
-~~~
+<Command shell="bash" command={"python core.py --help\npython core.py infer --help"} />
 
 Commands and flags use **hyphens**, such as `batch-infer` and `--input-path`. Python function names with underscores are not the CLI syntax.
 
@@ -54,16 +39,14 @@ Commands and flags use **hyphens**, such as `batch-infer` and `--input-path`. Py
 | --- | --- | --- |
 | Engine | In the repository | Pinned under `backend/applio` |
 | Gradio launch | `python app.py` | No root Gradio application |
-| Main CLI | `python core.py` | `applio` launcher → `core.py` adapter plus App commands |
+| Main CLI | `python core.py` | `applio` launcher calls the `core.py` adapter and adds App commands |
 | Dependencies | Repository environment | App runtime environment and initialized submodule |
 
 The launcher instructions above describe the App source checkout; they do not require editing a packaged app. Desktop release users can also perform these workflows in the interface.
 
 ## Single-file conversion
 
-~~~bash
-python core.py infer --input-path "input.wav" --output-path "converted.wav" --pth-path "logs/MyVoice/MyVoice.pth" --index-path "logs/MyVoice/MyVoice.index"
-~~~
+<Command shell="bash" command={"python core.py infer --input-path \"input.wav\" --output-path \"converted.wav\" --pth-path \"logs/MyVoice/MyVoice.pth\" --index-path \"logs/MyVoice/MyVoice.index\""} />
 
 The standalone CLI requires `--index-path`; supply an empty string if you deliberately want no index. The App adapter makes it optional. Use a real inference export rather than assuming a training `G_*.pth` file is interchangeable.
 
@@ -85,9 +68,7 @@ The standalone CLI requires `--index-path`; supply an empty string if you delibe
 
 Boolean toggles such as `--split-audio` are flags; do not append `True`. Paired switches such as `--pretrained/--no-pretrained` select one behavior.
 
-~~~bash
-python core.py infer --input-path "input.wav" --output-path "converted.wav" --pth-path "logs/MyVoice/MyVoice.pth" --index-path "logs/MyVoice/MyVoice.index" --pitch 3 --f0-method rmvpe --index-rate 0.5 --split-audio
-~~~
+<Command shell="bash" command={"python core.py infer --input-path \"input.wav\" --output-path \"converted.wav\" --pth-path \"logs/MyVoice/MyVoice.pth\" --index-path \"logs/MyVoice/MyVoice.index\" --pitch 3 --f0-method rmvpe --index-rate 0.5 --split-audio"} />
 
 Default values can differ between the standalone CLI, App adapter, and UI. Set important parameters explicitly when comparing results.
 
@@ -112,9 +93,7 @@ Use command help for all effect parameters and allowed ranges.
 
 ## Batch conversion
 
-~~~bash
-python core.py batch-infer --input-folder "input" --output-folder "output" --pth-path "logs/MyVoice/MyVoice.pth" --index-path "logs/MyVoice/MyVoice.index"
-~~~
+<Command shell="bash" command={"python core.py batch-infer --input-folder \"input\" --output-folder \"output\" --pth-path \"logs/MyVoice/MyVoice.pth\" --index-path \"logs/MyVoice/MyVoice.index\""} />
 
 Batch conversion shares the main inference controls. Check logs for skipped or failed files.
 
@@ -122,9 +101,7 @@ Batch conversion shares the main inference controls. Check logs for skipped or f
 
 The standalone CLI requires both text-source arguments, so this example supplies an empty file value to use inline text:
 
-~~~bash
-python core.py tts --tts-file "" --tts-text "Hello from Applio." --tts-voice "en-US-JennyNeural" --output-tts-path "speech.wav" --output-rvc-path "converted.wav" --pth-path "logs/MyVoice/MyVoice.pth" --index-path "logs/MyVoice/MyVoice.index"
-~~~
+<Command shell="bash" command={"python core.py tts --tts-file \"\" --tts-text \"Hello from Applio.\" --tts-voice \"en-US-JennyNeural\" --output-tts-path \"speech.wav\" --output-rvc-path \"converted.wav\" --pth-path \"logs/MyVoice/MyVoice.pth\" --index-path \"logs/MyVoice/MyVoice.index\""} />
 
 Edge TTS needs internet access. Use `tts --help` for the accepted voice identifiers and required arguments in your installation. The App adapter relaxes several arguments and can synthesize without conversion.
 
@@ -132,12 +109,7 @@ Edge TTS needs internet access. Use `tts --help` for the accepted voice identifi
 
 Choose compatible architecture, sample rate, embedder, and pretrainings before starting. This is a 40 kHz example; replace paths and settings for your experiment.
 
-~~~bash
-python core.py preprocess --model-name MyVoice --dataset-path "assets/datasets/MyVoice" --sample-rate 40000 --cpu-cores 4
-python core.py extract --model-name MyVoice --sample-rate 40000 --cpu-cores 4 --gpu 0 --f0-method rmvpe --embedder-model contentvec
-python core.py train --model-name MyVoice --sample-rate 40000 --gpu 0 --batch-size 4 --save-every-epoch 10 --total-epoch 200
-python core.py index --model-name MyVoice --index-algorithm Auto
-~~~
+<Command shell="bash" command={"python core.py preprocess --model-name MyVoice --dataset-path \"assets/datasets/MyVoice\" --sample-rate 40000 --cpu-cores 4\npython core.py extract --model-name MyVoice --sample-rate 40000 --cpu-cores 4 --gpu 0 --f0-method rmvpe --embedder-model contentvec\npython core.py train --model-name MyVoice --sample-rate 40000 --gpu 0 --batch-size 4 --save-every-epoch 10 --total-epoch 200\npython core.py index --model-name MyVoice --index-algorithm Auto"} />
 
 Pitch and embedder settings belong to **extract**, not to the **train** command. The CLI and UI can expose different rate choices; check help at each stage.
 
@@ -151,21 +123,13 @@ See [training](/getting-started/training/) for checkpoint continuation and outpu
 
 ## Model and analysis utilities
 
-~~~bash
-python core.py model-information --pth-path "logs/MyVoice/MyVoice.pth"
-python core.py model-blender --model-name Blended --pth-path-1 "logs/VoiceA/VoiceA.pth" --pth-path-2 "logs/VoiceB/VoiceB.pth" --ratio 0.5
-python core.py audio-analyzer --input-path "input.wav"
-python core.py tensorboard
-~~~
+<Command shell="bash" command={"python core.py model-information --pth-path \"logs/MyVoice/MyVoice.pth\"\npython core.py model-blender --model-name Blended --pth-path-1 \"logs/VoiceA/VoiceA.pth\" --pth-path-2 \"logs/VoiceB/VoiceB.pth\" --ratio 0.5\npython core.py audio-analyzer --input-path \"input.wav\"\npython core.py tensorboard"} />
 
 Blending needs compatible models and does not generate an index. The ratio weights the first model: 0 selects the second, 1 selects the first, and 0.5 gives equal weight.
 
 Download a model or engine prerequisites:
 
-~~~bash
-python core.py download --model-link "https://example.com/model.zip"
-python core.py prerequisites
-~~~
+<Command shell="bash" command={"python core.py download --model-link \"https://example.com/model.zip\"\npython core.py prerequisites"} />
 
 The example download URL is a placeholder; replace it with a supported model source.
 
@@ -173,9 +137,7 @@ The example download URL is a placeholder; replace it with a supported model sou
 
 These belong to **standalone Applio's** `app.py`:
 
-~~~bash
-python app.py --port 6969 --server-name 127.0.0.1 --open
-~~~
+<Command shell="bash" command={"python app.py --port 6969 --server-name 127.0.0.1 --open"} />
 
 | Flag | Meaning |
 | --- | --- |

@@ -5,23 +5,39 @@ sidebar:
   order: 3
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 Separation estimates individual sources from a mix. For a voice cover, convert the vocal stem, then mix it with the instrumental in an audio editor. For training, listen carefully for remaining music and separation artifacts.
+
+## Before you start
+
+Pick one short excerpt that includes the voice and the sounds you want to remove. Keep the original mix for comparison. Your first goal is a usable vocal stem, not the largest number of output files.
+
+<Checklist title="Ready to separate audio" items={[
+  'I kept the original mix and chose an excerpt for testing.',
+  'I know whether I need vocals, an instrumental, or other specific stems.',
+  'Engine setup is complete if I am using the Desktop separator.',
+  'I can save useful stems outside temporary output storage.',
+]} />
+
+Use Applio Desktop below for its integrated separator. Use the standalone UVR route if you already work in that application; its model downloads and settings are managed separately.
 
 ## Choose a workflow
 
 <Tabs>
   <TabItem label="Applio Desktop">
 
+<Screenshot src={desktop.separator} alt="Desktop Audio Separator workspace with source audio and separation model controls" caption="Add the source recording, choose a separation model, and select which stems to keep." interfaceName="Desktop 1.0.7" />
+
 <Steps>
 
 1. Finish engine setup and open **Audio Separator**.
 2. Upload the recording or select its path on the host computer.
-3. Choose a **Separation model** appropriate for the desired stems.
-4. Select the output format, **Stems to keep**, and device.
-5. Start **Separate Stems** and follow the job.
-6. Listen to the output and save the stems you want to retain.
+3. Choose a **Separation model** whose description and supported stems match your task. For a vocal/instrumental split, use a model that produces those sources rather than expecting every model to separate the same instruments.
+4. Select **Stems to keep**, the device, and a lossless output format such as WAV or FLAC.
+5. Start **Separate Stems** once and follow the job. On first use, let dependency/model downloads finish before starting another attempt.
+6. When the stems appear, play the vocal and compare it with the original excerpt. Save the useful outputs before processing the full recording.
 
 </Steps>
 
@@ -54,6 +70,27 @@ The Desktop catalog includes supported model families such as VR, MDX, Demucs, a
 <Aside type="note">
   Separation weights are not RVC voice models. Keep them separate from the `.pth` voice model and feature index used for conversion.
 </Aside>
+
+## Listen before processing the full track
+
+<Steps>
+
+1. Play the isolated vocal on its own. Check words, consonants, breaths, and sustained notes for missing or damaged detail.
+2. Listen for remaining drums, instruments, backing voices, or reverb that could affect your next task.
+3. Compare another model on the same excerpt if the first result is unsuitable. Change one setting or model at a time.
+4. When you have a usable test, run the full recording with those settings and inspect the output again.
+
+</Steps>
+
+| What you hear or see | What to try next |
+| --- | --- |
+| No vocal stem among the outputs | Check the chosen model's supported stems and **Stems to keep**. |
+| A failed job before processing starts | Read the dependency/download error and check first-use setup before changing separation settings. |
+| A memory error during processing | Reduce the available batch/segment-size settings or try a shorter excerpt. |
+| Remaining instruments | Compare a model intended for the same separation task using the identical excerpt. |
+| Watery consonants or damaged notes | Compare against the original and reduce aggressive processing rather than repeatedly cleaning the same damaged stem. |
+
+A separated vocal is an estimate. If important words or notes are missing, keep testing on the excerpt before using the result in a dataset.
 
 ## Use the result
 

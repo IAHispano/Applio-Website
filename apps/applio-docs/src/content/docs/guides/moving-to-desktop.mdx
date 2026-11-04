@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-import { Steps, Aside } from '@astrojs/starlight/components';
+import { Steps, Aside, Path, PathList } from '../../../components/content/index';
 
 Keep your Gradio installation while trying Desktop. Install Desktop separately and copy the files you need.
 
@@ -15,7 +15,7 @@ Keep your Gradio installation while trying Desktop. Install Desktop separately a
 
 1. Finish Desktop's **Install / Repair** setup.
 2. Find the exported inference `.pth` files and matching `.index` files in the old installation, usually under `logs`.
-3. Open **Models → Download Models → Upload Model Files** in Desktop. Upload the model and index.
+3. Open **Models**, then **Download Models**, then **Upload Model Files** in Desktop. Upload the model and index.
 4. Refresh **Model Library** and inspect the metadata.
 5. Select the model in **Convert Audio**, match its training embedder, and test a short recording.
 
@@ -33,23 +33,35 @@ Copy or download custom embedders and pretrainings separately. Let Desktop creat
 | Packaged macOS / Linux | The `data` folder within the app's user-data directory |
 | App running from source | The App repository directory |
 
-Within the runtime, models and experiments normally live in `logs`, datasets in `assets/datasets`, and custom engine assets under `rvc/models`. Working uploads default to `assets/audios/_uploads`; generated audio defaults to `assets/audios`. The `/outputs` address is a served URL, not a separate default folder. Source/server deployments can override these paths with `UPLOADS_DIR` and `OUTPUTS_DIR`.
+Within the runtime, these are the usual locations:
+
+<PathList label="Desktop runtime paths">
+  <Path value="logs" description="Models and training experiments." />
+  <Path value="assets/datasets" description="Training recordings." />
+  <Path value="rvc/models" description="Custom engine assets." />
+  <Path value="assets/audios/_uploads" description="Working uploads." />
+  <Path value="assets/audios" description="Generated audio." />
+</PathList>
+
+The `/outputs` address is a served URL, not a separate default folder. Source/server deployments can override these paths with `UPLOADS_DIR` and `OUTPUTS_DIR`.
 
 Preferences and job history are in the configuration directory. For packaged Windows, that is the installation's `data` folder. The desktop tray offers folder shortcuts for models, outputs, logs, and preferences.
 
 ### Choose another models folder
 
-In **Settings → Disk & Cache Storage**, set **Logs & Models Folder**, select **Save Folder**, and restart Applio. It moves existing logs and model files after restarting. Finish active jobs first and ensure the destination has enough space.
+In **Settings**, under **Disk & Cache Storage**, set **Logs & Models Folder**, select **Save Folder**, and restart Applio. It moves existing logs and model files after restarting. Finish active jobs first and ensure the destination has enough space.
 
 This moves the logs/models tree, not every dataset, cache, or output. If a move fails, read its error before moving files manually.
 
 ## Gradio's typical layout
 
-- `logs`: models and training experiments.
-- `assets/datasets`: training recordings.
-- `assets/audios`: audio used or produced by workflows.
-- `rvc/models/pretraineds/custom`: custom G/D pretrainings.
-- `rvc/models/embedders/embedders_custom`: custom embedders.
+<PathList label="Gradio installation paths">
+  <Path value="logs" description="Models and training experiments." />
+  <Path value="assets/datasets" description="Training recordings." />
+  <Path value="assets/audios" description="Audio used or produced by workflows." />
+  <Path value="rvc/models/pretraineds/custom" description="Custom G/D pretrainings." />
+  <Path value="rvc/models/embedders/embedders_custom" description="Custom embedders." />
+</PathList>
 
 A configured logs folder can differ from the default. Check settings before copying files.
 

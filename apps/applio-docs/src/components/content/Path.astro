@@ -1,0 +1,49 @@
+---
+import Icon from "../../../../../shared/Icon.astro";
+interface Props {
+  value: string;
+  description?: string;
+  kind?: "folder" | "file";
+}
+const { value, description, kind = "folder" } = Astro.props;
+---
+<docs-path class="docs-path" data-path={value}>
+  <div class="docs-path-content">
+    <span class="docs-path-icon"><Icon name={kind === "folder" ? "folder" : "file"} size={16} /></span>
+    <div class="docs-path-text"><code class="docs-path-value">{value}</code>{description && <p class="docs-path-description">{description}</p>}</div>
+    <button type="button" class="docs-path-copy" aria-label={`Copy path ${value}`} hidden><Icon name="copy" size={14} /><span data-copy-label>Copy</span></button>
+  </div>
+  <span class="sr-only" role="status"></span>
+</docs-path>
+<script>
+  class DocsPath extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const button = this.querySelector<HTMLButtonElement>("button")!;
+      const label = this.querySelector<HTMLElement>("[data-copy-label]")!;
+      const status = this.querySelector<HTMLElement>("[role='status']")!;
+      const controller = new AbortController();
+      let reset: ReturnType<typeof setTimeout> | undefined;
+      button.hidden = false;
+      button.addEventListener("click", async () => {
+        clearTimeout(reset);
+        try {
+          await navigator.clipboard.writeText(this.dataset.path ?? "");
+          if (!this.isConnected) return;
+          label.textContent = "Copied";
+          status.textContent = "Path copied.";
+        } catch {
+          if (!this.isConnected) return;
+          label.textContent = "Copy";
+          status.textContent = "Copy unavailable. Select and copy the path instead.";
+        }
+        reset = setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2000);
+      }, { signal: controller.signal });
+      this.cleanup = () => { controller.abort(); clearTimeout(reset); delete this.dataset.ready; };
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get("docs-path")) customElements.define("docs-path", DocsPath);
+</script>

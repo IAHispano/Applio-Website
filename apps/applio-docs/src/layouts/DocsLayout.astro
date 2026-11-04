@@ -1,0 +1,119 @@
+---
+import Icon from "../../../../shared/Icon.astro";
+import "@fontsource-variable/syne";
+import "../../../../shared/theme.css";
+import "../styles/docs.css";
+import type { CollectionEntry } from "astro:content";
+import type { MarkdownHeading } from "astro";
+import { ecosystem } from "../../../../shared/ecosystem";
+import { pages } from "../lib/navigation";
+import DocsNavigation from "../components/DocsNavigation.astro";
+
+interface Props { entry: CollectionEntry<"docs">; headings: MarkdownHeading[]; }
+const { entry, headings } = Astro.props;
+const path = entry.id === "index" ? "/" : `/${entry.id}/`;
+const currentIndex = pages.findIndex(page => page.href === path);
+const previous = pages[currentIndex - 1];
+const next = currentIndex >= 0 ? pages[currentIndex + 1] : undefined;
+const toc = headings.filter(heading => heading.depth >= 2 && heading.depth <= 3);
+const canonical = new URL(path, ecosystem.links.docs);
+const markdownPath = path === "/" ? "/index.md" : `${path}index.md`;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    { "@type": "WebSite", "@id": `${ecosystem.links.docs}#website`, url: ecosystem.links.docs, name: "Applio Docs", inLanguage: "en" },
+    { "@type": "TechArticle", "@id": `${canonical}#article`, url: canonical.href, headline: entry.data.title, description: entry.data.description, inLanguage: "en", mainEntityOfPage: canonical.href, isPartOf: { "@id": `${ecosystem.links.docs}#website` }, publisher: { "@type": "Organization", name: "Applio", url: ecosystem.links.website }, image: new URL("/opengraph-image.png", ecosystem.links.docs).href },
+    ...(path === "/" ? [] : [{ "@type": "BreadcrumbList", itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Applio Docs", item: ecosystem.links.docs },
+      { "@type": "ListItem", position: 2, name: entry.data.title, item: canonical.href },
+    ] }]),
+  ],
+};
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{entry.data.title} · Applio Docs</title>
+    <meta name="description" content={entry.data.description} />
+    <meta name="theme-color" content="#09090b" />
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="Applio Docs" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:image:alt" content="Applio voice conversion documentation" />
+    <meta property="og:title" content={`${entry.data.title} · Applio Docs`} />
+    <meta property="og:description" content={entry.data.description} />
+    <meta property="og:image" content={new URL("/opengraph-image.png", ecosystem.links.docs).href} />
+    <meta property="og:url" content={canonical} />
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    {entry.id !== "404" && <Fragment>
+      <link rel="alternate" type="text/markdown" href={new URL(markdownPath, ecosystem.links.docs)} title="Markdown version" />
+      <link rel="describedby" type="text/plain" href="/llms.txt" />
+      <meta name="robots" content="index, follow, max-image-preview:large" />
+      <script type="application/ld+json" set:html={JSON.stringify(structuredData).replaceAll("<", "\\u003c")} />
+    </Fragment>}
+    <link rel="icon" href="/favicon.ico" />
+    {entry.id === "404" && <meta name="robots" content="noindex" />}
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="docs-header">
+      <a class="brand" href="/" aria-label="Applio documentation home">
+        <img src="/applio-logo.svg" width="22" height="26" alt="" />
+        <span>Applio</span><span class="brand-badge">Docs</span>
+      </a>
+      <button class="search-trigger" type="button" data-open-search aria-controls="docs-search" aria-expanded="false" aria-keyshortcuts="Control+k Meta+k" aria-label="Search documentation" aria-haspopup="dialog"><span class="icon-label"><Icon name="search" /><span class="search-label">Search documentation</span></span><kbd>Ctrl K</kbd></button>
+      <nav class="header-links" aria-label="Applio links">
+        <a href={ecosystem.links.website}>Website <Icon name="external-link" size={12} /></a>
+        <a class="download-link" href={ecosystem.links.download}>Download Applio <Icon name="download" /></a>
+      </nav>
+    </header>
+    <div class="mobile-docs-bar">
+      <button class="mobile-nav-trigger icon-label" type="button" data-open-navigation aria-controls="docs-navigation" aria-expanded="false" aria-haspopup="dialog"><Icon name="menu" size={18} /> Browse docs</button>
+      {toc.length > 0 && <details class="mobile-toc"><summary class="icon-label">On this page <Icon name="chevron-down" /></summary><nav aria-label="On this page">{toc.map(heading => <a href={`#${heading.slug}`} class:list={{ nested: heading.depth === 3 }}>{heading.text}</a>)}</nav></details>}
+    </div>
+    <div class="docs-shell">
+      <aside class="sidebar"><DocsNavigation /></aside>
+      <dialog id="docs-navigation" class="sidebar-panel" aria-label="Documentation navigation">
+        <div class="nav-drawer-heading"><span>Documentation</span><button type="button" data-close-navigation aria-label="Close navigation"><Icon name="close" size={20} /></button></div>
+        <DocsNavigation />
+      </dialog>
+      <main id="main-content" tabindex="-1" data-pagefind-body={entry.data.pagefind ? "" : undefined} data-pagefind-ignore={!entry.data.pagefind ? "all" : undefined}>
+        <div class="page-heading">
+          <h1 id="article-title" data-pagefind-meta="title">{entry.data.title}</h1>
+          <p class="description">{entry.data.description}</p>
+        </div>
+        <article class="prose" aria-labelledby="article-title"><slot /></article>
+        <footer class="article-footer" data-pagefind-ignore>
+          {entry.id !== "404" && <a class="edit-link" href={markdownPath}>Read as Markdown <Icon name="file" /></a>}
+          <a class="edit-link" href={`${ecosystem.projects.docs.repository}/edit/main/apps/applio-docs/src/content/docs/${entry.id}.mdx`}>Edit this page on GitHub <Icon name="external-link" size={12} /></a>
+          <nav class="pagination" aria-label="More documentation">
+            {previous && <a href={previous.href}><small><Icon name="arrow-left" /> Previous</small><span>{previous.label}</span></a>}
+            {next && <a href={next.href}><small>Next <Icon name="arrow-right" /></small><span>{next.label}</span></a>}
+          </nav>
+        </footer>
+      </main>
+      <aside class="toc" aria-label="On this page">
+        {toc.length > 0 && <nav><h2>On this page</h2><ul>{toc.map(heading => <li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
+        <a class="toc-help" href={ecosystem.links.discord}>Need a hand?<br /><span>Join the community <Icon name="external-link" size={12} /></span></a>
+      </aside>
+    </div>
+    <noscript><style is:inline>
+      @media (max-width: 1024px) {
+        .sidebar { display: block; position: static; height: auto; padding: 20px 0; }
+        .mobile-nav-trigger { display: none; }
+      }
+    </style></noscript>
+    <template id="code-copy-template"><button type="button" class="copy-code icon-label" aria-label="Copy code to clipboard"><Icon name="copy" size={14} /><span data-copy-label>Copy</span></button></template>
+    <dialog id="docs-search" aria-labelledby="search-title">
+      <div class="search-heading"><h2 id="search-title">Search documentation</h2><button type="button" data-close-search aria-label="Close search">Esc</button></div>
+      <label for="search-input" class="sr-only">Search guides and reference</label>
+      <input id="search-input" type="search" aria-describedby="search-status" aria-controls="search-results" placeholder="What would you like to do?" autocomplete="off" />
+      <p id="search-status" role="status">Search guides, workflows, and reference.</p>
+      <ul id="search-results" aria-label="Search results"></ul>
+    </dialog>
+    <script src="../scripts/docs.ts"></script>
+  </body>
+</html>

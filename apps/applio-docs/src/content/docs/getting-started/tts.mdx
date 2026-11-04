@@ -5,28 +5,85 @@ sidebar:
   order: 6
 ---
 
-import { Steps, Aside } from '@astrojs/starlight/components';
+import { Steps, Aside, Tabs, TabItem, Screenshot, Checklist, Workflow } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Applio uses **Edge TTS** to synthesize speech, then can convert that audio with an RVC model. The TTS voice provides the language and delivery; the conversion model changes the voice characteristics.
 
+<Workflow title="From text to the converted voice" steps={[
+  { title: 'Text', description: 'Start with a short sentence in the language you want to speak.' },
+  { title: 'Source speech', description: 'Edge TTS supplies pronunciation, timing, and delivery.' },
+  { title: 'Voice conversion', description: 'The selected RVC model changes the voice characteristics.' },
+  { title: 'Listen & save', description: 'Check the returned audio and download the result.' },
+]} />
+
+## Before you start
+
+<Checklist title="Ready to generate speech" items={[
+  'Engine setup is complete and a compatible inference model is available.',
+  'I know the model embedder and have its matching index if supplied.',
+  'The engine can reach the online speech service.',
+  'I have a short sentence to test before using a long script.',
+]} />
+
+If you have not used the model yet, [test it with a recording](/getting-started/inference/) first. This helps separate a model-loading problem from a speech-service problem.
+
 ## Generate speech
+
+<Tabs>
+  <TabItem label="Desktop">
+    <Screenshot src={desktop.tts} alt="Desktop Text to Speech workspace" caption="Choose the text source and TTS voice, then select the conversion model before using Convert Speech." interfaceName="Desktop 1.0.7" />
 
 <Steps>
 
-1. Open **Text to Speech** in Desktop or **TTS** in Gradio.
-2. Select a TTS voice appropriate for the language of your text.
-3. Enter text or upload a `.txt` file.
-4. Adjust **TTS Speed** and choose your conversion model and matching embedder.
-5. Generate the speech, follow the job, and listen to the result.
-6. Save the source TTS audio and converted output you want to keep.
+1. Open **Text to Speech**. Choose **Write text** for a first test and enter one or two sentences. Use **Upload file** when you are ready to supply a `.txt` script.
+2. Choose a voice under **TTS Voices** that matches the language of the text. Start with a neutral speed and leave optional conversion effects off.
+3. Select the inference voice model, its matching index if available, and its training embedder. Check any saved model settings before starting.
+4. Select **Convert Speech** once. Follow the job while speech synthesis and voice conversion run.
+5. When the result appears, play the returned audio and download the version you want to keep.
 
 </Steps>
 
-This screenshot shows the Gradio interface.
+If **Convert Speech** is unavailable, check its explanation: a model must be selected, text or a file must be provided, and the current job/model settings must finish loading.
 
-![Gradio TTS interface.](/images/tts.png)
+  </TabItem>
+  <TabItem label="Gradio">
+    <Screenshot src={gradio.tts} alt="Gradio Text to Speech workspace" caption="The Gradio Text to Speech workspace. Older builds may use different navigation labels." interfaceName="Gradio 3.7.1" />
 
-Use a short paragraph to test pronunciation and conversion settings before submitting a long script.
+<Steps>
+
+1. Open **TTS** and choose the inference model, matching index if supplied, and embedder.
+2. Under **Text to Speech**, enter a short sentence. For a `.txt` script, use **File to Speech** instead.
+3. Select a voice under **TTS Voices** matching your text's language and check **TTS Speed**.
+4. Check the source-speech and converted-output paths if your release exposes them, then select **Convert**. Keep the launch process running.
+5. Listen to the returned output and keep the audio files you need. Use separate paths when retaining multiple takes.
+
+</Steps>
+
+  </TabItem>
+</Tabs>
+
+### Check the first result
+
+Listen to the whole short sentence. Confirm that the words and pronunciation are correct before changing the target voice settings.
+
+- **Words or pronunciation are wrong:** correct the text or TTS voice selection. Voice conversion does not rewrite the sentence.
+- **Pronunciation is correct but the voice has artifacts:** keep the sentence fixed and compare the model's pitch/retrieval settings without effects.
+- **The job fails:** determine whether the log reports speech synthesis or model conversion, then use the checks below.
+
+Download the returned result you want to keep. Save the source TTS audio separately only where your interface makes it available; not every interface exposes both stages as separate downloadable outputs.
+
+## Work through a longer script
+
+<Steps>
+
+1. Get one short sentence working with the intended language, source TTS voice, and conversion model.
+2. Test a paragraph containing any names, abbreviations, or unusual punctuation in the script.
+3. Adjust the wording and TTS speed for pronunciation and pacing before tuning conversion effects.
+4. Submit the longer text or `.txt` file. For a difficult script, work in manageable sections so a failed request does not require repeating every take.
+5. Listen to the saved audio for missing phrases, pacing changes, and conversion artifacts before sharing it.
+
+</Steps>
 
 ## Connection and voice selection
 
@@ -39,6 +96,6 @@ A custom RVC model does not add a new Edge TTS voice. Choose a source TTS voice,
 - **Synthesis fails:** check connectivity, the selected voice, and the log; try a shorter text.
 - **Wrong pronunciation:** match the TTS voice's language and simplify unusual punctuation or abbreviations.
 - **Conversion fails after synthesis:** check the RVC model, index, embedder, and engine setup.
-- **Unnatural output:** listen to the source speech first, then compare pitch and retrieval settings without effects.
+- **Unnatural output:** listen to the source speech first if it is available, then compare pitch and retrieval settings without effects.
 
 For automation and the differences between standalone and App CLI requirements, see [CLI TTS](/reference/cli/#text-to-speech).

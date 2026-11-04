@@ -1,0 +1,13 @@
+---
+import Icon from "../../../../shared/Icon.astro";
+import { ecosystem } from "../../../../shared/ecosystem";
+import { navigation } from "../lib/navigation";
+const path = Astro.url.pathname.replace(/\/?$/, "/");
+---
+<nav aria-label="Documentation">
+  {navigation.map(section => <section class="nav-group">
+    <h2>{section.label}</h2>
+    <ul>{section.items.map(([label, href]) => <li><a href={href} aria-current={href === path ? "page" : undefined}>{label}{href.startsWith("https:") && <Icon name="external-link" />}</a></li>)}</ul>
+  </section>)}
+</nav>
+<div class="sidebar-footer"><a href={ecosystem.links.discord}>Community & support <Icon name="external-link" size={12} /></a><a href={ecosystem.projects.docs.repository}>Contribute on GitHub <Icon name="external-link" size={12} /></a></div>

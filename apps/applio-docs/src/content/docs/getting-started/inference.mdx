@@ -5,14 +5,30 @@ sidebar:
   order: 4
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside, Screenshot, PitchExample, Checklist } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Voice conversion changes the speaker characteristics of a recording. It uses the original words, rhythm, and pitch contour; it does not generate a new performance from text. For a song, use an isolated vocal rather than the full music mix.
+
+## Before you start
+
+Use a short recording, for example 10-20 seconds of clear speech or an isolated vocal. Keep the original so you can compare the same phrase after each change.
+
+<Checklist title="Ready for a first conversion" items={[
+  'Engine setup has finished and I can open the conversion workspace.',
+  'My inference model appears in the model list.',
+  'I know the training embedder and have the matching index if one was supplied.',
+  'I have a short recording with audible voice and no clipping or full music mix.',
+]} />
+
+If your model is not listed yet, finish [adding a model](/getting-started/installing-inference-models/). Complete one single-file conversion before trying a batch or tuning advanced options.
 
 ## Convert your first file
 
 <Tabs>
   <TabItem label="Desktop">
+
+<Screenshot src={desktop.conversion} alt="Desktop conversion workspace and its configuration panels" caption="Choose a voice model, add your source recording, then adjust conversion parameters." interfaceName="Desktop 1.0.7" />
 
 <Steps>
 
@@ -20,8 +36,9 @@ Voice conversion changes the speaker characteristics of a recording. It uses the
 2. Open **Convert Audio** and choose single-file conversion.
 3. Select the model and its matching index, if available. Match the model's training embedder.
 4. Upload a voice recording or choose an available input.
-5. Keep pitch at **0** for the first test, select an export format, and start conversion.
-6. Follow the job, listen to the result, and download audio you want to keep.
+5. Set pitch to **0**, leave optional effects off, and select WAV or FLAC for a lossless test output. Check restored settings: Desktop remembers conversion settings per model.
+6. Start conversion once and follow the job status. If it is queued, wait or check which other job is using the engine.
+7. When the result is available, play the converted audio and compare the same phrase with your original. Download the result you want to keep.
 
 </Steps>
 
@@ -30,30 +47,48 @@ Desktop saves conversion settings per selected model. Check them when switching 
   </TabItem>
   <TabItem label="Gradio">
 
+<Screenshot src={gradio.conversion} alt="Gradio conversion workspace and its configuration panels" caption="Model and index selection appear above the single-file and batch audio controls." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
-1. Open **Inference** and refresh the model list if needed.
+1. Open **Convert Audio** (called **Inference** in older Gradio releases) and refresh the model list if needed.
 2. Select the model and matching index, and upload your recording.
-3. Match the embedder in the advanced controls.
-4. Select the export format and start conversion.
-5. Listen to or download the output.
+3. Match the embedder in the advanced controls. Keep pitch at **0** and optional effects off for this first test.
+4. Select WAV or FLAC and start conversion once. Keep the Gradio launch process running and read its terminal output if the job fails.
+5. When the output appears, play it and compare it with the original recording. Download the result before moving on.
 
 </Steps>
-
-The image below shows the Gradio interface; Desktop uses a different layout.
-
-![Gradio inference interface with model and audio selection.](/images/inference.png)
 
   </TabItem>
 </Tabs>
 
+### Check the result before changing settings
+
+A successful first pass produces playable audio containing the original words and timing with the selected model's voice characteristics. It does not need to be your final sound yet.
+
+- **No result or a failed job:** read the job error first. Verify setup, model compatibility, and the selected input before tuning pitch or effects.
+- **Playable result with artifacts:** use [Improve a poor result](#improve-a-poor-result). Change one setting, then convert the same short clip again.
+- **A result you like:** save it and note the model, embedder, pitch, and retrieval settings. Use those as your baseline.
+
 ## Batch conversion
 
-Use batch mode to apply the same model and settings to several recordings. Choose the source and destination supported by your interface, run a short test first, and then start the batch. Inspect the job logs for skipped files or failures.
+<Steps>
+
+1. Complete a single-file test with the model and settings you intend to use.
+2. Switch to batch mode and choose the source and destination supported by your interface. Paths refer to the computer running the engine.
+3. Try a small subset first. Confirm that the outputs are written where you expect and contain the correct audio.
+4. Start the remaining batch and keep the interface or launch process running as required.
+5. Review the job log for skipped or failed inputs, then spot-check several outputs. Save useful files outside temporary working storage.
+
+</Steps>
+
+If a file fails, isolate it and try it in single-file mode. This separates an input-specific problem from a model or batch configuration problem.
 
 For CLI automation, see [batch inference](/reference/cli/#batch-conversion). For live microphone audio, use [Realtime](/getting-started/realtime/).
 
 ## Understand the main settings
+
+<PitchExample />
 
 | Setting | What it changes |
 | --- | --- |

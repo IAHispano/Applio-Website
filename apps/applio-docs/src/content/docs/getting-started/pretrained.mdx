@@ -5,7 +5,8 @@ sidebar:
   order: 9
 ---
 
-import { Steps, Aside } from '@astrojs/starlight/components';
+import { Steps, Aside, Screenshot } from '../../../components/content/index';
+import { gradio } from '../../../../../../shared/screenshots';
 
 A **training pretrained** supplies starting weights for a new experiment. It is different from an exported [inference voice model](/getting-started/installing-inference-models/).
 
@@ -20,9 +21,11 @@ Check the publisher's architecture, sample rate, pitch-guidance configuration, a
 
 ## Download and select a pair
 
+<Screenshot src={gradio.pretrained} alt="Gradio pretrained downloader with model family, sampling rate, and custom pretrained controls" caption="Choose a compatible pretrained family and sampling rate. Use Custom Pretrained for your own G and D download links." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
-1. In Desktop, open **Models → Download Models → Pretrained Base Models**. In Gradio, use the pretrained downloader in **Download**.
+1. In Desktop, open **Models**, then **Download Models**, then **Pretrained Base Models**. In Gradio, use **Models**, then **Download Pretrained Models** (under **Download** in older releases).
 2. Choose an available pair and its sample rate, or supply the publisher's G and D download links.
 3. Wait for both downloads to finish.
 4. Open **Training** and select compatible architecture and sampling-rate settings.

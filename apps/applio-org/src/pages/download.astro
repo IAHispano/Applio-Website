@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -61,7 +62,7 @@ const staticDownloads = {
     <div
       role="tablist"
       aria-label="Applio version selection"
-      class="inline-flex items-center justify-center p-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-10 shadow-lg max-w-full"
+      class="inline-flex items-center justify-center p-1 rounded-[var(--radius-button)] bg-white/5 border border-white/10 backdrop-blur-md mb-10 shadow-lg max-w-full"
     >
       <button
         type="button"
@@ -134,7 +135,7 @@ const staticDownloads = {
             <a
               id="btn-windows"
               href={staticDownloads.windows}
-              class="download-btn flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
+              class="site-button download-btn flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
             >
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -202,7 +203,7 @@ const staticDownloads = {
               <a
                 id="link-mac-arm-dmg"
                 href={staticDownloads.macArmDmg}
-                class="flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
               >
                 <span>Apple Silicon (arm64)</span>
                 <span class="text-xs text-white/40 font-mono">.dmg</span>
@@ -210,7 +211,7 @@ const staticDownloads = {
               <a
                 id="link-mac-intel-dmg"
                 href={staticDownloads.macIntelDmg}
-                class="flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
               >
                 <span>Intel Mac (x64)</span>
                 <span class="text-xs text-white/40 font-mono">.dmg</span>
@@ -223,7 +224,7 @@ const staticDownloads = {
               <a
                 id="link-mac-arm-zip"
                 href={staticDownloads.macArmZip}
-                class="flex items-center justify-between px-3.5 py-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white text-xs transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white text-xs transition-colors"
               >
                 <span>Apple Silicon (.zip portable)</span>
                 <svg class="w-3.5 h-3.5 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -236,7 +237,7 @@ const staticDownloads = {
               <a
                 id="link-mac-intel-zip"
                 href={staticDownloads.macIntelZip}
-                class="flex items-center justify-between px-3.5 py-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white text-xs transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-1.5 rounded-lg hover:bg-white/10 text-white/60 hover:text-white text-xs transition-colors"
               >
                 <span>Intel Mac (.zip portable)</span>
                 <svg class="w-3.5 h-3.5 text-white/50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -305,7 +306,7 @@ const staticDownloads = {
               <a
                 id="link-linux-appimage"
                 href={staticDownloads.linuxAppImage}
-                class="flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
               >
                 <div>
                   <span class="font-medium">AppImage</span>
@@ -325,7 +326,7 @@ const staticDownloads = {
               <a
                 id="link-linux-deb"
                 href={staticDownloads.linuxDeb}
-                class="flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
+                class="site-button flex items-center justify-between px-3.5 py-2 rounded-lg hover:bg-white/10 text-white/90 hover:text-white text-xs sm:text-sm transition-colors"
               >
                 <div>
                   <span class="font-medium">.deb installer</span>
@@ -417,7 +418,7 @@ const staticDownloads = {
           <div class="w-full mt-auto">
             <a
               href={staticDownloads.gradioWindowsZip}
-              class="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white text-black hover:bg-neutral-200"
+              class="site-button flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white text-black hover:bg-neutral-200"
             >
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
@@ -465,7 +466,7 @@ run-install.bat # or ./run-install.sh</pre>
               href="https://github.com/IAHispano/Applio"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
+              class="site-button flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
             >
               <span>GitHub Repository</span>
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -496,39 +497,39 @@ run-install.bat # or ./run-install.sh</pre>
               href="https://colab.research.google.com/github/IAHispano/Applio/blob/main/assets/Applio.ipynb"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
+              class="site-button flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
             >
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-amber-400"></span>
                 <span>Google Colab</span>
               </div>
-              <span class="text-neutral-400">Free/Pro GPU ↗</span>
+              <span class="text-neutral-400">Free/Pro GPU <Icon name="external-link" size={12} /></span>
             </a>
 
             <a
               href="https://pinokio.computer"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
+              class="site-button flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
             >
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-purple-400"></span>
                 <span>Pinokio Browser</span>
               </div>
-              <span class="text-neutral-400">1-Click Install ↗</span>
+              <span class="text-neutral-400">1-Click Install <Icon name="external-link" size={12} /></span>
             </a>
 
             <a
               href="https://huggingface.co/IAHispano/Applio"
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
+              class="site-button flex items-center justify-between px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs text-white transition-colors"
             >
               <div class="flex items-center gap-2">
                 <span class="w-2 h-2 rounded-full bg-yellow-400"></span>
                 <span>Hugging Face</span>
               </div>
-              <span class="text-neutral-400">Space & Models ↗</span>
+              <span class="text-neutral-400">Space & Models <Icon name="external-link" size={12} /></span>
             </a>
           </div>
 
@@ -537,7 +538,7 @@ run-install.bat # or ./run-install.sh</pre>
               href={docsUrl("installation")}
               target="_blank"
               rel="noopener noreferrer"
-              class="flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
+              class="site-button flex items-center justify-center gap-2 px-6 py-2.5 rounded-full font-semibold text-sm transition-all w-full bg-white/10 text-white hover:bg-white hover:text-black"
             >
               <span>View Documentation</span>
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -565,7 +566,7 @@ run-install.bat # or ./run-install.sh</pre>
           href={gradioReleasesUrl}
           target="_blank"
           rel="noopener noreferrer"
-          class="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors border border-white/10"
+          class="site-button shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-colors border border-white/10"
         >
           <span>Full Release Notes</span>
           <svg class="w-3.5 h-3.5 text-neutral-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

@@ -5,9 +5,24 @@ sidebar:
   order: 8
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '@astrojs/starlight/components';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist, Workflow, FileTree } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Training learns a voice from recordings. Dataset quality, coverage, and compatible settings matter more than simply increasing epochs.
+
+## Plan a first training run
+
+Start with a new experiment and one reviewed dataset. Keep a short recording out of the training data so you can compare saved models using a voice sample the run has not learned from.
+
+Your first goal is to complete preprocessing, feature extraction, training, and an inference test. Do not choose a large epoch target or reuse an old experiment just to get started. If you only want to use an existing voice, [add an inference model](/getting-started/installing-inference-models/) instead.
+
+| Decide before starting | Why it matters |
+| --- | --- |
+| A distinct experiment name | Keeps this run separate from previous checkpoints and features. |
+| Dataset location and speaker layout | The engine must read the intended files on its host computer. |
+| Architecture, rate, pitch configuration, and G/D pair | These must be compatible before training can begin. |
+| Exact embedder choice | The trained model needs the same feature representation at inference. |
+| Where to keep checkpoints and a held-out test clip | Lets you compare progress and resume without starting over. |
 
 ## Prepare the dataset
 
@@ -17,13 +32,31 @@ In Desktop, upload audio through **Training** or select a dataset path on the co
 
 For multiple speakers, preserve numeric subfolders:
 
-~~~text
-assets/datasets/MyVoice/
-  0/
-    speaker-zero.wav
-  1/
-    speaker-one.wav
-~~~
+<FileTree title="Multispeaker training folders" items={[
+  {
+    "name": "assets/datasets/MyVoice",
+    "children": [
+      {
+        "name": "0",
+        "description": "Speaker 0",
+        "children": [
+          {
+            "name": "speaker-zero.wav"
+          }
+        ]
+      },
+      {
+        "name": "1",
+        "description": "Speaker 1",
+        "children": [
+          {
+            "name": "speaker-one.wav"
+          }
+        ]
+      }
+    ]
+  }
+]} />
 
 Check that the upload or folder-selection method preserves this structure before starting a multispeaker project.
 
@@ -48,10 +81,26 @@ A scan is a starting point for listening. Reducing peaks cannot recover audio al
 
 Preprocessing resamples recordings to the training rate; input files do not all need to start at that rate. Resampling cannot create missing high-frequency detail.
 
+<Checklist title="Ready to train?" items={[
+  'I have permission to use the recordings, and I kept the originals.',
+  'I reviewed the dataset for music, clipping, noise, and other speakers.',
+  'The architecture, sample rate, embedder, and G/D pretrainings match.',
+  'I chose a distinct experiment name and a batch size that fits my GPU.',
+]} />
+
 ## Run training
+
+<Workflow title="The training pipeline" steps={[
+  { title: 'Preprocess', description: 'Slice recordings and prepare audio at the training rate.' },
+  { title: 'Extract', description: 'Compute pitch and content features.' },
+  { title: 'Train', description: 'Learn the voice and save checkpoints.' },
+  { title: 'Export & index', description: 'Keep the inference weights and matching retrieval index.' },
+]} />
 
 <Tabs>
   <TabItem label="Desktop">
+
+<Screenshot src={desktop.training} alt="Desktop training workspace and its configuration panels" caption="Start with the experiment name, compute settings, and dataset, then choose automatic or manual training." interfaceName="Desktop 1.0.7" />
 
 ### Automatic training
 
@@ -60,8 +109,10 @@ Preprocessing resamples recordings to the training rate; input files do not all 
 1. Open **Training**, set the model name, hardware, and compatible model settings.
 2. Choose **Automatic Training** and select or upload the dataset.
 3. Review epochs, batch size, and advanced options.
-4. Start the run and follow its job console.
-5. Let preprocessing, extraction, training, and optional index generation finish. Check the final artifact result.
+4. Select **Start Automatic Training** once and follow its job console. Keep the app open while the pipeline is working.
+5. Check which stage is running. Preprocessing and extraction must finish before training can use their outputs.
+6. When the pipeline finishes, inspect the reported artifacts. If index generation was set to **Skip**, there will not be a new retrieval index from that run.
+7. Continue with [the first inference test](#test-your-first-export) before deciding whether to train longer.
 
 </Steps>
 
@@ -69,15 +120,21 @@ Preprocessing resamples recordings to the training rate; input files do not all 
 
 Choose **Manual Training Setup** to run the stages separately:
 
-1. **Preprocess Dataset:** slice, resample, and optionally clean/normalize recordings.
-2. **Extract Features:** compute pitch and embedder features.
-3. **Train Model:** train using those features and compatible pretrainings.
-4. **Generate Index:** build a retrieval index from the extracted features.
+<Steps>
+
+1. Open **Preprocess Dataset** and use **Run Preprocess**. Confirm the dataset path and sampling rate, then wait for successful completion.
+2. Open **Extract Features** and use **Run Extraction** with the intended pitch method and embedder. Wait for the extraction job to finish.
+3. Open **Model Training** and use **Start Training** after reviewing the compatible G/D pair, batch size, epochs, and save settings.
+4. Use **Generate Index** when you want retrieval data for this experiment. Keep the index with the inference model from that experiment.
+
+</Steps>
 
 Changing a preprocessing or extraction setting may require rerunning downstream stages.
 
   </TabItem>
   <TabItem label="Gradio">
+
+<Screenshot src={gradio.training} alt="Gradio training workspace and its configuration panels" caption="Gradio groups experiment settings and training stages in its Training workspace." interfaceName="Gradio 3.7.1" />
 
 <Steps>
 
@@ -89,12 +146,19 @@ Changing a preprocessing or extraction setting may require rerunning downstream 
 
 </Steps>
 
-This screenshot shows Gradio's training controls.
-
-![Gradio training configuration.](/images/training.png)
-
   </TabItem>
 </Tabs>
+
+### Check each stage before continuing
+
+| Stage | What to verify | If it does not finish |
+| --- | --- | --- |
+| Preprocess | The log shows that usable recordings were read and processed. | Check the dataset path, supported audio, and whether the intended clips were included. |
+| Extract | Pitch/content extraction finishes for the experiment with the chosen embedder. | Read the first failing extraction message; check the embedder assets and available memory. |
+| Train | Epoch progress advances and checkpoints or weights are saved according to your settings. | Check configuration compatibility and the job error. For memory failures, reduce batch size before retrying. |
+| Export / index | You can identify the inference export and any generated index. | Check save/export settings and whether index generation was skipped or failed. |
+
+Stop at the failing stage and keep its log. Do not start later manual stages with missing or stale inputs. If you change the dataset, sampling rate, or embedder, rerun the affected preparation stages before training on the new configuration.
 
 ## Monitor quality
 
@@ -104,12 +168,28 @@ For memory errors, reduce batch size, disable dataset caching in GPU, or try che
 
 ## Export your model
 
-Desktop provides **Models → Export**; Gradio has export controls in its training workflow. Export the inference `.pth` and its matching `.index` if generated.
+Desktop provides **Models**, under **Export**; Gradio has export controls in its training workflow. Export the inference `.pth` and its matching `.index` if generated.
 
 Keep `G_*.pth` and `D_*.pth` training checkpoints if you want to resume. A small inference export does not contain the full state needed for continuation.
+
+## Test your first export
+
+<Steps>
+
+1. Open **Convert Audio** and select the inference `.pth` exported from this experiment, not a `G_` or `D_` training checkpoint.
+2. Match the training embedder and choose the correct speaker ID if the model contains multiple speakers.
+3. Use the held-out recording, keep pitch and optional effects consistent between comparisons, and run a short conversion.
+4. Listen for intelligibility, stable pitch, the intended timbre, and artifacts. Keep the output with a note of which checkpoint or export produced it.
+5. Compare another saved export on the same clip before choosing more epochs. Prefer the model that sounds better on the test material, rather than assuming the latest is best.
+
+</Steps>
+
+If the export cannot load, check compatibility and artifacts first; more training will not fix the wrong file type or an embedder mismatch.
 
 ## Resume training
 
 Use the same experiment name, architecture, sample rate, embedder/features, and compatible checkpoint files. Set a new total-epoch target above the completed epoch. In Desktop, leave **Fresh Training** off when continuing a project.
+
+Before starting the continuation, check the completed epoch in the existing run and confirm the new target is higher. Watch the first resumed log messages to confirm that the intended checkpoint is loaded. If it starts from an unexpected state, stop and inspect the experiment rather than overwriting more files.
 
 Back up the entire experiment before changing its settings. Fresh/cleanup options are intended for a new run, not continuation. See [storage and backups](/guides/moving-to-desktop/).

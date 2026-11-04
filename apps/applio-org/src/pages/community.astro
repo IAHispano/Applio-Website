@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -168,7 +169,7 @@ const cards: CommunityCard[] = [
                   )
                 }
               </span>
-              <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+              <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
             </div>
             <h3 class="mt-6 text-xl font-semibold text-white">{card.title}</h3>
             <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -210,7 +211,7 @@ const cards: CommunityCard[] = [
           href="https://docs.applio.org/getting-started/report-error/"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 text-sm rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition-all duration-200"
+          class="site-button px-5 py-2.5 text-sm rounded-full bg-white text-black font-medium hover:bg-neutral-200 transition-all duration-200"
         >
           Report a bug
         </a>
@@ -218,7 +219,7 @@ const cards: CommunityCard[] = [
           href="https://github.com/IAHispano/Applio-Website"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+          class="site-button px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
         >
           Improve this website
         </a>
@@ -226,7 +227,7 @@ const cards: CommunityCard[] = [
           href="https://github.com/IAHispano/Applio-Website/edit/main/apps/applio-docs/"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+          class="site-button px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
         >
           Improve the docs
         </a>
@@ -234,7 +235,7 @@ const cards: CommunityCard[] = [
           href="https://github.com/IAHispano/Applio/blob/main/TERMS_OF_USE.md"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
+          class="site-button px-5 py-2.5 text-sm rounded-full bg-white/10 hover:bg-white/20 transition-all duration-200"
         >
           Code of conduct
         </a>

@@ -5,13 +5,16 @@ sidebar:
   order: 7
 ---
 
-import { Steps, Aside } from '@astrojs/starlight/components';
+import { Steps, Aside, Screenshot } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 An **embedder** turns audio into numerical content features used by the voice conversion model. It is separate from the speaker model and the F0 predictor.
 
 Use the **same embedder for extraction during training and conversion during inference**. A model trained with one feature representation cannot reliably interpret a different one.
 
 ## Built-in choices
+
+<Screenshot src={desktop.embedderControls} alt="Desktop advanced conversion controls with pitch extraction, Embedder Model, and export format selectors" caption="Expand Advanced Settings in Convert Audio to select the Embedder Model. Match the embedder recorded for the voice model." interfaceName="Desktop 1.0.7" />
 
 | Interface value | Model family |
 | --- | --- |

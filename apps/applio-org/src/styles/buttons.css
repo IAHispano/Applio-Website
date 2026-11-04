@@ -1,0 +1,17 @@
+/* Shared geometry for website actions, including controls created by scripts. */
+body :is(button, .site-button),
+body .primary-action,
+body .secondary-action,
+body header nav a[class] {
+  border-radius: var(--radius-button);
+}
+body button,
+body .site-button {
+  min-height: 40px;
+}
+body button { cursor: pointer; }
+body button:disabled { cursor: default; opacity: .5; }
+body :is(button, .site-button, .primary-action, .secondary-action):focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}

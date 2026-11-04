@@ -1,0 +1,6 @@
+---
+import Icon from "../../../../../shared/Icon.astro";
+interface Props { title: string; icon?: "arrow-right" | "external-link"; }
+const { title, icon = "arrow-right" } = Astro.props;
+---
+<section class="doc-card"><h3>{title}<Icon name={icon} /></h3><slot /></section>

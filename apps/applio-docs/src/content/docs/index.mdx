@@ -3,22 +3,41 @@ title: "Welcome to Applio"
 description: "Convert audio, change your voice live, and train voice models with Applio Desktop or Gradio."
 ---
 
-import { Card, CardGrid, Steps } from '@astrojs/starlight/components';
+import { Card, CardGrid, Steps, Tabs, TabItem, Screenshot, Comparison, Workflow } from '../../components/content/index';
+import { desktop, gradio } from '../../../../../shared/screenshots';
 
 Applio converts a recording into another voice while retaining the words and performance. You can convert files, change your microphone voice live, generate speech from text, and train models from voice recordings.
 
 ## Choose your interface
 
-| Choose by | Applio Desktop | Applio with Gradio |
-| --- | --- | --- |
-| Interface | A desktop window with a sidebar and job history | A browser interface organized into tabs |
-| Setup | Download a build and run **Install / Repair** | On Windows, download the [compiled package](https://huggingface.co/IAHispano/Applio/tree/main/Compiled/Windows); source installation is also available |
-| Use it for | Local conversion, realtime audio, and training | Existing Gradio workflows, Python development, and cloud notebooks |
-| Source | [Applio-App](https://github.com/IAHispano/Applio-App) | [Applio](https://github.com/IAHispano/Applio) |
+<Comparison title="Choose how you use Applio" options={[
+  { name: 'Applio Desktop', description: 'A dedicated app for local voice work.', points: ['Windows, macOS, and Linux builds', 'Grouped workspaces, job history, and native controls', 'First-run engine setup with Install / Repair'], href: '/getting-started/desktop/', action: 'Explore Desktop' },
+  { name: 'Applio with Gradio', description: 'A browser interface for the Python application.', points: ['Local browser sessions and cloud notebooks', 'Sidebar navigation in current builds; tabs in older releases', 'Windows compiled package or installation from source'], href: '/getting-started/installation/#python-application-with-gradio', action: 'Install Gradio' },
+]} />
 
 Both use the Applio voice conversion engine. Their interfaces, installation steps, and release versions differ. These docs identify Desktop and Gradio instructions where they differ.
 
+## See both interfaces
+
+Select your interface to see where the controls live. Expand any screenshot for a closer look. These captures show the starting workspaces before a model or recording is loaded; available options depend on your version and hardware.
+
+<Tabs>
+  <TabItem label="Desktop">
+    <Screenshot src={desktop.conversion} alt="Desktop Convert Audio workspace with Voice Model, Audio Source, and Conversion Parameters panels" caption="Select a model on the left, add audio on the right, then adjust the conversion parameters below." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Gradio">
+    <Screenshot src={gradio.conversion} alt="Gradio Convert Audio workspace with model and index selectors above the upload area" caption="Choose the voice and index first, then upload a recording in Audio Source." interfaceName="Gradio 3.7.1" />
+  </TabItem>
+</Tabs>
+
 ## Your first conversion
+
+<Workflow title="Your path to the first result" steps={[
+  { title: 'Set up', description: 'Install your interface and finish engine setup.', href: '/getting-started/installation/' },
+  { title: 'Add a voice', description: 'Use an inference model and its matching index.', href: '/getting-started/installing-inference-models/' },
+  { title: 'Convert', description: 'Try a short recording and listen to the result.', href: '/getting-started/inference/' },
+]} />
+
 
 <Steps>
 
@@ -34,22 +53,22 @@ For a song, [separate the vocal](/guides/uvr/) first, convert it, then mix it ba
 ## Explore the workflows
 
 <CardGrid>
-  <Card title="Convert audio" icon="right-caret">
+  <Card title="Convert audio" icon="arrow-right">
     Single files, batches, pitch, and effects.
 
     [Conversion guide](/getting-started/inference/)
   </Card>
-  <Card title="Change your voice live" icon="right-caret">
+  <Card title="Change your voice live" icon="arrow-right">
     Microphone routing, monitoring, latency, and recording.
 
     [Realtime guide](/getting-started/realtime/)
   </Card>
-  <Card title="Train a voice model" icon="right-caret">
+  <Card title="Train a voice model" icon="arrow-right">
     Prepare recordings, extract features, train, and export.
 
     [Training guide](/getting-started/training/)
   </Card>
-  <Card title="Generate speech" icon="right-caret">
+  <Card title="Generate speech" icon="arrow-right">
     Synthesize text and convert the resulting speech.
 
     [Text-to-speech guide](/getting-started/tts/)

@@ -1,0 +1,44 @@
+---
+import { codeTheme } from "../../lib/code-theme";
+import { Code } from "astro:components";
+import Icon from "../../../../../shared/Icon.astro";
+interface Props { command: string; shell?: "bash" | "sh" | "powershell"; title?: string; }
+const { command, shell = "bash", title = shell === "powershell" ? "PowerShell" : shell === "sh" ? "Shell" : "Bash" } = Astro.props;
+---
+<docs-command class="docs-command" data-command={command} data-shell={shell}>
+  <div class="docs-command-heading"><span class="icon-label"><Icon name="terminal" size={16} />{title}</span><button type="button" class="docs-path-copy" aria-label={`Copy ${title} command`} hidden><Icon name="copy" size={14} /><span data-copy-label>Copy</span></button></div>
+  <Code code={command} lang={shell} theme={codeTheme} class="docs-command-code" />
+  <span class="sr-only" role="status"></span>
+</docs-command>
+<script>
+  class DocsCommand extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const button = this.querySelector<HTMLButtonElement>("button")!;
+      const label = this.querySelector<HTMLElement>("[data-copy-label]")!;
+      const status = this.querySelector<HTMLElement>("[role='status']")!;
+      const controller = new AbortController();
+      let reset: ReturnType<typeof setTimeout> | undefined;
+      button.hidden = false;
+      button.addEventListener("click", async () => {
+        clearTimeout(reset);
+        try {
+          await navigator.clipboard.writeText(this.dataset.command ?? "");
+          if (!this.isConnected) return;
+          label.textContent = "Copied";
+          status.textContent = "Command copied.";
+        } catch {
+          if (!this.isConnected) return;
+          label.textContent = "Copy";
+          status.textContent = "Copy unavailable. Select and copy the command instead.";
+        }
+        reset = setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2000);
+      }, { signal: controller.signal });
+      this.cleanup = () => { controller.abort(); clearTimeout(reset); delete this.dataset.ready; };
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get("docs-command")) customElements.define("docs-command", DocsCommand);
+</script>

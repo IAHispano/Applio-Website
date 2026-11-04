@@ -1,0 +1,9 @@
+---
+import Icon from "../../../../../shared/Icon.astro";
+interface Props { title: string; steps: { title: string; description: string; href?: string }[]; }
+const { title, steps } = Astro.props;
+---
+<section class="workflow" aria-label={title}>
+  <p class="workflow-label">{title}</p>
+  <ol>{steps.map((step, index) => <li><span class="workflow-number" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span><div><strong>{step.href ? <a href={step.href}>{step.title} <Icon name="external-link" /></a> : step.title}</strong><p>{step.description}</p></div></li>)}</ol>
+</section>

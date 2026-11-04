@@ -121,3 +121,21 @@ To set up and run the documentation project (`applio-docs`):
 If you have any questions or need further assistance, feel free to reach out to the repository maintainers or open an issue on GitHub.
 
 Thank you for contributing to the Applio websites monorepo! Your efforts help us build amazing products.
+
+## Custom documentation
+
+The docs use Astro content collections and MDX. Layout, navigation, tabs,
+callouts, steps, and cards are owned in `apps/applio-docs/src`; there is no
+Starlight theme dependency. Edit guides in `src/content/docs` and navigation
+in `src/lib/navigation.ts`. Keep existing guide paths and heading anchors stable.
+Shared desktop-style colors, typography, and radii live in `shared/theme.css`.
+
+Run `pnpm --filter applio-docs type-check` to check the docs, then `pnpm build`
+to build both sites. The docs build also creates a local Pagefind search index.
+Use `pnpm --filter applio-docs preview` to check search against that build;
+search is not available on the Astro development server. Deploy the complete
+`apps/applio-docs/dist` directory, including `pagefind/` and `404.html`.
+
+Both sites build with Node.js 22, selected by `.node-version` at the repository
+root and each Cloudflare Pages project root. Use pnpm 9.1.1 from `packageManager`.
+An older `NODE_VERSION` override in Cloudflare must also be updated to `22`.

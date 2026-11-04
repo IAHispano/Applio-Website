@@ -1,0 +1,31 @@
+---
+import Icon from "./Icon.astro";
+import type { ImageMetadata } from "astro";
+import "./media.css";
+interface Props {
+  src: ImageMetadata | string;
+  alt: string;
+  caption: string;
+  interfaceName?: string;
+  loading?: "eager" | "lazy";
+}
+const { src, alt, caption, interfaceName, loading = "lazy" } = Astro.props;
+const imageSrc = typeof src === "string" ? src : src.src;
+const width = typeof src === "string" ? undefined : src.width;
+const height = typeof src === "string" ? undefined : src.height;
+---
+<figure class="screenshot">
+  <image-viewer>
+    <a href={imageSrc} class:list={["screenshot-open", { "screenshot-portrait": !!height && !!width && height > width }]} data-image-open aria-label={`Enlarge screenshot: ${alt}`}>
+      <img src={imageSrc} alt={alt} width={width} height={height} loading={loading} decoding="async" />
+      <span class="screenshot-enlarge icon-label" aria-hidden="true"><Icon name="maximize" size={12} /> Expand</span>
+    </a>
+    <dialog class="image-dialog" aria-label={`Screenshot: ${caption}`} data-pagefind-ignore>
+      <div class="image-dialog-toolbar"><span>{interfaceName && `${interfaceName} · `}{caption}</span><button type="button" data-image-close aria-label="Close screenshot"><Icon name="close" /> Close <kbd>Esc</kbd></button></div>
+      <div class="image-dialog-scroll"><img src={imageSrc} alt={alt} width={width} height={height} loading="lazy" /></div>
+      <a href={imageSrc} target="_blank" rel="noopener noreferrer" class="image-original icon-label">Open full-size image <Icon name="external-link" size={12} /></a>
+    </dialog>
+  </image-viewer>
+  <figcaption>{interfaceName && <span class="screenshot-interface">{interfaceName}</span>}{caption}</figcaption>
+</figure>
+<script src="./image-viewer.ts"></script>

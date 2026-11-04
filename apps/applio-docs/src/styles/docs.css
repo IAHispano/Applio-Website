@@ -382,6 +382,9 @@ kbd {
 	padding: 0 24px;
 }
 .sidebar {
+	cursor: default;
+	-webkit-user-select: none;
+	user-select: none;
 	position: sticky;
 	top: 72px;
 	align-self: start;
@@ -417,6 +420,7 @@ kbd {
 	margin: 0;
 }
 .nav-group a {
+	cursor: pointer;
 	position: relative;
 	display: flex;
 	align-items: center;

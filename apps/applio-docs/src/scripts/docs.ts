@@ -13,6 +13,53 @@ navigation.open = desktop.matches;
 desktop.addEventListener("change", (event) => {
 	navigation.open = event.matches;
 });
+
+const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
+const sidebarScrollKey = "applio:docs-sidebar-scroll";
+let savedSidebarScroll: number | undefined;
+try {
+	const stored = sessionStorage.getItem(sidebarScrollKey);
+	if (stored !== null && Number.isFinite(Number(stored))) {
+		savedSidebarScroll = Math.max(0, Number(stored));
+	}
+} catch {
+	// Navigation remains usable when browser storage is unavailable.
+}
+const restoreSidebarScroll = () => {
+	if (desktop.matches && savedSidebarScroll !== undefined) {
+		sidebar.scrollTop = savedSidebarScroll;
+	}
+};
+restoreSidebarScroll();
+let sidebarInteracted = false;
+for (const event of ["pointerdown", "wheel", "keydown", "focusin"]) {
+	sidebar.addEventListener(
+		event,
+		() => {
+			sidebarInteracted = true;
+		},
+		{ once: true },
+	);
+}
+// Font metrics can change the navigation height after the first layout.
+void document.fonts.ready.then(() => {
+	if (!sidebarInteracted) restoreSidebarScroll();
+});
+const saveSidebarScroll = () => {
+	if (!desktop.matches) return;
+	try {
+		sessionStorage.setItem(sidebarScrollKey, String(sidebar.scrollTop));
+	} catch {
+		// Keep ordinary link navigation working without storage access.
+	}
+};
+sidebar.addEventListener("click", (event) => {
+	if (event.target instanceof Element && event.target.closest("a[href]")) {
+		saveSidebarScroll();
+	}
+});
+window.addEventListener("pagehide", saveSidebarScroll);
+
 const modifier = /Mac|iPhone|iPad/.test(navigator.userAgent) ? "⌘" : "Ctrl";
 trigger.querySelector("kbd")!.textContent = `${modifier} K`;
 function openSearch() {

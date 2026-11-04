@@ -5,7 +5,7 @@ import { showcase } from "../../../../shared/screenshots";
 import { ecosystem } from "../lib/ecosystem";
 ---
 <app-showcase class="workspace-showcase" role="region" aria-roledescription="carousel" aria-label="Explore Applio Desktop workspaces">
-  <div class="showcase-heading"><span>INSIDE APPLIO DESKTOP</span><span>Real app screenshots</span></div>
+  <div class="showcase-heading"><span>INSIDE APPLIO DESKTOP</span></div>
   <div class="showcase-track" tabindex="0" aria-label="Screenshots. Use the arrow keys or swipe to browse.">
     {showcase.map((slide, index) => <div class="showcase-slide" role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${showcase.length}: ${slide.title}`}>
       <Screenshot src={slide.image} alt={`Applio Desktop ${slide.title} workspace with its sidebar and configuration controls`} caption={slide.title} interfaceName="Desktop" loading={index === 0 ? "eager" : "lazy"} />

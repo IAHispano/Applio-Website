@@ -73,7 +73,7 @@ function isActive(item: NavItem) {
         href="https://github.com/IAHispano/Applio"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.07] px-4 py-2 text-sm text-neutral-300 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.12] sm:flex"
+        class="site-button hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.07] px-4 py-2 text-sm text-neutral-300 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.12] sm:flex"
         aria-label="Applio on GitHub"
       >
         <svg
@@ -97,14 +97,14 @@ function isActive(item: NavItem) {
 
       <a
         href="/download"
-        class="hidden rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-neutral-200 sm:inline-flex"
+        class="site-button hidden rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-neutral-200 sm:inline-flex"
       >
         Download
       </a>
 
       <details class="group lg:hidden">
         <summary
-          class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white transition-all duration-200 [&::-webkit-details-marker]:hidden hover:bg-white/10"
+          class="site-button flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white transition-all duration-200 [&::-webkit-details-marker]:hidden hover:bg-white/10"
           aria-label="Toggle navigation menu"
         >
           <svg
@@ -130,7 +130,7 @@ function isActive(item: NavItem) {
                 href={item.href}
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
-                class="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+                class="site-button flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
               >
                 {item.label}
                 {item.external && <span class="text-neutral-500"><Icon name="external-link" size={12} /></span>}
@@ -139,13 +139,13 @@ function isActive(item: NavItem) {
           }
           <a
             href="/playground"
-            class="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+            class="site-button flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
           >
             Playground
           </a>
           <a
             href="/search"
-            class="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
+            class="site-button flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
           >
             Search models
           </a>
@@ -153,7 +153,7 @@ function isActive(item: NavItem) {
             href="https://github.com/IAHispano/Applio"
             target="_blank"
             rel="noopener noreferrer"
-            class="mt-1 flex items-center justify-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/20"
+            class="site-button mt-1 flex items-center justify-center gap-2 rounded-xl bg-white/10 px-4 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-white/20"
           >
             <svg
               class="h-4 w-4"

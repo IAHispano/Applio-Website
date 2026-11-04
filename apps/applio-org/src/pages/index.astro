@@ -1,6 +1,8 @@
 ---
 import Icon from "../../../../shared/Icon.astro";
 import Layout from "../layouts/Layout.astro";
+import Screenshot from "../../../../shared/Screenshot.astro";
+import { desktop } from "../../../../shared/screenshots";
 import WorkspacePreview from "../components/WorkspacePreview.astro";
 import "../styles/home.css";
 import { ecosystem } from "../lib/ecosystem";
@@ -31,7 +33,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
       <div class="hero-actions"><a class="primary-action" href="/download">Download Applio <Icon name="download" /></a><a class="secondary-action" href={ecosystem.links.docs}>Read the docs <Icon name="external-link" /></a></div>
       <p class="platform-note">Windows, macOS & Linux <span>·</span> Free & open source</p>
     </div>
-    <WorkspacePreview />
+    <div class="hero-screenshot"><Screenshot src={desktop.conversion} alt="Applio Desktop main voice conversion workspace" caption="Your voice conversion workspace" loading="eager" /></div>
   </section>
   <div class="workflow-strip" aria-label="Explore Applio workflows">
     <span>FROM IDEA TO AUDIO</span>
@@ -40,6 +42,10 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
     <a href={new URL("getting-started/training/", ecosystem.links.docs).href}>Train a model <Icon name="external-link" size={12} /></a>
     <a href="/playground">Try the playground <Icon name="arrow-right" size={12} /></a>
   </div>
+  <section class="workspace-section" aria-labelledby="workspace-title">
+    <div class="workspace-intro"><p class="hero-eyebrow">EXPLORE THE WORKSPACE</p><h2 id="workspace-title">A place for every part of your process.</h2><p>Take a closer look at the tools inside Applio.</p></div>
+    <WorkspacePreview />
+  </section>
   {/* features */}
   <section id="features" class="relative px-6 py-20">
     <div class="max-w-6xl mx-auto">
@@ -276,7 +282,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             <div class="mt-5 flex items-center gap-2">
               <a
                 href="/download"
-                class="inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold transition-all hover:bg-neutral-200"
+                class="site-button inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold transition-all hover:bg-neutral-200"
               >
                 Download Applio
                 <Icon name="arrow-right" />
@@ -328,7 +334,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             </p>
             <a
               href="/search"
-              class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
+              class="site-button mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
             >
               Find voice models
               <svg
@@ -388,7 +394,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             </p>
             <a
               href="/playground"
-              class="mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white text-black px-4 py-1.5 text-sm font-medium transition-all duration-300 hover:gap-3 hover:bg-neutral-200"
+              class="site-button mt-5 inline-flex w-fit items-center gap-2 rounded-full bg-white text-black px-4 py-1.5 text-sm font-medium transition-all duration-300 hover:gap-3 hover:bg-neutral-200"
             >
               Test in playground
               <svg
@@ -540,7 +546,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           href="https://github.com/IAHispano/Applio"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm transition-all duration-200 hover:border-white/30 hover:text-white"
+          class="site-button inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm text-neutral-300 backdrop-blur-sm transition-all duration-200 hover:border-white/30 hover:text-white"
         >
           View repository
           <svg
@@ -563,7 +569,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           href="https://github.com/IAHispano/Applio/blob/main/CONTRIBUTING.md"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
+          class="site-button px-8 py-3 bg-white text-black font-medium rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
         >
           Contribute on GitHub
         </a>
@@ -571,7 +577,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
           href="https://github.com/IAHispano/Applio/issues"
           target="_blank"
           rel="noopener noreferrer"
-          class="px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300 text-sm"
+          class="site-button px-8 py-3 bg-white/10 backdrop-blur-sm text-white font-medium rounded-full hover:bg-white/20 transition-all duration-300 text-sm"
         >
           Report an issue
         </a>
@@ -591,7 +597,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
         </div>
         <a
           href="/blog"
-          class="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
+          class="site-button inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-2.5 text-sm text-white transition-all duration-300 hover:gap-3 hover:bg-white/20"
         >
           View all posts
           <svg
@@ -673,13 +679,13 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
       <div class="mt-8 flex flex-wrap justify-center gap-3">
         <a
           href="/download"
-          class="px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
+          class="site-button px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-neutral-200 transition-all duration-300 text-sm"
         >
           Download Applio
         </a>
         <a
           href="/discord"
-          class="px-7 py-3 bg-white/5 border border-white/10 text-neutral-300 font-medium rounded-full hover:bg-white/10 hover:text-white transition-all duration-300 text-sm"
+          class="site-button px-7 py-3 bg-white/5 border border-white/10 text-neutral-300 font-medium rounded-full hover:bg-white/10 hover:text-white transition-all duration-300 text-sm"
         >
           Join our Discord
         </a>

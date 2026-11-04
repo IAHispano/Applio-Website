@@ -5,11 +5,24 @@ sidebar:
   order: 2
 ---
 
-import { Steps, Aside } from '../../../components/content/index';
+import { Steps, Aside, Tabs, TabItem, Screenshot } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 Applio Desktop brings the Applio engine into a desktop application for Windows, macOS, and Linux. Start with [installation](/getting-started/installation/), then add a model and convert a short recording.
 
 ## Find the right workspace
+
+<Tabs>
+  <TabItem label="Conversion">
+    <Screenshot src={desktop.conversion} alt="Desktop conversion workspace showing the sidebar and three numbered setup panels" caption="Use the grouped sidebar to switch workspaces. Each task keeps its controls together in numbered panels." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Training">
+    <Screenshot src={desktop.training} alt="Desktop Training workspace with model, compute, and dataset settings" caption="Training starts with the experiment and dataset before automatic or manual processing." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Audio Separator">
+    <Screenshot src={desktop.separator} alt="Desktop Audio Separator workspace" caption="Audio tools have their own workspace; separation weights are managed separately from voice models." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+</Tabs>
 
 | Sidebar page | Use it to |
 | --- | --- |

@@ -5,7 +5,8 @@ sidebar:
   order: 3
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 Separation estimates individual sources from a mix. For a voice cover, convert the vocal stem, then mix it with the instrumental in an audio editor. For training, listen carefully for remaining music and separation artifacts.
 
@@ -13,6 +14,8 @@ Separation estimates individual sources from a mix. For a voice cover, convert t
 
 <Tabs>
   <TabItem label="Applio Desktop">
+
+<Screenshot src={desktop.separator} alt="Desktop Audio Separator workspace with source audio and separation model controls" caption="Add the source recording, choose a separation model, and select which stems to keep." interfaceName="Desktop 1.0.7" />
 
 <Steps>
 

@@ -5,7 +5,8 @@ sidebar:
   order: 4
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, PitchExample } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Voice conversion changes the speaker characteristics of a recording. It uses the original words, rhythm, and pitch contour; it does not generate a new performance from text. For a song, use an isolated vocal rather than the full music mix.
 
@@ -13,6 +14,8 @@ Voice conversion changes the speaker characteristics of a recording. It uses the
 
 <Tabs>
   <TabItem label="Desktop">
+
+<Screenshot src={desktop.conversion} alt="Desktop conversion workspace and its configuration panels" caption="Choose a voice model, add your source recording, then adjust conversion parameters." interfaceName="Desktop 1.0.7" />
 
 <Steps>
 
@@ -30,19 +33,17 @@ Desktop saves conversion settings per selected model. Check them when switching 
   </TabItem>
   <TabItem label="Gradio">
 
+<Screenshot src={gradio.conversion} alt="Gradio conversion workspace and its configuration panels" caption="Model and index selection appear above the single-file and batch audio controls." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
-1. Open **Inference** and refresh the model list if needed.
+1. Open **Convert Audio** (called **Inference** in older Gradio releases) and refresh the model list if needed.
 2. Select the model and matching index, and upload your recording.
 3. Match the embedder in the advanced controls.
 4. Select the export format and start conversion.
 5. Listen to or download the output.
 
 </Steps>
-
-The image below shows the Gradio interface; Desktop uses a different layout.
-
-![Gradio inference interface with model and audio selection.](/images/inference.png)
 
   </TabItem>
 </Tabs>
@@ -54,6 +55,8 @@ Use batch mode to apply the same model and settings to several recordings. Choos
 For CLI automation, see [batch inference](/reference/cli/#batch-conversion). For live microphone audio, use [Realtime](/getting-started/realtime/).
 
 ## Understand the main settings
+
+<PitchExample />
 
 | Setting | What it changes |
 | --- | --- |

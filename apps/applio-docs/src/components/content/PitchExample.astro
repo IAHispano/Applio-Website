@@ -1,0 +1,30 @@
+<pitch-example class="pitch-example">
+  <h3>Try a pitch shift</h3>
+  <p>A 220 Hz example note starts at A3. Move the slider to see how semitones change its frequency.</p>
+  <label>Pitch shift <output data-semitones>0 semitones</output><input type="range" min="-24" max="24" step="1" value="0" aria-valuetext="0 semitones" /></label>
+  <div class="pitch-scale" aria-hidden="true"><span>−24</span><span>0</span><span>+24</span></div>
+  <div class="pitch-readings"><div><small>Original note</small><strong>220 Hz</strong><div class="pitch-bar"><span style="width:25%"></span></div></div><div><small>After the shift</small><strong data-frequency>220 Hz</strong><div class="pitch-bar"><span data-frequency-bar style="width:25%"></span></div></div></div>
+  <div class="pitch-presets"><button type="button" data-pitch="-12">−12 · One octave down</button><button type="button" data-pitch="0">Reset</button><button type="button" data-pitch="12">+12 · One octave up</button></div>
+  <p class="pitch-note">This illustrates frequency, not the sound of a voice. Compare a short conversion to judge the model and recording together.</p>
+</pitch-example>
+<script>
+  class PitchExample extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const input = this.querySelector<HTMLInputElement>("input")!;
+      const update = () => {
+        const shift = Number(input.value);
+        const frequency = 220 * 2 ** (shift / 12);
+        const label = `${shift > 0 ? "+" : ""}${shift} semitones`;
+        this.querySelector("[data-semitones]")!.textContent = label;
+        input.setAttribute("aria-valuetext", label);
+        this.querySelector("[data-frequency]")!.textContent = `${Number(frequency.toFixed(1))} Hz`;
+        this.querySelector<HTMLElement>("[data-frequency-bar]")!.style.width = `${frequency / 880 * 100}%`;
+      };
+      input.addEventListener("input", update);
+      this.querySelectorAll<HTMLButtonElement>("[data-pitch]").forEach(button => button.addEventListener("click", () => { input.value = button.dataset.pitch!; update(); }));
+    }
+  }
+  if (!customElements.get("pitch-example")) customElements.define("pitch-example", PitchExample);
+</script>

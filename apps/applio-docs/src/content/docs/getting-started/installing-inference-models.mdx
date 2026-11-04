@@ -5,7 +5,8 @@ sidebar:
   order: 3
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 An **inference model** is a trained voice you use for conversion. It is different from an [embedder](/getting-started/embedder/) or a [G/D pretrained pair](/getting-started/pretrained/) used for training.
 
@@ -22,6 +23,8 @@ An index is optional. It may be large: its size depends on the training features
 <Tabs>
   <TabItem label="Desktop">
 
+<Screenshot src={desktop.models} alt="Desktop Models workspace with Download Models selected" caption="Open Models → Download Models to download from a link or upload local inference weights." interfaceName="Desktop 1.0.7" />
+
 <Steps>
 
 1. Open **Models → Download Models**.
@@ -34,11 +37,13 @@ An index is optional. It may be large: its size depends on the training features
   </TabItem>
   <TabItem label="Gradio">
 
+<Screenshot src={gradio.models} alt="Gradio Models workspace with model download and upload controls" caption="The Models workspace groups model downloads, uploads, and related resources." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
-1. Open **Download**.
+1. Open **Models** (called **Download** in older Gradio releases).
 2. Paste the model link into its download panel, or upload extracted model files using **Drop Files**.
-3. Wait for completion, then refresh the model list in **Inference**.
+3. Wait for completion, then refresh the model list in **Convert Audio** (or **Inference** in older releases).
 
 </Steps>
 
@@ -61,6 +66,13 @@ logs/
 Refresh the interface afterward. Desktop's active directory may be outside the installation; see [storage locations](/guides/moving-to-desktop/). Prefer the upload controls if you are unsure which folder is active.
 
 ## Check compatibility
+
+<Checklist title="Check your model files" items={[
+  'The .pth file is an inference export, not a G/D training checkpoint.',
+  'The index belongs to this model, if I plan to use one.',
+  'I know the model’s embedder and have checked architecture support.',
+  'I will test a short recording before a long file or batch.',
+]} />
 
 Use **Inspect Model** in Desktop to read available metadata: sample rate, version, pitch guidance, embedder, vocoder, and speaker count. Match the training embedder during conversion. For a multispeaker model, choose the intended speaker ID.
 

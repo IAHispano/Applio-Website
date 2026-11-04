@@ -5,7 +5,8 @@ sidebar:
   order: 8
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist, Workflow } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Training learns a voice from recordings. Dataset quality, coverage, and compatible settings matter more than simply increasing epochs.
 
@@ -48,10 +49,26 @@ A scan is a starting point for listening. Reducing peaks cannot recover audio al
 
 Preprocessing resamples recordings to the training rate; input files do not all need to start at that rate. Resampling cannot create missing high-frequency detail.
 
+<Checklist title="Ready to train?" items={[
+  'I have permission to use the recordings, and I kept the originals.',
+  'I reviewed the dataset for music, clipping, noise, and other speakers.',
+  'The architecture, sample rate, embedder, and G/D pretrainings match.',
+  'I chose a distinct experiment name and a batch size that fits my GPU.',
+]} />
+
 ## Run training
+
+<Workflow title="The training pipeline" steps={[
+  { title: 'Preprocess', description: 'Slice recordings and prepare audio at the training rate.' },
+  { title: 'Extract', description: 'Compute pitch and content features.' },
+  { title: 'Train', description: 'Learn the voice and save checkpoints.' },
+  { title: 'Export & index', description: 'Keep the inference weights and matching retrieval index.' },
+]} />
 
 <Tabs>
   <TabItem label="Desktop">
+
+<Screenshot src={desktop.training} alt="Desktop training workspace and its configuration panels" caption="Start with the experiment name, compute settings, and dataset, then choose automatic or manual training." interfaceName="Desktop 1.0.7" />
 
 ### Automatic training
 
@@ -79,6 +96,8 @@ Changing a preprocessing or extraction setting may require rerunning downstream 
   </TabItem>
   <TabItem label="Gradio">
 
+<Screenshot src={gradio.training} alt="Gradio training workspace and its configuration panels" caption="Gradio groups experiment settings and training stages in its Training workspace." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
 1. Open **Training** and enter a model name and dataset path.
@@ -88,10 +107,6 @@ Changing a preprocessing or extraction setting may require rerunning downstream 
 5. Generate the index after extraction/training and inspect the exported model.
 
 </Steps>
-
-This screenshot shows Gradio's training controls.
-
-![Gradio training configuration.](/images/training.png)
 
   </TabItem>
 </Tabs>

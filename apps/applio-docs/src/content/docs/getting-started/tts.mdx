@@ -5,11 +5,23 @@ sidebar:
   order: 6
 ---
 
-import { Steps, Aside } from '../../../components/content/index';
+import { Steps, Aside, Tabs, TabItem, Screenshot } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Applio uses **Edge TTS** to synthesize speech, then can convert that audio with an RVC model. The TTS voice provides the language and delivery; the conversion model changes the voice characteristics.
 
 ## Generate speech
+
+<Tabs>
+  <TabItem label="Desktop">
+    <Screenshot src={desktop.tts} alt="Desktop Text to Speech workspace" caption="The Desktop Text to Speech workspace. Follow the instructions below to get started." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Gradio">
+    <Screenshot src={gradio.tts} alt="Gradio Text to Speech workspace" caption="The Gradio Text to Speech workspace. Older builds may use different navigation labels." interfaceName="Gradio 3.7.1" />
+  </TabItem>
+</Tabs>
+
+
 
 <Steps>
 
@@ -21,10 +33,6 @@ Applio uses **Edge TTS** to synthesize speech, then can convert that audio with 
 6. Save the source TTS audio and converted output you want to keep.
 
 </Steps>
-
-This screenshot shows the Gradio interface.
-
-![Gradio TTS interface.](/images/tts.png)
 
 Use a short paragraph to test pronunciation and conversion settings before submitting a long script.
 

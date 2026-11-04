@@ -1,0 +1,122 @@
+.screenshot {
+	margin: 26px 0;
+	min-width: 0;
+}
+image-viewer {
+	display: block;
+}
+.screenshot-open {
+	display: block;
+	position: relative;
+	overflow: hidden;
+	border: 1px solid var(--border);
+	border-radius: var(--radius-card);
+	background: var(--panel);
+}
+.screenshot .screenshot-open > img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	border-radius: 0;
+}
+.screenshot .screenshot-portrait > img {
+	max-height: 600px;
+	object-fit: contain;
+}
+.screenshot-enlarge {
+	position: absolute;
+	right: 12px;
+	bottom: 12px;
+	padding: 5px 9px;
+	background: #09090be8;
+	border: 1px solid #555;
+	color: #f5f5f5;
+	border-radius: 6px;
+	font: 11px var(--font-sans);
+}
+.screenshot figcaption {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	gap: 8px;
+	margin-top: 10px;
+	color: var(--muted);
+	font-size: 11px;
+	line-height: 1.7;
+}
+.screenshot-interface {
+	padding: 1px 7px;
+	border: 1px solid var(--border);
+	border-radius: 4px;
+	color: var(--text);
+	font-size: 10px;
+	white-space: nowrap;
+}
+.image-dialog {
+	position: fixed;
+	inset: 0;
+	margin: auto;
+	width: min(1600px, calc(100vw - 32px));
+	max-width: none;
+	max-height: calc(100dvh - 32px);
+	padding: 16px;
+	border: 1px solid #555;
+	border-radius: 12px;
+	background: var(--bg);
+	color: var(--text);
+}
+.image-dialog::backdrop {
+	background: #000d;
+	backdrop-filter: blur(6px);
+}
+.image-dialog-toolbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	padding-bottom: 14px;
+	font-size: 12px;
+}
+.image-dialog-toolbar button {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	min-height: 36px;
+	padding: 6px 10px;
+	border: 1px solid var(--border);
+	border-radius: 6px;
+	background: var(--panel);
+	color: var(--text);
+	cursor: pointer;
+	white-space: nowrap;
+	font: 12px var(--font-sans);
+}
+.image-dialog-scroll {
+	max-height: calc(100dvh - 160px);
+	overflow: auto;
+}
+.image-dialog .image-dialog-scroll img {
+	display: block;
+	width: 100%;
+	height: auto;
+	margin: 0;
+	border-radius: 6px;
+}
+.image-original {
+	display: inline-block;
+	margin-top: 10px;
+	color: var(--muted);
+	font-size: 11px;
+}
+@media (max-width: 600px) {
+	.image-dialog {
+		padding: 10px;
+	}
+	.image-dialog-toolbar {
+		font-size: 10px;
+	}
+	.image-dialog-toolbar kbd {
+		display: none;
+	}
+}

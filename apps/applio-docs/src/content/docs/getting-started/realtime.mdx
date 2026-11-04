@@ -5,16 +5,26 @@ sidebar:
   order: 5
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Workflow, Checklist } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Realtime converts microphone audio in small blocks. Its latency includes capture, processing, buffering, and playback. A GPU that can convert files may still be too slow for your chosen realtime settings.
 
 Use headphones while monitoring to prevent feedback.
 
+<Checklist title="Before you go live" items={[
+  'My microphone is allowed and the correct input is selected.',
+  'I am using headphones to prevent feedback.',
+  'My voice model, index, and embedder match.',
+  'Other GPU jobs have finished or stopped.',
+]} />
+
 ## Start a session
 
 <Tabs>
   <TabItem label="Desktop">
+
+<Screenshot src={desktop.realtime} alt="Desktop realtime workspace and its configuration panels" caption="Select a model and your audio devices before starting a live session. Device controls stay unavailable until microphone access is granted." interfaceName="Desktop 1.0.7" />
 
 <Steps>
 
@@ -32,6 +42,8 @@ Desktop captures and plays audio through its browser audio layer. Device availab
   </TabItem>
   <TabItem label="Gradio">
 
+<Screenshot src={gradio.realtime} alt="Gradio realtime workspace and its configuration panels" caption="The Gradio native-audio workflow groups input, output, gain, and monitoring controls in Audio Devices." interfaceName="Gradio 3.7.1" />
+
 <Steps>
 
 1. Open **Realtime**, select input and output devices, and choose an optional monitor device.
@@ -47,6 +59,13 @@ Gradio's native audio-device path uses PortAudio. Its device names and monitor c
 </Tabs>
 
 ## Send the voice to another application
+
+<Workflow title="Route your converted voice" steps={[
+  { title: 'Microphone', description: 'Select the physical microphone as Applio’s input.' },
+  { title: 'Applio', description: 'Convert the incoming voice in the realtime session.' },
+  { title: 'Virtual cable', description: 'Choose the virtual device as Applio’s output.' },
+  { title: 'Chat or stream', description: 'Select the cable’s receiving end as the other app’s microphone.' },
+]} />
 
 To use converted audio in a chat or streaming application, route Applio's output into a virtual audio device, then choose that device's receiving end as the other application's microphone. Applio does not install a system-wide virtual microphone.
 

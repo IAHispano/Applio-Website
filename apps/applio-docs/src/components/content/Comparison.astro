@@ -1,0 +1,8 @@
+---
+interface Props {
+  title: string;
+  options: { name: string; description: string; points: string[]; href: string; action: string }[];
+}
+const { title, options } = Astro.props;
+---
+<section class="comparison" aria-label={title}>{options.map(option => <div class="comparison-option"><h3>{option.name}</h3><p>{option.description}</p><ul>{option.points.map(point => <li>{point}</li>)}</ul><a href={option.href}>{option.action} <span aria-hidden="true">→</span></a></div>)}</section>

@@ -1,32 +1,61 @@
 ---
-const wave = Array.from({ length: 64 }, (_, i) => 8 + Math.abs(Math.sin(i * 1.7) * Math.cos(i * .23)) * 48);
+import Screenshot from "../../../../shared/Screenshot.astro";
+import { showcase } from "../../../../shared/screenshots";
+import { ecosystem } from "../lib/ecosystem";
 ---
-<figure class="workspace-preview">
-  <div class="workspace-frame" role="img" aria-label="Illustration of Applio Desktop: a grouped sidebar beside the Convert Audio workspace, with model selection, audio waveform, and conversion settings.">
-    <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>Applio Desktop</span><span>↗</span></div>
-    <div class="workspace-body">
-      <div class="preview-sidebar">
-        <div class="preview-brand"><img src="/applio-logo.svg" alt="" width="17" height="20" />Applio</div>
-        <span class="preview-group">WORKSPACE</span>
-        <div class="preview-nav active">↔ <span>Convert Audio</span></div>
-        <div class="preview-nav">◉ <span>Realtime</span></div>
-        <div class="preview-nav">≡ <span>Text to Speech</span></div>
-        <span class="preview-group">MODELS & TRAINING</span>
-        <div class="preview-nav">⊞ <span>Voice Models</span></div>
-        <div class="preview-nav">⌁ <span>Train Model</span></div>
-        <span class="preview-group">AUDIO TOOLS</span>
-        <div class="preview-nav">≋ <span>Audio Separator</span></div>
-        <div class="preview-nav">▥ <span>Audio Analyzer</span></div>
-        <div class="preview-bottom">⚙ <span>Settings</span></div>
-      </div>
-      <div class="preview-main">
-        <div class="preview-page-heading"><div><h2>Convert Audio</h2><p>Transform audio with your voice models.</p></div><span>↗</span></div>
-        <div class="preview-card"><div class="preview-card-title">Voice model <span>01</span></div><div class="preview-field">Your voice model <span>⌄</span></div><p>Select a model to get started.</p></div>
-        <div class="preview-card"><div class="preview-card-title">Input audio <span>02</span></div><div class="preview-wave">{wave.map(height => <span style={`height:${height}px`}></span>)}</div><div class="preview-audio-meta"><span>◷ &nbsp; Your recording</span><span>WAV</span></div></div>
-        <div class="preview-parameters"><div class="preview-card"><div class="preview-card-title">Pitch</div><div class="preview-value">0 <small>semitones</small></div><div class="preview-slider"><span></span></div></div><div class="preview-card"><div class="preview-card-title">Pitch extraction</div><div class="preview-field">RMVPE <span>⌄</span></div></div></div>
-        <div class="preview-convert">Convert Audio <span>→</span></div>
-      </div>
-    </div>
+<app-showcase class="workspace-showcase" role="region" aria-roledescription="carousel" aria-label="Explore Applio Desktop workspaces">
+  <div class="showcase-heading"><span>INSIDE APPLIO DESKTOP</span><span>Real app screenshots</span></div>
+  <div class="showcase-track" tabindex="0" aria-label="Screenshots. Use the arrow keys or swipe to browse.">
+    {showcase.map((slide, index) => <div class="showcase-slide" role="group" aria-roledescription="slide" aria-label={`${index + 1} of ${showcase.length}: ${slide.title}`}>
+      <Screenshot src={slide.image} alt={`Applio Desktop ${slide.title} workspace with its sidebar and configuration controls`} caption={slide.title} interfaceName="Desktop" loading={index === 0 ? "eager" : "lazy"} />
+      <div class="showcase-description"><p>{slide.description}</p><a href={new URL(slide.guide, ecosystem.links.docs).href}>Read the guide <span aria-hidden="true">↗</span></a></div>
+    </div>)}
   </div>
-  <figcaption>A familiar space for every voice workflow. <a href="https://docs.applio.org/getting-started/desktop/">Explore Desktop ↗</a></figcaption>
-</figure>
+  <div class="showcase-controls" hidden>
+    <div class="showcase-selectors" aria-label="Choose a workspace">{showcase.map((slide, index) => <button type="button" data-slide={index} aria-label={`Show ${slide.title}`} aria-current={index === 0 ? "true" : undefined}><span aria-hidden="true"></span><span>{slide.title}</span></button>)}</div>
+    <div class="showcase-arrows"><button type="button" data-previous aria-label="Previous screenshot">←</button><span data-count aria-hidden="true">01 / 04</span><button type="button" data-next aria-label="Next screenshot">→</button></div>
+  </div>
+  <p class="showcase-status sr-only" aria-live="polite" aria-atomic="true"></p>
+</app-showcase>
+<script>
+  class AppShowcase extends HTMLElement {
+    private cleanup?: () => void;
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const track = this.querySelector<HTMLElement>(".showcase-track")!;
+      const slides = Array.from(this.querySelectorAll<HTMLElement>(".showcase-slide"));
+      const selectors = Array.from(this.querySelectorAll<HTMLButtonElement>("[data-slide]"));
+      const count = this.querySelector<HTMLElement>("[data-count]")!;
+      const status = this.querySelector<HTMLElement>(".showcase-status")!;
+      const controls = this.querySelector<HTMLElement>(".showcase-controls")!;
+      controls.hidden = false;
+      let current = 0;
+      const show = (index: number) => {
+        const next = (index + slides.length) % slides.length;
+        track.scrollTo({ left: next * track.clientWidth, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
+      };
+      this.querySelector("[data-previous]")?.addEventListener("click", () => show(current - 1));
+      this.querySelector("[data-next]")?.addEventListener("click", () => show(current + 1));
+      selectors.forEach((selector, index) => selector.addEventListener("click", () => show(index)));
+      track.addEventListener("keydown", event => {
+        if (event.target !== track || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+        event.preventDefault();
+        show(current + (event.key === "ArrowRight" ? 1 : -1));
+      });
+      track.addEventListener("scroll", () => {
+        const next = Math.round(track.scrollLeft / track.clientWidth);
+        if (next === current || next < 0 || next >= slides.length) return;
+        current = next;
+        selectors.forEach((selector, index) => index === current ? selector.setAttribute("aria-current", "true") : selector.removeAttribute("aria-current"));
+        count.textContent = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
+        status.textContent = `${selectors[current].textContent?.trim()}, slide ${current + 1} of ${slides.length}`;
+      }, { passive: true });
+      const resize = new ResizeObserver(() => track.scrollTo({ left: current * track.clientWidth, behavior: "instant" }));
+      resize.observe(track);
+      this.cleanup = () => resize.disconnect();
+    }
+    disconnectedCallback() { this.cleanup?.(); }
+  }
+  if (!customElements.get("app-showcase")) customElements.define("app-showcase", AppShowcase);
+</script>

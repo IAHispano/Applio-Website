@@ -4,6 +4,6 @@ import { ecosystem } from "../../shared/ecosystem.ts";
 
 export default defineConfig({
 	site: ecosystem.links.docs,
-	trailingSlash: "always",
+	trailingSlash: "ignore",
 	integrations: [mdx()],
 });

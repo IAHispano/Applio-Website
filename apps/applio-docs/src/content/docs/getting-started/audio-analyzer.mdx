@@ -5,15 +5,28 @@ sidebar:
   order: 11
 ---
 
-import { Steps } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Screenshot } from '../../../components/content/index';
+import { desktop, gradio } from '../../../../../../shared/screenshots';
+import gradioAnalysisResult from '../../../../public/images/audio-analyzer-result.png';
 
 Audio analysis helps you inspect recordings before conversion or training. Combine measurements with listening: a graph alone cannot tell whether a dataset is suitable.
 
 ## Inspect a recording
 
+<Tabs>
+  <TabItem label="Desktop">
+    <Screenshot src={desktop.audioTools} alt="Desktop Audio Tools workspace" caption="The Desktop Audio Tools workspace. Follow the instructions below to get started." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Gradio">
+    <Screenshot src={gradio.audioTools} alt="Gradio Audio Tools workspace" caption="The Gradio Audio Tools workspace. Older builds may use different navigation labels." interfaceName="Gradio 3.7.1" />
+  </TabItem>
+</Tabs>
+
+
+
 <Steps>
 
-1. Open **Audio Tools** in Desktop, or **Extra** in Gradio.
+1. Open **Audio Tools** in Desktop, or **Audio Tools** (called **Extra** in older Gradio releases).
 2. Upload or select a recording.
 3. Use the analyzer and listen while inspecting the waveform, levels, and spectrogram.
 4. Save useful plots or notes, then return to the original audio to make edits.
@@ -22,7 +35,14 @@ Audio analysis helps you inspect recordings before conversion or training. Combi
 
 Desktop has a browser-based waveform/spectrogram analyzer. Gradio's analysis output includes spectral-feature plots; the displays differ.
 
-![Gradio audio-analysis results.](/images/audio-analyzer-result.png)
+<Tabs>
+  <TabItem label="Desktop analysis result">
+    <Screenshot src={desktop.analysisResult} alt="Desktop Audio Analyzer displaying the waveform, rising harmonic bands, and level measurements of a synthetic tone" caption="A four-second synthetic tone illustrates the waveform, spectrogram, and file statistics. Bright rising bands show its fundamental and harmonics; this is not a voice-quality example." interfaceName="Desktop 1.0.7" />
+  </TabItem>
+  <TabItem label="Gradio analysis result">
+    <Screenshot src={gradioAnalysisResult} alt="Gradio audio-analysis example with spectral feature plots" caption="Example Gradio analysis output. Spectral features complement listening; they do not rate voice-model quality." interfaceName="Gradio" />
+  </TabItem>
+</Tabs>
 
 ## What to look for
 

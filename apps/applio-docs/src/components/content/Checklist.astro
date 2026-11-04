@@ -1,0 +1,9 @@
+---
+interface Props { title: string; items: string[]; }
+const { title, items } = Astro.props;
+---
+<section class="doc-checklist" aria-label={title}>
+  <h3>{title}</h3>
+  <p class="checklist-help">Check these as you go. Progress stays on this page while it is open.</p>
+  <ul>{items.map(item => <li><label><input type="checkbox" /><span>{item}</span></label></li>)}</ul>
+</section>

@@ -5,18 +5,18 @@ sidebar:
   order: 1
 ---
 
+import { Workflow } from '../../../components/content/index';
+
 Applio uses **retrieval-based voice conversion (RVC)**. A recording supplies the content and performance; a trained generator synthesizes it with another voice's characteristics. Retrieved features can reinforce the target timbre.
 
 ## File-conversion pipeline
 
-~~~text
-Input audio
-  → mono audio at 16 kHz for analysis
-  → content features + pitch (when enabled)
-  → optional feature retrieval and blending
-  → speaker-model synthesis
-  → model-rate audio, optional cleanup/effects, export
-~~~
+<Workflow title="From a recording to a new voice" steps={[
+  { title: 'Analyze', description: 'Load mono audio at 16 kHz and extract content features and pitch.' },
+  { title: 'Retrieve', description: 'Optionally blend matching index features into the representation.' },
+  { title: 'Synthesize', description: 'Generate audio with the selected speaker model.' },
+  { title: 'Export', description: 'Apply optional cleanup or effects and save at the output rate.' },
+]} />
 
 ### Audio and content features
 
@@ -90,7 +90,7 @@ Desktop captures and plays audio through browser AudioWorklets and sends blocks 
 
 ## Desktop and the engine
 
-Desktop has a React/Next.js interface, an Express gateway, and an Electron shell. The App pins the Python engine as a Git submodule and adds runtime adapters, job management, setup, and native controls.
+Desktop has a React/Next.js interface, a Rust API, and a Tauri shell. The production interface is a static export served by Rust; it does not need a running Next.js server. The App pins the Python engine as a Git submodule and adds runtime adapters, job management, setup, and native controls.
 
 The App also exposes an **`applio` CLI launcher**. It selects a Python interpreter and forwards engine commands to the App's `core.py` adapter; running it without arguments in an interactive terminal opens a menu. See the [CLI reference](/reference/cli/#launch-the-app-cli) for launchers and examples.
 

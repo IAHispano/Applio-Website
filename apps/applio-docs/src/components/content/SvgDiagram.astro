@@ -1,42 +1,77 @@
 ---
-interface DiagramNode { id: string; label: string; detail?: string; layer?: number; }
-interface DiagramEdge { from: string; to: string; }
-interface Props { title: string; description: string; nodes: DiagramNode[]; edges: DiagramEdge[]; }
+interface DiagramNode {
+	id: string;
+	label: string;
+	detail?: string;
+	layer?: number;
+}
+interface DiagramEdge {
+	from: string;
+	to: string;
+}
+interface Props {
+	title: string;
+	description: string;
+	nodes: DiagramNode[];
+	edges: DiagramEdge[];
+}
 const { title, description, nodes, edges } = Astro.props;
-const accessibleNodes = nodes.map(node => `${node.label}${node.detail ? `: ${node.detail}` : ""}`).join(". ");
+const accessibleNodes = nodes
+	.map((node) => `${node.label}${node.detail ? `: ${node.detail}` : ""}`)
+	.join(". ");
 const uid = `diagram-${crypto.randomUUID()}`;
 const layers = nodes.map((node, index) => node.layer ?? index);
 const depth = Math.max(...layers) + 1;
-const breadth = Math.max(...layers.map(layer => layers.filter(value => value === layer).length));
+const breadth = Math.max(
+	...layers.map((layer) => layers.filter((value) => value === layer).length),
+);
 function wrap(text: string, limit: number) {
-  const lines: string[] = [];
-  for (const word of text.split(" ")) {
-    const last = lines.length - 1;
-    if (last >= 0 && `${lines[last]} ${word}`.length <= limit) lines[last] += ` ${word}`;
-    else lines.push(word);
-  }
-  return lines;
+	const lines: string[] = [];
+	for (const word of text.split(" ")) {
+		const last = lines.length - 1;
+		if (last >= 0 && `${lines[last]} ${word}`.length <= limit)
+			lines[last] += ` ${word}`;
+		else lines.push(word);
+	}
+	return lines;
 }
-const layouts = [false, true].map(mobile => {
-  const w = mobile ? 148 : 218, h = 100, gap = 42, pad = 16;
-  const width = mobile ? Math.max(320, breadth * (w + 12) + pad * 2) : depth * (w + gap) - gap + pad * 2;
-  const height = mobile ? depth * (h + gap) - gap + pad * 2 : breadth * (h + gap) - gap + pad * 2;
-  const positions = nodes.map((node, index) => {
-    const layer = layers[index];
-    const peers = nodes.filter((_, i) => layers[i] === layer);
-    const row = peers.indexOf(node);
-    return { ...node, x: mobile ? (width - peers.length * (w + 12) + 12) / 2 + row * (w + 12) : pad + layer * (w + gap), y: mobile ? pad + layer * (h + gap) : (height - peers.length * (h + gap) + gap) / 2 + row * (h + gap) };
-  });
-  const connections = edges.map(edge => {
-    const from = positions.find(node => node.id === edge.from)!;
-    const to = positions.find(node => node.id === edge.to)!;
-    const x1 = mobile ? from.x + w / 2 : from.x + w;
-    const y1 = mobile ? from.y + h : from.y + h / 2;
-    const x2 = mobile ? to.x + w / 2 : to.x;
-    const y2 = mobile ? to.y : to.y + h / 2;
-    return mobile ? `M${x1},${y1} C${x1},${(y1+y2)/2} ${x2},${(y1+y2)/2} ${x2},${y2-5}` : `M${x1},${y1} C${(x1+x2)/2},${y1} ${(x1+x2)/2},${y2} ${x2-5},${y2}`;
-  });
-  return { mobile, w, h, width, height, positions, connections };
+const layouts = [false, true].map((mobile) => {
+	const w = mobile ? 148 : 218,
+		h = 100,
+		gap = 42,
+		pad = 16;
+	const width = mobile
+		? Math.max(320, breadth * (w + 12) + pad * 2)
+		: depth * (w + gap) - gap + pad * 2;
+	const height = mobile
+		? depth * (h + gap) - gap + pad * 2
+		: breadth * (h + gap) - gap + pad * 2;
+	const positions = nodes.map((node, index) => {
+		const layer = layers[index];
+		const peers = nodes.filter((_, i) => layers[i] === layer);
+		const row = peers.indexOf(node);
+		return {
+			...node,
+			x: mobile
+				? (width - peers.length * (w + 12) + 12) / 2 + row * (w + 12)
+				: pad + layer * (w + gap),
+			y: mobile
+				? pad + layer * (h + gap)
+				: (height - peers.length * (h + gap) + gap) / 2 + row * (h + gap),
+		};
+	});
+	const connections = edges.map((edge) => {
+		const from = positions.find((node) => node.id === edge.from)!;
+		const to = positions.find((node) => node.id === edge.to)!;
+		const x1 = mobile ? from.x + w / 2 : from.x + w;
+		const y1 = mobile ? from.y + h : from.y + h / 2;
+		const x2 = mobile ? to.x + w / 2 : to.x;
+		const y2 = mobile ? to.y : to.y + h / 2;
+		return mobile
+			? `M${x1},${y1} C${x1},${(y1 + y2) / 2} ${x2},${(y1 + y2) / 2} ${x2},${y2 - 5}`
+			: `M${x1},${y1} C${(x1 + x2) / 2},${y1} ${(x1 + x2) / 2},${y2} ${x2 - 5},${y2}`;
+	});
+	return { mobile, w, h, width, height, positions, connections };
 });
 ---
 <figure class="svg-diagram">

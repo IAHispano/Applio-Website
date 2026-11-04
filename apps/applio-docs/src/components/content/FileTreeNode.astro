@@ -1,11 +1,15 @@
 ---
 import Icon from "../../../../../shared/Icon.astro";
 import type { FileTreeEntry } from "./file-tree";
-interface Props { entry: FileTreeEntry; }
+interface Props {
+	entry: FileTreeEntry;
+}
 const { entry } = Astro.props;
 const isFolder = entry.children !== undefined;
 const name = isFolder ? `${entry.name.replace(/\/+$/, "")}/` : entry.name;
-const fileIcon = /\.(wav|flac|mp3|ogg|m4a|aiff|opus|webm)$/i.test(entry.name) ? "file-audio" : "file";
+const fileIcon = /\.(wav|flac|mp3|ogg|m4a|aiff|opus|webm)$/i.test(entry.name)
+	? "file-audio"
+	: "file";
 ---
 <li class:list={{ "file-tree-highlighted": entry.highlighted }}>
   {entry.children?.length ? <details open={entry.open !== false}>

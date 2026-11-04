@@ -115,7 +115,9 @@ function openSearch() {
 	input.focus();
 }
 trigger.addEventListener("click", openSearch);
-dialog.addEventListener("close", () => trigger.setAttribute("aria-expanded", "false"));
+dialog.addEventListener("close", () =>
+	trigger.setAttribute("aria-expanded", "false"),
+);
 document
 	.querySelector("[data-close-search]")
 	?.addEventListener("click", () => dialog.close());
@@ -200,38 +202,49 @@ input.addEventListener("input", () => {
 	}, 160);
 });
 
-document.querySelectorAll<HTMLElement>(".prose pre:not(.docs-command-code)").forEach((pre) => {
-  if (pre.parentElement?.classList.contains("docs-code-block")) return;
-  const template = document.querySelector<HTMLTemplateElement>("#code-copy-template")!;
-  const button = template.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
-  const label = button.querySelector<HTMLElement>("[data-copy-label]")!;
-  const status = document.createElement("span");
-  status.className = "sr-only";
-  status.setAttribute("role", "status");
-  const wrapper = document.createElement("div");
-  wrapper.className = "docs-code-block";
-  const heading = document.createElement("div");
-  heading.className = "docs-code-heading";
-  const title = document.createElement("span");
-  title.textContent = "Code";
-  heading.append(title, button);
-  pre.before(wrapper);
-  wrapper.append(heading, pre, status);
-  let reset: ReturnType<typeof setTimeout>;
-  button.addEventListener("click", async () => {
-    clearTimeout(reset);
-    try {
-      await navigator.clipboard.writeText(pre.querySelector("code")?.textContent ?? "");
-      label.textContent = "Copied";
-      status.textContent = "Code copied.";
-    } catch {
-      label.textContent = "Copy";
-      status.textContent = "Copy unavailable. Select and copy the code instead.";
-    }
-    reset = setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2000);
-  });
-
-});
+document
+	.querySelectorAll<HTMLElement>(".prose pre:not(.docs-command-code)")
+	.forEach((pre) => {
+		if (pre.parentElement?.classList.contains("docs-code-block")) return;
+		const template = document.querySelector<HTMLTemplateElement>(
+			"#code-copy-template",
+		)!;
+		const button = template.content.firstElementChild!.cloneNode(
+			true,
+		) as HTMLButtonElement;
+		const label = button.querySelector<HTMLElement>("[data-copy-label]")!;
+		const status = document.createElement("span");
+		status.className = "sr-only";
+		status.setAttribute("role", "status");
+		const wrapper = document.createElement("div");
+		wrapper.className = "docs-code-block";
+		const heading = document.createElement("div");
+		heading.className = "docs-code-heading";
+		const title = document.createElement("span");
+		title.textContent = "Code";
+		heading.append(title, button);
+		pre.before(wrapper);
+		wrapper.append(heading, pre, status);
+		let reset: ReturnType<typeof setTimeout>;
+		button.addEventListener("click", async () => {
+			clearTimeout(reset);
+			try {
+				await navigator.clipboard.writeText(
+					pre.querySelector("code")?.textContent ?? "",
+				);
+				label.textContent = "Copied";
+				status.textContent = "Code copied.";
+			} catch {
+				label.textContent = "Copy";
+				status.textContent =
+					"Copy unavailable. Select and copy the code instead.";
+			}
+			reset = setTimeout(() => {
+				label.textContent = "Copy";
+				status.textContent = "";
+			}, 2000);
+		});
+	});
 
 const tocLinks = Array.from(
 	document.querySelectorAll<HTMLAnchorElement>(

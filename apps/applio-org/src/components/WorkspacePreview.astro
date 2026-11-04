@@ -14,10 +14,7 @@ import { ecosystem } from "../lib/ecosystem";
   </div>
   <button type="button" class="showcase-neighbor showcase-neighbor-previous" data-previous hidden aria-label="Show previous workspace"></button>
   <button type="button" class="showcase-neighbor showcase-neighbor-next" data-next hidden aria-label="Show next workspace"></button>
-  </div>
-  <div class="showcase-controls" hidden>
-    <div class="showcase-selectors" aria-label="Choose a workspace">{showcase.map((slide, index) => <button type="button" data-slide={index} aria-label={`Show ${slide.title}`} aria-current={index === 0 ? "true" : undefined}><span aria-hidden="true"></span><span>{slide.title}</span></button>)}</div>
-    <div class="showcase-arrows"><button type="button" data-previous aria-label="Previous screenshot"><Icon name="arrow-left" /></button><span data-count aria-hidden="true">01 / 04</span><button type="button" data-next aria-label="Next screenshot"><Icon name="arrow-right" /></button></div>
+  <button type="button" class="showcase-playback" data-playback hidden aria-label="Pause slideshow"><span data-pause-icon><Icon name="pause" /></span><span data-play-icon hidden><Icon name="play" /></span></button>
   </div>
   <p class="showcase-status sr-only" aria-live="polite" aria-atomic="true"></p>
 </app-showcase>
@@ -29,11 +26,14 @@ import { ecosystem } from "../lib/ecosystem";
       this.dataset.ready = "true";
       const track = this.querySelector<HTMLElement>(".showcase-track")!;
       const slides = Array.from(this.querySelectorAll<HTMLElement>(".showcase-slide"));
-      const selectors = Array.from(this.querySelectorAll<HTMLButtonElement>("[data-slide]"));
-      const count = this.querySelector<HTMLElement>("[data-count]")!;
       const status = this.querySelector<HTMLElement>(".showcase-status")!;
-      const controls = this.querySelector<HTMLElement>(".showcase-controls")!;
-      controls.hidden = false;
+      const playback = this.querySelector<HTMLButtonElement>("[data-playback]")!;
+      const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+      let paused = reducedMotion.matches;
+      let visible = false;
+      let hovered = false;
+      let timer: ReturnType<typeof setInterval> | undefined;
+      playback.hidden = false;
       this.querySelectorAll<HTMLButtonElement>(".showcase-neighbor").forEach(button => button.hidden = false);
       this.dataset.enhanced = "true";
       let current = 0;
@@ -45,15 +45,12 @@ import { ecosystem } from "../lib/ecosystem";
           slide.inert = i !== current;
           slide.setAttribute("aria-hidden", String(i !== current));
         });
-        selectors.forEach((selector, i) => i === current ? selector.setAttribute("aria-current", "true") : selector.removeAttribute("aria-current"));
-        count.textContent = `${String(current + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
-        if (announce) status.textContent = `${selectors[current].textContent?.trim()}, slide ${current + 1} of ${slides.length}`;
+        if (announce) status.textContent = `${slides[current].getAttribute("aria-label")}`;
       };
       const controller = new AbortController();
       const options = { signal: controller.signal };
       this.querySelectorAll("[data-previous]").forEach(button => button.addEventListener("click", () => show(current - 1), options));
       this.querySelectorAll("[data-next]").forEach(button => button.addEventListener("click", () => show(current + 1), options));
-      selectors.forEach((selector, index) => selector.addEventListener("click", () => show(index), options));
       track.addEventListener("keydown", event => {
         if (event.target !== track || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
         event.preventDefault();
@@ -80,8 +77,27 @@ import { ecosystem } from "../lib/ecosystem";
         touchStart = undefined;
       }, { ...options, passive: true });
       track.addEventListener("touchcancel", () => { touchStart = undefined; }, options);
+      const syncPlayback = () => {
+        clearInterval(timer);
+        playback.setAttribute("aria-label", paused ? "Play slideshow" : "Pause slideshow");
+        this.querySelector<HTMLElement>("[data-pause-icon]")!.hidden = paused;
+        this.querySelector<HTMLElement>("[data-play-icon]")!.hidden = !paused;
+        if (this.isConnected && !paused && visible && !hovered && !document.hidden && !this.contains(document.activeElement)) {
+          timer = setInterval(() => show(current + 1, false), 5000);
+        }
+      };
+      playback.addEventListener("click", () => { paused = !paused; syncPlayback(); }, options);
+      this.addEventListener("mouseenter", () => { hovered = true; syncPlayback(); }, options);
+      this.addEventListener("mouseleave", () => { hovered = false; syncPlayback(); }, options);
+      this.addEventListener("focusin", syncPlayback, options);
+      this.addEventListener("focusout", () => queueMicrotask(syncPlayback), options);
+      document.addEventListener("visibilitychange", syncPlayback, options);
+      reducedMotion.addEventListener("change", () => { paused = reducedMotion.matches; syncPlayback(); }, options);
+      const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting && entry.intersectionRatio >= .25; syncPlayback(); }, { threshold: .25 });
+      observer.observe(this);
       show(0, false);
-      this.cleanup = () => { controller.abort(); delete this.dataset.ready; };
+      syncPlayback();
+      this.cleanup = () => { controller.abort(); observer.disconnect(); clearInterval(timer); delete this.dataset.ready; };
 
     }
     disconnectedCallback() { this.cleanup?.(); }

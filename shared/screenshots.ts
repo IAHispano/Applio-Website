@@ -46,11 +46,11 @@ export const gradio = {
 
 export const showcase = [
 	{
-		title: "Convert Audio",
+		title: "Realtime",
 		description:
-			"Choose a voice model, add a recording, and adjust your conversion.",
-		image: conversion,
-		guide: "getting-started/inference/",
+			"Set up your audio devices and change your voice as you speak.",
+		image: realtime,
+		guide: "getting-started/realtime/",
 	},
 	{
 		title: "Text to Speech",

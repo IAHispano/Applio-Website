@@ -199,14 +199,22 @@ input.addEventListener("input", () => {
 });
 
 document.querySelectorAll<HTMLElement>(".prose pre:not(.docs-command-code)").forEach((pre) => {
-  if (pre.querySelector(".copy-code")) return;
+  if (pre.parentElement?.classList.contains("docs-code-block")) return;
   const template = document.querySelector<HTMLTemplateElement>("#code-copy-template")!;
   const button = template.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
   const label = button.querySelector<HTMLElement>("[data-copy-label]")!;
   const status = document.createElement("span");
   status.className = "sr-only";
   status.setAttribute("role", "status");
-  pre.after(status);
+  const wrapper = document.createElement("div");
+  wrapper.className = "docs-code-block";
+  const heading = document.createElement("div");
+  heading.className = "docs-code-heading";
+  const title = document.createElement("span");
+  title.textContent = "Code";
+  heading.append(title, button);
+  pre.before(wrapper);
+  wrapper.append(heading, pre, status);
   let reset: ReturnType<typeof setTimeout>;
   button.addEventListener("click", async () => {
     clearTimeout(reset);
@@ -220,7 +228,7 @@ document.querySelectorAll<HTMLElement>(".prose pre:not(.docs-command-code)").for
     }
     reset = setTimeout(() => { label.textContent = "Copy"; status.textContent = ""; }, 2000);
   });
-  pre.append(button);
+
 });
 
 const tocLinks = Array.from(

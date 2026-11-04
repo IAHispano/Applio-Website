@@ -630,7 +630,8 @@ h1 {
 	position: relative;
 	border: 1px solid var(--border);
 	border-radius: var(--radius-card);
-	padding: 42px 20px 20px;
+	padding: 18px 20px;
+	background: var(--panel) !important;
 	overflow-x: auto;
 	font-size: 12px;
 	line-height: 1.9;
@@ -1287,3 +1288,18 @@ summary.file-tree-row:hover {
 .docs-command-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px; }
 .prose pre.docs-command-code { margin: 0; padding: 16px; border: 0; border-radius: 0; background: transparent !important; white-space: pre-wrap; overflow-wrap: anywhere; font: 12px / 1.9 var(--font-mono); }
 @media (max-width: 600px) { .docs-command-heading { padding: 8px 12px; } .prose pre.docs-command-code { padding: 12px; } }
+
+.svg-diagram { margin: 26px 0; padding: 18px; border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--bg); }
+.svg-diagram-title { color: var(--heading); font-size: 14px; font-weight: 600; margin-bottom: 16px; }
+.svg-diagram-canvas { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font-sans); }
+.svg-diagram-mobile { display: none; }
+.svg-diagram-node { fill: var(--panel); stroke: #37373d; stroke-width: 1; }
+.svg-diagram-node-title { fill: var(--heading); font-size: 14px; font-weight: 600; }
+.svg-diagram-node-detail { fill: #bdbdc5; font-size: 12px; }
+.svg-diagram-connector { color: #92929e; }
+.prose p.svg-diagram-description { margin: 16px 0 0; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.docs-code-block { min-width: 0; overflow: hidden; margin: 24px 0; border: 1px solid var(--border); border-radius: var(--radius-card); background: var(--panel); }
+.docs-code-heading { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--muted); font-size: 12px; }
+.docs-code-heading .copy-code { position: static; min-height: 32px; border-radius: var(--radius-button); }
+.prose .docs-code-block pre { margin: 0; border: 0; border-radius: 0; }
+@media (max-width: 600px) { .svg-diagram { padding: 14px; } .svg-diagram-desktop { display: none; } .svg-diagram-mobile { display: block; } }

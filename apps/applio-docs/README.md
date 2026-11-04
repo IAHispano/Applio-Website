@@ -21,6 +21,7 @@ buttons. Avoid Unicode arrows or other text glyphs as icon substitutes.
 | `Workflow` | Explain the stages before detailed instructions | `title`; `steps`: title, description, optional href |
 | `Accordion`, `AccordionGroup` | Troubleshooting and optional explanations | Accordion: `title`, optional `open`; Markdown body |
 | `Checklist` | Let readers track prerequisites or review steps | `title`, string array `items`; page-local checkboxes |
+| `SvgDiagram` | Responsive vector flows and relationships | `title`, `description`, `nodes`: id, label, detail, optional layer; `edges`: from, to; mobile layouts stack vertically |
 | `Command` | Copyable terminal instructions with syntax highlighting | `command`, optional `shell` (`bash`, `sh`, `powershell`), `title`; supports multiline commands |
 | `Path`, `PathList` | Copyable file and folder locations | Path: `value`, optional `description`, `kind` (`folder` or `file`); PathList: optional accessible `label` |
 | `FileTree` | Collapsible folder and file examples | Optional `title`, `items`: name, children, description, highlighted, open; copies the full structure |
@@ -109,3 +110,9 @@ import { Command } from '../../../components/content/index';
 
 <Command command={'python app.py --port 6970'} />
 ```
+
+Use `SvgDiagram` for relationships, formulas, and data flow rather than treating
+explanations as executable code. Edges reference node IDs; nodes with the same
+`layer` align together for branches or merges. Keep labels concise and include a
+plain-language `description` with the exact meaning or a worked example. SVGs
+include accessible labels and reflow vertically on phones without JavaScript.

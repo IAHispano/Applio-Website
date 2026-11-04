@@ -1,0 +1,53 @@
+---
+interface DiagramNode { id: string; label: string; detail?: string; layer?: number; }
+interface DiagramEdge { from: string; to: string; }
+interface Props { title: string; description: string; nodes: DiagramNode[]; edges: DiagramEdge[]; }
+const { title, description, nodes, edges } = Astro.props;
+const uid = `diagram-${crypto.randomUUID()}`;
+const layers = nodes.map((node, index) => node.layer ?? index);
+const depth = Math.max(...layers) + 1;
+const breadth = Math.max(...layers.map(layer => layers.filter(value => value === layer).length));
+function wrap(text: string, limit: number) {
+  const lines: string[] = [];
+  for (const word of text.split(" ")) {
+    const last = lines.length - 1;
+    if (last >= 0 && `${lines[last]} ${word}`.length <= limit) lines[last] += ` ${word}`;
+    else lines.push(word);
+  }
+  return lines;
+}
+const layouts = [false, true].map(mobile => {
+  const w = mobile ? 148 : 218, h = 100, gap = 42, pad = 16;
+  const width = mobile ? Math.max(320, breadth * (w + 12) + pad * 2) : depth * (w + gap) - gap + pad * 2;
+  const height = mobile ? depth * (h + gap) - gap + pad * 2 : breadth * (h + gap) - gap + pad * 2;
+  const positions = nodes.map((node, index) => {
+    const layer = layers[index];
+    const peers = nodes.filter((_, i) => layers[i] === layer);
+    const row = peers.indexOf(node);
+    return { ...node, x: mobile ? (width - peers.length * (w + 12) + 12) / 2 + row * (w + 12) : pad + layer * (w + gap), y: mobile ? pad + layer * (h + gap) : (height - peers.length * (h + gap) + gap) / 2 + row * (h + gap) };
+  });
+  const connections = edges.map(edge => {
+    const from = positions.find(node => node.id === edge.from)!;
+    const to = positions.find(node => node.id === edge.to)!;
+    const x1 = mobile ? from.x + w / 2 : from.x + w;
+    const y1 = mobile ? from.y + h : from.y + h / 2;
+    const x2 = mobile ? to.x + w / 2 : to.x;
+    const y2 = mobile ? to.y : to.y + h / 2;
+    return mobile ? `M${x1},${y1} C${x1},${(y1+y2)/2} ${x2},${(y1+y2)/2} ${x2},${y2-5}` : `M${x1},${y1} C${(x1+x2)/2},${y1} ${(x1+x2)/2},${y2} ${x2-5},${y2}`;
+  });
+  return { mobile, w, h, width, height, positions, connections };
+});
+---
+<figure class="svg-diagram">
+  <figcaption class="svg-diagram-title">{title}</figcaption>
+  {layouts.map(({ mobile, w, h, width, height, positions, connections }) => <svg class:list={["svg-diagram-canvas", mobile ? "svg-diagram-mobile" : "svg-diagram-desktop"]} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title}. ${description}`}>
+    <defs><marker id={`${uid}-${mobile}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1 L8 5 L2 9" fill="none" stroke="currentColor" stroke-width="1.5" /></marker></defs>
+    {connections.map(d => <path d={d} fill="none" stroke="currentColor" stroke-width="1.5" marker-end={`url(#${uid}-${mobile})`} class="svg-diagram-connector" />)}
+    {positions.map(node => <g>
+      <rect x={node.x} y={node.y} width={w} height={h} rx="10" class="svg-diagram-node" />
+      <text x={node.x + w / 2} y={node.y + 30} text-anchor="middle" class="svg-diagram-node-title">{wrap(node.label, mobile ? 18 : 25).map((line, index) => <tspan x={node.x + w / 2} dy={index ? 18 : 0}>{line}</tspan>)}</text>
+      {node.detail && <text x={node.x + w / 2} y={node.y + 69} text-anchor="middle" class="svg-diagram-node-detail">{wrap(node.detail, mobile ? 21 : 30).map((line, index) => <tspan x={node.x + w / 2} dy={index ? 16 : 0}>{line}</tspan>)}</text>}
+    </g>)}
+  </svg>)}
+  <p class="svg-diagram-description">{description}</p>
+</figure>

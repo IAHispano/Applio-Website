@@ -5,7 +5,7 @@ sidebar:
   order: 1
 ---
 
-import { Workflow } from '../../../components/content/index';
+import { Workflow, SvgDiagram } from '../../../components/content/index';
 
 Applio uses **retrieval-based voice conversion (RVC)**. A recording supplies the content and performance; a trained generator synthesizes it with another voice's characteristics. Retrieved features can reinforce the target timbre.
 
@@ -26,11 +26,16 @@ An embedder is not the speaker voice model. Feature dimensions and representatio
 
 ### Pitch
 
-For models with pitch guidance, a predictor extracts F0. The engine applies pitch adjustment according to:
+For models with pitch guidance, a predictor extracts F0. The engine scales that frequency using the semitone setting:
 
-~~~text
-adjusted F0 = extracted F0 × 2^(semitones / 12)
-~~~
+<SvgDiagram title="Pitch adjustment" description="For example, 220 Hz shifted up 12 semitones becomes 440 Hz. A shift of zero keeps the original frequency." nodes={[
+  { id: 'input', label: 'Extracted pitch', detail: 'F0 from the predictor' },
+  { id: 'shift', label: 'Apply semitone shift', detail: 'Multiply by 2^(semitones / 12)' },
+  { id: 'output', label: 'Adjusted pitch', detail: 'Used during synthesis' },
+]} edges={[
+  { from: 'input', to: 'shift' },
+  { from: 'shift', to: 'output' },
+]} />
 
 Positive values raise pitch; negative values lower it. Autotune modifies the extracted pitch before synthesis. Proposed pitch can add a calculated offset toward a configured target.
 
@@ -42,9 +47,16 @@ Training feature vectors are stored in a **FAISS index**. The file pipeline sear
 
 **Search Feature Ratio** controls blending:
 
-~~~text
-blended features = ratio × retrieved features + (1 − ratio) × input features
-~~~
+<SvgDiagram title="Blend retrieved and input features" description="The two weighted feature sets are added together. A ratio of 0 keeps the input features; a ratio of 1 uses the retrieved features." nodes={[
+  { id: 'retrieved', layer: 0, label: 'Retrieved features', detail: 'Weight: ratio' },
+  { id: 'input', layer: 0, label: 'Input features', detail: 'Weight: 1 minus ratio' },
+  { id: 'blend', layer: 1, label: 'Add weighted features', detail: 'Blend both representations' },
+  { id: 'output', layer: 2, label: 'Blended features', detail: 'Used during synthesis' },
+]} edges={[
+  { from: 'retrieved', to: 'blend' },
+  { from: 'input', to: 'blend' },
+  { from: 'blend', to: 'output' },
+]} />
 
 It does not change the neighbor count. Retrieval is skipped when no usable index is selected or its influence is zero.
 

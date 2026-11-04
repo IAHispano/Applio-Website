@@ -6,28 +6,71 @@ import "../styles/docs.css";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import { ecosystem } from "../../../../shared/ecosystem";
-import { pages } from "../lib/navigation";
 import DocsNavigation from "../components/DocsNavigation.astro";
+import { pages } from "../lib/navigation";
 
-interface Props { entry: CollectionEntry<"docs">; headings: MarkdownHeading[]; }
+interface Props {
+	entry: CollectionEntry<"docs">;
+	headings: MarkdownHeading[];
+}
 const { entry, headings } = Astro.props;
 const path = entry.id === "index" ? "/" : `/${entry.id}/`;
-const currentIndex = pages.findIndex(page => page.href === path);
+const currentIndex = pages.findIndex((page) => page.href === path);
 const previous = pages[currentIndex - 1];
 const next = currentIndex >= 0 ? pages[currentIndex + 1] : undefined;
-const toc = headings.filter(heading => heading.depth >= 2 && heading.depth <= 3);
+const toc = headings.filter(
+	(heading) => heading.depth >= 2 && heading.depth <= 3,
+);
 const canonical = new URL(path, ecosystem.links.docs);
 const markdownPath = path === "/" ? "/index.md" : `${path}index.md`;
 const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    { "@type": "WebSite", "@id": `${ecosystem.links.docs}#website`, url: ecosystem.links.docs, name: "Applio Docs", inLanguage: "en" },
-    { "@type": "TechArticle", "@id": `${canonical}#article`, url: canonical.href, headline: entry.data.title, description: entry.data.description, inLanguage: "en", mainEntityOfPage: canonical.href, isPartOf: { "@id": `${ecosystem.links.docs}#website` }, publisher: { "@type": "Organization", name: "Applio", url: ecosystem.links.website }, image: new URL("/opengraph-image.png", ecosystem.links.docs).href },
-    ...(path === "/" ? [] : [{ "@type": "BreadcrumbList", itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Applio Docs", item: ecosystem.links.docs },
-      { "@type": "ListItem", position: 2, name: entry.data.title, item: canonical.href },
-    ] }]),
-  ],
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "WebSite",
+			"@id": `${ecosystem.links.docs}#website`,
+			url: ecosystem.links.docs,
+			name: "Applio Docs",
+			inLanguage: "en",
+		},
+		{
+			"@type": "TechArticle",
+			"@id": `${canonical}#article`,
+			url: canonical.href,
+			headline: entry.data.title,
+			description: entry.data.description,
+			inLanguage: "en",
+			mainEntityOfPage: canonical.href,
+			isPartOf: { "@id": `${ecosystem.links.docs}#website` },
+			publisher: {
+				"@type": "Organization",
+				name: "Applio",
+				url: ecosystem.links.website,
+			},
+			image: new URL("/opengraph-image.png", ecosystem.links.docs).href,
+		},
+		...(path === "/"
+			? []
+			: [
+					{
+						"@type": "BreadcrumbList",
+						itemListElement: [
+							{
+								"@type": "ListItem",
+								position: 1,
+								name: "Applio Docs",
+								item: ecosystem.links.docs,
+							},
+							{
+								"@type": "ListItem",
+								position: 2,
+								name: entry.data.title,
+								item: canonical.href,
+							},
+						],
+					},
+				]),
+	],
 };
 ---
 <!doctype html>

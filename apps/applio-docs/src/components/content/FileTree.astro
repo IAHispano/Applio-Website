@@ -2,14 +2,24 @@
 import Icon from "../../../../../shared/Icon.astro";
 import FileTreeNode from "./FileTreeNode.astro";
 import type { FileTreeEntry } from "./file-tree";
-interface Props { title?: string; items: FileTreeEntry[]; }
+interface Props {
+	title?: string;
+	items: FileTreeEntry[];
+}
 const { title = "File structure", items } = Astro.props;
 function formatEntries(entries: FileTreeEntry[], depth = 0): string {
-  return entries.map(entry => {
-    const name = entry.children !== undefined ? `${entry.name.replace(/\/+$/, "")}/` : entry.name;
-    const line = `${"  ".repeat(depth)}${name}`;
-    return entry.children?.length ? `${line}\n${formatEntries(entry.children, depth + 1)}` : line;
-  }).join("\n");
+	return entries
+		.map((entry) => {
+			const name =
+				entry.children !== undefined
+					? `${entry.name.replace(/\/+$/, "")}/`
+					: entry.name;
+			const line = `${"  ".repeat(depth)}${name}`;
+			return entry.children?.length
+				? `${line}\n${formatEntries(entry.children, depth + 1)}`
+				: line;
+		})
+		.join("\n");
 }
 ---
 <docs-file-tree data-tree-text={formatEntries(items)}>

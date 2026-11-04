@@ -1,27 +1,27 @@
 ---
 import Icon from "../../../../shared/Icon.astro";
-import Layout from "../layouts/Layout.astro";
 import Screenshot from "../../../../shared/Screenshot.astro";
 import { desktop } from "../../../../shared/screenshots";
 import WorkspacePreview from "../components/WorkspacePreview.astro";
+import Layout from "../layouts/Layout.astro";
 import "../styles/home.css";
 import { ecosystem } from "../lib/ecosystem";
 
 interface BlogPost {
-  title: string;
-  description: string;
-  date: string;
-  tag: string;
+	title: string;
+	description: string;
+	date: string;
+	tag: string;
 }
 const posts = import.meta.glob("./blog/*.astro", { eager: true });
 const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
-  .filter(([path]) => path !== "./blog/index.astro")
-  .map(([path, module]) => ({
-    ...(module as { frontmatter: BlogPost }).frontmatter,
-    url: path.replace("./blog/", "/blog/").replace(".astro", ""),
-  }))
-  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-  .slice(0, 2);
+	.filter(([path]) => path !== "./blog/index.astro")
+	.map(([path, module]) => ({
+		...(module as { frontmatter: BlogPost }).frontmatter,
+		url: path.replace("./blog/", "/blog/").replace(".astro", ""),
+	}))
+	.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+	.slice(0, 2);
 ---
 <Layout>
   <section class="home-hero">

@@ -56,3 +56,10 @@ Run `pnpm --filter applio-docs type-check` and `pnpm build`. The build generates
 Pagefind search. Preview that build with `pnpm --filter applio-docs preview` to
 exercise search; `astro dev` does not generate its index. Check the guides on a
 phone-width viewport and verify keyboard operation after changing components.
+
+The docs use self-hosted Inter and normal letter spacing for navigation and
+reading. Colors still share the app theme tokens. At widths up to 1024px, the
+navigation opens in a native dialog with keyboard focus containment and Escape
+support; a separate mobile table of contents keeps long guides navigable. The
+same `DocsNavigation.astro` component renders the desktop and drawer links.
+Scrollbar colors and responsive layout rules live in `src/styles/docs.css`.

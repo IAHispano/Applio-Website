@@ -1,12 +1,13 @@
 ---
 import Icon from "../../../../shared/Icon.astro";
-import "@fontsource-variable/syne";
+import "@fontsource-variable/inter";
 import "../../../../shared/theme.css";
 import "../styles/docs.css";
 import type { CollectionEntry } from "astro:content";
 import type { MarkdownHeading } from "astro";
 import { ecosystem } from "../../../../shared/ecosystem";
-import { navigation, pages } from "../lib/navigation";
+import { pages } from "../lib/navigation";
+import DocsNavigation from "../components/DocsNavigation.astro";
 
 interface Props { entry: CollectionEntry<"docs">; headings: MarkdownHeading[]; }
 const { entry, headings } = Astro.props;
@@ -14,7 +15,6 @@ const path = entry.id === "index" ? "/" : `/${entry.id}/`;
 const currentIndex = pages.findIndex(page => page.href === path);
 const previous = pages[currentIndex - 1];
 const next = currentIndex >= 0 ? pages[currentIndex + 1] : undefined;
-const group = pages[currentIndex]?.group ?? "Documentation";
 const toc = headings.filter(heading => heading.depth >= 2 && heading.depth <= 3);
 const canonical = new URL(path, ecosystem.links.docs);
 ---
@@ -41,28 +41,24 @@ const canonical = new URL(path, ecosystem.links.docs);
         <img src="/applio-logo.svg" width="22" height="26" alt="" />
         <span>Applio</span><span class="brand-badge">Docs</span>
       </a>
-      <button class="search-trigger" type="button" data-open-search aria-haspopup="dialog"><span class="icon-label"><Icon name="search" /> Search documentation</span><kbd>Ctrl K</kbd></button>
+      <button class="search-trigger" type="button" data-open-search aria-label="Search documentation" aria-haspopup="dialog"><span class="icon-label"><Icon name="search" /><span class="search-label">Search documentation</span></span><kbd>Ctrl K</kbd></button>
       <nav class="header-links" aria-label="Applio links">
         <a href={ecosystem.links.website}>Website <Icon name="external-link" size={12} /></a>
         <a class="download-link" href={ecosystem.links.download}>Download Applio <Icon name="download" /></a>
       </nav>
     </header>
+    <div class="mobile-docs-bar">
+      <button class="mobile-nav-trigger icon-label" type="button" data-open-navigation aria-controls="docs-navigation" aria-expanded="false" aria-haspopup="dialog"><Icon name="menu" size={18} /> Browse docs</button>
+      {toc.length > 0 && <details class="mobile-toc"><summary class="icon-label">On this page <Icon name="chevron-down" /></summary><nav aria-label="On this page">{toc.map(heading => <a href={`#${heading.slug}`} class:list={{ nested: heading.depth === 3 }}>{heading.text}</a>)}</nav></details>}
+    </div>
     <div class="docs-shell">
-      <aside class="sidebar">
-        <details class="mobile-navigation" open>
-          <summary>Browse documentation <Icon name="chevron-down" size={16} /></summary>
-          <nav aria-label="Documentation">
-            {navigation.map(section => <section class="nav-group">
-              <h2>{section.label}</h2>
-              <ul>{section.items.map(([label, href]) => <li><a href={href} aria-current={href === path ? "page" : undefined}>{label}{href.startsWith("https:") && <Icon name="external-link" />}</a></li>)}</ul>
-            </section>)}
-          </nav>
-          <div class="sidebar-footer"><a href={ecosystem.links.discord}>Community & support <Icon name="external-link" size={12} /></a><a href={ecosystem.projects.docs.repository}>Contribute on GitHub <Icon name="external-link" size={12} /></a></div>
-        </details>
-      </aside>
-      <main id="main-content" data-pagefind-body={entry.data.pagefind ? "" : undefined} data-pagefind-ignore={!entry.data.pagefind ? "all" : undefined}>
+      <aside class="sidebar"><DocsNavigation /></aside>
+      <dialog id="docs-navigation" class="sidebar-panel" aria-label="Documentation navigation">
+        <div class="nav-drawer-heading"><span>Documentation</span><button type="button" data-close-navigation aria-label="Close navigation"><Icon name="close" size={20} /></button></div>
+        <DocsNavigation />
+      </dialog>
+      <main id="main-content" tabindex="-1" data-pagefind-body={entry.data.pagefind ? "" : undefined} data-pagefind-ignore={!entry.data.pagefind ? "all" : undefined}>
         <div class="page-heading">
-          <p class="eyebrow" data-pagefind-ignore>{group}</p>
           <h1 data-pagefind-meta="title">{entry.data.title}</h1>
           <p class="description">{entry.data.description}</p>
         </div>
@@ -80,6 +76,12 @@ const canonical = new URL(path, ecosystem.links.docs);
         <a class="toc-help" href={ecosystem.links.discord}>Need a hand?<br /><span>Join the community <Icon name="external-link" size={12} /></span></a>
       </aside>
     </div>
+    <noscript><style is:inline>
+      @media (max-width: 1024px) {
+        .sidebar { display: block; position: static; height: auto; padding: 20px 0; }
+        .mobile-nav-trigger { display: none; }
+      }
+    </style></noscript>
     <dialog id="docs-search" aria-labelledby="search-title">
       <div class="search-heading"><h2 id="search-title">Search documentation</h2><button type="button" data-close-search aria-label="Close search">Esc</button></div>
       <label for="search-input" class="sr-only">Search guides and reference</label>

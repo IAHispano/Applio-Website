@@ -7,11 +7,57 @@ const searchStatus = document.querySelector<HTMLElement>("#search-status")!;
 const trigger =
 	document.querySelector<HTMLButtonElement>("[data-open-search]")!;
 const navigation =
-	document.querySelector<HTMLDetailsElement>(".mobile-navigation")!;
-const desktop = matchMedia("(min-width: 801px)");
-navigation.open = desktop.matches;
-desktop.addEventListener("change", (event) => {
-	navigation.open = event.matches;
+	document.querySelector<HTMLDialogElement>("#docs-navigation")!;
+const navigationTrigger = document.querySelector<HTMLButtonElement>(
+	"[data-open-navigation]",
+)!;
+const desktop = matchMedia("(min-width: 1025px)");
+const syncNavigation = () => {
+	if (navigation.open) navigation.close();
+	navigationTrigger.setAttribute("aria-expanded", "false");
+};
+syncNavigation();
+desktop.addEventListener("change", syncNavigation);
+navigationTrigger.addEventListener("click", () => {
+	if (desktop.matches || navigation.open) return;
+	navigation.showModal();
+	navigationTrigger.setAttribute("aria-expanded", "true");
+});
+document
+	.querySelector("[data-close-navigation]")
+	?.addEventListener("click", () => navigation.close());
+navigation.addEventListener("close", () =>
+	navigationTrigger.setAttribute("aria-expanded", "false"),
+);
+navigation.addEventListener("click", (event) => {
+	if (event.target !== navigation) return;
+	const rect = navigation.getBoundingClientRect();
+	if (
+		event.clientX < rect.left ||
+		event.clientX > rect.right ||
+		event.clientY < rect.top ||
+		event.clientY > rect.bottom
+	)
+		navigation.close();
+});
+const mobileToc = document.querySelector<HTMLDetailsElement>(".mobile-toc");
+mobileToc?.addEventListener("click", (event) => {
+	if (event.target instanceof Element && event.target.closest("a"))
+		mobileToc.open = false;
+});
+mobileToc?.addEventListener("keydown", (event) => {
+	if (event.key === "Escape") {
+		mobileToc.open = false;
+		mobileToc.querySelector<HTMLElement>("summary")?.focus();
+	}
+});
+document.addEventListener("click", (event) => {
+	if (
+		mobileToc &&
+		event.target instanceof Node &&
+		!mobileToc.contains(event.target)
+	)
+		mobileToc.open = false;
 });
 
 const sidebar = document.querySelector<HTMLElement>(".sidebar")!;
@@ -63,6 +109,7 @@ window.addEventListener("pagehide", saveSidebarScroll);
 const modifier = /Mac|iPhone|iPad/.test(navigator.userAgent) ? "⌘" : "Ctrl";
 trigger.querySelector("kbd")!.textContent = `${modifier} K`;
 function openSearch() {
+	if (!desktop.matches && navigation.open) navigation.close();
 	if (!dialog.open) dialog.showModal();
 	input.focus();
 }
@@ -174,7 +221,9 @@ document.querySelectorAll<HTMLElement>(".prose pre").forEach((pre) => {
 });
 
 const tocLinks = Array.from(
-	document.querySelectorAll<HTMLAnchorElement>(".toc a[href^='#']"),
+	document.querySelectorAll<HTMLAnchorElement>(
+		".toc a[href^='#'], .mobile-toc a[href^='#']",
+	),
 );
 const observer = new IntersectionObserver(
 	(entries) => {

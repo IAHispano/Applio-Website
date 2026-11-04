@@ -5,7 +5,8 @@ sidebar:
   order: 1
 ---
 
-import { Steps, Tabs, TabItem, Aside } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 ## Applio Desktop
 
@@ -25,10 +26,12 @@ Download a build for your operating system from the [official App releases](http
 
 ### Finish engine setup
 
+<Screenshot src={desktop.setup} alt="Desktop setup progress showing Python environment preparation, dependency installation, model assets, and verification" caption="Setup prepares the environment, installs dependencies and assets, and verifies the installation. Keep Applio open while the stages finish." interfaceName="Desktop 1.0.7" />
+
 <Steps>
 
 1. Open Applio and review the terms shown on first run.
-2. Select **Install / Repair**. Keep the app open while it prepares Python, engine packages, and required assets.
+2. Let automatic setup finish. If your build offers **Install / Repair**, use it when setup or a dependency check needs to be retried. Keep the app open while it prepares Python, engine packages, and required assets.
 3. Read the setup log if a check fails, resolve the reported issue, and retry.
 4. [Add a voice model](/getting-started/installing-inference-models/) and try a short conversion.
 

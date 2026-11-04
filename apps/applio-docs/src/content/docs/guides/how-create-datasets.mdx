@@ -5,7 +5,8 @@ sidebar:
   order: 2
 ---
 
-import { Steps, Aside } from '../../../components/content/index';
+import { Steps, Aside, Screenshot } from '../../../components/content/index';
+import { desktop } from '../../../../../../shared/screenshots';
 
 A useful dataset represents the intended voice clearly across the sounds and delivery you want the model to handle. Keep original recordings and perform cleanup on copies.
 
@@ -32,6 +33,8 @@ For singing models, include relevant pitch ranges and delivery. For speech model
 Avoid strong gating, compression, denoising, or reverb removal simply because they are available. Natural breaths and unvoiced consonants can be useful training material.
 
 ## Review in Desktop
+
+<Screenshot src={desktop.datasetReview} alt="Desktop Dataset quality review controls with Scan dataset and Detection settings" caption="Select or upload a dataset first, then open Dataset quality review. Scan dataset becomes available when a dataset is selected." interfaceName="Desktop 1.0.7" />
 
 In **Training**, use dataset review to scan recordings and inspect flagged sections. Listen to clips before excluding them. **Prepare training copy** can trim silent edges, balance recording levels, and lower full-scale peaks while keeping the source dataset separate.
 

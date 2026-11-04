@@ -1,3 +1,8 @@
+import setup from "./screenshots/desktop-setup.webp";
+import appearance from "./screenshots/desktop-appearance.webp";
+import embedderControls from "./screenshots/desktop-embedder-controls.webp";
+import datasetReview from "./screenshots/desktop-dataset-review.webp";
+import pretrained from "./screenshots/gradio-pretrained.webp";
 import analysisResult from "./screenshots/desktop-analysis-result.webp";
 import desktopModels from "./screenshots/desktop-models.webp";
 import gradioModels from "./screenshots/gradio-models.webp";
@@ -15,6 +20,10 @@ import gradioAudioTools from "./screenshots/gradio-audio-tools.webp";
 import gradioBlender from "./screenshots/gradio-voice-blender.webp";
 
 export const desktop = {
+	setup,
+	appearance,
+	embedderControls,
+	datasetReview,
 	conversion,
 	realtime,
 	training,
@@ -25,6 +34,7 @@ export const desktop = {
 	models: desktopModels,
 };
 export const gradio = {
+	pretrained,
 	conversion: gradioConversion,
 	realtime: gradioRealtime,
 	training: gradioTraining,

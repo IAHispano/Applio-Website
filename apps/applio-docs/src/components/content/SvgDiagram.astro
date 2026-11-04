@@ -3,6 +3,7 @@ interface DiagramNode { id: string; label: string; detail?: string; layer?: numb
 interface DiagramEdge { from: string; to: string; }
 interface Props { title: string; description: string; nodes: DiagramNode[]; edges: DiagramEdge[]; }
 const { title, description, nodes, edges } = Astro.props;
+const accessibleNodes = nodes.map(node => `${node.label}${node.detail ? `: ${node.detail}` : ""}`).join(". ");
 const uid = `diagram-${crypto.randomUUID()}`;
 const layers = nodes.map((node, index) => node.layer ?? index);
 const depth = Math.max(...layers) + 1;
@@ -40,7 +41,7 @@ const layouts = [false, true].map(mobile => {
 ---
 <figure class="svg-diagram">
   <figcaption class="svg-diagram-title">{title}</figcaption>
-  {layouts.map(({ mobile, w, h, width, height, positions, connections }) => <svg class:list={["svg-diagram-canvas", mobile ? "svg-diagram-mobile" : "svg-diagram-desktop"]} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title}. ${description}`}>
+  {layouts.map(({ mobile, w, h, width, height, positions, connections }) => <svg class:list={["svg-diagram-canvas", mobile ? "svg-diagram-mobile" : "svg-diagram-desktop"]} viewBox={`0 0 ${width} ${height}`} role="img" aria-label={`${title}. ${accessibleNodes}. ${description}`}>
     <defs><marker id={`${uid}-${mobile}`} viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1 L8 5 L2 9" fill="none" stroke="currentColor" stroke-width="1.5" /></marker></defs>
     {connections.map(d => <path d={d} fill="none" stroke="currentColor" stroke-width="1.5" marker-end={`url(#${uid}-${mobile})`} class="svg-diagram-connector" />)}
     {positions.map(node => <g>

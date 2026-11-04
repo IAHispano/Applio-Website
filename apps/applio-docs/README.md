@@ -116,3 +116,26 @@ explanations as executable code. Edges reference node IDs; nodes with the same
 `layer` align together for branches or merges. Keep labels concise and include a
 plain-language `description` with the exact meaning or a worked example. SVGs
 include accessible labels and reflow vertically on phones without JavaScript.
+
+## Discovery and accessibility
+
+The content collection generates `/sitemap.xml`; `/robots.txt` advertises it.
+Each HTML guide has a canonical URL, social metadata, and TechArticle/WebSite
+structured data, with BreadcrumbList for guides. The 404 page stays noindex.
+Do not add invented authors, update dates, or duplicate keyword metadata.
+
+The build also generates `/llms.txt`, `/llms-full.txt`, and `index.md` beside
+each HTML guide. Markdown is derived from rendered content, preserving both
+interface/platform tabs, commands, tables, folder trees, path descriptions,
+image captions, and text equivalents for SVG diagrams. It removes navigation,
+dialogs, copy controls, and other interface chrome. Pages advertise Markdown
+with `rel="alternate"` and the index with `rel="describedby"`; the article footer
+provides a normal Markdown link. Cloudflare `_headers` gives these text versions
+the right content types and `X-Robots-Tag: noindex` so HTML remains the indexed
+source. These files help retrieval; they are not an indexing or ranking guarantee.
+
+Preserve skip navigation, semantic article headings, dialog names and focus
+containment, image alternatives, visible focus, and reduced-motion behavior.
+Sticky offsets keep anchor navigation clear of the mobile header. High-contrast
+mode uses system colors for diagram nodes and connectors. Audit representative
+pages, active tab variants, and open dialogs with axe and keyboard navigation.

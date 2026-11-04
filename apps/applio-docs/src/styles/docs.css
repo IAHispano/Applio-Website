@@ -1303,3 +1303,18 @@ summary.file-tree-row:hover {
 .docs-code-heading .copy-code { position: static; min-height: 32px; border-radius: var(--radius-button); }
 .prose .docs-code-block pre { margin: 0; border: 0; border-radius: 0; }
 @media (max-width: 600px) { .svg-diagram { padding: 14px; } .svg-diagram-desktop { display: none; } .svg-diagram-mobile { display: block; } }
+
+/* Keep focus and in-page navigation clear of the sticky desktop/mobile chrome. */
+:root { --docs-anchor-offset: calc(var(--docs-header-height) + 24px); scroll-padding-top: var(--docs-anchor-offset); }
+:is(a, button, input, summary, [tabindex]):focus-visible { scroll-margin-block: 16px; }
+.prose :is(h2, h3, h4) { scroll-margin-top: 16px; }
+.toc nav a { display: inline-flex; align-items: center; min-height: 28px; }
+.article-footer .edit-link { display: inline-flex; align-items: center; gap: 6px; min-height: 40px; margin-right: 20px; font-size: 12px; }
+@media (max-width: 1024px) { :root { --docs-anchor-offset: calc(var(--docs-header-height) + 76px); } }
+@media (forced-colors: active) {
+  .nav-group a[aria-current] { outline: 1px solid Highlight; }
+  .svg-diagram-node { fill: Canvas; stroke: CanvasText; }
+  .svg-diagram-node-title, .svg-diagram-node-detail { fill: CanvasText; }
+  .svg-diagram-connector { color: CanvasText; }
+  :focus-visible { outline-color: Highlight; }
+}

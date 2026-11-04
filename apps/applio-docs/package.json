@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "astro dev",
 		"start": "astro dev",
-		"build": "astro build && pagefind --site dist",
+		"build": "astro build && node scripts/generate-readable-docs.mjs && node --test scripts/readable-docs.test.mjs && pagefind --site dist",
 		"preview": "astro preview",
 		"astro": "astro",
 		"type-check": "astro check"
@@ -18,6 +18,10 @@
 	},
 	"devDependencies": {
 		"@astrojs/check": "^0.9.12",
+		"hast-util-from-html": "^2.0.3",
+		"hast-util-to-mdast": "^10",
+		"mdast-util-gfm-table": "^2.0.0",
+		"mdast-util-to-markdown": "^2.1.2",
 		"pagefind": "^1",
 		"typescript": "^5.7.2"
 	}

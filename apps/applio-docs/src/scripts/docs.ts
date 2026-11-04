@@ -111,9 +111,11 @@ trigger.querySelector("kbd")!.textContent = `${modifier} K`;
 function openSearch() {
 	if (!desktop.matches && navigation.open) navigation.close();
 	if (!dialog.open) dialog.showModal();
+	trigger.setAttribute("aria-expanded", "true");
 	input.focus();
 }
 trigger.addEventListener("click", openSearch);
+dialog.addEventListener("close", () => trigger.setAttribute("aria-expanded", "false"));
 document
 	.querySelector("[data-close-search]")
 	?.addEventListener("click", () => dialog.close());

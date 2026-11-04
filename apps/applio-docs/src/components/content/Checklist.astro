@@ -1,5 +1,8 @@
 ---
-interface Props { title: string; items: string[]; }
+interface Props {
+	title: string;
+	items: string[];
+}
 const { title, items } = Astro.props;
 ---
 <section class="doc-checklist" aria-label={title}>

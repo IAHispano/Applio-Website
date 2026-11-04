@@ -2,9 +2,9 @@
 import Icon from "../../../../../shared/Icon.astro";
 
 interface Props {
-  value: string;
-  description?: string;
-  kind?: "folder" | "file";
+	value: string;
+	description?: string;
+	kind?: "folder" | "file";
 }
 
 const { value, description, kind = "folder" } = Astro.props;

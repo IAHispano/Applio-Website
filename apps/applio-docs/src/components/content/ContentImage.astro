@@ -1,6 +1,10 @@
 ---
 import Screenshot from "../../../../../shared/Screenshot.astro";
-interface Props { src: string; alt?: string; title?: string; }
+interface Props {
+	src: string;
+	alt?: string;
+	title?: string;
+}
 const { src, alt = "Documentation image", title } = Astro.props;
 ---
 <Screenshot src={src} alt={alt} caption={title || alt} />

@@ -1,6 +1,9 @@
 ---
 import Icon from "../../../../../shared/Icon.astro";
-interface Props { title: string; steps: { title: string; description: string; href?: string }[]; }
+interface Props {
+	title: string;
+	steps: { title: string; description: string; href?: string }[];
+}
 const { title, steps } = Astro.props;
 ---
 <section class="workflow" aria-label={title}>

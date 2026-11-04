@@ -25,12 +25,12 @@ function isActive(item: NavItem) {
 }
 ---
 
-<div class="sticky top-3 z-50 px-3 sm:px-4">
+<div class="sticky top-0 z-50 border-b border-white/10 bg-[#09090b] px-3 sm:px-4">
   <div
-    class="mx-auto w-full max-w-6xl rounded-full bg-gradient-to-b from-white/25 via-white/10 to-white/5 p-px shadow-[0_8px_32px_rgba(0,0,0,0.45),0_1px_0_rgba(255,255,255,0.06)_inset]"
+    class="mx-auto w-full max-w-7xl"
   >
     <header
-      class="relative grid h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-4 rounded-full bg-[#191817]/75 px-4 backdrop-blur-2xl backdrop-saturate-150 sm:px-6 lg:gap-6"
+      class="relative grid h-16 w-full grid-cols-[auto_1fr_auto] items-center gap-4 rounded-lg bg-[#09090b] px-4 backdrop-blur-2xl backdrop-saturate-150 sm:px-6 lg:gap-6"
     >
     <a href="/" class="col-start-1 flex items-center gap-2.5 self-center justify-self-start" aria-label="Applio — back to home">
       <img
@@ -55,7 +55,7 @@ function isActive(item: NavItem) {
             rel={item.external ? "noopener noreferrer" : undefined}
             aria-current={isActive(item) ? "page" : undefined}
             class:list={[
-              "rounded-full px-4 py-2 text-sm transition-colors duration-200",
+              "rounded-lg px-4 py-2 text-sm transition-colors duration-200",
               isActive(item)
                 ? "bg-white/10 text-white"
                 : "text-neutral-400 hover:bg-white/5 hover:text-white",
@@ -72,7 +72,7 @@ function isActive(item: NavItem) {
         href="https://github.com/IAHispano/Applio"
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden items-center gap-2 rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm text-neutral-300 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.12] sm:flex"
+        class="hidden items-center gap-2 rounded-lg border border-white/10 bg-white/[0.07] px-4 py-2 text-sm text-neutral-300 transition-all duration-200 hover:border-white/25 hover:bg-white/[0.12] sm:flex"
         aria-label="Applio on GitHub"
       >
         <svg
@@ -96,14 +96,14 @@ function isActive(item: NavItem) {
 
       <a
         href="/download"
-        class="hidden rounded-full bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-neutral-200 sm:inline-flex"
+        class="hidden rounded-lg bg-white px-4 py-2 text-sm font-medium text-black transition-all duration-200 hover:bg-neutral-200 sm:inline-flex"
       >
         Download
       </a>
 
       <details class="group lg:hidden">
         <summary
-          class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-all duration-200 [&::-webkit-details-marker]:hidden hover:bg-white/10"
+          class="flex h-10 w-10 cursor-pointer list-none items-center justify-center rounded-lg border border-white/15 bg-white/5 text-white transition-all duration-200 [&::-webkit-details-marker]:hidden hover:bg-white/10"
           aria-label="Toggle navigation menu"
         >
           <svg
@@ -170,6 +170,7 @@ function isActive(item: NavItem) {
       </details>
     </div>
   </header>
+</div>
 </div>
 
 <script>

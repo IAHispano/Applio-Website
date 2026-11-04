@@ -1,5 +1,6 @@
 ---
 import "@fontsource-variable/syne";
+import "../../../../shared/theme.css";
 import { ecosystem } from "../lib/ecosystem";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
@@ -31,9 +32,9 @@ const description =
     <meta name="generator" content={Astro.generator} />
     <meta name="application-name" content="Applio" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#110F0F" />
+    <meta name="theme-color" content="#09090b" />
     <meta name="color-scheme" content="dark" />
-    <meta name="msapplication-TileColor" content="#110F0F" />
+    <meta name="msapplication-TileColor" content="#09090b" />
     <meta
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
@@ -117,8 +118,8 @@ const description =
     margin: 0;
     width: 100%;
     height: 100%;
-    background-color: #110f0f;
-    color: #9e9e9e;
+    background-color: var(--bg);
+    color: var(--muted);
     font-family: "Syne Variable", sans-serif;
   }
   h1 {

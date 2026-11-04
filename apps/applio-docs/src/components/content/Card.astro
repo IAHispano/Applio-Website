@@ -1,0 +1,5 @@
+---
+interface Props { title: string; icon?: string; }
+const { title } = Astro.props;
+---
+<section class="doc-card"><h3>{title}<span aria-hidden="true">↗</span></h3><slot /></section>

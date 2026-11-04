@@ -1,6 +1,6 @@
 {
 	"$schema": "https://turbo.build/schema.json",
-	"globalDependencies": ["**/.env.*local", ".env"],
+	"globalDependencies": ["**/.env.*local", ".env", "shared/**"],
 	"tasks": {
 		"build": {
 			"env": ["NEXT_PUBLIC_SUPABASE_URL", "NEXT_PUBLIC_SUPABASE_KEY"],

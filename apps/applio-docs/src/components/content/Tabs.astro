@@ -1,0 +1,61 @@
+<docs-tabs><div data-tab-list hidden></div><slot /></docs-tabs>
+<script>
+  class DocsTabs extends HTMLElement {
+    connectedCallback() {
+      if (this.dataset.ready) return;
+      this.dataset.ready = "true";
+      const panels = Array.from(this.querySelectorAll<HTMLElement>(":scope > [data-tab-panel]"));
+      const list = this.querySelector<HTMLElement>("[data-tab-list]")!;
+      list.hidden = false;
+      list.setAttribute("role", "tablist");
+      list.setAttribute("aria-label", "Choose instructions");
+      const id = `tabs-${crypto.randomUUID()}`;
+      const activate = (selected: number, focus = false) => {
+        panels.forEach((panel, index) => {
+          panel.hidden = selected !== index;
+          const tab = list.children[index] as HTMLButtonElement;
+          tab.setAttribute("aria-selected", String(index === selected));
+          tab.tabIndex = index === selected ? 0 : -1;
+          if (focus && index === selected) tab.focus();
+        });
+      };
+      panels.forEach((panel, index) => {
+        panel.id = `${id}-panel-${index}`;
+        panel.setAttribute("role", "tabpanel");
+        panel.setAttribute("aria-labelledby", `${id}-tab-${index}`);
+        panel.tabIndex = 0;
+        const fallback = panel.querySelector<HTMLElement>(".tab-fallback");
+        if (fallback) fallback.hidden = true;
+        const tab = document.createElement("button");
+        tab.type = "button";
+        tab.id = `${id}-tab-${index}`;
+        tab.textContent = panel.dataset.label ?? "Instructions";
+        tab.setAttribute("role", "tab");
+        tab.setAttribute("aria-controls", panel.id);
+        tab.addEventListener("click", () => activate(index));
+        tab.addEventListener("keydown", (event) => {
+          let next = index;
+          if (event.key === "ArrowRight") next = (index + 1) % panels.length;
+          else if (event.key === "ArrowLeft") next = (index - 1 + panels.length) % panels.length;
+          else if (event.key === "Home") next = 0;
+          else if (event.key === "End") next = panels.length - 1;
+          else return;
+          event.preventDefault();
+          activate(next, true);
+        });
+        list.append(tab);
+      });
+      activate(0);
+      // Reveal instructions when following a link to a heading in a hidden tab.
+      const revealHash = () => {
+        let target: HTMLElement | null = null;
+        try { target = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch { return; }
+        const index = panels.findIndex(panel => target && panel.contains(target));
+        if (index >= 0) { activate(index); target?.scrollIntoView(); }
+      };
+      revealHash();
+      window.addEventListener("hashchange", revealHash);
+    }
+  }
+  if (!customElements.get("docs-tabs")) customElements.define("docs-tabs", DocsTabs);
+</script>

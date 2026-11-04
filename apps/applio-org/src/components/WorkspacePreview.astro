@@ -1,0 +1,32 @@
+---
+const wave = Array.from({ length: 64 }, (_, i) => 8 + Math.abs(Math.sin(i * 1.7) * Math.cos(i * .23)) * 48);
+---
+<figure class="workspace-preview">
+  <div class="workspace-frame" role="img" aria-label="Illustration of Applio Desktop: a grouped sidebar beside the Convert Audio workspace, with model selection, audio waveform, and conversion settings.">
+    <div class="window-bar"><span class="window-dots"><i></i><i></i><i></i></span><span>Applio Desktop</span><span>↗</span></div>
+    <div class="workspace-body">
+      <div class="preview-sidebar">
+        <div class="preview-brand"><img src="/applio-logo.svg" alt="" width="17" height="20" />Applio</div>
+        <span class="preview-group">WORKSPACE</span>
+        <div class="preview-nav active">↔ <span>Convert Audio</span></div>
+        <div class="preview-nav">◉ <span>Realtime</span></div>
+        <div class="preview-nav">≡ <span>Text to Speech</span></div>
+        <span class="preview-group">MODELS & TRAINING</span>
+        <div class="preview-nav">⊞ <span>Voice Models</span></div>
+        <div class="preview-nav">⌁ <span>Train Model</span></div>
+        <span class="preview-group">AUDIO TOOLS</span>
+        <div class="preview-nav">≋ <span>Audio Separator</span></div>
+        <div class="preview-nav">▥ <span>Audio Analyzer</span></div>
+        <div class="preview-bottom">⚙ <span>Settings</span></div>
+      </div>
+      <div class="preview-main">
+        <div class="preview-page-heading"><div><h2>Convert Audio</h2><p>Transform audio with your voice models.</p></div><span>↗</span></div>
+        <div class="preview-card"><div class="preview-card-title">Voice model <span>01</span></div><div class="preview-field">Your voice model <span>⌄</span></div><p>Select a model to get started.</p></div>
+        <div class="preview-card"><div class="preview-card-title">Input audio <span>02</span></div><div class="preview-wave">{wave.map(height => <span style={`height:${height}px`}></span>)}</div><div class="preview-audio-meta"><span>◷ &nbsp; Your recording</span><span>WAV</span></div></div>
+        <div class="preview-parameters"><div class="preview-card"><div class="preview-card-title">Pitch</div><div class="preview-value">0 <small>semitones</small></div><div class="preview-slider"><span></span></div></div><div class="preview-card"><div class="preview-card-title">Pitch extraction</div><div class="preview-field">RMVPE <span>⌄</span></div></div></div>
+        <div class="preview-convert">Convert Audio <span>→</span></div>
+      </div>
+    </div>
+  </div>
+  <figcaption>A familiar space for every voice workflow. <a href="https://docs.applio.org/getting-started/desktop/">Explore Desktop ↗</a></figcaption>
+</figure>

@@ -58,7 +58,7 @@ Pagefind search. Preview that build with `pnpm --filter applio-docs preview` to
 exercise search; `astro dev` does not generate its index. Check the guides on a
 phone-width viewport and verify keyboard operation after changing components.
 
-The docs use self-hosted Inter and normal letter spacing for navigation and
+The docs use self-hosted Syne and normal letter spacing for navigation and
 reading. Colors still share the app theme tokens. At widths up to 1024px, the
 navigation opens in a native dialog with keyboard focus containment and Escape
 support; a separate mobile table of contents keeps long guides navigable. The

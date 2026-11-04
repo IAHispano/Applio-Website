@@ -135,3 +135,7 @@ to build both sites. The docs build also creates a local Pagefind search index.
 Use `pnpm --filter applio-docs preview` to check search against that build;
 search is not available on the Astro development server. Deploy the complete
 `apps/applio-docs/dist` directory, including `pagefind/` and `404.html`.
+
+Both sites build with Node.js 22, selected by `.node-version` at the repository
+root and each Cloudflare Pages project root. Use pnpm 9.1.1 from `packageManager`.
+An older `NODE_VERSION` override in Cloudflare must also be updated to `22`.

@@ -116,13 +116,13 @@ body {
 .doc-accordion > summary::-webkit-details-marker {
 	display: none;
 }
-.doc-accordion > summary span {
+.doc-accordion > summary .app-icon {
 	color: var(--muted);
 	font-size: 18px;
 	font-weight: 400;
 }
-.doc-accordion[open] > summary span {
-	transform: rotate(45deg);
+.doc-accordion[open] > summary .app-icon {
+	transform: rotate(180deg);
 }
 .accordion-content {
 	padding: 0 18px 8px;
@@ -884,7 +884,10 @@ dialog::backdrop {
 		border-bottom: 1px solid var(--border);
 	}
 	.mobile-navigation > summary {
-		display: list-item;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		list-style: none;
 		font-size: 13px;
 		color: var(--muted);
 		cursor: pointer;
@@ -919,4 +922,11 @@ dialog::backdrop {
 	.card-grid {
 		grid-template-columns: 1fr;
 	}
+}
+
+.mobile-navigation > summary::-webkit-details-marker {
+	display: none;
+}
+.mobile-navigation[open] > summary .app-icon {
+	transform: rotate(180deg);
 }

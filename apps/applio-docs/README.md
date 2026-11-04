@@ -6,6 +6,9 @@ previous/next links. Frontmatter requires `title` and `description`.
 
 Import components from `src/components/content/index` with the appropriate
 relative path. They render with Astro and MDX; no client framework is required.
+Use `shared/Icon.astro` for interface icons. It renders official Lucide SVGs;
+keep decorative icons hidden from assistive technology and label icon-only
+buttons. Avoid Unicode arrows or other text glyphs as icon substitutes.
 
 | Component | Purpose | Props |
 | --- | --- | --- |

@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import { ecosystem } from "../lib/ecosystem";
 const pathname = Astro.url.pathname;
 
@@ -132,7 +133,7 @@ function isActive(item: NavItem) {
                 class="flex items-center justify-between rounded-xl px-4 py-3 text-sm text-neutral-200 transition-colors duration-200 hover:bg-white/10 hover:text-white"
               >
                 {item.label}
-                {item.external && <span class="text-neutral-500">↗</span>}
+                {item.external && <span class="text-neutral-500"><Icon name="external-link" size={12} /></span>}
               </a>
             ))
           }

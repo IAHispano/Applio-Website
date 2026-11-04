@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import "@fontsource-variable/syne";
 import "../../../../shared/theme.css";
 import "../styles/docs.css";
@@ -40,23 +41,23 @@ const canonical = new URL(path, ecosystem.links.docs);
         <img src="/applio-logo.svg" width="22" height="26" alt="" />
         <span>Applio</span><span class="brand-badge">Docs</span>
       </a>
-      <button class="search-trigger" type="button" data-open-search aria-haspopup="dialog"><span>⌕ &nbsp; Search documentation</span><kbd>Ctrl K</kbd></button>
+      <button class="search-trigger" type="button" data-open-search aria-haspopup="dialog"><span class="icon-label"><Icon name="search" /> Search documentation</span><kbd>Ctrl K</kbd></button>
       <nav class="header-links" aria-label="Applio links">
-        <a href={ecosystem.links.website}>Website ↗</a>
-        <a class="download-link" href={ecosystem.links.download}>Download Applio <span aria-hidden="true">↓</span></a>
+        <a href={ecosystem.links.website}>Website <Icon name="external-link" size={12} /></a>
+        <a class="download-link" href={ecosystem.links.download}>Download Applio <Icon name="download" /></a>
       </nav>
     </header>
     <div class="docs-shell">
       <aside class="sidebar">
         <details class="mobile-navigation" open>
-          <summary>Browse documentation</summary>
+          <summary>Browse documentation <Icon name="chevron-down" size={16} /></summary>
           <nav aria-label="Documentation">
             {navigation.map(section => <section class="nav-group">
               <h2>{section.label}</h2>
-              <ul>{section.items.map(([label, href]) => <li><a href={href} aria-current={href === path ? "page" : undefined}>{label}{href.startsWith("https:") && <span aria-hidden="true">↗</span>}</a></li>)}</ul>
+              <ul>{section.items.map(([label, href]) => <li><a href={href} aria-current={href === path ? "page" : undefined}>{label}{href.startsWith("https:") && <Icon name="external-link" />}</a></li>)}</ul>
             </section>)}
           </nav>
-          <div class="sidebar-footer"><a href={ecosystem.links.discord}>Community & support ↗</a><a href={ecosystem.projects.docs.repository}>Contribute on GitHub ↗</a></div>
+          <div class="sidebar-footer"><a href={ecosystem.links.discord}>Community & support <Icon name="external-link" size={12} /></a><a href={ecosystem.projects.docs.repository}>Contribute on GitHub <Icon name="external-link" size={12} /></a></div>
         </details>
       </aside>
       <main id="main-content" data-pagefind-body={entry.data.pagefind ? "" : undefined} data-pagefind-ignore={!entry.data.pagefind ? "all" : undefined}>
@@ -67,16 +68,16 @@ const canonical = new URL(path, ecosystem.links.docs);
         </div>
         <div class="prose"><slot /></div>
         <footer class="article-footer" data-pagefind-ignore>
-          <a class="edit-link" href={`${ecosystem.projects.docs.repository}/edit/main/apps/applio-docs/src/content/docs/${entry.id}.mdx`}>Edit this page on GitHub ↗</a>
+          <a class="edit-link" href={`${ecosystem.projects.docs.repository}/edit/main/apps/applio-docs/src/content/docs/${entry.id}.mdx`}>Edit this page on GitHub <Icon name="external-link" size={12} /></a>
           <nav class="pagination" aria-label="More documentation">
-            {previous && <a href={previous.href}><small>← Previous</small><span>{previous.label}</span></a>}
-            {next && <a href={next.href}><small>Next →</small><span>{next.label}</span></a>}
+            {previous && <a href={previous.href}><small><Icon name="arrow-left" /> Previous</small><span>{previous.label}</span></a>}
+            {next && <a href={next.href}><small>Next <Icon name="arrow-right" /></small><span>{next.label}</span></a>}
           </nav>
         </footer>
       </main>
       <aside class="toc" aria-label="On this page">
         {toc.length > 0 && <nav><h2>On this page</h2><ul>{toc.map(heading => <li class:list={{ nested: heading.depth === 3 }}><a href={`#${heading.slug}`}>{heading.text}</a></li>)}</ul></nav>}
-        <a class="toc-help" href={ecosystem.links.discord}>Need a hand?<br /><span>Join the community ↗</span></a>
+        <a class="toc-help" href={ecosystem.links.discord}>Need a hand?<br /><span>Join the community <Icon name="external-link" size={12} /></span></a>
       </aside>
     </div>
     <dialog id="docs-search" aria-labelledby="search-title">

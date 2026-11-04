@@ -1,5 +1,6 @@
 ---
+import Icon from "../../../../../shared/Icon.astro";
 interface Props { title: string; open?: boolean; }
 const { title, open = false } = Astro.props;
 ---
-<details class="doc-accordion" open={open}><summary>{title}<span aria-hidden="true">+</span></summary><div class="accordion-content"><slot /></div></details>
+<details class="doc-accordion" open={open}><summary>{title}<Icon name="chevron-down" size={16} /></summary><div class="accordion-content"><slot /></div></details>

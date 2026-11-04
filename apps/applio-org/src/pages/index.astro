@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import Layout from "../layouts/Layout.astro";
 import WorkspacePreview from "../components/WorkspacePreview.astro";
 import "../styles/home.css";
@@ -23,21 +24,21 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
 <Layout>
   <section class="home-hero">
     <div class="hero-copy">
-      <a class="release-link" href="/download"><span aria-hidden="true"></span> Meet Applio Desktop <span aria-hidden="true">↗</span></a>
+      <a class="release-link" href="/download"><span aria-hidden="true"></span> Meet Applio Desktop <Icon name="arrow-right" /></a>
       <p class="hero-eyebrow">YOUR VOICE. YOUR WORKSPACE.</p>
       <h1>Make every<br />voice your own.</h1>
       <p class="hero-description">Convert audio, change your voice live, and train custom models. One open-source workspace for everything you create with voice.</p>
-      <div class="hero-actions"><a class="primary-action" href="/download">Download Applio <span aria-hidden="true">↓</span></a><a class="secondary-action" href={ecosystem.links.docs}>Read the docs <span aria-hidden="true">↗</span></a></div>
+      <div class="hero-actions"><a class="primary-action" href="/download">Download Applio <Icon name="download" /></a><a class="secondary-action" href={ecosystem.links.docs}>Read the docs <Icon name="external-link" /></a></div>
       <p class="platform-note">Windows, macOS & Linux <span>·</span> Free & open source</p>
     </div>
     <WorkspacePreview />
   </section>
   <div class="workflow-strip" aria-label="Explore Applio workflows">
     <span>FROM IDEA TO AUDIO</span>
-    <a href={new URL("getting-started/inference/", ecosystem.links.docs).href}>Convert audio ↗</a>
-    <a href={new URL("getting-started/realtime/", ecosystem.links.docs).href}>Go live ↗</a>
-    <a href={new URL("getting-started/training/", ecosystem.links.docs).href}>Train a model ↗</a>
-    <a href="/playground">Try the playground ↗</a>
+    <a href={new URL("getting-started/inference/", ecosystem.links.docs).href}>Convert audio <Icon name="external-link" size={12} /></a>
+    <a href={new URL("getting-started/realtime/", ecosystem.links.docs).href}>Go live <Icon name="external-link" size={12} /></a>
+    <a href={new URL("getting-started/training/", ecosystem.links.docs).href}>Train a model <Icon name="external-link" size={12} /></a>
+    <a href="/playground">Try the playground <Icon name="arrow-right" size={12} /></a>
   </div>
   {/* features */}
   <section id="features" class="relative px-6 py-20">
@@ -71,7 +72,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               <path d="M5 10v1a7 7 0 0 0 14 0v-1"></path>
               <line x1="12" y1="18" x2="12" y2="22"></line>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Voice Conversion</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -97,7 +98,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             >
               <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"></path>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Real-Time Voice</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -125,7 +126,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               <path d="m2 17 10 5 10-5"></path>
               <path d="m2 12 10 5 10-5"></path>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Model Training</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -159,7 +160,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               <line x1="9" y1="8" x2="15" y2="8"></line>
               <line x1="17" y1="16" x2="23" y2="16"></line>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Voice Blender</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -185,7 +186,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
             >
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Text-to-Speech</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -213,7 +214,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
               <line x1="12" y1="20" x2="12" y2="4"></line>
               <line x1="6" y1="20" x2="6" y2="14"></line>
             </svg>
-            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+            <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
           </div>
           <h3 class="mt-6 text-xl font-semibold text-white">Audio Analyzer</h3>
           <p class="mt-2 text-neutral-300 text-sm leading-relaxed">
@@ -278,7 +279,7 @@ const latestPosts: (BlogPost & { url: string })[] = Object.entries(posts)
                 class="inline-flex items-center gap-1.5 rounded-full bg-white text-black px-4 py-1.5 text-xs font-semibold transition-all hover:bg-neutral-200"
               >
                 Download Applio
-                <span>&rarr;</span>
+                <Icon name="arrow-right" />
               </a>
             </div>
           </div>

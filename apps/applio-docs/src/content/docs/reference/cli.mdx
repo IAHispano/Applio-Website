@@ -54,7 +54,7 @@ Commands and flags use **hyphens**, such as `batch-infer` and `--input-path`. Py
 | --- | --- | --- |
 | Engine | In the repository | Pinned under `backend/applio` |
 | Gradio launch | `python app.py` | No root Gradio application |
-| Main CLI | `python core.py` | `applio` launcher → `core.py` adapter plus App commands |
+| Main CLI | `python core.py` | `applio` launcher calls the `core.py` adapter and adds App commands |
 | Dependencies | Repository environment | App runtime environment and initialized submodule |
 
 The launcher instructions above describe the App source checkout; they do not require editing a packaged app. Desktop release users can also perform these workflows in the interface.

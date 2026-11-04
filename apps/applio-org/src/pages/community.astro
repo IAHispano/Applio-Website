@@ -1,4 +1,5 @@
 ---
+import Icon from "../../../../shared/Icon.astro";
 import GlowBackground from "../components/GlowBackground.astro";
 import Layout from "../layouts/Layout.astro";
 
@@ -168,7 +169,7 @@ const cards: CommunityCard[] = [
                   )
                 }
               </span>
-              <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300">→</span>
+              <span class="text-white/30 group-hover:text-white/60 transition-colors duration-300"><Icon name="arrow-right" /></span>
             </div>
             <h3 class="mt-6 text-xl font-semibold text-white">{card.title}</h3>
             <p class="mt-2 text-neutral-300 text-sm leading-relaxed">

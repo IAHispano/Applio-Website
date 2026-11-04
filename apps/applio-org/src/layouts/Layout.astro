@@ -2,10 +2,10 @@
 import "@fontsource-variable/syne";
 import "../../../../shared/theme.css";
 import "../styles/buttons.css";
-import { ecosystem } from "../lib/ecosystem";
 import { ClientRouter } from "astro:transitions";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import { ecosystem } from "../lib/ecosystem";
 
 interface Props {
 	title?: string;
@@ -19,9 +19,7 @@ const {
 	description: customDescription,
 } = Astro.props;
 
-const description =
-	customDescription ??
-	ecosystem.brand.description;
+const description = customDescription ?? ecosystem.brand.description;
 ---
 
 <!doctype html>

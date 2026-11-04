@@ -1,9 +1,21 @@
 ---
-import { codeTheme } from "../../lib/code-theme";
 import { Code } from "astro:components";
 import Icon from "../../../../../shared/Icon.astro";
-interface Props { command: string; shell?: "bash" | "sh" | "powershell"; title?: string; }
-const { command, shell = "bash", title = shell === "powershell" ? "PowerShell" : shell === "sh" ? "Shell" : "Bash" } = Astro.props;
+import { codeTheme } from "../../lib/code-theme";
+interface Props {
+	command: string;
+	shell?: "bash" | "sh" | "powershell";
+	title?: string;
+}
+const {
+	command,
+	shell = "bash",
+	title = shell === "powershell"
+		? "PowerShell"
+		: shell === "sh"
+			? "Shell"
+			: "Bash",
+} = Astro.props;
 ---
 <docs-command class="docs-command" data-command={command} data-shell={shell}>
   <div class="docs-command-heading"><span class="icon-label"><Icon name="terminal" size={16} />{title}</span><button type="button" class="docs-path-copy" aria-label={`Copy ${title} command`} hidden><Icon name="copy" size={14} /><span data-copy-label>Copy</span></button></div>

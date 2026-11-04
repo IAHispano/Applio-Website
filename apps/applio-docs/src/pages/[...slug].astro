@@ -4,10 +4,12 @@ import ContentImage from "../components/content/ContentImage.astro";
 import DocsLayout from "../layouts/DocsLayout.astro";
 
 export async function getStaticPaths() {
-  return (await getCollection("docs", entry => entry.id !== "404")).map(entry => ({
-    params: { slug: entry.id === "index" ? undefined : entry.id },
-    props: { entry },
-  }));
+	return (await getCollection("docs", (entry) => entry.id !== "404")).map(
+		(entry) => ({
+			params: { slug: entry.id === "index" ? undefined : entry.id },
+			props: { entry },
+		}),
+	);
 }
 
 const { entry } = Astro.props;

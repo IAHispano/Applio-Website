@@ -1,0 +1,25 @@
+---
+import Icon from "../../../../../shared/Icon.astro";
+import type { FileTreeEntry } from "./file-tree";
+interface Props { entry: FileTreeEntry; }
+const { entry } = Astro.props;
+const isFolder = entry.children !== undefined;
+const name = isFolder ? `${entry.name.replace(/\/+$/, "")}/` : entry.name;
+const fileIcon = /\.(wav|flac|mp3|ogg|m4a|aiff|opus|webm)$/i.test(entry.name) ? "file-audio" : "file";
+---
+<li class:list={{ "file-tree-highlighted": entry.highlighted }}>
+  {entry.children?.length ? <details open={entry.open !== false}>
+    <summary class="file-tree-row">
+      <Icon name="chevron-down" class="file-tree-chevron" size={14} />
+      <Icon name="folder" class="file-tree-folder-closed" size={16} />
+      <Icon name="folder-open" class="file-tree-folder-open" size={16} />
+      <span class="file-tree-name">{name}</span>
+      {entry.description && <span class="file-tree-description">{entry.description}</span>}
+    </summary>
+    <ul class="file-tree-children">{entry.children.map(child => <Astro.self entry={child} />)}</ul>
+  </details> : <div class="file-tree-row file-tree-leaf">
+    <Icon name={isFolder ? "folder" : fileIcon} size={16} />
+    <span class="file-tree-name">{name}</span>
+    {entry.description && <span class="file-tree-description">{entry.description}</span>}
+  </div>}
+</li>

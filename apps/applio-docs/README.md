@@ -21,6 +21,7 @@ buttons. Avoid Unicode arrows or other text glyphs as icon substitutes.
 | `Workflow` | Explain the stages before detailed instructions | `title`; `steps`: title, description, optional href |
 | `Accordion`, `AccordionGroup` | Troubleshooting and optional explanations | Accordion: `title`, optional `open`; Markdown body |
 | `Checklist` | Let readers track prerequisites or review steps | `title`, string array `items`; page-local checkboxes |
+| `FileTree` | Collapsible folder and file examples | Optional `title`, `items`: name, children, description, highlighted, open; copies the full structure |
 | `PitchExample` | Explore the relationship between semitones and frequency | No props; a clearly labelled 220 Hz example |
 
 Use components where they help someone decide or complete a task. Keep core
@@ -63,3 +64,20 @@ navigation opens in a native dialog with keyboard focus containment and Escape
 support; a separate mobile table of contents keeps long guides navigable. The
 same `DocsNavigation.astro` component renders the desktop and drawer links.
 Scrollbar colors and responsive layout rules live in `src/styles/docs.css`.
+
+For file layouts, use `FileTree` instead of a plain text code block. A node with
+`children` is a folder; other nodes are files. Folders open by default; set
+`open: false` to start one collapsed. Native lists and disclosures support
+keyboard interaction and work without JavaScript. Copy includes collapsed files.
+
+```mdx
+import { FileTree } from '../../../components/content/index';
+
+<FileTree title="Dataset files" items={[
+  { name: 'assets/datasets/MyVoice', children: [
+    { name: '0', description: 'Speaker 0', children: [
+      { name: 'recording.wav' },
+    ] },
+  ] },
+]} />
+```

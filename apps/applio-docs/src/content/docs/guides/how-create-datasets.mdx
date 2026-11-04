@@ -5,7 +5,7 @@ sidebar:
   order: 2
 ---
 
-import { Steps, Aside, Screenshot } from '../../../components/content/index';
+import { Steps, Aside, Screenshot, FileTree } from '../../../components/content/index';
 import { desktop } from '../../../../../../shared/screenshots';
 
 A useful dataset represents the intended voice clearly across the sounds and delivery you want the model to handle. Keep original recordings and perform cleanup on copies.
@@ -44,21 +44,47 @@ Select **Use this dataset for training** when the prepared copy is ready.
 
 Use lossless WAV or FLAC where possible. Converting a lossy source into WAV does not restore lost information. Training preprocessing resamples input files to the selected model rate; that rate must match the architecture and pretrainings.
 
-~~~text
-assets/datasets/MyVoice/
-  recording-one.wav
-  recording-two.flac
-~~~
+<FileTree title="Single-speaker dataset" items={[
+  {
+    "name": "assets/datasets/MyVoice",
+    "children": [
+      {
+        "name": "recording-one.wav"
+      },
+      {
+        "name": "recording-two.flac"
+      }
+    ]
+  }
+]} />
 
 For multispeaker training:
 
-~~~text
-assets/datasets/MyVoice/
-  0/
-    first-speaker.wav
-  1/
-    second-speaker.wav
-~~~
+<FileTree title="Multispeaker dataset" items={[
+  {
+    "name": "assets/datasets/MyVoice",
+    "children": [
+      {
+        "name": "0",
+        "description": "Speaker 0",
+        "children": [
+          {
+            "name": "first-speaker.wav"
+          }
+        ]
+      },
+      {
+        "name": "1",
+        "description": "Speaker 1",
+        "children": [
+          {
+            "name": "second-speaker.wav"
+          }
+        ]
+      }
+    ]
+  }
+]} />
 
 Desktop can upload files or use a host-side dataset path. Ensure the selected method preserves speaker folders when needed. Gradio commonly uses folders under `assets/datasets`.
 

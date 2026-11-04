@@ -11,3 +11,5 @@ export { default as Workflow } from "./Workflow.astro";
 export { default as Comparison } from "./Comparison.astro";
 export { default as Checklist } from "./Checklist.astro";
 export { default as PitchExample } from "./PitchExample.astro";
+export { default as FileTree } from "./FileTree.astro";
+export type { FileTreeEntry } from "./file-tree";

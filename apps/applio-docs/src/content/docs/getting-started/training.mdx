@@ -5,7 +5,7 @@ sidebar:
   order: 8
 ---
 
-import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist, Workflow } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist, Workflow, FileTree } from '../../../components/content/index';
 import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 Training learns a voice from recordings. Dataset quality, coverage, and compatible settings matter more than simply increasing epochs.
@@ -18,13 +18,31 @@ In Desktop, upload audio through **Training** or select a dataset path on the co
 
 For multiple speakers, preserve numeric subfolders:
 
-~~~text
-assets/datasets/MyVoice/
-  0/
-    speaker-zero.wav
-  1/
-    speaker-one.wav
-~~~
+<FileTree title="Multispeaker training folders" items={[
+  {
+    "name": "assets/datasets/MyVoice",
+    "children": [
+      {
+        "name": "0",
+        "description": "Speaker 0",
+        "children": [
+          {
+            "name": "speaker-zero.wav"
+          }
+        ]
+      },
+      {
+        "name": "1",
+        "description": "Speaker 1",
+        "children": [
+          {
+            "name": "speaker-one.wav"
+          }
+        ]
+      }
+    ]
+  }
+]} />
 
 Check that the upload or folder-selection method preserves this structure before starting a multispeaker project.
 

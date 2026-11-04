@@ -5,7 +5,7 @@ sidebar:
   order: 3
 ---
 
-import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist } from '../../../components/content/index';
+import { Steps, Tabs, TabItem, Aside, Screenshot, Checklist, FileTree } from '../../../components/content/index';
 import { desktop, gradio } from '../../../../../../shared/screenshots';
 
 An **inference model** is a trained voice you use for conversion. It is different from an [embedder](/getting-started/embedder/) or a [G/D pretrained pair](/getting-started/pretrained/) used for training.
@@ -56,12 +56,27 @@ For a model archive, extract local files before uploading them individually. A d
 
 Create a named folder in your active logs/models directory and put the model and index together:
 
-~~~text
-logs/
-  MyVoice/
-    MyVoice.pth
-    MyVoice.index
-~~~
+<FileTree title="Voice model files" items={[
+  {
+    "name": "logs",
+    "children": [
+      {
+        "name": "MyVoice",
+        "children": [
+          {
+            "name": "MyVoice.pth",
+            "description": "Inference weights",
+            "highlighted": true
+          },
+          {
+            "name": "MyVoice.index",
+            "description": "Matching retrieval index"
+          }
+        ]
+      }
+    ]
+  }
+]} />
 
 Refresh the interface afterward. Desktop's active directory may be outside the installation; see [storage locations](/guides/moving-to-desktop/). Prefer the upload controls if you are unsure which folder is active.
 

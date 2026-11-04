@@ -7,26 +7,6 @@
 	padding: 56px 32px 64px;
 	margin: auto;
 }
-.release-link {
-	display: inline-flex;
-	align-items: center;
-	gap: 9px;
-	border: 1px solid var(--border);
-	border-radius: var(--radius-button);
-	padding: 6px 10px;
-	background: var(--panel);
-	font-size: 11px;
-	color: var(--muted);
-}
-.release-link > span:first-child {
-	width: 5px;
-	height: 5px;
-	border-radius: 50%;
-	background: #4ade80;
-}
-.release-link > span:last-child {
-	margin-left: 10px;
-}
 .hero-eyebrow {
 	color: var(--muted);
 	font-size: 10px;

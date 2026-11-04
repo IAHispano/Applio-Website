@@ -2,7 +2,6 @@
 body :is(button, .site-button),
 body .primary-action,
 body .secondary-action,
-body .release-link,
 body header nav a[class] {
   border-radius: var(--radius-button);
 }
